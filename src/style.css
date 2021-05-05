@@ -54,12 +54,13 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
-  --color-text: #2e353f;
+  --color-primary: #47A6FF;
+  --color-text: #C3C8D3;
   --color-text-light: #4f5969;
-  --color-heading: #1a202c;
-  --color-heading-black: black;
+  --color-heading: #fff;
+  --color-heading-black: #fff;
   --color-accent: #d1dce5;
+  --color-background: #0D1117;
 }
 
 /* HTML elements */
@@ -75,6 +76,7 @@ html {
   font-size: var(--fontSize-root);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
 }
 
 body {
@@ -88,7 +90,7 @@ footer {
 }
 
 hr {
-  background: var(--color-accent);
+  background: var(--color-heading);
   height: 1px;
   border: 0;
 }
@@ -106,6 +108,7 @@ h6 {
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
   letter-spacing: -0.025em;
+  color: var(--color-heading);
 }
 
 h2,
@@ -120,7 +123,7 @@ h6 {
 h1 {
   font-weight: var(--fontWeight-black);
   font-size: var(--fontSize-6);
-  color: var(--color-heading-black);
+  color: var(--color-heading);
 }
 
 h2 {
@@ -197,7 +200,7 @@ li > ul {
 }
 
 blockquote {
-  color: var(--color-text-light);
+  color: var(--color-text);
   margin-left: calc(-1 * var(--spacing-6));
   margin-right: var(--spacing-8);
   padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6);
@@ -231,11 +234,31 @@ table thead tr th {
 
 a {
   color: var(--color-primary);
+  position: relative;
+  text-decoration: none;
 }
 
-a:hover,
-a:focus {
-  text-decoration: none;
+a:hover {
+  color: #30CE56;
+}
+
+a::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background-color: white;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover::before{
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
 }
 
 /* Custom classes */
