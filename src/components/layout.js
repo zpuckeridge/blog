@@ -31,6 +31,9 @@ const Layout = ({ location, title, children }) => {
           <a href="/" className="nav-button">
             Blog
           </a>
+          <a href="https://zacchary.me/cv" className="nav-button">
+            CV
+          </a>
         </div>
       <main>{children}</main>
       <footer>
