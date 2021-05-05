@@ -22,7 +22,16 @@ const Layout = ({ location, title, children }) => {
 
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
+        
+        <div className="nav">
+        <a href="/" className="nav-header">Zacchary's Blog</a>
+          <a href="https://zacchary.me/" className="nav-button">
+            Home
+          </a>
+          <a href="/" className="nav-button">
+            Blog
+          </a>
+        </div>
       <main>{children}</main>
       <footer>
         © Zacchary Puckeridge {new Date().getFullYear()} | Built with
