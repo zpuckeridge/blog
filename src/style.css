@@ -87,6 +87,7 @@ body {
 
 footer {
   padding: var(--spacing-6) var(--spacing-0);
+  text-align: center;
 }
 
 hr {

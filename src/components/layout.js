@@ -39,7 +39,11 @@ const Layout = ({ location, title, children }) => {
       <footer>
         © Zacchary Puckeridge {new Date().getFullYear()} | Built with
         {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+        <a href="https://gatsbyjs.com">Gatsby</a>
+        {` `}
+        and
+        {` `}
+        <a href="https://reactjs.org">React</a>
       </footer>
     </div>
   )
