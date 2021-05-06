@@ -1,6 +1,8 @@
 To Do:
 
 - Add Share Links
-- Add Comments powered by utteranc.es
-- Fix alignment in author
-- Fix Code Color Issues
+- Replace Discus with utteranc.es
+- Fix alignment in Author Footer
+- Fix Syntax Highlighting Background Issues Issues
+- Add Reading Time
+- Add Page Progress
