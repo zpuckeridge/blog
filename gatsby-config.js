@@ -10,6 +10,12 @@ module.exports = {
   },
   plugins: 
   [
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `zacchary`
+      }
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
