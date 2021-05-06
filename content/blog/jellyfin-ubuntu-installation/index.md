@@ -9,31 +9,31 @@ Jellyfin is an open source media library management and streaming platform, simi
 
 ## Install Jellyfin
 
-1. Run updates and upgrade packages:
+1.  Run updates and upgrade packages:
 
         sudo apt-get update && sudo apt-get upgrade
 
-2. Install and enable HTTPS transport for APT:
+2.  Install and enable HTTPS transport for APT:
 
         sudo apt install apt-transport-https
 
-3. Enable the Universe repository for all of the ffmpeg dependencies:
+3.  Enable the Universe repository for all of the ffmpeg dependencies:
 
         sudo add-apt-repository universe
 
-4. Import the GPG signing keys for Jellyfin:
+4.  Import the GPG signing keys for Jellyfin:
 
         wget -O - https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | sudo apt-key add -
 
-5. Run the following command to create the jellyfin.list file:
+5.  Run the following command to create the jellyfin.list file:
 
         sudo touch /etc/apt/sources.list.d/jellyfin.list
 
-6. Add the Jellyfin apt repository to the server:
+6.  Add the Jellyfin apt repository to the server:
 
         echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/ubuntu $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list
 
-7. Run updates and upgrade packages:
+7.  Run updates and upgrade packages:
 
         sudo apt update && sudo apt install jellyfin
 
@@ -53,16 +53,16 @@ Jellyfin is an open source media library management and streaming platform, simi
 
 This reverse proxy will be setup through Apache.
 
-1. Install Apache with the following command:
+1.  Install Apache with the following command:
 
         sudo apt install apache2
 
-2. Enable proxy settings for Apache with the following commands:
+2.  Enable proxy settings for Apache with the following commands:
 
         sudo a2enmod proxy
         sudo a2enmod proxy_http
 
-3. Open a new virtual host file for the reverse proxy. Replace 'example.com' with the domain name to be setup.
+3.  Open a new virtual host file for the reverse proxy. Replace 'example.com' with the domain name to be setup.
 
         sudo nano /etc/apache2/sites-available/jellyfin.example.com.conf
 
@@ -103,11 +103,11 @@ Past the following Apache virtual host configuration in the file. Replace jellyf
     #</VirtualHost>
     #</IfModule>
 
-4. Enable the configuration file:
+4.  Enable the configuration file:
 
         sudo a2ensite jellyfin.example.com.conf
 
-5. Restart Apache to fully enable the new settings:
+5.  Restart Apache to fully enable the new settings:
 
         sudo systemctl restart apache2
 
@@ -115,25 +115,26 @@ Past the following Apache virtual host configuration in the file. Replace jellyf
 
 ## Setup Let's Encrypt
 
-1. Ensure Ports 80 and 443 have been opened by your ISP. Ensure that you have not applications that are exposed to Ports 80 and 443 that have security vulnerabilities. Open Ports 80 and 443 on your router.
+1.  Ensure Ports 80 and 443 have been opened by your ISP. Ensure that you have not applications that are exposed to Ports 80 and 443 that have security vulnerabilities. Open Ports 80 and 443 on your router.
 
-2. Install Certbot for Apache using the following command:
+2.  Install Certbot for Apache using the following command:
 
         sudo apt install python3-certbot-apache
 
-3. Run the following command to obtain and install a Let's Encrypt Certificate. Make sure to replace your email and domain in place of the example below:
+3.  Run the following command to obtain and install a Let's Encrypt Certificate. Make sure to replace your email and domain in place of the example below:
 
         sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --email you@example.com -d jellyfin.example.com
 
-4. Once installed successfully, open up your Apache Config File for Jellyfin and uncomment the lines pertaining to the SSL Certificate. Save the file and run the following command:
+4.  Once installed successfully, open up your Apache Config File for Jellyfin and uncomment the lines pertaining to the SSL Certificate. Save the file and run the following command:
 
         sudo systemctl restart apache2
 
-5. Navigate to your chosen domain. Your Jellyfin instance should be successfully secured.
+5.  Navigate to your chosen domain. Your Jellyfin instance should be successfully secured.
 
 You will now be able to access your Jellyfin instance using your domain with Let's Encrypt.
 
 ## Conclusion
+
 Jellyfin is a great system for storing movies and performing playback for a large library of media. With it's exceptionally simply installation process, I can see myself using this application long into the future.
 
 If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.
