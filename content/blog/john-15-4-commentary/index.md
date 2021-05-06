@@ -5,15 +5,15 @@ date: 2020-04-28
 tags: Faith
 ---
 
-	John 15:4 New Living Translation (NLT)
+John 15:4 New Living Translation (NLT)
 
 > "Remain in me, and I will remain in you. For a branch cannot produce fruit if it is severed from the vine, and you cannot be fruitful unless you remain in me."
 
-Jesus is speaking to his disciples as He prepares them for His sacrifice and departure. The verse applies to those who already apart of Christ's family. The verse is a promise that so long that we maintain a union with Christ, we will bear fruit. 
+Jesus is speaking to his disciples as He prepares them for His sacrifice and departure. The verse applies to those who already apart of Christ's family. The verse is a promise that so long that we maintain a union with Christ, we will bear fruit.
 
 The example Jesus provides is that God is the vine, and we are the branches. We, as gentiles, are grafted onto this vine upon the acceptance of Christ. We must abide in Christ, as a branch on a vine, which is supported by it, grows in it and eventually becomes fruitful. Breaking away from the vine can spell certain disaster - our safety depends on being grafted to that vine. To sustain genuine spiritual life in the world, we must remain intimately connected to Christ - like the branch.
 
-If we do not produce fruit, we are cut-off from God and handed over to our own sinful desires. 
+If we do not produce fruit, we are cut-off from God and handed over to our own sinful desires.
 
 John 15:6-8 New Living Translation (NLT)
 
@@ -37,7 +37,7 @@ It is our faith that will unite us to our savior and it is our continued faith w
 
 He wants us to have a conscious union with Him on the deepest level. We must come to the realization that we can do nothing - we are dead branches without Him. We too often try to live as our own vine and act as though by our own power, we were to do God's will.
 
-We have failed tremendously and yet Christ still invites us to humble ourselves and be redeemed as a branch. 
+We have failed tremendously and yet Christ still invites us to humble ourselves and be redeemed as a branch.
 
 We must surrender ourselves to Christ for His purposes, as the branch exists for the vine. But, in the same breath, the fullness of Christ is ours also.
 

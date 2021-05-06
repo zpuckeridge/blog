@@ -1,18 +1,20 @@
 ---
-title: "Create your own Blog with Gatsby"
+title: "Create your own Blog with Gatsby and GitHub Pages"
 slug: create-your-own-blog
 date: 2021-05-06
 tags: Technical
 ---
-
-# Create your own Blog with Gatsby and GitHub Pages
-
 The following article will go through the process of using Gatsby and React to build a simple and minimalistic blog which will be hosted using GitHub Pages.
+
+---
 
 ## Disclaimer:
 The following article assumes that you some general knowledge in the following areas:
 - Git
 - Linux Terminal
+
+---
+
 ## What is Gatsby?
 Gatsby is an open source frontend framework commonly used in the development of fast websites and websites. It generates static websites, similar to Next.js and Jekyll. 
 
@@ -95,4 +97,8 @@ Ensure that our repository gh-pages is selected. Feel free to add a custom domai
 
 Wait a few moments and visit your site. Perfect! Everything's up and running!
 
-If you run into any issues, please feel free to leave a comment below!
+## Conclusion
+
+Gatsby combined with GitHub pages is a fantastic resource to use for creating incredibly fast static sites. For a simple blog, this is an incredibly easy solution.
+
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).
