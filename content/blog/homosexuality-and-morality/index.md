@@ -3,27 +3,28 @@ title: Homosexuality - what does the Bible say?
 slug: homosexuality-and-morality
 date: 2020-07-07
 tags: Faith
+draft: true
 ---
 
-*This article contains sexually explicit topics that may not be suitable for younger readers.*
+_This article contains sexually explicit topics that may not be suitable for younger readers._
 
 ---
 
 Before I continue with this article, I'd like to take some time to pray for you, the reader, and that the words on this page speak true to your heart and the hearts of others.
 
->  "Dear Heavenly Father, thank-you for your sacrifice and the provision of your grace upon my life. As I continue to write this article, may you be both with me and the reader to help us both to interpret the message you have for me to write, and the reader for whom receives it.
-> 
+> "Dear Heavenly Father, thank-you for your sacrifice and the provision of your grace upon my life. As I continue to write this article, may you be both with me and the reader to help us both to interpret the message you have for me to write, and the reader for whom receives it.
+>
 > I faithfully pray that you are in complete control and that the words displayed on this page are words which you intended to be there. I pray that you bring me back to this article over the years to correct and update it, improving its validity and relevance in an ever evolving society.
-> 
+>
 > Father, let the words that inherit this page not breed hatred and nonacceptance, but joy and patience, peace and kindness, hope and love. Help me to seek first to understand, then to be understood.
-> 
+>
 > Lord, I pray that those who have been abused and mistreated by the hands of Christians past and present, find peace and forgiveness in their hearts. Please be with them and comfort them in their time of need.
-> 
+>
 > In your Holy and righteous name, I pray these things. Amen."
 
 **For anyone that has been badly treated by hateful Christians, I deeply and sincerely apologise.** I can only pray that God helps you to find peace and forgiveness in your heart for these people. If you find yourself reading this and would like to reach out, please feel free to do so by emailing me.
 
-**Let me be abundantly clear.****All sin** is covered by the **death and resurrection **of **Jesus Christ** when he **sacrificed himself for our sins.** He bore **our sins,** future, past and present. There is **no sin** which can not be forgiven except blaspheming the Holy Spirit (article coming soon).
+**Let me be abundantly clear.\*\***All sin** is covered by the **death and resurrection **of **Jesus Christ** when he **sacrificed himself for our sins.** He bore **our sins,** future, past and present. There is **no sin\*\* which can not be forgiven except blaspheming the Holy Spirit (article coming soon).
 
 Many Christians misconstrue and misunderstand what God and the Bible has to say about homosexuality. More often than not, this pushes people even further away from coming to truly understand who Christ is and what His sacrifice on the cross means for them.
 
@@ -35,7 +36,7 @@ To help us understand what God thinks about these issues, we must turn to the Bi
 
 ### What does the Bible say?
 
-God has not made Himself unclear. The first mention of homosexuality within the Bible is in Genesis 13:13. 
+God has not made Himself unclear. The first mention of homosexuality within the Bible is in Genesis 13:13.
 
 > the men of Sodom were exceedingly wicked and sinful against the LORD.
 
@@ -85,7 +86,7 @@ Actually Jesus did speak about Homosexuality and other sexually deviant behaviou
 
 Leviticus 20:13 refers to boys, not men ie. pedophilia, not homosexuality. [German translations in the reformation period also suggest that this may be the case.](https://www.forgeonline.org/blog/2019/3/8/what-about-romans-124-27)
 
-While it is incredibly tempting to believe these interpretations, we must use history to determine whether this was an acceptable practice in the church. In church history, there have been no examples of homosexual marriage or condoned homosexual relationships. These translations also tend to be sketchy, as many writers of the KJV/other translations were known for putting in their own interpretations. 
+While it is incredibly tempting to believe these interpretations, we must use history to determine whether this was an acceptable practice in the church. In church history, there have been no examples of homosexual marriage or condoned homosexual relationships. These translations also tend to be sketchy, as many writers of the KJV/other translations were known for putting in their own interpretations.
 
 To know the truth, we must refer to Jewish history and the dead sea scrolls - which clearly show that homosexual marriage was not a condoned practice.
 
@@ -99,21 +100,21 @@ Many people are quick to point out that homosexuals are simply "born that way". 
 
 The inconclusiveness of these studies left leading Columbia University psychiatrists Byne and Parsons to conclude that:
 
-> "There is no evidence at present to substantiate a biological theory, just as there is no compelling evidence to support any singular psychosocial explanation. . . .[T]he appeal of current biological explanations may derive more from dissatisfaction with the present status of psychosocial explanations than from a substantiating body of experimental data.  Critical review shows the evidence favoring a biological theory to be lacking."* [3]*
+> "There is no evidence at present to substantiate a biological theory, just as there is no compelling evidence to support any singular psychosocial explanation. . . .[T]he appeal of current biological explanations may derive more from dissatisfaction with the present status of psychosocial explanations than from a substantiating body of experimental data.  Critical review shows the evidence favoring a biological theory to be lacking."_ [3]_
 
 From a scientific standpoint, there is no good reason to believe that there exists a biological link to homosexual behaviour. If a link were ever established, it would still not morally justify homosexuality for a few reasons.
 
 A lot more research would need to be completed to work out why this behaviour exists and how it translates into the lives of everyday people. One would also need to differentiate if homosexual behaviour causes the biological condition or if the biological condition is the cause of the homosexual behaviour.
 
-If the biological condition causes homosexuality or predisposes it in an individual, it would still not make the behaviour "good" or morally permissible. Many Christians interpret all that is natural to be good. 
+If the biological condition causes homosexuality or predisposes it in an individual, it would still not make the behaviour "good" or morally permissible. Many Christians interpret all that is natural to be good.
 
-If I am 'naturally' predisposed towards homosexuality, than it must be good. 
+If I am 'naturally' predisposed towards homosexuality, than it must be good.
 
 This train of thought does not overlap so well in other areas of life. For example, what if I am naturally selfish, violent or predisposed toward addiction, adultery or paedophilia? Researchers believe that there is a definite genetic basis for alcoholism, yet we do not think that alcoholism is good. Any reasonable person would believe that alcoholism should be treated and "cured".
 
-If this is true, should we not attempt to "cure" homosexuals from a behaviour that appears divergent from the norm much the same way as alcoholism? 
+If this is true, should we not attempt to "cure" homosexuals from a behaviour that appears divergent from the norm much the same way as alcoholism?
 
-Does our natural inclination or desire for things make them good? The Bible teaches us that the human heart is corrupt and must be regenerated by God, through Jesus Christ. 
+Does our natural inclination or desire for things make them good? The Bible teaches us that the human heart is corrupt and must be regenerated by God, through Jesus Christ.
 
 > “If any man be in Christ he is a **new creation**. The old is passed, behold the new is come.” - 2 Corinthians 5.17
 
@@ -129,7 +130,7 @@ Just because some animals engage in homosexual behaviour, does not mean that hum
 
 Even if this was a good argument for homosexuality, one could also argue that animals and the natural order of things were corrupted when sin was introduced to the world through Adam.
 
-A point in favour of genetic homosexuality is the Bible. It talks about inter-generational sin and how the sins of the father are passed down for up to four generations. 
+A point in favour of genetic homosexuality is the Bible. It talks about inter-generational sin and how the sins of the father are passed down for up to four generations.
 
 [Another argument to bring to the forefront is the very well documented health risks of homosexuality promiscuity.](https://virtueonline.org/negative-health-effects-homosexuality)
 
@@ -137,7 +138,7 @@ A point in favour of genetic homosexuality is the Bible. It talks about inter-ge
 
 ### Natural Inclination
 
-Homosexuality may *feel* natural to some, but our guide to what is "natural" or "good" is the Bible. God's desires for His creation is not that it is destroyed by sin, but that it is set free from its corruptive and destructive nature.
+Homosexuality may _feel_ natural to some, but our guide to what is "natural" or "good" is the Bible. God's desires for His creation is not that it is destroyed by sin, but that it is set free from its corruptive and destructive nature.
 
 > The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full. - John 10:10
 
@@ -145,15 +146,15 @@ Homosexuality may *feel* natural to some, but our guide to what is "natural" or 
 
 ### Can I be 'gay' and Christian?
 
-This question ultimately comes down to whether or not our identity lies within Christ or our own sexuality. Christians are in union with Christ and that should be our only identity (Ephesians 2:6). 
+This question ultimately comes down to whether or not our identity lies within Christ or our own sexuality. Christians are in union with Christ and that should be our only identity (Ephesians 2:6).
 
 We are all required to lay down our selfish desires at the cross and follow Jesus (Mark 8:34). Our sexual attractions should never be the foundation of our identity. Christ is our rock and our strength. Our identity is what God says about us in His Word.
 
-All Christians have desires or attractions which do not conform with our new nature in Christ. These can take form in anything from greed, to lust, to lying. 
+All Christians have desires or attractions which do not conform with our new nature in Christ. These can take form in anything from greed, to lust, to lying.
 
 If you are a Christian that struggles with same sex attraction, you need to start by agreeing that this is not something God desires for your life. We need to stay close to God to avoid temptation or self-deceive ourselves into believing that homosexuality is acceptable before God.
 
-Temptation is part of the life of the Christian and can only be resisted by remaining faithful to God. We must choose not to nurture temptation or act on urges set on by it's luring grasp. 
+Temptation is part of the life of the Christian and can only be resisted by remaining faithful to God. We must choose not to nurture temptation or act on urges set on by it's luring grasp.
 
 > "So I say, walk by the Spirit, and you will not gratify the desires of the flesh." - Galatians 5:16
 
@@ -169,7 +170,7 @@ The Bible appears to be very clear on its stance of homosexual behaviour. In my 
 
 The power of the Gospel is mightier than the power of sin.
 
-I must admit, I am very ashamed at how churches and certain religious people choose to avoid and hate homosexuals. If Christians are not reaching the lost, we have failed the great commission. Christians (including myself) need to step up and reach out to people dealing with this corruptive sin. 
+I must admit, I am very ashamed at how churches and certain religious people choose to avoid and hate homosexuals. If Christians are not reaching the lost, we have failed the great commission. Christians (including myself) need to step up and reach out to people dealing with this corruptive sin.
 
 Another thing to add, this is simply an opinion that I have come to after heavily researching this topic. Personally, I have really struggled with homosexuality in my personal life, and I am open to debate regarding the interpretation of scripture.
 
@@ -179,7 +180,7 @@ Please feel free to leave a comment below!
 
 ### References
 
-[1] Simon LeVay, "A Difference in Hypothalmic Structure Between Heterosexual and Homosexual Men" Science 258 (Aug. 30, 1991) 
+[1] Simon LeVay, "A Difference in Hypothalmic Structure Between Heterosexual and Homosexual Men" Science 258 (Aug. 30, 1991)
 
 [2] J.M Bailey and Richard Pillard, "A Genetic Study of Male Sexual Orientation" Archives of General Psychiatry 48 (1991)
 
