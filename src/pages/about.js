@@ -30,7 +30,7 @@ const AboutPage = ({ data, location }) => {
                 <Bio />
 
                 <a
-                  href="../resume.pdf"
+                  href="../static/../resume.pdf"
                   target="_blank"
                   class="pull-right underline"
                 >
