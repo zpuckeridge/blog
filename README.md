@@ -8,3 +8,9 @@ To Do:
 - Fix Back to Top Button
 - Add Newsletter Function
 - Add Home Page
+- Add CMS
+- Add Buy me a Coffee Link
+- Add Search Function
+- Add Tags
+- Add Hero Image to Posts
+- Add Category Icons to Posts
