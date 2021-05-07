@@ -80,3 +80,5 @@ All men are totally depraved, and this depravity extends to the entire person, i
 - Monergistic: Solely the work of God.
 - Modern expression: Reformed Churches.
 - Grace is necessary and sufficient.
+
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).

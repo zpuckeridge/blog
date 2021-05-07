@@ -44,3 +44,5 @@ We must surrender ourselves to Christ for His purposes, as the branch exists for
 Why does Jesus use 'vine' instead of 'tree'? And why does the Gospel of John refer to Jesus as the 'True Vine'?
 
 The grapevine and the vineyard traditionally represented God's people, planted and tended by him in Israel (Psalms 80:8-18; Isaiah 5:1-7; Jeremiah 2:21; 12:10-11; Ezekiel 15:1-5; Hosea 10:1-2). When Jesus used this image, He made an important departure: He declared that He is the true grapevine and that a relationship with God requires attachment to Him. This in turn infuriated the church leaders of the time and is the reason why the Gospel of John refers to Jesus as the True Vine so as to differentiate Him from God's people.
+
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).

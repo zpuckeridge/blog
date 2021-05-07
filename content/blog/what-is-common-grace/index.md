@@ -32,3 +32,5 @@ Those of mankind who do not have renewed hearts, will still be influenced by God
 As Paul said of a group of unregenerate Gentiles, they “do by nature things required by the law, they are a law for themselves, even though they do not have the law” (Romans 2:14). The necessity of God restraining the hearts of the un-redeemed becomes clear when we understand the biblical doctrine of total depravity. 
 
 If God did not restrain the evil that resides in the hearts of all men, hearts which are “deceitful and desperately wicked” (Jeremiah 17:9), humanity would have destroyed itself centuries ago. But because He works through common grace given to all men, God’s sovereign plan for history is not thwarted by their evil hearts. In the doctrine of common grace, we see God’s purposes stand, His people blessed, and His glory magnified.
+
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).

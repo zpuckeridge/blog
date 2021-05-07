@@ -104,3 +104,5 @@ John 5:24
 Colossians 2:16-17
 
 > So don’t let anyone condemn you for what you eat or drink, or for not celebrating certain holy days or new moon ceremonies or Sabbaths. For these rules are only shadows of the reality yet to come. And Christ himself is that reality.
+
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).

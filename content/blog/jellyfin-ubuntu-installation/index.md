@@ -137,4 +137,4 @@ You will now be able to access your Jellyfin instance using your domain with Let
 
 Jellyfin is a great system for storing movies and performing playback for a large library of media. With it's exceptionally simply installation process, I can see myself using this application long into the future.
 
-If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).

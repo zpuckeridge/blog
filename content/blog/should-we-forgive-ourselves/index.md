@@ -48,3 +48,5 @@ We are sons and daughters of the most high, we co-heir with Christ and sit at th
 ---
 
 - Only if the person you have sinned against knows you have sinned against them. For it would not make sense to ask for forgiveness from someone if you committed adultery with said person in your mind for that may cause unnecessary divides and relational issues producing additional sin and harming the person.
+
+If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via [email](mailto:zacchary@puckeridge.me).
