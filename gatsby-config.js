@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Zacchary's Blog`,
+    title: `zacchary.me`,
     author: {
       name: `Zacchary Puckeridge,`,
-      summary: `a Web Developer with a passion for technology, motorcycles, photography and music.`,
+      summary: `Hi 👋, I'm Zacchary Puckeridge. I'm a 💻 web developer with a passion for technology, 🏍 motorcycles, 📷 photography and 🎧 music.`,
     },
     description: `Zacchary is a Web Developer with a passion for technology, motorcycles, photography and music.`,
-    siteUrl: `https://blog.zacchary.me/`,
+    siteUrl: `https://zacchary.me/`,
   },
   plugins: 
   [

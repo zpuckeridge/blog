@@ -6,28 +6,9 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Bio = () => {
-  const data = useStaticQuery(graphql`
-    query BioQuery {
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-    }
-  `)
-
-  // Set these values by editing "siteMetadata" in gatsby-config.js
-  const author = data.site.siteMetadata?.author
 
   return (
     <div className="bio">
@@ -38,17 +19,15 @@ const Bio = () => {
         src="../images/profile-pic.png"
         width={50}
         height={50}
-        quality={95}
+        quality={100}
         alt="Profile Picture"
       />
-      {author?.name && (
         <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `} 
+          <span role="img" aria-label="wave">👋</span> I'm Zacchary Puckeridge. I'm a <span role="img" aria-label="laptop">💻</span> <strong>web developer</strong> with a passion for <span role="img" aria-label="cog">⚙</span> <strong>technology</strong>, <span role="img" aria-label="motorcycle">🏍</span> <strong>motorcycles</strong>, <span role="img" aria-label="camera">📷</span> <strong>photography</strong> and <span role="img" aria-label="headphones">🎧</span> <strong>music</strong>.
         </p>
-      )}
     </div>
   )
+
 }
 
 export default Bio
