@@ -11,9 +11,15 @@ module.exports = {
   plugins: 
   [
     {
-      resolve: `gatsby-plugin-disqus`,
+      resolve: "gatsby-plugin-page-progress",
       options: {
-        shortname: `zacchary`
+        includePaths: [],
+        excludePaths: ["/"],
+        height: 3,
+        prependToBody: false,
+        color: `#30CE56`,
+        footerHeight: 500,
+        headerHeight: 0,
       }
     },
     `gatsby-plugin-image`,
@@ -53,7 +59,6 @@ module.exports = {
         ],
       },
     },
-    'gatsby-plugin-draft',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     // {

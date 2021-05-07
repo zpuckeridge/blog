@@ -5,7 +5,7 @@ date: 2020-11-12
 tags: Faith
 ---
 
-### Well - not exactly...
+## Well - the answer isn't as cut or dry as many may believe...
 
 It's incredibly important to remember that there is **NO **condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
 
@@ -25,9 +25,9 @@ These are two different messages that look contradictory of each other at first,
 
 It's imperative to recognise that wallowing in your own sin is also sin - by doing this, you are idolising yourself and saying that Jesus' forgiveness was not enough for you. **What could possibly be more offensive in sight of the Heavenly Father, the Creator of all things, the almighty and righteous God. **I myself, am terribly guilty of this and seek repentance for this sin often.
 
-### So should we forgive ourselves? 
+## So should we forgive ourselves?
 
-Why would you forgive yourself if you trespass against someone else? The Bible makes it clear that we should seek forgiveness from those that we have wronged and from our Heavenly Father.* Who made us the judge and executioner of our own sin? As Paul said, there is no condemnation for those who belong to Christ.
+Why would you forgive yourself if you trespass against someone else? The Bible makes it clear that we should seek forgiveness from those that we have wronged and from our Heavenly Father.\* Who made us the judge and executioner of our own sin? As Paul said, there is no condemnation for those who belong to Christ.
 
 Paul in 2 Corinthians 7:8-10 talks about how the Corinthians repented and turned away from their wicked ways. Paul had previously called for their repentance, and he endears them for seeking reconciliation with the Father.
 
@@ -39,12 +39,12 @@ He continues on to say that the Corinthians godly grief that they had suffered t
 
 > Just see what this godly sorrow produced in you! Such earnestness, such concern to clear yourselves, such indignation, such alarm, such longing to see me, such zeal, and such a readiness to punish wrong. You showed that you have done everything necessary to make things right.
 
-Taking all this into consideration, the Bible tells us that we do not necessarily forget our sins, but that we should strive to forget our sins and press on, remembering them only for a deeper understanding of God's grace and mercy, and to humble ourselves and step down from our seat of condemnation over our own life. 
+Taking all this into consideration, the Bible tells us that we do not necessarily forget our sins, but that we should strive to forget our sins and press on, remembering them only for a deeper understanding of God's grace and mercy, and to humble ourselves and step down from our seat of condemnation over our own life.
 
-### One more thing to consider.
+## One more thing to consider.
 
 We are sons and daughters of the most high, we co-heir with Christ and sit at the right hand of God. It brings no glory to the creator of the universe if we sit and do nothing with our lives because we believe ourselves not worthy of existence. You have been **SET FREE THROUGH JESUS' SACRIFICE! **It's time to start living freely from sin and condemnation! God did not design us to suffer alone, and if you still continue to struggle with your past sin, I endear you to find a mentor or a friend that can hold you accountable.
 
 ---
 
-* Only if the person you have sinned against knows you have sinned against them. For it would not make sense to ask for forgiveness from someone if you committed adultery with said person in your mind for that may cause unnecessary divides and relational issues producing additional sin and harming the person.
+- Only if the person you have sinned against knows you have sinned against them. For it would not make sense to ask for forgiveness from someone if you committed adultery with said person in your mind for that may cause unnecessary divides and relational issues producing additional sin and harming the person.

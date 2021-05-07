@@ -44,7 +44,6 @@ const BlogIndex = ({ data, location }) => {
                   </h2>
                   <p className="date">{post.frontmatter.date}</p>
                   <p className="date">{post.frontmatter.tags}</p>
-
                 </header>
                 <section>
                   <p
@@ -73,7 +72,6 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { fields: { draft: { eq: false } } }
       sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt
@@ -85,7 +83,6 @@ export const pageQuery = graphql`
           title
           description
           tags
-          
         }
       }
     }

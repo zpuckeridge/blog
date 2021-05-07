@@ -4,26 +4,27 @@ slug: create-your-own-blog
 date: 2021-05-06
 tags: Technical
 ---
+
 The following article will go through the process of using Gatsby and React to build a simple and minimalistic blog which will be hosted using GitHub Pages.
 
 ---
 
-## Disclaimer:
+### Disclaimer:
 The following article assumes that you some general knowledge in the following areas:
 - Git
 - Linux Terminal
 
 ---
 
-## What is Gatsby?
+### What is Gatsby?
 Gatsby is an open source frontend framework commonly used in the development of fast websites and websites. It generates static websites, similar to Next.js and Jekyll. 
 
 Why should we use it? Well, simply put - the plugin ecosystem put together by the Gatsby community. The plugins can be utilised with Gatsby to create ecommerce platforms, wikis and in our case, a blog.
 
-## What is GitHub Pages?
+### What is GitHub Pages?
 GitHub Pages allows you to host websites and projects directly from your GitHub Repository. It's super handy!
 
-## Setting up Gatsby
+### Setting up Gatsby
 First of all, we need to ensure we are using the latest version of Node. To check we are using the latest version, run the following:
 
 `node-v`
@@ -37,7 +38,7 @@ or if you are using Node Package Manager:
 
     npm install -g gatsby-cli
 
-## Creating the Project
+### Creating the Project
 Now that we have installed the gatsby-cli, we can create a new Gatsby project using the community built [gatsby-starter-blog](https://github.com/gatsbyjs/gatsby-starter-blog).
 
     gatsby new my-blog https://github.com/gatsbyjs/gatsby-starter-blog
@@ -66,7 +67,7 @@ As you can see, we've deployed our first minimalistic blog with Gatsby!
 
 > It is highly advised to push to your designated GitHub repository at this stage as an active repository will be required in the next step.
 
-## Deployment
+### Deployment
 Now that our blog is ready to go, we need to add the following build script to our package.json:
 
     "deploy:github": "gatsby build && gh-pages -d public"
@@ -97,7 +98,7 @@ Ensure that our repository gh-pages is selected. Feel free to add a custom domai
 
 Wait a few moments and visit your site. Perfect! Everything's up and running!
 
-## Conclusion
+### Conclusion
 
 Gatsby combined with GitHub pages is a fantastic resource to use for creating incredibly fast static sites. For a simple blog, this is an incredibly easy solution.
 
