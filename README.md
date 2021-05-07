@@ -1,8 +1,6 @@
 To Do:
 
 - Add Share Links
-- Replace Discus with utteranc.es
 - Fix alignment in Author Footer
-- Fix Syntax Highlighting Background Issues Issues
+- Fix Syntax Highlighting Background Issues & add copy button
 - Add Reading Time
-- Add Page Progress
