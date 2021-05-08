@@ -3,6 +3,9 @@ import * as React from "react"
 const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
+  const handleClick = () => {
+    window.scrollTo(0,0);
+  }
 
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
@@ -19,7 +22,7 @@ const Layout = ({ location, children }) => {
       <main>{children}</main>
       <footer>
         © Zacchary Puckeridge {new Date().getFullYear()}
-        <a href="#" className="back-to-top">Back to top ↑</a>
+        <button className="back-to-top" onClick={handleClick}>Back to top ↑</button>
       </footer>
     </div>
   )
