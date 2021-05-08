@@ -22,6 +22,6 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Add Table of Contents
 
 ## To Fix
-- Fix Syntax Highlighting Background Issues & add copy button
+- ~~Fix Syntax Highlighting Background Issues & add copy button~~
 - Fix CV Formatting
 - Fix Back to Top Button
