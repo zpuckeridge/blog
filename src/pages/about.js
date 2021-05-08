@@ -144,7 +144,7 @@ const AboutPage = ({ data, location }) => {
                         <div class="url">
                           <a
                             class="underline"
-                            href="https://www.linkedin.com/in/zacchary-puckeridge-053434211/"
+                            href="https://www.linkedin.com/in/zpuckeridge/"
                           >
                             zpuckeridge
                           </a>
@@ -204,7 +204,7 @@ const AboutPage = ({ data, location }) => {
                   <div>
                     <h4 class="strike-through">
                       <span>Dev Demand Co.</span>
-                      <span class="date">May 2020 — Present</span>
+                      <span class="date">May 2020 — May 2021</span>
                     </h4>
                     <div class="website pull-right">
                       <a class="underline" href="https://devdemand.co">
