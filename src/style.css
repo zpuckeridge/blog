@@ -399,4 +399,13 @@ footer {
 
 .back-to-top {
   float: right;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  scroll-behavior: smooth;
+}
+
+.back-to-top:hover {
+  color: #30CE56;
 }
