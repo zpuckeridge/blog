@@ -33,7 +33,10 @@ Gatsby aims to support all versions of Node that haven't yet reached their End o
 
 Now, it's time to install the Gatsby CLI package to our machine so that we can run Gatsby related commands.
 
-    yarn add gatsby-cli
+```
+yarn add gatsby-cli
+```
+
 or if you are using Node Package Manager:
 
     npm install -g gatsby-cli

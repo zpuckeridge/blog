@@ -36,37 +36,39 @@ Simply add `comments.js` as a new file to your `../components/` folder and paste
 
 [Shoutout to Emma Goto's blog here!]("https://www.emgoto.com/gatsby-comments/")
 
-    import React, { useEffect } from 'react';
+```js
+import React, { useEffect } from 'react';
 
-    const COMMENTS_ID = 'comments-container';
+const COMMENTS_ID = 'comments-container';
 
-    const Comments = () => {
-        useEffect(() => {
-            const script = document.createElement('script');
-            script.src = 'https://utteranc.es/client.js';
-            script.setAttribute('repo', 'YOUR-GITHUB-USERNAME/YOUR-REPOSITORY');
-            script.setAttribute('issue-term', 'pathname');
-            script.setAttribute('theme', 'dark-blue');
-            script.setAttribute('crossorigin', 'anonymous');
-            script.async = true;
+const Comments = () => {
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://utteranc.es/client.js';
+        script.setAttribute('repo', 'YOUR-GITHUB-USERNAME/YOUR-REPOSITORY');
+        script.setAttribute('issue-term', 'pathname');
+        script.setAttribute('theme', 'dark-blue');
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
 
+        const comments = document.getElementById(COMMENTS_ID);
+        if (comments) comments.appendChild(script);
+
+        // This function will get called when the component unmounts
+        // To make sure we don't end up with multiple instances of the comments component
+        return () => {
             const comments = document.getElementById(COMMENTS_ID);
-            if (comments) comments.appendChild(script);
+            if (comments) comments.innerHTML = '';
+        };
+    }, []);
 
-            // This function will get called when the component unmounts
-            // To make sure we don't end up with multiple instances of the comments component
-            return () => {
-                const comments = document.getElementById(COMMENTS_ID);
-                if (comments) comments.innerHTML = '';
-            };
-        }, []);
+    return (
+        <div id={COMMENTS_ID} />
+    );
+};
 
-        return (
-            <div id={COMMENTS_ID} />
-        );
-    };
-
-    export default Comments;
+export default Comments;
+```
 
 > Be sure to change the `repo` line to reflect your own comments repository!
 
@@ -74,12 +76,14 @@ Now that we've successfully created our new component, let's add it to our blog 
 
 Be sure to add the following line to your import list:
 
-    import Comments from "../components/comments"
+```js
+import Comments from "../components/comments"
+```
 
 and place the following line of code wherever you want your comments to show up!
-
-    <Comments />
-
+```js
+<Comments />
+```
 Save that file and head on over to your site to try out your comment section!
 
 ### Conclusion

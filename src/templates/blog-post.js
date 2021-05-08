@@ -6,7 +6,6 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Comments from "../components/comments"
-import TableOfContents from '../components/tableofcontents'
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
