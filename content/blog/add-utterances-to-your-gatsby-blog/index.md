@@ -26,7 +26,7 @@ This solution is fantastic if your blog is read by other developers, as they are
 
 First of all, we need to create a new public GitHub repository for our comments. Since my comments are primarily for my blog, I named my repository `blog-comments`.
 
-Now, head on over to the [utteranc.es GitHub app]("https://github.com/apps/utterances") and install that onto your newly created repository.
+Now, head on over to the [utteranc.es GitHub app](https://github.com/apps/utterances) and install that onto your newly created repository.
 
 ### Add the utteranc.es component to your Gatsby blog
 
@@ -34,7 +34,7 @@ The default script provided by utteranc.es in their documentation simply won't c
 
 Simply add `comments.js` as a new file to your `../components/` folder and paste the following code:
 
-[Shoutout to Emma Goto's blog here!]("https://www.emgoto.com/gatsby-comments/")
+[Shoutout to Emma Goto's blog here!](https://www.emgoto.com/gatsby-comments/)
 
 ```js
 import React, { useEffect } from 'react';
