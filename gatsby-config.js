@@ -42,6 +42,12 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-vscode`,
+            options: {
+              theme: 'Abyss'
+            }
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 630,
