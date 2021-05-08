@@ -24,5 +24,5 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 ## To Fix
 - ~~Fix Syntax Highlighting Background Issues & add copy button~~
 - Fix CV Formatting
-- Fix Back to Top Button
+- ~~Fix Back to Top Button~~
 - ~~Fix External Links~~
