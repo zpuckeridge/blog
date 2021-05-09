@@ -3,6 +3,7 @@ title: "Create your own Blog with Gatsby and GitHub Pages"
 slug: create-your-own-blog
 date: 2021-05-06
 tags: Technical
+readingTime: 20 minutes
 ---
 
 The following article will go through the process of using Gatsby and React to build a simple and minimalistic blog which will be hosted using GitHub Pages.

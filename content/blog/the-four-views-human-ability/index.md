@@ -3,6 +3,7 @@ title: The Four Views of the Human Ability
 slug: the-four-views-human-ability
 date: 2020-04-01
 tags: Faith
+readingTime: 5 minutes
 ---
 
 Understanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.

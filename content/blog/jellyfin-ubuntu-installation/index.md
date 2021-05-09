@@ -3,6 +3,7 @@ title: Install Jellyfin on Ubuntu
 slug: install-jellyfin-ubuntu
 date: 2019-11-28
 tags: Technical
+readingTime: 10 minutes
 ---
 
 Jellyfin is an open source media library management and streaming platform, similar to [Plex](https://www.plex.tv/). This document will guide you through the process of installing and configuring Jellyfin on your Server running Ubuntu.

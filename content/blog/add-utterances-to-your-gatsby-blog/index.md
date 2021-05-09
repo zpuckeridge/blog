@@ -3,6 +3,7 @@ title: "Add Comments to your Gatsby Blog with Utterances"
 slug: add-comments-gatsby-blog
 date: 2021-05-07
 tags: Technical
+readingTime: 10 minutes
 ---
 
 Gatsby doesn't provide any commenting tools by default, so we will be adding our own open-source alternative! This article details the steps required to get utteranc.es setup with your Gatsby blog.

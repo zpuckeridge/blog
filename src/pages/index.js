@@ -42,8 +42,9 @@ const BlogIndex = ({ data, location }) => {
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
-                  <p className="date">{post.frontmatter.date}</p>
-                  <p className="date">{post.frontmatter.tags}</p>
+                  <small>{post.frontmatter.date} ◦ </small>
+                  <small>{post.frontmatter.tags} ◦ </small>
+                  <small>{post.frontmatter.readingTime}</small>
                 </header>
                 <section>
                   <p
@@ -83,6 +84,7 @@ export const pageQuery = graphql`
           title
           description
           tags
+          readingTime
         }
       }
     }

@@ -3,6 +3,7 @@ title: "The Vine and the Branch"
 slug: john-15-4-commentary
 date: 2020-04-28
 tags: Faith
+readingTime: 5 minutes
 ---
 
 John 15:4 New Living Translation (NLT)

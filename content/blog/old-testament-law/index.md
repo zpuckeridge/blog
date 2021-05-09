@@ -3,6 +3,7 @@ title: An excerpt on Old Testament Law
 slug: old-testament-law
 date: 2020-11-16
 tags: Faith
+readingTime: 10 minutes
 ---
 
 Recently, a friend of mine had a run in with people that claimed to be Christians that followed the Old Testament Law. They brought substantial evidence to the table that stood to prove that we, as Gentiles should not eat unclean meat or any food that has been sacrificed to idols. He believed them for a short time, but felt compelled to read up on the subject in a lot more detail and discovered that he had been mislead.

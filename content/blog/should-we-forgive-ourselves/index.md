@@ -3,6 +3,7 @@ title: Should we forgive ourselves?
 slug: should-we-forgive-ourselves
 date: 2020-11-12
 tags: Faith
+readingTime: 5 minutes
 ---
 
 ## Well - the answer isn't as cut or dry as many may believe...

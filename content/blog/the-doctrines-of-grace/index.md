@@ -3,6 +3,7 @@ title: The Doctrines of Grace
 slug: the-doctrines-of-grace
 date: 2019-11-06
 tags: Faith
+readingTime: 5 minutes
 ---
 
 ## Predestination/Unconditional Election
