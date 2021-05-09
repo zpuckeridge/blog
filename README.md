@@ -6,23 +6,25 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 ## Current Features
 - Scroll Progress
 - Comments
+- Tags (to be automated)
+- Reading Time (to be automated)
+- Back to Top (smooth scroll)
 
 ## To Add
-- Add Share Links
-- Add Reading Time
-- Add Dark Mode/Light Mode Toggle
-- Add Newsletter Subscription Feature
-- Add Home Page
-- Add CMS
-- Add Buy me a Coffee Link
-- Add Search Function
-- Add Tags
-- Add Hero Image to Posts
-- Add Category Icons to Posts
-- Add Table of Contents
+- Share Links
+- Dark Mode/Light Mode Toggle
+- Newsletter Subscription Feature
+- Home Page with an "at a glance" style
+- CMS
+- Buy me a Coffee Link
+- Tag Search Function
+- Hero Image to Posts
+- Category Icons to Posts
+- Table of Contents
+- Social Cards
+- Updated at message
 
 ## To Fix
-- ~~Fix Syntax Highlighting Background Issues & add copy button~~
-- Fix CV Formatting
-- ~~Fix Back to Top Button~~
-- ~~Fix External Links~~
+- CV Formatting
+- Lighthouse Score
+- SEO
