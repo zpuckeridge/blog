@@ -32,7 +32,7 @@ const AboutPage = ({ data, location }) => {
                 <a
                   href="../static/../resume.pdf"
                   target="_blank"
-                  class="pull-right underline"
+                  class="pull-right"
                 >
                   Download my résumé
                 </a>
@@ -41,7 +41,7 @@ const AboutPage = ({ data, location }) => {
                   <a
                     class="social-button"
                     title="Blog"
-                    href="https://blog.zacchary.me"
+                    href="https://zacchary.me"
                     target="_self"
                   >
                     <span class="icon is-large">
@@ -97,29 +97,6 @@ const AboutPage = ({ data, location }) => {
             </div>
           </header>
           <body id="content" class="container">
-            <section id="contact">
-              <div>
-                <h2 class="megaline">Contact</h2>
-              </div>
-              <div class="row">
-                <div class="column">
-                  <strong>Website</strong>
-                  <div class="website">
-                    <a class="underline" href="/">
-                      https://zacchary.me
-                    </a>
-                  </div>
-                </div>
-                <div class="column">
-                  <strong>Blog</strong>
-                  <div class="website">
-                    <a class="underline" href="https://blog.zacchary.me">
-                      https://blog.zacchary.me/
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </section>
             <section id="about">
               <div>
                 <h2 class="megaline">About</h2>
@@ -142,10 +119,7 @@ const AboutPage = ({ data, location }) => {
                       <strong class="network">LinkedIn</strong>
                       <div class="username">
                         <div class="url">
-                          <a
-                            class="underline"
-                            href="https://www.linkedin.com/in/zpuckeridge/"
-                          >
+                          <a href="https://www.linkedin.com/in/zpuckeridge/">
                             zpuckeridge
                           </a>
                         </div>
@@ -155,10 +129,7 @@ const AboutPage = ({ data, location }) => {
                       <strong class="network">GitLab</strong>
                       <div class="username">
                         <div class="url">
-                          <a
-                            class="underline"
-                            href="https://gitlab.com/zpuckeridge"
-                          >
+                          <a href="https://gitlab.com/zpuckeridge">
                             zpuckeridge
                           </a>
                         </div>
@@ -168,24 +139,18 @@ const AboutPage = ({ data, location }) => {
                       <strong class="network">GitHub</strong>
                       <div class="username">
                         <div class="url">
-                          <a
-                            class="underline"
-                            href="https://github.com/zpuckeridge/"
-                          >
+                          <a href="https://github.com/zpuckeridge/">
                             zpuckeridge
                           </a>
                         </div>
                       </div>
                     </div>
                     <div class="column">
-                      <strong class="network">Photo Gallery</strong>
+                      <strong class="network">Gallery</strong>
                       <div class="username">
                         <div class="url">
-                          <a
-                            class="underline"
-                            href="https://blog.zacchary.me/gallery/"
-                          >
-                            https://blog.zacchary.me/gallery
+                          <a href="https://zacchary.me/gallery/">
+                            https://zacchary.me/gallery
                           </a>
                         </div>
                       </div>
@@ -207,9 +172,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">May 2020 — May 2021</span>
                     </h4>
                     <div class="website pull-right">
-                      <a class="underline" href="https://devdemand.co">
-                        https://devdemand.co
-                      </a>
+                      <a href="https://devdemand.co">https://devdemand.co</a>
                     </div>
                     <div class="position">Junior Dev Ops</div>
                     <div class="summary">
@@ -228,7 +191,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">September 2018 — May 2020</span>
                     </h4>
                     <div class="website pull-right">
-                      <a class="underline" href="https://conetix.com.au">
+                      <a href="https://conetix.com.au">
                         https://conetix.com.au
                       </a>
                     </div>
@@ -250,7 +213,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">May 2018 — September 2018</span>
                     </h4>
                     <div class="website pull-right">
-                      <a class="underline" href="https://www.camphighroad.org/">
+                      <a href="https://www.camphighroad.org/">
                         https://camphighroad.org
                       </a>
                     </div>
@@ -272,10 +235,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">November 2016 — May 2018</span>
                     </h4>
                     <div class="website pull-right">
-                      <a
-                        class="underline"
-                        href="https://www.hungryjacks.com.au/"
-                      >
+                      <a href="https://www.hungryjacks.com.au/">
                         https://hungryjacks.com.au
                       </a>
                     </div>
@@ -304,10 +264,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">November 2020 — Present</span>
                     </h4>
                     <div class="website pull-right">
-                      <a
-                        class="underline"
-                        href="https://www.chaplainwatch.org.au/"
-                      >
+                      <a href="https://www.chaplainwatch.org.au/">
                         https://chaplainwatch.org.au
                       </a>
                     </div>
@@ -328,9 +285,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">2017 — Present</span>
                     </h4>
                     <div class="website pull-right">
-                      <a class="underline" href="https://gentscamp.com/">
-                        https://gentscamp.com
-                      </a>
+                      <a href="https://gentscamp.com/">https://gentscamp.com</a>
                     </div>
                     <div class="position">Camp Leader</div>
                     <div class="summary">
@@ -354,7 +309,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">February 2020 — October 2020</span>
                     </h4>
                     <div class="website pull-right">
-                      <a class="underline" href="https://mindenbaptist.org/">
+                      <a href="https://mindenbaptist.org/">
                         https://mindenbaptist.org
                       </a>
                     </div>
@@ -377,10 +332,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">September 2017 — May 2018</span>
                     </h4>
                     <div class="website pull-right">
-                      <a
-                        class="underline"
-                        href="https://www.kingsridgebaptist.org/"
-                      >
+                      <a href="https://www.kingsridgebaptist.org/">
                         https://kingsridgebaptist.org
                       </a>
                     </div>
@@ -400,9 +352,7 @@ const AboutPage = ({ data, location }) => {
                       <span class="date">October 2017 — Present</span>
                     </h4>
                     <div class="website pull-right">
-                      <a class="underline" href="https://faithbound.gg/">
-                        https://faithbound.gg
-                      </a>
+                      <a href="https://faithbound.gg/">https://faithbound.gg</a>
                     </div>
                     <div class="position">Owner</div>
                     <div class="summary">

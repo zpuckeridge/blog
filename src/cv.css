@@ -73,31 +73,6 @@
     }
 }
 
-/* Underline CSS */
-
-.underline{
-    position: relative;
-  }
-  
-  .underline::before{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 0;
-    height: 1px;
-    background-color: white;
-    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-  
-  @media (hover: hover) and (pointer: fine) {
-    .underline:hover::before{
-      left: 0;
-      right: auto;
-      width: 100%;
-    }
-  }
-
 .pull-right {
     float: right;
 }
@@ -107,7 +82,11 @@
 }
 
 .social-button {
-    margin-right: 1%;
+    margin-right: 7px;
+}
+
+.social-button:hover {
+    text-decoration: none;
 }
 
 .column {
