@@ -23,8 +23,11 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Table of Contents
 - Social Cards
 - Updated at message
+- Privacy and Imprint
+- Copyright
 
 ## To Fix
 - CV Formatting
 - Lighthouse Score
 - SEO
+- Underline Issues
