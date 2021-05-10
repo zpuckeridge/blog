@@ -80,6 +80,14 @@ Now that our blog is ready to go, we need to add the following build script to o
 
 This will ensure that the `gatsby build` command will be run automatically when we push future updates to our blog.
 
+We also need to install the gh-pages Gatsby plugin like so:
+
+    yarn add gh-pages
+
+or if you are using Node Package Manager:
+
+    npm install gh-pages --save-dev
+
 Now, let's create a new Git branch for hosting our site. This is where all the build files will be stored.
 
     git branch gh-pages
