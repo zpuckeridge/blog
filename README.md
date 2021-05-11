@@ -11,13 +11,13 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Tags (to be automated)
 - Reading Time (to be automated)
 - Back to Top (smooth scroll)
+- Home Page
 
 ## To Add
 
 - Share Links
 - Dark Mode/Light Mode Toggle
 - Newsletter Subscription Feature
-- Home Page with an "at a glance" style
 - CMS
 - Buy me a Coffee Link
 - Tag Search Function
@@ -28,6 +28,9 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Updated at message
 - Privacy and Imprint
 - Copyright
+- Now Playing Widget
+- Latest Projects + Last Commit
+- Photo Gallery
 
 ## To Fix
 

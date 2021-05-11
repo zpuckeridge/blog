@@ -12,7 +12,7 @@ const Layout = ({ location, children }) => {
       <div className="nav">
         <a
           href="/"
-          class="nav-header glitch disable-select is-inline-flex"
+          className="nav-header glitch disable-select is-inline-flex"
           data-text="zacchary.me"
         >
           zacchary.me

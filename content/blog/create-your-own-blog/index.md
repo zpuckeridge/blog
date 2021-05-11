@@ -6,6 +6,11 @@ tags: Technical
 readingTime: 20 minutes
 ---
 
+## Table of Contents
+```toc
+
+```
+
 The following article will go through the process of using Gatsby and React to build a simple and minimalistic blog which will be hosted using GitHub Pages.
 
 ---

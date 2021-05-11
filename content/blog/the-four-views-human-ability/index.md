@@ -6,6 +6,11 @@ tags: Faith
 readingTime: 5 minutes
 ---
 
+## Table of Contents
+```toc
+
+```
+
 Understanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.
 
 ## Pelagianism:

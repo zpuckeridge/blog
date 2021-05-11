@@ -22,81 +22,81 @@ const AboutPage = ({ data, location }) => {
         </Helmet>
         <main>
           <header id="header">
-            <div class="container">
+            <div className="container">
               <div>
                 <Bio />
 
                 <a
                   href="../static/../resume.pdf"
                   target="_blank"
-                  class="pull-right"
+                  className="pull-right"
                 >
                   Download my résumé
                 </a>
 
                 <div>
                   <a
-                    class="social-button"
+                    className="social-button"
                     title="Blog"
                     href="https://zacchary.me"
                     target="_self"
                   >
-                    <span class="icon is-large">
-                      <i class="fas fa-book-open"></i>
+                    <span className="icon is-large">
+                      <i className="fas fa-book-open"></i>
                     </span>
                   </a>
 
                   <a
-                    class="social-button"
+                    className="social-button"
                     title="GitLab Profile"
                     href="https://gitlab.com/zpuckeridge"
                     target="_self"
                   >
-                    <span class="icon is-large">
-                      <i class="fab fa-gitlab"></i>
+                    <span className="icon is-large">
+                      <i className="fab fa-gitlab"></i>
                     </span>
                   </a>
 
                   <a
-                    class="social-button"
+                    className="social-button"
                     title="GitHub Profile"
                     href="https://github.com/zpuckeridge"
                     target="_self"
                   >
-                    <span class="icon is-large">
-                      <i class="fab fa-github"></i>
+                    <span className="icon is-large">
+                      <i className="fab fa-github"></i>
                     </span>
                   </a>
 
                   <a
-                    class="social-button"
+                    className="social-button"
                     title="Music"
                     href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=RmyKcqTUQQeDeirb5CB78w"
                     target="_self"
                   >
-                    <span class="icon is-large">
-                      <i class="fas fa-music"></i>
+                    <span className="icon is-large">
+                      <i className="fas fa-music"></i>
                     </span>
                   </a>
 
                   <a
-                    class="social-button"
+                    className="social-button"
                     title="Personal Dashboard"
                     href="https://dash.zacchary.me"
                     target="_self"
                   >
-                    <span class="icon is-large">
-                      <i class="fas fa-server"></i>
+                    <span className="icon is-large">
+                      <i className="fas fa-server"></i>
                     </span>
                   </a>
                 </div>
               </div>
             </div>
           </header>
-          <body id="content" class="container">
+          <body id="content" className="container">
             <section id="about">
               <div>
-                <h2 class="megaline">About</h2>
+                <h2 className="megaline">About</h2>
               </div>
               <div>
                 <p>
@@ -108,44 +108,44 @@ const AboutPage = ({ data, location }) => {
             </section>
 
             <section id="profiles">
-              <h2 class="megaline">Profiles</h2>
+              <h2 className="megaline">Profiles</h2>
               <div>
                 <div>
-                  <div class="row">
-                    <div class="column">
-                      <strong class="network">LinkedIn</strong>
-                      <div class="username">
-                        <div class="url">
+                  <div className="row">
+                    <div className="column">
+                      <strong className="network">LinkedIn</strong>
+                      <div className="username">
+                        <div className="url">
                           <a href="https://www.linkedin.com/in/zpuckeridge/">
                             zpuckeridge
                           </a>
                         </div>
                       </div>
                     </div>
-                    <div class="column">
-                      <strong class="network">GitLab</strong>
-                      <div class="username">
-                        <div class="url">
+                    <div className="column">
+                      <strong className="network">GitLab</strong>
+                      <div className="username">
+                        <div className="url">
                           <a href="https://gitlab.com/zpuckeridge">
                             zpuckeridge
                           </a>
                         </div>
                       </div>
                     </div>
-                    <div class="column">
-                      <strong class="network">GitHub</strong>
-                      <div class="username">
-                        <div class="url">
+                    <div className="column">
+                      <strong className="network">GitHub</strong>
+                      <div className="username">
+                        <div className="url">
                           <a href="https://github.com/zpuckeridge/">
                             zpuckeridge
                           </a>
                         </div>
                       </div>
                     </div>
-                    <div class="column">
-                      <strong class="network">Gallery</strong>
-                      <div class="username">
-                        <div class="url">
+                    <div className="column">
+                      <strong className="network">Gallery</strong>
+                      <div className="username">
+                        <div className="url">
                           <a href="https://zacchary.me/gallery/">
                             https://zacchary.me/gallery
                           </a>
@@ -159,20 +159,20 @@ const AboutPage = ({ data, location }) => {
 
             <section id="work">
               <div>
-                <h2 class="megaline">Work</h2>
+                <h2 className="megaline">Work</h2>
               </div>
               <div>
                 <div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Dev Demand Co.</span>
-                      <span class="date">May 2020 — May 2021</span>
+                      <span className="date">May 2020 — May 2021</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://devdemand.co">https://devdemand.co</a>
                     </div>
-                    <div class="position">Junior Dev Ops</div>
-                    <div class="summary">
+                    <div className="position">Junior Dev Ops</div>
+                    <div className="summary">
                       <p>
                         Exceptional adaptability in tackling backend server
                         related issues. Worked in the administration of varying
@@ -183,17 +183,17 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Conetix Web Hosting</span>
-                      <span class="date">September 2018 — May 2020</span>
+                      <span className="date">September 2018 — May 2020</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://conetix.com.au">
                         https://conetix.com.au
                       </a>
                     </div>
-                    <div class="position">Technical Support Staff</div>
-                    <div class="summary">
+                    <div className="position">Technical Support Staff</div>
+                    <div className="summary">
                       <p>
                         Provided techincal support across a wide range of
                         various web related technologies including WordPress,
@@ -205,17 +205,17 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Camp Highroad</span>
-                      <span class="date">May 2018 — September 2018</span>
+                      <span className="date">May 2018 — September 2018</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://www.camphighroad.org/">
                         https://camphighroad.org
                       </a>
                     </div>
-                    <div class="position">Christian Camp Counsellor</div>
-                    <div class="summary">
+                    <div className="position">Christian Camp Counsellor</div>
+                    <div className="summary">
                       <p>
                         Led campers through various team building and
                         extra-curricular activities. Worked to develop
@@ -227,17 +227,17 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Hungry Jack's</span>
-                      <span class="date">November 2016 — May 2018</span>
+                      <span className="date">November 2016 — May 2018</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://www.hungryjacks.com.au/">
                         https://hungryjacks.com.au
                       </a>
                     </div>
-                    <div class="position">Crew Member</div>
-                    <div class="summary">
+                    <div className="position">Crew Member</div>
+                    <div className="summary">
                       <p>
                         Developed strong time management skills and the ability
                         to work in stressful environments. Led and trained Crew
@@ -251,22 +251,22 @@ const AboutPage = ({ data, location }) => {
 
             <section id="volunteer">
               <div>
-                <h2 class="megaline">Volunteer</h2>
+                <h2 className="megaline">Volunteer</h2>
               </div>
               <div>
                 <div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Chaplain Watch</span>
-                      <span class="date">November 2020 — Present</span>
+                      <span className="date">November 2020 — Present</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://www.chaplainwatch.org.au/">
                         https://chaplainwatch.org.au
                       </a>
                     </div>
-                    <div class="position">Night Watch Staff</div>
-                    <div class="summary">
+                    <div className="position">Night Watch Staff</div>
+                    <div className="summary">
                       <p>
                         Chaplain Watch is a Christian community service charity,
                         designed to intentionally intervene where people are in
@@ -277,15 +277,15 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>GENTS Camp</span>
-                      <span class="date">2017 — Present</span>
+                      <span className="date">2017 — Present</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://gentscamp.com/">https://gentscamp.com</a>
                     </div>
-                    <div class="position">Camp Leader</div>
-                    <div class="summary">
+                    <div className="position">Camp Leader</div>
+                    <div className="summary">
                       <p>
                         GENTS Camp is a Christian school holiday program for
                         boys, with a range of camps for both primary and
@@ -301,17 +301,17 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Minden Baptist Church</span>
-                      <span class="date">February 2020 — October 2020</span>
+                      <span className="date">February 2020 — October 2020</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://mindenbaptist.org/">
                         https://mindenbaptist.org
                       </a>
                     </div>
-                    <div class="position">Sound Technician</div>
-                    <div class="summary">
+                    <div className="position">Sound Technician</div>
+                    <div className="summary">
                       <p>
                         I volunteered my time as a Sound Technician at Minden
                         Baptist Church to setting up, mixing, and packing down
@@ -324,17 +324,17 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Kingsridge Baptist Church</span>
-                      <span class="date">September 2017 — May 2018</span>
+                      <span className="date">September 2017 — May 2018</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://www.kingsridgebaptist.org/">
                         https://kingsridgebaptist.org
                       </a>
                     </div>
-                    <div class="position">Sound Technician / Youth Leader</div>
-                    <div class="summary">
+                    <div className="position">Sound Technician / Youth Leader</div>
+                    <div className="summary">
                       <p>
                         At Kingsridge Baptist Church, I volunteered my time as a
                         Youth Leader and Sound Technician. These
@@ -344,15 +344,15 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                   <div>
-                    <h4 class="strike-through">
+                    <h4 className="strike-through">
                       <span>Faith Bound</span>
-                      <span class="date">October 2017 — Present</span>
+                      <span className="date">October 2017 — Present</span>
                     </h4>
-                    <div class="website pull-right">
+                    <div className="website pull-right">
                       <a href="https://faithbound.gg/">https://faithbound.gg</a>
                     </div>
-                    <div class="position">Owner</div>
-                    <div class="summary">
+                    <div className="position">Owner</div>
+                    <div className="summary">
                       <p>
                         I founded Faith Bound as a Christian Community Discord
                         cantered around fellowship and sharing the truth of the
@@ -364,7 +364,7 @@ const AboutPage = ({ data, location }) => {
                       </p>
                     </div>
                     <h5>Highlights</h5>
-                    <ul class="highlights">
+                    <ul className="highlights">
                       <li>Community Gaming Sessions</li>
                       <li>Regular Bible studies and debates on scripture</li>
                       <li>
@@ -379,66 +379,66 @@ const AboutPage = ({ data, location }) => {
 
             <section id="education">
               <div>
-                <h2 class="megaline">Education</h2>
+                <h2 className="megaline">Education</h2>
               </div>
               <div>
-                <h4 class="strike-through">
+                <h4 className="strike-through">
                   <span>TAFE</span>
-                  <span class="date">January 2019 — January 2020</span>
+                  <span className="date">January 2019 — January 2020</span>
                 </h4>
-                <div class="area">Information Technologies & Digital Media</div>
-                <div class="studyType">Certificate III</div>
+                <div className="area">Information Technologies & Digital Media</div>
+                <div className="studyType">Certificate III</div>
               </div>
               <div>
-                <h4 class="strike-through">
+                <h4 className="strike-through">
                   <span>Plesk University</span>
-                  <span class="date">January 2020 — June 2020</span>
+                  <span className="date">January 2020 — June 2020</span>
                 </h4>
-                <div class="area">Plesk Professional Certification</div>
-                <div class="studyType">Valid until 2022</div>
+                <div className="area">Plesk Professional Certification</div>
+                <div className="studyType">Valid until 2022</div>
               </div>
             </section>
 
             <section id="skills">
               <div>
-                <h2 class="megaline">Skills</h2>
+                <h2 className="megaline">Skills</h2>
               </div>
-              <div class="row">
-                <div class="column">
-                  <div class="name">
+              <div className="row">
+                <div className="column">
+                  <div className="name">
                     <h4>Systems Administration</h4>
                   </div>
-                  <ul class="keywords">
+                  <ul className="keywords">
                     <li>Linux</li>
                     <li>DNS</li>
                     <li>Security</li>
                   </ul>
                 </div>
-                <div class="column">
-                  <div class="name">
+                <div className="column">
+                  <div className="name">
                     <h4>Programming</h4>
                   </div>
-                  <ul class="keywords">
+                  <ul className="keywords">
                     <li>HTML + CSS</li>
                     <li>Vue + Nuxt.js</li>
                     <li>Git CI/CD</li>
                   </ul>
                 </div>
-                <div class="column">
-                  <div class="name">
+                <div className="column">
+                  <div className="name">
                     <h4>Support</h4>
                   </div>
-                  <ul class="keywords">
+                  <ul className="keywords">
                     <li>ZenDesk</li>
                     <li>Phone Systems (3CX)</li>
                     <li>GSuite/Office 365</li>
                   </ul>
                 </div>
-                <div class="column">
-                  <div class="name">
+                <div className="column">
+                  <div className="name">
                     <h4>Other</h4>
                   </div>
-                  <ul class="keywords">
+                  <ul className="keywords">
                     <li>Sound</li>
                     <li>Live Streaming</li>
                     <li>Stage Setup + Tear Down</li>
@@ -449,65 +449,65 @@ const AboutPage = ({ data, location }) => {
 
             <section id="languages">
               <div>
-                <h2 class="megaline">Languages</h2>
+                <h2 className="megaline">Languages</h2>
               </div>
-              <div class="row">
-                <div class="column">
-                  <div class="language">
+              <div className="row">
+                <div className="column">
+                  <div className="language">
                     <strong>English</strong>
                   </div>
-                  <div class="fluency">Native speaker</div>
+                  <div className="fluency">Native speaker</div>
                 </div>
                 <div>
-                  <div class="column">
-                    <div class="language">
+                  <div className="column">
+                    <div className="language">
                       <strong>Russian</strong>
                     </div>
-                    <div class="fluency">Currently learning</div>
+                    <div className="fluency">Currently learning</div>
                   </div>
                 </div>
 
                 <section id="interests">
                   <div>
-                    <h2 class="megaline">Interests</h2>
+                    <h2 className="megaline">Interests</h2>
                   </div>
                   <div>
                     <div>
-                      <div class="column">
-                        <div class="name">
+                      <div className="column">
+                        <div className="name">
                           <h4>Photography</h4>
                         </div>
-                        <ul class="keywords">
+                        <ul className="keywords">
                           <li>Camera</li>
                           <li>Lighting</li>
                           <li>Exploration</li>
                         </ul>
                       </div>
-                      <div class="column">
-                        <div class="name">
+                      <div className="column">
+                        <div className="name">
                           <h4>Audiophile</h4>
                         </div>
-                        <ul class="keywords">
+                        <ul className="keywords">
                           <li>Vinyl</li>
                           <li>Tube Amps</li>
                           <li>Headphones</li>
                         </ul>
                       </div>
-                      <div class="column">
-                        <div class="name">
+                      <div className="column">
+                        <div className="name">
                           <h4>Home Lab</h4>
                         </div>
-                        <ul class="keywords">
+                        <ul className="keywords">
                           <li>Self-Hosting</li>
                           <li>Docker</li>
                           <li>Kubernetes</li>
                         </ul>
                       </div>
-                      <div class="column">
-                        <div class="name">
+                      <div className="column">
+                        <div className="name">
                           <h4>Gaming</h4>
                         </div>
-                        <ul class="keywords">
+                        <ul className="keywords">
                           <li>Overwatch</li>
                           <li>Minecraft</li>
                           <li>Call of Duty</li>

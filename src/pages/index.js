@@ -19,32 +19,32 @@ const HomePage = ({ data, location }) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         />
       </Helmet>
-      <div class="outer-container">
-        <div class="home-container">
-          <p class="name-header">Zacchary Puckeridge</p>
+      <div className="outer-container">
+        <div className="home-container">
+          <p className="name-header">Zacchary Puckeridge</p>
           <Bio />
-          <div class="social-icons">
+          <div className="social-icons">
             <div>
               <table>
                 <tr>
                   <th>
                     <a href="https://github.com/zpuckeridge">
-                      <span class="social-icon">
-                        <i class="fab fa-github-square"></i>
+                      <span className="social-icon">
+                        <i className="fab fa-github-square"></i>
                       </span>
                     </a>
                   </th>
                   <th>
                     <a href="https://www.linkedin.com/in/zpuckeridge/">
-                      <span class="social-icon">
-                        <i class="fab fa-linkedin"></i>
+                      <span className="social-icon">
+                        <i className="fab fa-linkedin"></i>
                       </span>
                     </a>
                   </th>
                   <th>
                     <a href="/blog/">
-                      <span class="social-icon">
-                        <i class="fas fa-rss-square"></i>
+                      <span className="social-icon">
+                        <i className="fas fa-rss-square"></i>
                       </span>
                     </a>
                   </th>
@@ -52,7 +52,7 @@ const HomePage = ({ data, location }) => {
               </table>
             </div>
           </div>
-          <div class="description">
+          <div className="description">
             <a href="/about/">Click here to learn more about me!</a>
           </div>
         </div>

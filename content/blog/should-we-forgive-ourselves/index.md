@@ -6,6 +6,11 @@ tags: Faith
 readingTime: 5 minutes
 ---
 
+## Table of Contents
+```toc
+
+```
+
 ## Well - the answer isn't as cut or dry as many may believe...
 
 It's incredibly important to remember that there is **NO **condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:

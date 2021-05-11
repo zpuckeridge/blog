@@ -6,6 +6,11 @@ tags: Faith
 readingTime: 5 minutes
 ---
 
+## Table of Contents
+```toc
+
+```
+
 Common Grace is a theological concept in Protestant Christianity hashed out in the late 19th and early 20th Century by Reformed Christians of the time. It pertains to the sovereign grace of God bestowed upon all of mankind regardless of their election. Effectively, this means that God has always bestowed His graciousness on all people in all parts of the world throughout all of history.
 
 The Three Points of Common Grace were formulated in 1924 when the Christian Reformed Church adopted the doctrine at the Synod of Kalamazoo.

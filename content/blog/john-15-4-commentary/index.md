@@ -6,6 +6,11 @@ tags: Faith
 readingTime: 5 minutes
 ---
 
+## Table of Contents
+```toc
+
+```
+
 John 15:4 New Living Translation (NLT)
 
 > "Remain in me, and I will remain in you. For a branch cannot produce fruit if it is severed from the vine, and you cannot be fruitful unless you remain in me."
