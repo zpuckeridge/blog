@@ -15,7 +15,7 @@ const HomePage = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="Home | Zacchary Puckeridge" />
       <div class="outer-container">
-          <div class="container">
+          <div class="home-container">
               <p class="name-header">Zacchary Puckeridge</p>
               <Bio />
           </div>
