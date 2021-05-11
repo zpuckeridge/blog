@@ -11,13 +11,16 @@ Gatsby doesn't provide any commenting tools by default, so we will be adding our
 ---
 
 ### Disclaimer:
+
 The following article assumes that you some general knowledge in the following areas:
+
 - Git
 
 ---
 
 ### What is utteranc.es?
-Well, simply put, it's a commenting system built using GitHub's issue tracking. After users have authenticated with their GitHub account, they can leave comments on your site. Each post will appear as its own issue and the comments will appear as GitHub comments on that issue. 
+
+Well, simply put, it's a commenting system built using GitHub's issue tracking. After users have authenticated with their GitHub account, they can leave comments on your site. Each post will appear as its own issue and the comments will appear as GitHub comments on that issue.
 
 This solution is fantastic if your blog is read by other developers, as they are more likely to have GitHub accounts. However, if your blog is more general purpose, you may want to consider the use of Disqus or GraphComment.
 
@@ -38,37 +41,35 @@ Simply add `comments.js` as a new file to your `../components/` folder and paste
 [Shoutout to Emma Goto's blog here!](https://www.emgoto.com/gatsby-comments/)
 
 ```js
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react"
 
-const COMMENTS_ID = 'comments-container';
+const COMMENTS_ID = "comments-container"
 
 const Comments = () => {
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = 'https://utteranc.es/client.js';
-        script.setAttribute('repo', 'YOUR-GITHUB-USERNAME/YOUR-REPOSITORY');
-        script.setAttribute('issue-term', 'pathname');
-        script.setAttribute('theme', 'dark-blue');
-        script.setAttribute('crossorigin', 'anonymous');
-        script.async = true;
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://utteranc.es/client.js"
+    script.setAttribute("repo", "YOUR-GITHUB-USERNAME/YOUR-REPOSITORY")
+    script.setAttribute("issue-term", "pathname")
+    script.setAttribute("theme", "dark-blue")
+    script.setAttribute("crossorigin", "anonymous")
+    script.async = true
 
-        const comments = document.getElementById(COMMENTS_ID);
-        if (comments) comments.appendChild(script);
+    const comments = document.getElementById(COMMENTS_ID)
+    if (comments) comments.appendChild(script)
 
-        // This function will get called when the component unmounts
-        // To make sure we don't end up with multiple instances of the comments component
-        return () => {
-            const comments = document.getElementById(COMMENTS_ID);
-            if (comments) comments.innerHTML = '';
-        };
-    }, []);
+    // This function will get called when the component unmounts
+    // To make sure we don't end up with multiple instances of the comments component
+    return () => {
+      const comments = document.getElementById(COMMENTS_ID)
+      if (comments) comments.innerHTML = ""
+    }
+  }, [])
 
-    return (
-        <div id={COMMENTS_ID} />
-    );
-};
+  return <div id={COMMENTS_ID} />
+}
 
-export default Comments;
+export default Comments
 ```
 
 > Be sure to change the `repo` line to reflect your own comments repository!
@@ -82,9 +83,11 @@ import Comments from "../components/comments"
 ```
 
 and place the following line of code wherever you want your comments to show up!
+
 ```js
 <Comments />
 ```
+
 Save that file and head on over to your site to try out your comment section!
 
 ### Conclusion

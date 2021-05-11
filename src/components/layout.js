@@ -4,25 +4,33 @@ const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   const handleClick = () => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0)
   }
 
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
-        
-        <div className="nav">
-        <a href="/" className="nav-header">zacchary.me</a>
-          <a href="/" className="nav-button">
-            Home
-          </a>
-          <a href="/about" className="nav-button">
-            About
-          </a>
-        </div>
+      <div className="nav">
+        <a
+          href="/"
+          class="nav-header glitch disable-select is-inline-flex"
+          data-text="zacchary.me"
+        >
+          zacchary.me
+        </a>
+
+        <a href="/blog" className="nav-button">
+          Blog
+        </a>
+        <a href="/about" className="nav-button">
+          About
+        </a>
+      </div>
       <main>{children}</main>
       <footer>
-        © Zacchary Puckeridge {new Date().getFullYear()}
-        <button className="back-to-top" onClick={handleClick}>Back to top ↑</button>
+        © {new Date().getFullYear()} Zacchary's Blog
+        <button className="back-to-top" onClick={handleClick}>
+          Back to top ↑
+        </button>
       </footer>
     </div>
   )

@@ -8,8 +8,7 @@ module.exports = {
     description: `Zacchary is a Web Developer with a passion for technology, motorcycles, photography and music.`,
     siteUrl: `https://zacchary.me/`,
   },
-  plugins: 
-  [
+  plugins: [
     {
       resolve: "gatsby-plugin-page-progress",
       options: {
@@ -20,7 +19,7 @@ module.exports = {
         color: `#30CE56`,
         footerHeight: 500,
         headerHeight: 0,
-      }
+      },
     },
     `gatsby-plugin-image`,
     {
@@ -44,8 +43,8 @@ module.exports = {
           {
             resolve: `gatsby-remark-vscode`,
             options: {
-              theme: 'Abyss'
-            }
+              theme: "Abyss",
+            },
           },
           {
             resolve: `gatsby-remark-images`,
@@ -138,10 +137,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-fontawesome-css`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

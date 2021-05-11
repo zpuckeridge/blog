@@ -11,21 +11,26 @@ The following article will go through the process of using Gatsby and React to b
 ---
 
 ### Disclaimer:
+
 The following article assumes that you some general knowledge in the following areas:
+
 - Git
 - Linux Terminal
 
 ---
 
 ### What is Gatsby?
-Gatsby is an open source frontend framework commonly used in the development of fast websites and websites. It generates static websites, similar to Next.js and Jekyll. 
+
+Gatsby is an open source frontend framework commonly used in the development of fast websites and websites. It generates static websites, similar to Next.js and Jekyll.
 
 Why should we use it? Well, simply put - the plugin ecosystem put together by the Gatsby community. The plugins can be utilised with Gatsby to create ecommerce platforms, wikis and in our case, a blog.
 
 ### What is GitHub Pages?
+
 GitHub Pages allows you to host websites and projects directly from your GitHub Repository. It's super handy!
 
 ### Setting up Gatsby
+
 First of all, we need to ensure we are using the latest version of Node. To check we are using the latest version, run the following:
 
 `node-v`
@@ -43,6 +48,7 @@ or if you are using Node Package Manager:
     npm install -g gatsby-cli
 
 ### Creating the Project
+
 Now that we have installed the gatsby-cli, we can create a new Gatsby project using the community built [gatsby-starter-blog](https://github.com/gatsbyjs/gatsby-starter-blog).
 
     gatsby new my-blog https://github.com/gatsbyjs/gatsby-starter-blog
@@ -72,6 +78,7 @@ As you can see, we've deployed our first minimalistic blog with Gatsby!
 > It is highly advised to push to your designated GitHub repository at this stage as an active repository will be required in the next step.
 
 ### Deployment
+
 Now that our blog is ready to go, we need to add the following build script to our package.json:
 
     "deploy:github": "gatsby build && gh-pages -d public"
@@ -102,7 +109,7 @@ or if you are using Node Package Manager:
 
 GitHub will automatically create the new branch and will push our Gatsby build files there.
 
-Let's navigate over to our GitHub Pages settings. 
+Let's navigate over to our GitHub Pages settings.
 
 ![](./github-pages-settings.png)
 

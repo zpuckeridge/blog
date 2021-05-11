@@ -6,15 +6,15 @@ tags: Faith
 draft: true
 ---
 
-The idea that God's love is reckless was popularized by the worship song "Reckless Love" written by Caleb Culver, Cory Asbury and Ran Jackson. 
+The idea that God's love is reckless was popularized by the worship song "Reckless Love" written by Caleb Culver, Cory Asbury and Ran Jackson.
 
 It was an incredibly popular song and has been listened to millions of times across the globe. It's sparked controversy regarding the use of the word 'reckless' to describe God's love.
 
-Many people are quick to defend the use of the word with the following argument: 
+Many people are quick to defend the use of the word with the following argument:
 
 > "The word is not to describe God himself, but to describe the love he shows us. From a human perspective, the way God gives himself up for us appears reckless."
 
-Cory Asbury himself also came out with a defense for the use of the word 'reckless': 
+Cory Asbury himself also came out with a defense for the use of the word 'reckless':
 
 > "When I use the phrase, “the reckless love of God”, I’m not saying that God Himself is reckless. I am, however, saying that the way He loves, is in many regards, quite so." - [Cory Asbury](https://www.facebook.com/coryasburymusic/posts/many-have-asked-me-for-clarity-on-the-phrase-reckless-love-many-have-wondered-wh/10158977378510171/)
 
@@ -24,7 +24,7 @@ Firstly, to understand the controversy and why there is an issue with the word, 
 
 By this definition, to act in a reckless manner is to act without caution or care, to show no concern for the consequences or outcome of one's action.
 
-Does God fit this description? **Unequivocally not. **God is omniscient, all-knowing and exercises perfect judgement at all times. By this understanding of God, it is impossible for Him to act recklessly. 
+Does God fit this description? **Unequivocally not. **God is omniscient, all-knowing and exercises perfect judgement at all times. By this understanding of God, it is impossible for Him to act recklessly.
 
 God, not once throughout all of scripture has ever acted without caution or concern for His actions. God exercises flawless judgment in every circumstance.
 
@@ -34,9 +34,9 @@ Scripture itself confirms this in Psalms.
 
 Everything we have done and will ever do has always been known by God, before we were even born.
 
-Secondly, the defense that "God himself isn't 'reckless' but his love nonetheless is" is simply nonsensical. This is the crux of Cory's defense of 'reckless', but it doesn't make sense grammatically. If my actions are reckless, I am by definition, a reckless person. By the same token, if God's love is reckless, than God is defined as reckless. 
+Secondly, the defense that "God himself isn't 'reckless' but his love nonetheless is" is simply nonsensical. This is the crux of Cory's defense of 'reckless', but it doesn't make sense grammatically. If my actions are reckless, I am by definition, a reckless person. By the same token, if God's love is reckless, than God is defined as reckless.
 
-Thirdly, the defense by declaring that God's love *appears* reckless by human standards is the most plausible interpretation of the song. By this interpretation, we are assuming that 'reckless' is used as a hyperbole. But even if we assume that the word 'reckless' is used as a hyperbole, it still wouldn't make much sense.
+Thirdly, the defense by declaring that God's love _appears_ reckless by human standards is the most plausible interpretation of the song. By this interpretation, we are assuming that 'reckless' is used as a hyperbole. But even if we assume that the word 'reckless' is used as a hyperbole, it still wouldn't make much sense.
 
 The hyperbolic description of recklessness connotes not the methodical, steady and unwavering love of God, but rather the unstable, unreasonable and impulsive attitude commonly seen in a young adult.
 
@@ -56,7 +56,7 @@ However, this is most certainly not irreverent babble. It is a direct defense an
 
 Worship that divides people affects nonbelievers and believers alike. Especially when we call God's love reckless. If I were a nonbeliever and was told that God's love was reckless, I would immediately assume that God is reckless, and would most certainly not trust Him with my eternity.
 
-Ultimately, we as Christians should avoid songs that divide people or force people to have to change the meaning of a song in order to be faithful. Christians should more closely assess worship songs that come out of fundamentally heretical churches to ensure their scriptural validity. 
+Ultimately, we as Christians should avoid songs that divide people or force people to have to change the meaning of a song in order to be faithful. Christians should more closely assess worship songs that come out of fundamentally heretical churches to ensure their scriptural validity.
 
 ### God's love is not reckless
 

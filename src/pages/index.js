@@ -1,91 +1,81 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+import { Helmet } from "react-helmet"
+import { graphql } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
+
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogIndex = ({ data, location }) => {
+const HomePage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
-
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found.
-        </p>
-      </Layout>
-    )
-  }
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date} ◦ </small>
-                  <small>{post.frontmatter.tags} ◦ </small>
-                  <small>{post.frontmatter.readingTime}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+      <Seo title="Home | Zacchary Puckeridge" />
+      <Helmet>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+      </Helmet>
+      <div class="home-content">
+        <div class="profile-wrapper">
+          <StaticImage
+            className="bio-avatar"
+            layout="fixed"
+            formats={["AUTO", "WEBP", "AVIF"]}
+            src="../images/profile-pic.png"
+            width={250}
+            height={250}
+            quality={100}
+            alt="Profile Picture"
+          />
+        </div>
+        <div class="social-links">
+          <a
+            class="social-link"
+            title="GitHub Profile"
+            href="https://github.com/zpuckeridge"
+            target="_self"
+          >
+            <span class="icon">
+              <i class="fab fa-github-square"></i>
+            </span>
+          </a>
+          <a
+            class="social-link"
+            title="LinkedIn"
+            href="https://www.linkedin.com/in/zpuckeridge/"
+            target="_self"
+          >
+            <span class="icon">
+              <i class="fab fa-linkedin"></i>
+            </span>
+          </a>
+          <a
+            class="social-link"
+            title="Email"
+            href="mailto:zacchary@puckeridge.me"
+            target="_self"
+          >
+            <span class="icon">
+              <i class="fas fa-envelope-square"></i>
+            </span>
+          </a>
+        </div>
+      </div>
     </Layout>
   )
 }
 
-export default BlogIndex
+export default HomePage
 
 export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
         title
-      }
-    }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-          tags
-          readingTime
-        }
       }
     }
   }

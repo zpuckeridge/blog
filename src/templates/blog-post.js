@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
@@ -32,9 +31,8 @@ const BlogPostTemplate = ({ data, location }) => {
           itemProp="articleBody"
         />
         <hr />
-          
-          <Bio />
 
+        <Bio />
       </article>
       <nav className="blog-post-nav">
         <ul

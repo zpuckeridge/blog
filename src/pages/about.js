@@ -1,11 +1,11 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 
-import "../cv.css"
 import { Helmet } from "react-helmet"
 
 import Layout from "../components/layout"
 import Bio from "../components/bio"
+import Seo from "../components/seo"
 
 const AboutPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -13,11 +13,8 @@ const AboutPage = ({ data, location }) => {
   return (
     <>
       <Layout location={location} title={siteTitle}>
+        <Seo title="About | Zacchary Puckeridge" />
         <Helmet>
-          <title>
-            Zacchary Puckeridge | Web Developer with a passion for technology,
-            motorcycles, photography and music.
-          </title>
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
