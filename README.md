@@ -18,7 +18,7 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Share Links
 - Dark Mode/Light Mode Toggle
 - Newsletter Subscription Feature
-- CMS
+- Add Ghost as CMS
 - Buy me a Coffee Link
 - Tag Search Function
 - Hero Image to Posts
@@ -26,7 +26,7 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Table of Contents
 - Social Cards
 - Updated at message
-- Privacy and Imprint
+- Privacy Policy
 - Copyright
 - Now Playing Widget
 - Latest Projects + Last Commit

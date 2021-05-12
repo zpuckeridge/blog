@@ -226,12 +226,13 @@ a {
   color: var(--color-primary);
   position: relative;
   text-decoration: none !important;
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 a:hover {
   color: #30ce56;
   text-decoration: none !important;
+  box-shadow: none;
 }
 
 a::before {
@@ -423,6 +424,21 @@ footer {
 #education .studyType {
   margin-left: 25px;
   margin-bottom: 40px;
+}
+
+span {
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.no-underline a {
+  text-decoration: none;
+  box-shadow: none;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }
 
 @media (min-width: 480px) {
