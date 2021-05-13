@@ -18,11 +18,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           nodes {
             id
             fields {
-              slug
-            }
-            frontmatter {
-              title
-              tags
+              slug 
             }
           }
         }
@@ -59,6 +55,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
       })
     })
+  }
+}
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -89,28 +87,22 @@ exports.createSchemaCustomization = ({ actions }) => {
       siteUrl: String
       social: Social
     }
-
     type Author {
       name: String
       summary: String
     }
-
     type Social {
       twitter: String
     }
-
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
       fields: Fields
     }
-
     type Frontmatter {
       title: String
       description: String
       date: Date @dateformat
-      tags: String
     }
-
     type Fields {
       slug: String
     }
