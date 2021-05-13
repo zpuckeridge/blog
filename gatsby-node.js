@@ -20,6 +20,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             fields {
               slug
             }
+            frontmatter {
+              title
+              tags
+            }
           }
         }
       }
@@ -55,8 +59,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
       })
     })
-  }
-}
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -106,6 +108,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+      tags: String
     }
 
     type Fields {
