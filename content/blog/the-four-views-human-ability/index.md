@@ -1,5 +1,5 @@
 ---
-title: The Four Views of the Human Ability
+title: "📑 The Four Views of the Human Ability"
 slug: the-four-views-human-ability
 date: 2020-04-01
 tags: Faith

@@ -1,5 +1,5 @@
 ---
-title: An excerpt on Old Testament Law
+title: "💭 An excerpt on Old Testament Law"
 slug: old-testament-law
 date: 2020-11-16
 tags: Faith

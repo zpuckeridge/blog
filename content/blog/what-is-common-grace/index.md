@@ -1,5 +1,5 @@
 ---
-title: What is Common Grace?
+title: "❓ What is Common Grace?"
 slug: common-grace
 date: 2020-04-26
 tags: Faith

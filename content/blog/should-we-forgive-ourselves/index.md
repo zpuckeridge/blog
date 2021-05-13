@@ -1,5 +1,5 @@
 ---
-title: Should we forgive ourselves?
+title: "🙏 Should we forgive ourselves?"
 slug: should-we-forgive-ourselves
 date: 2020-11-12
 tags: Faith

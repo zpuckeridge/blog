@@ -1,5 +1,5 @@
 ---
-title: Install Jellyfin on Ubuntu
+title: "🎬 Install Jellyfin on Ubuntu"
 slug: install-jellyfin-ubuntu
 date: 2019-11-28
 tags: Technical

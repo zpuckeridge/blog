@@ -1,5 +1,5 @@
 ---
-title: "The Vine and the Branch"
+title: "🌿 The Vine and the Branch"
 slug: john-15-4-commentary
 date: 2020-04-28
 tags: Faith

@@ -1,5 +1,5 @@
 ---
-title: "Create your own Blog with Gatsby and GitHub Pages"
+title: "📝 Create your own Blog with Gatsby and GitHub Pages"
 slug: create-your-own-blog
 date: 2021-05-06
 tags: Technical

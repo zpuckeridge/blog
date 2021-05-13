@@ -1,5 +1,5 @@
 ---
-title: The Doctrines of Grace
+title: "📖 The Doctrines of Grace"
 slug: the-doctrines-of-grace
 date: 2019-11-06
 tags: Faith

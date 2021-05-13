@@ -235,25 +235,6 @@ a:hover {
   box-shadow: none;
 }
 
-a::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 1px;
-  background-color: white;
-  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  a:hover::before {
-    left: 0;
-    right: auto;
-    width: 100%;
-  }
-}
-
 /* Custom classes */
 
 .global-wrapper {
@@ -277,18 +258,19 @@ a::before {
 }
 
 .post-list-item p {
+  font-size: var(--fontSize-0);
   margin-bottom: var(--spacing-0);
 }
 
 .post-list-item h2 {
-  font-size: var(--fontSize-4);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-2);
+  font-size: var(--fontSize-2);
+  color: white;
+  margin-bottom: var(--spacing-1);
   margin-top: var(--spacing-0);
 }
 
 .post-list-item header {
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-1);
 }
 
 .header-link-home {
