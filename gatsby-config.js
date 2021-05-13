@@ -13,12 +13,21 @@ module.exports = {
       resolve: "gatsby-plugin-page-progress",
       options: {
         includePaths: [],
-        excludePaths: ["/"],
+        excludePaths: ["/blog/"],
         height: 3,
         prependToBody: false,
         color: `#30CE56`,
         footerHeight: 500,
         headerHeight: 0,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
       },
     },
     `gatsby-plugin-image`,

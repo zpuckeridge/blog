@@ -1,5 +1,5 @@
 ---
-title: "Add Comments to your Gatsby Blog with Utterances"
+title: "🔮 Add Comments to your Gatsby Blog with Utterances"
 slug: add-comments-gatsby-blog
 date: 2021-05-07
 tags: Technical

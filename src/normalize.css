@@ -81,15 +81,6 @@ a {
 }
 
 /**
- * 1. Remove the bottom border in Chrome 57-
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
- */
-
-abbr[title] {
-  border-bottom: none; /* 1 */
-}
-
-/**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
 
