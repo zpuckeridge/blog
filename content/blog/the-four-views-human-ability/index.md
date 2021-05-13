@@ -4,6 +4,7 @@ slug: the-four-views-human-ability
 date: 2020-04-01
 tags: Faith
 readingTime: 5 minutes
+description: A brief overview on the four views of the Human Ability.
 ---
 
 ## Table of Contents

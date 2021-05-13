@@ -4,6 +4,7 @@ slug: should-we-forgive-ourselves
 date: 2020-11-12
 tags: Faith
 readingTime: 5 minutes
+description: Well - the answer isn't as cut or dry as many may believe... It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus.
 ---
 
 ## Table of Contents
@@ -13,7 +14,7 @@ readingTime: 5 minutes
 
 ## Well - the answer isn't as cut or dry as many may believe...
 
-It's incredibly important to remember that there is **NO **condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
+It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
 
 > ... there is no condemnation for those who belong to Christ Jesus.
 

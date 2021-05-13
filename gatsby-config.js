@@ -106,7 +106,7 @@ module.exports = {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.nodes.map(node => {
                 return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
+                  description: node.frontmatter.descripton,
                   date: node.frontmatter.date,
                   category: node.frontmatter.category,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
@@ -121,7 +121,6 @@ module.exports = {
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   nodes {
-                    excerpt
                     html
                     fields {
                       slug

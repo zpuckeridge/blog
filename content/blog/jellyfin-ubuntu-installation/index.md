@@ -4,6 +4,7 @@ slug: install-jellyfin-ubuntu
 date: 2019-11-28
 tags: Technical
 readingTime: 10 minutes
+description: This article details the steps requried to get Jellyfin, an Open Source Media Library up and running on Ubuntu Server.
 ---
 
 ## Table of Contents

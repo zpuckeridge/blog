@@ -4,6 +4,7 @@ slug: john-15-4-commentary
 date: 2020-04-28
 tags: Faith
 readingTime: 5 minutes
+description: A short study on John 15:4 and how it applies to our lives.
 ---
 
 ## Table of Contents

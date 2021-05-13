@@ -4,6 +4,7 @@ slug: the-doctrines-of-grace
 date: 2019-11-06
 tags: Faith
 readingTime: 5 minutes
+description: A brief overview of the Doctrines of Grace.
 ---
 
 ## Table of Contents
