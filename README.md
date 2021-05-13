@@ -10,8 +10,10 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Comments
 - Tags (to be automated)
 - Reading Time (to be automated)
-- Back to Top (smooth scroll)
+- Back to Top
 - Home Page
+- Icons on Posts
+- Table of Contents
 
 ## To Add
 
@@ -22,8 +24,6 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Buy me a Coffee Link
 - Tag Search Function
 - Hero Image to Posts
-- Category Icons to Posts
-- Table of Contents
 - Social Cards
 - Updated at message
 - Privacy Policy
@@ -31,10 +31,11 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Now Playing Widget
 - Latest Projects + Last Commit
 - Photo Gallery
+- Don't Go Favicon Update
 
 ## To Fix
 
 - CV Formatting
 - Lighthouse Score
 - SEO
-- Underline Issues
+- Previous/Next Article Buttons
