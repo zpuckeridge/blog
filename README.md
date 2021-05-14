@@ -37,5 +37,5 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 
 - CV Formatting
 - Lighthouse Score
-- SEO
 - Previous/Next Article Buttons
+- Table of Contents not directing to headings

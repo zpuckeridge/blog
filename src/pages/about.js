@@ -170,7 +170,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Dev Demand Co.</span>
                       <span className="date">May 2020 — May 2021</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://devdemand.co">https://devdemand.co</a>
                     </div>
                     <div className="position">Junior Dev Ops</div>
@@ -189,7 +189,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Conetix Web Hosting</span>
                       <span className="date">September 2018 — May 2020</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://conetix.com.au">
                         https://conetix.com.au
                       </a>
@@ -211,7 +211,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Camp Highroad</span>
                       <span className="date">May 2018 — September 2018</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://www.camphighroad.org/">
                         https://camphighroad.org
                       </a>
@@ -233,7 +233,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Hungry Jack's</span>
                       <span className="date">November 2016 — May 2018</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://www.hungryjacks.com.au/">
                         https://hungryjacks.com.au
                       </a>
@@ -262,7 +262,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Chaplain Watch</span>
                       <span className="date">November 2020 — Present</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://www.chaplainwatch.org.au/">
                         https://chaplainwatch.org.au
                       </a>
@@ -283,7 +283,7 @@ const AboutPage = ({ data, location }) => {
                       <span>GENTS Camp</span>
                       <span className="date">2017 — Present</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://gentscamp.com/">https://gentscamp.com</a>
                     </div>
                     <div className="position">Camp Leader</div>
@@ -307,7 +307,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Minden Baptist Church</span>
                       <span className="date">February 2020 — October 2020</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://mindenbaptist.org/">
                         https://mindenbaptist.org
                       </a>
@@ -330,7 +330,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Kingsridge Baptist Church</span>
                       <span className="date">September 2017 — May 2018</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://www.kingsridgebaptist.org/">
                         https://kingsridgebaptist.org
                       </a>
@@ -350,7 +350,7 @@ const AboutPage = ({ data, location }) => {
                       <span>Faith Bound</span>
                       <span className="date">October 2017 — Present</span>
                     </h4>
-                    <div className="website pull-right">
+                    <div className="website pull-right desktop-only">
                       <a href="https://faithbound.gg/">https://faithbound.gg</a>
                     </div>
                     <div className="position">Owner</div>

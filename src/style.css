@@ -191,8 +191,6 @@ li > ul {
 
 blockquote {
   color: var(--color-text);
-  border-left: var(--spacing-1) solid var(--color-primary);
-  border-right: var(--spacing-1) solid var(--color-primary);
   font-size: var(--fontSize-2);
   font-style: italic;
   border-radius: 25px;

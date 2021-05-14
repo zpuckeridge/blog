@@ -63,7 +63,7 @@ module.exports = {
               ordered: false,
               fromHeading: 1,
               toHeading: 6,
-              className: "table-of-contents desktop-only",
+              className: "table-of-contents desktop-only"
             },
           },
           {
@@ -80,6 +80,7 @@ module.exports = {
           },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          `gatsby-remark-autolink-headers`,
         ],
       },
     },
