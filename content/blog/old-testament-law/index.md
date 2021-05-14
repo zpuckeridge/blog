@@ -7,7 +7,6 @@ readingTime: 10 minutes
 description: A friend had a run in with some folk that followed the Old Testament Law. The evidence they provided was actually quite compelling, so I decided to do some digging.
 ---
 
-### Table of Contents
 ```toc
 
 ```

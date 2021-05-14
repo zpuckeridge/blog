@@ -7,7 +7,6 @@ readingTime: 5 minutes
 description: A brief overview of the Doctrines of Grace.
 ---
 
-### Table of Contents
 ```toc
 
 ```

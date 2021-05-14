@@ -7,7 +7,6 @@ readingTime: 5 minutes
 description: A short study on John 15:4 and how it applies to our lives.
 ---
 
-### Table of Contents
 ```toc
 
 ```

@@ -7,7 +7,6 @@ readingTime: 5 minutes
 description: "Common Grace is a theological concept in Protestant Christianity hashed out in the late 19th and early 20th Century by Reformed Christians of the time."
 ---
 
-### Table of Contents
 ```toc
 
 ```

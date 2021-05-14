@@ -7,7 +7,6 @@ readingTime: 20 minutes
 description: Follow along while we delve into the process of creating a simply Gatsby blog and host it with GitHub pages!
 ---
 
-### Table of Contents
 ```toc
 
 ```

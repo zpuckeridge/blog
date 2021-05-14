@@ -7,7 +7,6 @@ readingTime: 10 minutes
 description: This article details the steps requried to get Jellyfin, an Open Source Media Library up and running on Ubuntu Server.
 ---
 
-### Table of Contents
 ```toc
 
 ```

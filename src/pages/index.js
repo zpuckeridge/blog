@@ -28,7 +28,7 @@ const HomePage = ({ data, location }) => {
               <table>
                 <tr>
                   <th>
-                    <a className="no-underline" href="https://github.com/zpuckeridge">
+                    <a href="https://github.com/zpuckeridge">
                       <span className="social-icon">
                         <i className="fab fa-github-square"></i>
                       </span>

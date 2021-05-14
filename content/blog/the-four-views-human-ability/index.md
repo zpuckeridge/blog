@@ -7,7 +7,6 @@ readingTime: 5 minutes
 description: A brief overview on the four views of the Human Ability.
 ---
 
-### Table of Contents
 ```toc
 
 ```
