@@ -7,14 +7,14 @@ readingTime: 5 minutes
 description: A brief overview on the four views of the Human Ability.
 ---
 
-## Table of Contents
+### Table of Contents
 ```toc
 
 ```
 
 Understanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.
 
-## Pelagianism:
+### Pelagianism:
 
 Pelagius was British monk who clashed with Augustine of Hippo during the 5th Century. To a large degree, the term 'Pelagianism' is defined by Augustine and its original definitions as intended by Pelagius remain elusive. The theological position holds that the original sin committed by Adam and Eve did not taint human nature and that humans have the right to free will to achieve human perfection _without_ divine intervention.
 
@@ -29,7 +29,7 @@ Pelagius taught that it was unjust to punish one person for the sins of another;
 
 Pelagianism was especially popular amongst Roman Elites, monks and the rest of the contemporary Christian world at the time.
 
-## Semi-Pelagianism:
+### Semi-Pelagianism:
 
 The term Semi-Pelagianism is used to describe the combination of Pelagianism and the soteriological school of thought on salvation. There were those that desired to hold an intermediary position between Augustine and Pelagius. Semi-Pelagianism became the dominant view in the Roman Catholic Church of the Medieval period.
 
@@ -45,7 +45,7 @@ So long as they use their free will to choose to follow God, God will respond wi
 - Modern expression: Much of modern evangelicalism.
 - Grace is necessary, but not sufficient. The individual must actively choose God.
 
-## Arminianism:
+### Arminianism:
 
 Arminianism is a branch of Protestanism based on the theological ideas of the Dutch Reformed theologian Jacobus Arminius. His teachings held to the five solae of the Reformation but were distinctly different from the teachings and beliefs of Martin Luther, Huldrych Zwingli, John Calvin and other Protestant Reformers.
 
@@ -63,7 +63,7 @@ Through the preparatory (prevenient) grace given to all by the Holy Spirit, man 
 - Modern Expression: Catholicism.
 - Grace is necessary, but not sufficient.
 
-## Calvinism:
+### Calvinism:
 
 Calvinism also known as Reformed Theology/Christianity is another major brance of Protestantism that follows the theological tradition and forms of Christian practice set down by John Calvin and other reformation-era theologians.
 

@@ -95,8 +95,8 @@ const AboutPage = ({ data, location }) => {
           </header>
           <body id="content" className="container">
             <section id="about">
-              <div>
-                <h2 className="megaline">About</h2>
+              <div className="about-title">
+                <h2>About</h2>
               </div>
               <div>
                 <p>
@@ -108,7 +108,9 @@ const AboutPage = ({ data, location }) => {
             </section>
 
             <section id="profiles">
-              <h2 className="megaline">Profiles</h2>
+              <div className="about-title">
+                <h2>Profiles</h2>
+              </div>
               <div>
                 <div>
                   <div className="row">
@@ -146,8 +148,8 @@ const AboutPage = ({ data, location }) => {
                       <strong className="network">Gallery</strong>
                       <div className="username">
                         <div className="url">
-                          <a href="https://zacchary.me/gallery/">
-                            https://zacchary.me/gallery
+                          <a href="/gallery">
+                            Check it out!
                           </a>
                         </div>
                       </div>
@@ -158,8 +160,8 @@ const AboutPage = ({ data, location }) => {
             </section>
 
             <section id="work">
-              <div>
-                <h2 className="megaline">Work</h2>
+              <div className="about-title">
+                <h2>Work</h2>
               </div>
               <div>
                 <div>
@@ -250,8 +252,8 @@ const AboutPage = ({ data, location }) => {
             </section>
 
             <section id="volunteer">
-              <div>
-                <h2 className="megaline">Volunteer</h2>
+              <div className="about-title">
+                <h2>Volunteer</h2>
               </div>
               <div>
                 <div>
@@ -378,8 +380,8 @@ const AboutPage = ({ data, location }) => {
             </section>
 
             <section id="education">
-              <div>
-                <h2 className="megaline">Education</h2>
+              <div className="about-title">
+                <h2>Education</h2>
               </div>
               <div>
                 <h4 className="strike-through">
@@ -395,13 +397,13 @@ const AboutPage = ({ data, location }) => {
                   <span className="date">January 2020 — June 2020</span>
                 </h4>
                 <div className="area">Plesk Professional Certification</div>
-                <div className="studyType">Valid until 2022</div>
+                <div className="studyType">2020 → 2022</div>
               </div>
             </section>
 
             <section id="skills">
-              <div>
-                <h2 className="megaline">Skills</h2>
+              <div className="about-title">
+                <h2>Skills</h2>
               </div>
               <div className="row">
                 <div className="column">
@@ -448,8 +450,8 @@ const AboutPage = ({ data, location }) => {
             </section>
 
             <section id="languages">
-              <div>
-                <h2 className="megaline">Languages</h2>
+              <div className="about-title">
+                <h2>Languages</h2>
               </div>
               <div className="row">
                 <div className="column">
@@ -466,10 +468,12 @@ const AboutPage = ({ data, location }) => {
                     <div className="fluency">Currently learning</div>
                   </div>
                 </div>
+                </div>
+              </section>
 
                 <section id="interests">
-                  <div>
-                    <h2 className="megaline">Interests</h2>
+                  <div className="about-title">
+                    <h2>Interests</h2>
                   </div>
                   <div>
                     <div>
@@ -516,8 +520,6 @@ const AboutPage = ({ data, location }) => {
                     </div>
                   </div>
                 </section>
-              </div>
-            </section>
           </body>
         </main>
       </Layout>

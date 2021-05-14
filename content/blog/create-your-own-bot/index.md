@@ -7,8 +7,6 @@ readingTime: 20 minutes
 description: "Want to learn how to create a simple Discord Bot and run it with Docker? Well, you're in luck!"
 ---
 
-## Table of Contents
-
 ```toc
 
 ```

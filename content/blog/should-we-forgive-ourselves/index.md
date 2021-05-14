@@ -7,12 +7,12 @@ readingTime: 5 minutes
 description: Well - the answer isn't as cut or dry as many may believe... It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus.
 ---
 
-## Table of Contents
+### Table of Contents
 ```toc
 
 ```
 
-## Well - the answer isn't as cut or dry as many may believe...
+### Well - the answer isn't as cut or dry as many may believe...
 
 It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
 
@@ -32,7 +32,7 @@ These are two different messages that look contradictory of each other at first,
 
 It's imperative to recognise that wallowing in your own sin is also sin - by doing this, you are idolising yourself and saying that Jesus' forgiveness was not enough for you. **What could possibly be more offensive in sight of the Heavenly Father, the Creator of all things, the almighty and righteous God. **I myself, am terribly guilty of this and seek repentance for this sin often.
 
-## So should we forgive ourselves?
+### So should we forgive ourselves?
 
 Why would you forgive yourself if you trespass against someone else? The Bible makes it clear that we should seek forgiveness from those that we have wronged and from our Heavenly Father.\* Who made us the judge and executioner of our own sin? As Paul said, there is no condemnation for those who belong to Christ.
 
@@ -48,7 +48,7 @@ He continues on to say that the Corinthians godly grief that they had suffered t
 
 Taking all this into consideration, the Bible tells us that we do not necessarily forget our sins, but that we should strive to forget our sins and press on, remembering them only for a deeper understanding of God's grace and mercy, and to humble ourselves and step down from our seat of condemnation over our own life.
 
-## One more thing to consider.
+### One more thing to consider.
 
 We are sons and daughters of the most high, we co-heir with Christ and sit at the right hand of God. It brings no glory to the creator of the universe if we sit and do nothing with our lives because we believe ourselves not worthy of existence. You have been **SET FREE THROUGH JESUS' SACRIFICE! **It's time to start living freely from sin and condemnation! God did not design us to suffer alone, and if you still continue to struggle with your past sin, I endear you to find a mentor or a friend that can hold you accountable.
 

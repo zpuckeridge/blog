@@ -7,12 +7,12 @@ readingTime: 5 minutes
 description: A short study on John 15:4 and how it applies to our lives.
 ---
 
-## Table of Contents
+### Table of Contents
 ```toc
 
 ```
 
-## Introduction
+### Introduction
 
 John 15:4 New Living Translation (NLT)
 

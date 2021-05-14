@@ -7,6 +7,11 @@ readingTime: 5 minutes
 description: The idea that God's love is reckless was popularized by the worship song "Reckless Love" written by Caleb Culver, Cory Asbury and Ran Jackson. But is God's love actually reckless?
 ---
 
+### Table of Contents
+```toc
+
+```
+
 The idea that God's love is reckless was popularized by the worship song "Reckless Love" written by Caleb Culver, Cory Asbury and Ran Jackson.
 
 It was an incredibly popular song and has been listened to millions of times across the globe. It's sparked controversy regarding the use of the word 'reckless' to describe God's love.

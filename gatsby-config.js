@@ -63,7 +63,7 @@ module.exports = {
               ordered: false,
               fromHeading: 1,
               toHeading: 6,
-              className: "table-of-contents",
+              className: "table-of-contents desktop-only",
             },
           },
           {

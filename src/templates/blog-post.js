@@ -5,11 +5,13 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Comments from "../components/comments"
+import Tags from "../components/tags"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+  const tags = post.frontmatter.tags
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -24,7 +26,10 @@ const BlogPostTemplate = ({ data, location }) => {
       >
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date} ◦ {post.frontmatter.tags} ◦ {post.frontmatter.readingTime}</p>
+          <small>{post.frontmatter.date} ◦ </small>
+          {tags && tags.length > 0 ? `` : ` ◦ `}
+          <Tags>{tags}</Tags><small> ◦ </small>
+          <small>{post.frontmatter.readingTime}</small>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
