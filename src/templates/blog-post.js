@@ -40,7 +40,7 @@ const BlogPostTemplate = ({ data, location }) => {
 
         <Bio />
       </article>
-      <nav className="blog-post-nav">
+      <nav className="blog-post-nav desktop-only">
         <ul className="article-navigation-container">
           <li className="article-navigation">
           <div className="navigation-title">← Previous Article</div>

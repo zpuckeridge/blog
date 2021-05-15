@@ -195,7 +195,7 @@ blockquote {
   font-style: italic;
   border-radius: 25px;
   background-color: #161b22;
-  padding: 20px;
+  padding: 40px;
   margin: 0 auto;
 }
 
@@ -296,10 +296,6 @@ a:hover {
 /* Media queries */
 
 @media (max-width: 42rem) {
-  blockquote {
-    padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4);
-    margin-left: var(--spacing-0);
-  }
   ul,
   ol {
     list-style-position: inside;
