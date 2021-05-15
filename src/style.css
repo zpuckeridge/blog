@@ -792,8 +792,10 @@ table thead tr th {
   padding: 20px;
   margin-left: calc(35%);
   position: fixed;
+  top: 110px;
   max-height: calc(100vh - 40px);
   overflow: auto;
+  max-width: 300px;
 }
 
 .table-of-contents:before {
@@ -818,4 +820,32 @@ table thead tr th {
   .desktop-only {
     display: none !important;
   }
+}
+
+.article-navigation {
+  border-radius: 25px;
+  background-color: #161b22;
+  padding: 20px;
+  height: 125px;
+  max-width: 300px;
+  width: 300px;
+  margin: 0 auto;
+  max-height: 150px;
+}
+
+.navigation-link {
+  font-weight: 800;
+}
+
+.navigation-title {
+  font-weight: 800;
+  color: white;
+}
+
+.article-navigation-container {
+  display: flex;
+  position: relative;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
 }

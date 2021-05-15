@@ -28,7 +28,8 @@ const BlogPostTemplate = ({ data, location }) => {
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
           <small>{post.frontmatter.date} ◦ </small>
           {tags && tags.length > 0 ? `` : ` ◦ `}
-          <Tags>{tags}</Tags><small> ◦ </small>
+          <Tags>{tags}</Tags>
+          <small> ◦ </small>
           <small>{post.frontmatter.readingTime}</small>
         </header>
         <section
@@ -40,26 +41,21 @@ const BlogPostTemplate = ({ data, location }) => {
         <Bio />
       </article>
       <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
+        <ul className="article-navigation-container">
+          <li className="article-navigation">
+          <div className="navigation-title">← Previous Article</div>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link className="navigation-link" to={previous.fields.slug} rel="prev">
+                {previous.frontmatter.title}
               </Link>
             )}
+            
           </li>
-          <li>
+          <li className="article-navigation">
+          <div className="navigation-title pull-right">Next Article →</div>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+              <Link className="navigation-link pull-left" to={next.fields.slug} rel="next">
+                {next.frontmatter.title}
               </Link>
             )}
           </li>
