@@ -22,7 +22,7 @@ Paul helps us to understand how we should approach the issue.
 1 Cor. 8:4-8
 
 > So, what about eating meat that has been offered to idols? Well, we all know that an idol is not really a god and that there is only one God. There may be so-called gods both in heaven and on earth, and some people actually worship many gods and many lords. But for us,
-
+>
 > There is one God, the Father,
 > by whom all things were created,
 > and for whom we live.
@@ -30,9 +30,9 @@ Paul helps us to understand how we should approach the issue.
 > And there is one Lord, Jesus Christ,
 > through whom all things were created,
 > and through whom we live.
-
+>
 > However, not all believers know this. Some are accustomed to thinking of idols as being real, so when they eat food that has been offered to idols, they think of it as the worship of real gods, and their weak consciences are violated.
-
+>
 > It’s true that we can’t win God’s approval by what we eat. We don’t lose anything if we don’t eat it, and we don’t gain anything if we do.
 
 Paul is saying that what we eat doesn't bring us closer or push us further away from God, the food itself is amoral. He also states that idols are nothing at all, they are inanimate and hold no power.
