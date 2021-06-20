@@ -1,16 +1,13 @@
 {
-  "name": "gatsby-starter-chakra-ui",
+  "name": "zpuckeridge-blog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby and Chakra UI",
-  "version": "0.1.0",
+  "description": "A blog built on Gatsby, React and Chakra-UI.",
+  "version": "2.1",
   "author": {
-    "name": "Scott Spence",
-    "email": "yo@scottspence.dev",
-    "url": "https://scottspence.com"
+    "name": "Zacchary Puckeridge",
+    "email": "zacchary@puckeridge.me",
+    "url": "https://zacchary.me"
   },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -70,10 +67,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spences10/gatsby-starter-chakra-ui.git"
+    "url": "git+https://github.com/zpuckeridge/blog.git"
   },
   "bugs": {
-    "url": "https://github.com/spences10/gatsby-starter-chakra-ui/issues"
-  },
-  "homepage": "https://github.com/spences10/gatsby-starter-chakra-ui#readme"
+    "url": "https://github.com/zpuckeridge/blog/issues"
+  }
 }
