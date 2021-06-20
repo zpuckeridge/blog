@@ -18,12 +18,8 @@
     "format": "pretty-quick",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+    "clean": "gatsby clean",
+    "deploy": "gatsby build && production -d public"
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.1",
@@ -58,6 +54,7 @@
     "gatsby-source-filesystem": "^3.6.0",
     "gatsby-transformer-remark": "^4.3.0",
     "gatsby-transformer-sharp": "^3.6.0",
+    "gh-pages": "^3.2.2",
     "pill-pity": "^0.2.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
