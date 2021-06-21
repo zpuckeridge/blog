@@ -72,8 +72,6 @@ const Header = () => (
             </MenuButton>
             <MenuList background="brand.700">
               <MenuItem
-                as={GatsbyLink}
-                to="/tech-stack/"
                 title="Tech Stack"
                 color="white"
                 icon={<FaBolt />}
@@ -81,8 +79,6 @@ const Header = () => (
                 Tech Stack <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
-                as={GatsbyLink}
-                to="/bookmarks/"
                 title="Bookmarks"
                 color="white"
                 icon={<FaBookmark />}
@@ -90,8 +86,6 @@ const Header = () => (
                 Bookmarks <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
-                as={GatsbyLink}
-                to="/projects/"
                 title="Projects"
                 color="white"
                 icon={<FaBookOpen />}
