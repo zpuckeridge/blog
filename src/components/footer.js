@@ -91,6 +91,7 @@ const Footer = () => {
         >
           <Link
             href={`https://github.com/zpuckeridge`}
+            title={`GitHub`}
             target="_self"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
@@ -103,6 +104,7 @@ const Footer = () => {
 
           <Link
             href={`https://gitlab.com/zpuckeridge`}
+            title={`GitLab`}
             target="_self"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
@@ -115,6 +117,7 @@ const Footer = () => {
 
           <Link
             target="_self"
+            title={`LinkedIn`}
             href={`https://www.linkedin.com/in/zpuckeridge`}
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
@@ -127,6 +130,7 @@ const Footer = () => {
 
           <Link
             href={`https://dev.to/zpuckeridge`}
+            title={`DEV`}
             target="_self"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >

@@ -70,6 +70,7 @@ const IndexPage = () => {
                     <Link
                       href={`https://github.com/zpuckeridge`}
                       target="_self"
+                      title={`GitHub`}
                       _hover={{
                         textDecor: 'none',
                         color: '#30ce56',
@@ -85,6 +86,7 @@ const IndexPage = () => {
                     <Link
                       href={`https://gitlab.com/zpuckeridge`}
                       target="_self"
+                      title={`GitLab`}
                       _hover={{
                         textDecor: 'none',
                         color: '#30ce56',
@@ -99,6 +101,7 @@ const IndexPage = () => {
 
                     <Link
                       target="_self"
+                      title={`LinkedIn`}
                       href={`https://www.linkedin.com/in/zpuckeridge`}
                       _hover={{
                         textDecor: 'none',
@@ -119,6 +122,7 @@ const IndexPage = () => {
                     <Link
                       href={`https://dev.to/zpuckeridge`}
                       target="_self"
+                      title={`DEV`}
                       _hover={{
                         textDecor: 'none',
                         color: '#30ce56',
