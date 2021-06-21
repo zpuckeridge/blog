@@ -84,8 +84,9 @@ const Footer = () => {
           </Link>
         </Text>
         <Stack
+          align="center"
           direction="row"
-          spacing={6}
+          spacing={4}
           ml="auto"
           mr={{ base: `auto`, md: 5 }}
         >

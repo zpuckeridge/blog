@@ -53,18 +53,20 @@ const ArticleIndex = ({ data }) => {
   return (
     <>
       <Seo title="Articles" />
-      <Input
-        marginTop="2rem"
-        marginBottom="1rem"
-        type="text"
-        size="lg"
-        aria-label="Search"
-        placeholder="Search articles"
-        variant="filled"
-        value={state.query}
-        onChange={handleInputChange}
-        boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
-      />
+      <Box marginTop="2rem" marginBottom="1rem">
+        <Input
+          type="text"
+          size="lg"
+          aria-label="Search"
+          placeholder="Search articles"
+          color="white"
+          borderRadius="10px"
+          variant="filled"
+          value={state.query}
+          onChange={handleInputChange}
+          boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
+        />
+      </Box>
       <Box align="right">
         <Link
           as={GatsbyLink}

@@ -5,7 +5,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 import { FaGithub, FaGitlab, FaLinkedin, FaDev } from 'react-icons/fa'
 import {
   Box,
-  HStack,
+  Stack,
   Flex,
   Wrap,
   WrapItem,
@@ -22,14 +22,20 @@ const IndexPage = () => {
   return (
     <>
       <Seo title="Home" />
-      <Flex align="center" minH="80vh" p="5px">
-        <Box>
-          <Wrap>
+      <Flex align="center" minH="80vh">
+        <Box
+          px={8}
+          py={4}
+          rounded="20px"
+          minWidth="full"
+          boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
+        >
+          <Wrap spacing="10px" justify="center">
             <WrapItem>
               <Box
                 boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
                 borderRadius="10px"
-                marginRight="20px"
+                marginTop="1rem"
               >
                 <StaticImage
                   src="../../src/images/profile-pic.jpg"
@@ -43,11 +49,14 @@ const IndexPage = () => {
                 />
               </Box>
             </WrapItem>
-            <WrapItem maxW="400px" minW="200px">
-              <Box>
-                <Heading fontSize="5xl">Hi, I'm Zacchary!</Heading>
+            <WrapItem>
+              <Box maxW="800px">
+                <Heading textAlign="center" fontSize="5xl">
+                  Hi, I'm Zacchary!
+                </Heading>
                 <Box marginTop="0.5rem">
                   <Text
+                    maxW="400px"
                     color="rgba(255, 255, 255, 0.9);"
                     fontSize="lg"
                   >
@@ -57,14 +66,21 @@ const IndexPage = () => {
                       to={`/about/`}
                       title={`About`}
                       color="#75bcff"
-                      _hover={{ textDecor: 'none', color: '#30ce56' }}
+                      _hover={{
+                        textDecor: 'none',
+                        color: '#30ce56',
+                      }}
                     >
                       Web Developer
                     </Link>{' '}
                     based out of Brisbane, Australia working for Pixel
                     Zoo.
                     <Box marginTop="1rem">
-                      <HStack>
+                      <Stack
+                        align="center"
+                        direction="row"
+                        spacing={4}
+                      >
                         <Link
                           href={`https://github.com/zpuckeridge`}
                           target="_self"
@@ -149,7 +165,7 @@ const IndexPage = () => {
                         >
                           More about me →
                         </Link>
-                      </HStack>
+                      </Stack>
                     </Box>
                   </Text>
                 </Box>

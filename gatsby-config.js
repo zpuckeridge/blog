@@ -6,7 +6,13 @@ module.exports = {
     siteUrl: `https://zacchary.me/`,
   },
   plugins: [
-    `@chakra-ui/gatsby-plugin`,
+    {
+      resolve: `@chakra-ui/gatsby-plugin`,
+      options: {
+        resetCSS: true,
+        isUsingColorMode: false,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

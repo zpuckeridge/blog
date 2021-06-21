@@ -6,6 +6,7 @@ import {
   Spacer,
   Tabs,
   TabList,
+  Icon,
   TabPanels,
   Center,
   Tab,
@@ -25,7 +26,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { graphql } from 'gatsby'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { ExternalLinkIcon, DownloadIcon } from '@chakra-ui/icons'
 
 import Seo from '../components/seo'
 
@@ -33,7 +34,7 @@ const AboutPage = () => {
   return (
     <>
       <Seo title="About" />
-      <Box marginTop="2rem" marginBottom="2rem">
+      <Box marginTop="2rem" marginBottom="4rem">
         <Heading
           fontSize="3xl"
           borderBottom="1px solid rgb(45, 55, 72)"
@@ -54,21 +55,8 @@ const AboutPage = () => {
           hanging out with mates, riding motorcycles and playing video
           games.
         </Text>
-        <Box align="right">
-          <Link
-            href={`../static/../resume.pdf`}
-            title={`Résumé`}
-            _hover={{
-              textDecor: 'none',
-            }}
-          >
-            <Button size="sm" marginBottom="2rem">
-              Download my résumé →
-            </Button>
-          </Link>
-        </Box>
       </Box>
-      <Tabs size="md" variant="solid-rounded" colorScheme="green">
+      <Tabs size="md" variant="solid-rounded" colorScheme="blue">
         <Center>
           <TabList>
             <SimpleGrid
@@ -139,8 +127,16 @@ const AboutPage = () => {
               Work
             </Heading>
             <Accordion allowToggle>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -180,8 +176,17 @@ const AboutPage = () => {
                   </Box>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                {' '}
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -226,8 +231,16 @@ const AboutPage = () => {
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -278,8 +291,17 @@ const AboutPage = () => {
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                {' '}
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -324,8 +346,17 @@ const AboutPage = () => {
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                {' '}
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -380,8 +411,16 @@ const AboutPage = () => {
               Community
             </Heading>
             <Accordion allowToggle>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -433,8 +472,16 @@ const AboutPage = () => {
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -479,8 +526,16 @@ const AboutPage = () => {
                   perfectly in the death of Jesus Christ.
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -525,8 +580,16 @@ const AboutPage = () => {
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -573,8 +636,16 @@ const AboutPage = () => {
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
-              <AccordionItem>
-                <AccordionButton>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
                   <Box
                     fontWeight="800"
                     flex="1"
@@ -871,6 +942,47 @@ const AboutPage = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <Box marginTop="2rem" marginBottom="2rem">
+        <Heading
+          fontSize="3xl"
+          borderBottom="1px solid rgb(45, 55, 72)"
+        >
+          Contact
+        </Heading>
+        <Flex>
+          <Text direction="row">
+            Feel free to shoot me an email over at:
+          </Text>
+          <Spacer />
+          <Text fontWeight="800">
+            <Link
+              align="center"
+              href="mailto:hi@zacchary.me"
+              color="#75bcff"
+              _hover={{
+                textDecor: 'none',
+                color: '#30ce56',
+              }}
+            >
+              hi@zacchary.me
+            </Link>{' '}
+          </Text>
+        </Flex>
+      </Box>
+      <Box align="center">
+        <Link
+          href={`../static/../resume.pdf`}
+          title={`Résumé`}
+          _hover={{
+            textDecor: 'none',
+          }}
+        >
+          <Button size="sm" marginBottom="2rem">
+            Download my résumé{' '}
+            <Icon marginLeft="0.5rem" as={DownloadIcon} />
+          </Button>
+        </Link>
+      </Box>
     </>
   )
 }

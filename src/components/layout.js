@@ -9,14 +9,7 @@ const Layout = ({ children }) => {
     <>
       <Box bg="brand.900">
         <Header />
-        <Box
-          bg="brand.900"
-          as="main"
-          margin="0 auto"
-          maxWidth="40rem"
-          pt={8}
-          pb={8}
-        >
+        <Box margin="0 auto" maxWidth="40rem" p={4}>
           {children}
         </Box>
         <Footer />

@@ -1,6 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
 
 export const theme = extendTheme({
+  initialColorMode: 'dark',
   styles: {
     global: {
       h1: {
@@ -34,12 +35,6 @@ export const theme = extendTheme({
   },
   colors: {
     brand: {
-      50: '#f8f0f2',
-      100: '#d9d9d9',
-      200: '#bfbfbf',
-      300: '#a6a6a6',
-      400: '#8c8c8c',
-      500: '#737373',
       600: '#595959',
       700: '#292929',
       800: '#212121',
