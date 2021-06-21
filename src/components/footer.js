@@ -43,7 +43,6 @@ const Footer = () => {
           <Text mx={3} fontWeight="800">
             Now Playing:{' '}
           </Text>
-          <Text>Coming Soon</Text>
         </Flex>
         <Text>
           Made with{' '}
