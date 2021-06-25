@@ -47,13 +47,13 @@ const AboutPage = () => {
         </Text>
         <Text>
           Currently, I'm learning to manage Kubernetes deployments,
-          deevlop microservices, and build front end applications in
+          develop microservices, and build front end applications in
           Gatsby, React and Chakra UI.
         </Text>
         <Text>
           When I'm not at work, or working on a personal project, I'm
-          hanging out with mates, riding motorcycles and playing video
-          games.
+          hanging out with mates, riding motorcycles, playing video
+          games and nerding out over audio.
         </Text>
       </Box>
       <Tabs size="md" variant="solid-rounded" colorScheme="blue">
@@ -700,45 +700,96 @@ const AboutPage = () => {
               Education
             </Heading>
 
-            <Box marginBottom="2rem">
-              <Flex>
-                <Heading fontSize="lg">
-                  <span role="img" aria-label="graduation">
-                    🎓
-                  </span>{' '}
-                  TAFE
-                </Heading>
-                <Spacer />
-                <Heading fontSize="lg">
-                  January 2019 → January 2020
-                </Heading>
-              </Flex>
-              <Flex marginBottom="1rem">
-                <Text>Information Technologies & Digital Media</Text>
-                <Spacer />
-                <Text>Certificate III</Text>
-              </Flex>
-            </Box>
+            <Accordion allowToggle>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
+                    TAFE
+                  </Box>{' '}
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="right"
+                    fontSize="lg"
+                  >
+                    Jan 2019 → Jan 2020
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex marginBottom="1rem">
+                    <Flex>
+                      <Text>
+                        Information Technologies & Digital Media
+                      </Text>
+                    </Flex>
+                    <Spacer />
+                    <Text>Certificate III</Text>
+                  </Flex>
+                  <Text>
+                    General all rounder course on building computers,
+                    troubleshooting technology like printers, routers
+                    etc.
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
 
-            <Box marginBottom="2rem">
-              <Flex>
-                <Heading fontSize="lg">
-                  <span role="img" aria-label="graduation">
-                    🎓
-                  </span>{' '}
-                  Plesk University
-                </Heading>
-                <Spacer />
-                <Heading fontSize="lg">
-                  January 2020 → Jun 2020
-                </Heading>
-              </Flex>
-              <Flex marginBottom="1rem">
-                <Text>Plesk Professional Certification</Text>
-                <Spacer />
-                <Text>Valid until 2022</Text>
-              </Flex>
-            </Box>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
+                    Plesk University
+                  </Box>{' '}
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="right"
+                    fontSize="lg"
+                  >
+                    Jan 2020 → Jun 2020
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex marginBottom="1rem">
+                    <Flex>
+                      <Text>Plesk Professional Certification</Text>
+                    </Flex>
+                    <Spacer />
+                    <Text>Valid until 2022</Text>
+                  </Flex>
+                  <Text>
+                    Level 1 Web Hosting and Support Certification
+                    working with the Plesk Control Panel.
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
           </TabPanel>
 
           <TabPanel>
@@ -749,88 +800,212 @@ const AboutPage = () => {
             >
               Skills
             </Heading>
-            <SimpleGrid columns={2} spacing={10}>
-              <Box>
-                <Heading marginBottom="1rem" fontSize="lg">
-                  Systems Administration
-                </Heading>
-                <UnorderedList>
-                  <ListItem>Debian/CentOS</ListItem>
-                  <ListItem>DNS/Domain Management</ListItem>
-                  <ListItem>Proxmox</ListItem>
-                  <ListItem>
-                    Office Networking
-                    <Badge ml="2" fontSize="xs" colorScheme="green">
-                      Learning
-                    </Badge>
-                  </ListItem>
-                  <ListItem>
-                    Django
-                    <Badge ml="2" fontSize="xs" colorScheme="green">
-                      Learning
-                    </Badge>
-                  </ListItem>
-                  <ListItem>
-                    AD Management{' '}
-                    <Badge ml="2" fontSize="xs" colorScheme="green">
-                      Learning
-                    </Badge>
-                  </ListItem>
-                </UnorderedList>
-              </Box>
-              <Box>
-                <Heading marginBottom="1rem" fontSize="lg">
-                  Programming
-                </Heading>
-                <UnorderedList>
-                  <ListItem>HTML</ListItem>
-                  <ListItem>CSS</ListItem>
-                  <ListItem>GatsbyJS</ListItem>
-                  <ListItem>Chakra-UI</ListItem>
-                  <ListItem>
-                    React{' '}
-                    <Badge ml="2" fontSize="xs" colorScheme="green">
-                      Learning
-                    </Badge>
-                  </ListItem>
-                  <ListItem>
-                    Python{' '}
-                    <Badge ml="2" fontSize="xs" colorScheme="green">
-                      Learning
-                    </Badge>
-                  </ListItem>
-                  <ListItem>
-                    Git CI/CD{' '}
-                    <Badge ml="2" fontSize="xs" colorScheme="green">
-                      Learning
-                    </Badge>
-                  </ListItem>
-                </UnorderedList>
-              </Box>
-              <Box>
-                <Heading marginBottom="1rem" fontSize="lg">
-                  Support
-                </Heading>
-                <UnorderedList>
-                  <ListItem>ZenDesk</ListItem>
-                  <ListItem>Freshdesk</ListItem>
-                  <ListItem>3CX</ListItem>
-                  <ListItem>GSuite</ListItem>
-                  <ListItem>Office 365</ListItem>
-                  <ListItem>Email Troubleshooting</ListItem>
-                </UnorderedList>
-              </Box>
-              <Box>
-                <Heading marginBottom="1rem" fontSize="lg">
-                  Other
-                </Heading>
-                <UnorderedList>
-                  <ListItem>EQ (Audio Equalisation)</ListItem>
-                  <ListItem>OBS (Open Broadcaster Software)</ListItem>
-                  <ListItem>Stage Setup + Tear Down</ListItem>
-                </UnorderedList>
-              </Box>
-            </SimpleGrid>
+            <Accordion allowToggle>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
+                    Systems Administration
+                  </Box>{' '}
+                  <Badge fontSize="xs" colorScheme="yellow">
+                    Junior
+                  </Badge>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex>
+                    <Flex>
+                      <UnorderedList>
+                        <ListItem>Debian/CentOS</ListItem>
+                        <ListItem>DNS/Domain Management</ListItem>
+                        <ListItem>Proxmox</ListItem>
+                        <ListItem>
+                          Django
+                          <Badge
+                            ml="2"
+                            fontSize="xs"
+                            colorScheme="green"
+                          >
+                            Learning
+                          </Badge>
+                        </ListItem>
+                        <ListItem>
+                          Office Networking
+                          <Badge
+                            ml="2"
+                            fontSize="xs"
+                            colorScheme="green"
+                          >
+                            Learning
+                          </Badge>
+                        </ListItem>
+                        <ListItem>
+                          AD Management{' '}
+                          <Badge
+                            ml="2"
+                            fontSize="xs"
+                            colorScheme="green"
+                          >
+                            Learning
+                          </Badge>
+                        </ListItem>
+                      </UnorderedList>
+                    </Flex>
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
+                    Programming
+                  </Box>{' '}
+                  <Badge fontSize="xs" colorScheme="yellow">
+                    Junior
+                  </Badge>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex>
+                    <UnorderedList>
+                      <ListItem>HTML</ListItem>
+                      <ListItem>CSS</ListItem>
+                      <ListItem>GatsbyJS</ListItem>
+                      <ListItem>Chakra-UI</ListItem>
+                      <ListItem>
+                        React{' '}
+                        <Badge
+                          ml="2"
+                          fontSize="xs"
+                          colorScheme="green"
+                        >
+                          Learning
+                        </Badge>
+                      </ListItem>
+                      <ListItem>
+                        Python{' '}
+                        <Badge
+                          ml="2"
+                          fontSize="xs"
+                          colorScheme="green"
+                        >
+                          Learning
+                        </Badge>
+                      </ListItem>
+                      <ListItem>
+                        Git CI/CD{' '}
+                        <Badge
+                          ml="2"
+                          fontSize="xs"
+                          colorScheme="green"
+                        >
+                          Learning
+                        </Badge>
+                      </ListItem>
+                    </UnorderedList>
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
+                    Techincal Support
+                  </Box>{' '}
+                  <Badge fontSize="xs" colorScheme="green">
+                    Middle
+                  </Badge>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex>
+                    <UnorderedList>
+                      <ListItem>ZenDesk</ListItem>
+                      <ListItem>Freshdesk</ListItem>
+                      <ListItem>3CX</ListItem>
+                      <ListItem>GSuite</ListItem>
+                      <ListItem>Office 365</ListItem>
+                      <ListItem>Email Troubleshooting</ListItem>
+                      <ListItem>
+                        Building and Repairing Computers/Laptops
+                      </ListItem>
+                      <ListItem>Troubleshooting Logs</ListItem>
+                    </UnorderedList>
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
+                    Other
+                  </Box>{' '}
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex>
+                    <UnorderedList>
+                      <ListItem>EQ (Audio Equalisation)</ListItem>
+                      <ListItem>
+                        OBS (Open Broadcaster Software)
+                      </ListItem>
+                      <ListItem>Stage Setup + Tear Down</ListItem>
+                    </UnorderedList>
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
           </TabPanel>
 
           <TabPanel>
@@ -845,12 +1020,12 @@ const AboutPage = () => {
               <Heading fontSize="lg">Language</Heading> <Spacer />
               <Heading fontSize="lg">Fluency</Heading>
             </Flex>
-            <Flex>
+            <Flex marginBottom="-20px">
               <Text>English</Text>
               <Spacer />
               <Text>Native</Text>
             </Flex>
-            <Flex>
+            <Flex marginBottom="-20px">
               <Text>Russian </Text>
               <Spacer />
               <Text>
@@ -860,7 +1035,7 @@ const AboutPage = () => {
                 </Badge>
               </Text>
             </Flex>
-            <Flex>
+            <Flex marginBottom="-20px">
               <Text>German </Text>
               <Spacer />
               <Text>

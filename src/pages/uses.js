@@ -1,5 +1,30 @@
 import * as React from 'react'
 
+import {
+  Flex,
+  Badge,
+  Spacer,
+  Tabs,
+  TabList,
+  Icon,
+  TabPanels,
+  Center,
+  Tab,
+  TabPanel,
+  Box,
+  Text,
+  SimpleGrid,
+  Heading,
+  AccordionItem,
+  AccordionIcon,
+  AccordionPanel,
+  AccordionButton,
+  Accordion,
+  UnorderedList,
+  ListItem,
+  Link,
+  Button,
+} from '@chakra-ui/react'
 import { graphql } from 'gatsby'
 
 import Seo from '../components/seo'
@@ -8,256 +33,280 @@ const UsesPage = () => {
   return (
     <>
       <Seo title="Uses" />
-      <p>
+      <Text>
         A compiled list of the tools, tech stack, programs and
         hardware I use on a daily basis.
-      </p>
-      <h3 id="operating-system-hardware">
+      </Text>
+      <Heading id="operating-system-hardware">
         Operating System &amp; Hardware
-      </h3>
-      <p>
-        I am currently Dual Booting{' '}
-        <a href={`https://pop.system76.com/`} title={`Pop!_OS`}>
+      </Heading>
+      <Text>
+        I am currently dual booting{' '}
+        <Link href={`https://pop.system76.com/`} title={`Pop!_OS`}>
           POP!_OS
-        </a>{' '}
+        </Link>{' '}
         and{' '}
-        <a
+        <Link
           href={`https://www.microsoft.com/en-au/software-download/windows10`}
           title={`Windows 10`}
         >
           Windows 10.
-        </a>
-      </p>
-      <p>My rig has the following specifications:</p>
-      <ul>
-        <li>CPU: Ryzen 2700X</li>
-        <li>GPU: NVIDIA GTX 1080</li>
-        <li>RAM: Corsair 4 x 8GB 3200MHz</li>
-        <li>MBO: ASRock Taichi X370</li>
-        <li>PSU: Corsair Gold 650W</li>
-        <li>HDD: Western Digital 2TB</li>
-        <li>SSD: Western Digital 480GB M.2</li>
-      </ul>
-      <p>For audio, I&#39;m using the following:</p>
-      <ul>
-        <li>Amplification: Focusrite Scarlett Solo</li>
-        <li>Microphone: AT2020</li>
-        <li>Headphones: Beyerdynamic DT 770 + Koss KPH30i</li>
-      </ul>
-      <h3 id="gadgets">Gadgets</h3>
-      <ul>
-        <li>Phone - Samsung Galaxy S20 Ultra 5G</li>
-        <li>Camera - Nikon D3200</li>
-      </ul>
-      <h3 id="editor-terminal">Editor &amp; Terminal</h3>
-      <p>Visual Studio Code is my primary editor.</p>
-      <ul>
-        <li>
+        </Link>
+      </Text>
+      <Text>My rig has the following specifications:</Text>
+      <UnorderedList>
+        <ListItem>CPU: Ryzen 2700X</ListItem>
+        <ListItem>GPU: NVIDIA GTX 1080</ListItem>
+        <ListItem>RAM: Corsair 4 x 8GB 3200MHz</ListItem>
+        <ListItem>MBO: ASRock Taichi X370</ListItem>
+        <ListItem>PSU: Corsair Gold 650W</ListItem>
+        <ListItem>HDD: Western Digital 2TB</ListItem>
+        <ListItem>SSD: Western Digital 480GB M.2</ListItem>
+      </UnorderedList>
+      <Text>For audio, I&#39;m using the following:</Text>
+      <UnorderedList>
+        <ListItem>Amplification: Focusrite Scarlett Solo</ListItem>
+        <ListItem>Microphone: AT2020</ListItem>
+        <ListItem>
+          Headphones: Beyerdynamic DT 770 + Koss KPH30i + Shure SRH440
+        </ListItem>
+      </UnorderedList>
+      <Heading id="gadgets">Gadgets</Heading>
+      <UnorderedList>
+        <ListItem>Phone - Samsung Galaxy S20 Ultra 5G</ListItem>
+        <ListItem>Camera - Nikon D3200</ListItem>
+      </UnorderedList>
+      <Heading id="editor-terminal">Editor &amp; Terminal</Heading>
+      <Text>Visual Studio Code is my primary editor.</Text>
+      <UnorderedList>
+        <ListItem>
           I use the{' '}
-          <a
+          <Link
             href={`https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme/`}
             title={`Visual Studio Code Marketplace`}
           >
             GitHub
-          </a>{' '}
+          </Link>{' '}
           Theme
-        </li>
-        <li>
+        </ListItem>
+        <ListItem>
           Shell:{' '}
-          <a href={`https://www.zsh.org/`} title={`ZSH`}>
+          <Link href={`https://www.zsh.org/`} title={`ZSH`}>
             Zsh
-          </a>
-        </li>
-        <li>Shell Theme: robbyrussell</li>
-      </ul>
-      <h3 id="tools">Tools</h3>
-      <ul>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>Shell Theme: powerlevel10k</ListItem>
+      </UnorderedList>
+      <Heading id="tools">Tools</Heading>
+      <UnorderedList>
+        <ListItem>
           My primary Web Browsers are{' '}
-          <a
+          <Link
             href={`https://librewolf-community.gitlab.io/`}
             title={`Librewolf`}
           >
             LibreWolf
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href={`https://brave.com/`} title={`Brave`}>
+          <Link href={`https://brave.com/`} title={`Brave`}>
             Brave
-          </a>
+          </Link>
           . These are both great privacy respecting choices that allow
           me to develop for both platforms.
-        </li>
-        <li>
+        </ListItem>
+        <ListItem>
           Password Manager:{' '}
-          <a href={`https://bitwarden.com/`} title={`Bitwarden`}>
+          <Link href={`https://bitwarden.com/`} title={`Bitwarden`}>
             Bitwarden
-          </a>
-        </li>
-        <li>
-          Technology Stack Detection:{' '}
-          <a
+          </Link>
+        </ListItem>
+        <ListItem>
+          Tech Stack Detection:{' '}
+          <Link
             href={`https://www.wappalyzer.com/`}
             title={`Wappalyzer`}
           >
             Wappalyzer
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Communication:{' '}
-          <a href={`https://slack.com/intl/en-au/`} title={`Slack`}>
+          <Link
+            href={`https://slack.com/intl/en-au/`}
+            title={`Slack`}
+          >
             Slack
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href={`https://discord.com/brand-new`} title={`Discord`}>
+          <Link
+            href={`https://discord.com/brand-new`}
+            title={`Discord`}
+          >
             Discord
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Ad Blocking:{' '}
-          <a href={`https://pi-hole.net/`} title={`Pi-Hole`}>
-            Pi-Hole
-          </a>
-        </li>
-        <li>
+          <Link href={`https://pi-hole.net/`} title={`Pi-Hole`}>
+            AdGuard
+          </Link>
+        </ListItem>
+        <ListItem>
           Two Factor Authentication:{' '}
-          <a
+          <Link
             href={`https://getaegis.app/`}
             title={`Aegis Authenticator`}
           >
             Aegis Authenticator
-          </a>
-        </li>
-      </ul>
-      <h3 id="cli-tools">CLI Tools</h3>
-      <ul>
-        <li>
-          <a href={`https://ohmyz.sh/`} title={`Oh My Zsh`}>
+          </Link>
+        </ListItem>
+      </UnorderedList>
+      <Heading id="cli-tools">CLI Tools</Heading>
+      <UnorderedList>
+        <ListItem>
+          <Link href={`https://ohmyz.sh/`} title={`Oh My Zsh`}>
             Oh My Zsh
-          </a>
-        </li>
-      </ul>
-      <h3 id="self-hosted-tools">Self Hosted Tools</h3>
-      <ul>
-        <li>
+          </Link>
+        </ListItem>
+      </UnorderedList>
+      <Heading id="self-hosted-tools">Self Hosted Tools</Heading>
+      <UnorderedList>
+        <ListItem>
           Virtualisation:{' '}
-          <a href={`https://www.proxmox.com/en/`} title={`Proxmox`}>
+          <Link
+            href={`https://www.proxmox.com/en/`}
+            title={`Proxmox`}
+          >
             Proxmox
-          </a>
-        </li>
-      </ul>
-      <h3 id="preferred-tech-stack">
+          </Link>
+        </ListItem>
+      </UnorderedList>
+      <Heading id="preferred-tech-stack">
         DevOps Tech Stack (Currently Learning)
-      </h3>
-      <ul>
-        <li>
+      </Heading>
+      <UnorderedList>
+        <ListItem>
           Programming Language:{' '}
-          <a href={`https://www.python.org/`} title={`Python`}>
+          <Link href={`https://www.python.org/`} title={`Python`}>
             Python
-          </a>{' '}
+          </Link>{' '}
           +{' '}
-          <a
+          <Link
             href={`https://www.javascript.com/`}
             title={`JavaScript`}
           >
             JavaScript
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Monitoring &amp; Logging:{' '}
-          <a href={`https://prometheus.io/`} title={`Prometheus`}>
+          <Link href={`https://prometheus.io/`} title={`Prometheus`}>
             Prometheus
-          </a>{' '}
+          </Link>{' '}
           +{' '}
-          <a href={`https://www.elastic.co/kibana`} title={`Kibana`}>
+          <Link
+            href={`https://www.elastic.co/kibana`}
+            title={`Kibana`}
+          >
             Kibana
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Containerisation:{' '}
-          <a href={`https://kubernetes.io/`} title={`Kubernetes`}>
+          <Link href={`https://kubernetes.io/`} title={`Kubernetes`}>
             Kubernetes
-          </a>{' '}
+          </Link>{' '}
           +{' '}
-          <a href={`https://www.docker.com/`} title={`Docker`}>
+          <Link href={`https://www.docker.com/`} title={`Docker`}>
             Docker
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Virtualisation:{' '}
-          <a href={`https://www.vmware.com/`} title={`VMware`}>
+          <Link href={`https://www.vmware.com/`} title={`VMware`}>
             VMware
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Cloud Computation:{' '}
-          <a href={`https://cloud.linode.com/`} title={`Linode`}>
+          <Link href={`https://cloud.linode.com/`} title={`Linode`}>
             Linode
-          </a>{' '}
+          </Link>{' '}
           +{' '}
-          <a href={`https://aws.amazon.com/`} title={`AWS`}>
+          <Link href={`https://aws.amazon.com/`} title={`AWS`}>
             AWS
-          </a>{' '}
+          </Link>{' '}
           +{' '}
-          <a
+          <Link
             href={`https://cloud.google.com/`}
             title={`Google Cloud`}
           >
             Google Cloud
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Security:{' '}
-          <a href={`https://www.vaultproject.io/`} title={`Vault`}>
+          <Link href={`https://www.vaultproject.io/`} title={`Vault`}>
             Vault
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Provisioning:{' '}
-          <a href={`https://www.terraform.io/`} title={`Terraform`}>
+          <Link
+            href={`https://www.terraform.io/`}
+            title={`Terraform`}
+          >
             Terraform
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href={`https://www.ansible.com/`} title={`Ansible`}>
+          <Link href={`https://www.ansible.com/`} title={`Ansible`}>
             Ansible
-          </a>
-        </li>
-      </ul>
-      <h3 id="development-services">Development Services</h3>
-      <ul>
-        <li>
+          </Link>
+        </ListItem>
+      </UnorderedList>
+      <Heading id="development-services">
+        Development Services
+      </Heading>
+      <UnorderedList>
+        <ListItem>
           Code Repositories:{' '}
-          <a href={`https://github.com/`} title={`GitHub`}>
+          <Link href={`https://github.com/`} title={`GitHub`}>
             GitHub
-          </a>{' '}
+          </Link>{' '}
           &amp;{' '}
-          <a href={`https://about.gitlab.com/`} title={`GitLab`}>
+          <Link href={`https://about.gitlab.com/`} title={`GitLab`}>
             GitLab
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Domain Name Provider:{' '}
-          <a href={`https://www.namecheap.com/`} title={`Namecheap`}>
+          <Link
+            href={`https://www.namecheap.com/`}
+            title={`Namecheap`}
+          >
             Namecheap
-          </a>
-        </li>
-        <li>
+          </Link>
+        </ListItem>
+        <ListItem>
           Server Host:{' '}
-          <a href={`https://cloud.linode.com/`} title={`Linode`}>
+          <Link href={`https://cloud.linode.com/`} title={`Linode`}>
             Linode
-          </a>
-        </li>
-      </ul>
-      <h3 id="i-built-this-site-using-">I built this site using:</h3>
-      <p>
+          </Link>
+        </ListItem>
+      </UnorderedList>
+      <Heading id="i-built-this-site-using-">
+        I built this site using:
+      </Heading>
+      <Text>
         I built this site &lt;/&gt; using the following technologies:
-      </p>
-      <ul>
-        <li>Gatsby</li>
-        <li>React</li>
-        <li>Markdown</li>
-        <li>GitHub Pages</li>
-        <li>Fontawesome</li>
-      </ul>
+      </Text>
+      <UnorderedList>
+        <ListItem>Gatsby</ListItem>
+        <ListItem>React</ListItem>
+        <ListItem>Markdown</ListItem>
+        <ListItem>GitHub Pages</ListItem>
+        <ListItem>Chakra UI</ListItem>
+      </UnorderedList>
     </>
   )
 }
