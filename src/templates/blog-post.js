@@ -3,6 +3,8 @@ import { Link as GatsbyLink, graphql } from 'gatsby'
 import {
   Button,
   Flex,
+  Stack,
+  Center,
   Box,
   SimpleGrid,
   Heading,
@@ -27,76 +29,92 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <>
       <Seo title={post.frontmatter.title} />
-      <Box marginBottom="2rem">
-        <Breadcrumb separator={<ChevronRightIcon color="gray.500" />}>
-          <BreadcrumbItem>
-            <Link
-              as={GatsbyLink}
-              to="/"
-              _hover={{ textDecor: 'none', color: '#30ce56' }}
-            >
-              Home
-            </Link>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem>
-            <Link
-              as={GatsbyLink}
-              to="/articles/"
-              _hover={{ textDecor: 'none', color: '#30ce56' }}
-            >
-              Articles
-            </Link>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem isCurrentPage>
-            <Link
-              as={GatsbyLink}
-              to="#"
-              _hover={{ textDecor: 'none', color: '#30ce56' }}
-            >
-              {post.frontmatter.title}
-            </Link>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      </Box>
-      <Heading marginBottom="2rem">{post.frontmatter.title}</Heading>
-      <Flex alignItems="center" my={{ base: 2, md: 0 }}>
-        <Link
-          as={GatsbyLink}
-          to="/about"
-          title="About"
-          _hover={{ textDecor: 'none' }}
-        >
-          <Button
-            borderRadius="full"
-            marginRight={1}
-            alignContent="center"
-            size="sm"
+      <Center>
+        <Box marginBottom="2rem">
+          <Breadcrumb
+            separator={<ChevronRightIcon color="gray.500" />}
           >
-            <Box marginRight={2} marginLeft={-2}>
-              <StaticImage
-                quality={100}
-                src="../../src/images/profile-pic.jpg"
-                alt="Zacchary Puckeridge"
-                width={25}
-                height={25}
-                style={{ borderRadius: `100%` }}
-              />
+            <BreadcrumbItem>
+              <Link
+                as={GatsbyLink}
+                to="/"
+                _hover={{ textDecor: 'none', color: '#30ce56' }}
+              >
+                Home
+              </Link>
+            </BreadcrumbItem>
+
+            <BreadcrumbItem>
+              <Link
+                as={GatsbyLink}
+                to="/articles/"
+                _hover={{ textDecor: 'none', color: '#30ce56' }}
+              >
+                Articles
+              </Link>
+            </BreadcrumbItem>
+
+            <BreadcrumbItem isCurrentPage>
+              <Link
+                as={GatsbyLink}
+                to="#"
+                _hover={{ textDecor: 'none', color: '#30ce56' }}
+              >
+                {post.frontmatter.title}
+              </Link>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        </Box>
+      </Center>
+      <Center>
+        <Heading marginBottom="2rem">
+          {post.frontmatter.title}
+        </Heading>
+      </Center>
+      <Center>
+        <Flex>
+          <Stack align="center" direction={['column', 'row']}>
+            <Box>
+              <Link
+                as={GatsbyLink}
+                to="/about"
+                title="About"
+                _hover={{ textDecor: 'none' }}
+              >
+                <Button
+                  borderRadius="full"
+                  marginRight={1}
+                  alignContent="center"
+                  size="sm"
+                >
+                  <Box marginRight={2} marginLeft={-2}>
+                    <StaticImage
+                      quality={100}
+                      src="../../src/images/profile-pic.jpg"
+                      alt="Zacchary Puckeridge"
+                      width={25}
+                      height={25}
+                      style={{ borderRadius: `100%` }}
+                    />
+                  </Box>
+                  Zacchary Puckeridge
+                </Button>
+              </Link>
             </Box>
-            Zacchary Puckeridge
-          </Button>
-        </Link>
-        {post.frontmatter.date}
-        <Spacer />
-        <Text marginRight={2}>
-          {post.fields.readingTime.text} •{' '}
-          {post.fields.readingTime.words} words
-        </Text>
-        <Button size="xs" borderRadius="full">
-          <Tags>{tags}</Tags>
-        </Button>
-      </Flex>
+            <Box>{post.frontmatter.date}</Box>
+            <Spacer />
+            <Box>
+              {post.fields.readingTime.text} •{' '}
+              {post.fields.readingTime.words} words
+            </Box>
+            <Box>
+              <Button size="xs" borderRadius="full">
+                <Tags>{tags}</Tags>
+              </Button>
+            </Box>
+          </Stack>
+        </Flex>
+      </Center>
 
       <Flex alignItems="center" my={{ base: 2, md: 0 }}>
         <Text marginBottom="2rem"></Text>

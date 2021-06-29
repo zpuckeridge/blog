@@ -444,7 +444,7 @@ const AboutPage = () => {
                     <Flex>Camp Leader</Flex>
                     <Spacer />
                     <Link
-                      href={`https://devdemand.co`}
+                      href={`https://gentscamp.com`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',
@@ -505,7 +505,7 @@ const AboutPage = () => {
                     <Flex>Owner</Flex>
                     <Spacer />
                     <Link
-                      href={`https://devdemand.co`}
+                      href={`https://faithbound.gg`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',
@@ -559,7 +559,7 @@ const AboutPage = () => {
                     <Flex>Night Watch</Flex>
                     <Spacer />
                     <Link
-                      href={`https://devdemand.co`}
+                      href={`https://chaplainwatch.org.au/`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',
@@ -613,7 +613,7 @@ const AboutPage = () => {
                     <Flex>Sound Technician</Flex>
                     <Spacer />
                     <Link
-                      href={`https://devdemand.co`}
+                      href={`https://mindenbaptist.org`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',
@@ -669,7 +669,7 @@ const AboutPage = () => {
                     <Flex>Sound Technician / Youth Leader</Flex>
                     <Spacer />
                     <Link
-                      href={`https://devdemand.co`}
+                      href={`https://kingsridgebaptist.org`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',

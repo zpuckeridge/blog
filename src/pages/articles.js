@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link as GatsbyLink, graphql } from 'gatsby'
+
 import {
   Input,
   Tooltip,
@@ -13,6 +14,17 @@ import { CopyIcon } from '@chakra-ui/icons'
 
 import Seo from '../components/seo'
 import Tags from '../components/tags'
+
+const copy = ({ data }) => {
+  const post = data.allMarkdownRemark.nodes
+  const slug = post.fields.slug
+  const el = document.createElement('input')
+  el.value = slug
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+}
 
 const ArticleIndex = ({ data }) => {
   const posts = data.allMarkdownRemark.nodes
@@ -158,7 +170,9 @@ const ArticleIndex = ({ data }) => {
                         bg="gray.300"
                         color="black"
                       >
-                        <CopyIcon />
+                        <Button onClick={copy}>
+                          <CopyIcon />
+                        </Button>
                       </Tooltip>
                     </Flex>
                   </Flex>

@@ -49,7 +49,7 @@ const Footer = () => {
           <Link
             fontWeight="800"
             href="https://gatsbyjs.com/"
-            title="GatsbyJS"
+            title="Gatsby"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
             Gatsby
@@ -58,7 +58,7 @@ const Footer = () => {
           <Link
             fontWeight="800"
             href="https://reactjs.com/"
-            title="ReactJS"
+            title="React"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
             React
@@ -67,7 +67,7 @@ const Footer = () => {
           <Link
             fontWeight="800"
             href="https://chakra-ui.com/"
-            title="TailwindCSS"
+            title="Chakra UI"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
             Chakra UI
