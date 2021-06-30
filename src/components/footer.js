@@ -10,8 +10,10 @@ import {
 } from '@chakra-ui/react'
 import {
   FaGithub,
+  FaHeart,
   FaGitlab,
-  FaLinkedin,
+  FaRegEnvelope,
+  FaLinkedinIn,
   FaDev,
   FaMusic,
 } from 'react-icons/fa'
@@ -44,6 +46,7 @@ const Footer = () => {
             Now Playing:{' '}
           </Text>
         </Flex>
+
         <Text>
           Made with{' '}
           <Link
@@ -79,7 +82,7 @@ const Footer = () => {
             title="GitHub Repo"
             _hover={{ textDecor: 'none', color: '#30ce56' }}
           >
-            ❤
+            ❤️
           </Link>
         </Text>
         <Stack
@@ -89,6 +92,19 @@ const Footer = () => {
           ml="auto"
           mr={{ base: `auto`, md: 5 }}
         >
+          <Link
+            href={`mailto:hi@zacchary.me`}
+            title={`Email`}
+            target="_self"
+            _hover={{ textDecor: 'none', color: '#30ce56' }}
+          >
+            <Tooltip hasArrow label="Email" fontSize="md">
+              <span>
+                <FaRegEnvelope fontSize="20px" />
+              </span>
+            </Tooltip>
+          </Link>
+
           <Link
             href={`https://github.com/zpuckeridge`}
             title={`GitHub`}
@@ -123,7 +139,7 @@ const Footer = () => {
           >
             <Tooltip hasArrow label="LinkedIn" fontSize="md">
               <span>
-                <FaLinkedin fontSize="20px" />
+                <FaLinkedinIn fontSize="20px" />
               </span>
             </Tooltip>
           </Link>

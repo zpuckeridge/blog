@@ -17,6 +17,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 import { Link as GatsbyLink } from 'gatsby'
 import {
   FaBolt,
+  FaRegFlag,
   FaBookmark,
   FaBookOpen,
   FaToolbox,
@@ -86,11 +87,20 @@ const Header = () => (
                 Bookmarks <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
+                as={GatsbyLink}
+                to="/projects"
                 title="Projects"
                 color="white"
                 icon={<FaBookOpen />}
               >
                 Projects <Badge colorScheme="yellow">WIP</Badge>
+              </MenuItem>
+              <MenuItem
+                title="Countries"
+                color="white"
+                icon={<FaRegFlag />}
+              >
+                Countries <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
                 as={GatsbyLink}
