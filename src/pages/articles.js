@@ -4,6 +4,7 @@ import { Link as GatsbyLink, graphql } from 'gatsby'
 import {
   Input,
   Tooltip,
+  Tag,
   Box,
   Link,
   Flex,
@@ -150,7 +151,7 @@ const ArticleIndex = ({ data }) => {
                     alignItems="center"
                     mt={4}
                   >
-                    <Button size="sm">
+                    <Button size="sm" title="Read more">
                       <Link
                         color="white"
                         _hover={{
@@ -170,7 +171,11 @@ const ArticleIndex = ({ data }) => {
                         bg="gray.300"
                         color="black"
                       >
-                        <Button onClick={copy}>
+                        <Button
+                          size="sm"
+                          onClick={copy}
+                          title="Copy Link"
+                        >
                           <CopyIcon />
                         </Button>
                       </Tooltip>
