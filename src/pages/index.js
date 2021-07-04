@@ -2,7 +2,13 @@ import * as React from 'react'
 
 import { Link as GatsbyLink } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
-import { FaGithub, FaGitlab, FaLinkedin, FaDev } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaGitlab,
+  FaLinkedinIn,
+  FaRegEnvelope,
+  FaDev,
+} from 'react-icons/fa'
 import {
   Box,
   Stack,
@@ -68,6 +74,21 @@ const IndexPage = () => {
                   <Box marginTop="1rem">
                     <Stack align="center" direction="row" spacing={4}>
                       <Link
+                        href={`mailto:hi@zacchary.me`}
+                        title={`Email`}
+                        target="_self"
+                        _hover={{
+                          textDecor: 'none',
+                          color: '#30ce56',
+                        }}
+                      >
+                        <Tooltip hasArrow label="Email" fontSize="md">
+                          <span>
+                            <FaRegEnvelope fontSize="20px" />
+                          </span>
+                        </Tooltip>
+                      </Link>
+                      <Link
                         href={`https://github.com/zpuckeridge`}
                         target="_self"
                         title={`GitHub`}
@@ -122,7 +143,7 @@ const IndexPage = () => {
                           fontSize="md"
                         >
                           <span>
-                            <FaLinkedin fontSize="20px" />
+                            <FaLinkedinIn fontSize="20px" />
                           </span>
                         </Tooltip>
                       </Link>

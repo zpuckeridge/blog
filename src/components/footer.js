@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react'
 import {
   FaGithub,
-  FaHeart,
   FaGitlab,
   FaRegEnvelope,
   FaLinkedinIn,

@@ -56,6 +56,20 @@ const AboutPage = () => {
           games and nerding out over audio.
         </Text>
       </Box>
+      <Box align="center">
+        <Link
+          href={`../static/../resume.pdf`}
+          title={`Résumé`}
+          _hover={{
+            textDecor: 'none',
+          }}
+        >
+          <Button size="md" marginBottom="4.5rem">
+            Download my résumé{' '}
+            <Icon marginLeft="0.5rem" as={DownloadIcon} />
+          </Button>
+        </Link>
+      </Box>
       <Tabs size="md" variant="solid-rounded" colorScheme="blue">
         <Center>
           <TabList>
@@ -1143,20 +1157,6 @@ const AboutPage = () => {
             </Link>{' '}
           </Text>
         </Flex>
-      </Box>
-      <Box align="center">
-        <Link
-          href={`../static/../resume.pdf`}
-          title={`Résumé`}
-          _hover={{
-            textDecor: 'none',
-          }}
-        >
-          <Button size="sm" marginBottom="2rem">
-            Download my résumé{' '}
-            <Icon marginLeft="0.5rem" as={DownloadIcon} />
-          </Button>
-        </Link>
       </Box>
     </>
   )
