@@ -4,7 +4,6 @@ import { Link as GatsbyLink, graphql } from 'gatsby'
 import {
   Input,
   Tooltip,
-  Tag,
   Box,
   Link,
   Flex,
@@ -69,12 +68,13 @@ const ArticleIndex = ({ data }) => {
       <Box marginTop="2rem" marginBottom="1rem">
         <Input
           type="text"
+          background="#212121"
           size="lg"
           aria-label="Search"
           placeholder="Search articles"
           color="white"
           borderRadius="10px"
-          variant="filled"
+          border="0"
           value={state.query}
           onChange={handleInputChange}
           boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"

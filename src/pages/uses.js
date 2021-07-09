@@ -1,29 +1,11 @@
 import * as React from 'react'
 
 import {
-  Flex,
-  Badge,
-  Spacer,
-  Tabs,
-  TabList,
-  Icon,
-  TabPanels,
-  Center,
-  Tab,
-  TabPanel,
-  Box,
   Text,
-  SimpleGrid,
   Heading,
-  AccordionItem,
-  AccordionIcon,
-  AccordionPanel,
-  AccordionButton,
-  Accordion,
   UnorderedList,
   ListItem,
   Link,
-  Button,
 } from '@chakra-ui/react'
 import { graphql } from 'gatsby'
 

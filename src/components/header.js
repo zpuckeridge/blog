@@ -24,27 +24,20 @@ import {
 } from 'react-icons/fa'
 
 const Header = () => (
-  <Box
-    as="header"
-    background="brand.800"
-    borderBottom="2px solid #292929"
-    p={4}
-  >
+  <Box as="header" p={4}>
     <Box maxW="42rem" mx="auto">
       <Flex>
-        <Box>
-          <Link as={GatsbyLink} to="/" title="Home">
-            <StaticImage
-              quality={100}
-              src="../../src/images/profile-pic.jpg"
-              alt="Zacchary Puckeridge"
-              placeholder="blurred"
-              width={40}
-              height={40}
-              style={{ borderRadius: `100%` }}
-            />
-          </Link>
-        </Box>
+        <Link as={GatsbyLink} to="/" title="Home">
+          <StaticImage
+            quality={100}
+            src="../../src/images/profile-pic.jpg"
+            alt="Zacchary Puckeridge"
+            placeholder="blurred"
+            width={40}
+            height={40}
+            style={{ borderRadius: `100%` }}
+          />
+        </Link>
         <Spacer />
         <Box>
           <Menu>
@@ -68,7 +61,11 @@ const Header = () => (
             >
               About
             </Button>
-            <MenuButton rightIcon={<ChevronDownIcon />} as={Button}>
+            <MenuButton
+              patternOpacity={1}
+              rightIcon={<ChevronDownIcon />}
+              as={Button}
+            >
               Links
             </MenuButton>
             <MenuList background="brand.700">
