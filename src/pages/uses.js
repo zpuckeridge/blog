@@ -3,11 +3,13 @@ import * as React from 'react'
 import {
   Text,
   Heading,
-  UnorderedList,
+  List,
+  ListIcon,
   ListItem,
   Link,
 } from '@chakra-ui/react'
 import { graphql } from 'gatsby'
+import { ArrowForwardIcon } from '@chakra-ui/icons'
 
 import Seo from '../components/seo'
 
@@ -15,20 +17,32 @@ const UsesPage = () => {
   return (
     <>
       <Seo title="Uses" />
+      <Heading fontSize="4xl">Uses</Heading>
       <Text>
-        A compiled list of the tools, tech stack, programs and
-        hardware I use on a daily basis.
+        A compiled list of the tools, programs and hardware I use on a
+        daily basis.
       </Text>
-      <Heading id="operating-system-hardware">
-        Operating System &amp; Hardware
-      </Heading>
+      <Heading fontSize="2xl">Hardware</Heading>
       <Text>
         I am currently dual booting{' '}
-        <Link href={`https://pop.system76.com/`} title={`Pop!_OS`}>
+        <Link
+          color="#75bcff"
+          href={`https://pop.system76.com/`}
+          title={`Pop!_OS`}
+          _hover={{
+            textDecor: 'none',
+            color: '#30ce56',
+          }}
+        >
           POP!_OS
         </Link>{' '}
         and{' '}
         <Link
+          color="#75bcff"
+          _hover={{
+            textDecor: 'none',
+            color: '#30ce56',
+          }}
           href={`https://www.microsoft.com/en-au/software-download/windows10`}
           title={`Windows 10`}
         >
@@ -36,86 +50,186 @@ const UsesPage = () => {
         </Link>
       </Text>
       <Text>My rig has the following specifications:</Text>
-      <UnorderedList>
-        <ListItem>CPU: Ryzen 2700X</ListItem>
-        <ListItem>GPU: NVIDIA GTX 1080</ListItem>
-        <ListItem>RAM: Corsair 4 x 8GB 3200MHz</ListItem>
-        <ListItem>MBO: ASRock Taichi X370</ListItem>
-        <ListItem>PSU: Corsair Gold 650W</ListItem>
-        <ListItem>HDD: Western Digital 2TB</ListItem>
-        <ListItem>SSD: Western Digital 480GB M.2</ListItem>
-      </UnorderedList>
-      <Text>For audio, I&#39;m using the following:</Text>
-      <UnorderedList>
-        <ListItem>Amplification: Focusrite Scarlett Solo</ListItem>
-        <ListItem>Microphone: AT2020</ListItem>
+      <List>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          CPU: Ryzen 2700X
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          GPU: NVIDIA GTX 1080
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          RAM: Corsair 4 x 8GB 3200MHz
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          MBO: ASRock Taichi X370
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          PSU: Corsair Gold 650W
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          HDD: Western Digital 2TB
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          SSD: Western Digital 480GB M.2
+        </ListItem>
+      </List>
+      <Text>For audio, I&#39;m using the following:</Text>
+      <List>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          Amplification: Focusrite Scarlett Solo
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          Microphone: AT2020
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Headphones: Beyerdynamic DT 770 + Koss KPH30i + Shure SRH440
         </ListItem>
-      </UnorderedList>
-      <Heading id="gadgets">Gadgets</Heading>
-      <UnorderedList>
-        <ListItem>Phone - Samsung Galaxy S20 Ultra 5G</ListItem>
-        <ListItem>Camera - Nikon D3200</ListItem>
-      </UnorderedList>
-      <Heading id="editor-terminal">Editor &amp; Terminal</Heading>
-      <Text>Visual Studio Code is my primary editor.</Text>
-      <UnorderedList>
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
+        Gadgets
+      </Heading>
+      <List>
         <ListItem>
-          I use the{' '}
+          <ListIcon as={ArrowForwardIcon} />
+          Phone - Samsung Galaxy S20 Ultra 5G
+        </ListItem>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          Camera - Nikon D3200
+        </ListItem>
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
+        Editor &amp; Terminal
+      </Heading>
+      <Text>Visual Studio Code is my primary editor.</Text>
+      <List>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />I use the{' '}
           <Link
+            color="#75bcff"
             href={`https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme/`}
             title={`Visual Studio Code Marketplace`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
           >
             GitHub
           </Link>{' '}
           Theme
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Shell:{' '}
-          <Link href={`https://www.zsh.org/`} title={`ZSH`}>
+          <Link
+            color="#75bcff"
+            href={`https://www.zsh.org/`}
+            title={`ZSH`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+          >
             Zsh
           </Link>
         </ListItem>
-        <ListItem>Shell Theme: powerlevel10k</ListItem>
-      </UnorderedList>
-      <Heading id="tools">Tools</Heading>
-      <UnorderedList>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
+          Shell Theme: powerlevel10k
+        </ListItem>
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
+        Tools
+      </Heading>
+      <List>
+        <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           My primary Web Browsers are{' '}
           <Link
+            color="#75bcff"
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
             href={`https://librewolf-community.gitlab.io/`}
             title={`Librewolf`}
           >
             LibreWolf
           </Link>{' '}
           and{' '}
-          <Link href={`https://brave.com/`} title={`Brave`}>
+          <Link
+            color="#75bcff"
+            href={`https://brave.com/`}
+            title={`Brave`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+          >
             Brave
           </Link>
           . These are both great privacy respecting choices that allow
           me to develop for both platforms.
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Password Manager:{' '}
-          <Link href={`https://bitwarden.com/`} title={`Bitwarden`}>
+          <Link
+            href={`https://bitwarden.com/`}
+            title={`Bitwarden`}
+            color="#75bcff"
+          >
             Bitwarden
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Tech Stack Detection:{' '}
           <Link
             href={`https://www.wappalyzer.com/`}
             title={`Wappalyzer`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Wappalyzer
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Communication:{' '}
           <Link
             href={`https://slack.com/intl/en-au/`}
             title={`Slack`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Slack
           </Link>{' '}
@@ -123,172 +237,345 @@ const UsesPage = () => {
           <Link
             href={`https://discord.com/brand-new`}
             title={`Discord`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Discord
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Ad Blocking:{' '}
-          <Link href={`https://pi-hole.net/`} title={`Pi-Hole`}>
+          <Link
+            href={`https://pi-hole.net/`}
+            title={`Pi-Hole`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             AdGuard
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Two Factor Authentication:{' '}
           <Link
             href={`https://getaegis.app/`}
             title={`Aegis Authenticator`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Aegis Authenticator
           </Link>
         </ListItem>
-      </UnorderedList>
-      <Heading id="cli-tools">CLI Tools</Heading>
-      <UnorderedList>
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
+        CLI Tools
+      </Heading>
+      <List>
         <ListItem>
-          <Link href={`https://ohmyz.sh/`} title={`Oh My Zsh`}>
+          <ListIcon as={ArrowForwardIcon} />
+          <Link
+            href={`https://ohmyz.sh/`}
+            title={`Oh My Zsh`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Oh My Zsh
           </Link>
         </ListItem>
-      </UnorderedList>
-      <Heading id="self-hosted-tools">Self Hosted Tools</Heading>
-      <UnorderedList>
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
+        Self Hosted Tools
+      </Heading>
+      <List>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Virtualisation:{' '}
           <Link
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
             href={`https://www.proxmox.com/en/`}
             title={`Proxmox`}
           >
             Proxmox
           </Link>
         </ListItem>
-      </UnorderedList>
-      <Heading id="preferred-tech-stack">
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
         DevOps Tech Stack (Currently Learning)
       </Heading>
-      <UnorderedList>
+      <List>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Programming Language:{' '}
-          <Link href={`https://www.python.org/`} title={`Python`}>
+          <Link
+            href={`https://www.python.org/`}
+            title={`Python`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Python
           </Link>{' '}
           +{' '}
           <Link
             href={`https://www.javascript.com/`}
             title={`JavaScript`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             JavaScript
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Monitoring &amp; Logging:{' '}
-          <Link href={`https://prometheus.io/`} title={`Prometheus`}>
+          <Link
+            href={`https://prometheus.io/`}
+            title={`Prometheus`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Prometheus
           </Link>{' '}
           +{' '}
           <Link
             href={`https://www.elastic.co/kibana`}
             title={`Kibana`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Kibana
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Containerisation:{' '}
-          <Link href={`https://kubernetes.io/`} title={`Kubernetes`}>
+          <Link
+            href={`https://kubernetes.io/`}
+            title={`Kubernetes`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Kubernetes
           </Link>{' '}
           +{' '}
-          <Link href={`https://www.docker.com/`} title={`Docker`}>
+          <Link
+            href={`https://www.docker.com/`}
+            title={`Docker`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Docker
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Virtualisation:{' '}
-          <Link href={`https://www.vmware.com/`} title={`VMware`}>
+          <Link
+            href={`https://www.vmware.com/`}
+            title={`VMware`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             VMware
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Cloud Computation:{' '}
-          <Link href={`https://cloud.linode.com/`} title={`Linode`}>
+          <Link
+            href={`https://cloud.linode.com/`}
+            title={`Linode`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Linode
           </Link>{' '}
           +{' '}
-          <Link href={`https://aws.amazon.com/`} title={`AWS`}>
+          <Link
+            href={`https://aws.amazon.com/`}
+            title={`AWS`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             AWS
           </Link>{' '}
           +{' '}
           <Link
             href={`https://cloud.google.com/`}
             title={`Google Cloud`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Google Cloud
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Security:{' '}
-          <Link href={`https://www.vaultproject.io/`} title={`Vault`}>
+          <Link
+            href={`https://www.vaultproject.io/`}
+            title={`Vault`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Vault
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Provisioning:{' '}
           <Link
             href={`https://www.terraform.io/`}
             title={`Terraform`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Terraform
           </Link>{' '}
           and{' '}
-          <Link href={`https://www.ansible.com/`} title={`Ansible`}>
+          <Link
+            href={`https://www.ansible.com/`}
+            title={`Ansible`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Ansible
           </Link>
         </ListItem>
-      </UnorderedList>
-      <Heading id="development-services">
+      </List>
+      <Heading
+        fontSize="2xl"
+        marginTop="12.5px"
+        marginBottom="12.5px"
+      >
         Development Services
       </Heading>
-      <UnorderedList>
+      <List>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Code Repositories:{' '}
-          <Link href={`https://github.com/`} title={`GitHub`}>
+          <Link
+            href={`https://github.com/`}
+            title={`GitHub`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             GitHub
           </Link>{' '}
           &amp;{' '}
-          <Link href={`https://about.gitlab.com/`} title={`GitLab`}>
+          <Link
+            href={`https://about.gitlab.com/`}
+            title={`GitLab`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             GitLab
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Domain Name Provider:{' '}
           <Link
             href={`https://www.namecheap.com/`}
             title={`Namecheap`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
           >
             Namecheap
           </Link>
         </ListItem>
         <ListItem>
+          <ListIcon as={ArrowForwardIcon} />
           Server Host:{' '}
-          <Link href={`https://cloud.linode.com/`} title={`Linode`}>
+          <Link
+            href={`https://cloud.linode.com/`}
+            title={`Linode`}
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+            color="#75bcff"
+          >
             Linode
           </Link>
         </ListItem>
-      </UnorderedList>
-      <Heading id="i-built-this-site-using-">
-        I built this site using:
-      </Heading>
-      <Text>
-        I built this site &lt;/&gt; using the following technologies:
-      </Text>
-      <UnorderedList>
-        <ListItem>Gatsby</ListItem>
-        <ListItem>React</ListItem>
-        <ListItem>Markdown</ListItem>
-        <ListItem>GitHub Pages</ListItem>
-        <ListItem>Chakra UI</ListItem>
-      </UnorderedList>
+      </List>
     </>
   )
 }
