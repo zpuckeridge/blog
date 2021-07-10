@@ -35,12 +35,7 @@ const AboutPage = () => {
     <>
       <Seo title="About" />
       <Box marginTop="2rem" marginBottom="4rem">
-        <Heading
-          fontSize="3xl"
-          borderBottom="1px solid rgb(45, 55, 72)"
-        >
-          About
-        </Heading>
+        <Heading fontSize="4xl">About</Heading>
         <Text>
           Hi! I'm a Web Developer based out of Brisbane Australia that
           works for Pixel Zoo as a Junior Systems Administrator.
@@ -133,11 +128,7 @@ const AboutPage = () => {
 
         <TabPanels>
           <TabPanel>
-            <Heading
-              marginBottom="2rem"
-              fontSize="3xl"
-              borderBottom="1px solid rgb(45, 55, 72)"
-            >
+            <Heading marginBottom="2rem" fontSize="4xl">
               Work
             </Heading>
             <Accordion allowToggle>
@@ -417,11 +408,7 @@ const AboutPage = () => {
           </TabPanel>
 
           <TabPanel>
-            <Heading
-              marginBottom="2rem"
-              fontSize="3xl"
-              borderBottom="1px solid rgb(45, 55, 72)"
-            >
+            <Heading marginBottom="2rem" fontSize="4xl">
               Community
             </Heading>
             <Accordion allowToggle>
@@ -706,11 +693,7 @@ const AboutPage = () => {
           </TabPanel>
 
           <TabPanel>
-            <Heading
-              marginBottom="2rem"
-              fontSize="3xl"
-              borderBottom="1px solid rgb(45, 55, 72)"
-            >
+            <Heading marginBottom="2rem" fontSize="4xl">
               Education
             </Heading>
 
@@ -807,11 +790,7 @@ const AboutPage = () => {
           </TabPanel>
 
           <TabPanel>
-            <Heading
-              marginBottom="2rem"
-              fontSize="3xl"
-              borderBottom="1px solid rgb(45, 55, 72)"
-            >
+            <Heading marginBottom="2rem" fontSize="4xl">
               Skills
             </Heading>
             <Accordion allowToggle>
@@ -1023,11 +1002,7 @@ const AboutPage = () => {
           </TabPanel>
 
           <TabPanel>
-            <Heading
-              marginBottom="2rem"
-              fontSize="3xl"
-              borderBottom="1px solid rgb(45, 55, 72)"
-            >
+            <Heading marginBottom="2rem" fontSize="4xl">
               Languages
             </Heading>
             <Flex marginBottom="1rem">
@@ -1072,11 +1047,7 @@ const AboutPage = () => {
           </TabPanel>
 
           <TabPanel>
-            <Heading
-              marginBottom="2rem"
-              fontSize="3xl"
-              borderBottom="1px solid rgb(45, 55, 72)"
-            >
+            <Heading marginBottom="2rem" fontSize="4xl">
               Interests
             </Heading>
             <SimpleGrid columns={2} spacing={10}>
@@ -1132,12 +1103,7 @@ const AboutPage = () => {
         </TabPanels>
       </Tabs>
       <Box marginTop="2rem" marginBottom="2rem">
-        <Heading
-          fontSize="3xl"
-          borderBottom="1px solid rgb(45, 55, 72)"
-        >
-          Contact
-        </Heading>
+        <Heading fontSize="4xl">Contact</Heading>
         <Flex>
           <Text direction="row">
             Feel free to shoot me an email over at:

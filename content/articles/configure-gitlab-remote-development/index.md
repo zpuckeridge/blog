@@ -17,7 +17,7 @@ description:
 To follow along with this guide, you'll need:
 
 - A GitLab Account
-- A Remote Development Server (to make your own, check out our
+- A Remote Development Server (to make your own, check out my
   [article](/setup-remote-development-server/))
 
 ### Configure GitLab SSH Key

@@ -72,6 +72,7 @@ const ArticleIndex = ({ data }) => {
           size="lg"
           aria-label="Search"
           placeholder="Search articles"
+          _placeholder={{ color: '#c3c8d3' }}
           color="white"
           borderRadius="10px"
           border="0"

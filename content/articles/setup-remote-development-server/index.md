@@ -87,7 +87,7 @@ this has been filled out, we are ready to create our Linode Instance!
 ![](./image-2.png)
 
 <blockquote id="blockquote-info">
-Note: We recommend that you pay for automated backups of your Linode Instance in the case that you need to rollback any changes to your server.
+Note: I recommend that you pay for automated backups of your Linode Instance in the case that you need to rollback any changes to your server.
 
 It can take anywhere from 5-10 minutes for the server to deploy.
 

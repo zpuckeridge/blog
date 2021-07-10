@@ -90,7 +90,7 @@ const Header = () => (
                 color="white"
                 icon={<FaBookOpen />}
               >
-                Projects <Badge colorScheme="yellow">WIP</Badge>
+                Projects
               </MenuItem>
               <MenuItem
                 title="Countries"
@@ -106,7 +106,7 @@ const Header = () => (
                 color="white"
                 icon={<FaToolbox />}
               >
-                Uses
+                Uses <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
             </MenuList>
           </Menu>
