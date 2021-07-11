@@ -77,11 +77,20 @@ const Header = () => (
                 Tech Stack <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
+                as={GatsbyLink}
                 title="Bookmarks"
                 color="white"
+                to="/bookmarks"
                 icon={<FaBookmark />}
               >
                 Bookmarks <Badge colorScheme="yellow">WIP</Badge>
+              </MenuItem>
+              <MenuItem
+                title="Countries"
+                color="white"
+                icon={<FaRegFlag />}
+              >
+                Countries <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
                 as={GatsbyLink}
@@ -93,20 +102,13 @@ const Header = () => (
                 Projects
               </MenuItem>
               <MenuItem
-                title="Countries"
-                color="white"
-                icon={<FaRegFlag />}
-              >
-                Countries <Badge colorScheme="yellow">WIP</Badge>
-              </MenuItem>
-              <MenuItem
                 as={GatsbyLink}
                 to="/uses/"
                 title="Uses"
                 color="white"
                 icon={<FaToolbox />}
               >
-                Uses <Badge colorScheme="yellow">WIP</Badge>
+                Uses
               </MenuItem>
             </MenuList>
           </Menu>
