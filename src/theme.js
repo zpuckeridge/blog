@@ -15,8 +15,9 @@ export const theme = extendTheme({
       h3: {
         fontSize: '28px',
         fontWeight: '800',
-        marginTop: '24px',
         borderBottom: '1px solid white',
+        marginTop: '20px',
+        marginBottom: '20px',
       },
       h4: {
         fontSize: '18px',
@@ -27,6 +28,7 @@ export const theme = extendTheme({
       p: {
         marginTop: '12px',
         marginBottom: '12px',
+        color: '#c3c8d3',
       },
       a: {
         color: '#75bcff',

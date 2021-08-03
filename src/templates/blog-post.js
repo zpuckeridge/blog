@@ -135,6 +135,7 @@ const BlogPostTemplate = ({ data }) => {
             <Link
               as={GatsbyLink}
               to={previous.fields.slug}
+              color="#75bcff"
               rel="prev"
               _hover={{ textDecor: 'none', color: '#30ce56' }}
             >
@@ -155,6 +156,7 @@ const BlogPostTemplate = ({ data }) => {
             <Link
               as={GatsbyLink}
               to={next.fields.slug}
+              color="#75bcff"
               rel="next"
               _hover={{ textDecor: 'none', color: '#30ce56' }}
             >

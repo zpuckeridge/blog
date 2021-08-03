@@ -18,7 +18,7 @@ import {
 const Footer = () => {
   return (
     <Box as="footer" align="center">
-      <Text>
+      <Text color="#ffffff">
         Made with{' '}
         <Link
           fontWeight="800"
