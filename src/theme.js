@@ -7,10 +7,12 @@ export const theme = extendTheme({
       h1: {
         fontSize: '48px',
         fontWeight: '800',
+        color: '#ffffff',
       },
       h2: {
         fontSize: '30px',
         fontWeight: '800',
+        color: '#ffffff',
       },
       h3: {
         fontSize: '28px',
@@ -18,20 +20,56 @@ export const theme = extendTheme({
         borderBottom: '1px solid white',
         marginTop: '20px',
         marginBottom: '20px',
+        color: '#ffffff',
       },
       h4: {
         fontSize: '18px',
+        color: '#ffffff',
       },
       h6: {
         fontSize: '16px',
+        color: '#ffffff',
       },
       p: {
         marginTop: '12px',
         marginBottom: '12px',
-        color: '#c3c8d3',
+        color: '#d9d9d9',
       },
       a: {
         color: '#75bcff',
+      },
+      blockquoteInfo: {
+        marginTop: '20px',
+        fontSize: '16px',
+        backgroundColor: 'rgba(71, 166, 255, 0.1)',
+        borderLeft: '3px solid rgba(71, 166, 255)',
+        padding: '15px',
+        margin: '0 auto',
+
+      },
+      blockquoteWarning: {
+        marginTop: '20px',
+        fontSize: '16px',
+        backgroundColor: 'rgba(255, 210, 61, 0.1)',
+        borderLeft: '3px solid rgba(255, 210, 61)',
+        padding: '15px',
+        margin: '0 auto',
+      },
+      blockquoteSuccess: {
+        marginTop: '20px',
+        fontSize: '16px',
+        backgroundColor: 'rgba(48, 206, 85, 0.1)',
+        borderLeft: '3px solid rgba(48, 206, 85)',
+        padding: '15px',
+        margin: '0 auto',
+      },
+      blockquoteImportant: {
+        marginTop: '20px',
+        fontSize: '16px',
+        backgroundColor: 'rgba(253, 68, 87, 0.1)',
+        borderLeft: '3px solid rgba(253, 68, 87)',
+        padding: '15px',
+        margin: '0 auto',
       },
     },
   },

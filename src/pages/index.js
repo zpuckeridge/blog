@@ -57,21 +57,19 @@ const IndexPage = () => {
                     color="rgba(255, 255, 255, 0.9);"
                     fontSize="lg"
                   >
-                    I'm a self-taught{' '}
+                    I'm a industry-taught Systems Administrator based out of Brisbane, Australia working for {' '}
                     <Link
-                      as={GatsbyLink}
-                      to={`/about/`}
-                      title={`About`}
+                      href={`https://pixelzoo.com.au`}
+                      isExternal
+                      title={`Pixel Zoo Website`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',
                         color: '#30ce56',
                       }}
-                    >
-                      Web Developer
-                    </Link>{' '}
-                    based out of Brisbane, Australia working for Pixel
-                    Zoo.
+                    > 
+                    Pixel Zoo
+                    </Link>.
                     <Box marginTop="1rem">
                       <Stack
                         align="center"

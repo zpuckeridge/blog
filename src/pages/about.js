@@ -35,20 +35,39 @@ const AboutPage = () => {
     <>
       <Seo title="About" />
       <Box marginTop="2rem" marginBottom="4rem">
-        <Heading fontSize="4xl">About</Heading>
+        <Heading fontSize="4xl"><span role="img" aria-label="waving hand">👋</span> About Zacchary</Heading>
         <Text>
-          Hi! I'm a Web Developer based out of Brisbane Australia that
-          works for Pixel Zoo as a Junior Systems Administrator.
+          Hey there! I'm a industry-taught Systems Administrator based out of Brisbane, Australia. Currently,
+          I'm working for an Animation Studio called {' '}
+          <Link
+            href={`https://pixelzoo.com.au`}
+            isExternal
+            title={`Pixel Zoo Website`}
+            color="#75bcff"
+            _hover={{
+              textDecor: 'none',
+              color: '#30ce56',
+            }}
+          > 
+            Pixel Zoo
+          </Link>.
         </Text>
+
+        <Heading fontSize="2xl">What does industry-taught mean?</Heading>
         <Text>
-          Currently, I'm learning to manage Kubernetes deployments,
-          develop microservices, and build front end applications in
-          Gatsby, React and Chakra UI.
+          It means that I have little to no formal training as a Systems Administrator.
+          My experience and knowledge has been cultivated by industry professionals supplemented
+          with self-taught first hand experience over various positions, personal development and projects.
+        </Text>
+        <Heading fontSize="2xl">What are you currently learning?</Heading>
+        <Text>
+          Currently, I'm learning to automate various processes at Pixel Zoo
+          and build real world applications using Python, Django, Gatsby and React.
         </Text>
         <Text>
           When I'm not at work, or working on a personal project, I'm
           hanging out with mates, riding motorcycles, playing video
-          games and nerding out over audio.
+          games, nerding out over audio and teaching myself animation.
         </Text>
       </Box>
       <Box align="center">
@@ -285,7 +304,7 @@ const AboutPage = () => {
                     across a wide range of various web related
                     technologies including WordPress, Office 365,
                     Plesk, Windows Server and Linux. Adept at the
-                    production of writing understandable techincal
+                    production of writing understandable technical
                     processes and procedures.
                   </Text>
                   <Text>
@@ -941,7 +960,7 @@ const AboutPage = () => {
                     align="left"
                     fontSize="lg"
                   >
-                    Techincal Support
+                    Technical Support
                   </Box>{' '}
                   <Badge fontSize="xs" colorScheme="green">
                     Middle

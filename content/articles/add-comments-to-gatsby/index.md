@@ -92,9 +92,9 @@ const Comments = () => {
 export default Comments
 ```
 
-<blockquote id="blockquote-info">
+<blockquoteInfo>
 Be sure to change the `repo` line to reflect your own comments repository!
-</blockquote>
+</blockquoteInfo>
 
 Now that we've successfully created our new component, let's add it to
 our blog post template!

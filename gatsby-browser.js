@@ -4,3 +4,4 @@ import "@fontsource/space-grotesk/700.css"
 import { wrapPageElement as wrap } from "./src/wrapper"
 
 export const wrapPageElement = wrap
+
