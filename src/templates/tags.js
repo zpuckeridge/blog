@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
+import { Heading, Box, Center, UnorderedList, ListItem, Text, Button } from '@chakra-ui/react'
+
+import { Link as GatsbyLink } from 'gatsby'
+
 import Seo from '../components/seo'
 
 class TagsTemplate extends React.Component {
@@ -15,21 +19,40 @@ class TagsTemplate extends React.Component {
     return (
       <>
         <Seo title={currentTag} />
-        <h1>Tag: {currentTag}</h1>
-        <p>{postsCounter}</p>
+        <Center>
+        <Box align="center">
+        <Heading fontSize="4xl">{currentTag}</Heading>
+        <Text
+          fontSize="2xl"
+          color="white"
+          textAlign="center"
+        >
+          {postsCounter}
+        </Text>
+        </Box>
+        </Center>
 
-        <ul>
+        <UnorderedList>
           {blogPosts.map(({ node }) => {
             const { slug } = node.fields
             const { title } = node.frontmatter
             return (
-              <li key={slug}>
+              <ListItem key={slug}>
                 <Link to={slug}>{title}</Link>
-              </li>
+              </ListItem>
             )
           })}
-        </ul>
-        <Link to="/tags">View all tags</Link>
+        </UnorderedList>
+        <Box marginTop="2rem" minH="55vh">
+        <Button
+            as={GatsbyLink}
+            to="/tags/"
+            title="Tags"
+            color="white"
+          >
+            View all tags
+          </Button>
+        </Box>
       </>
     )
   }

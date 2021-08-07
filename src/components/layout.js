@@ -8,12 +8,12 @@ import { Box } from '@chakra-ui/react'
 const Layout = ({ children }) => {
   return (
     <>
-      <Box bg="#121212">
+      <Box bg="#000000">
         <PillPity
           pattern="topography"
           fontWeight="bold"
-          patternFill="gray.600"
-          bgColor="#121212"
+          patternFill="#d9d9d9"
+          bgColor="#000000"
           patternOpacity={0.1}
         >
           <Header />

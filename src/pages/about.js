@@ -1043,16 +1043,6 @@ const AboutPage = () => {
                 </Badge>
               </Text>
             </Flex>
-            <Flex marginBottom="-20px">
-              <Text>German </Text>
-              <Spacer />
-              <Text>
-                0%{' '}
-                <Badge ml="2" fontSize="xs" colorScheme="yellow">
-                  Not Started
-                </Badge>
-              </Text>
-            </Flex>
             <Flex>
               <Text>普通話 (Mandarin) </Text>
               <Spacer />

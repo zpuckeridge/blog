@@ -8,6 +8,7 @@ import {
   Link,
   Icon,
   VStack,
+  Spacer,
   Heading,
   Center,
 } from '@chakra-ui/react'
@@ -15,15 +16,18 @@ import { Link as GatsbyLink } from 'gatsby'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { StaticImage } from 'gatsby-plugin-image'
 
+import Seo from '../components/seo'
+
 export default function Projects() {
   return (
     <>
+      <Seo title="Projects" />
       <Box>
         <VStack spacing={8}>
           <VStack>
-            <Heading fontSize="5xl">Projects</Heading>
+            <Heading fontSize="4xl"><span role="img" aria-label="Projects">📖</span> Projects</Heading>
             <Text
-              fontSize={['xl', '2xl']}
+              fontSize="2xl"
               color="white"
               textAlign="center"
             >
@@ -47,6 +51,7 @@ export default function Projects() {
               mb={4}
               fontSize={{ base: '2xl', md: '4xl' }}
               fontWeight="extrabold"
+              color="#ffffff"
               letterSpacing="tight"
               textAlign={{ base: 'center', md: 'left' }}
               lineHeight={{ md: 'shorter' }}
@@ -63,10 +68,12 @@ export default function Projects() {
                 as={ExternalLinkIcon}
               />
             </Link>
+            <Spacer />
+            <Badge colorScheme="blue">Web Development</Badge>
             <Text
               mb={5}
               textAlign={{ base: 'center', sm: 'left' }}
-              fontSize={{ md: 'lg' }}
+              fontSize={{ md: 'md' }}
               color="#c3c8d3"
             >
               Savvy Electrical and Data needed a simple site to get their business up and running on the web.
@@ -112,7 +119,7 @@ export default function Projects() {
                 textDecor: 'none',
               }}
             >
-              My Personal Website
+              This Website
               <Icon
                 marginLeft="0.5rem"
                 w={6}
@@ -120,10 +127,12 @@ export default function Projects() {
                 as={ExternalLinkIcon}
               />
             </Link>
+            <Spacer />
+            <Badge colorScheme="blue">Web Development</Badge>
             <Text
               mb={5}
               textAlign={{ base: 'center', sm: 'left' }}
-              fontSize={{ md: 'lg' }}
+              fontSize={{ md: 'md' }}
               color="#c3c8d3"
             >
               A place to keep a record of what I'm up to in life, to
@@ -178,10 +187,12 @@ export default function Projects() {
                 as={ExternalLinkIcon}
               />
             </Link>
+            <Spacer />
+            <Badge colorScheme="blue">Web Development</Badge>
             <Text
               mb={5}
               textAlign={{ base: 'center', sm: 'left' }}
-              fontSize={{ md: 'lg' }}
+              fontSize={{ md: 'md' }}
               color="#c3c8d3"
             >
               I helped Minden Baptist Church refresh their website
@@ -236,11 +247,12 @@ export default function Projects() {
                 as={ExternalLinkIcon}
               />
             </Link>
+            <Spacer />
             <Badge colorScheme="blue">FOUNDER</Badge>
             <Text
               mb={5}
               textAlign={{ base: 'center', sm: 'left' }}
-              fontSize={{ md: 'lg' }}
+              fontSize={{ md: 'md' }}
               color="#c3c8d3"
             >
               Faith Bound is a Christian Community Discord cantered

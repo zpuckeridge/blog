@@ -35,6 +35,9 @@ export const theme = extendTheme({
         marginBottom: '12px',
         color: '#d9d9d9',
       },
+      li: {
+        color: '#d9d9d9'
+      },
       a: {
         color: '#75bcff',
       },
@@ -45,7 +48,6 @@ export const theme = extendTheme({
         borderLeft: '3px solid rgba(71, 166, 255)',
         padding: '15px',
         margin: '0 auto',
-
       },
       blockquoteWarning: {
         marginTop: '20px',

@@ -28,7 +28,7 @@ const IndexPage = () => {
     <>
       <Seo title="Home" />
       <Center>
-        <Flex align="center" minH="80vh">
+        <Flex align="center" minH="82.5vh">
           <Stack direction={['column', 'row']}>
             <Center>
               <Box

@@ -4,6 +4,8 @@ import {
   Text,
   Heading,
   List,
+  Box,
+  VStack,
   ListIcon,
   ListItem,
   Link,
@@ -17,11 +19,20 @@ const UsesPage = () => {
   return (
     <>
       <Seo title="Uses" />
-      <Heading fontSize="4xl">Uses</Heading>
-      <Text>
-        A compiled list of the tools, programs and hardware I use on a
-        daily basis.
-      </Text>
+      <Box marginBottom="2rem">
+        <VStack spacing={8}>
+          <VStack>
+            <Heading fontSize="4xl"><span role="img" aria-label="Tools">🛠️</span> Uses</Heading>
+            <Text
+              fontSize="2xl"
+              color="white"
+              textAlign="center"
+            >
+            A list of the tools that I use on a regular basis.
+            </Text>
+          </VStack>
+        </VStack>
+      </Box>
       <Heading fontSize="2xl">Hardware</Heading>
       <Text>
         I am currently dual booting{' '}

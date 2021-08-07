@@ -5,9 +5,9 @@ const Bookmarks = ({ bookmarks }) => {
   return (
     <VStack spacing={8}>
       <VStack>
-        <Heading fontSize="5xl">Bookmarks</Heading>
+        <Heading fontSize="4xl"><span role="img" aria-label="Pin">📌</span> Bookmarks</Heading>
         <Text
-          fontSize={['xl', '2xl']}
+          fontSize="2xl"
           color="white"
           textAlign="center"
         >
