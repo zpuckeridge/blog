@@ -6,51 +6,47 @@ tags: Technical
 description: This article details the steps requried to get Jellyfin, an Open Source Media Library up and running on Ubuntu Server.
 ---
 
-```toc
-
-```
-
 Jellyfin is an open source media library management and streaming platform, similar to [Plex](https://www.plex.tv/). This document will guide you through the process of installing and configuring Jellyfin on your Server running Ubuntu.
 
 ### Install Jellyfin
 
-1.  Run updates and upgrade packages:
+Run updates and upgrade packages:
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade
 ```
 
-2.  Install and enable HTTPS transport for APT:
+Install and enable HTTPS transport for APT:
 
 ```bash
 sudo apt install apt-transport-https
 ```
 
-3.  Enable the Universe repository for all of the ffmpeg dependencies:
+Enable the Universe repository for all of the ffmpeg dependencies:
 
 ```bash
 sudo add-apt-repository universe
 ```
 
-4.  Import the GPG signing keys for Jellyfin:
+Import the GPG signing keys for Jellyfin:
 
 ```bash
 wget -O - https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | sudo apt-key add -
 ```
 
-5.  Run the following command to create the jellyfin.list file:
+Run the following command to create the jellyfin.list file:
 
 ```bash
 sudo touch /etc/apt/sources.list.d/jellyfin.list
 ```
 
-6.  Add the Jellyfin apt repository to the server:
+Add the Jellyfin apt repository to the server:
 
 ```bash
 echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/ubuntu $( lsb_release -c -s ) main" | sudo tee /etc/apt/sources.list.d/jellyfin.list
 ```
 
-7.  Run updates and upgrade packages:
+Run updates and upgrade packages:
 
 ```bash
 sudo apt update && sudo apt install jellyfin
@@ -58,30 +54,30 @@ sudo apt update && sudo apt install jellyfin
 
 ### Configure Jellyfin
 
-1. Open a Web Browser and navigate to `http://<your-ip>:8096/`
-2. Proceed through the rest of the setup leaving everything on default.
-3. Once configured, navigate to the **Network **Tab under **Settings.**
+Open a Web Browser and navigate to `http://<your-ip>:8096/`
+Proceed through the rest of the setup leaving everything on default.
+Once configured, navigate to the Network Tab under Settings.
 
-4. Update your Base URL to the URL you wish to access Jellyfin from. Change the Secure connection mode to **Handled by reverse proxy **and ensure that **Enable automatic port mapping** is ticked. Save the changes.
+Update your Base URL to the URL you wish to access Jellyfin from. Change the Secure connection mode to Handled by reverse proxy and ensure that Enable automatic port mapping is ticked. Save the changes.
 
 ### Create a Reverse Proxy
 
 This reverse proxy will be setup through Apache.
 
-1.  Install Apache with the following command:
+Install Apache with the following command:
 
 ```bash
 sudo apt install apache2
 ```
 
-2.  Enable proxy settings for Apache with the following commands:
+Enable proxy settings for Apache with the following commands:
 
 ```bash
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 ```
 
-3.  Open a new virtual host file for the reverse proxy. Replace 'example.com' with the domain name to be setup.
+Open a new virtual host file for the reverse proxy. Replace 'example.com' with the domain name to be setup.
 
 ```bash
 sudo nano /etc/apache2/sites-available/jellyfin.example.com.conf
@@ -126,13 +122,13 @@ CustomLog /var/log/apache2/DOMAIN_NAME-access.log combined
 #</IfModule>
 ```
 
-4.  Enable the configuration file:
+Enable the configuration file:
 
 ```bash
 sudo a2ensite jellyfin.example.com.conf
 ```
 
-5.  Restart Apache to fully enable the new settings:
+Restart Apache to fully enable the new settings:
 
 ```bash
 sudo systemctl restart apache2
@@ -140,27 +136,27 @@ sudo systemctl restart apache2
 
 ### Setup Let's Encrypt
 
-1.  Ensure Ports 80 and 443 have been opened by your ISP. Ensure that you have not applications that are exposed to Ports 80 and 443 that have security vulnerabilities. Open Ports 80 and 443 on your router.
+Ensure Ports 80 and 443 have been opened by your ISP. Ensure that you have not applications that are exposed to Ports 80 and 443 that have security vulnerabilities. Open Ports 80 and 443 on your router.
 
-2.  Install Certbot for Apache using the following command:
+Install Certbot for Apache using the following command:
 
 ```bash
 sudo apt install python3-certbot-apache
 ```
 
-3.  Run the following command to obtain and install a Let's Encrypt Certificate. Make sure to replace your email and domain in place of the example below:
+Run the following command to obtain and install a Let's Encrypt Certificate. Make sure to replace your email and domain in place of the example below:
 
 ```bash
 sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --email you@example.com -d jellyfin.example.com
 ```
 
-4.  Once installed successfully, open up your Apache Config File for Jellyfin and uncomment the lines pertaining to the SSL Certificate. Save the file and run the following command:
+Once installed successfully, open up your Apache Config File for Jellyfin and uncomment the lines pertaining to the SSL Certificate. Save the file and run the following command:
 
 ```bash
 sudo systemctl restart apache2
 ```
 
-5.  Navigate to your chosen domain. Your Jellyfin instance should be successfully secured.
+Navigate to your chosen domain. Your Jellyfin instance should be successfully secured.
 
 You will now be able to access your Jellyfin instance using your domain with Let's Encrypt.
 

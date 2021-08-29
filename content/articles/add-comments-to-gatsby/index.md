@@ -17,7 +17,7 @@ Gatsby doesn't provide any commenting tools by default, so we will be
 adding our own open-source alternative! This article details the steps
 required to get utteranc.es setup with your Gatsby blog.
 
-### Prerequisites::
+### Prerequisites
 
 The following article assumes that you some general knowledge in the
 following areas:

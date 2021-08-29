@@ -19,6 +19,7 @@ class TagsTemplate extends React.Component {
     return (
       <>
         <Seo title={currentTag} />
+        <Box minH="82.5vh">
         <Center>
         <Box align="center">
         <Heading fontSize="4xl">{currentTag}</Heading>
@@ -43,7 +44,7 @@ class TagsTemplate extends React.Component {
             )
           })}
         </UnorderedList>
-        <Box marginTop="2rem" minH="55vh">
+        <Box marginTop="2rem">
         <Button
             as={GatsbyLink}
             to="/tags/"
@@ -52,6 +53,7 @@ class TagsTemplate extends React.Component {
           >
             View all tags
           </Button>
+        </Box>
         </Box>
       </>
     )

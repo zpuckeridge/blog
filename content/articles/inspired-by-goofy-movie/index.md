@@ -45,8 +45,6 @@ Sideways' video.
 I gathered up my remaining brain cells, jumped into bed and watched 'A
 Goofy Movie'.
 
----
-
 ![](./max-roxanne.jpeg)
 
 This film, might be - no - it is my favorite film of all time. I've
@@ -70,8 +68,6 @@ From the opening number, to meeting Roxanne, to seeing Goofy and the
 desire that Max has to not be like his father. It sets the stage so
 perfectly for what is an amazing father-son adventure full of life
 lessons for those young and old.
-
----
 
 ![](./goofy-max-bigfoot.jpg)
 
@@ -107,8 +103,6 @@ serviced so well that it adds an incredibly difficult to replicate
 layer of depth to the topics outlined. Jason Marsden and Bill Farmer
 execute these scenes perfectly and stay true to their characters
 through and through.
-
----
 
 ![](./max-glasses.jpg)
 

@@ -1,5 +1,10 @@
 import React from 'react'
+
 import { Link, graphql } from 'gatsby'
+
+import {
+  Box,
+} from '@chakra-ui/react'
 
 import Seo from '../components/seo'
 
@@ -14,6 +19,7 @@ class TagsPage extends React.Component {
     return (
       <>
         <Seo title={pageTitle} />
+        <Box minH="80vh">
         <h3>{pageTitle}</h3>
 
         <ul style={{ listStyle: `none` }}>
@@ -25,6 +31,7 @@ class TagsPage extends React.Component {
             </li>
           ))}
         </ul>
+        </Box>
       </>
     )
   }

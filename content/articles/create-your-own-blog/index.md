@@ -16,7 +16,7 @@ The following article will go through the process of using Gatsby and
 React to build a simple and minimalistic blog which will be hosted
 using GitHub Pages.
 
-### Prerequisites::
+### Prerequisites
 
 The following article assumes that you some general knowledge in the
 following areas:
