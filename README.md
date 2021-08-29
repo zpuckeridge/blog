@@ -25,11 +25,8 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 
 ## To Add
 
-- Social Links under Description
-- Article Page Navigation
 - Share Links
 - Newsletter Subscription Feature
-- Integrate Cockpit as CMS
 - Buy me a Coffee Link
 - Hero Image to Posts
 - Updated at message
@@ -51,4 +48,4 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 - Favorite Resources
 
 ## To Fix
-- Uses Page Formatting
+- Code Block Bottom Margin
