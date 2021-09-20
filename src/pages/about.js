@@ -37,7 +37,7 @@ const AboutPage = () => {
       <Box marginTop="2rem" marginBottom="4rem">
         <Heading fontSize="4xl"><span role="img" aria-label="waving hand">👋</span> About Zacchary</Heading>
         <Text>
-          Hey there! I'm a industry-taught Systems Administrator based out of Brisbane, Australia. Currently,
+          Hey there! I'm a Junior Systems Administrator based out of Brisbane, Australia. Currently,
           I'm working for an Animation Studio called {' '}
           <Link
             href={`https://pixelzoo.com.au`}
@@ -53,12 +53,6 @@ const AboutPage = () => {
           </Link>.
         </Text>
 
-        <Heading fontSize="2xl">What does industry-taught mean?</Heading>
-        <Text>
-          It means that I have little to no formal training as a Systems Administrator.
-          My experience and knowledge has been cultivated by industry professionals supplemented
-          with self-taught first hand experience over various positions, personal development and projects.
-        </Text>
         <Heading fontSize="2xl">What are you currently learning?</Heading>
         <Text>
           Currently, I'm learning to automate various processes at Pixel Zoo

@@ -57,7 +57,7 @@ const IndexPage = () => {
                     color="rgba(255, 255, 255, 0.9);"
                     fontSize="lg"
                   >
-                    I'm a industry-taught Systems Administrator based out of Brisbane, Australia working for {' '}
+                    I'm a Junior Systems Administrator based out of Brisbane, Australia working for {' '}
                     <Link
                       href={`https://pixelzoo.com.au`}
                       isExternal
