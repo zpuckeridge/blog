@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: `https://zacchary.me/`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     {
       resolve: `@chakra-ui/gatsby-plugin`,
       options: {
@@ -17,7 +18,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
-    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
