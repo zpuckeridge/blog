@@ -4,6 +4,10 @@ export const theme = extendTheme({
   initialColorMode: 'dark',
   styles: {
     global: {
+      img: {
+        borderRadius: '20px',
+        boxShadow: '0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);',
+      },
       h1: {
         fontSize: '48px',
         fontWeight: '800',

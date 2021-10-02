@@ -122,9 +122,9 @@ sudo apt install fail2ban
 
 Start Fail2Ban and ensure that it starts on boot:
 
-``bash systemctl start fail2ban systemctl enable fail2ban
-
-````
+```bash 
+systemctl start fail2ban systemctl enable fail2ban
+```
 
 Confirm that Fail2Ban is running and check its active jails with the following command:
 
