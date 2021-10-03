@@ -1,6 +1,6 @@
 ---
 title: "BoJack Horseman"
-slug: BoJack-horseman
+slug: bojack-horseman
 date: 2021-10-02
 tags: Art
 description: What a show.
