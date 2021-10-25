@@ -1,5 +1,5 @@
 ---
-title: "BoJack Horseman"
+title: "🐴 BoJack Horseman"
 slug: bojack-horseman
 date: 2021-10-02
 tags: Art
