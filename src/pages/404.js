@@ -5,20 +5,25 @@ import { Link as GatsbyLink } from 'gatsby'
 
 import Seo from '../components/seo'
 
+// centered 404 page to browser window
 const NotFoundPage = () => (
-  <>
-    <Seo title="404: Page not found..." />
-    <Box h="100vh">
-      <Heading>404: Page not found...</Heading>
-      <Text fontSize="xl" my={5}>
-        It appears that this page doesn't exist or is currently in
-        development. Sorry about that!
-      </Text>
-      <Link as={GatsbyLink} to="/" title="Home">
-        <Button>Take me home →</Button>
-      </Link>
-    </Box>
-  </>
+  <Box
+    display="flex"
+    flexDirection="column"
+    justifyContent="center"
+    alignItems="center"
+    height="100vh"
+  >
+    <Heading as="h1" size="2xl" fontWeight="bold">
+      404
+    </Heading>
+    <Text fontSize="xl">Page not found</Text>
+    <Link as={GatsbyLink} to="/">
+      <Button variantColor="blue" variant="outline">
+        Go to Home
+      </Button>
+    </Link>
+  </Box>
 )
 
 export default NotFoundPage
