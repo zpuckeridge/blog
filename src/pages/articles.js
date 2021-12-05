@@ -15,17 +15,6 @@ import { CopyIcon } from '@chakra-ui/icons'
 import Seo from '../components/seo'
 import Tags from '../components/tags'
 
-const copy = ({ data }) => {
-  const post = data.allMarkdownRemark.nodes
-  const slug = post.fields.slug
-  const el = document.createElement('input')
-  el.value = slug
-  document.body.appendChild(el)
-  el.select()
-  document.execCommand('copy')
-  document.body.removeChild(el)
-}
-
 const ArticleIndex = ({ data }) => {
   const posts = data.allMarkdownRemark.nodes
   const [state, setState] = useState({
@@ -165,22 +154,26 @@ const ArticleIndex = ({ data }) => {
                       </Link>
                     </Button>
 
-                    <Flex alignItems="center">
-                      <Tooltip
-                        hasArrow
-                        label="Copy URL"
-                        bg="gray.300"
-                        color="black"
+                    {/* Copy Article URL */}
+                    <Tooltip
+                      hasArrow
+                      label="Copy URL"
+                      placement="top"
+                      aria-label="Copy URL"
+                    >
+                      <Button
+                        size="sm"
+                        title="Copy URL"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `https://zacchary.me${post.fields.slug}`
+                          )
+                        }}
                       >
-                        <Button
-                          size="sm"
-                          onClick={copy}
-                          title="Copy Link"
-                        >
-                          <CopyIcon />
-                        </Button>
-                      </Tooltip>
-                    </Flex>
+                        <CopyIcon />
+                      </Button>
+                    </Tooltip>
+
                   </Flex>
                 </Box>
               </Flex>

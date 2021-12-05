@@ -3,8 +3,6 @@ import React from 'react'
 import { Link, Heading, Text, Box, Button } from '@chakra-ui/react'
 import { Link as GatsbyLink } from 'gatsby'
 
-import Seo from '../components/seo'
-
 // centered 404 page to browser window
 const NotFoundPage = () => (
   <Box
