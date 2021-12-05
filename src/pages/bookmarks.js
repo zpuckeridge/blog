@@ -5,12 +5,13 @@ const Bookmarks = ({ bookmarks }) => {
   return (
     <VStack spacing={8}>
       <VStack>
-        <Heading fontSize="4xl"><span role="img" aria-label="Pin">📌</span> Bookmarks</Heading>
-        <Text
-          fontSize="2xl"
-          color="white"
-          textAlign="center"
-        >
+        <Heading fontSize="4xl">
+          <span role="img" aria-label="Pin">
+            📌
+          </span>{' '}
+          Bookmarks
+        </Heading>
+        <Text fontSize="2xl" color="white" textAlign="center">
           Some awesome resources I've found helpful or interesting.
         </Text>
       </VStack>

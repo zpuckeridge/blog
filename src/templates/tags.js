@@ -1,7 +1,15 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-import { Heading, Box, Center, UnorderedList, ListItem, Text, Button } from '@chakra-ui/react'
+import {
+  Heading,
+  Box,
+  Center,
+  UnorderedList,
+  ListItem,
+  Text,
+  Button,
+} from '@chakra-ui/react'
 
 import { Link as GatsbyLink } from 'gatsby'
 
@@ -20,40 +28,36 @@ class TagsTemplate extends React.Component {
       <>
         <Seo title={currentTag} />
         <Box minH="82.5vh">
-        <Center>
-        <Box align="center">
-        <Heading fontSize="4xl">{currentTag}</Heading>
-        <Text
-          fontSize="2xl"
-          color="white"
-          textAlign="center"
-        >
-          {postsCounter}
-        </Text>
-        </Box>
-        </Center>
+          <Center>
+            <Box align="center">
+              <Heading fontSize="4xl">{currentTag}</Heading>
+              <Text fontSize="2xl" color="white" textAlign="center">
+                {postsCounter}
+              </Text>
+            </Box>
+          </Center>
 
-        <UnorderedList>
-          {blogPosts.map(({ node }) => {
-            const { slug } = node.fields
-            const { title } = node.frontmatter
-            return (
-              <ListItem key={slug}>
-                <Link to={slug}>{title}</Link>
-              </ListItem>
-            )
-          })}
-        </UnorderedList>
-        <Box marginTop="2rem">
-        <Button
-            as={GatsbyLink}
-            to="/tags/"
-            title="Tags"
-            color="white"
-          >
-            View all tags
-          </Button>
-        </Box>
+          <UnorderedList>
+            {blogPosts.map(({ node }) => {
+              const { slug } = node.fields
+              const { title } = node.frontmatter
+              return (
+                <ListItem key={slug}>
+                  <Link to={slug}>{title}</Link>
+                </ListItem>
+              )
+            })}
+          </UnorderedList>
+          <Box marginTop="2rem">
+            <Button
+              as={GatsbyLink}
+              to="/tags/"
+              title="Tags"
+              color="white"
+            >
+              View all tags
+            </Button>
+          </Box>
         </Box>
       </>
     )

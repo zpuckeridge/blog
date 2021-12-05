@@ -67,8 +67,8 @@ const IndexPage = () => {
                         textDecor: 'none',
                         color: '#30ce56',
                       }}
-                    > 
-                    Pixel Zoo
+                    >
+                      Pixel Zoo
                     </Link>.
                     <Box marginTop="1rem">
                       <Stack

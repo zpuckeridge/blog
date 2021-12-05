@@ -173,7 +173,6 @@ const ArticleIndex = ({ data }) => {
                         <CopyIcon />
                       </Button>
                     </Tooltip>
-
                   </Flex>
                 </Box>
               </Flex>

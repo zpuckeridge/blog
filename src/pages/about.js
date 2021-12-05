@@ -35,10 +35,16 @@ const AboutPage = () => {
     <>
       <Seo title="About" />
       <Box marginTop="2rem" marginBottom="4rem">
-        <Heading fontSize="4xl"><span role="img" aria-label="waving hand">👋</span> About Zacchary</Heading>
+        <Heading fontSize="4xl">
+          <span role="img" aria-label="waving hand">
+            👋
+          </span>{' '}
+          About Zacchary
+        </Heading>
         <Text>
-          Hey there! I'm a Junior Systems Administrator based out of Brisbane, Australia. Currently,
-          I'm working for an Animation Studio called {' '}
+          Hey there! I'm a Junior Systems Administrator based out of
+          Brisbane, Australia. Currently, I'm working for an Animation
+          Studio called{' '}
           <Link
             href={`https://pixelzoo.com.au`}
             isExternal
@@ -48,15 +54,19 @@ const AboutPage = () => {
               textDecor: 'none',
               color: '#30ce56',
             }}
-          > 
+          >
             Pixel Zoo
-          </Link>.
+          </Link>
+          .
         </Text>
 
-        <Heading fontSize="2xl">What are you currently learning?</Heading>
+        <Heading fontSize="2xl">
+          What are you currently learning?
+        </Heading>
         <Text>
-          Currently, I'm learning to automate various processes at Pixel Zoo
-          and build real world applications using Python, Django, Gatsby and React.
+          Currently, I'm learning to automate various processes at
+          Pixel Zoo and build real world applications using Python,
+          Django, Gatsby and React.
         </Text>
         <Text>
           When I'm not at work, or working on a personal project, I'm

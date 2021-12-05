@@ -22,13 +22,14 @@ const UsesPage = () => {
       <Box marginBottom="2rem">
         <VStack spacing={8}>
           <VStack>
-            <Heading fontSize="4xl"><span role="img" aria-label="Tools">🛠️</span> Uses</Heading>
-            <Text
-              fontSize="2xl"
-              color="white"
-              textAlign="center"
-            >
-            A list of the tools that I use on a regular basis.
+            <Heading fontSize="4xl">
+              <span role="img" aria-label="Tools">
+                🛠️
+              </span>{' '}
+              Uses
+            </Heading>
+            <Text fontSize="2xl" color="white" textAlign="center">
+              A list of the tools that I use on a regular basis.
             </Text>
           </VStack>
         </VStack>

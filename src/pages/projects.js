@@ -25,19 +25,20 @@ export default function Projects() {
       <Box>
         <VStack spacing={8}>
           <VStack>
-            <Heading fontSize="4xl"><span role="img" aria-label="Projects">📖</span> Projects</Heading>
-            <Text
-              fontSize="2xl"
-              color="white"
-              textAlign="center"
-            >
+            <Heading fontSize="4xl">
+              <span role="img" aria-label="Projects">
+                📖
+              </span>{' '}
+              Projects
+            </Heading>
+            <Text fontSize="2xl" color="white" textAlign="center">
               Check out some of the things I've worked on!
             </Text>
           </VStack>
         </VStack>
       </Box>
       <Box marginTop="50px">
-      <SimpleGrid
+        <SimpleGrid
           alignItems="center"
           columns={{ base: 1, md: 2 }}
           flexDirection="column-reverse"
@@ -76,7 +77,8 @@ export default function Projects() {
               fontSize={{ md: 'md' }}
               color="#c3c8d3"
             >
-              Savvy Electrical and Data needed a simple site to get their business up and running on the web.
+              Savvy Electrical and Data needed a simple site to get
+              their business up and running on the web.
             </Text>
           </Box>
           <Center>

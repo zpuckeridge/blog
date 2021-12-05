@@ -2,9 +2,7 @@ import React from 'react'
 
 import { Link, graphql } from 'gatsby'
 
-import {
-  Box,
-} from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 import Seo from '../components/seo'
 
@@ -20,17 +18,17 @@ class TagsPage extends React.Component {
       <>
         <Seo title={pageTitle} />
         <Box minH="80vh">
-        <h3>{pageTitle}</h3>
+          <h3>{pageTitle}</h3>
 
-        <ul style={{ listStyle: `none` }}>
-          {tags.map(tag => (
-            <li key={tag.fieldValue}>
-              <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                {tag.fieldValue} ({tag.totalCount})
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul style={{ listStyle: `none` }}>
+            {tags.map(tag => (
+              <li key={tag.fieldValue}>
+                <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+                  {tag.fieldValue} ({tag.totalCount})
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Box>
       </>
     )

@@ -6,7 +6,8 @@ export const theme = extendTheme({
     global: {
       img: {
         borderRadius: '20px',
-        boxShadow: '0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);',
+        boxShadow:
+          '0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);',
       },
       h1: {
         fontSize: '48px',
@@ -40,7 +41,7 @@ export const theme = extendTheme({
         color: '#d9d9d9',
       },
       li: {
-        color: '#d9d9d9'
+        color: '#d9d9d9',
       },
       a: {
         color: '#75bcff',
@@ -79,7 +80,7 @@ export const theme = extendTheme({
         display: 'inline-block',
         backgroundColor: 'rgba(230, 230, 230, 0.1)',
         borderLeft: '3px solid rgba(255, 255, 255)',
-      }
+      },
     },
   },
   colors: {
