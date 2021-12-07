@@ -1,6 +1,6 @@
 ---
 title: Homosexuality - what does the Bible say?
-slug: homosexuality-and-morality
+slug: homosexuality-what-does-the-bible-say
 date: 2020-07-07
 tags: Faith
 description: Many Christians misconstrue and misunderstand what God and the Bible has to say about homosexuality. More often than not, this pushes people even further away from coming to truly understand who Christ is and what His sacrifice on the cross means for them.
@@ -31,6 +31,8 @@ Many Christians misconstrue and misunderstand what God and the Bible has to say 
 The culture of our planet is changing - especially as technology continues to develop and spread itself into all corners of the globe. Sexual promiscuity is frequently promoted and encouraged all over the world and is considered by many as a perfectly legitimate lifestyle.
 
 To help us understand what God thinks about these issues, we must turn to the Bible and science.
+
+_Note: While this article was written with the intention of a non-Christian and Christian audience, it may be more catered to a Christian audience debating whether or not homosexuality is sinful._
 
 ---
 
@@ -90,6 +92,14 @@ While it is incredibly tempting to believe these interpretations, we must use hi
 
 To know the truth, we must refer to Jewish history and the dead sea scrolls - which clearly show that homosexual marriage was not a condoned practice.
 
+To further prove this point, God destroyed Sodom and Gomorrah because they were partaking in: 
+
+Jude 1:7
+> ... Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.
+
+Genesis 19:5
+> They called to Lot, “Where are the men who came to you tonight? Bring them out to us so that we can have sex with them.”
+
 If you're still unsure about this, what does your conscious say? Ignore all of your biases and prejudices, and ask yourself. Is this something God wants to me to participate in? Is this an activity glorifying to God? If you don't get a definite answer, I would advise you to stay well away from these temptations. The enemy is known to take advantage of those who are broken, weak or feel misunderstood.
 
 ---
@@ -100,7 +110,7 @@ Many people are quick to point out that homosexuals are simply "born that way". 
 
 The inconclusiveness of these studies left leading Columbia University psychiatrists Byne and Parsons to conclude that:
 
-> "There is no evidence at present to substantiate a biological theory, just as there is no compelling evidence to support any singular psychosocial explanation. . . .[T]he appeal of current biological explanations may derive more from dissatisfaction with the present status of psychosocial explanations than from a substantiating body of experimental data.  Critical review shows the evidence favoring a biological theory to be lacking."_ [3]_
+> "There is no evidence at present to substantiate a biological theory, just as there is no compelling evidence to support any singular psychosocial explanation. . . .[T]he appeal of current biological explanations may derive more from dissatisfaction with the present status of psychosocial explanations than from a substantiating body of experimental data.  Critical review shows the evidence favoring a biological theory to be lacking." [3]
 
 From a scientific standpoint, there is no good reason to believe that there exists a biological link to homosexual behaviour. If a link were ever established, it would still not morally justify homosexuality for a few reasons.
 
@@ -108,7 +118,7 @@ A lot more research would need to be completed to work out why this behaviour ex
 
 If the biological condition causes homosexuality or predisposes it in an individual, it would still not make the behaviour "good" or morally permissible. Many Christians interpret all that is natural to be good.
 
-If I am 'naturally' predisposed towards homosexuality, than it must be good.
+_If I am 'naturally' predisposed towards homosexuality, than it must be good!_
 
 This train of thought does not overlap so well in other areas of life. For example, what if I am naturally selfish, violent or predisposed toward addiction, adultery or paedophilia? Researchers believe that there is a definite genetic basis for alcoholism, yet we do not think that alcoholism is good. Any reasonable person would believe that alcoholism should be treated and "cured".
 
@@ -118,7 +128,7 @@ Does our natural inclination or desire for things make them good? The Bible teac
 
 > “If any man be in Christ he is a **new creation**. The old is passed, behold the new is come.” - 2 Corinthians 5.17
 
-Might there be other examples that prove homosexuality is a natural behaviour? Well, animals engage in homosexual behaviour, what makes them so different than us? Even chimpanzees and other apes are known to engage in the behaviour. So, if it occurs in nature, it must be natural for humans too!
+_Might there be other examples that prove homosexuality is a natural behaviour? Well, animals engage in homosexual behaviour, what makes them so different than us? Even chimpanzees and other apes are known to engage in the behaviour. So, if it occurs in nature, it must be natural for humans too!_
 
 Similarly to the first argument, this doesn't overlap very well when you apply this concept to the actions of other animals.
 
@@ -142,6 +152,7 @@ Homosexuality may _feel_ natural to some, but our guide to what is "natural" or 
 
 > The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full. - John 10:10
 
+Homosexuality can never result in procreation - therefore it is impossible for it to bring life. If we are charged to bring life to the world, than how does homosexuality fit into this outlook?
 ---
 
 ### Can I be 'gay' and Christian?
@@ -166,7 +177,7 @@ If our identity is in that of the world and not of Christ, we are nothing but an
 
 ### Conclusion
 
-The Bible appears to be very clear on its stance of homosexual behaviour. In my oponion, I can not find an honest interpretation that affirms homosexual behaviour in any form. We are all born into a sinful world and no sin is irreversible. We must seek God in all that we do and ask him to help us with our burdens.
+The Bible appears to be very clear on its stance of homosexual behaviour. I simply can not find an honest interpretation that affirms homosexual behaviour in any form. We are all born into a sinful world and no sin is irreversible. We must seek God in all that we do and ask him to help us with our burdens.
 
 The power of the Gospel is mightier than the power of sin.
 
