@@ -86,11 +86,13 @@ const Header = () => (
                 Bookmarks <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
+                as={GatsbyLink}
+                to="/countries"
                 title="Countries"
                 color="white"
                 icon={<FaRegFlag />}
               >
-                Countries <Badge colorScheme="yellow">WIP</Badge>
+                Countries
               </MenuItem>
               <MenuItem
                 as={GatsbyLink}

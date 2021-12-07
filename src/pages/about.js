@@ -762,7 +762,7 @@ const AboutPage = () => {
                   <Text>
                     General all rounder course on building computers,
                     troubleshooting technology like printers, routers
-                    etc.
+                    and networks completed while working at Conetix.
                   </Text>
                 </AccordionPanel>
               </AccordionItem>
@@ -801,7 +801,7 @@ const AboutPage = () => {
                       <Text>Plesk Professional Certification</Text>
                     </Flex>
                     <Spacer />
-                    <Text>Valid until 2022</Text>
+                    <Text>Valid until 2021</Text>
                   </Flex>
                   <Text>
                     Level 1 Web Hosting and Support Certification
@@ -845,8 +845,12 @@ const AboutPage = () => {
                     <Flex>
                       <UnorderedList>
                         <ListItem>Debian/CentOS</ListItem>
+                        <ListItem>Windows</ListItem>
+                        <ListItem>Powershell</ListItem>
+                        <ListItem>Docker</ListItem>
                         <ListItem>DNS/Domain Management</ListItem>
                         <ListItem>Proxmox</ListItem>
+                        <ListItem>CephFS</ListItem>
                         <ListItem>
                           Django
                           <Badge
@@ -858,7 +862,7 @@ const AboutPage = () => {
                           </Badge>
                         </ListItem>
                         <ListItem>
-                          Office Networking
+                          Networking
                           <Badge
                             ml="2"
                             fontSize="xs"
