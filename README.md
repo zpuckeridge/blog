@@ -1,6 +1,4 @@
-[![CodeQL](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml/badge.svg?branch=preview)](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml)
-
-[![CodeScan](https://github.com/zpuckeridge/blog/actions/workflows/codescan-analysis.yml/badge.svg)](https://github.com/zpuckeridge/blog/actions/workflows/codescan-analysis.yml)
+[![CodeQL](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml/badge.svg?branch=preview)](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml) [![CodeScan](https://github.com/zpuckeridge/blog/actions/workflows/codescan-analysis.yml/badge.svg)](https://github.com/zpuckeridge/blog/actions/workflows/codescan-analysis.yml)
 
 # Personal Blog
 
