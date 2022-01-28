@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml/badge.svg?branch=preview)](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml)
+
 # Personal Blog
 
 This is my personal corner of the internet, a place to experiment, learn and try new things. The goal of this project is to have a forward-facing display site to show employers a quick overview of my skills and capabilities in a minimalistic and simple fashion.
