@@ -6,11 +6,7 @@ tags: Faith
 description: A friend had a run in with some folk that followed the Old Testament Law. The evidence they provided was actually quite compelling, so I decided to do some digging.
 ---
 
-```toc
-
-```
-
-### Introduction
+### Context
 
 Recently, a friend of mine had a run in with people that followed the Old Testament Law. They brought substantial evidence to the table that stood to prove that we, as Gentiles should not eat unclean meat or any food that has been sacrificed to idols. He believed them for a short time, but felt compelled to read up on the subject in a lot more detail and discovered that he had been mislead.
 
