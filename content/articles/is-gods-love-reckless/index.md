@@ -24,11 +24,11 @@ Cory Asbury himself also came out with a defense for the use of the word 'reckle
 
 Firstly, to understand the controversy and why there is an issue with the word, we must look at the definition of 'reckless'.
 
-> **[reckless](https://www.dictionary.com/browse/reckless?s=t). "**utterly unconcerned about the consequences of some action; without caution; careless."
+> [reckless](https://www.dictionary.com/browse/reckless?s=t). "utterly unconcerned about the consequences of some action; without caution; careless."
 
 By this definition, to act in a reckless manner is to act without caution or care, to show no concern for the consequences or outcome of one's action.
 
-Does God fit this description? **Unequivocally not. **God is omniscient, all-knowing and exercises perfect judgement at all times. By this understanding of God, it is impossible for Him to act recklessly.
+Does God fit this description? Unequivocally not. God is omniscient, all-knowing and exercises perfect judgement at all times. By this understanding of God, it is impossible for Him to act recklessly.
 
 God, not once throughout all of scripture has ever acted without caution or concern for His actions. God exercises flawless judgment in every circumstance.
 
