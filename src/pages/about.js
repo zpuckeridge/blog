@@ -185,7 +185,7 @@ const AboutPage = () => {
                 </AccordionButton>
                 <AccordionPanel>
                   <Flex marginBottom="1rem">
-                    <Flex>Junior Systems Administrator</Flex>
+                    <Flex>Systems Administrator</Flex>
                     <Spacer />
                     <Link
                       href={`https://pixelzoo.com.au`}
