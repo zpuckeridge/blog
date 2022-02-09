@@ -42,7 +42,7 @@ const AboutPage = () => {
           About Zacchary
         </Heading>
         <Text>
-          Hey there! I'm a Junior Systems Administrator based out of
+          Hey there! I'm a Systems Administrator based out of
           Brisbane, Australia. Currently, I'm working for an Animation
           Studio called{' '}
           <Link
@@ -64,9 +64,9 @@ const AboutPage = () => {
           What are you currently learning?
         </Heading>
         <Text>
-          Currently, I'm learning to automate various processes at
-          Pixel Zoo and build real world applications using Python,
-          Django, Gatsby and React.
+          Currently, I'm building tools to automate various processes
+          at Pixel Zoo as well as designing and deploying networking
+          solutions.
         </Text>
         <Text>
           When I'm not at work, or working on a personal project, I'm

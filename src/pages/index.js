@@ -57,7 +57,8 @@ const IndexPage = () => {
                     color="rgba(255, 255, 255, 0.9);"
                     fontSize="lg"
                   >
-                    I'm a Junior Systems Administrator based out of Brisbane, Australia working for {' '}
+                    I'm a Systems Administrator based out of Brisbane,
+                    Australia working for{' '}
                     <Link
                       href={`https://pixelzoo.com.au`}
                       isExternal
@@ -69,7 +70,8 @@ const IndexPage = () => {
                       }}
                     >
                       Pixel Zoo
-                    </Link>.
+                    </Link>
+                    .
                     <Box marginTop="1rem">
                       <Stack
                         align="center"
