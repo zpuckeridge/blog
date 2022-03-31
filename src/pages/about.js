@@ -200,7 +200,15 @@ const AboutPage = () => {
                     </Link>
                   </Flex>
                   <Box>
-                    <Text>...</Text>
+                    <Text>
+                      Provided clear and concise support for ~200
+                      employee's both internal and remote. Deployed
+                      various networking and hardware upgrades across
+                      the studio. Improved the efficiency of various
+                      software and tools. Built and deployed a ~500TB
+                      CephFS Cluster to upgrade studio's existing
+                      storage solution.
+                    </Text>
                   </Box>
                 </AccordionPanel>
               </AccordionItem>
