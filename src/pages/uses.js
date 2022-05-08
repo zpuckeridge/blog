@@ -58,38 +58,30 @@ const UsesPage = () => {
           href={`https://www.microsoft.com/en-au/software-download/windows10`}
           title={`Windows 10`}
         >
-          Windows 10.
+          Windows 11.
         </Link>
       </Text>
       <Text>My rig has the following specifications:</Text>
       <List>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          CPU: Ryzen 2700X
+          CPU: Ryzen 7 5800X
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          GPU: NVIDIA GTX 1080
+          GPU: AMD RX 6600XT
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          RAM: Corsair 4 x 8GB 3200MHz
+          RAM: Corsair 2 x 32GB DDR4-3200MHz
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          MBO: ASRock Taichi X370
+          MBO: ASUS ROG STRIX X570-I
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          PSU: Corsair Gold 650W
-        </ListItem>
-        <ListItem>
-          <ListIcon as={ArrowForwardIcon} />
-          HDD: Western Digital 2TB
-        </ListItem>
-        <ListItem>
-          <ListIcon as={ArrowForwardIcon} />
-          SSD: Western Digital 480GB M.2
+          SSD: 2x 1TB Samsung 980 Pro
         </ListItem>
       </List>
       <Text>For audio, I&#39;m using the following:</Text>
@@ -100,11 +92,11 @@ const UsesPage = () => {
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          Microphone: AT2020
+          Microphone: Audio-Technica AT2020 Cardioid Condenser
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          Headphones: Beyerdynamic DT 770 + Koss KPH30i + Shure SRH440
+          Headphones: Beyerdynamic DT 770 + Koss KPH30i + Audio-Technica ATH-AD700X
         </ListItem>
       </List>
       <Heading
@@ -117,7 +109,7 @@ const UsesPage = () => {
       <List>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
-          Phone - Samsung Galaxy S20 Ultra 5G
+          Phone - Google Pixel 6 (GrapheneOS)
         </ListItem>
         <ListItem>
           <ListIcon as={ArrowForwardIcon} />
