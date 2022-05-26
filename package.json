@@ -62,7 +62,7 @@
     "react-icons": "^4.2.0",
     "serve": "^13.0.2",
     "sharp": "^0.29.3",
-    "yarn": "^1.22.11"
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "husky": "^7.0.4",

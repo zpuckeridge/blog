@@ -42,20 +42,19 @@ const AboutPage = () => {
           About Zacchary
         </Heading>
         <Text>
-          Hey there! I'm a Systems Administrator based out of
-          Brisbane, Australia. Currently, I'm working for an Animation
-          Studio called{' '}
+          Hey there! I'm a IT Administrator based out of Brisbane,
+          Australia. Currently, I'm working for a VFX Studio called{' '}
           <Link
-            href={`https://pixelzoo.com.au`}
+            href={`https://rsp.com.au`}
             isExternal
-            title={`Pixel Zoo Website`}
+            title={`Rising Sun Pictures Website`}
             color="#75bcff"
             _hover={{
               textDecor: 'none',
               color: '#30ce56',
             }}
           >
-            Pixel Zoo
+            Rising Sun Pictures
           </Link>
           .
         </Text>
@@ -65,7 +64,7 @@ const AboutPage = () => {
         </Heading>
         <Text>
           Currently, I'm building tools to automate various processes
-          at Pixel Zoo as well as designing and deploying networking
+          at RSP as well as designing and deploying networking
           solutions.
         </Text>
         <Text>
@@ -171,6 +170,55 @@ const AboutPage = () => {
                     align="left"
                     fontSize="lg"
                   >
+                    Rising Sun Pictures
+                  </Box>{' '}
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="right"
+                    fontSize="lg"
+                  >
+                    May 2022 → Present
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel>
+                  <Flex marginBottom="1rem">
+                    <Flex>IT Administrator</Flex>
+                    <Spacer />
+                    <Link
+                      href={`https://rsp.com.au`}
+                      title={`Rising Sun Pictures`}
+                      color="#75bcff"
+                      _hover={{
+                        textDecor: 'none',
+                        color: '#30ce56',
+                      }}
+                    >
+                      https://rsp.com.au
+                    </Link>
+                  </Flex>
+                  <Box>
+                    <Text>...</Text>
+                  </Box>
+                </AccordionPanel>
+              </AccordionItem>
+              <AccordionItem
+                marginBottom="1rem"
+                border="1px solid white"
+                borderRadius="20px"
+                backgroundColor="#212121"
+              >
+                <AccordionButton
+                  borderBottom="1px solid white"
+                  borderRadius="20px"
+                >
+                  <Box
+                    fontWeight="800"
+                    flex="1"
+                    align="left"
+                    fontSize="lg"
+                  >
                     Pixel Zoo
                   </Box>{' '}
                   <Box
@@ -179,7 +227,7 @@ const AboutPage = () => {
                     align="right"
                     fontSize="lg"
                   >
-                    Jun 2021 → Present
+                    Jun 2021 → May 2022
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>

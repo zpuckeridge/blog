@@ -57,19 +57,19 @@ const IndexPage = () => {
                     color="rgba(255, 255, 255, 0.9);"
                     fontSize="lg"
                   >
-                    I'm a Systems Administrator based out of Brisbane,
+                    I'm a IT Administrator based out of Brisbane,
                     Australia working for{' '}
                     <Link
-                      href={`https://pixelzoo.com.au`}
+                      href={`https://rsp.com.au`}
                       isExternal
-                      title={`Pixel Zoo Website`}
+                      title={`Rising Sun Pictures Website`}
                       color="#75bcff"
                       _hover={{
                         textDecor: 'none',
                         color: '#30ce56',
                       }}
                     >
-                      Pixel Zoo
+                      Rising Sun Pictures
                     </Link>
                     .
                     <Box marginTop="1rem">
