@@ -6,6 +6,14 @@ This is my personal corner of the internet, a place to experiment, learn and try
 
 This project is forked from the gatsby-starter-blog. I have been tweaking and adding features to make it my own.
 
+## Installation
+Install necessary packages with:
+`yarn install`
+Run the site in development:
+`yarn dev`
+When happy with changes, deploy to gh-pages branch with:
+`yarn deploy`
+
 ## Current Features
 
 - Scroll Progress
