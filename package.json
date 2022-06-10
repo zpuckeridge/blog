@@ -1,8 +1,8 @@
 {
   "name": "zpuckeridge-blog",
   "private": true,
-  "description": "A blog built on Gatsby, React and Chakra-UI.",
-  "version": "2.1",
+  "description": "Blog built on Gatsby, React and Chakra-UI hosted through Cloudflare Pages.",
+  "version": "2.4",
   "author": {
     "name": "Zacchary Puckeridge",
     "email": "zacchary@puckeridge.me",
@@ -12,10 +12,9 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "format": "pretty-quick",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "gatsby build && gh-pages -d public"
+    "deploy": "gatsby build"
   },
   "engines": {
     "node": "16.15.1"
@@ -54,7 +53,6 @@
     "gatsby-source-filesystem": "^4.6.0",
     "gatsby-transformer-remark": "^5.6.0",
     "gatsby-transformer-sharp": "^4.6.0",
-    "gh-pages": "^3.2.2",
     "pill-pity": "^0.2.2",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
@@ -65,11 +63,6 @@
     "serve": "^13.0.2",
     "sharp": "^0.30.5",
     "yarn": "^1.22.18"
-  },
-  "devDependencies": {
-    "husky": "^7.0.4",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.3"
   },
   "repository": {
     "type": "git",
