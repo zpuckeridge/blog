@@ -18,7 +18,7 @@
     "deploy": "gatsby build && gh-pages -d public"
   },
   "engines": {
-    "node": "18.3.0"
+    "node": "16.15.1"
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.1",
