@@ -8,11 +8,18 @@ This project is forked from the gatsby-starter-blog. I have been tweaking and ad
 
 ## Installation
 Install necessary packages with:
+
 `yarn install`
+
 Run the site in development:
+
 `yarn dev`
-When happy with changes, deploy to gh-pages branch with:
+
+When happy with changes, build static files with:
+
 `yarn deploy`
+
+NOTE: You do not need to run the deploy function if you are hosting with Cloudflare Pages. This will be done automagically.
 
 ## Current Features
 
