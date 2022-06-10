@@ -13,10 +13,12 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "pretty-quick",
-    "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy": "gatsby build && gh-pages -d public"
+  },
+  "engines": {
+    "node": "14.15.0"
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.1",
