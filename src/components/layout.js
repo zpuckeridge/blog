@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
           <Box margin="0 auto" maxWidth="40rem" p={4}>
             {children}
           </Box>
-          <Footer />
+          {/* <Footer /> */}
         </PillPity>
       </Box>
     </>

@@ -2,7 +2,7 @@
   "name": "zpuckeridge-blog",
   "private": true,
   "description": "A blog built on Gatsby, React and Chakra-UI.",
-  "version": "2.1",
+  "version": "2.5",
   "author": {
     "name": "Zacchary Puckeridge",
     "email": "zacchary@puckeridge.me",
@@ -25,6 +25,7 @@
     "@choc-ui/paginator": "^3.2.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.3.0",
+    "@fontsource/poppins": "^4.5.8",
     "@fontsource/space-grotesk": "^4.5.1",
     "@react-icons/all-files": "^4.1.0",
     "add": "^2.0.6",

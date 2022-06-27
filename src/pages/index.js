@@ -12,6 +12,7 @@ import {
 import {
   Box,
   Stack,
+  Button,
   Flex,
   Center,
   Heading,
@@ -50,15 +51,17 @@ const IndexPage = () => {
             </Center>
             <Center>
               <Box maxW="800px">
-                <Heading fontSize="5xl">Hi, I'm Zacchary!</Heading>
+                <Heading fontSize="6xl">
+                  Howdy 👋 I'm Zacchary!
+                </Heading>
                 <Box marginTop="0.5rem">
                   <Text
                     maxW="400px"
                     color="rgba(255, 255, 255, 0.9);"
-                    fontSize="lg"
+                    fontSize="xl"
                   >
-                    I'm a IT Administrator based out of Brisbane,
-                    Australia working for{' '}
+                    I am a 22 year old IT Administrator and Web
+                    Developer working for{' '}
                     <Link
                       href={`https://rsp.com.au`}
                       isExternal
@@ -78,113 +81,30 @@ const IndexPage = () => {
                         direction="row"
                         spacing={4}
                       >
-                        <Link
-                          href={`mailto:hi@zacchary.me`}
-                          title={`Email`}
-                          target="_self"
-                          _hover={{
-                            textDecor: 'none',
-                            color: '#30ce56',
-                          }}
-                        >
-                          <Tooltip
-                            hasArrow
-                            label="Email"
-                            fontSize="md"
-                          >
-                            <span>
-                              <FaRegEnvelope fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-                        <Link
-                          href={`https://github.com/zpuckeridge`}
-                          target="_self"
-                          title={`GitHub`}
-                          _hover={{
-                            textDecor: 'none',
-                            color: '#30ce56',
-                          }}
-                        >
-                          <Tooltip
-                            hasArrow
-                            label="GitHub"
-                            fontSize="md"
-                          >
-                            <span>
-                              <FaGithub fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-
-                        <Link
-                          href={`https://gitlab.com/zpuckeridge`}
-                          target="_self"
-                          title={`GitLab`}
-                          _hover={{
-                            textDecor: 'none',
-                            color: '#30ce56',
-                          }}
-                        >
-                          <Tooltip
-                            hasArrow
-                            label="GitLab"
-                            fontSize="md"
-                          >
-                            <span>
-                              <FaGitlab fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-
-                        <Link
-                          target="_self"
-                          title={`LinkedIn`}
-                          href={`https://www.linkedin.com/in/zpuckeridge`}
-                          _hover={{
-                            textDecor: 'none',
-                            color: '#30ce56',
-                          }}
-                        >
-                          <Tooltip
-                            hasArrow
-                            label="LinkedIn"
-                            fontSize="md"
-                          >
-                            <span>
-                              <FaLinkedinIn fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-
-                        <Link
-                          href={`https://dev.to/zpuckeridge`}
-                          target="_self"
-                          title={`DEV`}
-                          _hover={{
-                            textDecor: 'none',
-                            color: '#30ce56',
-                          }}
-                        >
-                          <Tooltip hasArrow label="DEV" fontSize="md">
-                            <span>
-                              <FaDev fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-                        <Spacer />
-                        <Link
+                        <Button
                           as={GatsbyLink}
-                          to={`/about/`}
-                          title={`About`}
-                          color="#75bcff"
-                          _hover={{
-                            textDecor: 'none',
-                            color: '#30ce56',
-                          }}
+                          to="/articles/"
+                          title="Articles"
+                          color="white"
                         >
-                          More about me →
-                        </Link>
+                          Articles
+                        </Button>
+                        <Button
+                          as={GatsbyLink}
+                          to="/about/"
+                          title="About"
+                          color="white"
+                        >
+                          About
+                        </Button>
+                        <Button
+                          as={GatsbyLink}
+                          to="/projects/"
+                          title="Projects"
+                          color="white"
+                        >
+                          Projects
+                        </Button>
                       </Stack>
                     </Box>
                   </Text>

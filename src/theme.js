@@ -93,8 +93,8 @@ export const theme = extendTheme({
   },
 
   fonts: {
-    heading: 'Space Grotesk',
-    body: 'Space Grotesk',
+    heading: 'Poppins',
+    body: 'Poppins',
   },
   fontSizes: {
     xs: '12px',

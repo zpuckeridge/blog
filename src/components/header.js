@@ -5,14 +5,17 @@ import {
   Flex,
   Link,
   Spacer,
+  IconButton,
   Menu,
   MenuButton,
+  MenuGroup,
+  MenuDivider,
   Badge,
   MenuList,
   MenuItem,
   Button,
 } from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
 import { StaticImage } from 'gatsby-plugin-image'
 import { Link as GatsbyLink } from 'gatsby'
 import {
@@ -21,65 +24,31 @@ import {
   FaBookmark,
   FaBookOpen,
   FaToolbox,
+  FaGithub,
+  FaHeadphones,
+  FaDesktop,
+  FaSun,
+  FaMoon,
 } from 'react-icons/fa'
 
 const Header = () => (
   <Box as="header" p={4}>
-    <Box maxW="42rem" mx="auto">
+    <Box>
       <Flex>
-        <Link as={GatsbyLink} to="/" title="Home">
-          <StaticImage
-            quality={100}
-            src="../../src/images/profile-pic.jpg"
-            alt="Zacchary Puckeridge"
-            placeholder="blurred"
-            width={40}
-            height={40}
-            style={{ borderRadius: `100%` }}
-          />
-        </Link>
-        <Spacer />
         <Box>
           <Menu>
-            <Button
-              variant="ghost"
-              as={GatsbyLink}
-              to="/articles/"
-              title="Articles"
-              color="white"
-              marginRight="1rem"
-            >
-              Articles
-            </Button>
-            <Button
-              variant="ghost"
-              as={GatsbyLink}
-              to="/about/"
-              title="About"
-              color="white"
-              marginRight="1rem"
-            >
-              About
-            </Button>
             <MenuButton
-              patternOpacity={1}
-              rightIcon={<ChevronDownIcon />}
-              as={Button}
-            >
-              Links
-            </MenuButton>
+              as={IconButton}
+              icon={<HamburgerIcon />}
+              aria-label="Navigation"
+            />
             <MenuList background="brand.700">
-              <MenuItem
-                title="Tech Stack"
-                color="white"
-                icon={<FaBolt />}
-              >
+              <MenuItem title="Tech Stack" icon={<FaBolt />}>
                 Tech Stack <Badge colorScheme="yellow">WIP</Badge>
               </MenuItem>
               <MenuItem
                 as={GatsbyLink}
                 title="Bookmarks"
-                color="white"
                 to="/bookmarks"
                 icon={<FaBookmark />}
               >
@@ -89,7 +58,6 @@ const Header = () => (
                 as={GatsbyLink}
                 to="/countries"
                 title="Countries"
-                color="white"
                 icon={<FaRegFlag />}
               >
                 Countries
@@ -98,7 +66,6 @@ const Header = () => (
                 as={GatsbyLink}
                 to="/projects"
                 title="Projects"
-                color="white"
                 icon={<FaBookOpen />}
               >
                 Projects
@@ -107,14 +74,38 @@ const Header = () => (
                 as={GatsbyLink}
                 to="/uses/"
                 title="Uses"
-                color="white"
                 icon={<FaToolbox />}
               >
                 Uses
               </MenuItem>
+              <MenuDivider />
+              <MenuItem
+                to="https://github.com/zpuckeridge"
+                title="GitHub"
+                icon={<FaGithub />}
+              >
+                GitHub
+              </MenuItem>
             </MenuList>
           </Menu>
         </Box>
+        <Spacer />
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-label="Settings"
+            icon={<SettingsIcon />}
+          />
+          <MenuList background="brand.700">
+            <Badge colorScheme="yellow">WIP</Badge>
+            <MenuItem icon={<FaToolbox />}>Animations On</MenuItem>
+            <MenuItem icon={<FaHeadphones />}>Sounds On</MenuItem>
+            <MenuDivider />
+            <MenuItem icon={<FaDesktop />}>System Theme</MenuItem>
+            <MenuItem icon={<FaSun />}>Light Theme</MenuItem>
+            <MenuItem icon={<FaMoon />}>Dark Theme</MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
     </Box>
   </Box>
