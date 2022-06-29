@@ -6,10 +6,10 @@ import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react'
 
 export const wrapPageElement = ({ element }) => {
   return (
-    <ChakraProvider resetCSS theme={theme}>
+    <ChakraProvider theme={theme}>
       <ColorModeProvider
         options={{
-          useSystemColorMode: false,
+          useSystemColorMode: true,
           initialColorMode: 'dark',
         }}
       />

@@ -25,6 +25,7 @@ import {
   FaBookOpen,
   FaToolbox,
   FaGithub,
+  FaClock,
   FaHeadphones,
   FaDesktop,
   FaSun,
@@ -43,16 +44,13 @@ const Header = () => (
               aria-label="Navigation"
             />
             <MenuList background="brand.700">
-              <MenuItem title="Tech Stack" icon={<FaBolt />}>
-                Tech Stack <Badge colorScheme="yellow">WIP</Badge>
-              </MenuItem>
               <MenuItem
                 as={GatsbyLink}
-                title="Bookmarks"
                 to="/bookmarks"
+                title="Bookmarks"
                 icon={<FaBookmark />}
               >
-                Bookmarks <Badge colorScheme="yellow">WIP</Badge>
+                Bookmarks
               </MenuItem>
               <MenuItem
                 as={GatsbyLink}
@@ -77,6 +75,14 @@ const Header = () => (
                 icon={<FaToolbox />}
               >
                 Uses
+              </MenuItem>
+              <MenuItem
+                as={GatsbyLink}
+                to="/timeline/"
+                title="Timeline"
+                icon={<FaClock />}
+              >
+                Timeline
               </MenuItem>
               <MenuDivider />
               <MenuItem

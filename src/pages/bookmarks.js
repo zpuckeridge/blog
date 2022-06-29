@@ -12,7 +12,7 @@ const Bookmarks = ({ bookmarks }) => {
           Bookmarks
         </Heading>
         <Text fontSize="2xl" color="white" textAlign="center">
-          Some awesome resources I've found helpful or interesting.
+          Resources I've found helpful or interesting.
         </Text>
       </VStack>
       <SimpleGrid columns={[2, 3]} spacing={4}></SimpleGrid>
