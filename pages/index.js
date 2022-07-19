@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import {
   FaGithub,
   FaGitlab,
@@ -14,13 +16,13 @@ import {
   Center,
   Heading,
   Spacer,
-  Image,
   Tooltip,
   Link,
   Text,
 } from "@chakra-ui/react";
 
 import { Header } from "../components/header";
+import Profile from "../public/images/profile.jpg";
 
 function Home() {
   return (
@@ -29,15 +31,11 @@ function Home() {
       <Center>
         <Box maxW="600px">
           <HStack>
-            <Box
-              boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
-              borderRadius="10px"
-              marginRight="10px"
-            >
+            <Box borderRadius="10px" marginRight="10px">
               <Image
-                src="../public/profile-pic.jpg"
+                src={Profile}
+                placeholder="blur"
                 alt="Zacchary Puckeridge"
-                placeholder="blurred"
                 layout="fixed"
                 width={200}
                 quality={100}
@@ -46,7 +44,7 @@ function Home() {
               />
             </Box>
             <Box>
-              <Heading fontSize="5xl">Hey 👋 I'm Zacchary!</Heading>
+              <Heading fontSize="6xl">Hey 👋 I'm Zacchary!</Heading>
               <Box marginTop="0.5rem">
                 <Text fontSize="lg">
                   I'm an IT Administrator based out of Brisbane, Australia
