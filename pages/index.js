@@ -19,9 +19,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import { Header } from "../components/header";
+
 export default function Home() {
   return (
     <>
+      <Header />
       <Center>
         <Flex align="center">
           <Stack direction={["column", "row"]}>
@@ -47,11 +50,7 @@ export default function Home() {
               <Box maxW="800px">
                 <Heading fontSize="5xl">Hey 👋 I'm Zacchary!</Heading>
                 <Box marginTop="0.5rem">
-                  <Text
-                    maxW="400px"
-                    color="rgba(255, 255, 255, 0.9);"
-                    fontSize="lg"
-                  >
+                  <Text maxW="400px" fontSize="lg">
                     I'm an IT Administrator based out of Brisbane, Australia
                     working for{" "}
                     <Link
