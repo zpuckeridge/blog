@@ -10,6 +10,7 @@ import {
   Box,
   Stack,
   Flex,
+  HStack,
   Center,
   Heading,
   Spacer,
@@ -21,152 +22,96 @@ import {
 
 import { Header } from "../components/header";
 
-export default function Home() {
+function Home() {
   return (
     <>
       <Header />
       <Center>
-        <Flex align="center">
-          <Stack direction={["column", "row"]}>
-            <Center>
-              <Box
-                boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
-                borderRadius="10px"
-                marginRight="10px"
-              >
-                <Image
-                  src="../public/profile-pic.jpg"
-                  alt="Zacchary Puckeridge"
-                  placeholder="blurred"
-                  layout="fixed"
-                  width={200}
-                  quality={100}
-                  height={200}
-                  style={{ borderRadius: `10px` }}
-                />
+        <Box maxW="600px">
+          <HStack>
+            <Box
+              boxShadow="0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);"
+              borderRadius="10px"
+              marginRight="10px"
+            >
+              <Image
+                src="../public/profile-pic.jpg"
+                alt="Zacchary Puckeridge"
+                placeholder="blurred"
+                layout="fixed"
+                width={200}
+                quality={100}
+                height={200}
+                style={{ borderRadius: `10px` }}
+              />
+            </Box>
+            <Box>
+              <Heading fontSize="5xl">Hey 👋 I'm Zacchary!</Heading>
+              <Box marginTop="0.5rem">
+                <Text fontSize="lg">
+                  I'm an IT Administrator based out of Brisbane, Australia
+                  working for{" "}
+                  <Link
+                    href="https://rsp.com.au"
+                    title="Rising Sun Pictures Website"
+                  >
+                    Rising Sun Pictures
+                  </Link>
+                  .
+                </Text>
               </Box>
-            </Center>
-            <Center>
-              <Box maxW="800px">
-                <Heading fontSize="5xl">Hey 👋 I'm Zacchary!</Heading>
-                <Box marginTop="0.5rem">
-                  <Text maxW="400px" fontSize="lg">
-                    I'm an IT Administrator based out of Brisbane, Australia
-                    working for{" "}
-                    <Link
-                      href={`https://rsp.com.au`}
-                      isExternal
-                      title={`Rising Sun Pictures Website`}
-                      color="#75bcff"
-                      _hover={{
-                        textDecor: "none",
-                        color: "#30ce56",
-                      }}
-                    >
-                      Rising Sun Pictures
-                    </Link>
-                    .
-                    <Box marginTop="1rem">
-                      <Stack align="center" direction="row" spacing={4}>
-                        <Link
-                          href={`mailto:hi@zacchary.me`}
-                          title={`Email`}
-                          target="_self"
-                          _hover={{
-                            textDecor: "none",
-                            color: "#30ce56",
-                          }}
-                        >
-                          <Tooltip hasArrow label="Email" fontSize="md">
-                            <span>
-                              <FaRegEnvelope fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-                        <Link
-                          href={`https://github.com/zpuckeridge`}
-                          target="_self"
-                          title={`GitHub`}
-                          _hover={{
-                            textDecor: "none",
-                            color: "#30ce56",
-                          }}
-                        >
-                          <Tooltip hasArrow label="GitHub" fontSize="md">
-                            <span>
-                              <FaGithub fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-
-                        <Link
-                          href={`https://gitlab.com/zpuckeridge`}
-                          target="_self"
-                          title={`GitLab`}
-                          _hover={{
-                            textDecor: "none",
-                            color: "#30ce56",
-                          }}
-                        >
-                          <Tooltip hasArrow label="GitLab" fontSize="md">
-                            <span>
-                              <FaGitlab fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-
-                        <Link
-                          target="_self"
-                          title={`LinkedIn`}
-                          href={`https://www.linkedin.com/in/zpuckeridge`}
-                          _hover={{
-                            textDecor: "none",
-                            color: "#30ce56",
-                          }}
-                        >
-                          <Tooltip hasArrow label="LinkedIn" fontSize="md">
-                            <span>
-                              <FaLinkedinIn fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-
-                        <Link
-                          href={`https://dev.to/zpuckeridge`}
-                          target="_self"
-                          title={`DEV`}
-                          _hover={{
-                            textDecor: "none",
-                            color: "#30ce56",
-                          }}
-                        >
-                          <Tooltip hasArrow label="DEV" fontSize="md">
-                            <span>
-                              <FaDev fontSize="20px" />
-                            </span>
-                          </Tooltip>
-                        </Link>
-                        <Spacer />
-                        <Link
-                          to={`/about/`}
-                          title={`About`}
-                          color="#75bcff"
-                          _hover={{
-                            textDecor: "none",
-                            color: "#30ce56",
-                          }}
-                        >
-                          More about me →
-                        </Link>
-                      </Stack>
-                    </Box>
-                  </Text>
-                </Box>
+              <Box marginTop="1rem" fontSize="lg">
+                <HStack spacing="4">
+                  <Link href="mailto:hi@zacchary.me" title="Email">
+                    <Tooltip label="Email" fontSize="md">
+                      <Box>
+                        <FaRegEnvelope />
+                      </Box>
+                    </Tooltip>
+                  </Link>
+                  <Link href="https://github.com/zpuckeridge" title="GitHub">
+                    <Tooltip label="GitHub" fontSize="md">
+                      <Box>
+                        <FaGithub />
+                      </Box>
+                    </Tooltip>
+                  </Link>
+                  <Link href="https://gitlab.com/zpuckeridge" title="GitLab">
+                    <Tooltip label="GitLab" fontSize="md">
+                      <Box>
+                        <FaGitlab />
+                      </Box>
+                    </Tooltip>
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/in/zpuckeridge"
+                    title="LinkedIn"
+                  >
+                    <Tooltip label="LinkedIn" fontSize="md">
+                      <Box>
+                        <FaLinkedinIn />
+                      </Box>
+                    </Tooltip>
+                  </Link>
+                  <Link href="https://dev.to/zpuckeridge" title="DEV">
+                    <Tooltip label="DEV" fontSize="md">
+                      <Box>
+                        <FaDev />
+                      </Box>
+                    </Tooltip>
+                  </Link>
+                  <Spacer />
+                  <Link href="/about/" title="About">
+                    More about me →
+                  </Link>
+                </HStack>
               </Box>
-            </Center>
-          </Stack>
-        </Flex>
+            </Box>
+          </HStack>
+        </Box>
       </Center>
     </>
   );
 }
+
+export default Home;

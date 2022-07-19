@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="note" content="environment=development"/><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><title data-react-helmet="true"></title><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><style type="text/css">
+    .auto-link-headers.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .auto-link-headers.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .auto-link-headers svg,
+    h2 .auto-link-headers svg,
+    h3 .auto-link-headers svg,
+    h4 .auto-link-headers svg,
+    h5 .auto-link-headers svg,
+    h6 .auto-link-headers svg {
+      visibility: hidden;
+    }
+    h1:hover .auto-link-headers svg,
+    h2:hover .auto-link-headers svg,
+    h3:hover .auto-link-headers svg,
+    h4:hover .auto-link-headers svg,
+    h5:hover .auto-link-headers svg,
+    h6:hover .auto-link-headers svg,
+    h1 .auto-link-headers:focus svg,
+    h2 .auto-link-headers:focus svg,
+    h3 .auto-link-headers:focus svg,
+    h4 .auto-link-headers:focus svg,
+    h5 .auto-link-headers:focus svg,
+    h6 .auto-link-headers:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="icon" href="/favicon-32x32.png?v=0cbe0fe19889af3c3d5489f427820884" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=0cbe0fe19889af3c3d5489f427820884"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=0cbe0fe19889af3c3d5489f427820884"/><script src="/socket.io/socket.io.js"></script><link rel="stylesheet" href="/commons.css"/></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference = systemPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var colorMode;
+
+  if (persistedPreference) {
+    colorMode = persistedPreference;
+  } else if (initialValue === "system") {
+    colorMode = systemPreference;
+  } else {
+    colorMode = initialValue != null ? initialValue : systemPreference;
+  }
+
+  if (colorMode) {
+    /**
+     * Keep in sync with `root.set() {@file ./color-mode.utils.ts}
+     */
+    document.documentElement.style.setProperty("--chakra-ui-color-mode", colorMode);
+    document.documentElement.setAttribute("data-theme", colorMode);
+  }
+})('light')</script><div id="___gatsby"></div><script src="/polyfill.js" nomodule=""></script><script src="/framework.js"></script><script src="/commons.js"></script></body></html>
