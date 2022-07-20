@@ -3,6 +3,7 @@ import {
   Flex,
   Avatar,
   Link,
+  IconButton,
   Button,
   Menu,
   Spacer,
@@ -17,7 +18,24 @@ import {
   Center,
 } from "@chakra-ui/react";
 
-import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import {
+  HamburgerIcon,
+  MoonIcon,
+  SunIcon,
+  ArrowForwardIcon,
+  ChevronDownIcon,
+} from "@chakra-ui/icons";
+
+import {
+  GoPulse,
+  GoHome,
+  GoPencil,
+  GoProject,
+  GoClock,
+  GoBroadcast,
+} from "react-icons/go";
+
+// import react icons
 
 export function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -25,11 +43,31 @@ export function Header() {
     <>
       <Box px={4} marginBottom="8rem">
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Button>
-            <HamburgerIcon />
-          </Button>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={<HamburgerIcon />}
+              variant="ghost"
+              transition="all 0.2s"
+              _focus={{ boxShadow: "outline" }}
+            />
+            <MenuList icon>
+              <MenuItem icon={<GoHome />}>Home</MenuItem>
+              <MenuItem icon={<GoPencil />}>Blog</MenuItem>
+              <MenuItem icon={<GoProject />}>Projects</MenuItem>
+              <MenuItem icon={<GoClock />}>Timeline</MenuItem>
+              <MenuItem icon={<GoBroadcast />}>Livestream</MenuItem>
+              <MenuDivider />
+              <MenuItem icon={<GoPulse />}>Status</MenuItem>
+            </MenuList>
+          </Menu>
           <Spacer />
-          <Button onClick={toggleColorMode}>
+          <Button
+            variant="ghost"
+            transition="all 0.2s"
+            _focus={{ boxShadow: "outline" }}
+            onClick={toggleColorMode}
+          >
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
         </Flex>

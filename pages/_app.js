@@ -1,12 +1,19 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/400.css";
 
-const config = {
-  initialColorMode: "dark",
-  useSystemColorMode: false,
-};
+const theme = extendTheme({
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  },
 
-const theme = extendTheme({ config });
+  fonts: {
+    heading: `"Poppins", sans-serif`,
+    body: `"Poppins", sans-serif`,
+  },
+});
 
 function MyApp({ Component, pageProps }) {
   return (

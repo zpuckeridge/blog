@@ -44,7 +44,7 @@ function Home() {
               />
             </Box>
             <Box>
-              <Heading fontSize="6xl">Hey 👋 I'm Zacchary!</Heading>
+              <Heading fontSize="7xl">Hey 👋 I'm Zacchary!</Heading>
               <Box marginTop="0.5rem">
                 <Text fontSize="lg">
                   I'm an IT Administrator based out of Brisbane, Australia
