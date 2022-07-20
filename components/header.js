@@ -51,7 +51,7 @@ export function Header() {
               transition="all 0.2s"
               _focus={{ boxShadow: "outline" }}
             />
-            <MenuList icon>
+            <MenuList fontSize="lg">
               <MenuItem icon={<GoHome />}>Home</MenuItem>
               <MenuItem icon={<GoPencil />}>Blog</MenuItem>
               <MenuItem icon={<GoProject />}>Projects</MenuItem>
