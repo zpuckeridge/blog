@@ -5,12 +5,12 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 export default function Settings() {
   return (
     <>
-      <Menu as="div" className="relative inline-block text-left">
+      <Menu as="div" className="relative z-50">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black text-gray-600 bg-opacity-20 px-2 py-2 hover:bg-opacity-30 hover:text-white">
+          <Menu.Button className="inline-flex w-full justify-center rounded-md hover:bg-black text-gray-600 bg-opacity-20 px-2 py-2 hover:bg-opacity-30 hover:text-white hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 w-full transition ease-in duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

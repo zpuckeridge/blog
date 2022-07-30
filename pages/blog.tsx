@@ -22,17 +22,17 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ posts }) {
+export default function Blog({ posts }) {
   return (
-    <>
-      <label className="relative block">
+    <div className="mt-16 mb-16">
+      <label className="relative block mb-2">
         <span className="sr-only">Search</span>
-        <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <span className="absolute inset-y-0 left-0 flex items-center">
           <svg className="h-5 w-5 fill-slate-300" viewBox="0 0 20 20"></svg>
         </span>
         <input
-          className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-          placeholder="Search for anything..."
+          className="focus:ring-indigo-500 focus:ring-offset-indigo-200 w-full transition ease-in duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-lg sm:text-sm"
+          placeholder="Search posts"
           type="text"
           name="search"
         />
@@ -58,6 +58,6 @@ export default function Home({ posts }) {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
