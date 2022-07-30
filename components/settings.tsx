@@ -10,7 +10,7 @@ export default function Settings() {
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black text-gray-600 bg-opacity-20 px-2 py-2 hover:bg-opacity-30 hover:text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -47,7 +47,7 @@ export default function Settings() {
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    Edit
+                    System Theme
                   </button>
                 )}
               </Menu.Item>
@@ -58,20 +58,7 @@ export default function Settings() {
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    Duplicate
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
-            <div className="px-1 py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    Archive
+                    Dark Theme
                   </button>
                 )}
               </Menu.Item>
@@ -82,20 +69,7 @@ export default function Settings() {
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    Move
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
-            <div className="px-1 py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    Delete
+                    Light Theme
                   </button>
                 )}
               </Menu.Item>

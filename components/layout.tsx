@@ -1,16 +1,15 @@
 import Link from "next/link";
 
 import Settings from "../components/settings";
+import WebMenu from "../components/menu";
 
 export default function Layout({ children }) {
   return (
     <>
-      <header className="mb-8 py-4">
-        <div className="container mx-auto flex justify-between">
+      <header className="p-2">
+        <div className="mx-auto flex justify-between">
           <div>
-            <Link href="/">
-              <a>🏡</a>
-            </Link>
+            <WebMenu />
           </div>
           <div>
             <Settings />
