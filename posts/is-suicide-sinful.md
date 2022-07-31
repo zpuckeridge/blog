@@ -4,6 +4,7 @@ slug: is-suicide-sinful
 date: "2019-11-06"
 tags: Faith
 description: The act of suicide is sin, because it's taking something that is strictly under God's commandments (life and death) and subjecting it to our own will. It robs a person of the amazing gift of life given to them by God alone.
+socialImage: images/drowning.jpg
 ---
 
 ### What does the Bible say?

@@ -4,9 +4,9 @@ slug: add-comments-gatsby
 date: "2021-05-07"
 tags: Gatsby
 description:
-  Gatsby doesn’t provide any commenting tools by default, so let's add
+  "Gatsby doesn’t provide any commenting tools by default, so let's add
   our own! This article details the steps required to get utteranc.es
-  setup with your Gatsby blog.
+  setup with your Gatsby blog."
 ---
 
 Gatsby doesn't provide any commenting tools by default, so we will be

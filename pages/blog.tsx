@@ -38,21 +38,32 @@ export default function Blog({ posts }) {
         />
       </label>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 md:p-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-4 md:p-0">
         {posts.map(({ slug, frontmatter }) => (
           <div
             key={slug}
-            className="border border-gray-200 m-2 rounded-xl shadow-lg overflow-hidden flex flex-col"
+            className="lg:h-128 md:h-60 border-4 border-gray-300 dark:border-gray-800 m-2 rounded-xl shadow-lg overflow-hidden flex flex-col"
           >
             <Link href={`/post/${slug}`}>
               <a>
-                <Image
-                  width={650}
-                  height={340}
-                  alt={frontmatter.title}
-                  src={`/${frontmatter.socialImage}`}
-                />
-                <h1 className="p-4">{frontmatter.title}</h1>
+                <div className="relative flex justify-center w-full max-w-xl my-auto rounded-t-lg overflow-hidden">
+                  <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600 motion-safe:animate-pulse" />
+                  <Image
+                    alt={frontmatter.title}
+                    className="absolute top-0 left-0 w-full h-48 object-cover select-none"
+                    draggable={false}
+                    layout="fill"
+                    loading="lazy"
+                    src={`/${frontmatter.socialImage}`}
+                  />
+                </div>
+                <h1 className="pt-5 pr-5 pl-5 pb-2 text-xl font-bold">
+                  {frontmatter.title}
+                </h1>
+                <p className="pl-5">{frontmatter.date}</p>
+                <p className="pt-2 pl-5 pr-5 text-clip overflow-hidden">
+                  {frontmatter.description}
+                </p>
               </a>
             </Link>
           </div>

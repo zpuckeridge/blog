@@ -10,6 +10,12 @@ module.exports = {
       width: {
         128: "32rem",
       },
+      height: {
+        128: "28rem",
+      },
+      borderRadius: {
+        "2xl": "24px",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

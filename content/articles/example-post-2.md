@@ -1,8 +1,0 @@
----
-title: "Next.js Image optimization error on Netlify"
-publishedAt: "2022-04-16"
-excerpt: "Next.js has a built-in Image component that comes with a lot of performance optimization features when you are using it."
-cover_image: "path/to/where/image/is/stored"
----
-
-rest of the content falls here

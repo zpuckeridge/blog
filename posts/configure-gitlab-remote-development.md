@@ -5,6 +5,7 @@ date: "2021-06-04"
 tags: Technical
 description: This article details the process of adding an SSH Key from your
   Remote Development Server to GitLab.
+socialImage: images/gitlab.jpg
 ---
 
 ### Prerequisites:
