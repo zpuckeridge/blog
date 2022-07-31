@@ -10,3 +10,18 @@ Packages:
 - next
 - tailwindcss
 - typescript
+
+Todo:
+
+- Add blown up latest article
+- Sort articles by date
+- Finish about page
+- Finish projects page
+- Finish timeline page
+- Fix buttons on home page
+- Add breadcrumbs to posts
+- Add tags to posts
+- Fix search
+- Add copy article url
+- Add page progress scroll
+- Add social links to footer
