@@ -11,14 +11,14 @@ export default function Home() {
         />
       </div> */}
       <div className="p-4">
-        <h5 className="text-8xl font-black text-gray-900 text-center">
+        <h5 className="text-8xl font-black font-white:dark text-center">
           Hey 👋 I'm{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
             Zacchary,
           </span>
           <div className="">a developer</div>
         </h5>
-        <p className="font-bold pt-7 text-lg text-gray-400 text-center">
+        <p className="font-semibold pt-7 text-lg text-gray-400 text-center">
           I'm a 22 year old IT Administrator & Web Developer working for{" "}
           <a
             href="https://rsp.com.au"

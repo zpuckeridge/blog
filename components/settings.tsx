@@ -1,8 +1,21 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useTheme } from "next-themes";
 
 export default function Settings() {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
   return (
     <>
       <Menu as="div" className="relative z-50">
@@ -43,6 +56,9 @@ export default function Settings() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() =>
+                      setTheme(theme === "light" ? "dark" : "light")
+                    }
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -54,6 +70,9 @@ export default function Settings() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() =>
+                      setTheme(theme === "light" ? "dark" : "light")
+                    }
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -65,6 +84,9 @@ export default function Settings() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() =>
+                      setTheme(theme === "light" ? "dark" : "light")
+                    }
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

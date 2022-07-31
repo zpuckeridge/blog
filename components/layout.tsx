@@ -16,7 +16,7 @@ export default function Layout({ children }) {
       </header>
       <main className="container mx-auto flex-1">{children}</main>
       <footer className="p-2 text-center -mt-10">
-        <div className="font-bold text-md text-gray-400">
+        <div className="font-semibold text-md text-gray-400">
           Made with{" "}
           <a href="https://nextjs.org/" className="hover:text-green-300">
             Next.JS

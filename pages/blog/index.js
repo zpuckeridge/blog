@@ -8,7 +8,7 @@ export default function BlogPage({ posts }) {
   return (
     <React.Fragment>
       <Head>
-        <title>My Blog</title>
+        <title>Zacchary's Blog</title>
       </Head>
       <div>
         {posts.map((frontMatter) => {
