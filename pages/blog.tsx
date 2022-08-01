@@ -3,6 +3,8 @@ import matter from "gray-matter";
 import Image from "next/image";
 import Link from "next/link";
 
+import dateFormat, { masks } from "dateformat";
+
 export async function getStaticProps() {
   const files = fs.readdirSync("posts");
   const posts = files.map((fileName) => {
@@ -60,7 +62,9 @@ export default function Blog({ posts }) {
                 <h1 className="pt-5 pr-5 pl-5 pb-2 text-xl font-bold">
                   {frontmatter.title}
                 </h1>
-                <p className="pl-5">{frontmatter.date}</p>
+                <p className="pl-5">
+                  <span>{dateFormat(frontmatter.date, "dS mmmm yyyy")}</span>
+                </p>
                 <p className="pt-2 pl-5 pr-5 text-clip overflow-hidden">
                   {frontmatter.description}
                 </p>

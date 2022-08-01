@@ -34,7 +34,7 @@ export default function Projects(repositories) {
     <>
       <div className="grid h-screen place-items-center">
         <div className="p-4">
-          <h5 className="text-8xl font-extrabold text-gray-900 text-center">
+          <h5 className="text-8xl font-extrabold text-gray-900 dark:text-white text-center">
             Projects Coming Soon!? 😱
           </h5>
         </div>
