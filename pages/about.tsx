@@ -8,8 +8,8 @@ export default function About() {
         description="Learn more about Zacchary Puckeridge"
       />
       <div className="grid h-screen place-items-center">
-        <div className="inline-flex max-w-8xl place-items-center">
-          <div className="mt-20 mb-10 w-128">
+        <div className="md:inline-flex lg:inline-flex max-w-8xl place-items-center">
+          <div className="p-8 mt-20 mb-10 w-128">
             <h5 className="text-4xl font-bold">🤔 About Zacchary Puckeridge</h5>
             <p className="text-lg mt-2">
               Hey there! I'm a 22 year old IT Administrator & Web Developer
@@ -43,9 +43,9 @@ export default function About() {
           </div>
           <div className="ml-4">
             <img
-              className="object-cover w-full h-64 w-64 shadow-xl rounded-xl"
+              className="object-cover w-full h-64 w-64 shadow-xl rounded-xl place-items-center"
               src="./images/profile-pic.jpg"
-              alt=""
+              alt="Zacchary Puckeridge"
             />
           </div>
         </div>

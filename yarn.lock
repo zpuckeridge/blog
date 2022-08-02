@@ -1353,6 +1353,11 @@
   dependencies:
     "yallist" "^4.0.0"
 
+"luxon@^3.0.1":
+  "integrity" "sha512-hF3kv0e5gwHQZKz4wtm4c+inDtyc7elkanAsBq+fundaCdUBNJB1dHEGUZIM6SfSBUlbVFduPwEtNjFK8wLtcw=="
+  "resolved" "https://registry.npmjs.org/luxon/-/luxon-3.0.1.tgz"
+  "version" "3.0.1"
+
 "markdown-it@^13.0.1":
   "integrity" "sha512-lTlxriVoy2criHP0JKRhO2VDG9c2ypWCsT237eDiLqi09rmbKoUetyGHq2uOIRoRS//kfoJckS0eUzzkDR+k2Q=="
   "resolved" "https://registry.npmjs.org/markdown-it/-/markdown-it-13.0.1.tgz"
