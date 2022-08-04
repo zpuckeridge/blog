@@ -38,7 +38,7 @@ export default function ArticlePage({ frontmatter, content }) {
         title={frontmatter.title}
         description={frontmatter.description}
       />
-      <div className="mt-20 prose mx-auto prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:mx-auto prose-img:shadow-xl dark:prose-code:text-white">
+      <div className="p-8 mt-20 prose mx-auto prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:mx-auto prose-img:shadow-xl dark:prose-code:text-white">
         <h1 className="dark:text-white">{frontmatter.title}</h1>
         <span className="dark:text-white">
           {dateFormat(frontmatter.date, "dS mmmm yyyy")}

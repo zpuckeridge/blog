@@ -10,7 +10,7 @@ export default function Home() {
       />
       <div className="grid h-screen place-items-center">
         <div className="p-4">
-          <h5 className="p-4 lg:text-8xl md:text-6xl text-4xl font-black font-white:dark text-center">
+          <h5 className="p-4 lg:text-8xl md:text-6xl text-6xl font-black font-white:dark text-center">
             Hey 👋 I'm{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
               Zacchary,

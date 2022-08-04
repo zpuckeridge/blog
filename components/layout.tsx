@@ -4,7 +4,7 @@ import WebMenu from "../components/menu";
 export default function Layout({ children }) {
   return (
     <>
-      <header className="p-2 absolute">
+      <header className="p-2 absolute z-10">
         <div>
           <div className="fixed top-2 left-2">
             <WebMenu />
