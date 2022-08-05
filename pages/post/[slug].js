@@ -44,7 +44,7 @@ export default function ArticlePage({ frontmatter, content }) {
           {dateFormat(frontmatter.date, "dS mmmm yyyy")}
         </span>
         <p
-          className="dark:text-white "
+          className="dark:text-white"
           dangerouslySetInnerHTML={{ __html: md().render(content) }}
         />
         <div className="mb-10">

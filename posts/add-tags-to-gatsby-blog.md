@@ -5,6 +5,7 @@ date: "2021-05-16"
 tags: Gatsby
 description: Adding tags can be a little tricky when when using your own custom
   styles. This article aims to shed some light on how to add tags!
+socialImage: images/tags.jpg
 ---
 
 Adding tags to our Gatsby Blog will allow users to see other content

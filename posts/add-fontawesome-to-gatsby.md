@@ -4,6 +4,7 @@ slug: add-fontawesome-gatsby
 date: "2021-05-29"
 tags: Gatsby
 description: A quick guide on adding Font Awesome Icons to your Gatsby site the right way.
+socialImage: images/font.jpg
 ---
 
 A quick guide on adding Font Awesome Icons to your Gatsby site the right way.

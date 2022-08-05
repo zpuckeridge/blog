@@ -7,7 +7,7 @@ export default function WebMenu() {
     <>
       <Menu as="div" className="relative">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md hover:bg-black text-gray-600 bg-opacity-20 px-2 py-2 hover:bg-opacity-30 hover:text-white hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 w-full transition ease-in duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+          <Menu.Button className="bg-gray-600 inline-flex w-full justify-center rounded-xl hover:bg-black text-gray-600 bg-opacity-20 px-3 py-3 hover:bg-opacity-30 hover:text-white focus:ring-blue-400 w-full transition ease-in duration-200 focus:outline-none focus:ring-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -33,14 +33,14 @@ export default function WebMenu() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="z-50 absolute left-0 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white bg-indigo-500:dark shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="bg-white z-50 absolute left-0 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-indigo-500:dark shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
               <Link href="/">
                 <Menu.Item>
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? "bg-violet-500 text-white" : "text-gray-900"
+                        active ? "bg-blue-400 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
                       Home
@@ -53,7 +53,7 @@ export default function WebMenu() {
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? "bg-violet-500 text-white" : "text-gray-900"
+                        active ? "bg-blue-400 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
                       About
@@ -66,7 +66,7 @@ export default function WebMenu() {
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? "bg-violet-500 text-white" : "text-gray-900"
+                        active ? "bg-blue-400 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
                       Blog
@@ -79,7 +79,7 @@ export default function WebMenu() {
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? "bg-violet-500 text-white" : "text-gray-900"
+                        active ? "bg-blue-400 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
                       Projects
@@ -92,7 +92,7 @@ export default function WebMenu() {
                   {({ active }) => (
                     <button
                       className={`${
-                        active ? "bg-violet-500 text-white" : "text-gray-900"
+                        active ? "bg-blue-400 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >
                       Timeline

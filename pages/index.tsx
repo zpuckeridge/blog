@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NextSeo, NextSEO } from "next-seo";
+import { NextSeo } from "next-seo";
 
 export default function Home() {
   return (
@@ -11,14 +11,14 @@ export default function Home() {
       <div className="grid h-screen place-items-center">
         <div className="p-4">
           <h5 className="p-4 lg:text-8xl md:text-6xl text-6xl font-black font-white:dark text-center">
-            Hey 👋 I'm{" "}
+            Hey 👋 {"I'm"}{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
               Zacchary,
             </span>
             <div className="">a developer</div>
           </h5>
           <p className="font-semibold pt-7 text-lg text-gray-400 text-center">
-            I'm a 22 year old IT Administrator & Web Developer working for{" "}
+            {"I'm"} a 22 year old IT Administrator & Web Developer working for{" "}
             <a
               href="https://rsp.com.au"
               className="text-blue-400 hover:text-green-300"

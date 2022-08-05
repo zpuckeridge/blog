@@ -6,6 +6,7 @@ tags: Technical
 description: While Ubuntu is generally secure, there are additional steps that
   need to be taken to ensure you are putting up a decent fight against
   exploits.
+socialImage: images/security.jpg
 ---
 
 While Ubuntu is generally secure, there are additional steps that need

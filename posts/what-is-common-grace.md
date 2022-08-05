@@ -4,6 +4,7 @@ slug: common-grace
 date: "2020-04-26"
 tags: Faith
 description: "Common Grace is a theological concept in Protestant Christianity hashed out in the late 19th and early 20th Century by Reformed Christians of the time."
+socialImage: images/church.jpg
 ---
 
 Common Grace is a theological concept in Protestant Christianity hashed out in the late 19th and early 20th Century by Reformed Christians of the time. It pertains to the sovereign grace of God bestowed upon all of mankind regardless of their election. Effectively, this means that God has always bestowed His graciousness on all people in all parts of the world throughout all of history.

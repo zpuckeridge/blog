@@ -7,6 +7,7 @@ description:
   "Gatsby doesn’t provide any commenting tools by default, so let's add
   our own! This article details the steps required to get utteranc.es
   setup with your Gatsby blog."
+socialImage: images/github.jpg
 ---
 
 Gatsby doesn't provide any commenting tools by default, so we will be

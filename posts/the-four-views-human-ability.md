@@ -4,6 +4,7 @@ slug: the-four-views-human-ability
 date: "2020-04-01"
 tags: Faith
 description: A brief overview on the four views of the Human Ability.
+socialImage: images/bible-3.jpg
 ---
 
 Understanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.

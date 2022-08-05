@@ -3,8 +3,8 @@ title: "🌕 How to add a Dark Mode Toggle to Gatsby"
 slug: add-dark-mode-toggle-gatsby
 date: "2021-05-20"
 tags: Gatsby
-description: This article is a short guide on setting up a Dark Mode/Light Mode
-  Toggle with CSS and a Custom Component.
+description: This article is a short guide on setting up a Dark Mode/Light Mode Toggle with CSS and a Custom Component.
+socialImage: images/dark-mode.jpg
 ---
 
 Recently, I decided to implement a light theme into my, by default,

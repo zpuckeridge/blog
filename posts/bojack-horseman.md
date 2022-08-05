@@ -4,6 +4,7 @@ slug: bojack-horseman
 date: "2021-10-02"
 tags: Art
 description: What a show.
+socialImage: images/bojack-diane.jpg
 ---
 
 ![](/images/bojack-diane.jpg)

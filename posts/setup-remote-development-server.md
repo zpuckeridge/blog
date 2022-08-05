@@ -5,6 +5,7 @@ date: "2021-06-02"
 tags: Technical
 description: This article details the process of deploying and configuring your
   own Remote Development Server with Linode and Ubuntu Server.
+socialImage: images/remote-dev.jpg
 ---
 
 ### What even is a Remote Development Server?

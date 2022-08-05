@@ -4,6 +4,7 @@ slug: old-testament-law
 date: "2020-11-16"
 tags: Faith
 description: A friend had a run in with some folk that followed the Old Testament Law. The evidence they provided was actually quite compelling, so I decided to do some digging.
+socialImage: images/bible-2.jpg
 ---
 
 ### Context

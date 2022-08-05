@@ -5,6 +5,7 @@ date: "2021-05-13"
 tags: Technical
 description: "Want to learn how to create a simple Discord Bot and run it with
   Docker? Well, you're in luck!"
+socialImage: images/robot.jpg
 ---
 
 This article will go through the basic steps to get a Discord Bot

@@ -3,11 +3,8 @@ title: 💌 Homosexuality - what does the Bible say?
 slug: homosexuality-what-does-the-bible-say
 date: "2020-07-07"
 tags: Faith
-description:
-  Many Christians misconstrue and misunderstand what God and the Bible
-  has to say about homosexuality. More often than not, this pushes
-  people even further away from coming to truly understand who Christ
-  is and what His sacrifice on the cross means for them.
+description: Many Christians fail to provide Biblical principle to homosexuality. More often than not, this pushes people even further away from coming to truly understand who Christ is.
+socialImage: images/pride.jpg
 ---
 
 _This article contains sexually explicit topics that may not be

@@ -20,7 +20,7 @@ export default function Settings() {
     <>
       <Menu as="div" className="relative z-50">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md hover:bg-black text-gray-600 bg-opacity-20 px-2 py-2 hover:bg-opacity-30 hover:text-white hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 w-full transition ease-in duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2">
+          <Menu.Button className="bg-gray-600 inline-flex w-full justify-center rounded-xl hover:bg-black text-gray-600 bg-opacity-20 px-3 py-3 hover:bg-opacity-30 hover:text-white focus:ring-blue-400 w-full transition ease-in duration-200 focus:outline-none focus:ring-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -60,7 +60,7 @@ export default function Settings() {
                       setTheme(theme === "light" ? "dark" : "light")
                     }
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? "bg-blue-400 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     Dark Theme
@@ -74,7 +74,7 @@ export default function Settings() {
                       setTheme(theme === "light" ? "dark" : "light")
                     }
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? "bg-blue-400 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     Light Theme

@@ -4,6 +4,7 @@ slug: what-is-ci-cd
 date: "2021-05-18"
 tags: DevOps
 description: A short Guide to Continuous Integration, Testing, Delivery and Deployment.
+socialImage: images/pipeline.jpg
 ---
 
 CI/CD, or better known as Continuous Integration, Continuous Delivery and Continuous Deployment, refers to the connected practices and process of pipeline deployment revolved around automation and continuous application development.

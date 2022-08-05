@@ -1,37 +1,6 @@
 import { NextSeo } from "next-seo";
 
-// import { Listbox } from "@headlessui/react";
-
-// export async function getServerSideProps() {
-//   const response = await fetch(
-//     "https://api.github.com/users/zpuckeridge/repos",
-//     {
-//       headers: {
-//         authorization: `token ${process.env.GITHUB_PAT}`,
-//       },
-//     }
-//   );
-
-//   const json = await response.json();
-
-//   const repositories = json
-//     .map((repo) => {
-//       if (!repo.topics.includes("portfolio")) return null;
-
-//       if (repo.archived) return null;
-
-//       return repo;
-//     })
-//     .filter((project) => project !== null);
-
-//   return {
-//     props: {
-//       repositories,
-//     },
-//   };
-// }
-
-export default function Projects(repositories) {
+export default function Projects() {
   return (
     <>
       <NextSeo
@@ -45,7 +14,6 @@ export default function Projects(repositories) {
           </h5>
         </div>
       </div>
-      {/* <pre>{JSON.stringify(repositories, null, 4)}</pre> */}
     </>
   );
 }

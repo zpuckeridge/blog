@@ -1,7 +1,7 @@
 import Settings from "../components/settings";
 import WebMenu from "../components/menu";
 
-export default function Layout({ children }) {
+export default function Layout({ children }: { children: any }) {
   return (
     <>
       <header className="p-2 absolute z-10">

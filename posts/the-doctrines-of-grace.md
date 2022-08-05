@@ -4,6 +4,7 @@ slug: the-doctrines-of-grace
 date: "2019-11-06"
 tags: Faith
 description: A brief overview of the Doctrines of Grace.
+socialImage: images/grace.jpg
 ---
 
 ### Predestination/Unconditional Election

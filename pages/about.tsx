@@ -1,4 +1,5 @@
 import { NextSeo } from "next-seo";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -12,9 +13,9 @@ export default function About() {
           <div className="p-8 mt-20 w-128">
             <h5 className="text-4xl font-bold">🤔 About Zacchary Puckeridge</h5>
             <p className="text-lg mt-2">
-              Hey there! I'm a 22 year old IT Administrator & Web Developer
-              based out of Brisbane, Australia. Currently, I'm working for a VFX
-              Studio called{" "}
+              Hey there! {"I'm"} a 22 year old IT Administrator & Web Developer
+              based out of Brisbane, Australia. Currently, {"I'm"} working for a
+              VFX Studio called{" "}
               <a
                 href="https://rsp.com.au"
                 className="text-blue-400 hover:text-green-300"
@@ -29,12 +30,14 @@ export default function About() {
               </h5>
               <div>
                 <p>
-                  Currently, I'm building tools to automate various processes at
-                  RSP as well as designing and deploying networking solutions.
+                  Currently, {"I'm"} building tools to automate various
+                  processes at RSP as well as designing and deploying networking
+                  solutions.
                 </p>
                 <br />
                 <p>
-                  When I'm not at work, or working on a personal project, I'm
+                  When {"I'm"} not at work, or working on a personal project,{" "}
+                  {"I'm"}
                   hanging out with mates, riding motorcycles, playing video
                   games, nerding out over audio and teaching myself animation.
                 </p>
@@ -42,8 +45,8 @@ export default function About() {
             </div>
           </div>
           <div className="grid place-items-center">
-            <img
-              className=" w-full h-64 w-64 shadow-xl rounded-xl place-items-center"
+            <Image
+              className="w-full h-64 w-64 shadow-xl rounded-xl place-items-center"
               src="./images/profile-pic.jpg"
               alt="Zacchary Puckeridge"
             />

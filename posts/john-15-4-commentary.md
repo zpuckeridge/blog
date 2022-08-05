@@ -4,6 +4,7 @@ slug: john-15-4-commentary
 date: "2020-04-28"
 tags: Faith
 description: A short study on John 15:4 and how it applies to our lives.
+socialImage: images/bible.jpg
 ---
 
 ### Introduction

@@ -4,6 +4,7 @@ slug: monitor-windows-grafana
 date: "2021-08-03"
 tags: Technical
 description: Monitor Windows using Grafana and Prometheus to get monitor and store information on system wide temperatures and performance statistics.
+socialImage: images/grafana.jpg
 ---
 
 This article covers the installation and configuration process of OhmGraphite to work with Prometheus and send statistics to Grafana.

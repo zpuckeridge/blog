@@ -5,6 +5,7 @@ date: "2021-05-06"
 tags: Technical
 description: Follow along while we delve into the process of creating a simply
   Gatsby blog and host it with GitHub pages!
+socialImage: images/laptop.jpg
 ---
 
 The following article will go through the process of using Gatsby and
