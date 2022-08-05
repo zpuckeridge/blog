@@ -37,9 +37,9 @@ export default function About() {
                 <br />
                 <p>
                   When {"I'm"} not at work, or working on a personal project,{" "}
-                  {"I'm"}
-                  hanging out with mates, riding motorcycles, playing video
-                  games, nerding out over audio and teaching myself animation.
+                  {"I'm"} hanging out with mates, riding motorcycles, playing
+                  video games, nerding out over audio and teaching myself
+                  animation.
                 </p>
               </div>
             </div>

@@ -81,7 +81,7 @@ export default function Blog({ posts }: { posts: any }) {
                   return (
                     <div key={post.slug}>
                       <Link href={`/post/${post.slug}`}>
-                        <a className="transition ease-in duration-200 lg:h-128 md:h-60 border-2 border-gray-300 dark:border-gray-800 m-2 rounded-xl shadow-lg flex flex-col overflow-hidden bg-gray-900 focus:ring-blue-400 focus:outline-none focus:ring-4 bg-opacity-20 hover:bg-opacity-30 hover:bg-black">
+                        <a className="transition ease-in duration-200 lg:h-128 md:h-60 border-2 border-gray-300 dark:border-gray-800 m-2 rounded-xl shadow-lg flex flex-col bg-gray-900 focus:ring-blue-400 focus:outline-none focus:ring-4 bg-opacity-20 hover:bg-opacity-30 hover:bg-black">
                           <div>
                             <div className="relative flex justify-center w-full max-w-xl my-auto rounded-t-lg">
                               <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
@@ -98,10 +98,10 @@ export default function Blog({ posts }: { posts: any }) {
                             <h1 className="pt-5 pr-5 pl-5 pb-2 text-xl font-bold">
                               {post.frontmatter.title}
                             </h1>
-                            <p className="pt-2 pl-5 pr-5 pb-5">
+                            <p className="pt-2 pl-5 pr-5 pb-5 h-14 text-ellipsis overflow-hidden ...">
                               {post.frontmatter.description}
                             </p>
-                            <div className="pl-5">
+                            <div className="pl-5 mt-2 mb-2">
                               <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 border-2 border-gray-300 dark:border-gray-800 bg-gray-600 bg-opacity-20 text-center text-base font-semibold shadow-lg rounded-xl">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
