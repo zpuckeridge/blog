@@ -16,17 +16,26 @@ export default function Layout({ children }: { children: any }) {
       </header>
       <main className="container mx-auto flex-1">{children}</main>
       <footer className="p-2 text-center -mt-10">
-        <div className="font-semibold text-md text-gray-400">
+        <div className="font-semibold text-md dark:text-gray-300">
           Made with{" "}
-          <a href="https://nextjs.org/" className="hover:text-green-300">
+          <a
+            href="https://nextjs.org/"
+            className="transition ease-in hover:text-green-300"
+          >
             Next.JS
           </a>
           ,{" "}
-          <a href="https://reactjs.org/" className="hover:text-green-300">
+          <a
+            href="https://reactjs.org/"
+            className="transition ease-in hover:text-green-300"
+          >
             React
           </a>
           ,{" "}
-          <a href="https://tailwindcss.com/" className="hover:text-green-300">
+          <a
+            href="https://tailwindcss.com/"
+            className="transition ease-in hover:text-green-300"
+          >
             Tailwind CSS
           </a>{" "}
           and <a href="https://github.com/zpuckeridge/blog">💖</a>

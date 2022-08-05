@@ -3,7 +3,7 @@ title: "🐴 BoJack Horseman"
 slug: bojack-horseman
 date: "2021-10-02"
 tags: Art
-description: What a show.
+description: The creators of the show clearly have a deep love for their characters and the writer Raphael Bob-Waksberg doesn't hold back on delivering them amazing lines and character arcs.
 socialImage: images/bojack-diane.jpg
 ---
 
@@ -11,7 +11,7 @@ socialImage: images/bojack-diane.jpg
 
 BoJack Horseman is a character you can laugh with, cry, hate and love all at the same time. This show tackles so many challenging issues with the human condition including what it means to have a family, what it means to love someone, fleeting happiness, drug abuse, nihilism, child abuse, death, depression, legacy and so much more.
 
-The creators of the show clearly have a love for their characters and the writer Raphael Bob-Waksberg doesn't hold back on delivering them amazing lines and character arcs. I was consistently interested in all of the side character's lives because they felt real. Even in Season 4 Episode 2 with Eddie the dragonfly. I so desperately wanted both of these characters to open up to each other with what they are both going through. It was sad to see BoJack leave Eddie never to return.
+The creators of the show clearly have a deep love for their characters and the writer Raphael Bob-Waksberg doesn't hold back on delivering them amazing lines and character arcs. I was consistently interested in all of the side character's lives because they felt real. Even in Season 4 Episode 2 with Eddie the dragonfly. I so desperately wanted both of these characters to open up to each other with what they are both going through. It was sad to see BoJack leave Eddie never to return.
 
 Life is cruel and doesn't always work out the way we want it to. That's primarily what the whole show is about. It's a take on trying to be happy and never quite getting enough of what you need to be that. BoJack drowns himself in liquor, drugs, sex and even in part destroying other people with his self-destructive tendencies to distract himself from not being happy. We saw that with Wanda, and well, most of his relationships.
 

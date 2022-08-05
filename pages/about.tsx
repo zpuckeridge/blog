@@ -46,9 +46,13 @@ export default function About() {
           </div>
           <div className="grid place-items-center">
             <Image
-              className="w-full h-64 w-64 shadow-xl rounded-xl place-items-center"
-              src="./images/profile-pic.jpg"
+              className="w-full shadow-xl rounded-xl"
               alt="Zacchary Puckeridge"
+              width="250"
+              height="250"
+              loading="lazy"
+              quality="50"
+              src="./images/profile-pic.jpg"
             />
           </div>
         </div>

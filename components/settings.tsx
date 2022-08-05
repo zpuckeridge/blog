@@ -20,7 +20,10 @@ export default function Settings() {
     <>
       <Menu as="div" className="relative z-50">
         <div>
-          <Menu.Button className="bg-gray-600 inline-flex w-full justify-center rounded-xl hover:bg-black text-gray-600 bg-opacity-20 px-3 py-3 hover:bg-opacity-30 hover:text-white focus:ring-blue-400 w-full transition ease-in duration-200 focus:outline-none focus:ring-4">
+          <Menu.Button
+            aria-label="Settings Toggle"
+            className="inline-flex w-full justify-center rounded-xl hover:bg-black text-gray-600 bg-opacity-20 px-3 py-3 hover:bg-opacity-30 hover:text-white focus:ring-blue-400 w-full transition ease-in duration-200 focus:outline-none focus:ring-4"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -44,12 +47,12 @@ export default function Settings() {
         </div>
         <Transition
           as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
+          enter="transition ease-out duration-150"
+          enterFrom="transform opacity-0 scale-75"
           enterTo="transform opacity-100 scale-100"
           leave="transition ease-in duration-75"
           leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+          leaveTo="transform opacity-0 scale-75"
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
@@ -60,9 +63,25 @@ export default function Settings() {
                       setTheme(theme === "light" ? "dark" : "light")
                     }
                     className={`${
-                      active ? "bg-blue-400 text-white" : "text-gray-900"
+                      active
+                        ? "transition ease-in bg-blue-400 text-white"
+                        : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="mr-2 h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                      />
+                    </svg>
                     Dark Theme
                   </button>
                 )}
@@ -74,9 +93,25 @@ export default function Settings() {
                       setTheme(theme === "light" ? "dark" : "light")
                     }
                     className={`${
-                      active ? "bg-blue-400 text-white" : "text-gray-900"
+                      active
+                        ? "transition ease-in bg-blue-400 text-white"
+                        : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="mr-2 h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
+                    </svg>
                     Light Theme
                   </button>
                 )}
