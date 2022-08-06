@@ -10,7 +10,7 @@ export default function Timeline() {
       <div className="grid h-screen place-items-center">
         <div className="p-4">
           <h5 className="text-8xl font-extrabold dark:text-white text-gray-900 text-center">
-            Timeline is WIP! 😵‍💫
+            Timeline WIP! 😵‍💫
           </h5>
         </div>
       </div>

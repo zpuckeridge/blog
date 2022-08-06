@@ -118,9 +118,7 @@ TOKEN:[YOUR-BOT-TOKEN-HERE]
 
 Replace `YOUR-BOT-TOKEN-HERE` with the token you copied from your bot.
 
-<blockquote id="blockquote-important">
-Note: Do not push the .env file to a Git repository. Ensure this file is in your .gitignore file. Exposing this token allows other users to control your bot.
-</blockquote>
+> Note: Do not push the .env file to a Git repository. Ensure this file is in your .gitignore file. Exposing this token allows other users to control your bot.
 
 While we're at it, let's invite our Discord Bot to our server now.
 This will allow us to ensure the bot is working in the next step!

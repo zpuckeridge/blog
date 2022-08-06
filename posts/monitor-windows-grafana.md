@@ -3,7 +3,7 @@ title: "🔬 Monitor Windows with Grafana and Prometheus"
 slug: monitor-windows-grafana
 date: "2021-08-03"
 tags: Technical
-description: Monitor Windows using Grafana and Prometheus to get monitor and store information on system wide temperatures and performance statistics.
+description: Monitor Windows 10 using Grafana and Prometheus to store logs on system wide temperatures and performance.
 socialImage: images/grafana.jpg
 ---
 

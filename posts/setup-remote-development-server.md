@@ -21,28 +21,28 @@ where you left off.
 There are both pros and cons for using a Remote Development Server.
 These include:
 
-**Some Pros:**
+Some Pros:
 
-1. **Develop on the Operating System your code will be hosted on:**
+1. Develop on the Operating System your code will be hosted on:
    One of the biggest advantages of a Remote Development Server is the
    ability to develop using the same OS your production servers are
    using without having to use that OS on your own PC. This allows you
    to do a huge variety of extended testing and real world scenarios.
-2. **Run Time Consuming Tasks in the background:** If you are a data
+2. Run Time Consuming Tasks in the background: If you are a data
    scientist or machine learning developer, you will find that most
    modern hardware solutions will significantly slow down you computer
    or laptop when running simulations. Utilising a Remote Development
    Server allows you to offload this work.
-3. **Better Hardware:** By having a Remote Development Server, you are
+3. Better Hardware: By having a Remote Development Server, you are
    in fact creating the ability for yourself to be able to code from
    any type of hardware or device as all the computing is completed
    remotely.
 
 plus many more features.
 
-**Some Cons:**
+Some Cons:
 
-1. **Remote Development Servers require an Internet Connection:** The
+1. Remote Development Servers require an Internet Connection: The
    only major disadvantage when it comes to Remote Development Servers
    is that they require an internet connection to prevent your work
    from being interrupted. In future however, I will be providing an
@@ -52,9 +52,7 @@ plus many more features.
 As you can see, the pros definitely outweigh the cons in this
 scenario.
 
-<blockquote id="blockquote-info">
-Note: This is not an exhaustive list or pros and cons, but some of the more important reasons to utilise a Remote Development Server.
-</blockquote>
+> Note: This is not an exhaustive list or pros and cons, but some of the more important reasons to utilise a Remote Development Server.
 
 ### Prerequisites:
 
@@ -82,12 +80,7 @@ this has been filled out, we are ready to create our Linode Instance!
 
 ![](/images/image-2.png)
 
-<blockquote id="blockquote-info">
-Note: I recommend that you pay for automated backups of your Linode Instance in the case that you need to rollback any changes to your server.
-
-It can take anywhere from 5-10 minutes for the server to deploy.
-
-</blockquote>
+> Note: I recommend that you pay for automated backups of your Linode Instance in the case that you need to rollback any changes to your server. It can take anywhere from 5-10 minutes for the server to deploy.
 
 ### Step 2 - Logging into your Linode Instance
 

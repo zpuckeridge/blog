@@ -1,15 +1,15 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
 
-export default function WebMenu() {
+export default function MainMenu() {
   return (
     <>
       <Menu as="div" className="relative">
         <div>
           <Menu.Button
             aria-label="Menu Toggle"
-            className="inline-flex w-full justify-center rounded-xl hover:bg-black text-gray-600 bg-opacity-20 px-3 py-3 hover:bg-opacity-30 hover:text-white focus:ring-blue-400 w-full transition ease-in duration-200 focus:outline-none focus:ring-4"
+            className="w-9 h-9 bg-gray-200 rounded-lg dark:bg-[#1d1f22] flex items-center justify-center  hover:ring-2 ring-gray-300  transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

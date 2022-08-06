@@ -3,7 +3,7 @@ title: "🙏 Should we forgive ourselves?"
 slug: should-we-forgive-ourselves
 date: "2020-11-12"
 tags: Faith
-description: Well - the answer isn't as cut or dry as many may believe... It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus.
+description: There is no condemnation for those who are in Christ Jesus, dwelling on our sin or shortcomings benefits no one.
 socialImage: images/worship.jpg
 ---
 

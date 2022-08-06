@@ -13,11 +13,11 @@ It was an incredibly popular song and has been listened to millions of times acr
 
 Many people are quick to defend the use of the word with the following argument:
 
-> "The word is not to describe God himself, but to describe the love he shows us. From a human perspective, the way God gives himself up for us appears reckless."
+> The word is not to describe God himself, but to describe the love he shows us. From a human perspective, the way God gives himself up for us appears reckless.
 
 Cory Asbury himself also came out with a defense for the use of the word 'reckless':
 
-> "When I use the phrase, “the reckless love of God”, I’m not saying that God Himself is reckless. I am, however, saying that the way He loves, is in many regards, quite so." - [Cory Asbury](https://www.facebook.com/coryasburymusic/posts/many-have-asked-me-for-clarity-on-the-phrase-reckless-love-many-have-wondered-wh/10158977378510171/)
+> When I use the phrase, “the reckless love of God”, I’m not saying that God Himself is reckless. I am, however, saying that the way He loves, is in many regards, quite so. - [Cory Asbury](https://www.facebook.com/coryasburymusic/posts/many-have-asked-me-for-clarity-on-the-phrase-reckless-love-many-have-wondered-wh/10158977378510171/)
 
 Firstly, to understand the controversy and why there is an issue with the word, we must look at the definition of 'reckless'.
 

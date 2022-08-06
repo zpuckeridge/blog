@@ -5,8 +5,7 @@ date: "2021-05-07"
 tags: Gatsby
 description:
   "Gatsby doesn’t provide any commenting tools by default, so let's add
-  our own! This article details the steps required to get utteranc.es
-  setup with your Gatsby blog."
+  our own!"
 socialImage: images/github.jpg
 ---
 
