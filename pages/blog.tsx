@@ -53,9 +53,9 @@ export default function Blog({ posts }: { posts: any }) {
               Blog
             </h1>
             <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
-              I've been writing online since 2019 and I've found it to be
-              incredibly useful for retaining information about programming,
-              scripture and anything else I might find interesting. It's
+              {"I've"} been writing online since 2019 and {"I've"} found it to
+              be incredibly useful for retaining information about programming,
+              scripture and anything else I might find interesting. {"It's"}
               definitely interesting going back through older posts to see how I
               used to write and how my opinions and beliefs have changed.
             </h2>
