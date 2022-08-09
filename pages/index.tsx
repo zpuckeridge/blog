@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { NextSeo } from "next-seo";
 import BlogPostCard from "../components/BlogPostCard";
+import Notice from "../components/Notice";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
             <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
               Zacchary Puckeridge
             </h1>
-            <h2 className="text-gray-700 dark:text-gray-200 mb-4">
+            <h2 className="mt-2 text-gray-700 dark:text-gray-200 mb-4">
               IT Administrator and Web Developer at{" "}
               <span className="font-semibold">Rising Sun Pictures</span>
             </h2>
@@ -78,6 +79,7 @@ export default function Home() {
           </a>
         </Link>
       </div>
+      <Notice />
     </>
   );
 }

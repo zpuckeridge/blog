@@ -45,7 +45,7 @@ export default function ArticlePage({ frontmatter, content }) {
         title={frontmatter.title}
         description={frontmatter.description}
       />
-      <div className="mt-20 grid place-items-center text-ellipsis overflow-hidden pl-8 pr-8">
+      <div className="mt-5 mx-auto">
         <nav aria-label="Breadcrumb">
           <ol
             role="list"
@@ -103,7 +103,7 @@ export default function ArticlePage({ frontmatter, content }) {
           </ol>
         </nav>
       </div>
-      <div className="-mt-5 p-8 prose mx-auto prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:mx-auto prose-img:shadow-xl dark:prose-code:text-white">
+      <div className="prose mx-auto prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:mx-auto prose-img:shadow-xl dark:prose-code:text-white">
         <div className="text-center">
           <p className="uppercase font-bold text-blue-600">
             {frontmatter.tags}
