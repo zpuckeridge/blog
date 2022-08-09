@@ -1,12 +1,19 @@
+# DEPRACATED
+
 [![CodeQL](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml/badge.svg?branch=preview)](https://github.com/zpuckeridge/blog/actions/workflows/codeql-analysis.yml)
 
 # Personal Blog
 
-This is my personal corner of the internet, a place to experiment, learn and try new things. The goal of this project is to have a forward-facing display site to show employers a quick overview of my skills and capabilities in a minimalistic and simple fashion.
+This is my personal corner of the internet, a place to experiment,
+learn and try new things. The goal of this project is to have a
+forward-facing display site to show employers a quick overview of my
+skills and capabilities in a minimalistic and simple fashion.
 
-This project is forked from the gatsby-starter-blog. I have been tweaking and adding features to make it my own.
+This project is forked from the gatsby-starter-blog. I have been
+tweaking and adding features to make it my own.
 
 ## Installation
+
 Install necessary packages with:
 
 `yarn install`
@@ -19,7 +26,8 @@ When happy with changes, build static files with:
 
 `yarn deploy`
 
-NOTE: You do not need to run the deploy function if you are hosting with Cloudflare Pages. This will be done automagically.
+NOTE: You do not need to run the deploy function if you are hosting
+with Cloudflare Pages. This will be done automagically.
 
 ## Current Features
 
@@ -53,7 +61,8 @@ NOTE: You do not need to run the deploy function if you are hosting with Cloudfl
 - Syntax Copy Button
 - Syntax File Path
 - Installation/Configuration Instructions
-- Stats Page (heart rate, last check in, sleep time, average word count, blog stats etc.)
+- Stats Page (heart rate, last check in, sleep time, average word
+  count, blog stats etc.)
 - Post View Count
 - Edit this Post on GitHub Button
 - Vertical Social Menu - IN PROGRESS
@@ -65,4 +74,5 @@ NOTE: You do not need to run the deploy function if you are hosting with Cloudfl
 - Favorite Resources
 
 ## To Fix
+
 - Code Block Bottom Margin
