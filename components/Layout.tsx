@@ -1,6 +1,5 @@
 import MainMenu from "./MainMenu";
 import ThemeSwitch from "./ThemeSwitch";
-import Notice from "./Notice";
 
 export default function Layout({ children }: { children: any }) {
   return (
@@ -11,7 +10,6 @@ export default function Layout({ children }: { children: any }) {
           <ThemeSwitch />
         </nav>
         <main className="flex flex-col justify-center px-8">{children}</main>
-        <Notice />
         <footer className="p-2 text-center -mt-10">
           <div className="font-semibold text-md text-gray-600 dark:text-gray-400">
             Made with{" "}

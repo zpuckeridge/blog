@@ -12,7 +12,7 @@ This article will go through the basic steps to get a Discord Bot
 setup and hosted through Docker. A more in depth guide on creating
 commands will be coming soon!
 
-### Prerequisites::
+### Prerequisites
 
 The following article assumes that you some general knowledge in the
 following areas:
