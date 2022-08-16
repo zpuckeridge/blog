@@ -1,6 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
-import Image from "next/image";
+import Image from 'next/future/image'
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 import dateFormat, { masks } from "dateformat";
@@ -55,7 +55,7 @@ export default function Blog({ posts }: { posts: any }) {
             <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
               {"I've"} been writing online since 2019 and {"I've"} found it to
               be incredibly useful for retaining information about programming,
-              scripture and anything else I might find interesting. {"It's"}
+              scripture and anything else I might find interesting. It is
               definitely interesting going back through older posts to see how I
               used to write and how my opinions and beliefs have changed.
             </h2>
@@ -84,6 +84,7 @@ export default function Blog({ posts }: { posts: any }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+              
               {filteredBlogPosts
                 .sort(
                   (
@@ -131,10 +132,11 @@ export default function Blog({ posts }: { posts: any }) {
                               <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
                               <Image
                                 className="absolute top-0 left-0 w-full h-48 object-cover select-none"
-                                draggable={false}
-                                layout="fill"
-                                loading="lazy"
-                                quality="50"
+                                sizes="20vw"
+                                width={1}
+                                height={1}
+                                priority
+                                quality="10"
                                 alt={`${post.frontmatter.title}`}
                                 src={`/${post.frontmatter.socialImage}`}
                               />
