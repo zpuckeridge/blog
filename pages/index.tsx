@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/future/image'
 import { NextSeo } from "next-seo";
 import BlogPostCard from "../components/BlogPostCard";
 import Notice from "../components/Notice";
@@ -28,7 +28,7 @@ export default function Home() {
           </div>
           <div className="w-[80px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
             <Image
-              alt="Lee Robinson"
+              alt="Zacchary Puckeridge"
               height={176}
               width={176}
               src="/images/profile-pic.jpg"
