@@ -12,6 +12,7 @@ module.exports = {
   experimental: {
     images: {
       allowFutureImage: true,
+      unoptimized: true,
     },
   },
 }
