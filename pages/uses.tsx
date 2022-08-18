@@ -25,7 +25,7 @@ export default function About() {
                 <li>MBO: ASUS ROG STRIX X570-I</li>
                 <li>SSD: 2x 1TB Samsung 980 Pro</li>
               </ul>
-              For audio, I'm using the following:
+              For audio, {"I'm"} using the following:
               <ul className="list-disc">
                 <li>Amplification: Focusrite Scarlett Solo</li>
                 <li>Microphone: Audio-Technica AT2020 Cardioid Condenser</li>
