@@ -1,6 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
-import Image from 'next/future/image'
+import Image from "next/future/image";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 import dateFormat, { masks } from "dateformat";
@@ -84,7 +84,6 @@ export default function Blog({ posts }: { posts: any }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-              
               {filteredBlogPosts
                 .sort(
                   (
@@ -131,7 +130,7 @@ export default function Blog({ posts }: { posts: any }) {
                             <div className="relative flex justify-center my-auto rounded-t-lg">
                               <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
                               <Image
-                                className="absolute top-0 left-0 w-full h-48 object-cover select-none"
+                                className="hidden lg:visible absolute top-0 left-0 w-full h-48 object-cover select-none"
                                 sizes="20vw"
                                 width={1}
                                 height={1}
