@@ -1,5 +1,5 @@
 import { NextSeo } from "next-seo";
-import Image from 'next/future/image'
+import Image from "next/future/image";
 import TopTracks from "../components/TopTracks";
 
 export default function About() {
@@ -45,11 +45,11 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="grid place-items-center">
+          <div className="grid place-items-center h-64 w-64">
             <Image
               alt="Zacchary Puckeridge"
-              width={250}
-              height={250}
+              width={100}
+              height={100}
               priority
               src="/images/profile-pic.jpg"
               className="w-full shadow-xl rounded-xl"
