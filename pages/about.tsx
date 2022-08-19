@@ -45,7 +45,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="grid place-items-center">
+          <div className="grid place-items-center h-64 w-64">
             <Image
               alt="Zacchary Puckeridge"
               width={100}
