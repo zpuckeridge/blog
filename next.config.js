@@ -5,14 +5,5 @@ const nextConfig = {
 };
 
 module.exports = {
-  nextConfig
+  nextConfig,
 };
-
-module.exports = {
-  experimental: {
-    images: {
-      allowFutureImage: true,
-      unoptimized: true,
-    },
-  },
-}
