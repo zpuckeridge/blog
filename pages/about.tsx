@@ -15,9 +15,9 @@ export default function About() {
             🤔 About me
           </h1>
           <h2 className="text-gray-700 dark:text-gray-200 mt-2">
-            Hey there! I'm a 22 year old IT Administrator & Web Developer based
-            out of Brisbane, Australia. Currently, I'm working for a VFX Studio
-            called Rising Sun Pictures.
+            Hey there! {"I'm"} a 22 year old IT Administrator & Web Developer
+            based out of Brisbane, Australia. Currently, {"I'm"} working for a
+            VFX Studio called Rising Sun Pictures.
           </h2>
           <div>
             <h5 className="text-2xl font-bold mt-4">
