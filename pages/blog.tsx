@@ -1,6 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { NextSeo } from "next-seo";
 import dateFormat, { masks } from "dateformat";
@@ -130,11 +130,10 @@ export default function Blog({ posts }: { posts: any }) {
                             <div className="relative flex justify-center my-auto rounded-t-lg">
                               <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
                               <Image
-                                className="hidden lg:visible absolute top-0 left-0 w-full h-48 object-cover select-none"
-                                sizes="20vw"
-                                width={1}
-                                height={1}
-                                priority
+                                className="absolute top-0 left-0 w-full h-48 object-cover select-none"
+                                draggable={false}
+                                layout="fill"
+                                loading="lazy"
                                 quality="10"
                                 alt={`${post.frontmatter.title}`}
                                 src={`/${post.frontmatter.socialImage}`}

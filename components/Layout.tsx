@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: any }) {
           <ThemeSwitch />
         </nav>
         <main className="flex flex-col justify-center px-8">{children}</main>
-        <footer className="p-2 text-center -mt-10">
+        <footer className="pb-2 text-center">
           <div className="font-semibold text-md text-gray-600 dark:text-gray-400">
             Made with{" "}
             <a

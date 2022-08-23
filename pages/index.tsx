@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from 'next/future/image'
+import Image from "next/image";
 import { NextSeo } from "next-seo";
 import BlogPostCard from "../components/BlogPostCard";
 import Notice from "../components/Notice";
@@ -11,7 +11,7 @@ export default function Home() {
         title="Home | Zacchary Puckeridge"
         description="Zacchary Puckeridge's Website"
       />
-      <div className="mt-20 flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16">
+      <div className="mt-20 mb-10 flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto">
         <div className="flex flex-col-reverse sm:flex-row items-start">
           <div className="flex flex-col pr-12">
             <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
@@ -32,8 +32,9 @@ export default function Home() {
               height={176}
               width={176}
               src="/images/profile-pic.jpg"
-              sizes="30vw"
-              priority
+              draggable={false}
+              loading="lazy"
+              quality="50"
               className="rounded-full"
             />
           </div>
