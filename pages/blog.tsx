@@ -49,7 +49,7 @@ export default function Blog({ posts }: { posts: any }) {
       <div className="mt-20 flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16">
         <div className="flex flex-col-reverse sm:flex-row items-start">
           <div className="flex flex-col">
-            <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
+            <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
               Blog
             </h1>
             <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
@@ -123,9 +123,9 @@ export default function Blog({ posts }: { posts: any }) {
                         | undefined;
                     };
                   }) => (
-                    <div key={post.slug} className="mb-4">
+                    <div key={post.slug}>
                       <Link href={`/post/${post.slug}`}>
-                        <a className="transform hover:scale-[1.05] transition-all lg:h-[30rem] md:h-80 border-2 border-gray-300 dark:border-gray-800 m-2 rounded-xl flex flex-col overflow-hidden hover:ring-2 ring-gray-300 transition-all">
+                        <a className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 border-2 border-gray-300 dark:border-gray-800 rounded-xl flex flex-col overflow-hidden hover:ring-2 ring-gray-300">
                           <div>
                             <div className="relative flex justify-center my-auto rounded-t-lg">
                               <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
@@ -144,7 +144,7 @@ export default function Blog({ posts }: { posts: any }) {
                               {post.frontmatter.title}
                             </h1>
                             <div className="pl-5">
-                              <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 border-2 border-gray-300 dark:border-gray-800 bg-gray-600 bg-opacity-20 text-center text-base font-semibold shadow-lg rounded-xl">
+                              <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 border-2 border-gray-300 dark:border-gray-800 bg-gray-600 bg-opacity-20 text-center text-base shadow-lg rounded-xl">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="mr-2 h-6 w-6"
