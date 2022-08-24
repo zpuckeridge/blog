@@ -11,7 +11,7 @@ export default function Home() {
         title="Home | Zacchary Puckeridge"
         description="Zacchary Puckeridge's Website"
       />
-      <div className="mt-20 mb-10 flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto">
+      <div className="mt-20 mb-10 max-w-2xl border-gray-200 dark:border-gray-700">
         <div className="flex flex-col-reverse sm:flex-row items-start">
           <div className="flex flex-col pr-12">
             <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
