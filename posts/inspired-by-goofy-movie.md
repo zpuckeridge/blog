@@ -7,10 +7,7 @@ description: Yes, I know. It sounds weird, but hear me out.
 socialImage: images/goofy-max-bigfoot.jpg
 ---
 
-![](/images/goofy-max.jpg)
-
-Fair word of warning here: I fan boy the absolute HECK out of this
-article.
+![Goofy and Max](/images/goofy-max.jpg)
 
 It was Wednesday the 14th of July and I was bored out of my mind, so much so I remember wishing for the weekend. My two remaining brain cells had evaporated and I knew it was time to find something to give my brain a break.
 
@@ -22,7 +19,7 @@ _scroll_ _scroll_ _scroll_ sigh... nothing interesting to watch.
 I was about to give up when I scrolled one more time and saw Sideways
 video on 'Why A Goofy Movie is Better Than You Remember'.
 
-<iframe style="margin:0 auto;" width="250px" height="200px" src="https://www.youtube.com/embed/N6j-562xQSs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+["https://www.youtube.com/embed/N6j-562xQSs"]
 
 Intrigued, I started watching only to find I was basically watching some dude fan boy over a 25 year old movie from the 90s. _Well now, he better hook me real quick or I'm outta here... didn't grow up in the 90s, can't relate, sorry._
 
@@ -30,7 +27,7 @@ What can I say except that he portrayed this movie in such a way that I essentia
 
 Growing up, I wasn't exposed to too many Disney films outside of the big classics (The Lion King/Tarzan) and never saw Goof Troop (the TV show predecessor to this movie) but I instantly fell in love with Goofy and the general premise of the movie.
 
-![](/images/max-roxanne.jpeg)
+![Max and Roxanne](/images/max-roxanne.jpeg)
 
 As of writing, this film might be my favourite film of all time!
 
@@ -49,16 +46,15 @@ strong desire Max has to be _anything_ but his father. It sets the stage so
 perfectly for what is an amazing father-son adventure full of life
 lessons for both the characters that translate exceptionally well to the audience.
 
-![](/images/goofy-max-bigfoot.jpg)
+![Goofy, Max and Bigfoot](/images/goofy-max-bigfoot.jpg)
 
-But where this movie really got me was the feels. I'm fortunate to
-have a great relationship with my father, but I still felt like I
+I'm fortunate to have a great relationship with my father, but I still felt like I
 needed to catch up and give him a massive hug after watching this
 movie.
 
 The entire movie hinges on the desires of Max and Goofy. Max wanting
-to ditch and get away from his father to find his independence and
-Goofy just trying to be involved in his sons life, maybe a little too
+to abandon everything that makes him look like his father, to try and find his independence and
+Goofy simply trying to be more involved in his sons life, maybe a little too
 much for Max's own good.
 
 It's a serious topic that doesn't get nearly enough screen time in
@@ -84,17 +80,17 @@ layer of depth to the topics outlined. Jason Marsden and Bill Farmer
 execute these scenes perfectly and stay true to their characters
 through and through.
 
-![](/images/max-glasses.jpg)
+![On top of the world Max](/images/max-glasses.jpg)
 
 But why am I inspired you might ask?
 
-Simply put - I want to tell stories like this film. I've never really
+Simply put - I desire to tell stories like this film. I've never really
 thought about creating media, writing stories, drawing or animation as
 a career, but after watching this movie and seeing how it touched me,
 I want to replicate this over and over again, not just for myself, but
 for other people too.
 
-I want to be apart of a team like the one that worked on A Goofy
+I desire to be apart of a team like the one that worked on A Goofy
 Movie. I want to animate, be creative and come up with ideas and
 stories that touch future generations like this movie had touched me -
 nearly 25+ years after it was made.
@@ -113,7 +109,7 @@ movie right now!
 
 Peace. ✌️
 
-PS - check out the music for this movie too. Absolute gold mine that
+PS - don't forget check out the music for this movie too. Absolute gold mine that
 I've had on repeat for weeks...
 
-<iframe src="https://open.spotify.com/embed/album/0hrzkSV1itMmED3M4N1QJI?theme=0" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+[https://open.spotify.com/embed/album/0hrzkSV1itMmED3M4N1QJI?theme=0]
