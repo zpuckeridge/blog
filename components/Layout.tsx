@@ -4,12 +4,12 @@ import ThemeSwitch from "./ThemeSwitch";
 export default function Layout({ children }: { children: any }) {
   return (
     <>
-      <div className="flex flex-col justify-center px-8">
-        <nav className="flex items-center justify-between w-full relative max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pt-8  text-gray-900 dark:text-gray-100">
+      <div className="p-4">
+        <nav className=" mx-auto flex justify-between w-full max-w-2xl border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
           <MainMenu />
           <ThemeSwitch />
         </nav>
-        <main className="flex flex-col justify-center px-8">{children}</main>
+        <main className="mx-auto max-w-2xl">{children}</main>
         <footer className="pb-2 text-center">
           <div className="font-semibold text-md text-gray-600 dark:text-gray-400">
             Made with{" "}
