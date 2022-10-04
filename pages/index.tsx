@@ -3,6 +3,7 @@ import Image from "next/image";
 import { NextSeo } from "next-seo";
 import BlogPostCard from "../components/BlogPostCard";
 import Notice from "../components/Notice";
+import NowPlaying from "../components/NowPlaying";
 
 export default function Home() {
   return (
@@ -60,6 +61,23 @@ export default function Home() {
             gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
           />
         </div>
+        <div className="mt-6 flex gap-6 flex-col md:flex-row">
+          <BlogPostCard
+            title="🐴 Thoughts on Bojack Horseman"
+            slug="bojack-horseman"
+            gradient="from-[#86FF9A] to-[#D6FF5B]"
+          />
+          <BlogPostCard
+            title="🖌️ I've been inspired by 'A Goofy Movie'"
+            slug="inspired-by-goofy-movie"
+            gradient="from-[#FF9772] via-[#3B82F6] to-[#5BECFF]"
+          />
+          <BlogPostCard
+            title="💭 An excerpt on Old Testament Law"
+            slug="old-testament-law"
+            gradient="from-[#C672FF] via-[#FF72DC] to-[#FECACA]"
+          />
+        </div>
         <Link href="/blog">
           <a className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6">
             Read all posts
@@ -79,6 +97,15 @@ export default function Home() {
             </svg>
           </a>
         </Link>
+        <div className="flex justify-center">
+          <div className="mt-8 transform hover:scale-[1.05] transition-all rounded-xl bg-[#1DB954] p-1">
+            <div className="bg-white dark:bg-[#121212] flex flex-col justify-between h-full rounded-lg p-4">
+              <h4 className="text-lg md:text-lg font-medium w-full text-gray-900 dark:text-gray-100 tracking-tight">
+                <NowPlaying />
+              </h4>
+            </div>
+          </div>
+        </div>
       </div>
       <Notice />
     </>
