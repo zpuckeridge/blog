@@ -1,47 +1,43 @@
-import { getNowPlaying } from "../lib/spotify";
+import Image from "next/image";
+import Link from "next/link";
+import useSWR from "swr";
 
-export default async (
-  _: any,
-  res: {
-    status: (arg0: number) => {
-      (): any;
-      new (): any;
-      json: {
-        (arg0: {
-          isPlaying: any;
-          album?: any;
-          albumImageUrl?: any;
-          artist?: any;
-          songUrl?: any;
-          title?: any;
-        }): any;
-        new (): any;
-      };
-    };
-  }
-) => {
-  const response = await getNowPlaying();
+export default function NowPlaying() {
+  const fetcher = (url: RequestInfo | URL) => fetch(url).then((r) => r.json());
+  const { data } = useSWR("/api/spotify", fetcher);
+  return (
+    <>
+      <div className="flex justify-center w-full">
+        <a
+          href={
+            data?.isPlaying
+              ? data.songUrl
+              : "https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03"
+          }
+          className="relative flex items-center"
+        >
+          <div>
+            {data?.isPlaying ? (
+              <img
+                className="w-20 pr-4"
+                src={data?.albumImageUrl}
+                alt={data?.album}
+              />
+            ) : (
+              <div className="hidden">Nothing Playing</div>
+            )}
+          </div>
 
-  if (response.status === 204 || response.status > 400) {
-    return res.status(200).json({ isPlaying: false });
-  }
-
-  const song = await response.json();
-  const isPlaying = song.is_playing;
-  const title = song.item.name;
-  const artist = song.item.artists
-    .map((_artist: { name: any }) => _artist.name)
-    .join(", ");
-  const album = song.item.album.name;
-  const albumImageUrl = song.item.album.images[0].url;
-  const songUrl = song.item.external_urls.spotify;
-
-  return res.status(200).json({
-    album,
-    albumImageUrl,
-    artist,
-    isPlaying,
-    songUrl,
-    title,
-  });
-};
+          <div>
+            <p className="component">
+              {data?.isPlaying ? data.title : "Not Listening"}
+            </p>
+            <p className="text-xs font-dark">
+              {data?.isPlaying ? data.artist : "Spotify"}
+            </p>
+          </div>
+        </a>
+      </div>
+    </>
+  );
+}
