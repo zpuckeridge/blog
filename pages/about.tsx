@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import TopTracks from "../components/TopTracks";
 
 export default function About() {
   return (
