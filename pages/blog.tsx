@@ -58,6 +58,11 @@ export default function Blog({ posts }: { posts: any }) {
               scripture and anything else I might find interesting. It is
               definitely interesting going back through older posts to see how I
               used to write and how my opinions and beliefs have changed.
+              <br />
+              It should be noted that I encourage any reader looking to open a
+              dialogue about my positions on the topics that are outlined in my
+              articles to please do so! {"I'm"} always happy to chat, feel free
+              to reach out via email hi@zacchary.me or leave a comment!
             </h2>
             <div className="relative w-full mb-4">
               <input

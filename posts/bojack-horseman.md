@@ -3,7 +3,7 @@ title: "🐴 Thoughts on BoJack Horseman"
 slug: bojack-horseman
 date: "2021-10-02"
 tags: Art
-description: The creators of BoJack Horseman clearly have a deep and affectionate love for their characters. Writer Raphael Bob-Waksberg doesn't hold back on delivering his characters unique  lines and character arcs that inspire and challenge audiences.
+description: The creators of BoJack Horseman clearly have a deep and affectionate love for their characters.
 socialImage: images/bojack-diane.jpg
 ---
 
