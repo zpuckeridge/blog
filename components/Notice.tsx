@@ -4,10 +4,11 @@ export default function Notice() {
   return (
     <>
       <aside className="fixed z-50 flex items-center justify-center px-5 py-3 text-white bg-black rounded-lg bottom-4 right-4">
-        <Link href="https://production.blog-9ef.pages.dev/">
-          <a className="text-sm font-medium hover:opacity-75">
-            👋 Looking for my old site?
-          </a>
+        <Link
+          href="https://production.blog-9ef.pages.dev/"
+          className="text-sm font-medium hover:opacity-75"
+        >
+          👋 Looking for my old site?
         </Link>
         <button
           className="p-1 ml-3 rounded bg-white/20 hover:bg-white/10"
