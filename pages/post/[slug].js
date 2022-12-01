@@ -53,10 +53,11 @@ export default function ArticlePage({ frontmatter, content }) {
               className="flex items-center space-x-2 font-bold text-gray-400"
             >
               <li>
-                <Link href="/">
-                  <a className="transition ease-in hover:text-green-400">
-                    Home
-                  </a>
+                <Link
+                  href="/"
+                  className="transition ease-in hover:text-green-400"
+                >
+                  Home
                 </Link>
               </li>
 
@@ -76,10 +77,11 @@ export default function ArticlePage({ frontmatter, content }) {
               </li>
 
               <li>
-                <Link href="/blog">
-                  <a className="transition ease-in hover:text-green-400">
-                    Blog
-                  </a>
+                <Link
+                  href="/blog"
+                  className="transition ease-in hover:text-green-400"
+                >
+                  Blog
                 </Link>
               </li>
 
@@ -99,10 +101,11 @@ export default function ArticlePage({ frontmatter, content }) {
               </li>
 
               <li>
-                <Link href="#">
-                  <a className="transition ease-in hover:text-green-400">
-                    {frontmatter.title}
-                  </a>
+                <Link
+                  href="#"
+                  className="transition ease-in hover:text-green-400"
+                >
+                  {frontmatter.title}
                 </Link>
               </li>
             </ol>
@@ -157,10 +160,9 @@ export default function ArticlePage({ frontmatter, content }) {
           </div>
         </div>
       </div>
-      <p
-        className="max-w-2xl dark:text-white prose prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:shadow-xl dark:prose-code:text-white"
-        dangerouslySetInnerHTML={{ __html: md().render(content) }}
-      />
+      <div className="max-w-2xl dark:text-white prose prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:shadow-xl dark:prose-code:text-white">
+        <p dangerouslySetInnerHTML={{ __html: md().render(content) }}></p>
+      </div>
       <div className="mb-10">
         <Comments />
       </div>
