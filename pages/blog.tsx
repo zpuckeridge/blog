@@ -1,4 +1,6 @@
+import { Key, useState } from "react";
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,39 +8,33 @@ import { NextSeo } from "next-seo";
 import dateFormat, { masks } from "dateformat";
 import PageViews from "../components/PageViews";
 
-import {
-  Key,
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-  useState,
-} from "react";
-
 export async function getStaticProps() {
-  const files = fs.readdirSync("posts");
-  const posts = files.map((fileName) => {
+  const files = fs.readdirSync(path.join("articles"));
+  const allArticlesData = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
-    const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8");
-    const { data: frontmatter } = matter(readFile);
+    const fileContents = fs.readFileSync(
+      path.join(`articles/${slug}.md`),
+      "utf8"
+    );
+    const { data } = matter(fileContents);
     return {
       slug,
-      frontmatter,
+      data,
     };
   });
 
   return {
     props: {
-      posts,
+      allArticlesData,
     },
   };
 }
 
-export default function Blog({ posts }: { posts: any }) {
+export default function Blog({ allArticlesData }: { allArticlesData: any }) {
   const [searchValue, setSearchValue] = useState("");
-  const filteredBlogPosts = posts.filter(
-    (post: { frontmatter: any; title: string }) =>
-      post.frontmatter.title.toLowerCase().includes(searchValue.toLowerCase())
+  const filteredArticles = allArticlesData.filter(
+    (article: { data: any; title: string }) =>
+      article.data.title.toLowerCase().includes(searchValue.toLowerCase())
   );
   return (
     <>
@@ -53,17 +49,17 @@ export default function Blog({ posts }: { posts: any }) {
               Blog
             </h1>
             <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
-              {"I've"} been writing online since 2019 and {"I've"} found it to
-              be incredibly useful for retaining information about programming,
-              scripture and anything else I might find interesting. It is
-              definitely interesting going back through older posts to see how I
-              used to write and how my opinions and beliefs have changed.
+              {"I've"} been writing articles since 2019 and have found it to be
+              incredibly useful for retaining information about a variety of
+              topics. I think the most interesting thing to do is to go back
+              through my older posts to observe how I used to write and how my
+              opinions and beliefs have changed as {"I've"} matured.
               <br />
               <br />
               Dear reader should you be looking to open a dialogue about my
-              positions on the topics in my articles, please do so! {"I'm"}
-              always happy to chat, and can be reached via my email,
-              hi@zacchary.me or feel free to leave a comment!
+              positions on the topics outlined in my articles, please do so!{" "}
+              {"I'm"} always happy to chat, and can be reached via my email,
+              hi@zacchary.me or by leaving a comment!
             </h2>
             <div className="relative w-full mb-4">
               <input
@@ -90,48 +86,32 @@ export default function Blog({ posts }: { posts: any }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-              {filteredBlogPosts
+              {filteredArticles
                 .sort(
                   (
-                    a: { frontmatter: { date: string | number | Date } },
-                    b: { frontmatter: { date: string | number | Date } }
+                    a: { data: { date: Date } },
+                    b: { data: { date: Date } }
                   ) => {
                     return (
-                      new Date(b.frontmatter.date).valueOf() -
-                      new Date(a.frontmatter.date).valueOf()
+                      new Date(b.data.date).valueOf() -
+                      new Date(a.data.date).valueOf()
                     );
                   }
                 )
                 .map(
-                  (post: {
-                    slug: Key | null | undefined;
-                    frontmatter: {
+                  (article: {
+                    slug: Key;
+                    data: {
                       slug: any;
-                      title:
-                        | string
-                        | number
-                        | boolean
-                        | ReactElement<any, string | JSXElementConstructor<any>>
-                        | ReactFragment
-                        | ReactPortal
-                        | null
-                        | undefined;
+                      title: string;
                       socialImage: any;
-                      date: string | number | Date | undefined;
-                      description:
-                        | string
-                        | number
-                        | boolean
-                        | ReactElement<any, string | JSXElementConstructor<any>>
-                        | ReactFragment
-                        | ReactPortal
-                        | null
-                        | undefined;
+                      date: Date;
+                      description: string;
                     };
                   }) => (
-                    <div key={post.slug}>
+                    <div key={article.slug}>
                       <Link
-                        href={`/post/${post.slug}`}
+                        href={`/article/${article.slug}`}
                         className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 border-2 border-gray-300 dark:border-gray-800 rounded-xl flex flex-col overflow-hidden hover:ring-2 ring-gray-300"
                       >
                         <div>
@@ -139,14 +119,14 @@ export default function Blog({ posts }: { posts: any }) {
                             <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
                             <Image
                               className="absolute top-0 left-0 w-full h-48 object-cover select-none"
-                              alt={`${post.frontmatter.title}`}
+                              alt={`${article.data.title}`}
                               width={400}
                               height={400}
-                              src={`/${post.frontmatter.socialImage}`}
+                              src={`/${article.data.socialImage}`}
                             />
                           </div>
                           <h1 className="pt-5 pr-5 pl-5 pb-2 text-xl font-bold">
-                            {post.frontmatter.title}
+                            {article.data.title}
                           </h1>
                           <div className="pl-5">
                             <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 border-2 border-gray-300 dark:border-gray-800 bg-gray-600 bg-opacity-20 text-center text-base shadow-lg rounded-xl">
@@ -164,10 +144,7 @@ export default function Blog({ posts }: { posts: any }) {
                                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                                 />
                               </svg>
-                              {dateFormat(
-                                post.frontmatter.date,
-                                "dS mmmm yyyy"
-                              )}
+                              {dateFormat(article.data.date, "dS mmmm yyyy")}
                             </div>
                           </div>
                           <div className="pl-5 mt-2 flex items-center text-gray-800 dark:text-gray-200 capsize">
@@ -192,11 +169,11 @@ export default function Blog({ posts }: { posts: any }) {
                               />
                             </svg>
                             <div className="ml-2">
-                              <PageViews slug={post.frontmatter.slug} />
+                              <PageViews slug={article.data.slug} />
                             </div>
                           </div>
                           <p className="pt-2 pl-5 pr-5 pb-5 text-clip">
-                            {post.frontmatter.description}
+                            {article.data.description}
                           </p>
                         </div>
                       </Link>

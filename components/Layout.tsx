@@ -4,13 +4,13 @@ import ThemeSwitch from "./ThemeSwitch";
 export default function Layout({ children }: { children: any }) {
   return (
     <>
-      <div className="p-4">
-        <nav className=" mx-auto flex justify-between w-full max-w-2xl border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+      <div className="p-4 dark:bg-black flex flex-col min-h-screen justify-between">
+        <nav className="mx-auto flex justify-between w-full max-w-2xl border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
           <MainMenu />
           <ThemeSwitch />
         </nav>
         <main className="mx-auto max-w-2xl">{children}</main>
-        <footer className="pb-2 text-center">
+        <footer className="text-center">
           <div className="font-semibold text-md text-gray-600 dark:text-gray-400">
             Made with{" "}
             <a
@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: any }) {
             >
               Tailwind CSS
             </a>{" "}
-            and <a href="https://github.com/zpuckeridge/blog">💖</a>
+            and <a href="https://github.com/zpuckeridge/blog">❤</a>
           </div>
         </footer>
       </div>

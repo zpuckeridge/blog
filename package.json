@@ -20,10 +20,13 @@
     "luxon": "^3.0.1",
     "markdown-it": "^13.0.1",
     "next": "^13.0.5",
+    "next-mdx-remote": "^4.2.0",
     "next-seo": "^5.5.0",
     "next-themes": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
+    "react-icons": "^4.7.1",
     "sharp": "^0.30.7",
     "swr": "^1.3.0"
   },

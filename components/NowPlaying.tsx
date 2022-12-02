@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
+import { FaSpotify } from "react-icons/fa";
 
 export default function NowPlaying() {
   const fetcher = (url: RequestInfo | URL) => fetch(url).then((r) => r.json());
   const { data } = useSWR("/api/spotify", fetcher);
   return (
     <>
-      <div className="flex justify-center w-full">
+      <div>
         <a
           href={
             data?.isPlaying
@@ -18,21 +19,23 @@ export default function NowPlaying() {
         >
           <div>
             {data?.isPlaying ? (
-              <img
-                className="w-20 pr-4"
+              <Image
+                className="w-10 rounded-full"
                 src={data?.albumImageUrl}
+                width={100}
+                height={100}
                 alt={data?.album}
               />
             ) : (
-              <div className="hidden">Nothing Playing</div>
+              <FaSpotify size={28} />
             )}
           </div>
 
-          <div>
-            <p className="component">
-              {data?.isPlaying ? data.title : "Not Listening"}
+          <div className="transition-all ">
+            <p className="pl-2 component">
+              {data?.isPlaying ? data.title : "Not Playing"}
             </p>
-            <p className="text-xs font-dark">
+            <p className="pl-2 text-xs">
               {data?.isPlaying ? data.artist : "Spotify"}
             </p>
           </div>

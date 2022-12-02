@@ -6,10 +6,12 @@ export default function BlogPostCard({
   title,
   slug,
   gradient,
+  glow,
 }: {
   title: string;
   slug: string;
   gradient: string;
+  glow: string;
 }) {
   return (
     <>
@@ -18,7 +20,8 @@ export default function BlogPostCard({
         className={cn(
           "transform hover:scale-[1.05] transition-all",
           "rounded-xl w-full md:w-1/3 bg-gradient-to-r p-1",
-          gradient
+          gradient,
+          glow
         )}
       >
         <div className="bg-white dark:bg-[#121212] flex flex-col justify-between h-full rounded-lg p-4">
