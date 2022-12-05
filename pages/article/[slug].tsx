@@ -1,0 +1,200 @@
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import Link from "next/link";
+import dateFormat, { masks } from "dateformat";
+import { NextSeo } from "next-seo";
+import { useEffect } from "react";
+import PageViews from "../../components/PageViews";
+
+const getArticle = (slug: any) => {
+  const fileContents = fs.readFileSync(
+    path.join(`articles/${slug}.md`),
+    "utf8"
+  );
+  const { data, content } = matter(fileContents);
+  return {
+    data,
+    content,
+  };
+};
+
+const getArticles = () => {
+  const files = fs.readdirSync(path.join("articles"));
+  const allArticlesData = files.map((fileName) => {
+    const slug = fileName.replace(".md", "");
+    const fileContents = fs.readFileSync(
+      path.join(`articles/${slug}.md`),
+      "utf8"
+    );
+    const { data } = matter(fileContents);
+    return {
+      slug,
+      data,
+    };
+  });
+
+  return allArticlesData;
+};
+
+export const getStaticPaths = async () => {
+  const articles = await getArticles();
+  const paths = articles.map((article) => ({ params: { slug: article.slug } }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async ({ params }: { params: any }) => {
+  const article = await getArticle(params.slug);
+  const mdxSource = await serialize(article.content);
+  return {
+    props: {
+      data: article.data,
+      content: mdxSource,
+    },
+  };
+};
+
+export default function ArticlePage({
+  data,
+  content,
+}: {
+  data: any;
+  content: any;
+}) {
+  useEffect(() => {
+    fetch(`/api/views/${data.slug}`, {
+      method: "POST",
+    });
+  }, [data.slug]);
+
+  return (
+    <>
+      <NextSeo title={data.title} description={data.description} />
+      <div className="mt-20 mb-20">
+        <div className="grid place-items-center">
+          <div className="mt-5 mx-auto">
+            <nav aria-label="Breadcrumb">
+              <ol
+                role="list"
+                className="flex items-center space-x-2 font-bold text-gray-400"
+              >
+                <li>
+                  <Link
+                    href="/"
+                    className="transition ease-in hover:text-green-400"
+                  >
+                    Home
+                  </Link>
+                </li>
+
+                <li>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </li>
+
+                <li>
+                  <Link
+                    href="/blog"
+                    className="transition ease-in hover:text-green-400"
+                  >
+                    Blog
+                  </Link>
+                </li>
+
+                <li>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </li>
+
+                <li>
+                  <Link
+                    href="#"
+                    className="transition ease-in hover:text-green-400"
+                  >
+                    {data.title}
+                  </Link>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div className="mb-4 mt-4 text-center">
+          <p className="uppercase font-bold text-blue-600">{data.tags}</p>
+          <h1 className="font-bold text-4xl">{data.title}</h1>
+          <div className="mt-4 inline-flex place-content-center dark:text-white font-bold py-2 px-2 border-2 border-gray-300 dark:border-gray-800 bg-gray-600 bg-opacity-20 text-center text-base shadow-lg rounded-xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="mr-2 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            {dateFormat(data.date, "dS mmmm yyyy")}
+          </div>
+          <div className="grid place-items-center">
+            <div className="flex mt-4 text-gray-800 dark:text-gray-200">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+              <div className="ml-2">
+                <PageViews slug={data.slug} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-2xl dark:text-white prose prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:shadow-xl dark:prose-code:text-white">
+          <MDXRemote {...content} />
+        </div>
+      </div>
+    </>
+  );
+}

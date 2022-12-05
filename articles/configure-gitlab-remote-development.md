@@ -18,7 +18,7 @@ To follow along with this guide, you'll need:
 
 ### Configure GitLab SSH Key
 
-On your Remote Development Server, navigate to /home/<username>/.ssh
+On your Remote Development Server, navigate to `/home/<username>/.ssh`
 and create a directory for GitLab:
 
 ```bash

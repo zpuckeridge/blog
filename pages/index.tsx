@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { NextSeo } from "next-seo";
 import BlogPostCard from "../components/BlogPostCard";
-import Notice from "../components/Notice";
 import NowPlaying from "../components/NowPlaying";
+import { FiChevronsRight } from "react-icons/fi";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         title="Home | Zacchary Puckeridge"
         description="Zacchary Puckeridge's Website"
       />
-      <div className="mt-20 mb-10 max-w-2xl border-gray-200 dark:border-gray-700">
+      <div className="max-w-2xl border-gray-200 dark:border-gray-700 mt-10 mb-20">
         <div className="flex flex-col-reverse sm:flex-row items-start">
           <div className="flex flex-col pr-12">
             <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
@@ -33,9 +33,6 @@ export default function Home() {
               height={176}
               width={176}
               src="/images/profile-pic.jpg"
-              draggable={false}
-              loading="lazy"
-              quality="50"
               className="rounded-full"
             />
           </div>
@@ -49,16 +46,19 @@ export default function Home() {
             title="💔 Is God's love reckless?"
             slug="is-gods-love-reckless"
             gradient="from-[#D8B4FE] to-[#818CF8]"
+            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#D8B4FE] before:to-[#818CF8] before:left-0 before:top-0 before:blur-[7px]"
           />
           <BlogPostCard
             title="🤖 Create your own Discord Bot with Discord.js"
             slug="create-your-own-discord-bot"
             gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
+            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#6EE7B7] before:via-[#3B82F6] before:to-[#9333EA] before:left-0 before:top-0 before:blur-[7px]"
           />
           <BlogPostCard
             title="👨‍💻 Setup your own Remote Development Server"
             slug="setup-remote-development-server"
             gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
+            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#FDE68A] before:via-[#FCA5A5] before:to-[#FECACA] before:left-0 before:top-0 before:blur-[7px]"
           />
         </div>
         <div className="mt-6 flex gap-6 flex-col md:flex-row">
@@ -66,49 +66,40 @@ export default function Home() {
             title="🐴 Thoughts on Bojack Horseman"
             slug="bojack-horseman"
             gradient="from-[#86FF9A] to-[#D6FF5B]"
+            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#86FF9A] before:to-[#D6FF5B] before:left-0 before:top-0 before:blur-[7px]"
           />
           <BlogPostCard
             title="🖌️ I've been inspired by 'A Goofy Movie'"
             slug="inspired-by-goofy-movie"
             gradient="from-[#FF9772] via-[#3B82F6] to-[#5BECFF]"
+            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#FF9772] before:via-[#3B82F6] before:to-[#5BECFF] before:left-0 before:top-0 before:blur-[7px]"
           />
           <BlogPostCard
             title="💭 An excerpt on Old Testament Law"
             slug="old-testament-law"
             gradient="from-[#C672FF] via-[#FF72DC] to-[#FECACA]"
+            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#C672FF] before:via-[#FF72DC] before:to-[#FECACA] before:left-0 before:top-0 before:blur-[7px]"
           />
         </div>
-        <Link
-          href="/blog"
-          className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6"
-        >
-          Read all posts
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="h-6 w-6 ml-1"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.5 12h-15m11.667-4l3.333 4-3.333-4zm3.333 4l-3.333 4 3.333-4z"
-            />
-          </svg>
-        </Link>
-        <div className="flex justify-center">
-          <div className="mt-8 transform hover:scale-[1.05] transition-all rounded-xl bg-[#1DB954] p-1">
-            <div className="bg-white dark:bg-[#121212] flex flex-col justify-between h-full rounded-lg p-4">
-              <h4 className="text-lg md:text-lg font-medium w-full text-gray-900 dark:text-gray-100 tracking-tight">
-                <NowPlaying />
-              </h4>
-            </div>
+        <div className="flex justify-between">
+          <div>
+            <Link
+              href="/blog"
+              className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6"
+            >
+              Read all posts
+              <div className="h-6 w-6 ml-1 mt-1.5">
+                <FiChevronsRight />
+              </div>
+            </Link>
+          </div>
+          <div>
+            <h4 className="flex mt-8 text-gray-600 dark:text-gray-400 leading-7 rounded-lg hover:text-gray-800 dark:hover:text-gray-200 transition-all h-6">
+              <NowPlaying />
+            </h4>
           </div>
         </div>
       </div>
-      <Notice />
     </>
   );
 }
