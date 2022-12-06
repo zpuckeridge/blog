@@ -118,7 +118,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                           <div className="relative flex justify-center my-auto rounded-t-lg">
                             <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
                             <Image
-                              className="absolute top-0 left-0 w-full h-48 object-cover select-none"
+                              className="hidden lg:flex absolute top-0 left-0 w-full h-48 object-cover select-none"
                               alt={`${article.data.title}`}
                               width={400}
                               height={400}

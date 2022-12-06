@@ -9,7 +9,7 @@ export default function NowPlaying() {
   return (
     <>
       <div>
-        <a
+        <Link
           href={
             data?.isPlaying
               ? data.songUrl
@@ -39,7 +39,7 @@ export default function NowPlaying() {
               {data?.isPlaying ? data.artist : "Spotify"}
             </p>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

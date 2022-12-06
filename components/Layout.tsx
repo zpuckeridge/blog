@@ -5,10 +5,18 @@ export default function Layout({ children }: { children: any }) {
   return (
     <>
       <div className="p-4 dark:bg-black flex flex-col min-h-screen justify-between">
-        <nav className="mx-auto flex justify-between w-full max-w-2xl border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
-          <MainMenu />
-          <ThemeSwitch />
-        </nav>
+        <div className="flex justify-center z-50">
+          <div className="fixed max-w-3xl w-full border-2 border-gray-300 dark:border-gray-800 rounded-xl backdrop-blur-xl backdrop-brightness-125 p-2">
+            <nav className="flex justify-between my-auto">
+              <div className="my-auto">
+                <MainMenu />
+              </div>
+              <div>
+                <ThemeSwitch />
+              </div>
+            </nav>
+          </div>
+        </div>
         <main className="mx-auto max-w-2xl">{children}</main>
         <footer className="text-center">
           <div className="font-semibold text-md text-gray-600 dark:text-gray-400">
