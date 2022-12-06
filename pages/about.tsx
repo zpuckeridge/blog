@@ -1,5 +1,5 @@
 import { NextSeo } from "next-seo";
-import Image from "next/image";
+import TimeStatus from "../components/TimeStatus";
 
 export default function About() {
   return (
@@ -13,28 +13,37 @@ export default function About() {
           <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
             🤔 About me
           </h1>
-          <h2 className="text-gray-700 dark:text-gray-200 mt-2">
-            Hey there! {"I'm"} a 22 year old IT Administrator & Web Developer
+          <p className="mt-4">
+            Hey there! {"I'm"} a 23 year old IT Administrator & Web Developer
             based out of Brisbane, Australia. Currently, {"I'm"} working for a
             VFX Studio called Rising Sun Pictures.
-          </h2>
+          </p>
           <div>
-            <h5 className="text-2xl font-bold mt-4">
-              What are you currently learning?
-            </h5>
+            <h5 className="text-2xl font-bold mt-4 mb-4">What do you do?</h5>
             <div>
-              <h2 className="text-gray-700 dark:text-gray-200 mt-2">
+              <p>
                 Currently, {"I'm"} building tools to automate various processes
                 at RSP as well as designing and deploying networking solutions.
-                <br />
+              </p>
+              <p className="mt-4">
+                {" "}
                 When {"I'm"} not at work, or working on a personal project,{" "}
                 {"I'm"}
                 hanging out with mates, riding motorcycles, playing video games,
                 nerding out over audio and teaching myself animation.
-              </h2>
+              </p>
+              <p className="mt-4 italic font-semibold">
+                Epic and interesting stats to go here at some point!
+              </p>
             </div>
+            <h5 className="text-2xl font-bold mt-4 mb-4">Contact me</h5>
+            <p className="italic font-semibold">
+              Super cool form that triggers a Discord message to go here...
+              soon!
+            </p>
           </div>
         </div>
+        <TimeStatus />
       </div>
     </>
   );

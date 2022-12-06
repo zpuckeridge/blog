@@ -16,7 +16,7 @@ export default function BlogPostCard({
   return (
     <>
       <Link
-        href={`/post/${slug}`}
+        href={`/article/${slug}`}
         className={cn(
           "transform hover:scale-[1.05] transition-all",
           "rounded-xl w-full md:w-1/3 bg-gradient-to-r p-1",

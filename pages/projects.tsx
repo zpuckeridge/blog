@@ -7,7 +7,7 @@ export default function Projects() {
         title="Projects | Zacchary Puckeridge"
         description="View Zacchary's completed and active projects"
       />
-      <div className="grid h-screen place-items-center">
+      <div className="grid place-items-center">
         <div className="p-4">
           <h5 className="text-8xl font-extrabold text-gray-900 dark:text-white text-center">
             Projects WIP! 😱
