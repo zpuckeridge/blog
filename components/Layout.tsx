@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: any }) {
     <>
       <div className="p-4 dark:bg-black flex flex-col min-h-screen justify-between">
         <div className="flex justify-center z-50">
-          <div className="fixed max-w-3xl w-full border-2 border-gray-300 dark:border-gray-800 rounded-xl backdrop-blur-xl backdrop-brightness-125 p-2">
+          <div className="fixed max-w-3xl w-[93%] lg:w-full border-2 border-gray-300 dark:border-gray-800 rounded-xl backdrop-blur-xl backdrop-brightness-125 p-2">
             <nav className="flex justify-between my-auto">
               <div className="my-auto">
                 <MainMenu />

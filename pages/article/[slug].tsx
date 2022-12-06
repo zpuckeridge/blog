@@ -6,6 +6,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import Link from "next/link";
 import dateFormat, { masks } from "dateformat";
 import { NextSeo } from "next-seo";
+import Image from "next/image";
 import { useEffect } from "react";
 import PageViews from "../../components/PageViews";
 import CopyLink from "../../components/CopyLink";
@@ -80,20 +81,20 @@ export default function ArticlePage({
         <div className="grid place-items-center">
           <div className="mt-5 mx-auto">
             <nav aria-label="Breadcrumb">
-              <ol
+              <div
                 role="list"
-                className="flex items-center space-x-2 font-bold text-gray-400"
+                className="flex items-center space-x-2 font-semibold"
               >
-                <li>
+                <div>
                   <Link
                     href="/"
                     className="transition ease-in hover:text-green-400"
                   >
                     Home
                   </Link>
-                </li>
+                </div>
 
-                <li>
+                <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-4 h-4"
@@ -106,18 +107,18 @@ export default function ArticlePage({
                       clipRule="evenodd"
                     />
                   </svg>
-                </li>
+                </div>
 
-                <li>
+                <div>
                   <Link
                     href="/blog"
                     className="transition ease-in hover:text-green-400"
                   >
                     Blog
                   </Link>
-                </li>
+                </div>
 
-                <li>
+                <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-4 h-4"
@@ -130,17 +131,17 @@ export default function ArticlePage({
                       clipRule="evenodd"
                     />
                   </svg>
-                </li>
+                </div>
 
-                <li>
+                <div>
                   <Link
                     href="#"
                     className="transition ease-in hover:text-green-400"
                   >
                     {data.title}
                   </Link>
-                </li>
-              </ol>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
@@ -148,6 +149,13 @@ export default function ArticlePage({
           <div className="text-center">
             <p className="uppercase font-bold text-blue-600">{data.tags}</p>
             <h1 className="font-bold text-4xl">{data.title}</h1>
+            <Image
+              className="flex top-0 left-0 w-full h-full object-cover select-none rounded-xl mt-4"
+              alt={`${data.title}`}
+              width={400}
+              height={400}
+              src={`/${data.socialImage}`}
+            />
           </div>
           <div className="flex justify-between my-auto">
             <div className="my-auto mt-4 font-bold">
@@ -182,7 +190,7 @@ export default function ArticlePage({
           </div>
         </div>
         <div className="border-b mt-12 mb-12 max-w-[120px] mx-auto" />
-        <div className="max-w-2xl dark:text-white prose prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-2xl prose-img:shadow-xl dark:prose-code:text-white">
+        <div className="max-w-2xl dark:text-white prose prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-xl prose-img:shadow-xl dark:prose-code:text-white prose-code:max-w-2xl">
           <MDXRemote {...content} />
           <CopyLink />
         </div>
