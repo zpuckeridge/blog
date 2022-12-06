@@ -20,15 +20,15 @@ const TimeStatus = () => {
 
   return (
     <p className="text-black/50 dark:text-white/50 text-sm mb-10">
-      It's currently{" "}
+      It{"'"}s currently{" "}
       <span className="font-semibold text-black/60 dark:text-white/60">
         {time}
       </span>{" "}
-      for me, so I'm probably{" "}
+      for me, so I{"'"}m probably{" "}
       <span className="font-semibold text-black/60 dark:text-white/60">
         {awake ? "awake" : "sleeping"}
       </span>
-      . I'll get back to you soon.
+      . I{"'"}ll get back to you soon.
     </p>
   );
 };

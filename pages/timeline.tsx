@@ -91,11 +91,11 @@ export default function Timeline() {
                 Jun 2021 → May 2022
               </time>
               <p className="text-base font-normal text-gray-700 dark:text-gray-200">
-                Provided clear and concise support for ~200 employee's both
+                Provided clear and concise support for ~200 employee{"'"}s both
                 internal and remote. Deployed various networking and hardware
                 upgrades across the studio. Improved the efficiency of various
                 software and tools. Built and deployed a ~500TB CephFS Cluster
-                to upgrade studio's existing storage solution.
+                to upgrade studio{"'"}s existing storage solution.
               </p>
             </li>
             <li className="mb-10 ml-6">
@@ -215,7 +215,7 @@ export default function Timeline() {
                 </svg>
               </span>
               <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-                Hungry Jack's
+                Hungry Jack{"'"}s
               </h3>
               <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
                 Crew Member
