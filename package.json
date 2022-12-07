@@ -16,7 +16,7 @@
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "isomorphic-unfetch": "^3.1.0",
-    "next": "^13.0.5",
+    "next": "^13.0.6",
     "next-mdx-remote": "^4.2.0",
     "next-seo": "^5.5.0",
     "next-themes": "^0.2.0",
