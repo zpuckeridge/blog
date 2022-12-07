@@ -1,32 +1,58 @@
-# Personal Blog
-This project is a simple way to experiment with new Web Development tools and expand my knowledge in Javascript. It's also a fantastic way to capture thoughts and tutorials with the wider web.
+<div align="center">
+  <h1>
+    ✍️
+    <br />
+    Personal Blog
+    <br />
+  </h1>
+  <sup>
+    A Next.JS project leveraging Supabase, MDX, Framer Motion and Tailwind CSS hosted through Vercel. </em>
+    <br />
+  </sup>
+  <br />
+  <br />
+</div>
 
-## Installation
+![Personal Blog](https://www.site-shot.com/cached_image/a1xfwmO5Ee2gbwJCrBEAAw)
 
-Clone the repo and install necessary packages with:
+## 🚀 Install
 
-`npm install`
+To get started locally running the project:
 
-Run the site in development:
+```bash
+# Clone the repository
+git clone https://github.com/zpuckeridge/blog
 
-`npm run dev`
+# Navigate to the cloned files
+cd blog/
 
-When happy with changes, test Typescript with:
+# Install packages
+npm install
 
-`npm run build`
+# Run the server
+npm run dev
 
+# When happy with changes, test Typescript with:
+npm run build
+```
 Commit changes to repository. Once repository has been configured with Vercel, changes will be pulled automagically and deployed.
 
-## Todo:
+## 🚩 Features
+
+- 🌙 Dark Mode
+- ...
+
+## 👀 Coming soon
+
+These features are due to be implemented soon:
+
 - Add latest article banner to blog page
+- Rich Embeds
 - Finish about page
 - Finish projects page
-- Finish timeline page
 - Finish uses page
-- Add tags to posts
-- Add copy article button
+- Add dynamic and searchable tags to posts
 - Add page progress scroll
-- Share links on posts
 - Photo gallery
 - Newsletter subscription
 - Stats page/dashboard with public site stats/personal stats
@@ -34,39 +60,5 @@ Commit changes to repository. Once repository has been configured with Vercel, c
 - Syntax file path
 - Next/Prev article buttons
 - Don't go favicon/tab name change
-
-## To fix:
-- Post view count (currently not working due to static nature of CF pages)
-- Now playing widget
 - Top tracks widget
 - Syntax highlighting
-
-## Packages:
-- @headlessui/react
-- @heroicons/react
-- @supabase/supabase-js
-- classnames
-- dateformat
-- fs
-- gray-matter
-- isomorphic-unfetch
-- luxon
-- markdown-it
-- next
-- next-seo
-- next-themes
-- react
-- react-dom
-- sharp
-- swr
-- @tailwindcss/typography
-- @types/dateformat
-- @types/node
-- @types/react
-- @types/react-dom
-- autoprefixer
-- eslint
-- eslint-config-next
-- postcss
-- tailwindcss
-- typescript
