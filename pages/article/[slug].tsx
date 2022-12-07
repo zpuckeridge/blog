@@ -189,11 +189,11 @@ export default function ArticlePage({
             </div>
           </div>
         </div>
-        <div className="border-b mt-12 mb-12 max-w-[120px] mx-auto" />
-        <div className="max-w-2xl dark:text-white prose prose-h3:font-bold prose-h2:font-bold dark:prose-h2:text-white dark:prose-h4:text-white dark:prose-h5:text-white prose-a:text-blue-400 dark:prose-h3:text-white dark:prose-blockquote:text-white prose-img:rounded-xl prose-img:shadow-xl dark:prose-code:text-white prose-code:max-w-2xl">
+        <div className="mb-4 prose dark:prose-invert max-w-sm lg:max-w-2xl prose-img:shadow-xl prose-img:rounded-xl">
           <MDXRemote {...content} />
-          <CopyLink />
         </div>
+        <CopyLink />
+        {/* </div> */}
       </div>
     </>
   );
