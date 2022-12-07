@@ -7,8 +7,6 @@ description: The creators of BoJack Horseman clearly have a deep and affectionat
 socialImage: images/bojack-diane.jpg
 ---
 
-![](/images/bojack-diane.jpg)
-
 BoJack Horseman is a character you can laugh with, cry, hate and love all at the same time. This show tackles a variety of challenging issues encompassing the human condition including what it means to have a family, what it means to love someone, fleeting happiness, drug abuse, nihilism, child abuse, death, depression, legacy and so many more.
 
 The creators of BoJack Horseman clearly have a deep and affectionate love for their characters. Writer Raphael Bob-Waksberg doesn't hold back on delivering his characters unique lines and character arcs that inspire and challenge audiences. I was enamoured in all of the side character's lives because of how grounded in reality they were. Even in Season 4 Episode 2 with Eddie the dragonfly, the desire for both of these characters to open up to each other with what they are both going through was strong. It was sad to see BoJack leave Eddie never to return, abandoning what could have been an exceptionally healthy bond for the both of them.

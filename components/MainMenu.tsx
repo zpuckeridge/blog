@@ -50,42 +50,60 @@ export default function MainMenu() {
           <ul className="items-center justify-center space-y-4 md:flex md:space-y-0 font-semibold">
             <li>
               <Link href="/">
-                <button className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                  onClick={() => setNavbar(!navbar)}
+                >
                   Home
                 </button>
               </Link>
             </li>
             <li>
               <Link href="/about">
-                <button className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                  onClick={() => setNavbar(!navbar)}
+                >
                   About
                 </button>
               </Link>
             </li>
             <li>
               <Link href="/blog">
-                <button className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                  onClick={() => setNavbar(!navbar)}
+                >
                   Blog
                 </button>
               </Link>
             </li>
             <li>
               <Link href="/projects">
-                <button className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                  onClick={() => setNavbar(!navbar)}
+                >
                   Projects
                 </button>
               </Link>
             </li>
             <li>
               <Link href="/timeline">
-                <button className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                  onClick={() => setNavbar(!navbar)}
+                >
                   Timeline
                 </button>
               </Link>
             </li>
             <li>
               <Link href="/uses">
-                <button className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                  onClick={() => setNavbar(!navbar)}
+                >
                   Uses
                 </button>
               </Link>

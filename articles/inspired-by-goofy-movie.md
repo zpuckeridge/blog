@@ -4,10 +4,8 @@ slug: inspired-by-goofy-movie
 date: "2021-07-26"
 tags: Art
 description: Yes, I know. It sounds weird, but hear me out.
-socialImage: images/goofy-max-bigfoot.jpg
+socialImage: images/goofy-max.jpg
 ---
-
-![Goofy and Max](/images/goofy-max.jpg)
 
 It was Wednesday the 14th of July and I was bored out of my mind, so much so I remember wishing for the weekend. My two remaining brain cells had evaporated and I knew it was time to find something to give my brain a break.
 
