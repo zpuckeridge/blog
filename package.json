@@ -29,7 +29,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.8",
     "@types/dateformat": "^5.0.0",
-    "@types/node": "18.11.11",
+    "@types/node": "18.11.13",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.9",
     "autoprefixer": "^10.4.7",
