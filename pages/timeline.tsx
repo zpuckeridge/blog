@@ -11,9 +11,9 @@ export default function Timeline() {
         Timeline
       </h1>
       <h2 className="text-gray-700 dark:text-gray-200 mb-8 mt-4">
-        This is a timeline of my current and previous roles. It's not a complete
-        list of everything I've done, but it's a good overview of my career thus
-        far.
+        This is a timeline of my current and previous roles. It{"'"}s not a
+        complete list of everything I{"'"}ve done, but it{"'"}s a good overview
+        of my career thus far.
       </h2>
       <div className="p-1 grid place-items-center">
         <ol className="relative border-l border-gray-200 dark:border-gray-700">
