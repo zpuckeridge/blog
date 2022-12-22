@@ -5,17 +5,11 @@ import { Sun, Moon } from "react-feather";
 export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <>
       <button
