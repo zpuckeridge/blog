@@ -1,17 +1,21 @@
-import useSWR from "swr";
-import { FC } from "react";
+import { NextPage } from "next";
+import { useEffect, useState } from "react";
 
 interface PageViewsProps {
   slug: string;
 }
 
-const fetcher = async (input: RequestInfo) => {
-  const res: Response = await fetch(input);
-  return await res.json();
-};
+const PageViews: NextPage<PageViewsProps> = ({ slug }) => {
+  const [data, setData] = useState<{ total: number } | null>(null);
 
-const PageViews: FC<PageViewsProps> = ({ slug }) => {
-  const { data } = useSWR(`/api/views/${slug}`, fetcher);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`/api/views/${slug}`);
+      const data = await response.json();
+      setData(data);
+    };
+    fetchData();
+  }, [slug]);
 
   return <>{data?.total ? `${data.total} views` : `–––`}</>;
 };

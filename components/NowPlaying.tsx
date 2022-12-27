@@ -1,11 +1,30 @@
+import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import useSWR from "swr";
+import { useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa";
 
-export default function NowPlaying() {
-  const fetcher = (url: RequestInfo | URL) => fetch(url).then((r) => r.json());
-  const { data } = useSWR("/api/spotify", fetcher);
+interface Data {
+  isPlaying: boolean;
+  songUrl: string;
+  albumImageUrl: string;
+  album: string;
+  title: string;
+  artist: string;
+}
+
+const NowPlaying: NextPage = () => {
+  const [data, setData] = useState<Data | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/api/spotify");
+      const data = await response.json();
+      setData(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <div>
@@ -43,4 +62,6 @@ export default function NowPlaying() {
       </div>
     </>
   );
-}
+};
+
+export default NowPlaying;

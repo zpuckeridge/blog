@@ -5,13 +5,20 @@ const TimeStatus = () => {
   const [awake, setAwake] = useState<boolean>(true);
 
   function updateTime() {
-    let current = new Date().toLocaleString("en-US", {
+    // set current to AEST
+    const current = new Date().toLocaleString("en-AU", {
       timeZone: "Australia/Brisbane",
     });
+
     setTime(`${current.slice(-11, -6)}${current.slice(-3, -1)}M`);
     setTimeout(updateTime, 60 * 1000);
 
-    if (new Date().getHours() < 7) setAwake(false);
+    // If it's before 7am, I'm probably asleep
+    if (new Date().getHours() < 7) {
+      setAwake(false);
+    } else {
+      setAwake(true);
+    }
   }
 
   useEffect(() => {
