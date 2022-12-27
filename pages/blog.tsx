@@ -67,7 +67,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search articles"
-                className="block w-full px-4 py-2 text-gray-900 bg-white border-2 border-gray-300 dark:border-gray-800 rounded-xl dark:bg-[#1d1f22] dark:text-gray-100 hover:ring-2 ring-gray-300 transition-all"
+                className="block w-full px-4 py-2 dark:text-white bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg hover:ring-2 ring-gray-300 transition-all"
               />
               <svg
                 className="absolute w-5 h-5 text-gray-400 right-3 top-3 dark:text-gray-300"
@@ -112,7 +112,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                     <div key={article.slug}>
                       <Link
                         href={`/article/${article.slug}`}
-                        className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 border-2 border-gray-300 dark:border-gray-800 rounded-xl flex flex-col overflow-hidden hover:ring-2 ring-gray-300"
+                        className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300"
                       >
                         <div>
                           <div className="relative flex justify-center my-auto rounded-t-lg">
@@ -129,7 +129,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                             {article.data.title}
                           </h1>
                           <div className="pl-5">
-                            <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 border-2 border-gray-300 dark:border-gray-800 bg-gray-600 bg-opacity-20 text-center text-base shadow-lg rounded-xl">
+                            <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 bg-white dark:bg-white/5 border border-zinc-800/50 text-center text-base shadow-lg rounded-lg">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="mr-2 h-6 w-6"

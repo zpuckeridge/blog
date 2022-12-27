@@ -15,7 +15,7 @@ export default function ThemeSwitch() {
       <button
         aria-label="Toggle Dark Mode"
         type="button"
-        className="p-2 rounded-lg bg-gray-200 dark:bg-[#1d1f22] flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
+        className="p-2 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       >
         {mounted && (
