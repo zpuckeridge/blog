@@ -85,7 +85,7 @@ export default function Gallery({
                 height={1000}
                 quality={100}
                 alt={images[imageIndex].filename}
-                className="rounded-lg"
+                className="rounded-lg w-auto h-auto"
               />
               <div className="flex justify-between">
                 <p className="mt-2 text-gray-400">
@@ -116,7 +116,7 @@ export default function Gallery({
               height={250}
               quality={50}
               alt={"test"}
-              className="rounded-lg"
+              className="rounded-lg w-auto h-auto"
               onClick={() => openModal(image.variants[0])}
             />
           ))}
