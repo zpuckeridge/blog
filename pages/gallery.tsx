@@ -87,6 +87,7 @@ export default function Gallery({ images }: any) {
         <div className="columns-1 md:columns-2 lg:columns-3 gap-2 space-y-2 cursor-pointer">
           {images.map((image: { variants: any[]; filename: string }) => (
             <Image
+              key={image.variants[0]}
               src={replaceBlur(image.variants[0])}
               placeholder="blur"
               blurDataURL={replacePublic(image.variants[0])}
