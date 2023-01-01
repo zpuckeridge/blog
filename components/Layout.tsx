@@ -73,6 +73,16 @@ export default function Layout({ children }: { children: any }) {
                       </Link>
                     </li>
                     <li>
+                      <Link href="/gallery">
+                        <button
+                          className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
+                          onClick={toggleNavbar}
+                        >
+                          Gallery
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
                       <Link href="/projects">
                         <button
                           className="p-2 rounded-lg hover:bg-gray-200 hover:dark:bg-[#1d1f22] hover:ring-2 ring-gray-300 transition-all"
