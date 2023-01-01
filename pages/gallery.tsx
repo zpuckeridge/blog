@@ -3,56 +3,35 @@ import Image from "next/image";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { NextSeo } from "next-seo";
 
-export default function Gallery({
-  images,
-}: {
-  images: {
-    id: string;
-    filename: string;
-    uploaded: string;
-    requireSignedURLs: boolean;
-    variants: string[];
-  }[];
-}) {
+export default function Gallery({ images }: any) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState<string>("");
-  const [imageIndex, setImageIndex] = useState(0); // add this state to keep track of the current image index
+  const [imageIndex, setImageIndex] = useState(0);
 
-  const openModal = (image: string) => {
-    const imageIndex = images.findIndex((img) => img.variants[0] === image);
-    setModalImage(image);
+  const openModal = (image: any) => {
     setModalOpen(true);
-    setImageIndex(imageIndex);
+    setImageIndex(
+      images.findIndex((img: { variants: any[] }) => img.variants[0] === image)
+    );
   };
 
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  // add this function to handle arrow left clicks
   const handleArrowLeft = () => {
-    // decrement the image index, wrapping around to the end of the images array if necessary
     setImageIndex((imageIndex + images.length - 1) % images.length);
   };
 
-  // add this function to handle arrow right clicks
   const handleArrowRight = () => {
-    // increment the image index, wrapping around to the start of the images array if necessary
     setImageIndex((imageIndex + 1) % images.length);
   };
 
   function replaceBlur(url: string) {
-    if (url.endsWith("/blur")) {
-      return url.replace("/blur", "/public");
-    }
-    return url;
+    return url.endsWith("/blur") ? url.replace("/blur", "/public") : url;
   }
 
   function replacePublic(url: string) {
-    if (url.endsWith("/public")) {
-      return url.replace("/public", "/blur");
-    }
-    return url;
+    return url.endsWith("/public") ? url.replace("/public", "/blur") : url;
   }
 
   return (
@@ -106,16 +85,16 @@ export default function Gallery({
         )}
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-2 space-y-2 cursor-pointer">
-          {images.map((image) => (
+          {images.map((image: { variants: any[]; filename: string }) => (
             <Image
-              key={image.id}
+              key={image.variants[0]}
               src={replaceBlur(image.variants[0])}
               placeholder="blur"
               blurDataURL={replacePublic(image.variants[0])}
-              width={250}
-              height={250}
-              quality={50}
-              alt={"test"}
+              width={300}
+              height={300}
+              quality={100}
+              alt={image.filename}
               className="rounded-lg w-auto h-auto"
               onClick={() => openModal(image.variants[0])}
             />
@@ -133,6 +112,7 @@ export async function getServerSideProps() {
   const {
     result: { images },
   } = await response.json();
+
   // Return the full image objects
   return {
     props: {

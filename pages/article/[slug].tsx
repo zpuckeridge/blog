@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import PageViews from "../../components/PageViews";
 import CopyLink from "../../components/CopyLink";
+import { FiEye } from "react-icons/fi";
 
 const getArticle = (slug: any) => {
   const fileContents = fs.readFileSync(
@@ -158,42 +159,21 @@ export default function ArticlePage({
             />
           </div>
           <div className="flex justify-between my-auto">
-            <div className="my-auto mt-4 font-bold">
-              {dateFormat(data.date, "dS mmmm yyyy")}
+            <div className="mt-4 font-bold">
+              {dateFormat(data.date, "dS mmmm yyyy")} ・ <CopyLink />
             </div>
 
-            <div className="my-auto mt-4 inline-flex text-gray-800 dark:text-gray-200">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
+            <div className="mt-4 inline-flex text-gray-800 dark:text-gray-200">
+              <FiEye className="h-6 w-6" />
               <div className="ml-2 font-bold">
                 <PageViews slug={data.slug} />
               </div>
             </div>
           </div>
         </div>
-        <div className="mb-4 prose dark:prose-invert max-w-sm lg:max-w-2xl prose-img:shadow-xl prose-img:rounded-xl">
+        <div className="mb-4 prose dark:prose-invert max-w-2xl prose-img:shadow-xl prose-img:rounded-xl">
           <MDXRemote {...content} />
         </div>
-        <CopyLink />
-        {/* </div> */}
       </div>
     </>
   );
