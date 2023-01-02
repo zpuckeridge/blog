@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { SupabaseAdmin } from "../../../lib/supabase-admin";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const Slug = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     // Call our stored procedure with the page_slug set by the request params slug
     await SupabaseAdmin.rpc("increment_page_view", {
@@ -29,3 +29,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     message: "Unsupported Request",
   });
 };
+
+export default Slug;

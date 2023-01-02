@@ -14,14 +14,14 @@ type ImageType = {
 };
 
 export default function Gallery({ images }: { images: ImageType[] | null }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<string>("");
+  const [imageIndex, setImageIndex] = useState(0); // add this state to keep track of the current image index
+
   // if no images, return null
   if (!images) {
     return null;
   }
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState<string>("");
-  const [imageIndex, setImageIndex] = useState(0); // add this state to keep track of the current image index
 
   const openModal = (image: string) => {
     const imageIndex = images.findIndex((img) => img.variants[0] === image);
@@ -82,8 +82,8 @@ export default function Gallery({ images }: { images: ImageType[] | null }) {
       <div className="mx-auto">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {images.map((image) => (
-            <button onClick={() => openModal(image.variants[0])}>
-              <BlurImage key={image.id} image={image} />
+            <button key={image.id} onClick={() => openModal(image.variants[0])}>
+              <BlurImage image={image} />
             </button>
           ))}
         </div>
@@ -130,11 +130,23 @@ function BlurImage({ image }: { image: ImageType }) {
 
 export async function getStaticProps() {
   // Make a request to the API for images
-  const response = await fetch(`${process.env.GALLERY_URL}/api/gallery`);
+  const response = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ID}/images/v1`,
+    {
+      method: "GET",
+      headers: {
+        "X-Auth-Key": `${process.env.CLOUDFLARE_TOKEN}`,
+        "X-Auth-Email": `${process.env.CLOUDFLARE_EMAIL}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
   // Parse the response as JSON and extract the images array
   const {
     result: { images },
   } = await response.json();
+
   // Convert date to readable date
   images.forEach((image: ImageType) => {
     const date = new Date(image.uploaded);
@@ -144,6 +156,7 @@ export async function getStaticProps() {
       day: "numeric",
     });
   });
+
   // Remove .ext from filename
   images.forEach((image: ImageType) => {
     image.filename = image.filename.split(".")[0];

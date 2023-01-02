@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const TimeStatus = () => {
   const [time, setTime] = useState<string>("00:00 p.m.");
   const [awake, setAwake] = useState<boolean>(true);
 
-  function updateTime() {
+  const updateTime = useCallback(() => {
     // set current to AEST
     const current = new Date();
-    const options = {
-      timeZone: "Australia/Brisbane",
+
+    const formatter = new Intl.DateTimeFormat("en-AU", {
       hour: "numeric",
       minute: "numeric",
       hour12: true,
-    };
-    const formatter = new Intl.DateTimeFormat([], options);
+    });
+
     const timeString = formatter.format(current);
 
     setTime(timeString);
@@ -25,11 +25,11 @@ const TimeStatus = () => {
     } else {
       setAwake(true);
     }
-  }
+  }, []);
 
   useEffect(() => {
     updateTime();
-  }, []);
+  }, [updateTime]);
 
   return (
     <p className="text-black/50 dark:text-white/50 text-sm mb-10">
