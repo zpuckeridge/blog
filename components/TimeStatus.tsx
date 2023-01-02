@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
 
 const TimeStatus = () => {
-  const [time, setTime] = useState<string>("00:00:00 p.m.");
+  const [time, setTime] = useState<string>("00:00 p.m.");
   const [awake, setAwake] = useState<boolean>(true);
 
   function updateTime() {
     // set current to AEST
-    const current = new Date().toLocaleString("en-AU", {
+    const current = new Date();
+    const options = {
       timeZone: "Australia/Brisbane",
-    });
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+    const formatter = new Intl.DateTimeFormat([], options);
+    const timeString = formatter.format(current);
 
-    setTime(`${current.slice(-11, -6)}${current.slice(-3, -1)}M`);
+    setTime(timeString);
     setTimeout(updateTime, 60 * 1000);
 
     // If it's before 7am, I'm probably asleep
-    if (new Date().getHours() < 7) {
+    if (current.getHours() < 7) {
       setAwake(false);
     } else {
       setAwake(true);
@@ -35,7 +41,7 @@ const TimeStatus = () => {
       <span className="font-semibold text-black/60 dark:text-white/60">
         {awake ? "awake" : "sleeping"}
       </span>
-      . I{"'"}ll get back to you soon.
+      . I{"'"}ll get back to you as soon as I can!
     </p>
   );
 };

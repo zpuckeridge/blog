@@ -1,4 +1,8 @@
 import { NextSeo } from "next-seo";
+import Link from "next/link";
+import { FaDiscord, FaGithub, FaSpotify } from "react-icons/fa";
+import Age from "../components/Age";
+import Contact from "../components/Contact";
 import TimeStatus from "../components/TimeStatus";
 
 export default function About() {
@@ -14,9 +18,9 @@ export default function About() {
             🤔 About me
           </h1>
           <p className="mt-4">
-            Hey there! {"I'm"} a 23 year old IT Administrator & Web Developer
-            based out of Brisbane, Australia. Currently, {"I'm"} working for a
-            VFX Studio called Rising Sun Pictures.
+            Hey there! {"I'm"} a <Age /> year old IT Administrator & Web
+            Developer based out of Brisbane, Australia. Currently, {"I'm"}{" "}
+            working for a VFX Studio called Rising Sun Pictures.
           </p>
           <div>
             <h5 className="text-2xl font-bold mt-4 mb-4">What do you do?</h5>
@@ -32,18 +36,35 @@ export default function About() {
                 hanging out with mates, riding motorcycles, playing video games,
                 nerding out over audio and teaching myself animation.
               </p>
-              <p className="mt-4 italic font-semibold">
-                Epic and interesting stats to go here at some point!
-              </p>
             </div>
-            <h5 className="text-2xl font-bold mt-4 mb-4">Contact me</h5>
-            <p className="italic font-semibold">
-              Super cool form that triggers a Discord message to go here...
-              soon!
-            </p>
+            <h5 className="text-2xl font-bold mt-4 mb-4">
+              Want to get in touch?
+            </h5>
+            <div className="">
+              <div className="flex gap-4">
+                <Contact />
+                <div className="dark:bg-white/5 border border-zinc-800/50 w-1/3 rounded-lg p-4">
+                  <Link href="https://github.com/zpuckeridge">
+                    <button className="p-2 mb-2 w-full bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
+                      <FaGithub className="w-6 h-6 mr-1" /> GitHub
+                    </button>
+                  </Link>
+                  <Link href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620">
+                    <button className="p-2 mb-2 w-full bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
+                      <FaSpotify className="w-6 h-6 mr-1" /> Spotify
+                    </button>
+                  </Link>
+                  <div className="p-2 mb-2 w-full bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center">
+                    <FaDiscord className="w-6 h-6 mr-1" /> sdelta#0001
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 justify-center flex">
+              <TimeStatus />
+            </div>
           </div>
         </div>
-        <TimeStatus />
       </div>
     </>
   );
