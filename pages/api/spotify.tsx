@@ -1,17 +1,15 @@
 import querystring from "querystring";
 
-const {
-  SPOTIFY_CLIENT_ID: client_id,
-  SPOTIFY_CLIENT_SECRET: client_secret,
-  SPOTIFY_REFRESH_TOKEN: refresh_token,
-} = process.env;
+const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+const tokenEndpoint = "https://accounts.spotify.com/api/token";
+const nowPlayingEndpoint =
+  "https://api.spotify.com/v1/me/player/currently-playing";
 
-const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
-const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
-
-const getAccessToken = async () => {
-  const response = await fetch(TOKEN_ENDPOINT, {
+async function getAccessToken() {
+  const response = await fetch(tokenEndpoint, {
     method: "POST",
     headers: {
       Authorization: `Basic ${basic}`,
@@ -19,43 +17,25 @@ const getAccessToken = async () => {
     },
     body: querystring.stringify({
       grant_type: "refresh_token",
-      refresh_token,
+      refresh_token: refreshToken,
     }),
   });
 
   return response.json();
-};
+}
 
-export const getNowPlaying = async () => {
+async function getNowPlaying() {
   const { access_token } = await getAccessToken();
-
-  return fetch(NOW_PLAYING_ENDPOINT, {
+  const response = await fetch(nowPlayingEndpoint, {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
   });
-};
 
-export default async (
-  _: any,
-  res: {
-    status: (arg0: number) => {
-      (): any;
-      new (): any;
-      json: {
-        (arg0: {
-          isPlaying: any;
-          album?: any;
-          albumImageUrl?: any;
-          artist?: any;
-          songUrl?: any;
-          title?: any;
-        }): any;
-        new (): any;
-      };
-    };
-  }
-) => {
+  return response;
+}
+
+const Spotify = async (_: any, res: any) => {
   const response = await getNowPlaying();
 
   if (response.status === 204 || response.status > 400) {
@@ -81,3 +61,5 @@ export default async (
     title,
   });
 };
+
+export default Spotify;
