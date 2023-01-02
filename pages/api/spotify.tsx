@@ -35,7 +35,7 @@ async function getNowPlaying() {
   return response;
 }
 
-export default async (_: any, res: any) => {
+const Spotify = async (_: any, res: any) => {
   const response = await getNowPlaying();
 
   if (response.status === 204 || response.status > 400) {
@@ -61,3 +61,5 @@ export default async (_: any, res: any) => {
     title,
   });
 };
+
+export default Spotify;

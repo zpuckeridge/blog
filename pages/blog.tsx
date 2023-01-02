@@ -8,6 +8,10 @@ import { NextSeo } from "next-seo";
 import dateFormat, { masks } from "dateformat";
 import PageViews from "../components/PageViews";
 
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export async function getStaticProps() {
   const files = fs.readdirSync(path.join("articles"));
   const allArticlesData = files.map((fileName) => {
@@ -32,6 +36,8 @@ export async function getStaticProps() {
 
 export default function Blog({ allArticlesData }: { allArticlesData: any }) {
   const [searchValue, setSearchValue] = useState("");
+  const [isLoading, setLoading] = useState(true);
+
   const filteredArticles = allArticlesData.filter(
     (article: { data: any; title: string }) =>
       article.data.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -118,11 +124,17 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                           <div className="relative flex justify-center my-auto rounded-t-lg">
                             <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
                             <Image
-                              className="hidden lg:flex absolute top-0 left-0 w-full h-48 object-cover select-none"
                               alt={`${article.data.title}`}
                               width={400}
                               height={400}
                               src={`/${article.data.socialImage}`}
+                              className={cn(
+                                "group-hover:opacity-75 duration-700 ease-in-out hidden lg:flex absolute top-0 left-0 w-full h-48 object-cover select-none",
+                                isLoading
+                                  ? "grayscale blur-2xl scale-110"
+                                  : "grayscale-0 blur-0 scale-100"
+                              )}
+                              onLoadingComplete={() => setLoading(false)}
                             />
                           </div>
                           <h1 className="pt-5 pr-5 pl-5 pb-2 text-xl font-bold">
