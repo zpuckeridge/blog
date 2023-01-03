@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.2.2",
+    "@supabase/supabase-js": "^2.2.3",
     "@vercel/analytics": "^0.1.6",
     "classnames": "^2.3.1",
     "dateformat": "^5.0.3",
