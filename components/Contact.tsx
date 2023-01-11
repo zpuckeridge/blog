@@ -23,15 +23,6 @@ const Contact = () => {
       return;
     }
 
-    // turnstile logic
-    const turnstile = (window as any).Turnstile;
-    const turnstileToken = await turnstile.getToken();
-
-    if (!turnstileToken) {
-      alert("There was an error sending the message. Please try again.");
-      return;
-    }
-
     try {
       await fetch(process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL as string, {
         method: "POST",
@@ -61,8 +52,8 @@ const Contact = () => {
     <>
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-        async
-        defer
+        async={true}
+        defer={true}
       />
       <div className="dark:bg-white/5 w-full p-4 rounded-lg border border-zinc-800/50">
         <form onSubmit={handleSubmit}>
@@ -95,8 +86,8 @@ const Contact = () => {
           <br />
           <div className="justify-between flex">
             <div
-              className="cf-turnstile"
-              data-sitekey="0x4AAAAAAAB7-eEkWpAwcBhh"
+              className="cf-turnstile checkbox"
+              data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_KEY}
             ></div>
             <button
               disabled={formSubmitted}
