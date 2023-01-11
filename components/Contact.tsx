@@ -8,12 +8,27 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (formSubmitted) {
+      alert("You can only send one message per page refresh.");
+      return;
+    }
+
     if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
       alert("All fields are required. Please fill out the form completely.");
+      return;
+    }
+
+    // turnstile logic
+    const turnstile = (window as any).Turnstile;
+    const turnstileToken = await turnstile.getToken();
+
+    if (!turnstileToken) {
+      alert("There was an error sending the message. Please try again.");
       return;
     }
 
@@ -31,6 +46,14 @@ const Contact = () => {
     } catch (error) {
       setSuccess(false);
       alert("There was an error sending the message. Please try again.");
+    }
+
+    try {
+      setSuccess(true);
+      setFormSubmitted(true);
+    } catch (error) {
+      setSuccess(false);
+      setError(true);
     }
   };
 
@@ -76,13 +99,14 @@ const Contact = () => {
               data-sitekey="0x4AAAAAAAB7-eEkWpAwcBhh"
             ></div>
             <button
+              disabled={formSubmitted}
               className="p-2 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
               type="submit"
             >
-              Send
+              {!success && !error && <span>Send</span>}
+              {success && <FiCheck />}
+              {error && <FiX />}
             </button>
-            {success && <FiCheck />}
-            {error && <FiX />}
           </div>
         </form>
       </div>
