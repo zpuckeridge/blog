@@ -154,7 +154,11 @@ export default function ArticlePage({
         </div>
         <div className="mb-4 mt-4">
           <div className="text-center">
-            <p className="uppercase font-bold text-blue-600">{data.tags}</p>
+            <Link href={`/tags/${data.tags}`}>
+              <p className="uppercase font-bold text-blue-500 hover:text-blue-400">
+                {data.tags}
+              </p>
+            </Link>
             <h1 className="font-bold text-4xl">{data.title}</h1>
             <Image
               alt={`${data.title}`}
