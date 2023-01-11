@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
@@ -104,27 +105,33 @@ function BlurImage({ image }: { image: ImageType }) {
   });
 
   return (
-    <div className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300">
-      <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-        <Image
-          alt={image.filename}
-          src={image.variants[0]}
-          height={1000}
-          width={1000}
-          className={cn(
-            "group-hover:opacity-75 duration-700 ease-in-out",
-            isLoading
-              ? "grayscale blur-2xl scale-110"
-              : "grayscale-0 blur-0 scale-100"
-          )}
-          onLoadingComplete={() => setLoading(false)}
-        />
+    <>
+      <NextSeo
+        title="Gallery | Zacchary Puckeridge"
+        description="Zacchary's Gallery"
+      />
+      <div className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300">
+        <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+          <Image
+            alt={image.filename}
+            src={image.variants[0]}
+            height={1000}
+            width={1000}
+            className={cn(
+              "group-hover:opacity-75 duration-700 ease-in-out",
+              isLoading
+                ? "grayscale blur-2xl scale-110"
+                : "grayscale-0 blur-0 scale-100"
+            )}
+            onLoadingComplete={() => setLoading(false)}
+          />
+        </div>
+        <div className="flex justify-between p-4">
+          <p className="mt-1 text-sm">{image.filename}</p>
+          <p className="mt-1 text-sm">{image.uploaded}</p>
+        </div>
       </div>
-      <div className="flex justify-between p-4">
-        <p className="mt-1 text-sm">{image.filename}</p>
-        <p className="mt-1 text-sm">{image.uploaded}</p>
-      </div>
-    </div>
+    </>
   );
 }
 

@@ -32,15 +32,15 @@ export default function About() {
               <p className="mt-4">
                 {" "}
                 When {"I'm"} not at work, or working on a personal project,{" "}
-                {"I'm"}
-                hanging out with mates, riding motorcycles, playing video games,
-                nerding out over audio and teaching myself animation.
+                {"I'm"} hanging out with mates, riding motorcycles, playing
+                video games, nerding out over audio and teaching myself
+                animation.
               </p>
             </div>
             <h5 className="text-2xl font-bold mt-4 mb-4">
               Want to get in touch?
             </h5>
-            <div className="">
+            <div>
               <div className="flex gap-4">
                 <Contact />
                 <div className="dark:bg-white/5 border border-zinc-800/50 w-1/3 rounded-lg p-4">
