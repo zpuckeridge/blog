@@ -10,12 +10,12 @@
     <br />
   </sup>
   <br />
-  <br />
 </div>
 
 <div align="center">
-![Personal Blog](https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png)
+  <img width="600" src="https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png" />
 </div>
+
   
 ## 🚀 Install
 
