@@ -13,8 +13,10 @@
   <br />
 </div>
 
+<div align="center">
 ![Personal Blog](https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png)
-
+</div>
+  
 ## 🚀 Install
 
 To get started locally running the project:
