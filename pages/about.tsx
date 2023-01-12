@@ -41,9 +41,11 @@ export default function About() {
               Want to get in touch?
             </h5>
             <div>
-              <div className="flex gap-4">
-                <Contact />
-                <div className="dark:bg-white/5 border border-zinc-800/50 w-1/3 rounded-lg p-4">
+              <div className="md:flex gap-4">
+                <div className="w-full">
+                  <Contact />
+                </div>
+                <div className="dark:bg-white/5 md:w-1/3 md:mt-0 mt-4 w-full border border-zinc-800/50 rounded-lg p-4">
                   <Link href="https://github.com/zpuckeridge">
                     <button className="p-2 mb-2 w-full bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
                       <FaGithub className="w-6 h-6 mr-1" /> GitHub

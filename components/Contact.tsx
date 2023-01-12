@@ -84,14 +84,14 @@ const Contact = () => {
             onChange={(event) => setMessage(event.target.value)}
           />
           <br />
-          <div className="justify-between flex">
+          <div className="md:flex justify-between">
             <div
               className="cf-turnstile checkbox"
               data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_KEY}
             ></div>
             <button
               disabled={formSubmitted}
-              className="p-2 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
+              className="p-2 md:mt-0 mt-4 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
               type="submit"
             >
               {!success && !error && <span>Send</span>}

@@ -35,6 +35,7 @@ npm run dev
 # When happy with changes, test Typescript with:
 npm run build
 ```
+
 Commit changes to repository. Once repository has been configured with Vercel, changes will be pulled automagically and deployed.
 
 ## 🚩 Features

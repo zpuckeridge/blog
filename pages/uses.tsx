@@ -14,7 +14,7 @@ export default function About() {
         <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
           A list of the hardware and software that I use on a regular basis.
         </h2>
-        <div className="inline-flex gap-4">
+        <div className="md:inline-flex gap-4">
           <div className="dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Hardware</h5>I am currently dual
             booting POP!_OS and Windows 11. My workstation specifications are:
@@ -54,7 +54,7 @@ export default function About() {
               </li>
             </ul>
           </div>
-          <div className="dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
+          <div className="md:mt-0 mt-4 dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Gadgets</h5>
             <ul>
               <li>
@@ -64,7 +64,7 @@ export default function About() {
             </ul>
           </div>
         </div>
-        <div className="inline-flex gap-4 mt-4">
+        <div className="md:inline-flex gap-4 mt-4">
           <div className="dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Editor & Terminal</h5>
             <ul>
@@ -78,7 +78,7 @@ export default function About() {
               </li>
             </ul>
           </div>
-          <div className="dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
+          <div className="md:mt-0 mt-4 dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Tools</h5>
             <ul>
               <li>
