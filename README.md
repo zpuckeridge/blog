@@ -13,7 +13,7 @@
   <br />
 </div>
 
-![Personal Blog](https://www.site-shot.com/cached_image/a1xfwmO5Ee2gbwJCrBEAAw)
+![Personal Blog](https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png)
 
 ## 🚀 Install
 
