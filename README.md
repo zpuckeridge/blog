@@ -10,11 +10,13 @@
     <br />
   </sup>
   <br />
-  <br />
 </div>
 
-![Personal Blog](https://www.site-shot.com/cached_image/a1xfwmO5Ee2gbwJCrBEAAw)
+<div align="center">
+  <img width="600" src="https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png" />
+</div>
 
+  
 ## 🚀 Install
 
 To get started locally running the project:
