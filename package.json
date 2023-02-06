@@ -13,7 +13,7 @@
     "@vercel/analytics": "^0.1.6",
     "classnames": "^2.3.2",
     "dateformat": "^5.0.3",
-    "framer-motion": "^8.3.3",
+    "framer-motion": "^9.0.1",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "isomorphic-unfetch": "^4.0.2",
