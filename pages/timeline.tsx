@@ -7,18 +7,18 @@ export default function Timeline() {
         title="Timeline | Zacchary Puckeridge"
         description="Learn more about Zacchary's Career Path"
       />
-      <h1 className="mt-20 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight mb-1 text-black dark:text-white">
+      <h1 className="mt-20 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight mb-1 text-white">
         Timeline
       </h1>
-      <h2 className="text-gray-700 dark:text-gray-200 mb-8 mt-4">
+      <h2 className="text-white mb-8 mt-4">
         This is a timeline of my current and previous roles. It{"'"}s not a
         complete list of everything I{"'"}ve done, but it{"'"}s a good overview
         of my career thus far.
       </h2>
       <div className="p-1 grid place-items-center">
-        <ol className="relative border-l border-gray-200 dark:border-gray-700">
+        <ol className="relative border-l border-[#888888]">
           <li className="mb-10 ml-6">
-            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full bg-gray-200 dark:bg-[#1d1f22]">
+            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-black bg-[#fff200]">
               <svg
                 aria-hidden="true"
                 className="w-3 h-3"
@@ -33,24 +33,22 @@ export default function Timeline() {
                 ></path>
               </svg>
             </span>
-            <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="flex items-center mb-1 text-lg font-semibold text-white">
               Rising Sun Pictures{" "}
-              <span className="bg-gray-200 dark:bg-[#1d1f22] text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-3">
+              <span className="bg-white/5 border border-zinc-800/50 rounded text-sm font-medium mr-2 px-2.5 py-0.5 ml-3">
                 Current
               </span>
             </h3>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               IT Administrator
             </time>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               May 2022 → Present
             </time>
-            <p className="mb-4 text-base font-normal text-gray-700 dark:text-gray-200">
-              ...
-            </p>
+            <p className="mb-4 text-base font-normal text-white">...</p>
           </li>
           <li className="mb-10 ml-6">
-            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full bg-gray-200 dark:bg-[#1d1f22]">
+            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-white bg-white/5">
               <svg
                 aria-hidden="true"
                 className="w-3 h-3"
@@ -65,16 +63,14 @@ export default function Timeline() {
                 ></path>
               </svg>
             </span>
-            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-              Pixel Zoo
-            </h3>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <h3 className="mb-1 text-lg font-semibold text-white">Pixel Zoo</h3>
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Systems Administrator
             </time>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Jun 2021 → May 2022
             </time>
-            <p className="text-base font-normal text-gray-700 dark:text-gray-200">
+            <p className="text-base font-normal text-white">
               Provided clear and concise support for ~200 employee{"'"}s both
               internal and remote. Deployed various networking and hardware
               upgrades across the studio. Improved the efficiency of various
@@ -83,7 +79,7 @@ export default function Timeline() {
             </p>
           </li>
           <li className="mb-10 ml-6">
-            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full bg-gray-200 dark:bg-[#1d1f22]">
+            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-white bg-white/5">
               <svg
                 aria-hidden="true"
                 className="w-3 h-3"
@@ -98,16 +94,16 @@ export default function Timeline() {
                 ></path>
               </svg>
             </span>
-            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="mb-1 text-lg font-semibold text-white">
               Dev Demand Co
             </h3>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Junior Cloud Engineer
             </time>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               May 2020 → May 2021
             </time>
-            <p className="text-base font-normal text-gray-700 dark:text-gray-200">
+            <p className="text-base font-normal text-white">
               Learned to troubleshoot server related issues. Worked in the
               administration of a small business to develop documentation and
               processes. Began looking into the inner workings of Kubernetes and
@@ -115,7 +111,7 @@ export default function Timeline() {
             </p>
           </li>
           <li className="mb-10 ml-6">
-            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full bg-gray-200 dark:bg-[#1d1f22]">
+            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-white bg-white/5">
               <svg
                 aria-hidden="true"
                 className="w-3 h-3"
@@ -130,16 +126,14 @@ export default function Timeline() {
                 ></path>
               </svg>
             </span>
-            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
-              Conetix
-            </h3>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <h3 className="mb-1 text-lg font-semibold text-white">Conetix</h3>
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Technical Support Staff
             </time>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Sep 2018 → May 2020
             </time>
-            <p className="text-base font-normal text-gray-700 dark:text-gray-200">
+            <p className="text-base font-normal text-white">
               Provided professional phone and email support across a wide range
               of various web related technologies including WordPress, Office
               365, Plesk, Windows Server and Linux. Adept at the production of
@@ -150,7 +144,7 @@ export default function Timeline() {
             </p>
           </li>
           <li className="mb-10 ml-6">
-            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full bg-gray-200 dark:bg-[#1d1f22]">
+            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-white bg-white/5">
               <svg
                 aria-hidden="true"
                 className="w-3 h-3"
@@ -165,16 +159,16 @@ export default function Timeline() {
                 ></path>
               </svg>
             </span>
-            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="mb-1 text-lg font-semibold text-white">
               Camp Highroad
             </h3>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Christian Camp Counsellor
             </time>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               May 2018 → Sep 2018
             </time>
-            <p className="text-base font-normal text-gray-700 dark:text-gray-200">
+            <p className="text-base font-normal text-white">
               Participated in leading campers through various team building and
               extra-curricular activities. Invested and developed meaningful
               relationships with campers, parents and other counsellors.
@@ -183,7 +177,7 @@ export default function Timeline() {
             </p>
           </li>
           <li className="mb-10 ml-6">
-            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full bg-gray-200 dark:bg-[#1d1f22]">
+            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-white bg-white/5">
               <svg
                 aria-hidden="true"
                 className="w-3 h-3"
@@ -198,16 +192,16 @@ export default function Timeline() {
                 ></path>
               </svg>
             </span>
-            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="mb-1 text-lg font-semibold text-white">
               Hungry Jack{"'"}s
             </h3>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Crew Member
             </time>
-            <time className="block mb-2 text-sm font-normal leading-none text-gray-600 dark:text-gray-400">
+            <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
               Nov 2016 → May 2018
             </time>
-            <p className="text-base font-normal text-gray-700 dark:text-gray-200">
+            <p className="text-base font-normal text-white">
               Picked up strong time management skills and the ability to work in
               a stressful environment. Participated in the training of Crew
               Members in appropriate processes and procedures.

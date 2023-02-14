@@ -18,7 +18,11 @@ export default function Navigation() {
           <div className="mx-auto px-4">
             <div className="flex justify-between">
               <div>
-                <Link href="/" className="flex items-center py-3" title="Home">
+                <Link
+                  href="/"
+                  className="flex items-center py-3 text-white hover:text-[#888888]"
+                  title="Home"
+                >
                   <Image
                     alt="Zacchary Puckeridge"
                     height={40}
@@ -26,7 +30,7 @@ export default function Navigation() {
                     src="/images/profile-pic.jpg"
                     className="rounded-full"
                   />
-                  <span className="ml-2 text-lg font-bold text-white transition-all duration-200 hover:text-gray-300">
+                  <span className="ml-2 text-lg font-bold transition-all duration-200">
                     Zacchary Puckeridge
                   </span>
                 </Link>
@@ -79,7 +83,7 @@ export default function Navigation() {
 
           <div className={`mobile-menu ${showMenu ? "block" : "hidden"}`}>
             <ul
-              className="top-100 absolute left-0 right-0 bg-white/5 border border-zinc-800/50 rounded-b-lg max-w-6xl backdrop-blur-xl backdrop-brightness-125 text-2xl shadow-xl"
+              className="top-100 absolute left-0 right-0 bg-[#1d1d1d] border border-zinc-800/50 rounded-b-lg max-w-6xl text-2xl shadow-xl"
               onClick={() => setShowMenu(false)}
             >
               <li className="relative">

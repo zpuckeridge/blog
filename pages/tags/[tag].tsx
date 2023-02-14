@@ -6,14 +6,14 @@ import path from "path";
 export default function Tag({ articles, tag }: { articles: any; tag: string }) {
   return (
     <div>
-      <h1 className="mt-20 mb-4 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
+      <h1 className="mt-20 mb-4 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight text-white">
         {tag}
       </h1>
       <ul>
         {articles.map((article: any) => (
           <li key={article.slug}>
             <Link href="/article/[slug]" as={`/article/${article.slug}`}>
-              <button className="p-2 mb-2 w-full bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex hover:ring-2 ring-gray-300 transition-all">
+              <button className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 text-white rounded-lg flex hover:ring-2 ring-gray-300 transition-all">
                 {article.title}
               </button>
             </Link>

@@ -3,8 +3,8 @@ import Navigation from "./Navigation";
 export default function Layout({ children }: { children: any }) {
   return (
     <>
-      <div className="p-8 dark:bg-[#111111] flex flex-col min-h-screen justify-between">
-        <nav className="sticky top-8 z-[60]">
+      <div className="p-8 bg-[#111111] flex flex-col min-h-screen justify-between">
+        <nav className="sticky top-8 z-[99]">
           <Navigation />
         </nav>
         <main className="mx-auto max-w-2xl">{children}</main>

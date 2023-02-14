@@ -48,13 +48,13 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
         title="Blog | Zacchary Puckeridge"
         description="Read recent blog posts from Zacchary Puckeridge"
       />
-      <div className="mt-20 flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16">
-        <div className="flex flex-col-reverse sm:flex-row items-start">
+      <div className="mt-20 flex flex-col justify-center max-w-2xl mx-auto mb-20">
+        <div className="flex flex-col-reverse sm:flex-row">
           <div className="flex flex-col">
-            <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
+            <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-white">
               Blog
             </h1>
-            <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
+            <h2 className="text-white mb-4 mt-4">
               {"I've"} been writing articles since 2019 and have found it to be
               incredibly useful for retaining information about a variety of
               topics. I think the most interesting thing to do is to go back
@@ -64,8 +64,12 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
               <br />
               Dear reader should you be looking to open a dialogue about my
               positions on the topics outlined in my articles, please do so!{" "}
-              {"I'm"} always happy to chat, and can be reached via my email,
-              hi@zacchary.me or by leaving a comment!
+              {"I'm"} always happy to chat, and can be reached via my email:{" "}
+              <a href="mailto:hi@zacchary.me" title="Contact email">
+                <span className="hover:text-[#dacf00] text-[#fff200] font-semibold transition-all duration-200">
+                  hi@zacchary.me
+                </span>
+              </a>
             </h2>
             <div className="relative w-full mb-4">
               <input
@@ -73,10 +77,10 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                 type="text"
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search articles"
-                className="block w-full px-4 py-2 dark:text-white bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg hover:ring-2 ring-gray-300 transition-all"
+                className="block w-full px-4 py-2 text-white bg-white/5 border border-zinc-800/50 rounded-lg hover:ring-2 ring-gray-300 transition-all placeholder:text-[#888888]"
               />
               <svg
-                className="absolute w-5 h-5 text-gray-400 right-3 top-3 dark:text-gray-300"
+                className="absolute w-5 h-5 text-[#888888] right-3 top-3"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -118,11 +122,11 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                     <div key={article.slug}>
                       <Link
                         href={`/article/${article.slug}`}
-                        className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300"
+                        className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 text-white bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300"
                       >
                         <div>
                           <div className="relative flex justify-center my-auto rounded-t-lg">
-                            <div className="w-full h-full lg:h-48 bg-gray-200 dark:bg-gray-600" />
+                            <div className="w-full h-full lg:h-48" />
                             <Image
                               alt={`${article.data.title}`}
                               width={400}
@@ -141,7 +145,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                             {article.data.title}
                           </h1>
                           <div className="pl-5">
-                            <div className="inline-flex place-content-center dark:text-white font-bold py-2 px-2 bg-white dark:bg-white/5 border border-zinc-800/50 text-center text-base shadow-lg rounded-lg">
+                            <div className="inline-flex place-content-center text-white font-bold py-2 px-2 bg-white/5 border border-zinc-800/50 text-center text-base shadow-lg rounded-lg">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="mr-2 h-6 w-6"
@@ -159,7 +163,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                               {dateFormat(article.data.date, "dS mmmm yyyy")}
                             </div>
                           </div>
-                          <div className="pl-5 mt-2 flex items-center text-gray-800 dark:text-gray-200 capsize">
+                          <div className="pl-5 mt-2 flex items-center text-white capsize">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="h-6 w-6"

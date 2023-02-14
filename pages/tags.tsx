@@ -9,14 +9,14 @@ export default function Tags({ tags }: { tags: string[] }) {
     <>
       <NextSeo title="Tags | Zacchary Puckeridge" description="Article tags" />
       <div>
-        <h1 className="mt-20 mb-4 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
+        <h1 className="mt-20 mb-4 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight text-white">
           Tags
         </h1>
         <ul>
           {tags.map((tag) => (
             <li key={tag}>
               <Link href="/tags/[tag]" as={`/tags/${tag}`}>
-                <button className="p-2 mb-2 w-full bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
+                <button className="p-2 mb-2 w-full bg-white/5 border text-white border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
                   {tag}
                 </button>
               </Link>

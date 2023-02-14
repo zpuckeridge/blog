@@ -9,7 +9,7 @@ export default function Projects() {
       />
       <div className="grid place-items-center max-w-2xl mx-auto">
         <div className="p-4">
-          <h5 className="text-6xl font-extrabold text-gray-900 dark:text-white text-center">
+          <h5 className="text-6xl font-extrabold text-white text-center">
             Projects WIP! 😱
           </h5>
         </div>

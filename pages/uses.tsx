@@ -7,15 +7,15 @@ export default function About() {
         title="About | Zacchary Puckeridge"
         description="Learn more about Zacchary Puckeridge"
       />
-      <div className="mt-20 flex flex-col justify-center items-start max-w-2xl border-gray-200 dark:border-gray-700 mx-auto pb-16">
-        <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-black dark:text-white">
+      <div className="mt-20 flex flex-col justify-center max-w-2xl mx-auto mb-20 text-white">
+        <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-white">
           Uses
         </h1>
-        <h2 className="text-gray-700 dark:text-gray-200 mb-4 mt-4">
+        <h2 className="text-white mb-4 mt-4">
           A list of the hardware and software that I use on a regular basis.
         </h2>
         <div className="md:inline-flex gap-4">
-          <div className="dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
+          <div className="bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Hardware</h5>I am currently dual
             booting POP!_OS and Windows 11. My workstation specifications are:
             <ul className="mt-4 mb-4">
@@ -54,7 +54,7 @@ export default function About() {
               </li>
             </ul>
           </div>
-          <div className="md:mt-0 mt-4 dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
+          <div className="md:mt-0 mt-4 bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Gadgets</h5>
             <ul>
               <li>
@@ -65,7 +65,7 @@ export default function About() {
           </div>
         </div>
         <div className="md:inline-flex gap-4 mt-4">
-          <div className="dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
+          <div className="bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Editor & Terminal</h5>
             <ul>
               <li>
@@ -78,7 +78,7 @@ export default function About() {
               </li>
             </ul>
           </div>
-          <div className="md:mt-0 mt-4 dark:bg-white/5 p-4 rounded-lg border border-zinc-800/50">
+          <div className="md:mt-0 mt-4 bg-white/5 p-4 rounded-lg border border-zinc-800/50">
             <h5 className="text-2xl font-bold">Tools</h5>
             <ul>
               <li>

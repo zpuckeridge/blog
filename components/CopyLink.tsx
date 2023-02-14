@@ -15,7 +15,14 @@ export default function CopyLink() {
 
   return (
     <button onClick={handleClick} title="Copy URL">
-      {copied ? <FiCheck /> : <FiCopy />}
+      {copied ? (
+        <div className="inline-flex">
+          <p className="mr-2">URL Copied!</p>
+          <FiCheck className="my-auto" />
+        </div>
+      ) : (
+        <FiCopy />
+      )}
     </button>
   );
 }

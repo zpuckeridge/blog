@@ -1,7 +1,6 @@
 import Layout from "../components/Layout";
 import TransitionEffect from "../components/TransitionEffect";
 import type { AppProps } from "next/app";
-import { ThemeProvider } from "next-themes";
 import { Inter } from "@next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "../styles/globals.css";
@@ -14,14 +13,12 @@ const inter = Inter({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <main className={inter.className}>
-      <ThemeProvider attribute="class">
-        <Layout>
-          <TransitionEffect>
-            <Component {...pageProps} />
-            <Analytics />
-          </TransitionEffect>
-        </Layout>
-      </ThemeProvider>
+      <Layout>
+        <TransitionEffect>
+          <Component {...pageProps} />
+          <Analytics />
+        </TransitionEffect>
+      </Layout>
     </main>
   );
 }

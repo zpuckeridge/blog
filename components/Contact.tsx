@@ -55,14 +55,14 @@ const Contact = () => {
         async={true}
         defer={true}
       />
-      <div className="dark:bg-white/5 w-full p-4 rounded-lg border border-zinc-800/50">
+      <div className="bg-white/5 w-full p-4 rounded-lg border border-zinc-800/50">
         <form onSubmit={handleSubmit}>
           <div className="font-bold text-sm mb-1">Name</div>
           <input
             type="text"
             id="name"
             value={name}
-            className="w-full p-2 mb-4 rounded-lg bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+            className="w-full p-2 mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
             onChange={(event) => setName(event.target.value)}
           />
           <br />
@@ -72,7 +72,7 @@ const Contact = () => {
             id="email"
             value={email}
             placeholder="example@example.com"
-            className="w-full p-2 mb-4 rounded-lg bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+            className="w-full p-2 mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
             onChange={(event) => setEmail(event.target.value)}
           />
           <br />
@@ -80,7 +80,7 @@ const Contact = () => {
           <textarea
             id="message"
             value={message}
-            className="w-full p-2 h-[150px] mb-4 rounded-lg bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+            className="w-full p-2 h-[150px] mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
             onChange={(event) => setMessage(event.target.value)}
           />
           <br />
@@ -91,7 +91,7 @@ const Contact = () => {
             ></div>
             <button
               disabled={formSubmitted}
-              className="py-1 px-6 md:mt-0 mt-4 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
+              className="py-1 px-6 md:mt-0 mt-4 bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
               type="submit"
             >
               {!success && !error && <span>Send</span>}

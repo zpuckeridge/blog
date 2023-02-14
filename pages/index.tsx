@@ -45,7 +45,7 @@ export default function Home() {
           </div>
         </div>
 
-        <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-black dark:text-white">
+        <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-white">
           Featured Posts
         </h3>
         <div className="flex gap-6 flex-col md:flex-row">

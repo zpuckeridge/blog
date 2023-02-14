@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import querystring from "querystring";
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;

@@ -91,14 +91,14 @@ export default function ArticlePage({
               {data.tags}
             </p>
           </Link>
-          <h1 className="font-bold text-4xl">{data.title}</h1>
+          <h1 className="font-bold text-4xl text-white">{data.title}</h1>
           <Image
             alt={`${data.title}`}
             width={1000}
             height={1000}
             src={`/${data.socialImage}`}
             className={cn(
-              "group-hover:opacity-75 duration-700 ease-in-out w-full h-full object-cover select-none rounded-xl mt-4",
+              "group-hover:opacity-75 duration-700 ease-in-out w-full h-full object-cover select-none rounded-xl shadow-xl mt-4",
               isLoading
                 ? "grayscale blur-2xl scale-110"
                 : "grayscale-0 blur-0 scale-100"
@@ -107,19 +107,19 @@ export default function ArticlePage({
           />
         </div>
         <div className="flex justify-between">
-          <div className="mt-4 font-bold">
+          <div className="mt-4 font-semibold text-white">
             {dateFormat(data.date, "dS mmmm yyyy")} ・ <CopyLink />
           </div>
 
-          <div className="mt-4 mb-4 inline-flex text-gray-800 dark:text-gray-200">
+          <div className="mt-4 mb-4 inline-flex text-white">
             <FiEye className="h-6 w-6" />
-            <div className="ml-2 font-bold">
+            <div className="ml-2 font-semibold">
               <PageViews slug={data.slug} />
             </div>
           </div>
         </div>
         <div className="flex justify-center">
-          <article className="prose max-w-xs sm:max-w-2xl dark:prose-invert prose-img:shadow-xl prose-img:rounded-xl">
+          <article className="prose max-w-xs text-white sm:max-w-2xl prose-invert prose-img:shadow-xl prose-img:rounded-xl">
             <MDXRemote {...content} />
           </article>
         </div>

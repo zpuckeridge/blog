@@ -24,7 +24,7 @@ export default function BlogPostCard({
           glow
         )}
       >
-        <div className="bg-white dark:bg-[#1d1d1d] flex flex-col justify-between h-full rounded-lg p-4">
+        <div className="bg-[#1d1d1d] flex flex-col justify-between h-full rounded-lg p-4">
           <div className="flex flex-col md:flex-row justify-between">
             <h4 className="text-lg md:text-lg font-medium mb-6 sm:mb-10 w-full text-white tracking-tight">
               {title}
