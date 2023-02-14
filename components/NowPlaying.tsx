@@ -29,6 +29,7 @@ const NowPlaying: NextPage = () => {
     <>
       <div>
         <Link
+          title="Spotify"
           href={
             data?.isPlaying
               ? data.songUrl
@@ -46,11 +47,11 @@ const NowPlaying: NextPage = () => {
                 alt={data?.album}
               />
             ) : (
-              <FaSpotify size={28} />
+              <FaSpotify className="h-5 w-5 -mt-3.5" />
             )}
           </div>
 
-          <div className="transition-all ">
+          <div className="transition-all">
             <p className="pl-2 component">
               {data?.isPlaying ? data.title : "Not Playing"}
             </p>

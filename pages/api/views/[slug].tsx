@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { SupabaseAdmin } from "../../../lib/supabase-admin";
+import supabase from "../../../lib/supabase";
 
 const Slug = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     // Call our stored procedure with the page_slug set by the request params slug
-    await SupabaseAdmin.rpc("increment_page_view", {
+    await supabase.rpc("increment_page_view", {
       page_slug: req.query.slug,
     });
     return res.status(200).json({
@@ -14,7 +14,8 @@ const Slug = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "GET") {
     // Query the pages table in the database where slug equals the request params slug.
-    const { data } = await SupabaseAdmin.from("pages")
+    const { data } = await supabase
+      .from("pages")
       .select("view_count")
       .filter("slug", "eq", req.query.slug);
 

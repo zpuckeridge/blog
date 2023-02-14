@@ -18,19 +18,19 @@ export default function BlogPostCard({
       <Link
         href={`/article/${slug}`}
         className={cn(
-          "transform hover:scale-[1.05] transition-all",
+          "transform hover:scale-[1.05] transition-all md:w-52 md:h-52 mx-auto",
           "rounded-xl w-full md:w-1/3 bg-gradient-to-r p-1",
           gradient,
           glow
         )}
       >
-        <div className="bg-white dark:bg-[#121212] flex flex-col justify-between h-full rounded-lg p-4">
+        <div className="bg-white dark:bg-[#1d1d1d] flex flex-col justify-between h-full rounded-lg p-4">
           <div className="flex flex-col md:flex-row justify-between">
-            <h4 className="text-lg md:text-lg font-medium mb-6 sm:mb-10 w-full text-gray-900 dark:text-gray-100 tracking-tight">
+            <h4 className="text-lg md:text-lg font-medium mb-6 sm:mb-10 w-full text-white tracking-tight">
               {title}
             </h4>
           </div>
-          <div className="flex items-center text-gray-800 dark:text-gray-200 capsize">
+          <div className="flex items-center text-white capsize">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

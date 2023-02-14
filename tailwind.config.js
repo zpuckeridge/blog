@@ -16,6 +16,9 @@ module.exports = {
       borderRadius: {
         "2xl": "24px",
       },
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+      },
     },
   },
   plugins: [

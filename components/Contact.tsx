@@ -91,7 +91,7 @@ const Contact = () => {
             ></div>
             <button
               disabled={formSubmitted}
-              className="p-2 md:mt-0 mt-4 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
+              className="py-1 px-6 md:mt-0 mt-4 bg-white dark:bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
               type="submit"
             >
               {!success && !error && <span>Send</span>}
