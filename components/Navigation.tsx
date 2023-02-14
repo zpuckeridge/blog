@@ -73,6 +73,7 @@ export default function Navigation() {
               <div className="flex items-center text-white transition-all duration-200 hover:text-[#888888] lg:hidden">
                 <button
                   className="mobile-menu-button outline-none"
+                  title="Mobile Menu"
                   onClick={() => setShowMenu(!showMenu)}
                 >
                   <FiMenu className="h-6 w-6" />

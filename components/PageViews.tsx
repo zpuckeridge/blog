@@ -21,3 +21,5 @@ const PageViews: NextPage<PageViewsProps> = ({ slug }) => {
 };
 
 export default PageViews;
+
+// Consider using getStaticProps here
