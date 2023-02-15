@@ -1,12 +1,6 @@
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import {
-  FiArrowLeft,
-  FiArrowRight,
-  FiDownload,
-  FiImage,
-  FiX,
-} from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { FiArrowLeft, FiArrowRight, FiDownload, FiX } from "react-icons/fi";
 import cloudinary from "../lib/cloudinary";
 
 interface ImageProps {
@@ -23,6 +17,15 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
   const [modalImage, setModalImage] = useState<string>("");
   const [downloadImage, setDownloadImage] = useState<string>("");
   const [imageIndex, setImageIndex] = useState(0); // add this state to keep track of the current image index
+
+  useEffect(() => {
+    // update the modalImage state based on the current imageIndex state
+    const image = images[imageIndex];
+    const fullUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1280/${image.public_id}`;
+    const fullImage = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${image.public_id}`;
+    setDownloadImage(fullImage);
+    setModalImage(fullUrl);
+  }, [imageIndex, images]);
 
   // if no images, return null
   if (!images) {
@@ -50,15 +53,6 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
   const handleArrowRight = () => {
     setImageIndex((imageIndex + 1) % images.length);
   };
-
-  useEffect(() => {
-    // update the modalImage state based on the current imageIndex state
-    const image = images[imageIndex];
-    const fullUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_1280/${image.public_id}`;
-    const fullImage = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${image.public_id}`;
-    setDownloadImage(fullImage);
-    setModalImage(fullUrl);
-  }, [imageIndex, images]);
 
   return (
     <div>
