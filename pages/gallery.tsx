@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { FiArrowLeft, FiArrowRight, FiDownload, FiX } from "react-icons/fi";
 import cloudinary from "../lib/cloudinary";
 
+// @ts-ignore
+import useKeypress from "react-use-keypress";
+
 interface ImageProps {
   id: number;
-  height: string;
-  width: string;
+  height: number;
+  width: number;
   public_id: string;
   format: string;
   blurDataUrl?: string;
@@ -17,6 +20,16 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
   const [modalImage, setModalImage] = useState<string>("");
   const [downloadImage, setDownloadImage] = useState<string>("");
   const [imageIndex, setImageIndex] = useState(0); // add this state to keep track of the current image index
+
+  useKeypress(["ArrowLeft", "ArrowRight", "Escape"], (event: any) => {
+    if (event.key === "ArrowLeft") {
+      handleArrowLeft();
+    } else if (event.key === "ArrowRight") {
+      handleArrowRight();
+    } else if (event.key === "Escape") {
+      closeModal();
+    }
+  });
 
   useEffect(() => {
     // update the modalImage state based on the current imageIndex state
@@ -58,7 +71,7 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
     <div>
       {modalOpen && images.length > 0 && (
         <div className="fixed z-[99] top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center text-white">
-          <button className="ml-4 text-2xl" onClick={handleArrowLeft}>
+          <button className="ml-4 mr-4 text-2xl" onClick={handleArrowLeft}>
             <FiArrowLeft />
           </button>
           <div className="mx-auto my-auto max-w-full">
@@ -77,14 +90,13 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
             </div>
             <Image
               src={modalImage}
-              width={1000}
-              height={1000}
-              quality={100}
+              width={images[imageIndex].width}
+              height={images[imageIndex].height}
               alt="test"
               className="rounded-lg"
             />
           </div>
-          <button className="mr-4 text-2xl" onClick={handleArrowRight}>
+          <button className="ml-4 mr-4 text-2xl" onClick={handleArrowRight}>
             <FiArrowRight />
           </button>
         </div>
@@ -100,10 +112,6 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
                 width={720}
                 height={480}
-                sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
               />
             </button>
           ))}

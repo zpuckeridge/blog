@@ -13,28 +13,28 @@ export default function Layout({ children }: { children: any }) {
             Made with{" "}
             <a
               href="https://nextjs.org/"
-              className="hover:text-white transition-all"
+              className="hover:text-white transition-all duration-200"
             >
               Next.JS
             </a>
             ,{" "}
             <a
               href="https://reactjs.org/"
-              className="hover:text-white transition-all"
+              className="hover:text-white transition-all duration-200"
             >
               React
             </a>
             ,{" "}
             <a
               href="https://tailwindcss.com/"
-              className="hover:text-white transition-all"
+              className="hover:text-white transition-all duration-200"
             >
               Tailwind CSS
             </a>{" "}
             and{" "}
             <a
               href="https://github.com/zpuckeridge/blog"
-              className="hover:text-white transition-all"
+              className="hover:text-[#ff0000] transition-all duration-200"
             >
               ❤
             </a>
