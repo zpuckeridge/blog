@@ -57,7 +57,7 @@ const Contact = () => {
       />
       <div className="bg-white/5 w-full p-4 rounded-lg border border-zinc-800/50">
         <form onSubmit={handleSubmit}>
-          <div className="font-bold text-sm mb-1">Name</div>
+          <label className="font-bold text-sm mb-1">Name</label>
           <input
             type="text"
             id="name"
@@ -66,7 +66,7 @@ const Contact = () => {
             onChange={(event) => setName(event.target.value)}
           />
           <br />
-          <div className="font-bold text-sm mb-1">Email</div>
+          <label className="font-bold text-sm mb-1">Email</label>
           <input
             type="email"
             id="email"
@@ -76,7 +76,7 @@ const Contact = () => {
             onChange={(event) => setEmail(event.target.value)}
           />
           <br />
-          <div className="font-bold text-sm mb-1">Message</div>
+          <label className="font-bold text-sm mb-1">Message</label>
           <textarea
             id="message"
             value={message}

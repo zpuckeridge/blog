@@ -23,7 +23,7 @@ export default function About() {
             working for a VFX Studio called Rising Sun Pictures.
           </p>
           <div>
-            <h5 className="text-2xl font-bold mt-4 mb-4">What do you do?</h5>
+            <h2 className="text-2xl font-bold mt-4 mb-4">What do you do?</h2>
             <div>
               <p>
                 Currently, {"I'm"} building tools to automate various processes
@@ -37,9 +37,9 @@ export default function About() {
                 animation.
               </p>
             </div>
-            <h5 className="text-2xl font-bold mt-4 mb-4">
+            <h2 className="text-2xl font-bold mt-4 mb-4">
               Want to get in touch?
-            </h5>
+            </h2>
             <div>
               <div className="md:flex gap-4">
                 <div className="w-full">

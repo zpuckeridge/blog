@@ -16,7 +16,7 @@ export default function About() {
         </h2>
         <div className="md:inline-flex gap-4">
           <div className="bg-white/5 p-4 rounded-lg border border-zinc-800/50">
-            <h5 className="text-2xl font-bold">Hardware</h5>I am currently dual
+            <h3 className="text-2xl font-bold">Hardware</h3>I am currently dual
             booting POP!_OS and Windows 11. My workstation specifications are:
             <ul className="mt-4 mb-4">
               <li>
@@ -55,7 +55,7 @@ export default function About() {
             </ul>
           </div>
           <div className="md:mt-0 mt-4 bg-white/5 p-4 rounded-lg border border-zinc-800/50">
-            <h5 className="text-2xl font-bold">Gadgets</h5>
+            <h3 className="text-2xl font-bold">Gadgets</h3>
             <ul>
               <li>
                 <span className="font-semibold">Phone:</span> Google Pixel 6
@@ -66,7 +66,7 @@ export default function About() {
         </div>
         <div className="md:inline-flex gap-4 mt-4">
           <div className="bg-white/5 p-4 rounded-lg border border-zinc-800/50">
-            <h5 className="text-2xl font-bold">Editor & Terminal</h5>
+            <h3 className="text-2xl font-bold">Editor & Terminal</h3>
             <ul>
               <li>
                 <span className="font-semibold">Editor:</span> Visual Studio
@@ -79,7 +79,7 @@ export default function About() {
             </ul>
           </div>
           <div className="md:mt-0 mt-4 bg-white/5 p-4 rounded-lg border border-zinc-800/50">
-            <h5 className="text-2xl font-bold">Tools</h5>
+            <h3 className="text-2xl font-bold">Tools</h3>
             <ul>
               <li>
                 <span className="font-semibold">Web Browser:</span> Librewolf
