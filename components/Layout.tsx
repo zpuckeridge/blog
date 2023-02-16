@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: any }) {
         <nav className="sticky top-8 z-[99]">
           <Navigation />
         </nav>
-        <main className="mx-auto max-w-2xl">{children}</main>
+        <main className="mx-auto">{children}</main>
         <footer className="text-center">
           <div className="font-semibold text-md text-[#888888]">
             Made with{" "}
