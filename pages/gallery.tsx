@@ -12,14 +12,11 @@ import cloudinary from "../lib/cloudinary";
 
 // @ts-ignore
 import useKeypress from "react-use-keypress";
-import CopyLink from "../components/CopyLink";
 
 interface ImageProps {
-  id: number;
   height: number;
   width: number;
   public_id: string;
-  format: string;
   blurDataUrl?: string;
   filename: string;
 }
@@ -119,7 +116,7 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
               width={images[imageIndex].width}
               height={images[imageIndex].height}
               alt={images[imageIndex].filename}
-              className="pointer-events-none rounded-lg"
+              className="rounded-lg"
               priority={true}
             />
             <div className="flex justify-between">
@@ -141,13 +138,16 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
         </div>
       )}
 
-      <div className="mt-20 mb-20 max-w-[1960px] columns-1 sm:columns-2 xl:columns-3 2xl:columns-4">
-        {images.map(({ public_id, format }) => (
-          <button key={public_id} onClick={() => openModal(public_id)}>
+      <div className="my-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {images.map(({ public_id, filename }) => (
+          <button
+            key={public_id}
+            onClick={() => openModal(public_id)}
+            title={filename}>
             <Image
-              alt="temp"
-              className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-              src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
+              alt={filename}
+              className="rounded-lg transform hover:scale-[1.05] transition-all"
+              src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}`}
               width={720}
               height={480}
             />
@@ -166,17 +166,13 @@ export async function getStaticProps() {
     .execute();
   let reducedResults: ImageProps[] = [];
 
-  let i = 0;
   for (let result of results.resources) {
     reducedResults.push({
-      id: i,
       height: result.height,
       width: result.width,
       public_id: result.public_id,
-      format: result.format,
       filename: result.filename,
     });
-    i++;
   }
 
   return {

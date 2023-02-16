@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import PageViews from "../../components/PageViews";
 import CopyLink from "../../components/CopyLink";
-import { FiEye, FiChevronRight } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
