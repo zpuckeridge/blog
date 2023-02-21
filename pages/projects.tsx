@@ -60,7 +60,9 @@ export default function Projects() {
               </div>
               <div className="flex">
                 <FiClock className="my-1 mr-2" />
-                <p>Jan '23 - Feb '23</p>
+                <p>
+                  Jan {"'"}23 - Feb {"'"}23
+                </p>
               </div>
               <div className="flex">
                 <FiFlag className="my-1 mr-2" />
@@ -139,7 +141,7 @@ export default function Projects() {
               </div>
               <div className="flex">
                 <FiClock className="my-1 mr-2" />
-                <p>Jan '19 - Present</p>
+                <p>Jan {"'"}19 - Present</p>
               </div>
               <div className="flex">
                 <FiFlag className="my-1 mr-2" />
@@ -150,9 +152,9 @@ export default function Projects() {
                   <span>
                     <FiCornerDownRight className="my-1 mr-2" />
                   </span>
-                  I've been writing articles since 2019 and have found it to be
-                  incredibly useful for retaining information about a variety of
-                  topics. Working on this project has helped me learn a lot
+                  I{"'"}ve been writing articles since 2019 and have found it to
+                  be incredibly useful for retaining information about a variety
+                  of topics. Working on this project has helped me learn a lot
                   about Web Development.
                 </p>
               </div>
@@ -163,8 +165,8 @@ export default function Projects() {
                   </span>
                   This project leverages TailwindCSS for styling, Cloudinary for
                   image hosting, Supabase for tracking view counts, Spotify API
-                  for tracking what's currently playing, Next.JS and Vercel for
-                  hosting.
+                  for tracking what{"'"}s currently playing, Next.JS and Vercel
+                  for hosting.
                 </p>
               </div>
               <div className="flex">
@@ -222,7 +224,7 @@ export default function Projects() {
               </div>
               <div className="flex">
                 <FiClock className="my-1 mr-2" />
-                <p>Mar '22 - Present</p>
+                <p>Mar {"'"}22 - Present</p>
               </div>
               <div className="flex">
                 <FiFlag className="my-1 mr-2" />
@@ -234,8 +236,8 @@ export default function Projects() {
                     <FiCornerDownRight className="my-1 mr-2" />
                   </span>
                   This project started out as a simple video sharing solution
-                  that had working embeds primarily for Discord and Twitter.
-                  It's evolved a bit since then to become my own livestreaming
+                  that had working embeds primarily for Discord and Twitter. It
+                  {"'"}s evolved a bit since then to become my own livestreaming
                   site.
                 </p>
               </div>
@@ -304,7 +306,9 @@ export default function Projects() {
               </div>
               <div className="flex">
                 <FiClock className="my-1 mr-2" />
-                <p>Jun '21 - Jul '21</p>
+                <p>
+                  Jun {"'"}21 - Jul {"'"}21
+                </p>
               </div>
               <div className="flex">
                 <FiFlag className="my-1 mr-2" />
@@ -381,7 +385,9 @@ export default function Projects() {
               </div>
               <div className="flex">
                 <FiClock className="my-1 mr-2" />
-                <p>May '21 - May '21</p>
+                <p>
+                  May {"'"}21 - May {"'"}21
+                </p>
               </div>
               <div className="flex">
                 <FiFlag className="my-1 mr-2" />
