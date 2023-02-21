@@ -84,8 +84,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -122,8 +121,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                     <div key={article.slug}>
                       <Link
                         href={`/article/${article.slug}`}
-                        className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 text-white bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300"
-                      >
+                        className="mr-2 ml-2 mb-4 transform hover:scale-[1.05] transition-all lg:h-[31rem] md:h-80 text-white bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300">
                         <div>
                           <div className="relative flex justify-center my-auto rounded-t-lg">
                             <div className="w-full h-full lg:h-48" />
@@ -133,7 +131,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                               height={400}
                               src={`/${article.data.socialImage}`}
                               className={cn(
-                                "group-hover:opacity-75 duration-700 ease-in-out hidden lg:flex absolute top-0 left-0 w-full h-48 object-cover select-none",
+                                "duration-700 ease-in-out hidden lg:flex absolute top-0 left-0 w-full h-48 object-cover select-none",
                                 isLoading
                                   ? "grayscale blur-2xl scale-110"
                                   : "grayscale-0 blur-0 scale-100"
@@ -152,8 +150,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                strokeWidth="2"
-                              >
+                                strokeWidth="2">
                                 <path
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
@@ -169,8 +166,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
                               className="h-6 w-6"
                               fill="none"
                               viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
+                              stroke="currentColor">
                               <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"

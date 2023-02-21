@@ -98,7 +98,7 @@ export default function ArticlePage({
             height={1000}
             src={`/${data.socialImage}`}
             className={cn(
-              "group-hover:opacity-75 duration-700 ease-in-out w-full h-full object-cover select-none rounded-xl shadow-xl mt-4",
+              " duration-700 ease-in-out w-full h-full object-cover select-none rounded-xl shadow-xl mt-4",
               isLoading
                 ? "grayscale blur-2xl scale-110"
                 : "grayscale-0 blur-0 scale-100"

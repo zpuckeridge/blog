@@ -57,43 +57,47 @@ const Contact = () => {
       />
       <div className="bg-white/5 w-full p-4 rounded-lg border border-zinc-800/50">
         <form onSubmit={handleSubmit}>
-          <label className="font-bold text-sm mb-1">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            className="w-full p-2 mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
-            onChange={(event) => setName(event.target.value)}
-          />
+          <label className="font-bold text-sm mb-1">
+            Name
+            <input
+              type="text"
+              id="name"
+              value={name}
+              className="w-full p-2 mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
+              onChange={(event) => setName(event.target.value)}
+            />
+          </label>
           <br />
-          <label className="font-bold text-sm mb-1">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            placeholder="example@example.com"
-            className="w-full p-2 mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
-            onChange={(event) => setEmail(event.target.value)}
-          />
+          <label className="font-bold text-sm mb-1">
+            Email
+            <input
+              type="email"
+              id="email"
+              value={email}
+              placeholder="example@example.com"
+              className="w-full p-2 mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </label>
           <br />
-          <label className="font-bold text-sm mb-1">Message</label>
-          <textarea
-            id="message"
-            value={message}
-            className="w-full p-2 h-[150px] mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
-            onChange={(event) => setMessage(event.target.value)}
-          />
+          <label className="font-bold text-sm mb-1">
+            Message
+            <textarea
+              id="message"
+              value={message}
+              className="w-full p-2 h-[150px] mb-4 rounded-lg bg-white/5 text-sm placeholder:text-[#888888]"
+              onChange={(event) => setMessage(event.target.value)}
+            />
+          </label>
           <br />
           <div className="md:flex justify-between">
             <div
               className="cf-turnstile checkbox"
-              data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_KEY}
-            ></div>
+              data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_KEY}></div>
             <button
               disabled={formSubmitted}
               className="py-1 px-6 md:mt-0 mt-4 bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all"
-              type="submit"
-            >
+              type="submit">
               {!success && !error && <span>Send</span>}
               {success && <FiCheck />}
               {error && <FiX />}

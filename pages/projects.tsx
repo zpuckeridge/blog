@@ -35,7 +35,7 @@ export default function Projects() {
                   height={500}
                   alt="Simply Photos Website Preview"
                   className={cn(
-                    "group-hover:opacity-75 duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -54,7 +54,7 @@ export default function Projects() {
                 </span>
               </h1>
               <div className="rounded-full bg-green-300 w-24 py-1">
-                <p className="text-center font-semibold text-sm text-green-700">
+                <p className="text-center font-semibold text-sm text-green-800">
                   Freelance
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default function Projects() {
                   height={500}
                   alt="Zacchary's Blog Website Preview"
                   className={cn(
-                    "group-hover:opacity-75 duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -135,7 +135,7 @@ export default function Projects() {
                 </span>
               </h1>
               <div className="rounded-full bg-purple-300 w-24 py-1">
-                <p className="text-center font-semibold text-sm text-purple-700">
+                <p className="text-center font-semibold text-sm text-purple-800">
                   Personal
                 </p>
               </div>
@@ -199,7 +199,7 @@ export default function Projects() {
                   height={500}
                   alt="Zacchary's Livestream Website Preview"
                   className={cn(
-                    "group-hover:opacity-75 duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -218,7 +218,7 @@ export default function Projects() {
                 </span>
               </h1>
               <div className="rounded-full bg-purple-300 w-24 py-1">
-                <p className="text-center font-semibold text-sm text-purple-700">
+                <p className="text-center font-semibold text-sm text-purple-800">
                   Freelance
                 </p>
               </div>
@@ -282,7 +282,7 @@ export default function Projects() {
                   height={500}
                   alt="Savvy Electrical Website Preview"
                   className={cn(
-                    "group-hover:opacity-75 duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -300,7 +300,7 @@ export default function Projects() {
                 </span>
               </h1>
               <div className="rounded-full bg-green-300 w-24 py-1">
-                <p className="text-center font-semibold text-sm text-green-700">
+                <p className="text-center font-semibold text-sm text-green-800">
                   Freelance
                 </p>
               </div>
@@ -362,7 +362,7 @@ export default function Projects() {
                   height={500}
                   alt="Miden Baptist Website Preview"
                   className={cn(
-                    "group-hover:opacity-75 duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -379,7 +379,7 @@ export default function Projects() {
                 </span>
               </h1>
               <div className="rounded-full bg-green-300 w-24 py-1">
-                <p className="text-center font-semibold text-sm text-green-700">
+                <p className="text-center font-semibold text-sm text-green-800">
                   Freelance
                 </p>
               </div>

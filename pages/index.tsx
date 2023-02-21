@@ -47,7 +47,7 @@ export default function Home() {
               width={140}
               src="/images/profile-pic.jpg"
               className={cn(
-                "group-hover:opacity-75 rounded-full duration-700 ease-in-out hidden w-36 lg:flex select-none",
+                " rounded-full duration-700 ease-in-out hidden w-36 lg:flex select-none",
                 isLoading
                   ? "grayscale blur-2xl scale-110"
                   : "grayscale-0 blur-0 scale-100"
