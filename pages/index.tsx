@@ -4,8 +4,15 @@ import { NextSeo } from "next-seo";
 import BlogPostCard from "../components/BlogPostCard";
 import NowPlaying from "../components/NowPlaying";
 import { FiArrowRight } from "react-icons/fi";
+import { useState } from "react";
+
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function Home() {
+  const [isLoading, setLoading] = useState(true);
+
   return (
     <>
       <NextSeo
@@ -24,8 +31,7 @@ export default function Home() {
                 <a
                   href="https://rsp.com.au/"
                   title="Rising Sun Pictures"
-                  className="hover:text-[#dacf00] text-[#fff200] transition-all duration-200"
-                >
+                  className="hover:text-[#dacf00] text-[#fff200] transition-all duration-200">
                   Rising Sun Pictures
                 </a>
               </span>
@@ -40,7 +46,13 @@ export default function Home() {
               height={140}
               width={140}
               src="/images/profile-pic.jpg"
-              className="rounded-full"
+              className={cn(
+                "group-hover:opacity-75 rounded-full duration-700 ease-in-out hidden w-36 lg:flex select-none",
+                isLoading
+                  ? "grayscale blur-2xl scale-110"
+                  : "grayscale-0 blur-0 scale-100"
+              )}
+              onLoadingComplete={() => setLoading(false)}
             />
           </div>
         </div>
@@ -93,8 +105,7 @@ export default function Home() {
             <Link
               href="/blog"
               title="Read all posts"
-              className="flex mt-8 text-[#888888] leading-7 rounded-lg hover:text-white transition-all"
-            >
+              className="flex mt-8 text-[#888888] leading-7 rounded-lg hover:text-white transition-all">
               Read all posts
               <div className="h-6 w-6 ml-1 mt-1.5">
                 <FiArrowRight />

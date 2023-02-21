@@ -21,7 +21,12 @@ interface ImageProps {
   filename: string;
 }
 
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function Gallery({ images }: { images: ImageProps[] }) {
+  const [isLoading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [modalImage, setModalImage] = useState<string>("");
@@ -143,13 +148,21 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
           <button
             key={public_id}
             onClick={() => openModal(public_id)}
-            title={filename}>
+            title={filename}
+            className="transform hover:scale-[1.05] transition-all">
             <Image
               alt={filename}
-              className="rounded-lg transform hover:scale-[1.05] transition-all"
+              // className="rounded-lg "
               src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}`}
               width={720}
               height={480}
+              className={cn(
+                "group-hover:opacity-75 duration-700 ease-in-out hidden rounded-lg lg:flex select-none",
+                isLoading
+                  ? "grayscale blur-2xl scale-110"
+                  : "grayscale-0 blur-0 scale-100"
+              )}
+              onLoadingComplete={() => setLoading(false)}
             />
           </button>
         ))}
