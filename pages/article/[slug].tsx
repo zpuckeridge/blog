@@ -85,7 +85,7 @@ export default function ArticlePage({
     <>
       <NextSeo title={data.title} description={data.description} />
       <div className="mb-20 mt-20">
-        <div className="text-center">
+        <div className="text-center max-w-3xl">
           <Link href={`/tags/${data.tags}`}>
             <p className="uppercase font-bold text-blue-500 hover:text-blue-400">
               {data.tags}
@@ -104,6 +104,7 @@ export default function ArticlePage({
                 : "grayscale-0 blur-0 scale-100"
             )}
             onLoadingComplete={() => setLoading(false)}
+            priority={true}
           />
         </div>
         <div className="flex justify-between">

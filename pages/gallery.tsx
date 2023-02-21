@@ -174,7 +174,7 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
 export async function getStaticProps() {
   const results = await cloudinary.v2.search
     .expression(`folder:blog/*`)
-    .sort_by("uploaded_at", "asc")
+    .sort_by("uploaded_at", "desc")
     .max_results(400)
     .execute();
   let reducedResults: ImageProps[] = [];
