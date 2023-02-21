@@ -53,6 +53,7 @@ export default function Home() {
                   : "grayscale-0 blur-0 scale-100"
               )}
               onLoadingComplete={() => setLoading(false)}
+              priority={true}
             />
           </div>
         </div>

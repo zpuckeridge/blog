@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  FiArrowDown,
-  FiCornerDownRight,
-  FiInstagram,
-  FiMenu,
-} from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
+
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function Navigation() {
+  const [isLoading, setLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -27,7 +27,14 @@ export default function Navigation() {
                     height={40}
                     width={40}
                     src="/images/profile-pic.jpg"
-                    className="rounded-full"
+                    className={cn(
+                      "group-hover:opacity-75 rounded-full duration-700 ease-in-out hidden lg:flex select-none",
+                      isLoading
+                        ? "grayscale blur-2xl scale-110"
+                        : "grayscale-0 blur-0 scale-100"
+                    )}
+                    onLoadingComplete={() => setLoading(false)}
+                    priority={true}
                   />
                   <span className="ml-2 text-lg font-bold transition-all duration-200">
                     Zacchary Puckeridge
