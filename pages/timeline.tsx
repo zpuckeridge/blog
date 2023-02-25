@@ -25,13 +25,11 @@ export default function Timeline() {
                   className="w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </span>
               <h3 className="flex items-center mb-1 text-lg font-semibold text-white">
@@ -46,7 +44,11 @@ export default function Timeline() {
               <time className="block mb-2 text-sm font-normal leading-none text-[#888888]">
                 May 2022 → Present
               </time>
-              <p className="mb-4 text-base font-normal text-white">...</p>
+              <p className="mb-4 text-base font-normal text-white">
+                Currently working towards the building and advancement of the
+                Brisbane studio while providing onsite and remote support to
+                both Adelaide and Brisbane locations.
+              </p>
             </li>
             <li className="mb-10 ml-6">
               <span className="flex absolute -left-3 justify-center items-center w-6 h-6 rounded-full text-white bg-white/5">
@@ -55,13 +57,11 @@ export default function Timeline() {
                   className="w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </span>
               <h3 className="mb-1 text-lg font-semibold text-white">
@@ -74,11 +74,14 @@ export default function Timeline() {
                 Jun 2021 → May 2022
               </time>
               <p className="text-base font-normal text-white">
-                Provided clear and concise support for ~200 employee{"'"}s both
-                internal and remote. Deployed various networking and hardware
-                upgrades across the studio. Improved the efficiency of various
-                software and tools. Built and deployed a ~500TB CephFS Cluster
-                to upgrade studio{"'"}s existing storage solution.
+                Provided effective and efficient support to around 200
+                employees, both on-site and remote. Implemented various
+                networking and hardware upgrades throughout the studio,
+                resulting in improved operational efficiency. Additionally,
+                optimised various software and tools. Notably, spearheaded the
+                establishment and deployment of a CephFS Cluster, spanning
+                approximately 500 terabytes, to upgrade the studio{"'"}s storage
+                solution.
               </p>
             </li>
             <li className="mb-10 ml-6">
@@ -88,13 +91,11 @@ export default function Timeline() {
                   className="w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </span>
               <h3 className="mb-1 text-lg font-semibold text-white">
@@ -107,10 +108,11 @@ export default function Timeline() {
                 May 2020 → May 2021
               </time>
               <p className="text-base font-normal text-white">
-                Learned to troubleshoot server related issues. Worked in the
-                administration of a small business to develop documentation and
-                processes. Began looking into the inner workings of Kubernetes
-                and participated in the development of client related projects.
+                Acquired proficiency in resolving server-related concerns, while
+                contributing towards the documentation and process development
+                for a small enterprise. Started down the path of learning the
+                intricacies of Kubernetes, while actively engaging in the
+                advancement of client-centric projects.
               </p>
             </li>
             <li className="mb-10 ml-6">
@@ -120,13 +122,11 @@ export default function Timeline() {
                   className="w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </span>
               <h3 className="mb-1 text-lg font-semibold text-white">Conetix</h3>
@@ -137,13 +137,13 @@ export default function Timeline() {
                 Sep 2018 → May 2020
               </time>
               <p className="text-base font-normal text-white">
-                Provided professional phone and email support across a wide
-                range of various web related technologies including WordPress,
-                Office 365, Plesk, Windows Server and Linux. Adept at the
-                production of writing understandable technical processes and
-                procedures. Proficient at providing clear and concise support to
-                customers over the phone quickly and efficiently. Participated
-                in the maintenance of various Windows and Linux based servers.
+                Delivered professional phone and email assistance, encompassing
+                diverse web-related technologies such as WordPress, Office 365,
+                Plesk, Windows Server, and Linux. Demonstrated proficiency in
+                composing technical processes and procedures, while adeptly
+                providing swift and effective support to clients over the phone.
+                Contributed towards the maintenance of numerous Windows and
+                Linux-based servers.
               </p>
             </li>
             <li className="mb-10 ml-6">
@@ -153,13 +153,11 @@ export default function Timeline() {
                   className="w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </span>
               <h3 className="mb-1 text-lg font-semibold text-white">
@@ -172,11 +170,12 @@ export default function Timeline() {
                 May 2018 → Sep 2018
               </time>
               <p className="text-base font-normal text-white">
-                Participated in leading campers through various team building
-                and extra-curricular activities. Invested and developed
-                meaningful relationships with campers, parents and other
-                counsellors. Travelled from East Coast to West Coast USA and
-                made great friends along the way.
+                Took an active role in guiding campers through a diverse range
+                of team-building exercises and extracurricular activities.
+                Fostered and cultivated significant connections with campers,
+                parents, and fellow counselors. Undertook a cross-country
+                journey from the East Coast to the West Coast of the United
+                States, forging some great friendships along the way.
               </p>
             </li>
             <li className="mb-10 ml-6">
@@ -186,13 +185,11 @@ export default function Timeline() {
                   className="w-3 h-3"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  ></path>
+                    clipRule="evenodd"></path>
                 </svg>
               </span>
               <h3 className="mb-1 text-lg font-semibold text-white">
@@ -205,9 +202,10 @@ export default function Timeline() {
                 Nov 2016 → May 2018
               </time>
               <p className="text-base font-normal text-white">
-                Picked up strong time management skills and the ability to work
-                in a stressful environment. Participated in the training of Crew
-                Members in appropriate processes and procedures.
+                Gained proficiency in time management and developed the capacity
+                to operate effectively under pressure while carrying out duties.
+                Additionally, contributed towards training crew members on
+                relevant protocols and procedures.
               </p>
             </li>
           </ol>

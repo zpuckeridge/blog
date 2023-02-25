@@ -219,7 +219,7 @@ export default function Projects() {
               </h1>
               <div className="rounded-full bg-purple-300 w-24 py-1">
                 <p className="text-center font-semibold text-sm text-purple-800">
-                  Freelance
+                  Personal
                 </p>
               </div>
               <div className="flex">

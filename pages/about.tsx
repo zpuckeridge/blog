@@ -1,6 +1,12 @@
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import { FaDiscord, FaGithub, FaSpotify } from "react-icons/fa";
+import {
+  FaDiscord,
+  FaGithub,
+  FaLinkedin,
+  FaSpotify,
+  FaSteam,
+} from "react-icons/fa";
 import Age from "../components/Age";
 import Contact from "../components/Contact";
 import TimeStatus from "../components/TimeStatus";
@@ -46,19 +52,31 @@ export default function About() {
                   <Contact />
                 </div>
                 <div className="bg-white/5 md:w-1/3 md:mt-0 mt-4 w-full border border-zinc-800/50 rounded-lg p-4">
-                  <Link href="https://github.com/zpuckeridge">
+                  <a href="https://github.com/zpuckeridge">
                     <button className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
                       <FaGithub className="w-6 h-6 mr-1" /> GitHub
                     </button>
-                  </Link>
-                  <Link href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620">
+                  </a>
+                  <a href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620">
                     <button className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
                       <FaSpotify className="w-6 h-6 mr-1" /> Spotify
                     </button>
-                  </Link>
-                  <div className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center">
-                    <FaDiscord className="w-6 h-6 mr-1" /> sdelta#0001
-                  </div>
+                  </a>
+                  <a href="https://www.linkedin.com/in/zpuckeridge">
+                    <button className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
+                      <FaLinkedin className="w-6 h-6 mr-1" /> LinkedIn
+                    </button>
+                  </a>
+                  <a href="https://discordapp.com/users/181324210876973056">
+                    <button className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
+                      <FaDiscord className="w-6 h-6 mr-1" /> sdelta
+                    </button>
+                  </a>
+                  <a href="https://steamcommunity.com/id/sdelta_/">
+                    <button className="p-2 mb-2 w-full bg-white/5 border border-zinc-800/50 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-300 transition-all">
+                      <FaSteam className="w-6 h-6 mr-1" /> sdelta_
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>

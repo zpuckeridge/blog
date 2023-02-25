@@ -149,7 +149,7 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
           </div>
         )}
 
-        <div className="my-20 grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 max-w-[1400px]">
+        <div className="my-20 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 max-w-[1400px]">
           {images.map(({ public_id, filename }, index) => (
             <button
               key={public_id}
