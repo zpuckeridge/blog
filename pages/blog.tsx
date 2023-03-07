@@ -94,7 +94,7 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
           </div>
         </div>
 
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 max-w-[1400px]">
+        <div className="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 max-w-2xl mx-auto">
           {filteredArticles
             .sort(
               (a: { data: { date: Date } }, b: { data: { date: Date } }) => {
@@ -194,6 +194,18 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
               )
             )}
         </div>
+        <p className="my-20 text-white text-xl text-center">
+          <span className="italic">
+            "If you hate the truth than telling the truth is going to sound like
+            hate."
+          </span>{" "}
+          -{" "}
+          <a
+            href="https://dougwils.com/"
+            className="hover:text-[#dacf00] text-[#fff200]">
+            Doug Wilson
+          </a>
+        </p>
       </div>
     </>
   );
