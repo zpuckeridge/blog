@@ -196,8 +196,8 @@ export default function Blog({ allArticlesData }: { allArticlesData: any }) {
         </div>
         <p className="my-20 text-white text-xl text-center">
           <span className="italic">
-            "If you hate the truth than telling the truth is going to sound like
-            hate."
+            {'"'}If you hate the truth than telling the truth is going to sound
+            like hate.{'"'}
           </span>{" "}
           -{" "}
           <a

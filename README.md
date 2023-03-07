@@ -16,7 +16,6 @@
   <img width="600" src="https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png" />
 </div>
 
-  
 ## 🚀 Install
 
 To get started locally running the project:
@@ -43,25 +42,20 @@ Commit changes to repository. Once repository has been configured with Vercel, c
 ## 🚩 Features
 
 - 🌙 Dark Mode
-- ...
+- Photo Gallery
+- Copy URL Button
 
 ## 👀 Coming soon
 
 These features are due to be implemented soon:
 
-- Add latest article banner to blog page
 - Rich Embeds
-- Finish about page
-- Finish projects page
-- Finish uses page
-- Add dynamic and searchable tags to posts
 - Add page progress scroll
-- Photo gallery
 - Newsletter subscription
 - Stats page/dashboard with public site stats/personal stats
 - Syntax copy button
 - Syntax file path
+- Syntax highlighting
 - Next/Prev article buttons
 - Don't go favicon/tab name change
 - Top tracks widget
-- Syntax highlighting
