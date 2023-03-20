@@ -1,17 +1,18 @@
 import Link from "next/link";
 import cn from "classnames";
-import PageViews from "../components/PageViews";
 
 export default function BlogPostCard({
   title,
   slug,
   gradient,
+  views,
   glow,
 }: {
   title: string;
   slug: string;
   gradient: string;
   glow: string;
+  views: any;
 }) {
   return (
     <>
@@ -22,8 +23,7 @@ export default function BlogPostCard({
           "rounded-xl w-full md:w-1/3 bg-gradient-to-r p-1",
           gradient,
           glow
-        )}
-      >
+        )}>
         <div className="bg-[#1d1d1d] flex flex-col justify-between h-full rounded-lg p-4">
           <div className="flex flex-col md:flex-row justify-between">
             <h4 className="text-lg md:text-lg font-medium mb-6 sm:mb-10 w-full text-white tracking-tight">
@@ -36,8 +36,7 @@ export default function BlogPostCard({
               className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -51,9 +50,7 @@ export default function BlogPostCard({
                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
               />
             </svg>
-            <div className="ml-2">
-              <PageViews slug={slug} />
-            </div>
+            <div className="ml-2">{views}</div>
           </div>
         </div>
       </Link>

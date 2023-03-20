@@ -28,7 +28,7 @@ export default function Navigation() {
                     width={40}
                     src="/images/profile-pic.jpg"
                     className={cn(
-                      " rounded-full duration-700 ease-in-out hidden lg:flex select-none",
+                      "rounded-full duration-700 ease-in-out select-none",
                       isLoading
                         ? "grayscale blur-2xl scale-110"
                         : "grayscale-0 blur-0 scale-100"

@@ -1,92 +1,64 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Link from "next/link";
-import dateFormat, { masks } from "dateformat";
+import dateFormat from "dateformat";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import PageViews from "../../components/PageViews";
+import { useState } from "react";
 import CopyLink from "../../components/CopyLink";
 import { FiEye } from "react-icons/fi";
+import supabase from "../../lib/supabase";
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const getArticle = (slug: any) => {
-  const fileContents = fs.readFileSync(
-    path.join(`articles/${slug}.md`),
-    "utf8"
-  );
-  const { data, content } = matter(fileContents);
-  return {
-    data,
-    content,
-  };
-};
+export async function getServerSideProps(context: any) {
+  const { slug } = context.query;
 
-const getArticles = () => {
-  const files = fs.readdirSync(path.join("articles"));
-  const allArticlesData = files.map((fileName) => {
-    const slug = fileName.replace(".md", "");
-    const fileContents = fs.readFileSync(
-      path.join(`articles/${slug}.md`),
-      "utf8"
-    );
-    const { data } = matter(fileContents);
-    return {
-      slug,
-      data,
-    };
+  // Trigger view increment
+  await supabase.rpc("blog_views", {
+    slug: slug,
+    increment_num: 1,
   });
 
-  return allArticlesData;
-};
+  const { data, error } = await supabase
+    .from("blog")
+    .select("*")
+    .eq("slug", slug)
+    .single();
 
-export const getStaticPaths = async () => {
-  const articles = await getArticles();
-  const paths = articles.map((article) => ({ params: { slug: article.slug } }));
-  return {
-    paths,
-    fallback: false,
-  };
-};
+  if (error) {
+    throw new Error(error.message);
+  }
 
-export const getStaticProps = async ({ params }: { params: any }) => {
-  const article = await getArticle(params.slug);
-  const mdxSource = await serialize(article.content);
+  data.published_at = dateFormat(data.published_at, "mmmm dS, yyyy");
+
+  // Serialiaze content
+  const mdxSource = await serialize(data.content || "");
+
   return {
     props: {
-      data: article.data,
-      content: mdxSource,
+      data,
+      mdxSource,
     },
   };
-};
+}
 
-export default function ArticlePage({
+export default function Article({
   data,
-  content,
+  mdxSource,
 }: {
   data: any;
-  content: any;
+  mdxSource: any;
 }) {
-  useEffect(() => {
-    fetch(`/api/views/${data.slug}`, {
-      method: "POST",
-    });
-  }, [data.slug]);
-
   const [isLoading, setLoading] = useState(true);
-
   return (
     <>
       <NextSeo title={data.title} description={data.description} />
       <div className="mb-20 mt-20">
         <div className="text-center max-w-3xl">
-          <Link href={`/tags/${data.tags}`}>
+          <Link href={`/tags/${data.tags.toLowerCase()}`}>
             <p className="uppercase font-bold text-blue-500 hover:text-blue-400">
               {data.tags}
             </p>
@@ -96,9 +68,9 @@ export default function ArticlePage({
             alt={`${data.title}`}
             width={1000}
             height={1000}
-            src={`/${data.socialImage}`}
+            src={`/images/${data.image}`}
             className={cn(
-              " duration-700 ease-in-out w-full h-full object-cover select-none rounded-xl shadow-xl mt-4",
+              "duration-700 ease-in-out w-full h-[400px] object-cover select-none rounded-xl shadow-xl mt-4",
               isLoading
                 ? "grayscale blur-2xl scale-110"
                 : "grayscale-0 blur-0 scale-100"
@@ -107,21 +79,15 @@ export default function ArticlePage({
             priority={true}
           />
         </div>
-        <div className="flex justify-between">
-          <div className="mt-4 font-semibold text-white">
-            {dateFormat(data.date, "dS mmmm yyyy")} ・ <CopyLink />
+        <div className="flex justify-between text-white my-4">
+          <div className="text-white">
+            {data.published_at} / {data.views} views
           </div>
-
-          <div className="mt-4 mb-4 inline-flex text-white">
-            <FiEye className="h-6 w-6" />
-            <div className="ml-2 font-semibold">
-              <PageViews slug={data.slug} />
-            </div>
-          </div>
+          <CopyLink />
         </div>
         <div className="flex justify-center">
           <article className="prose max-w-xs text-white sm:max-w-2xl prose-invert prose-img:shadow-xl prose-img:rounded-xl">
-            <MDXRemote {...content} />
+            <MDXRemote {...mdxSource} />
           </article>
         </div>
       </div>

@@ -3,7 +3,7 @@ import Navigation from "./Navigation";
 export default function Layout({ children }: { children: any }) {
   return (
     <>
-      <div className="p-8 bg-[#111111] flex flex-col min-h-screen justify-between">
+      <div className="p-4 bg-[#111111] flex flex-col min-h-screen justify-between">
         <nav className="sticky top-8 z-[99]">
           <Navigation />
         </nav>
@@ -13,29 +13,25 @@ export default function Layout({ children }: { children: any }) {
             Made with{" "}
             <a
               href="https://nextjs.org/"
-              className="hover:text-white transition-all duration-200"
-            >
+              className="hover:text-white transition-all duration-200">
               Next.JS
             </a>
             ,{" "}
             <a
               href="https://reactjs.org/"
-              className="hover:text-white transition-all duration-200"
-            >
+              className="hover:text-white transition-all duration-200">
               React
             </a>
             ,{" "}
             <a
               href="https://tailwindcss.com/"
-              className="hover:text-white transition-all duration-200"
-            >
+              className="hover:text-white transition-all duration-200">
               Tailwind CSS
             </a>{" "}
             and{" "}
             <a
               href="https://github.com/zpuckeridge/blog"
-              className="hover:text-[#ff0000] transition-all duration-200"
-            >
+              className="hover:text-[#ff0000] transition-all duration-200">
               ❤
             </a>
           </div>

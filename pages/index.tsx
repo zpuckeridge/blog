@@ -10,7 +10,16 @@ function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home() {
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.PAGE_URL}/api/playing`);
+  const data = await res.json();
+
+  return {
+    props: { data },
+  };
+}
+
+export default function Home({ data }: { data: any }) {
   const [isLoading, setLoading] = useState(true);
 
   return (
@@ -47,7 +56,7 @@ export default function Home() {
               width={140}
               src="/images/profile-pic.jpg"
               className={cn(
-                " rounded-full duration-700 ease-in-out hidden w-36 lg:flex select-none",
+                "rounded-full duration-700 ease-in-out hidden w-36 md:flex select-none",
                 isLoading
                   ? "grayscale blur-2xl scale-110"
                   : "grayscale-0 blur-0 scale-100"
@@ -67,18 +76,21 @@ export default function Home() {
             slug="is-gods-love-reckless"
             gradient="from-[#D8B4FE] to-[#818CF8]"
             glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#D8B4FE] before:to-[#818CF8] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
+            views="1"
           />
           <BlogPostCard
             title="🤖 Create your own Discord Bot with Discord.js"
             slug="create-your-own-discord-bot"
             gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
             glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#6EE7B7] before:via-[#3B82F6] before:to-[#9333EA] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
+            views="1"
           />
           <BlogPostCard
             title="👨‍💻 Setup a Remote Development Server"
             slug="setup-remote-development-server"
             gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
             glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#FDE68A] before:via-[#FCA5A5] before:to-[#FECACA] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
+            views="1"
           />
         </div>
         <div className="mt-6 flex gap-6 flex-col md:flex-row">
@@ -87,18 +99,21 @@ export default function Home() {
             slug="bojack-horseman"
             gradient="from-[#86FF9A] to-[#D6FF5B]"
             glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#86FF9A] before:to-[#D6FF5B] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
+            views="1"
           />
           <BlogPostCard
             title="🖌️ I've been inspired by 'A Goofy Movie'"
             slug="inspired-by-goofy-movie"
             gradient="from-[#FF9772] via-[#3B82F6] to-[#5BECFF]"
             glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#FF9772] before:via-[#3B82F6] before:to-[#5BECFF] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
+            views="1"
           />
           <BlogPostCard
             title="💭 An excerpt on Old Testament Law"
             slug="old-testament-law"
             gradient="from-[#C672FF] via-[#FF72DC] to-[#FECACA]"
             glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#C672FF] before:via-[#FF72DC] before:to-[#FECACA] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
+            views="1"
           />
         </div>
         <div className="flex justify-between">
@@ -106,15 +121,13 @@ export default function Home() {
             <Link
               href="/blog"
               title="Read all posts"
-              className="flex mt-8 text-[#888888] leading-7 rounded-lg hover:text-white transition-all">
+              className="flex mt-8 text-[#888888] rounded-lg hover:text-white transition-all">
               Read all posts
-              <div className="h-6 w-6 ml-1 mt-1.5">
-                <FiArrowRight />
-              </div>
+              <FiArrowRight className="ml-1 h-4 w-4 my-auto" />
             </Link>
           </div>
           <div>
-            <h4 className="flex mt-8 text-[#888888] leading-7 rounded-lg hover:text-white transition-all">
+            <h4 className="flex mt-8 text-[#888888] rounded-lg hover:text-white transition-all">
               <NowPlaying />
             </h4>
           </div>

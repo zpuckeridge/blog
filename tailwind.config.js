@@ -22,6 +22,6 @@ module.exports = {
     },
   },
   plugins: [
-    require("@tailwindcss/typography", "@tailwindcss/aspect-ratio", "@tailwindcss/forms"),
+    require("@tailwindcss/typography", "@tailwindcss/aspect-ratio", "@tailwindcss/forms", "@tailwindcss/line-clamp"),
   ],
 };

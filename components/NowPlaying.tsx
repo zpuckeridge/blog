@@ -1,29 +1,35 @@
-import { NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useState, useCallback } from "react";
 import { FaSpotify } from "react-icons/fa";
 
-interface Data {
-  isPlaying: boolean;
-  songUrl: string;
-  albumImageUrl: string;
-  album: string;
-  title: string;
-  artist: string;
-}
+export default function NowPlaying() {
+  const [data, setData] = useState<any | null>(null);
 
-const NowPlaying: NextPage = () => {
-  const [data, setData] = useState<Data | null>(null);
+  const fetchData = useCallback(async () => {
+    const response = await fetch("/api/playing");
+    const data = await response.json();
+
+    setData(data);
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/api/spotify");
-      const data = await response.json();
-      setData(data);
-    };
     fetchData();
-  }, []);
+  }, [fetchData]);
+
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center">
+        <div
+          className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status">
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -31,38 +37,32 @@ const NowPlaying: NextPage = () => {
         <Link
           title="Spotify"
           href={
-            data?.isPlaying
-              ? data.songUrl
+            data.is_playing
+              ? data.context.external_urls.spotify
               : "https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03"
           }
-          className="relative flex items-center"
-        >
+          className="flex">
           <div>
-            {data?.isPlaying ? (
+            {data.is_playing ? (
               <Image
-                className="w-10 rounded-full"
-                src={data?.albumImageUrl}
-                width={100}
-                height={100}
-                alt={data?.album}
+                className="rounded-full"
+                src={data.item.album.images[0].url}
+                width={25}
+                height={25}
+                alt={data.album}
               />
             ) : (
-              <FaSpotify className="h-5 w-5 -mt-3.5" />
+              <FaSpotify className="h-5 w-5" />
             )}
           </div>
 
           <div className="transition-all">
-            <p className="pl-2 component">
-              {data?.isPlaying ? data.title : "Not Playing"}
-            </p>
-            <p className="pl-2 text-xs">
-              {data?.isPlaying ? data.artist : "Spotify"}
+            <p className="pl-2">
+              {data.is_playing ? data.item.name : "Not Playing"}
             </p>
           </div>
         </Link>
       </div>
     </>
   );
-};
-
-export default NowPlaying;
+}
