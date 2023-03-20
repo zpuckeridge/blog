@@ -10,16 +10,7 @@ function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.PAGE_URL}/api/playing`);
-  const data = await res.json();
-
-  return {
-    props: { data },
-  };
-}
-
-export default function Home({ data }: { data: any }) {
+export default function Home() {
   const [isLoading, setLoading] = useState(true);
 
   return (
