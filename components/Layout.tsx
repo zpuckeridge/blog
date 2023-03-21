@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { FiSettings } from "react-icons/fi";
 import Navigation from "./Navigation";
 
 export default function Layout({ children }: { children: any }) {
@@ -34,6 +36,11 @@ export default function Layout({ children }: { children: any }) {
               className="hover:text-[#ff0000] transition-all duration-200">
               ❤
             </a>
+          </div>
+          <div className="fixed bottom-4 right-4 hover:text-white text-[#888888] transition-all duration-200">
+            <Link href="/dashboard" title="Dashboard">
+              <FiSettings className="h-5 w-5 " />
+            </Link>
           </div>
         </footer>
       </div>

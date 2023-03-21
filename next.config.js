@@ -9,7 +9,7 @@ const nextConfig = {
   images: {
     domains: [
       "i.scdn.co",
-      "imagedelivery.net",
+      "cdn.discordapp.com",
       "res.cloudinary.com",
       "images.unsplash.com",
     ],

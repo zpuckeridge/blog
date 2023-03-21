@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
+import LoginButton from "./LoginButton";
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -42,7 +43,7 @@ export default function Navigation() {
                 </Link>
               </div>
               <div className="flex space-x-7">
-                <div className="hidden items-center space-x-6 lg:flex">
+                <div className="hidden items-center space-x-4 lg:flex">
                   <Link href="/about" title="About">
                     <button className="inline-flex text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       About
@@ -73,6 +74,7 @@ export default function Navigation() {
                       Uses
                     </button>
                   </Link>
+                  <LoginButton />
                 </div>
               </div>
 

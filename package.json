@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.5.6",
+    "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/supabase-js": "^2.2.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@vercel/analytics": "^0.1.6",

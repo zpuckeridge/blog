@@ -1,6 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@supabase/auth-helpers-nextjs': ^0.5.6
+  '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/supabase-js': ^2.2.3
   '@tailwindcss/aspect-ratio': ^0.4.2
   '@tailwindcss/forms': ^0.5.3
@@ -32,6 +34,8 @@ specifiers:
   typescript: 4.9.5
 
 dependencies:
+  '@supabase/auth-helpers-nextjs': 0.5.6_wz3heplcnnd7qi7v6mf66rcxkq
+  '@supabase/auth-helpers-react': 0.3.1_wz3heplcnnd7qi7v6mf66rcxkq
   '@supabase/supabase-js': 2.12.0
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@vercel/analytics': 0.1.11_react@18.2.0
@@ -336,6 +340,31 @@ packages:
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
+
+  /@supabase/auth-helpers-nextjs/0.5.6_wz3heplcnnd7qi7v6mf66rcxkq:
+    resolution: {integrity: sha512-NiUGGnO9vRycMDnl/DzFbHCJhNV9DdH1vH61T1Fzgp2aRW8LfLRVlBQeGCg2AzyvAe0MiLbbRsGNcJmAmJPs9A==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/auth-helpers-shared': 0.3.0_wz3heplcnnd7qi7v6mf66rcxkq
+      '@supabase/supabase-js': 2.12.0
+    dev: false
+
+  /@supabase/auth-helpers-react/0.3.1_wz3heplcnnd7qi7v6mf66rcxkq:
+    resolution: {integrity: sha512-g3SFv08Dz9FapNif/ZY1b7qKGlMJDyTLSayHBz3kb3FuYxg7aLWgQtydDhm5AGbc0XtvpIBuhGTIOVevwpdosA==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/supabase-js': 2.12.0
+    dev: false
+
+  /@supabase/auth-helpers-shared/0.3.0_wz3heplcnnd7qi7v6mf66rcxkq:
+    resolution: {integrity: sha512-6lKhVMBZnGdFelpZyvQDBQSOY+pglS6a5U4ieAqfKQ/rx3rSjRASR3UGh7V+el1re3xYe3ddVBWXw16rdVAzrQ==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/supabase-js': 2.12.0
+    dev: false
 
   /@supabase/functions-js/2.1.0:
     resolution: {integrity: sha512-vRziB+AqRXRaGHjEFHwBo0kuNDTuAxI7VUeqU24Fe86ISoD8YEQm0dGdpleJEcqgDGWaO6pxT1tfj1BRY5PwMg==}
