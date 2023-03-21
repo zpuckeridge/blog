@@ -31,7 +31,7 @@ export default function Tracks({ data }: { data: any }) {
         </p>
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
           {data.tracks.map((song: any) => (
-            <div key={song.id}>
+            <div key={song}>
               <div className="text-white hover:text-[#888888] transform hover:scale-[1.05] transition-all duration-200 flex">
                 <Link href={song.url}>
                   <Image

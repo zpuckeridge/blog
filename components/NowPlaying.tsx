@@ -42,7 +42,7 @@ export default function NowPlaying() {
               : "https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03"
           }
           className="flex">
-          <div>
+          <div className="mt-2">
             {data.is_playing ? (
               <Image
                 className="rounded-full"
@@ -57,8 +57,15 @@ export default function NowPlaying() {
           </div>
 
           <div className="transition-all">
-            <p className="pl-2">
+            <p className="ml-2">
               {data.is_playing ? data.item.name : "Not Playing"}
+            </p>
+            <p className="-mt-1 ml-2 text-xs">
+              {data.is_playing
+                ? data.item.artists
+                    .map((_artist: any) => _artist.name)
+                    .join(", ")
+                : "Spotify"}
             </p>
           </div>
         </Link>
