@@ -68,7 +68,7 @@ export default function Article({
             alt={`${data.title}`}
             width={1000}
             height={1000}
-            src={`/images/${data.image}`}
+            src={`${data.image}`}
             className={cn(
               "duration-700 ease-in-out w-full h-[400px] object-cover select-none rounded-xl shadow-xl mt-4",
               isLoading

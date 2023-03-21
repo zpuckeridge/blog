@@ -117,7 +117,7 @@ export default function Blog({ data }: { data: any }) {
                       alt={`${article.title}`}
                       width={400}
                       height={400}
-                      src={`/images/${article.image}`}
+                      src={`${article.image}`}
                       className={cn(
                         "duration-700 ease-in-out hidden lg:flex absolute top-0 left-0 w-full h-48 object-cover select-none",
                         isLoading
