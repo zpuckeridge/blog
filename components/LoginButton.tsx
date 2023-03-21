@@ -11,6 +11,7 @@ export default function LoginButton() {
   const supabase = useSupabaseClient();
   const user = useUser();
 
+  // See: https://supabase.com/docs/guides/auth/overview#redirect-urls-and-wildcards
   const getURL = () => {
     let url =
       process?.env?.PAGE_URL ?? // Set this to your site URL in production env.
