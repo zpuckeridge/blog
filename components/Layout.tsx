@@ -4,7 +4,7 @@ export default function Layout({ children }: { children: any }) {
   return (
     <>
       <div className="p-4 bg-[#111111] flex flex-col min-h-screen justify-between">
-        <nav className="sticky top-8 z-[99]">
+        <nav className="sticky top-4 z-[99]">
           <Navigation />
         </nav>
         <main className="mx-auto">{children}</main>

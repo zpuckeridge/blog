@@ -1,16 +1,39 @@
 import Link from "next/link";
 import Image from "next/image";
 import { NextSeo } from "next-seo";
-import BlogPostCard from "../components/BlogPostCard";
 import NowPlaying from "../components/NowPlaying";
 import { FiArrowRight } from "react-icons/fi";
 import { useState } from "react";
+import supabase from "../lib/supabase";
+import dateFormat from "dateformat";
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Home() {
+export async function getServerSideProps() {
+  const { data, error } = await supabase
+    .from("blog")
+    .select("slug, views, published_at, title, description, tags, image")
+    .order("published_at", { ascending: false })
+    .limit(6);
+
+  data?.forEach((data: any) => {
+    data.published_at = dateFormat(data.published_at, "mmmm dS");
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
+export default function Home({ data }: { data: any }) {
   const [isLoading, setLoading] = useState(true);
 
   return (
@@ -58,67 +81,44 @@ export default function Home() {
           </div>
         </div>
 
-        <h3 className="font-bold text-2xl md:text-4xl tracking-tight mb-6 text-white">
-          Featured Posts
+        <h3 className="font-bold text-3xl tracking-tight mb-4 text-white">
+          Recent Articles
         </h3>
-        <div className="flex gap-6 flex-col md:flex-row">
-          <BlogPostCard
-            title="💔 Is God's love reckless?"
-            slug="is-gods-love-reckless"
-            gradient="from-[#D8B4FE] to-[#818CF8]"
-            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#D8B4FE] before:to-[#818CF8] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
-            views="1"
-          />
-          <BlogPostCard
-            title="🤖 Create your own Discord Bot with Discord.js"
-            slug="create-your-own-discord-bot"
-            gradient="from-[#6EE7B7] via-[#3B82F6] to-[#9333EA]"
-            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#6EE7B7] before:via-[#3B82F6] before:to-[#9333EA] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
-            views="1"
-          />
-          <BlogPostCard
-            title="👨‍💻 Setup a Remote Development Server"
-            slug="setup-remote-development-server"
-            gradient="from-[#FDE68A] via-[#FCA5A5] to-[#FECACA]"
-            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#FDE68A] before:via-[#FCA5A5] before:to-[#FECACA] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
-            views="1"
-          />
-        </div>
-        <div className="mt-6 flex gap-6 flex-col md:flex-row">
-          <BlogPostCard
-            title="🐴 Thoughts on Bojack Horseman"
-            slug="bojack-horseman"
-            gradient="from-[#86FF9A] to-[#D6FF5B]"
-            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#86FF9A] before:to-[#D6FF5B] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
-            views="1"
-          />
-          <BlogPostCard
-            title="🖌️ I've been inspired by 'A Goofy Movie'"
-            slug="inspired-by-goofy-movie"
-            gradient="from-[#FF9772] via-[#3B82F6] to-[#5BECFF]"
-            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#FF9772] before:via-[#3B82F6] before:to-[#5BECFF] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
-            views="1"
-          />
-          <BlogPostCard
-            title="💭 An excerpt on Old Testament Law"
-            slug="old-testament-law"
-            gradient="from-[#C672FF] via-[#FF72DC] to-[#FECACA]"
-            glow="before:absolute before:w-full before:h-full before:-z-10 before:bg-gradient-to-r before:from-[#C672FF] before:via-[#FF72DC] before:to-[#FECACA] before:left-0 before:top-0 before:blur-[10px] hover:before:blur-[40px] transition-all duration-200"
-            views="1"
-          />
+        <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-4xl mx-auto">
+          {data.map((article: any) => (
+            <div key={article.slug}>
+              <Link
+                href={`/article/${article.slug}`}
+                className="mb-4 transform hover:scale-[1.05] h-full transition-all text-white bg-white/5 border border-zinc-800/50 rounded-lg flex flex-col overflow-hidden hover:ring-2 ring-gray-300">
+                <div>
+                  <div className="px-4">
+                    <h1
+                      className="mt-4 text-lg font-semibold line-clamp-title"
+                      title={article.title}>
+                      {article.title}
+                    </h1>
+                    <div className="mt-2 flex justify-between text-sm">
+                      <div>{article.published_at}</div>
+                      <div>{article.views} views</div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
         <div className="flex justify-between">
           <div>
             <Link
               href="/blog"
               title="Read all posts"
-              className="flex mt-8 text-[#888888] rounded-lg hover:text-white transition-all">
-              Read all posts
+              className="flex mt-4 text-[#888888] rounded-lg hover:text-white transition-all">
+              Read all articles
               <FiArrowRight className="ml-1 h-4 w-4 my-auto" />
             </Link>
           </div>
           <div>
-            <h4 className="flex mt-8 text-[#888888] rounded-lg hover:text-white transition-all">
+            <h4 className="flex mt-4 text-[#888888] rounded-lg hover:text-white transition-all">
               <NowPlaying />
             </h4>
           </div>

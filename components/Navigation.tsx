@@ -20,7 +20,7 @@ export default function Navigation() {
               <div>
                 <Link
                   href="/"
-                  className="flex items-center py-3 text-white hover:text-[#888888]"
+                  className="flex items-center py-2 text-white hover:text-[#888888]"
                   title="Home">
                   <Image
                     alt="Zacchary Puckeridge"
@@ -36,7 +36,7 @@ export default function Navigation() {
                     onLoadingComplete={() => setLoading(false)}
                     priority={true}
                   />
-                  <span className="ml-2 text-lg font-bold transition-all duration-200">
+                  <span className="ml-2 text-lg font-bold transition-all duration-200 shadow-2xl">
                     Zacchary Puckeridge
                   </span>
                 </Link>
@@ -44,32 +44,32 @@ export default function Navigation() {
               <div className="flex space-x-7">
                 <div className="hidden items-center space-x-6 lg:flex">
                   <Link href="/about" title="About">
-                    <button className="inline-flex text-white font-medium transition-all duration-200 hover:text-[#888888]">
+                    <button className="inline-flex text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       About
                     </button>
                   </Link>
                   <Link href="/blog" title="Blog">
-                    <button className="block text-white font-medium transition-all duration-200 hover:text-[#888888]">
+                    <button className="block text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       Blog
                     </button>
                   </Link>
                   <Link href="/gallery" title="Gallery">
-                    <button className="block text-white font-medium transition-all duration-200 hover:text-[#888888]">
+                    <button className="block text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       Gallery
                     </button>
                   </Link>
                   <Link href="/projects" title="Projects">
-                    <button className="block text-white font-medium transition-all duration-200 hover:text-[#888888]">
+                    <button className="block text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       Projects
                     </button>
                   </Link>
                   <Link href="/timeline" title="Timeline">
-                    <button className="block text-white font-medium transition-all duration-200 hover:text-[#888888]">
+                    <button className="block text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       Timeline
                     </button>
                   </Link>
                   <Link href="/uses" title="Uses">
-                    <button className="block text-white font-medium transition-all duration-200 hover:text-[#888888]">
+                    <button className="block text-white font-semibold transition-all duration-200 hover:text-[#888888]">
                       Uses
                     </button>
                   </Link>
@@ -103,7 +103,7 @@ export default function Navigation() {
                 <Link
                   href="/blog"
                   className="block px-2 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white/10 hover:text-gray-300"
-                  title="Contact Us">
+                  title="Blog">
                   Blog
                 </Link>
               </li>
@@ -111,7 +111,7 @@ export default function Navigation() {
                 <Link
                   href="/gallery"
                   className="block px-2 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white/10 hover:text-gray-300"
-                  title="Contact Us">
+                  title="Gallery">
                   Gallery
                 </Link>
               </li>
@@ -119,7 +119,7 @@ export default function Navigation() {
                 <Link
                   href="/projects"
                   className="block px-2 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white/10 hover:text-gray-300"
-                  title="Contact Us">
+                  title="Projects">
                   Projects
                 </Link>
               </li>
@@ -127,7 +127,7 @@ export default function Navigation() {
                 <Link
                   href="/timeline"
                   className="block px-2 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white/10 hover:text-gray-300"
-                  title="Contact Us">
+                  title="Timeline">
                   Timeline
                 </Link>
               </li>
@@ -135,7 +135,7 @@ export default function Navigation() {
                 <Link
                   href="/uses"
                   className="block px-2 py-4 text-center font-semibold text-white transition duration-200 hover:bg-white/10 hover:text-gray-300"
-                  title="Contact Us">
+                  title="Uses">
                   Uses
                 </Link>
               </li>
