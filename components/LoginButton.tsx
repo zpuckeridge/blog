@@ -42,7 +42,7 @@ export default function LoginButton() {
     <>
       {!session ? (
         <button
-          className="text-white py-1 px-6 rounded-lg flex items-center justify-center bg-white/5 border border-zinc-800/50 hover:ring-2 ring-gray-300 transition-all"
+          className="text-white py-1 px-6 rounded-lg flex items-center justify-center bg-white/5 hover:ring-2 ring-gray-300 transition-all"
           onClick={handleDiscordSignIn}
           title="Login">
           <FaDiscord className="h-6 w-6 mr-1" />
@@ -51,7 +51,7 @@ export default function LoginButton() {
       ) : (
         <>
           <button
-            className="text-white py-1 px-6 rounded-lg flex items-center justify-center bg-white/5 border border-zinc-800/50 hover:ring-2 ring-gray-300 transition-all"
+            className="text-white py-1 px-6 rounded-lg flex items-center justify-center bg-white/5 hover:ring-2 ring-gray-300 transition-all"
             onClick={signout}
             title="Logout">
             <Image

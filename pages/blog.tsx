@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 import dateFormat from "dateformat";
 import supabase from "../lib/supabase";
 import { FiSearch } from "react-icons/fi";
@@ -57,10 +57,13 @@ export default function Blog({ data }: { data: any }) {
 
   return (
     <>
-      <NextSeo
-        title="Blog | Zacchary Puckeridge"
-        description="Read recent blog posts from Zacchary Puckeridge"
-      />
+      <Head>
+        <title>Blog | Zacchary Puckeridge</title>
+        <meta
+          name="description"
+          content="Check out some of my recent articles!"
+        />
+      </Head>
       <div className="my-20">
         <div className="max-w-4xl flex justify-between mx-auto">
           <div className="sm:w-2/3 w-full">

@@ -15,7 +15,7 @@ export default function Navigation() {
   return (
     <>
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/5 border border-zinc-800/50 rounded-lg max-w-6xl backdrop-blur-xl backdrop-brightness-125 shadow-2xl">
+        <div className="bg-white/5 rounded-lg max-w-6xl backdrop-blur-xl backdrop-brightness-125 shadow-2xl">
           <div className="mx-auto px-4">
             <div className="flex justify-between">
               <div>

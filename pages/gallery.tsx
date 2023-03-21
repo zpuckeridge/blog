@@ -9,10 +9,10 @@ import {
   FiX,
 } from "react-icons/fi";
 import cloudinary from "../lib/cloudinary";
+import Head from "next/head";
 
 // @ts-ignore
 import useKeypress from "react-use-keypress";
-import { NextSeo } from "next-seo";
 
 interface ImageProps {
   height: number;
@@ -91,10 +91,13 @@ export default function Gallery({ images }: { images: ImageProps[] }) {
 
   return (
     <>
-      <NextSeo
-        title="Gallery | Zacchary Puckeridge"
-        description="Zacchary's Photo Gallery"
-      />
+      <Head>
+        <title>Gallery | Zacchary Puckeridge</title>
+        <meta
+          name="description"
+          content="Check out of some of Zacchary's adventures!"
+        />
+      </Head>
       <div>
         {modalOpen && images.length > 0 && (
           <div className="fixed z-[99] inset-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center text-white">

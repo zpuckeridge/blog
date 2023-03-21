@@ -1,4 +1,4 @@
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import {
@@ -20,22 +20,25 @@ export default function Projects() {
 
   return (
     <>
-      <NextSeo
-        title="Projects | Zacchary Puckeridge"
-        description="View Zacchary's completed and active projects"
-      />
+      <Head>
+        <title>Projects | Zacchary Puckeridge</title>
+        <meta
+          name="description"
+          content="Check out some of my more recent projects!"
+        />
+      </Head>
       <div className="mx-auto text-white max-w-4xl mt-20 mb-20">
         <div className="p-4 space-y-24">
           <div className="md:flex md:justify-between md:space-x-8 space-y-8 md:space-y-0">
             <div className="md:w-[50%] flex justify-center">
               <div className="transform duration-200 hover:scale-[1.05] transition-all">
                 <Image
-                  src="/images/simplyphotos.png"
+                  src="https://res.cloudinary.com/denivusi1/image/upload/v1679379117/blog/articles/simplyphotos.png"
                   width={500}
                   height={500}
                   alt="Simply Photos Website Preview"
                   className={cn(
-                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    "duration-700 ease-in-out rounded-lg shadow-2xl",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -112,12 +115,12 @@ export default function Projects() {
             <div className="md:w-[50%] flex justify-center">
               <div className="transform duration-200 hover:scale-[1.05] transition-all">
                 <Image
-                  src="/images/blog.png"
+                  src="https://res.cloudinary.com/denivusi1/image/upload/v1679379118/blog/articles/blog.png"
                   width={500}
                   height={500}
                   alt="Zacchary's Blog Website Preview"
                   className={cn(
-                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    "duration-700 ease-in-out rounded-lg shadow-2xl",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -194,12 +197,12 @@ export default function Projects() {
             <div className="md:w-[50%] flex justify-center">
               <div className="transform duration-200 hover:scale-[1.05] transition-all">
                 <Image
-                  src="/images/livestream.png"
+                  src="https://res.cloudinary.com/denivusi1/image/upload/v1679379121/blog/articles/livestream.png"
                   width={500}
                   height={500}
                   alt="Zacchary's Livestream Website Preview"
                   className={cn(
-                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    "duration-700 ease-in-out rounded-lg shadow-2xl",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -277,12 +280,12 @@ export default function Projects() {
             <div className="md:w-[50%] flex justify-center">
               <div className="transform duration-200 hover:scale-[1.05] transition-all">
                 <Image
-                  src="/images/savvyelectrical.png"
+                  src="https://res.cloudinary.com/denivusi1/image/upload/v1679379118/blog/articles/savvyelectrical.png"
                   width={500}
                   height={500}
                   alt="Savvy Electrical Website Preview"
                   className={cn(
-                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    "duration-700 ease-in-out rounded-lg shadow-2xl",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"
@@ -328,8 +331,8 @@ export default function Projects() {
                   <span>
                     <FiCornerDownRight className="my-1 mr-2" />
                   </span>
-                  This project leverages Chakra UI for styling, Gatsby and
-                  GitHub Pages for hosting.
+                  This project leverages custom TailwindCSS for styling, Next.JS
+                  Static Exports and GitHub Pages for hosting.
                 </p>
               </div>
               <div className="flex">
@@ -357,12 +360,12 @@ export default function Projects() {
             <div className="md:w-[50%] flex justify-center">
               <div className="transform duration-200 hover:scale-[1.05] transition-all">
                 <Image
-                  src="/images/mindenbaptist.png"
+                  src="https://res.cloudinary.com/denivusi1/image/upload/v1679379120/blog/articles/mindenbaptist.png"
                   width={500}
                   height={500}
                   alt="Miden Baptist Website Preview"
                   className={cn(
-                    " duration-700 ease-in-out rounded-lg shadow-2xl object-cover object-top h-96",
+                    "duration-700 ease-in-out rounded-lg shadow-2xl",
                     isLoading
                       ? "grayscale blur-2xl scale-110"
                       : "grayscale-0 blur-0 scale-100"

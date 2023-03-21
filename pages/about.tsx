@@ -1,4 +1,4 @@
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 import Link from "next/link";
 import {
   FaDiscord,
@@ -14,14 +14,14 @@ import TimeStatus from "../components/TimeStatus";
 export default function About() {
   return (
     <>
-      <NextSeo
-        title="About | Zacchary Puckeridge"
-        description="Learn more about Zacchary Puckeridge"
-      />
+      <Head>
+        <title>About | Zacchary Puckeridge</title>
+        <meta name="description" content="Learn more about me!" />
+      </Head>
       <div className="grid place-items-center text-white">
         <div className="mt-20 flex flex-col justify-center items-start max-w-2xl border-gray-700 mx-auto pb-16">
-          <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-white">
-            🤔 About me
+          <h1 className="font-bold text-5xl tracking-tight text-white">
+            About Me
           </h1>
           <p className="mt-4">
             Hey there! {"I'm"} a <Age /> year old IT Administrator & Web

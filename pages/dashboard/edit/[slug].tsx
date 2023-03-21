@@ -1,5 +1,6 @@
 import { useSession } from "@supabase/auth-helpers-react";
 import dateFormat from "dateformat";
+import Head from "next/head";
 import Link from "next/link";
 import router from "next/router";
 import { useState } from "react";
@@ -61,6 +62,10 @@ export default function Edit({ data }: { data: any }) {
   if (session && session.user.email === `contact@sdelta.xyz`) {
     return (
       <>
+        <Head>
+          <title>Editing {data.title} | Zacchary Puckeridge</title>
+          <meta name="description" content={`Editing ${data.title}`} />
+        </Head>
         <div className="md:max-w-xl max-w-sm p-4 mt-20">
           <div className="flex justify-between">
             <h1 className="text-4xl font-bold mb-4 text-white">Edit Article</h1>

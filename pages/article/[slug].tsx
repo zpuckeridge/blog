@@ -2,12 +2,11 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Link from "next/link";
 import dateFormat from "dateformat";
-import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
 import CopyLink from "../../components/CopyLink";
-import { FiEye } from "react-icons/fi";
 import supabase from "../../lib/supabase";
+import Head from "next/head";
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -18,7 +17,7 @@ export async function getServerSideProps(context: any) {
 
   // Trigger view increment
   await supabase.rpc("blog_views", {
-    slug: slug,
+    quote_id: slug,
     increment_num: 1,
   });
 
@@ -55,7 +54,10 @@ export default function Article({
   const [isLoading, setLoading] = useState(true);
   return (
     <>
-      <NextSeo title={data.title} description={data.description} />
+      <Head>
+        <title>{data.title} | Zacchary Puckeridge</title>
+        <meta name="description" content={data.description} />
+      </Head>
       <div className="mb-20 mt-20">
         <div className="text-center max-w-3xl">
           <Link href={`/tags/${data.tags.toLowerCase()}`}>

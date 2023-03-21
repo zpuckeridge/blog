@@ -1,12 +1,15 @@
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 
 export default function About() {
   return (
     <>
-      <NextSeo
-        title="About | Zacchary Puckeridge"
-        description="Learn more about Zacchary Puckeridge"
-      />
+      <Head>
+        <title>Uses | Zacchary Puckeridge</title>
+        <meta
+          name="description"
+          content="Check out what I'm using on my day to day!"
+        />
+      </Head>
       <div className="mt-20 flex flex-col justify-center max-w-2xl mx-auto mb-20 text-white">
         <h1 className="font-bold text-3xl md:text-5xl tracking-tight text-white">
           Uses

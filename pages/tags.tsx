@@ -1,4 +1,4 @@
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 import Link from "next/link";
 import supabase from "../lib/supabase";
 
@@ -22,7 +22,10 @@ export async function getServerSideProps() {
 export default function Tags({ tags }: { tags: string[] }) {
   return (
     <>
-      <NextSeo title="Tags | Zacchary Puckeridge" description="Article tags" />
+      <Head>
+        <title>Tags | Zacchary Puckeridge</title>
+        <meta name="description" content="List articles via their tags" />
+      </Head>
       <div>
         <h1 className="mt-20 mb-4 max-w-2xl mx-auto font-bold text-3xl md:text-5xl tracking-tight text-white">
           Tags

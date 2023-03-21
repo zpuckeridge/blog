@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { NextSeo } from "next-seo";
 import NowPlaying from "../components/NowPlaying";
 import { FiArrowRight } from "react-icons/fi";
 import { useState } from "react";
 import supabase from "../lib/supabase";
 import dateFormat from "dateformat";
+import Head from "next/head";
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -38,10 +38,13 @@ export default function Home({ data }: { data: any }) {
 
   return (
     <>
-      <NextSeo
-        title="Home | Zacchary Puckeridge"
-        description="Zacchary Puckeridge's Website"
-      />
+      <Head>
+        <title>Home | Zacchary Puckeridge</title>
+        <meta
+          name="description"
+          content="Woah! You made it to my personal website, welcome."
+        />
+      </Head>
       <div className="max-w-2xl border-gray-200 dark:border-gray-700 mt-20 mb-20">
         <div className="flex flex-col-reverse sm:flex-row items-start">
           <div className="flex flex-col pr-12">

@@ -34,14 +34,7 @@ export default function NowPlaying() {
   return (
     <>
       <div>
-        <Link
-          title="Spotify"
-          href={
-            data.is_playing
-              ? data.context.external_urls.spotify
-              : "https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03"
-          }
-          className="flex">
+        <Link title="Spotify" href="/tracks" className="flex">
           <div className="mt-2">
             {data.is_playing ? (
               <Image

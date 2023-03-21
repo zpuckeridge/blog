@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import supabase from "../lib/supabase";
 import router from "next/router";
+import Head from "next/head";
 
 export async function getServerSideProps() {
   const { data, error } = await supabase
@@ -49,6 +50,10 @@ export default function Dashboard({ data }: { data: any }) {
   if (session && session.user.email === `contact@sdelta.xyz`) {
     return (
       <>
+        <Head>
+          <title>Dashboard | Zacchary Puckeridge</title>
+          <meta name="description" content="Post and manage articles" />
+        </Head>
         <div className="max-w-4xl">
           <div className="text-white">
             <h1 className="font-bold text-3xl">Dashboard</h1>

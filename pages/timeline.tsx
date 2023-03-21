@@ -1,14 +1,17 @@
-import { NextSeo } from "next-seo";
+import Head from "next/head";
 
 export default function Timeline() {
   return (
     <>
-      <NextSeo
-        title="Timeline | Zacchary Puckeridge"
-        description="Learn more about Zacchary's Career Path"
-      />
+      <Head>
+        <title>Timeline | Zacchary Puckeridge</title>
+        <meta
+          name="description"
+          content="Learn more my about career to date!"
+        />
+      </Head>
       <div className="max-w-2xl">
-        <h1 className="mt-20 mx-auto font-bold text-3xl md:text-5xl tracking-tight mb-1 text-white">
+        <h1 className="font-bold text-5xl tracking-tight text-white mt-20">
           Timeline
         </h1>
         <h2 className="text-white mb-8 mt-4">
