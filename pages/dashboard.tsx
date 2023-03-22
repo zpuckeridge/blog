@@ -1,7 +1,13 @@
 import { useSession } from "@supabase/auth-helpers-react";
 import dateFormat from "dateformat";
 import Link from "next/link";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import {
+  FiEdit,
+  FiEye,
+  FiEyeOff,
+  FiPlusSquare,
+  FiTrash2,
+} from "react-icons/fi";
 import supabase from "../lib/supabase";
 import router from "next/router";
 import Head from "next/head";
@@ -9,7 +15,7 @@ import Head from "next/head";
 export async function getServerSideProps() {
   const { data, error } = await supabase
     .from("blog")
-    .select("slug, published_at, title")
+    .select("slug, published_at, title, published")
     .order("published_at", { ascending: false });
 
   data?.forEach((data: any) => {
@@ -57,15 +63,29 @@ export default function Dashboard({ data }: { data: any }) {
         <div className="max-w-4xl">
           <div className="text-white">
             <h1 className="font-bold text-3xl">Dashboard</h1>
-            <p>Update, modify and create new articles</p>
+            <div className="flex justify-between">
+              <p>Update, modify and create new articles</p>
+              <div>
+                <Link href="/dashboard/new">
+                  <button
+                    className="py-1 px-6 text-white rounded-lg flex items-center justify-center bg-white/5 border border-zinc-800/50 hover:ring-2 ring-gray-300 transition-all"
+                    title="Create Article">
+                    <FiPlusSquare className="mr-1" /> Create Article
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="overflow-x-auto relative mt-2 bg-white/5 rounded-lg border border-zinc-800/50 shadow-2xl">
-            <table className="text-white">
+          <div className="w-full mt-2 bg-white/5 rounded-lg border border-zinc-800/50 shadow-2xl">
+            <table className="w-full text-white">
               <tbody>
                 {data.map((article: any) => (
                   <tr
                     className="bg-[#1d1d1d] border-b border-zinc-800/50 text-sm"
                     key={article.slug}>
+                    <td className="px-4 py-1">
+                      {article.published ? <FiEye /> : <FiEyeOff />}
+                    </td>
                     <td className="px-4 py-1">{article.title}</td>
                     <td className="text-center px-4 py-1">
                       <Link href={`/dashboard/edit/${article.slug}`}>

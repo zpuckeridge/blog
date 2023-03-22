@@ -13,7 +13,10 @@ function cn(...classes: string[]) {
 export async function getServerSideProps() {
   const { data, error } = await supabase
     .from("blog")
-    .select("slug, views, published_at, title, description, tags, image")
+    .select(
+      "slug, views, published_at, title, description, tags, image, published"
+    )
+    .eq("published", true)
     .order("published_at", { ascending: false });
 
   data?.forEach((data: any) => {

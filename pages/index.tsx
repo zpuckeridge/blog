@@ -16,6 +16,7 @@ export async function getServerSideProps() {
     .from("blog")
     .select("slug, views, published_at, title, description, tags, image")
     .order("published_at", { ascending: false })
+    .eq("published", true)
     .limit(6);
 
   data?.forEach((data: any) => {
