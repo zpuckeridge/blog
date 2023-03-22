@@ -95,8 +95,9 @@ export default function Edit({ data }: { data: any }) {
               <label className="font-bold text-sm mb-1">
                 Content<span className="text-red-500">*</span>
                 <Fragment>
-                  {BUILT_IN_COMMANDS.map((c) => (
+                  {BUILT_IN_COMMANDS.map((c, index) => (
                     <button
+                      key={index}
                       onClick={(event) => {
                         event.preventDefault(); // prevent form submission
                         ref.current?.trigger(c);
