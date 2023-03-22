@@ -3,7 +3,11 @@ import dateFormat from "dateformat";
 import Head from "next/head";
 import Link from "next/link";
 import router from "next/router";
-import { useState } from "react";
+import { Fragment, useRef, useState } from "react";
+import TextareaMarkdown, {
+  TextareaMarkdownRef,
+  BUILT_IN_COMMANDS,
+} from "textarea-markdown-editor";
 import { FiArrowLeft } from "react-icons/fi";
 import supabase from "../../../lib/supabase";
 
@@ -31,7 +35,6 @@ export async function getServerSideProps(context: any) {
 
 export default function Edit({ data }: { data: any }) {
   const session = useSession();
-
   const [saveChanges, setSaveChanges] = useState("Save Changes");
 
   const handleSubmit = async (e: any) => {
@@ -59,6 +62,8 @@ export default function Edit({ data }: { data: any }) {
     router.push(`/article/${data.slug}`);
   };
 
+  const ref = useRef<TextareaMarkdownRef>(null);
+
   if (session && session.user.email === `contact@sdelta.xyz`) {
     return (
       <>
@@ -80,7 +85,7 @@ export default function Edit({ data }: { data: any }) {
               <label className="font-bold text-sm mb-1">
                 Title<span className="text-red-500">*</span>
                 <input
-                  className="w-full mr-2 p-2 bg-white/5 border border-zinc-800/50 text-sm mb-4 rounded-lg font-normal"
+                  className="w-full p-2 bg-white/5 border border-zinc-800/50 text-sm mb-4 rounded-lg font-normal"
                   type="text"
                   name="title"
                   defaultValue={data.title}
@@ -89,12 +94,26 @@ export default function Edit({ data }: { data: any }) {
               </label>
               <label className="font-bold text-sm mb-1">
                 Content<span className="text-red-500">*</span>
-                <textarea
-                  className="w-full h-[600px] p-2 bg-white/5 border border-zinc-800/50 text-sm mb-4 rounded-lg font-normal"
-                  name="content"
-                  defaultValue={data.content}
-                  required
-                />
+                <Fragment>
+                  {BUILT_IN_COMMANDS.map((c) => (
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault(); // prevent form submission
+                        ref.current?.trigger(c);
+                      }}
+                      className="text-white py-1 px-6 rounded-lg mr-2 my-2 bg-white/5 hover:ring-2 ring-gray-300 transition-all">
+                      {c}
+                    </button>
+                  ))}
+                  <br />
+                  <TextareaMarkdown
+                    ref={ref}
+                    name="content"
+                    defaultValue={data.content}
+                    className="w-full h-[600px] p-2 bg-white/5 border border-zinc-800/50 text-sm mb-4 rounded-lg font-normal"
+                    required
+                  />
+                </Fragment>
               </label>
 
               <button
