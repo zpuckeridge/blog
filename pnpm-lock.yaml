@@ -32,6 +32,7 @@ specifiers:
   react-use-keypress: ^1.3.1
   tailwindcss: ^3.2.4
   textarea-markdown-editor: ^1.0.4
+  timeago.js: ^4.0.2
   typescript: 4.9.5
 
 dependencies:
@@ -53,6 +54,7 @@ dependencies:
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   react-use-keypress: 1.3.1_react@18.2.0
   textarea-markdown-editor: 1.0.4_biqbaboplfbrettd7655fr4n2y
+  timeago.js: 4.0.2
 
 devDependencies:
   '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.7
@@ -3955,6 +3957,10 @@ packages:
   /throttle-debounce/3.0.1:
     resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==}
     engines: {node: '>=10'}
+    dev: false
+
+  /timeago.js/4.0.2:
+    resolution: {integrity: sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==}
     dev: false
 
   /tiny-glob/0.2.9:

@@ -2,6 +2,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Link from "next/link";
 import dateFormat from "dateformat";
+import { format } from "timeago.js";
 import Image from "next/image";
 import { useState } from "react";
 import CopyLink from "../../components/CopyLink";
@@ -66,6 +67,9 @@ export default function Article({
             </p>
           </Link>
           <h1 className="font-bold text-4xl text-white">{data.title}</h1>
+          <p className="text-xs text-white">
+            Updated {format(data.updated_at)}
+          </p>
           <Image
             alt={`${data.title}`}
             width={1000}
