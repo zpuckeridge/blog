@@ -17,7 +17,7 @@ export async function getServerSideProps() {
     .select("slug, views, published_at, title, description, tags, image")
     .order("published_at", { ascending: false })
     .eq("published", true)
-    .limit(6);
+    .range(0, 5);
 
   data?.forEach((data: any) => {
     data.published_at = dateFormat(data.published_at, "mmmm dS");
