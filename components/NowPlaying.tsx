@@ -33,35 +33,31 @@ export default function NowPlaying() {
 
   return (
     <>
-      <div>
-        <Link title="Spotify" href="/tracks" className="flex">
-          <div className="mt-2">
-            {data.is_playing ? (
-              <Image
-                className="rounded-full"
-                src={data.item.album.images[0].url}
-                width={25}
-                height={25}
-                alt={data.album}
-              />
-            ) : (
-              <FaSpotify className="h-5 w-5" />
-            )}
-          </div>
+      <div className="flex">
+        <div className="mt-2">
+          {data.is_playing ? (
+            <Image
+              className="rounded-full"
+              src={data.item.album.images[0].url}
+              width={25}
+              height={25}
+              alt={data.album}
+            />
+          ) : (
+            <FaSpotify className="h-5 w-5" />
+          )}
+        </div>
 
-          <div className="transition-all">
-            <p className="ml-2">
-              {data.is_playing ? data.item.name : "Not Playing"}
-            </p>
-            <p className="-mt-1 ml-2 text-xs">
-              {data.is_playing
-                ? data.item.artists
-                    .map((_artist: any) => _artist.name)
-                    .join(", ")
-                : "Spotify"}
-            </p>
-          </div>
-        </Link>
+        <div className="transition-all">
+          <p className="ml-2">
+            {data.is_playing ? data.item.name : "Not Playing"}
+          </p>
+          <p className="-mt-1 ml-2 text-xs">
+            {data.is_playing
+              ? data.item.artists.map((_artist: any) => _artist.name).join(", ")
+              : "Spotify"}
+          </p>
+        </div>
       </div>
     </>
   );

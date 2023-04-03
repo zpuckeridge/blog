@@ -123,7 +123,9 @@ export default function Home({ data }: { data: any }) {
           </div>
           <div>
             <h4 className="flex mt-4 text-[#888888] rounded-lg hover:text-white transition-all">
-              <NowPlaying />
+              <Link href="/tracks">
+                <NowPlaying />
+              </Link>
             </h4>
           </div>
         </div>
