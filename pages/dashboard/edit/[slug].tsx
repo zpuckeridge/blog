@@ -97,6 +97,7 @@ export default function Edit({ data }: { data: any }) {
                   className="w-full p-2 bg-white/5 border border-zinc-800/50 text-sm mb-4 rounded-lg font-normal"
                   type="text"
                   name="title"
+                  defaultValue={data.title}
                   required
                 />
               </label>
@@ -107,7 +108,7 @@ export default function Edit({ data }: { data: any }) {
                   className="w-full p-2 bg-white/5 border border-zinc-800/50 text-sm mb-4 rounded-lg font-normal placeholder:text-[#888888]"
                   type="text"
                   name="slug"
-                  placeholder="your-slug-here"
+                  defaultValue={data.slug}
                   required
                 />
               </label>
@@ -117,7 +118,7 @@ export default function Edit({ data }: { data: any }) {
                 <input
                   type="checkbox"
                   name="published"
-                  defaultChecked
+                  defaultValue={data.published}
                   className="ml-1"
                 />
               </label>
