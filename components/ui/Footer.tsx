@@ -51,7 +51,7 @@ export default function Footer() {
               <Sword size={18} />
             </TooltipTrigger>
             <TooltipContent>
-              <p className="w-72">
+              <p className="w-72 text-sm">
                 {'"'}If you hate the truth than telling the truth is going to
                 sound like hate.{'"'} -{" "}
                 <a

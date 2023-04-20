@@ -58,9 +58,9 @@ export default function Call() {
           }`}
         >
           {slide.text}
-          <p className="absolute top-0 left-0">{slide.location}</p>
-          <p className="absolute bottom-0 left-0">ESV</p>
-          <p className="absolute bottom-0 right-0">{slide.verse}</p>
+          <p className="absolute top-0 left-0 text-sm">{slide.location}</p>
+          <p className="absolute bottom-0 left-0 text-sm">ESV</p>
+          <p className="absolute bottom-0 right-0 text-sm">{slide.verse}</p>
         </div>
       ))}
     </div>

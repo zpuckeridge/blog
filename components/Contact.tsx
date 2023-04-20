@@ -6,32 +6,38 @@ export default function Contact() {
     <>
       <p className="text-center mb-4">Where you can find me 👇</p>
       <div className="grid grid-cols-2 gap-2">
-        <a href="https://github.com/zpuckeridge">
+        <a href="https://github.com/zpuckeridge" target="_blank">
           <Button className="w-full">
             <ArrowUpRightIcon size={18} /> GitHub
           </Button>
         </a>
-        <a href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620">
+        <a
+          href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
+          target="_blank"
+        >
           <Button className="w-full">
             <ArrowUpRightIcon size={18} /> Spotify
           </Button>
         </a>
-        <a href="https://www.linkedin.com/in/zpuckeridge">
+        <a href="https://www.linkedin.com/in/zpuckeridge" target="_blank">
           <Button className="w-full">
             <ArrowUpRightIcon size={18} /> LinkedIn
           </Button>
         </a>
-        <a href="https://discordapp.com/users/181324210876973056">
+        <a
+          href="https://discordapp.com/users/181324210876973056"
+          target="_blank"
+        >
           <Button className="w-full">
             <ArrowUpRightIcon size={18} /> Discord
           </Button>
         </a>
-        <a href="https://steamcommunity.com/id/sdelta_/">
+        <a href="https://steamcommunity.com/id/sdelta_/" target="_blank">
           <Button className="w-full">
             <ArrowUpRightIcon size={18} /> Steam
           </Button>
         </a>
-        <a href="https://twitter.com/zpuckeridge/">
+        <a href="https://twitter.com/zpuckeridge/" target="_blank">
           <Button className="w-full">
             <ArrowUpRightIcon size={18} /> Twitter
           </Button>
