@@ -9,7 +9,7 @@ const api = new GhostContentAPI({
 export async function getPosts() {
   return await api.posts
     .browse({
-      include: ["tags", "authors"],
+      include: ["tags"],
       limit: 10,
     })
     .catch((err) => {
@@ -20,7 +20,7 @@ export async function getPosts() {
 export async function getPostsNew() {
   return await api.posts
     .browse({
-      include: ["tags", "authors"],
+      include: ["tags"],
       limit: 10,
       order: "published_at DESC",
     })
@@ -32,7 +32,7 @@ export async function getPostsNew() {
 export async function getPostsOld() {
   return await api.posts
     .browse({
-      include: ["tags", "authors"],
+      include: ["tags"],
       limit: 10,
       order: "published_at ASC",
     })
@@ -44,7 +44,7 @@ export async function getPostsOld() {
 export async function getLatestPost() {
   return await api.posts
     .browse({
-      include: ["tags", "authors"],
+      include: ["tags"],
       limit: 1,
     })
     .catch((err) => {
@@ -58,7 +58,7 @@ export async function getSinglePost(postSlug: string) {
       {
         slug: postSlug,
       },
-      { include: ["tags", "authors"] }
+      { include: ["tags"] }
     )
     .catch((err) => {
       console.error(err);

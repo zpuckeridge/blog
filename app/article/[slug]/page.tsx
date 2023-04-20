@@ -1,15 +1,8 @@
-import { getSinglePost, getPosts } from "../../ghost-client";
+import { getSinglePost } from "../../ghost-client";
 import Image from "next/image";
 import { format } from "date-fns";
 
 import About from "@/components/About";
-
-export async function generateStaticParams() {
-  const posts = await getPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
 
 async function Read({ params }: { params: { slug: string } }) {
   const getPost = await getSinglePost(params.slug);

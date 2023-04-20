@@ -8,7 +8,7 @@ export default async function Home() {
   const getPostOld = await getPostsOld();
 
   return (
-    <main className="flex min-h-screen flex-col max-w-2xl mx-auto">
+    <main className="flex flex-col max-w-2xl mx-auto">
       <Sort />
 
       {getPostNew?.map((item: PostOrPage) => {

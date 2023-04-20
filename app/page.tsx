@@ -10,49 +10,32 @@ export default async function Home() {
   return (
     <>
       <About />
-      <div className="mt-6 grid sm:grid-flow-col gap-6 max-w-2xl mx-auto">
+      <div className="mt-6 grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
         {/* Column 1 */}
         <div>
-          {/* @ts-expect-error Async Server Component */}
-          <Playing />
+          <div className="w-full">
+            {/* @ts-expect-error Async Server Component */}
+            <Playing />
+          </div>
           <div className="w-full mt-6">
-            <div className="bg-white shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full p-4 rounded-lg">
-              Building better artist experiences by day. Web Developer by night.
-            </div>
+            <Media />
           </div>
           <div className="w-full mt-6">
             <div className="bg-white shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full p-4 rounded-lg">
-              I{"'"}m currently reading ...
-            </div>
-          </div>
-          <div className="w-full mt-6">
-            <div className="bg-white shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full p-4 rounded-lg">
-              Subscribe here
-            </div>
-          </div>
-          <div className="w-full mt-6">
-            <div className="bg-white shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full h-64 p-4 rounded-lg">
-              <Media />
+              <Projects />
             </div>
           </div>
         </div>
+
         {/* Column 2 */}
         <div>
           <div className="w-full">
-            <div className="bg-gray-200 shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full p-4 rounded-lg">
-              {/* @ts-expect-error Async Server Component */}
-              <LatestArticle />
-            </div>
+            {/* @ts-expect-error Async Server Component */}
+            <LatestArticle />
           </div>
           <div className="w-full mt-6">
             <div className="bg-white shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full p-4 rounded-lg">
               <Contact />
-            </div>
-          </div>
-
-          <div className="w-full mt-6">
-            <div className="bg-white shadow-lg dark:shadow-none dark:bg-[#1f1f1f] w-full p-4 rounded-lg">
-              <Projects />
             </div>
           </div>
           <div className="w-full mt-6">
