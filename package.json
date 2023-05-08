@@ -13,7 +13,7 @@
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/supabase-js": "^2.21.0",
     "@tailwindcss/line-clamp": "^0.4.2",
-    "@vercel/analytics": "^0.1.6",
+    "@vercel/analytics": "^1.0.1",
     "classnames": "^2.3.2",
     "cloudinary": "^1.34.0",
     "dateformat": "^5.0.3",
