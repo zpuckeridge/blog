@@ -1,61 +1,34 @@
-<div align="center">
-  <h1>
-    ✍️
-    <br />
-    Personal Blog
-    <br />
-  </h1>
-  <sup>
-    A Next.JS project leveraging Supabase, MDX, Framer Motion and Tailwind CSS hosted through Vercel. </em>
-    <br />
-  </sup>
-  <br />
-</div>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-<div align="center">
-  <img width="600" src="https://raw.githubusercontent.com/zpuckeridge/blog/main/public/images/site-preview.png" />
-</div>
+## Getting Started
 
-## 🚀 Install
-
-To get started locally running the project:
+First, run the development server:
 
 ```bash
-# Clone the repository
-git clone https://github.com/zpuckeridge/blog
-
-# Navigate to the cloned files
-cd blog/
-
-# Install packages
-npm install
-
-# Run the server
 npm run dev
-
-# When happy with changes, test Typescript with:
-npm run build
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-Commit changes to repository. Once repository has been configured with Vercel, changes will be pulled automagically and deployed.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🚩 Features
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- 🌙 Dark Mode
-- Photo Gallery
-- Copy URL Button
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## 👀 Coming soon
+## Learn More
 
-These features are due to be implemented soon:
+To learn more about Next.js, take a look at the following resources:
 
-- Rich Embeds
-- Add page progress scroll
-- Newsletter subscription
-- Stats page/dashboard with public site stats/personal stats
-- Syntax copy button
-- Syntax file path
-- Syntax highlighting
-- Next/Prev article buttons
-- Don't go favicon/tab name change
-- Top tracks widget
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
