@@ -51,6 +51,7 @@ const patchDocSchema = z.object({
   title: z.string().min(1).max(128),
   slug: z.string().min(1).max(128),
   tag: z.string().min(1).max(128),
+  published: z.boolean(),
   content: z.any(),
 });
 
@@ -91,6 +92,7 @@ export async function PATCH(
         content: body.content,
         slug: body.slug,
         tag: body.tag,
+        published: body.published,
       },
     });
 

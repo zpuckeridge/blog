@@ -7,10 +7,9 @@ import { TipTapEditorExtensions } from "./extensions";
 import { TipTapEditorProps } from "./props";
 import { PatchDocType } from "@/app/api/posts/[id]/route";
 import { useDebouncedCallback } from "use-debounce";
-import Back from "../back";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { ExternalLink, Settings } from "lucide-react";
+import { Check, ExternalLink, Loader, Loader2, Settings } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -22,6 +21,8 @@ import {
 } from "@/components/ui/dialog";
 import Link from "next/link";
 import { Input } from "../ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "../ui/label";
 
 export default function Editor({
   document,
@@ -32,12 +33,13 @@ export default function Editor({
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [saveStatus, setSaveStatus] = useState<string>("Saved");
+  const [isSaving, setSaving] = useState(false); // Changed state variable
   const [hydrated, setHydrated] = useState<boolean>(false);
   const [content, setContent] = useState<PatchDocType["content"]>();
   const [title, setTitle] = useState<string>(document.title);
   const [tag, setTag] = useState<string>(document.tag);
   const [slug, setSlug] = useState<string>(document.slug);
+  const [published, setPublished] = useState<boolean>(document.published);
   const [showEditDialog, setShowEditDialog] = useState<boolean>(false);
 
   async function patchRequest(
@@ -45,6 +47,7 @@ export default function Editor({
     title: string,
     slug: string,
     tag: string,
+    published: boolean,
     document: any,
   ) {
     const response = await fetch(`/api/posts/${id}`, {
@@ -56,16 +59,17 @@ export default function Editor({
         title: title,
         slug: slug,
         tag: tag,
+        published: published,
         content: document,
       }),
     });
 
     if (!response.ok) {
-      setSaveStatus("Waiting to Save.");
+      setSaving(false);
       throw new Error("Failed to update document");
     }
 
-    setSaveStatus("Saved");
+    setSaving(false);
 
     startTransition(() => {
       router.refresh();
@@ -75,9 +79,9 @@ export default function Editor({
   const debouncedUpdates = useDebouncedCallback(async ({ editor }) => {
     const json = editor.getJSON();
     setContent(json);
-    await patchRequest(id, title, slug, tag, content);
+    await patchRequest(id, title, slug, tag, published, content);
     setTimeout(() => {
-      setSaveStatus("Saved");
+      setSaving(false);
     }, 500);
   }, 1000);
 
@@ -85,7 +89,7 @@ export default function Editor({
     extensions: TipTapEditorExtensions,
     editorProps: TipTapEditorProps,
     onUpdate: (e) => {
-      setSaveStatus("Saving...");
+      setSaving(true);
       debouncedUpdates(e);
     },
     content: content,
@@ -103,7 +107,7 @@ export default function Editor({
     debouncedUpdates.flush(); // Trigger immediate save without debounce
 
     try {
-      await patchRequest(id, title, slug, tag, content);
+      await patchRequest(id, title, slug, tag, published, content);
       setShowEditDialog(false);
     } catch (error) {
       console.error(error);
@@ -112,8 +116,7 @@ export default function Editor({
 
   return (
     <div className="mx-auto max-w-2xl my-20 space-y-8">
-      <div className="flex justify-between">
-        <Back />
+      <div className="flex justify-end">
         <div className="flex gap-2">
           <Link href={`/article/${slug}`}>
             <Button variant="ghost">
@@ -135,20 +138,28 @@ export default function Editor({
               </DialogHeader>
 
               <div className="flex flex-col gap-2">
+                <Label>Title</Label>
                 <Input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
+                <Label>Slug</Label>
                 <Input
                   type="text"
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
                 />
+                <Label>Tag</Label>
                 <Input
                   type="text"
                   value={tag}
                   onChange={(e) => setTag(e.target.value)}
+                />
+                <Label>Published</Label>
+                <Switch
+                  checked={published}
+                  onCheckedChange={(isChecked) => setPublished(isChecked)}
                 />
               </div>
               <DialogFooter>
@@ -156,8 +167,13 @@ export default function Editor({
               </DialogFooter>
             </DialogContent>
           </Dialog>
-          <Button variant="secondary">Unpublish</Button>
-          <Badge variant="secondary">{saveStatus}</Badge>
+          <Badge variant="secondary">
+            {isSaving ? (
+              <Loader2 className="w-4 h-4 animate-spin" /> // Render the loader when saving
+            ) : (
+              <Check className="w-4 h-4" />
+            )}
+          </Badge>{" "}
         </div>
       </div>
       <h1 className="text-6xl font-bold">{title}</h1>

@@ -19,6 +19,7 @@ async function getDocument(id: string) {
       content: true,
       slug: true,
       tag: true,
+      published: true,
     },
   });
 }
@@ -26,8 +27,8 @@ async function getDocument(id: string) {
 export default async function DocumentPage(props: DocumentProps) {
   const { userId } = auth();
 
-  if (!userId) {
-    redirect("/");
+  if (userId !== process.env.ADMIN_ID) {
+    redirect("/unauthorised");
   }
 
   const document = await getDocument(props.params.id);
@@ -44,6 +45,7 @@ export default async function DocumentPage(props: DocumentProps) {
         content: document.content,
         slug: document.slug,
         tag: document.tag,
+        published: document.published,
       }}
     />
   );

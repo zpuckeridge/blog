@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
+import Navigation from "@/components/navigation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
           className={`${inter.className} dark:bg-[#171717] bg-white container`}
         >
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <Navigation />
             {children}
             <Footer />
             <Toaster />
