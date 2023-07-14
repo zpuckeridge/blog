@@ -33,7 +33,7 @@ export default async function Article({
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl my-4 space-y-8">
+      <div className="mx-auto max-w-2xl my-20 space-y-8">
         <div className="flex justify-between">
           <h1 className="text-4xl font-bold">{post?.title}</h1>
           {userId === process.env.ADMIN_ID && (
@@ -48,7 +48,7 @@ export default async function Article({
           )}
         </div>
         <article
-          className="prose prose-muted dark:prose-invert max-w-2xl prose-img:shadow-2xl prose-img:rounded-md"
+          className="prose prose-muted dark:prose-invert max-w-2xl prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto"
           dangerouslySetInnerHTML={{ __html: output }}
         ></article>
       </div>

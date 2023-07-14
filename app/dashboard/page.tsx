@@ -32,7 +32,7 @@ export default async function Sidebar() {
   const documents = await getDocuments();
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl my-20 mx-auto">
       <CreateDocButton />
 
       <DataTable columns={columns} data={documents} />
