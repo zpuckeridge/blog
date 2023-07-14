@@ -2,14 +2,12 @@
 
 import { useState, useTransition } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { MoreVertical, Trash, Loader2, Edit } from "lucide-react";
-import { buttonVariants } from "./ui/button";
+import { MoreHorizontal, Trash, Loader2, Edit } from "lucide-react";
+import { Button, buttonVariants } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -59,13 +57,11 @@ export default function DocumentOperations({
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger
-          className={cn(
-            buttonVariants({ variant: "outline" }),
-            "h-full items-center border-none p-0",
-          )}
-        >
-          <MoreVertical className="h-4 w-4" />
+        <DropdownMenuTrigger>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="right" align="start">
           <DropdownMenuItem

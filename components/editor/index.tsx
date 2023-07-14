@@ -104,13 +104,16 @@ export default function Editor({
   }, [editor, document, hydrated]);
 
   const handleSave = async () => {
+    setSaving(true);
     debouncedUpdates.flush(); // Trigger immediate save without debounce
 
     try {
       await patchRequest(id, title, slug, tag, published, content);
       setShowEditDialog(false);
+      setSaving(false);
     } catch (error) {
       console.error(error);
+      setSaving(false);
     }
   };
 
@@ -134,37 +137,61 @@ export default function Editor({
               <DialogHeader>
                 <DialogTitle>Edit Article</DialogTitle>
                 <DialogDescription>
-                  Update the article name, slug, and tag.
+                  Update your article title, slug, tag and visibility status.
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="flex flex-col gap-2">
-                <Label>Title</Label>
-                <Input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <Label>Slug</Label>
-                <Input
-                  type="text"
-                  value={slug}
-                  onChange={(e) => setSlug(e.target.value)}
-                />
-                <Label>Tag</Label>
-                <Input
-                  type="text"
-                  value={tag}
-                  onChange={(e) => setTag(e.target.value)}
-                />
-                <Label>Published</Label>
-                <Switch
-                  checked={published}
-                  onCheckedChange={(isChecked) => setPublished(isChecked)}
-                />
+              <div className="grid gap-4 py-4">
+                <div>
+                  <Label htmlFor="title" className="my-1">
+                    Title
+                  </Label>
+                  <Input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="slug" className="my-1">
+                    Slug
+                  </Label>
+                  <Input
+                    type="text"
+                    value={slug}
+                    onChange={(e) => setSlug(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="tag" className="my-1">
+                    Tag
+                  </Label>
+                  <Input
+                    type="text"
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="published" className="my-1">
+                    Published
+                  </Label>
+                  <div>
+                    <Switch
+                      checked={published}
+                      onCheckedChange={(isChecked) => setPublished(isChecked)}
+                    />
+                  </div>
+                </div>
               </div>
               <DialogFooter>
-                <Button onClick={handleSave}>Save</Button>
+                <Button onClick={handleSave}>
+                  {isSaving ? (
+                    <Loader2 className="w-4 h-4 animate-spin" /> // Render the loader when saving
+                  ) : (
+                    <p>Save</p>
+                  )}
+                </Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

@@ -92,7 +92,7 @@ export default function CreateDocButton() {
       <Button
         onClick={() => setShowCreateDialog(true)}
         variant="outline"
-        className="h-8 w-full justify-start rounded-none"
+        className="w-full justify-start"
       >
         <PlusIcon className="mr-2 h-4 w-4" />
         New Article
@@ -102,7 +102,7 @@ export default function CreateDocButton() {
           <DialogHeader>
             <DialogTitle>New Article</DialogTitle>
             <DialogDescription>
-              Give your article a title and slug.
+              Give your article a title, slug and tag.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit}>
