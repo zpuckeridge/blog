@@ -116,8 +116,9 @@ export default function Editor({
 
   return (
     <div className="mx-auto max-w-2xl my-20 space-y-8">
-      <div className="flex justify-end">
-        <div className="flex gap-2">
+      <div className="flex justify-between">
+        <h1 className="text-4xl font-bold">{title}</h1>
+        <div className="flex gap-2 my-auto">
           <Link href={`/article/${slug}`}>
             <Button variant="ghost">
               <ExternalLink className="w-4 h-4" />
@@ -176,7 +177,6 @@ export default function Editor({
           </Badge>{" "}
         </div>
       </div>
-      <h1 className="text-6xl font-bold">{title}</h1>
       <div
         onClick={() => {
           editor?.chain().focus().run();

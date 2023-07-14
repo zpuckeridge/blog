@@ -21,7 +21,7 @@ export default async function Article({
       <div className="mx-auto max-w-2xl my-4 space-y-8">
         <h1 className="text-4xl font-bold">{post?.title}</h1>
         <article
-          className="prose text-white prose-invert prose-img:shadow-xl prose-img:rounded-xl"
+          className="prose prose-muted dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: output }}
         ></article>
       </div>
