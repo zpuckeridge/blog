@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 export type Posts = {
   id: string;
   title: string;
+  slug: string;
   published: boolean;
   tag: string;
 };
@@ -49,10 +50,11 @@ export const columns: ColumnDef<Posts>[] = [
     header: "Actions",
     id: "actions",
     cell: ({ row }) => {
-      const title = row.original.title;
       const id = row.original.id;
+      const title = row.original.title;
+      const slug = row.original.slug;
 
-      return <DocumentOperations id={id} title={title} />;
+      return <DocumentOperations id={id} title={title} slug={slug} />;
     },
   },
 ];

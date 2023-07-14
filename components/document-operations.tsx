@@ -2,7 +2,13 @@
 
 import { useState, useTransition } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { MoreHorizontal, Trash, Loader2, Edit } from "lucide-react";
+import {
+  MoreHorizontal,
+  Trash,
+  Loader2,
+  Edit,
+  ExternalLink,
+} from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 import {
   DropdownMenu,
@@ -25,9 +31,11 @@ import { toast } from "./ui/use-toast";
 export default function DocumentOperations({
   id,
   title,
+  slug,
 }: {
   id: string;
   title: string;
+  slug: string;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -64,6 +72,12 @@ export default function DocumentOperations({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="right" align="start">
+          <DropdownMenuItem
+            onSelect={() => router.push(`/article/${slug}`)}
+            className="flex cursor-pointer items-center"
+          >
+            <ExternalLink className="w-4 h-4 mr-2" /> View
+          </DropdownMenuItem>
           <DropdownMenuItem
             onSelect={() => router.push(`/dashboard/edit/${id}`)}
             className="flex cursor-pointer items-center"
