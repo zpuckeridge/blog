@@ -14,6 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default async function Home() {
   const posts = await prisma.posts.findMany({
+    where: { published: true },
     orderBy: { createdAt: "desc" },
     take: 4,
   });
