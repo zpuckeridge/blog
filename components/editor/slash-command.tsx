@@ -1,3 +1,5 @@
+"import client";
+
 import React, {
   useState,
   useEffect,
@@ -14,6 +16,7 @@ import {
   Heading1,
   Heading2,
   Heading3,
+  ImageIcon,
   Italic,
   List,
   ListOrdered,
@@ -147,13 +150,29 @@ const getSuggestionItems = ({ query }: { query: string }) => {
         editor.chain().focus().deleteRange(range).toggleOrderedList().run();
       },
     },
+    {
+      title: "Image",
+      description: "Insert an image.",
+      icon: <ImageIcon size={18} />,
+      command: ({ editor, range }: Command) => {
+        const url = window.prompt("Enter the URL of the image:");
+
+        if (url) {
+          editor
+            .chain()
+            .focus()
+            .deleteRange(range)
+            .setImage({ src: url })
+            .run();
+        }
+      },
+    },
   ].filter((item) => {
     if (typeof query === "string" && query.length > 0) {
       return item.title.toLowerCase().includes(query.toLowerCase());
     }
     return true;
   });
-  // .slice(0, 10);
 };
 
 export const updateScrollView = (container: HTMLElement, item: HTMLElement) => {
@@ -228,7 +247,7 @@ const CommandList = ({
     if (item && container) {
       container.scrollTop = item.offsetTop - container.offsetTop;
 
-      item.focus();
+      // item.focus();
     }
 
     if (selectedIndex === 0 && items.length > 0) {

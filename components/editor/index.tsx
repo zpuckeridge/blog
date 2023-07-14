@@ -79,7 +79,7 @@ export default function Editor({
   const debouncedUpdates = useDebouncedCallback(async ({ editor }) => {
     const json = editor.getJSON();
     setContent(json);
-    await patchRequest(id, title, slug, tag, published, content);
+    await patchRequest(id, title, slug, tag, published, json);
     setTimeout(() => {
       setSaving(false);
     }, 500);
