@@ -35,7 +35,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/dateformat": "^5.0.0",
     "@types/node": "20.4.1",
-    "@types/react": "18.2.14",
+    "@types/react": "18.2.15",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "^10.4.14",
     "eslint": "8.44.0",
