@@ -10,6 +10,12 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Call from "@/components/call";
 
@@ -113,14 +119,23 @@ export default async function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
           {siteConfig.projects.map((project) => (
             <div key={project.name} className="space-y-2">
-              <a
-                href={project.url}
-                className="underline underline-offset-4"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {project.name}
-              </a>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href={project.url}
+                      className="underline hover:no-underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.name}
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{project.url}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <p className="text-sm">{project.description}</p>
             </div>
           ))}
