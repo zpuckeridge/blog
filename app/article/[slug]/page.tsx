@@ -6,6 +6,7 @@ import { Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 export default async function Article({
   params,
@@ -16,6 +17,15 @@ export default async function Article({
 
   const post = await prisma.posts.findUnique({
     where: { slug },
+  });
+
+  if (!post) {
+    redirect("/404");
+  }
+
+  await prisma.posts.update({
+    where: { slug },
+    data: { views: post.views + 1 },
   });
 
   const PostStatus = ({ published }: any) => {
@@ -48,7 +58,7 @@ export default async function Article({
           )}
         </div>
         <article
-          className="prose prose-muted dark:prose-invert max-w-2xl prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto"
+          className="prose prose-muted dark:prose-invert max-w-2xl prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto prose-img:max-w-3xl"
           dangerouslySetInnerHTML={{ __html: output }}
         ></article>
       </div>

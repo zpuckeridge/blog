@@ -11,6 +11,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Call from "@/components/call";
 
 export default async function Home() {
   const posts = await prisma.posts.findMany({
@@ -162,33 +163,34 @@ export default async function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <a
             href="https://twitter.com/zpuckeridge"
-            className="border p-4 flex items-center w-full"
+            className="border p-4 flex items-center w-full hover:bg-muted"
           >
             <Twitter className="mr-2" />
             @zpuckeridge
           </a>
           <a
             href="https://discordapp.com/users/181324210876973056"
-            className="border p-4 flex items-center w-full"
+            className="border p-4 flex items-center w-full hover:bg-muted"
           >
             <FaDiscord className="mr-2 w-7 h-7" />
             @sdelta
           </a>
           <a
             href="https://github.com/zpuckeridge"
-            className="border p-4 flex items-center w-full"
+            className="border p-4 flex items-center w-full hover:bg-muted"
           >
             <Github className="mr-2 w-7 h-7" />
             @zpuckeridge
           </a>
           <a
             href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
-            className="border p-4 flex items-center w-full"
+            className="border p-4 flex items-center w-full hover:bg-muted"
           >
             <FaSpotify className="mr-2 w-7 h-7" />
             @zpuckeridge
           </a>
         </div>
+        <Call />
       </div>
     </main>
   );

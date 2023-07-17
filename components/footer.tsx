@@ -7,8 +7,8 @@ export default function Footer() {
     <footer className="max-w-2xl mx-auto w-full">
       <Separator />
       <div className="flex justify-between my-2">
-        <p>{siteConfig.name}</p>
-        <div className="flex space-x-2">
+        <p className="text-sm">{siteConfig.name}</p>
+        <div className="flex space-x-2 my-auto">
           <Rss className="w-4 h-4" />
           <Mail className="w-4 h-4" />
           <Github className="w-4 h-4" />
