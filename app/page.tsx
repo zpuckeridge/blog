@@ -154,7 +154,10 @@ export default async function Home() {
           <ul className="space-y-4">
             {posts.map((post) => (
               <li key={post.id}>
-                <Link href={`/article/${encodeURIComponent(post.slug)}`}>
+                <Link
+                  href={`/article/${encodeURIComponent(post.slug)}`}
+                  prefetch={false}
+                >
                   <div className="sm:flex justify-between gap-2">
                     <p className="truncate">{post.title}</p>
 

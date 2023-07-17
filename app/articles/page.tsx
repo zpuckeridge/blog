@@ -15,7 +15,10 @@ export default async function Articles() {
         <ul className="space-y-8">
           {posts.map((post) => (
             <li key={post.id}>
-              <Link href={`/article/${encodeURIComponent(post.slug)}`}>
+              <Link
+                href={`/article/${encodeURIComponent(post.slug)}`}
+                prefetch={false}
+              >
                 <div className="flex justify-between">
                   <p className="font-semibold underline underline-offset-4">
                     {post.title}
