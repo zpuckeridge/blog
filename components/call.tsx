@@ -2,6 +2,7 @@
 
 import { MousePointerClick } from "lucide-react";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 export default function Call() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -49,12 +50,12 @@ export default function Call() {
   };
 
   return (
-    <div className="relative h-48 w-full border p-4 hover:bg-muted">
+    <Button variant="ghost" className="relative h-48 w-full border p-4">
       {slides.map((slide, index) => (
         <div
           key={index}
           onClick={nextSlide}
-          className={`w-full h-full cursor-pointer text-black dark:text-white flex items-center justify-center rounded-lg ${
+          className={`w-full h-full flex items-center justify-center ${
             activeSlideIndex === index ? "" : "hidden"
           }`}
         >
@@ -71,6 +72,6 @@ export default function Call() {
           </p>
         </div>
       ))}
-    </div>
+    </Button>
   );
 }

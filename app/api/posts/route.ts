@@ -5,6 +5,7 @@ import { auth } from "@clerk/nextjs";
 const createDocSchema = z.object({
   id: z.string(),
   title: z.string(),
+  description: z.string(),
   slug: z.string(),
   tag: z.string(),
 });
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
       data: {
         id: body.id,
         title: body.title,
+        description: body.description,
         slug: body.slug,
         tag: body.tag,
         published: false,

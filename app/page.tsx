@@ -28,9 +28,9 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl my-20 space-y-8">
+      <div className="mx-auto max-w-2xl space-y-8">
         <div>
-          <div className="mt-4 space-y-4">
+          <div className="space-y-4">
             <p>
               Christian IT Administrator working for{" "}
               <span className="underline hover:no-underline cursor-pointer">
@@ -57,7 +57,7 @@ export default async function Home() {
                           moments.
                         </p>
                         <div className="flex items-center pt-2">
-                          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+                          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
                           <span className="text-xs text-muted-foreground">
                             Working @ RSP since 2022
                           </span>
@@ -100,7 +100,7 @@ export default async function Home() {
                           Australia. Providing good quality Christian books.
                         </p>
                         <div className="flex items-center pt-2">
-                          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+                          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
                           <span className="text-xs text-muted-foreground">
                             Building @ TAB since 2023
                           </span>
@@ -179,34 +179,46 @@ export default async function Home() {
           </ul>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <a
-            href="https://twitter.com/zpuckeridge"
-            className="border p-4 flex items-center w-full hover:bg-muted"
-          >
-            <Twitter className="mr-2" />
-            @zpuckeridge
-          </a>
-          <a
-            href="https://discordapp.com/users/181324210876973056"
-            className="border p-4 flex items-center w-full hover:bg-muted"
-          >
-            <FaDiscord className="mr-2 w-7 h-7" />
-            @sdelta
-          </a>
-          <a
-            href="https://github.com/zpuckeridge"
-            className="border p-4 flex items-center w-full hover:bg-muted"
-          >
-            <Github className="mr-2 w-7 h-7" />
-            @zpuckeridge
-          </a>
-          <a
-            href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
-            className="border p-4 flex items-center w-full hover:bg-muted"
-          >
-            <FaSpotify className="mr-2 w-7 h-7" />
-            @zpuckeridge
-          </a>
+          <Button variant="ghost" className="relative h-14 w-full border p-4">
+            <a
+              href="https://twitter.com/zpuckeridge"
+              target="_blank"
+              className="w-full h-full flex my-auto"
+            >
+              <Twitter className="mr-2 my-auto" />
+              @zpuckeridge
+            </a>
+          </Button>
+          <Button variant="ghost" className="relative h-14 w-full border p-4">
+            <a
+              href="https://discordapp.com/users/181324210876973056"
+              target="_blank"
+              className="w-full h-full flex my-auto"
+            >
+              <FaDiscord className="mr-2 w-7 h-7 my-auto" />
+              @sdelta
+            </a>
+          </Button>
+          <Button variant="ghost" className="relative h-14 w-full border p-4">
+            <a
+              href="https://github.com/zpuckeridge"
+              target="_blank"
+              className="w-full h-full flex my-auto"
+            >
+              <Github className="mr-2 w-7 h-7 my-auto" />
+              @zpuckeridge
+            </a>
+          </Button>
+          <Button variant="ghost" className="relative h-14 w-full border p-4">
+            <a
+              href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
+              target="_blank"
+              className="w-full h-full flex my-auto"
+            >
+              <FaSpotify className="mr-2 w-7 h-7 my-auto" />
+              @zpuckeridge
+            </a>
+          </Button>
         </div>
         <Call />
       </div>

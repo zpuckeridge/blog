@@ -16,6 +16,7 @@ async function getDocument(id: string) {
     },
     select: {
       title: true,
+      description: true,
       content: true,
       slug: true,
       tag: true,
@@ -42,6 +43,7 @@ export default async function DocumentPage(props: DocumentProps) {
       id={props.params.id}
       document={{
         title: document.title,
+        description: document.description,
         content: document.content,
         slug: document.slug,
         tag: document.tag,

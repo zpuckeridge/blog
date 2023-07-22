@@ -37,6 +37,7 @@ export default function Editor({
   const [hydrated, setHydrated] = useState<boolean>(false);
   const [content, setContent] = useState<PatchDocType["content"]>();
   const [title, setTitle] = useState<string>(document.title);
+  const [description, setDescription] = useState<string>(document.description);
   const [tag, setTag] = useState<string>(document.tag);
   const [slug, setSlug] = useState<string>(document.slug);
   const [published, setPublished] = useState<boolean>(document.published);
@@ -45,6 +46,7 @@ export default function Editor({
   async function patchRequest(
     id: string,
     title: string,
+    description: string,
     slug: string,
     tag: string,
     published: boolean,
@@ -57,6 +59,7 @@ export default function Editor({
       },
       body: JSON.stringify({
         title: title,
+        description: description,
         slug: slug,
         tag: tag,
         published: published,
@@ -79,7 +82,7 @@ export default function Editor({
   const debouncedUpdates = useDebouncedCallback(async ({ editor }) => {
     const json = editor.getJSON();
     setContent(json);
-    await patchRequest(id, title, slug, tag, published, json);
+    await patchRequest(id, title, description, slug, tag, published, json);
     setTimeout(() => {
       setSaving(false);
     }, 500);
@@ -108,7 +111,7 @@ export default function Editor({
     debouncedUpdates.flush(); // Trigger immediate save without debounce
 
     try {
-      await patchRequest(id, title, slug, tag, published, content);
+      await patchRequest(id, title, description, slug, tag, published, content);
       setShowEditDialog(false);
       setSaving(false);
     } catch (error) {
@@ -150,6 +153,16 @@ export default function Editor({
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="description" className="my-1">
+                    Description
+                  </Label>
+                  <Input
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
                 <div>

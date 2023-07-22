@@ -43,7 +43,7 @@ export default async function Article({
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl my-20 space-y-8">
+      <div className="mx-auto max-w-2xl space-y-8">
         <div className="flex justify-between">
           <h1 className="text-4xl font-bold">{post?.title}</h1>
           {userId === process.env.ADMIN_ID && (

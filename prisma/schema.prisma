@@ -10,9 +10,10 @@ datasource db {
 
 model Posts {
   id            String        @id @default(uuid()) @unique
-  slug          String        @unique @db.VarChar(300)
+  slug          String        @unique @db.VarChar(255)
   title         String        @db.VarChar(255)
   content       Json?         @db.Json
+  description   String?       @db.VarChar(1024)        
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   published     Boolean       @default(false)

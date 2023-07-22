@@ -27,6 +27,7 @@ export default function CreateDocButton() {
   const [values, setValues] = useState<CreateDocType>({
     id: "",
     title: "",
+    description: "",
     slug: "",
     tag: "",
   });
@@ -68,7 +69,7 @@ export default function CreateDocButton() {
     const document = await res.json();
     setIsFetching(false);
     setShowCreateDialog(false);
-    setValues({ id: "", title: "", slug: "", tag: "" });
+    setValues({ id: "", title: "", description: "", slug: "", tag: "" });
     startTransition(() => {
       router.refresh();
       router.push(`/dashboard/edit/${document.id}`);
@@ -77,6 +78,13 @@ export default function CreateDocButton() {
 
   function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setValues((prevValues) => ({ ...prevValues, title: event.target.value }));
+  }
+
+  function handleDescriptionChnage(event: React.ChangeEvent<HTMLInputElement>) {
+    setValues((prevValues) => ({
+      ...prevValues,
+      description: event.target.value,
+    }));
   }
 
   function handleSlugChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -102,7 +110,7 @@ export default function CreateDocButton() {
           <DialogHeader>
             <DialogTitle>New Article</DialogTitle>
             <DialogDescription>
-              Give your article a title, slug and tag.
+              Give your article a title, description, slug and tag.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit}>
@@ -115,7 +123,18 @@ export default function CreateDocButton() {
                   id="title"
                   value={values.title}
                   onChange={handleTitleChange}
-                  placeholder="Awesome Article"
+                  placeholder="Awesome Article Title"
+                />
+              </div>
+              <div>
+                <Label htmlFor="description" className="my-1">
+                  Description
+                </Label>
+                <Input
+                  id="description"
+                  value={values.description}
+                  onChange={handleDescriptionChnage}
+                  placeholder="Awesome Article Description"
                 />
               </div>
               <div>

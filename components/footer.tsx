@@ -1,18 +1,50 @@
 import { Github, Mail, Rss, Twitter } from "lucide-react";
 import { Separator } from "./ui/separator";
-import { siteConfig } from "@/config/site";
+import { FaDiscord, FaSpotify } from "react-icons/fa6";
+import { Button } from "./ui/button";
 
 export default function Footer() {
   return (
     <footer className="max-w-2xl mx-auto w-full">
       <Separator />
-      <div className="flex justify-between my-2">
-        <p className="text-sm">{siteConfig.name}</p>
-        <div className="flex space-x-2 my-auto">
-          <Rss className="w-4 h-4" />
-          <Mail className="w-4 h-4" />
-          <Github className="w-4 h-4" />
-          <Twitter className="w-4 h-4" />
+      <div className="flex justify-between my-auto mt-2">
+        <p className="text-sm my-auto">Zacchary Puckeridge</p>
+
+        <div className="flex my-auto">
+          <Button variant="ghost" size="sm">
+            <Rss className="w-4 h-4" />
+          </Button>
+          <a href="mailto:hi@zacchary.me">
+            <Button variant="ghost" size="sm">
+              <Mail className="w-4 h-4" />
+            </Button>
+          </a>
+          <a href="https://twitter.com/zpuckeridge" target="_blank">
+            <Button variant="ghost" size="sm">
+              <Twitter className="w-4 h-4" />
+            </Button>
+          </a>
+          <a
+            href="https://discordapp.com/users/181324210876973056"
+            target="_blank"
+          >
+            <Button variant="ghost" size="sm">
+              <FaDiscord className="w-4 h-4" />
+            </Button>
+          </a>
+          <a href="https://github.com/zpuckeridge" target="_blank">
+            <Button variant="ghost" size="sm">
+              <Github className="w-4 h-4" />
+            </Button>
+          </a>
+          <a
+            href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
+            target="_blank"
+          >
+            <Button variant="ghost" size="sm">
+              <FaSpotify className="w-4 h-4" />
+            </Button>
+          </a>
         </div>
       </div>
     </footer>

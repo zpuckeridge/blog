@@ -49,6 +49,7 @@ export async function DELETE(
 
 const patchDocSchema = z.object({
   title: z.string().min(1).max(128),
+  description: z.any(),
   slug: z.string().min(1).max(128),
   tag: z.string().min(1).max(128),
   published: z.boolean(),
@@ -89,6 +90,7 @@ export async function PATCH(
       },
       data: {
         title: body.title,
+        description: body.description,
         content: body.content,
         slug: body.slug,
         tag: body.tag,

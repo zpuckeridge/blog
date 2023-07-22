@@ -30,10 +30,12 @@ export default function RootLayout({
           className={`${inter.className} dark:bg-[#171717] bg-white container`}
         >
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <Navigation />
-            {children}
-            <Footer />
-            <Toaster />
+            <div className="flex flex-col min-h-screen justify-between space-y-4">
+              <Navigation />
+              {children}
+              <Footer />
+              <Toaster />
+            </div>
           </ThemeProvider>
         </body>
       </html>

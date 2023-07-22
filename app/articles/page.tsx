@@ -12,18 +12,16 @@ export default async function Articles() {
   return (
     <main>
       <div className="mx-auto max-w-2xl my-4 space-y-8">
-        <ul className="space-y-8">
+        <ul className="space-y-16">
           {posts.map((post) => (
             <li key={post.id}>
               <Link
                 href={`/article/${encodeURIComponent(post.slug)}`}
                 prefetch={false}
               >
-                <div className="flex justify-between">
-                  <p className="font-semibold underline underline-offset-4">
-                    {post.title}
-                  </p>
-
+                <div className="space-y-4">
+                  <p className="font-semibold hover:underline">{post.title}</p>
+                  <p>{post.description}</p>
                   <div className="flex gap-2">
                     <p>{post.views} views</p>/
                     <Badge variant="secondary">{post.tag}</Badge>/
