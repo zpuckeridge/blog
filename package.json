@@ -15,7 +15,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "@vercel/analytics": "^1.0.1",
     "classnames": "^2.3.2",
-    "cloudinary": "^1.37.3",
+    "cloudinary": "^1.39.0",
     "dateformat": "^5.0.3",
     "framer-motion": "^10.12.18",
     "next": "^13.4.9",

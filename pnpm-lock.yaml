@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@supabase/auth-helpers-nextjs':
     specifier: ^0.7.2
@@ -20,8 +24,8 @@ dependencies:
     specifier: ^2.3.2
     version: 2.3.2
   cloudinary:
-    specifier: ^1.37.3
-    version: 1.37.3
+    specifier: ^1.39.0
+    version: 1.39.0
   dateformat:
     specifier: ^5.0.3
     version: 5.0.3
@@ -965,8 +969,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /cloudinary@1.37.3:
-    resolution: {integrity: sha512-XrGb60ZeQhYp9QQjj5DP3cYsAc27OV1B7pezvVxyqgHB5WMeMsofzeIy6+k0o/fCCv744Nf7xsYiTlUi3V0V/Q==}
+  /cloudinary@1.39.0:
+    resolution: {integrity: sha512-xVCzduGsEgYWe/xnbB6rrx56NCvPtqJGh+G6aTSdattxpuewgFH9S/7JCIatLQcBw2JzkJKAYJ1wdRg/QiRFlw==}
     engines: {node: '>=0.6'}
     dependencies:
       cloudinary-core: 2.13.0(lodash@4.17.21)
