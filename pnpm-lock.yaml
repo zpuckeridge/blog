@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@supabase/auth-helpers-nextjs':
     specifier: ^0.7.2
@@ -26,8 +30,8 @@ dependencies:
     specifier: ^5.0.3
     version: 5.0.3
   framer-motion:
-    specifier: ^10.12.18
-    version: 10.12.18(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^10.13.1
+    version: 10.13.1(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: ^13.4.9
     version: 13.4.9(react-dom@18.2.0)(react@18.2.0)
@@ -1728,8 +1732,8 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
-  /framer-motion@10.12.18(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-cfhiUpPbj+0eEWKjuD+5cz5cMqH71xOtMxGiS/cSGfHn2OlHIEAqFnFyzEMENw5PxWR9bMVhatzzpD6lexmHZQ==}
+  /framer-motion@10.13.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uiKsaLEoySeln3eOPy8wUB3FkNtRRiVga5xJOkgs7C0sHVyvpJajXJFSoabt+emBojgnMQY0epnjl0ppoYPxkQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
