@@ -9,7 +9,8 @@ import { PatchDocType } from "@/app/api/posts/[id]/route";
 import { useDebouncedCallback } from "use-debounce";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { Check, ExternalLink, Loader, Loader2, Settings } from "lucide-react";
+import { Check, ExternalLink, Loader2, Settings } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +24,7 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "../ui/label";
+import Back from "../back";
 
 export default function Editor({
   document,
@@ -121,9 +123,12 @@ export default function Editor({
   };
 
   return (
-    <div className="mx-auto max-w-2xl my-20 space-y-8">
-      <div className="flex justify-between">
-        <h1 className="text-4xl font-bold">{title}</h1>
+    <div className="space-y-8">
+      <div className="sticky py-4 top-0 z-50 flex justify-between w-full bg-opacity-75 backdrop-blur-lg">
+        <Back />
+
+        <p className="text-sm my-auto">{title}</p>
+
         <div className="flex gap-2 my-auto">
           <Link href={`/article/${slug}`}>
             <Button variant="ghost">
@@ -159,8 +164,7 @@ export default function Editor({
                   <Label htmlFor="description" className="my-1">
                     Description
                   </Label>
-                  <Input
-                    type="text"
+                  <Textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   />
@@ -221,7 +225,10 @@ export default function Editor({
         onClick={() => {
           editor?.chain().focus().run();
         }}
+        className="max-w-2xl mx-auto space-y-8"
       >
+        <h1 className="text-4xl font-bold">{title}</h1>
+
         <EditorContent editor={editor} />
       </div>
     </div>

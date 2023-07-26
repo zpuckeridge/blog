@@ -8,49 +8,61 @@ export const runtime = "edge";
 export const revalidate = 10;
 
 export async function getNowPlaying() {
-  const { access_token } = await getAccessToken();
+  try {
+    const { access_token } = await getAccessToken();
 
-  const res = await fetch(
-    `https://api.spotify.com/v1/me/player/currently-playing`,
-    {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
+    const res = await fetch(
+      `https://api.spotify.com/v1/me/player/currently-playing`,
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
       },
-    },
-  );
+    );
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (!data) {
+    if (!data) {
+      return {
+        is_playing: false,
+      };
+    }
+
+    if (data.currently_playing_type === "episode") {
+      return {
+        is_playing: false,
+      };
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching now playing data:", error);
     return {
       is_playing: false,
     };
   }
-
-  if (data.currently_playing_type === "episode") {
-    return {
-      is_playing: false,
-    };
-  }
-
-  return data;
 }
 
 export async function getLastPlayed() {
-  const { access_token } = await getAccessToken();
+  try {
+    const { access_token } = await getAccessToken();
 
-  const res = await fetch(
-    `https://api.spotify.com/v1/me/player/recently-played?before=${Date.now()}&limit=1`,
-    {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
+    const res = await fetch(
+      `https://api.spotify.com/v1/me/player/recently-played?before=${Date.now()}&limit=1`,
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
       },
-    },
-  );
+    );
 
-  const data = await res.json();
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching last played data:", error);
+    return null;
+  }
 }
 
 export default async function NowPlaying() {

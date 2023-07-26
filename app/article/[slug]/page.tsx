@@ -43,22 +43,24 @@ export default async function Article({
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl space-y-8">
-        <div className="flex justify-between">
-          <h1 className="text-4xl font-bold">{post?.title}</h1>
-          {userId === process.env.ADMIN_ID && (
-            <div className="flex my-auto">
-              <PostStatus published={post?.published} />
-              <Link href={`/dashboard/edit/${post?.id}`}>
-                <Button variant="ghost">
-                  <Edit className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          )}
+      <div className="mx-auto space-y-8">
+        <div className="max-w-2xl mx-auto">
+          <div className="flex justify-between">
+            <h1 className="text-4xl font-bold">{post?.title}</h1>
+            {userId === process.env.ADMIN_ID && (
+              <div className="flex my-auto">
+                <PostStatus published={post?.published} />
+                <Link href={`/dashboard/edit/${post?.id}`}>
+                  <Button variant="ghost">
+                    <Edit className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
         <article
-          className="prose prose-muted dark:prose-invert max-w-2xl prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto prose-img:max-w-3xl"
+          className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black"
           dangerouslySetInnerHTML={{ __html: output }}
         ></article>
       </div>
