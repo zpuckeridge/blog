@@ -2,12 +2,14 @@ import { Github, Mail, Rss, Twitter } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { FaDiscord, FaSpotify } from "react-icons/fa6";
 import { Button } from "./ui/button";
+import NowPlaying from "./now-playing";
 
 export default function Footer() {
   return (
-    <footer className="max-w-2xl mx-auto w-full">
+    <footer className="max-w-2xl mx-auto w-full space-y-2">
+      <NowPlaying />
       <Separator />
-      <div className="flex justify-between my-auto mt-2">
+      <div className="flex justify-between my-auto">
         <p className="text-sm my-auto">Zacchary Puckeridge</p>
 
         <div className="flex my-auto">

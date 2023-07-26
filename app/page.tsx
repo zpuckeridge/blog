@@ -2,9 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import prisma from "@/lib/prisma";
-import { ArrowRight, CalendarIcon, Github, Twitter } from "lucide-react";
 import Link from "next/link";
-import { FaDiscord, FaSpotify } from "react-icons/fa6";
 import {
   HoverCard,
   HoverCardContent,
@@ -17,7 +15,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Call from "@/components/call";
+import { ArrowRight, CalendarIcon } from "lucide-react";
+import SocialButtons from "@/components/social-buttons";
 
 export default async function Home() {
   const posts = await prisma.posts.findMany({
@@ -178,49 +177,7 @@ export default async function Home() {
             ))}
           </ul>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <Button variant="ghost" className="relative h-14 w-full border p-4">
-            <a
-              href="https://twitter.com/zpuckeridge"
-              target="_blank"
-              className="w-full h-full flex my-auto"
-            >
-              <Twitter className="mr-2 my-auto" />
-              @zpuckeridge
-            </a>
-          </Button>
-          <Button variant="ghost" className="relative h-14 w-full border p-4">
-            <a
-              href="https://discordapp.com/users/181324210876973056"
-              target="_blank"
-              className="w-full h-full flex my-auto"
-            >
-              <FaDiscord className="mr-2 w-7 h-7 my-auto" />
-              @sdelta
-            </a>
-          </Button>
-          <Button variant="ghost" className="relative h-14 w-full border p-4">
-            <a
-              href="https://github.com/zpuckeridge"
-              target="_blank"
-              className="w-full h-full flex my-auto"
-            >
-              <Github className="mr-2 w-7 h-7 my-auto" />
-              @zpuckeridge
-            </a>
-          </Button>
-          <Button variant="ghost" className="relative h-14 w-full border p-4">
-            <a
-              href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
-              target="_blank"
-              className="w-full h-full flex my-auto"
-            >
-              <FaSpotify className="mr-2 w-7 h-7 my-auto" />
-              @zpuckeridge
-            </a>
-          </Button>
-        </div>
-        <Call />
+        <SocialButtons />
       </div>
     </main>
   );
