@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
 import Back from "./back";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -15,7 +17,7 @@ export default function Navigation() {
   }
 
   return (
-    <div className="flex justify-between w-full my-4 max-w-2xl mx-auto">
+    <div className="sticky py-4 top-0 z-50 flex justify-between w-full bg-opacity-75 backdrop-blur-lg">
       <div>
         {isHomePage ? (
           <>
@@ -28,7 +30,15 @@ export default function Navigation() {
           <Back />
         )}
       </div>
-      <ModeToggle />
+      <div className="flex gap-2">
+        <Link href="/about">
+          <Button variant="ghost">About</Button>
+        </Link>
+        <Link href="/uses">
+          <Button variant="ghost">Uses</Button>
+        </Link>
+        <ModeToggle />
+      </div>
     </div>
   );
 }

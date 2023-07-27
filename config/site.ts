@@ -2,6 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Zacchary Puckeridge",
+  birthday: "1999, 8, 25",
   description: "Zacchary's corner of the internet.",
   projects: [
     {

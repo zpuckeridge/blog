@@ -6,10 +6,10 @@ import NowPlaying from "./now-playing";
 
 export default function Footer() {
   return (
-    <footer className="max-w-2xl mx-auto w-full space-y-2">
-      <NowPlaying />
+    <footer className="max-w-2xl mx-auto w-full space-y-4">
       <Separator />
-      <div className="flex justify-between my-auto">
+      <NowPlaying />
+      <div className="flex justify-between">
         <p className="text-sm my-auto">Zacchary Puckeridge</p>
 
         <div className="flex my-auto">
