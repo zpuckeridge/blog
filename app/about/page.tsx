@@ -12,7 +12,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export async function getCurrentTopTracks() {
+async function getCurrentTopTracks() {
   try {
     const { access_token } = await getAccessToken();
 
@@ -36,7 +36,7 @@ export async function getCurrentTopTracks() {
   }
 }
 
-export async function getRecentTopTracks() {
+async function getRecentTopTracks() {
   try {
     const { access_token } = await getAccessToken();
 
@@ -60,7 +60,7 @@ export async function getRecentTopTracks() {
   }
 }
 
-export async function getAllTimeTopTracks() {
+async function getAllTimeTopTracks() {
   try {
     const { access_token } = await getAccessToken();
 
