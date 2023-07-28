@@ -34,7 +34,7 @@ export default async function Home() {
               Christian IT Administrator working for{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
-                  <HoverCardTrigger>
+                  <HoverCardTrigger asChild>
                     <a href="https://www.rsp.com.au/" target="_blank">
                       Rising Sun Pictures
                     </a>
@@ -73,7 +73,7 @@ export default async function Home() {
               Currently building a Christian Reformed bookstore called{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
-                  <HoverCardTrigger>
+                  <HoverCardTrigger asChild>
                     <a
                       href="https://thearmourybookshop.com.au/"
                       target="_blank"
