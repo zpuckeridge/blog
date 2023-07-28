@@ -28,10 +28,11 @@ export default async function Home() {
   return (
     <main>
       <div className="mx-auto max-w-2xl space-y-8">
+        <h1 className="text-4xl font-bold">G&apos;day 👋</h1>
         <div>
           <div className="space-y-4">
             <p>
-              Christian IT Administrator working for{" "}
+              I&apos;m Zacchary, a Christian IT Administrator working for{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
                   <HoverCardTrigger asChild>
