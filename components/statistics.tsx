@@ -130,21 +130,21 @@ export default async function Statistics() {
                   <div>
                     <a
                       href={track.external_urls.spotify}
-                      className="hover:underline truncate"
+                      className="hover:underline line-clamp-1"
                     >
                       {track.name}
                     </a>{" "}
                     <div className="flex gap-1 text-xs text-muted-foreground">
                       <a
                         href={track.album.external_urls.spotify}
-                        className="hover:underline truncate"
+                        className="hover:underline line-clamp-1"
                       >
                         {track.album.name}
                       </a>
                       /
                       <a
                         href={track.artists[0].external_urls.spotify}
-                        className="hover:underline truncate"
+                        className="hover:underline line-clamp-1"
                       >
                         {track.artists[0].name}
                       </a>
@@ -173,21 +173,21 @@ export default async function Statistics() {
                   <div>
                     <a
                       href={track.external_urls.spotify}
-                      className="hover:underline truncate"
+                      className="hover:underline line-clamp-1"
                     >
                       {track.name}
                     </a>{" "}
                     <div className="flex gap-1 text-xs text-muted-foreground">
                       <a
                         href={track.album.external_urls.spotify}
-                        className="hover:underline truncate"
+                        className="hover:underline line-clamp-1"
                       >
                         {track.album.name}
                       </a>
                       /
                       <a
                         href={track.artists[0].external_urls.spotify}
-                        className="hover:underline truncate"
+                        className="hover:underline line-clamp-1"
                       >
                         {track.artists[0].name}
                       </a>
@@ -216,21 +216,21 @@ export default async function Statistics() {
                   <div>
                     <a
                       href={track.external_urls.spotify}
-                      className="hover:underline truncate"
+                      className="hover:underline line-clamp-1"
                     >
                       {track.name}
                     </a>{" "}
                     <div className="flex gap-1 text-xs text-muted-foreground">
                       <a
                         href={track.album.external_urls.spotify}
-                        className="hover:underline truncate"
+                        className="hover:underline line-clamp-1"
                       >
                         {track.album.name}
                       </a>
                       /
                       <a
                         href={track.artists[0].external_urls.spotify}
-                        className="hover:underline truncate"
+                        className="hover:underline line-clamp-1"
                       >
                         {track.artists[0].name}
                       </a>
