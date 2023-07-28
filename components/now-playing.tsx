@@ -20,21 +20,35 @@ export async function getNowPlaying() {
       },
     );
 
-    const data = await res.json();
+    if (!res.ok) {
+      // Handle the error based on the status code or other relevant information.
+      // For example, if you want to handle unauthorized access:
+      if (res.status === 401) {
+        console.error("Unauthorized access. Please check your access token.");
+      } else {
+        console.error("Error fetching now playing data. Status:", res.status);
+      }
 
+      return {
+        is_playing: false,
+      };
+    }
+
+    const data = await res.text();
     if (!data) {
       return {
         is_playing: false,
       };
     }
 
-    if (data.currently_playing_type === "episode") {
+    try {
+      return JSON.parse(data);
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
       return {
         is_playing: false,
       };
     }
-
-    return data;
   } catch (error) {
     console.error("Error fetching now playing data:", error);
     return {
@@ -56,8 +70,17 @@ export async function getLastPlayed() {
       },
     );
 
-    const data = await res.json();
+    if (!res.ok) {
+      if (res.status === 401) {
+        console.error("Unauthorized access. Please check your access token.");
+      } else {
+        console.error("Error fetching last played data. Status:", res.status);
+      }
 
+      return null;
+    }
+
+    const data = await res.json();
     return data;
   } catch (error) {
     console.error("Error fetching last played data:", error);
