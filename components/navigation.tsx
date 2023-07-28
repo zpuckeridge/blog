@@ -10,9 +10,10 @@ export default function Navigation() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isEditPage = pathname.includes("/dashboard/edit");
+  const isArticlePage = pathname.includes("/article/");
 
   // Return null if it's an edit page to hide the navigation
-  if (isEditPage) {
+  if (isEditPage || isArticlePage) {
     return null;
   }
 

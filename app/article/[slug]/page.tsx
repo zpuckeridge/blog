@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import Back from "@/components/back";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default async function Article({
   params,
@@ -44,21 +46,30 @@ export default async function Article({
   return (
     <main>
       <div className="mx-auto space-y-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex justify-between">
-            <h1 className="text-4xl font-bold">{post?.title}</h1>
+        <div className="sticky py-4 top-0 z-50 flex justify-between w-full bg-opacity-75 backdrop-blur-lg">
+          <Back />
+
+          <p className="text-sm my-auto">{post?.title}</p>
+
+          <div className="flex my-auto">
             {userId === process.env.ADMIN_ID && (
-              <div className="flex my-auto">
+              <>
                 <PostStatus published={post?.published} />
                 <Link href={`/dashboard/edit/${post?.id}`}>
                   <Button variant="ghost">
                     <Edit className="w-4 h-4" />
                   </Button>
                 </Link>
-              </div>
+              </>
             )}
+            <ModeToggle />
           </div>
         </div>
+
+        <div className="max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold">{post?.title}</h1>
+        </div>
+
         <article
           className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black"
           dangerouslySetInnerHTML={{ __html: output }}

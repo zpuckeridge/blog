@@ -24,6 +24,7 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "../ui/label";
+import { ModeToggle } from "@/components/mode-toggle";
 import Back from "../back";
 
 export default function Editor({
@@ -218,7 +219,8 @@ export default function Editor({
             ) : (
               <Check className="w-4 h-4" />
             )}
-          </Badge>{" "}
+          </Badge>
+          <ModeToggle />
         </div>
       </div>
       <div
