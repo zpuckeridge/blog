@@ -21,8 +21,6 @@ export async function getNowPlaying() {
     );
 
     if (!res.ok) {
-      // Handle the error based on the status code or other relevant information.
-      // For example, if you want to handle unauthorized access:
       if (res.status === 401) {
         console.error("Unauthorized access. Please check your access token.");
       } else {

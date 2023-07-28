@@ -1,4 +1,3 @@
-import { getAccessToken } from "@/lib/spotify";
 import Age from "@/components/age-calculator";
 import {
   Tooltip,
@@ -6,89 +5,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-async function getCurrentTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
-
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      },
-    );
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return {
-      data: false,
-    };
-  }
-}
-
-async function getRecentTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
-
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      },
-    );
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return {
-      data: false,
-    };
-  }
-}
-
-async function getAllTimeTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
-
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      },
-    );
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return {
-      data: false,
-    };
-  }
-}
+import Statistics from "@/components/statistics";
 
 export default async function About() {
-  const currentTopTracks = await getCurrentTopTracks();
-  const recentTopTracks = await getRecentTopTracks();
-  const allTimeTopTracks = await getAllTimeTopTracks();
-
   const generateTooltip = (url: any, name: any) => {
     return (
       <TooltipProvider>
@@ -214,145 +137,7 @@ export default async function About() {
             />
           </div>
         </div>
-      </div>
-      <div className="space-y-8">
-        <h2 className="text-2xl font-bold">Top Tracks</h2>
-        <Tabs defaultValue="current" className="w-full max-w-2xl">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="current">Current</TabsTrigger>
-            <TabsTrigger value="recent">Recent</TabsTrigger>
-            <TabsTrigger value="all-time">All-Time</TabsTrigger>
-          </TabsList>
-          <TabsContent value="current">
-            <div className="grid grid-cols-1 gap-4 bg-muted p-4 rounded-md">
-              {currentTopTracks.items.map((track: any, index: number) => (
-                <div key={index}>
-                  <div className="flex gap-4">
-                    <div className="text-muted-foreground my-auto">
-                      {index + 1}
-                    </div>
-                    <Image
-                      src={track.album.images[0].url}
-                      alt={track.name}
-                      width={300}
-                      height={300}
-                      className="rounded-md w-14 h-14"
-                    />
-                    <div>
-                      <Link
-                        href={track.external_urls.spotify}
-                        className="hover:underline truncate"
-                      >
-                        {track.name}
-                      </Link>{" "}
-                      <div className="flex gap-1 text-xs text-muted-foreground">
-                        <Link
-                          href={track.album.external_urls.spotify}
-                          className="hover:underline truncate"
-                        >
-                          {track.album.name}
-                        </Link>
-                        /
-                        <Link
-                          href={track.artists[0].external_urls.spotify}
-                          className="hover:underline truncate"
-                        >
-                          {track.artists[0].name}
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-          <TabsContent value="recent">
-            <div className="grid grid-cols-1 gap-4 bg-muted p-4 rounded-md">
-              {recentTopTracks.items.map((track: any, index: number) => (
-                <div key={index}>
-                  <div className="flex gap-4">
-                    <div className="text-muted-foreground my-auto">
-                      {index + 1}
-                    </div>
-                    <Image
-                      src={track.album.images[0].url}
-                      alt={track.name}
-                      width={300}
-                      height={300}
-                      className="rounded-md w-14 h-14"
-                    />
-                    <div>
-                      <Link
-                        href={track.external_urls.spotify}
-                        className="hover:underline truncate"
-                      >
-                        {track.name}
-                      </Link>{" "}
-                      <div className="flex gap-1 text-xs text-muted-foreground">
-                        <Link
-                          href={track.album.external_urls.spotify}
-                          className="hover:underline truncate"
-                        >
-                          {track.album.name}
-                        </Link>
-                        /
-                        <Link
-                          href={track.artists[0].external_urls.spotify}
-                          className="hover:underline truncate"
-                        >
-                          {track.artists[0].name}
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-          <TabsContent value="all-time">
-            <div className="grid grid-cols-1 gap-4 bg-muted p-4 rounded-md">
-              {allTimeTopTracks.items.map((track: any, index: number) => (
-                <div key={index}>
-                  <div className="flex gap-4">
-                    <div className="text-muted-foreground my-auto">
-                      {index + 1}
-                    </div>
-                    <Image
-                      src={track.album.images[0].url}
-                      alt={track.name}
-                      width={300}
-                      height={300}
-                      className="rounded-md w-14 h-14"
-                    />
-                    <div>
-                      <Link
-                        href={track.external_urls.spotify}
-                        className="hover:underline truncate"
-                      >
-                        {track.name}
-                      </Link>{" "}
-                      <div className="flex gap-1 text-xs text-muted-foreground">
-                        <Link
-                          href={track.album.external_urls.spotify}
-                          className="hover:underline truncate"
-                        >
-                          {track.album.name}
-                        </Link>
-                        /
-                        <Link
-                          href={track.artists[0].external_urls.spotify}
-                          className="hover:underline truncate"
-                        >
-                          {track.artists[0].name}
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+        <Statistics />
       </div>
     </main>
   );
