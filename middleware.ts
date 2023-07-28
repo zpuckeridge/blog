@@ -1,7 +1,7 @@
 import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 
 export default authMiddleware({
-  afterAuth(auth, req, evt) {
+  afterAuth(auth, req) {
     if (!auth.userId && !auth.isPublicRoute) {
       return redirectToSignIn({ returnBackUrl: req.url });
     }
@@ -10,6 +10,7 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/blog",
+    "/about",
     "/(article)(.*)",
     "/unauthorised",
     "/sign-in",
