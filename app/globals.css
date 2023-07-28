@@ -91,3 +91,16 @@
   pointer-events: none;
   height: 0;
 }
+
+@keyframes slideText {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.slide-in-text {
+  animation: slideText 10s linear infinite;
+}

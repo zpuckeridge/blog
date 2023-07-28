@@ -148,21 +148,21 @@ export default async function NowPlaying() {
         </h1>
         <Link
           href={playing.item.external_urls.spotify}
-          className="hover:underline truncate"
+          className="hover:underline line-clamp-1"
         >
           {playing.item.name}
         </Link>
         <div className="flex gap-1 text-xs text-muted-foreground">
           <Link
             href={playing.item.album.external_urls.spotify}
-            className="hover:underline truncate"
+            className="hover:underline line-clamp-1"
           >
             {playing.item.album.name}
           </Link>
           /
           <Link
             href={playing.item.album.artists[0].external_urls.spotify}
-            className="hover:underline truncate"
+            className="hover:underline line-clamp-1"
           >
             {playing.item.album.artists[0].name}
           </Link>
