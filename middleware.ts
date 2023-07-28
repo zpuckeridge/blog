@@ -11,6 +11,8 @@ export default authMiddleware({
     "/",
     "/blog",
     "/about",
+    "/uses",
+    "/gallery",
     "/(article)(.*)",
     "/unauthorised",
     "/sign-in",
