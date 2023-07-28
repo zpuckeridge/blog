@@ -41,7 +41,7 @@ export default async function Article({
   const { userId } = auth();
 
   // @ts-ignore
-  const output = generateHTML(post?.content, [StarterKit, Image]);
+  const output = generateHTML(post.content, [StarterKit, Image]);
 
   return (
     <main>
@@ -49,13 +49,13 @@ export default async function Article({
         <div className="sticky py-4 top-0 z-50 flex justify-between w-full bg-opacity-75 backdrop-blur-lg">
           <Back />
 
-          <p className="text-sm my-auto">{post?.title}</p>
+          <p className="text-sm my-auto">{post.title}</p>
 
           <div className="flex my-auto">
             {userId === process.env.ADMIN_ID && (
               <>
-                <PostStatus published={post?.published} />
-                <Link href={`/dashboard/edit/${post?.id}`}>
+                <PostStatus published={post.published} />
+                <Link href={`/dashboard/edit/${post.id}`}>
                   <Button variant="ghost">
                     <Edit className="w-4 h-4" />
                   </Button>
@@ -66,14 +66,35 @@ export default async function Article({
           </div>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-4xl font-bold">{post?.title}</h1>
+        <div className="max-w-2xl mx-auto space-y-2">
+          <h1 className="text-4xl font-bold">{post.title}</h1>
+          <div className="flex justify-between text-muted-foreground text-sm">
+            <p>
+              {new Date(post.createdAt).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+            <p>{post.views} views</p>
+          </div>
         </div>
 
         <article
           className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black"
           dangerouslySetInnerHTML={{ __html: output }}
         ></article>
+
+        <div className="max-w-2xl mx-auto space-y-2">
+          <p className="text-muted-foreground text-sm flex justify-end">
+            Last updated{" "}
+            {new Date(post.updatedAt).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
+        </div>
       </div>
     </main>
   );
