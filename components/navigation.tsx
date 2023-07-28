@@ -18,27 +18,38 @@ export default function Navigation() {
   }
 
   return (
-    <div className="sticky py-4 top-0 z-50 flex justify-between w-full bg-opacity-75 backdrop-blur-lg">
-      <div>
-        {isHomePage ? (
-          <>
-            <p>zpuckeridge</p>
-            <p className="text-xs">
-              Zacchary /ˈzækəri/ - ˈthe Lord has rememberedˈ
-            </p>
-          </>
-        ) : (
-          <Back />
-        )}
-      </div>
-      <div className="flex gap-2">
-        <Link href="/about">
-          <Button variant="ghost">About</Button>
-        </Link>
-        <Link href="/uses">
-          <Button variant="ghost">Uses</Button>
-        </Link>
-        <ModeToggle />
+    <div className="sticky py-4 top-0 z-50 w-full bg-opacity-75 backdrop-blur-lg">
+      <div className="flex justify-between container">
+        <div>
+          {isHomePage ? (
+            <div>
+              <div className="flex sm:hidden">
+                <Link href="/">
+                  <Button variant="ghost">Home</Button>
+                </Link>
+              </div>
+              <div className="hidden sm:flex">
+                <div>
+                  <p>zpuckeridge</p>
+                  <p className="text-xs">
+                    Zacchary /ˈzækəri/ - ˈthe Lord has rememberedˈ
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Back />
+          )}
+        </div>
+        <div className="flex gap-2">
+          <Link href="/about">
+            <Button variant="ghost">About</Button>
+          </Link>
+          <Link href="/uses">
+            <Button variant="ghost">Uses</Button>
+          </Link>
+          <ModeToggle />
+        </div>
       </div>
     </div>
   );
