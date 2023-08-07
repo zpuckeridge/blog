@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
@@ -143,11 +143,12 @@ export default async function Home() {
 
         <div className="flex justify-between my-auto">
           <p className="my-auto font-semibold text-lg">Articles</p>
-          <Link href="/articles">
-            <Button variant="ghost">
-              All articles
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+          <Link
+            href="/articles"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            All articles
+            <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
         <div>

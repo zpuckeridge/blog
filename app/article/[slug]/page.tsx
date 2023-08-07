@@ -9,6 +9,7 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Back from "@/components/back";
 import { ModeToggle } from "@/components/mode-toggle";
+import { buttonVariants } from "@/components/ui/button";
 
 export default async function Article({
   params,
@@ -55,10 +56,11 @@ export default async function Article({
             {userId === process.env.ADMIN_ID && (
               <>
                 <PostStatus published={post.published} />
-                <Link href={`/dashboard/edit/${post.id}`}>
-                  <Button variant="ghost">
-                    <Edit className="w-4 h-4" />
-                  </Button>
+                <Link
+                  href={`/dashboard/edit/${post.id}`}
+                  className={buttonVariants({ variant: "ghost" })}
+                >
+                  <Edit className="w-4 h-4" />
                 </Link>
               </>
             )}

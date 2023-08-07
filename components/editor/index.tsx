@@ -7,7 +7,7 @@ import { TipTapEditorExtensions } from "./extensions";
 import { TipTapEditorProps } from "./props";
 import { PatchDocType } from "@/app/api/posts/[id]/route";
 import { useDebouncedCallback } from "use-debounce";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Check, ExternalLink, Loader2, Settings } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -131,10 +131,11 @@ export default function Editor({
         <p className="text-sm my-auto">{title}</p>
 
         <div className="flex gap-2 my-auto">
-          <Link href={`/article/${slug}`}>
-            <Button variant="ghost">
-              <ExternalLink className="w-4 h-4" />
-            </Button>
+          <Link
+            href={`/article/${slug}`}
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            <ExternalLink className="w-4 h-4" />
           </Link>
           <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
             <DialogTrigger>

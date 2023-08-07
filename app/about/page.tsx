@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Statistics from "@/components/statistics";
 
 export default async function About() {
@@ -82,11 +82,12 @@ export default async function About() {
       <div className="space-y-8">
         <div className="flex justify-between my-auto">
           <h2 className="text-2xl font-bold">Gallery</h2>
-          <Link href="/gallery">
-            <Button variant="ghost">
-              All images
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+          <Link
+            href="/gallery"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            All images
+            <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
 

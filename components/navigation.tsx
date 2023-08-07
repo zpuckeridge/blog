@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
 import Back from "./back";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import Link from "next/link";
 
 export default function Navigation() {
@@ -24,8 +24,8 @@ export default function Navigation() {
           {isHomePage ? (
             <div>
               <div className="flex sm:hidden">
-                <Link href="/">
-                  <Button variant="ghost">Home</Button>
+                <Link href="/" className={buttonVariants({ variant: "ghost" })}>
+                  Home
                 </Link>
               </div>
               <div className="hidden sm:flex">
@@ -42,11 +42,11 @@ export default function Navigation() {
           )}
         </div>
         <div className="flex gap-2">
-          <Link href="/about">
-            <Button variant="ghost">About</Button>
+          <Link href="/about" className={buttonVariants({ variant: "ghost" })}>
+            About
           </Link>
-          <Link href="/uses">
-            <Button variant="ghost">Uses</Button>
+          <Link href="/uses" className={buttonVariants({ variant: "ghost" })}>
+            Uses
           </Link>
           <ModeToggle />
         </div>
