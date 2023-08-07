@@ -131,6 +131,7 @@ export default async function Statistics() {
                     <a
                       href={track.external_urls.spotify}
                       className="hover:underline line-clamp-1"
+                      aria-label={track.name}
                     >
                       {track.name}
                     </a>{" "}
@@ -138,6 +139,7 @@ export default async function Statistics() {
                       <a
                         href={track.album.external_urls.spotify}
                         className="hover:underline line-clamp-1"
+                        aria-label={track.album.name}
                       >
                         {track.album.name}
                       </a>
@@ -145,6 +147,7 @@ export default async function Statistics() {
                       <a
                         href={track.artists[0].external_urls.spotify}
                         className="hover:underline line-clamp-1"
+                        aria-label={track.artists[0].name}
                       >
                         {track.artists[0].name}
                       </a>
@@ -174,6 +177,7 @@ export default async function Statistics() {
                     <a
                       href={track.external_urls.spotify}
                       className="hover:underline line-clamp-1"
+                      aria-label={track.name}
                     >
                       {track.name}
                     </a>{" "}
@@ -181,6 +185,7 @@ export default async function Statistics() {
                       <a
                         href={track.album.external_urls.spotify}
                         className="hover:underline line-clamp-1"
+                        aria-label={track.album.name}
                       >
                         {track.album.name}
                       </a>
@@ -188,6 +193,7 @@ export default async function Statistics() {
                       <a
                         href={track.artists[0].external_urls.spotify}
                         className="hover:underline line-clamp-1"
+                        aria-label={track.artists[0].name}
                       >
                         {track.artists[0].name}
                       </a>
@@ -217,6 +223,7 @@ export default async function Statistics() {
                     <a
                       href={track.external_urls.spotify}
                       className="hover:underline line-clamp-1"
+                      aria-label={track.name}
                     >
                       {track.name}
                     </a>{" "}
@@ -224,6 +231,7 @@ export default async function Statistics() {
                       <a
                         href={track.album.external_urls.spotify}
                         className="hover:underline line-clamp-1"
+                        aria-label={track.album.name}
                       >
                         {track.album.name}
                       </a>
@@ -231,6 +239,7 @@ export default async function Statistics() {
                       <a
                         href={track.artists[0].external_urls.spotify}
                         className="hover:underline line-clamp-1"
+                        aria-label={track.artists[0].name}
                       >
                         {track.artists[0].name}
                       </a>

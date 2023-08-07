@@ -24,7 +24,11 @@ export default function Navigation() {
           {isHomePage ? (
             <div>
               <div className="flex sm:hidden">
-                <Link href="/" className={buttonVariants({ variant: "ghost" })}>
+                <Link
+                  href="/"
+                  className={buttonVariants({ variant: "ghost" })}
+                  aria-label="Home Page"
+                >
                   Home
                 </Link>
               </div>
@@ -42,10 +46,18 @@ export default function Navigation() {
           )}
         </div>
         <div className="flex gap-2">
-          <Link href="/about" className={buttonVariants({ variant: "ghost" })}>
+          <Link
+            href="/about"
+            className={buttonVariants({ variant: "ghost" })}
+            aria-label="About Page"
+          >
             About
           </Link>
-          <Link href="/uses" className={buttonVariants({ variant: "ghost" })}>
+          <Link
+            href="/uses"
+            className={buttonVariants({ variant: "ghost" })}
+            aria-label="Uses Page"
+          >
             Uses
           </Link>
           <ModeToggle />

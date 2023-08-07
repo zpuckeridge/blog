@@ -1,7 +1,7 @@
 import { Github, Mail, Rss, Twitter } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { FaDiscord, FaSpotify } from "react-icons/fa6";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import NowPlaying from "./now-playing";
 
 export default function Footer() {
@@ -16,36 +16,44 @@ export default function Footer() {
           <Button variant="ghost" size="sm">
             <Rss className="w-4 h-4" />
           </Button>
-          <a href="mailto:hi@zacchary.me">
-            <Button variant="ghost" size="sm">
-              <Mail className="w-4 h-4" />
-            </Button>
+          <a
+            href="mailto:hi@zacchary.me"
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
+            aria-label="Email"
+          >
+            <Mail className="w-4 h-4" />
           </a>
-          <a href="https://twitter.com/zpuckeridge" target="_blank">
-            <Button variant="ghost" size="sm">
-              <Twitter className="w-4 h-4" />
-            </Button>
+          <a
+            href="https://twitter.com/zpuckeridge"
+            target="_blank"
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
+            aria-label="Twitter"
+          >
+            <Twitter className="w-4 h-4" />
           </a>
           <a
             href="https://discordapp.com/users/181324210876973056"
             target="_blank"
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
+            aria-label="Discord"
           >
-            <Button variant="ghost" size="sm">
-              <FaDiscord className="w-4 h-4" />
-            </Button>
+            <FaDiscord className="w-4 h-4" />
           </a>
-          <a href="https://github.com/zpuckeridge" target="_blank">
-            <Button variant="ghost" size="sm">
-              <Github className="w-4 h-4" />
-            </Button>
+          <a
+            href="https://github.com/zpuckeridge"
+            target="_blank"
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
+            aria-label="GitHub"
+          >
+            <Github className="w-4 h-4" />
           </a>
           <a
             href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
             target="_blank"
+            className={buttonVariants({ variant: "ghost", size: "sm" })}
+            aria-label="Spotify"
           >
-            <Button variant="ghost" size="sm">
-              <FaSpotify className="w-4 h-4" />
-            </Button>
+            <FaSpotify className="w-4 h-4" />
           </a>
         </div>
       </div>

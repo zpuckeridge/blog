@@ -18,6 +18,7 @@ export default async function Articles() {
               <Link
                 href={`/article/${encodeURIComponent(post.slug)}`}
                 prefetch={false}
+                aria-label={post.title}
               >
                 <div className="space-y-4">
                   <p className="font-semibold hover:underline">{post.title}</p>

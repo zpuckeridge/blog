@@ -134,6 +134,7 @@ export default function Editor({
           <Link
             href={`/article/${slug}`}
             className={buttonVariants({ variant: "ghost" })}
+            aria-label="View Post"
           >
             <ExternalLink className="w-4 h-4" />
           </Link>

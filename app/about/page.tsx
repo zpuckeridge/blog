@@ -22,6 +22,7 @@ export default async function About() {
               className="underline hover:no-underline"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={name}
             >
               {name}
             </a>
@@ -72,7 +73,11 @@ export default async function About() {
         <p>
           If you are interested in what gear and software I use on the
           day-to-day, check out{" "}
-          <Link href="/uses" className="underline hover:no-underline">
+          <Link
+            href="/uses"
+            className="underline hover:no-underline"
+            aria-label="Uses Page"
+          >
             /uses
           </Link>
           .
@@ -85,6 +90,7 @@ export default async function About() {
           <Link
             href="/gallery"
             className={buttonVariants({ variant: "ghost" })}
+            aria-label="All images"
           >
             All images
             <ArrowRight className="w-4 h-4 ml-2" />

@@ -108,6 +108,7 @@ export default async function NowPlaying() {
           <Link
             href={lastPlayed.items[0].track.external_urls.spotify}
             className="hover:underline line-clamp-1"
+            aria-label={lastPlayed.items[0].track.name}
           >
             {lastPlayed.items[0].track.name}
           </Link>
@@ -115,6 +116,7 @@ export default async function NowPlaying() {
             <Link
               href={lastPlayed.items[0].track.album.external_urls.spotify}
               className="hover:underline line-clamp-1"
+              aria-label={lastPlayed.items[0].track.album.name}
             >
               {lastPlayed.items[0].track.album.name}
             </Link>
@@ -122,6 +124,7 @@ export default async function NowPlaying() {
             <Link
               href={lastPlayed.items[0].track.artists[0].external_urls.spotify}
               className="hover:underline line-clamp-1"
+              aria-label={lastPlayed.items[0].track.artists[0].name}
             >
               {lastPlayed.items[0].track.artists[0].name}
             </Link>
@@ -147,6 +150,7 @@ export default async function NowPlaying() {
         <Link
           href={playing.item.external_urls.spotify}
           className="hover:underline line-clamp-1"
+          aria-label={playing.item.name}
         >
           {playing.item.name}
         </Link>
@@ -154,6 +158,7 @@ export default async function NowPlaying() {
           <Link
             href={playing.item.album.external_urls.spotify}
             className="hover:underline line-clamp-1"
+            aria-label={playing.item.album.name}
           >
             {playing.item.album.name}
           </Link>
@@ -161,6 +166,7 @@ export default async function NowPlaying() {
           <Link
             href={playing.item.album.artists[0].external_urls.spotify}
             className="hover:underline line-clamp-1"
+            aria-label={playing.item.album.artists[0].name}
           >
             {playing.item.album.artists[0].name}
           </Link>

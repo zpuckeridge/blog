@@ -59,6 +59,7 @@ export default async function Article({
                 <Link
                   href={`/dashboard/edit/${post.id}`}
                   className={buttonVariants({ variant: "ghost" })}
+                  aria-label="Edit Post"
                 >
                   <Edit className="w-4 h-4" />
                 </Link>

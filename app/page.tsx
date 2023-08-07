@@ -36,7 +36,11 @@ export default async function Home() {
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <a href="https://www.rsp.com.au/" target="_blank">
+                    <a
+                      href="https://www.rsp.com.au/"
+                      target="_blank"
+                      aria-label="Rising Sun Pictures Website"
+                    >
                       Rising Sun Pictures
                     </a>
                   </HoverCardTrigger>
@@ -146,6 +150,7 @@ export default async function Home() {
           <Link
             href="/articles"
             className={buttonVariants({ variant: "ghost" })}
+            aria-label="All articles"
           >
             All articles
             <ArrowRight className="w-4 h-4 ml-2" />
@@ -158,6 +163,7 @@ export default async function Home() {
                 <Link
                   href={`/article/${encodeURIComponent(post.slug)}`}
                   prefetch={false}
+                  aria-label={post.title}
                 >
                   <div className="sm:flex justify-between gap-2">
                     <p className="truncate">{post.title}</p>

@@ -42,6 +42,7 @@ const SocialButtons = () => {
                   href="https://twitter.com/zpuckeridge"
                   target="_blank"
                   className="w-full h-full flex my-auto"
+                  aria-label="Twitter"
                 >
                   <Twitter className="mr-2 my-auto" />
                   @zpuckeridge
@@ -56,6 +57,7 @@ const SocialButtons = () => {
                   href="https://discordapp.com/users/181324210876973056"
                   target="_blank"
                   className="w-full h-full flex my-auto"
+                  aria-label="Discord"
                 >
                   <FaDiscord className="mr-2 w-7 h-7 my-auto" />
                   @sdelta
@@ -70,6 +72,7 @@ const SocialButtons = () => {
                   href="https://github.com/zpuckeridge"
                   target="_blank"
                   className="w-full h-full flex my-auto"
+                  aria-label="GitHub"
                 >
                   <Github className="mr-2 w-7 h-7 my-auto" />
                   @zpuckeridge
@@ -84,6 +87,7 @@ const SocialButtons = () => {
                   href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
                   target="_blank"
                   className="w-full h-full flex my-auto"
+                  aria-label="Spotify"
                 >
                   <FaSpotify className="mr-2 w-7 h-7 my-auto" />
                   @zpuckeridge
