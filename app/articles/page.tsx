@@ -11,7 +11,7 @@ export default async function Articles() {
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl my-4 space-y-8">
+      <div className="mx-auto max-w-2xl my-4 space-y-8 my-10">
         <ul className="space-y-16">
           {posts.map((post) => (
             <li key={post.id}>

@@ -36,7 +36,7 @@ export default async function About() {
   };
 
   return (
-    <main className="mx-auto max-w-2xl space-y-8">
+    <main className="mx-auto max-w-2xl space-y-8 my-10">
       <h1 className="text-4xl font-bold">About</h1>
       <div className="space-y-4">
         <p>

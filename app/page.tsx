@@ -27,7 +27,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl space-y-8">
+      <div className="mx-auto max-w-2xl space-y-8 my-10">
         <h1 className="text-4xl font-bold">G&apos;day 👋</h1>
         <div>
           <div className="space-y-4">

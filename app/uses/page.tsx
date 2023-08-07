@@ -10,7 +10,7 @@ export default function Uses() {
 
   return (
     <>
-      <main className="mx-auto max-w-2xl w-full space-y-8">
+      <main className="mx-auto max-w-2xl w-full space-y-8 my-10">
         <h1 className="text-4xl font-bold">Uses</h1>
         <p>Here is a list of gear and software that I use on the day-to-day.</p>
 
