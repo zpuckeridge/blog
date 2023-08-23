@@ -83,7 +83,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className} dark:bg-[#171717]`}>
+        <body className={`${inter.className}`}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Navigation />
             <div className="flex flex-col min-h-screen justify-between space-y-4 container">

@@ -11,34 +11,32 @@ export default async function Articles() {
 
   return (
     <main>
-      <div className="mx-auto max-w-2xl my-4 space-y-8 my-10">
-        <ul className="space-y-16">
-          {posts.map((post) => (
-            <li key={post.id}>
-              <Link
-                href={`/article/${encodeURIComponent(post.slug)}`}
-                prefetch={false}
-                aria-label={post.title}
-              >
-                <div className="space-y-4">
-                  <p className="font-semibold hover:underline">{post.title}</p>
-                  <p>{post.description}</p>
-                  <div className="flex gap-2">
-                    <p>{post.views} views</p>/
-                    <Badge variant="secondary">{post.tag}</Badge>/
-                    <p>
-                      {new Date(post.createdAt).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </p>
-                  </div>
+      <div className="mx-auto max-w-2xl space-y-8 my-10">
+        {posts.map((post) => (
+          <div key={post.id} className="p-8 bg-muted rounded-2xl">
+            <Link
+              href={`/article/${encodeURIComponent(post.slug)}`}
+              prefetch={false}
+              aria-label={post.title}
+            >
+              <div className="space-y-2">
+                <p className="font-semibold hover:underline">{post.title}</p>
+                <div className="flex gap-2">
+                  <p>{post.views} views</p>/
+                  <Badge variant="default">{post.tag}</Badge>/
+                  <p>
+                    {new Date(post.createdAt).toLocaleDateString("en-US", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </p>
                 </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <p>{post.description}</p>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </main>
   );
