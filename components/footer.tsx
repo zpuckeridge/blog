@@ -1,5 +1,4 @@
 import { Github, Mail, Rss, Twitter } from "lucide-react";
-import { Separator } from "./ui/separator";
 import { FaDiscord, FaSpotify } from "react-icons/fa6";
 import { Button, buttonVariants } from "./ui/button";
 import NowPlaying from "./now-playing";

@@ -99,9 +99,18 @@ async function getAllTimeTopTracks() {
 }
 
 export default async function Statistics() {
-  const currentTopTracks = await getCurrentTopTracks();
-  const recentTopTracks = await getRecentTopTracks();
-  const allTimeTopTracks = await getAllTimeTopTracks();
+  let currentTopTracks, recentTopTracks, allTimeTopTracks;
+
+  try {
+    currentTopTracks = await getCurrentTopTracks();
+    recentTopTracks = await getRecentTopTracks();
+    allTimeTopTracks = await getAllTimeTopTracks();
+  } catch (error) {
+    console.error("Error fetching top tracks data:", error);
+    return (
+      <div>Oops! Something went wrong while fetching top tracks data.</div>
+    );
+  }
 
   return (
     <div className="space-y-8">
