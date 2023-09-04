@@ -1,7 +1,4 @@
 import prisma from "@/lib/prisma";
-import StarterKit from "@tiptap/starter-kit";
-import { generateHTML } from "@tiptap/html";
-import Image from "@tiptap/extension-image";
 import { Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -10,6 +7,7 @@ import { redirect } from "next/navigation";
 import Back from "@/components/back";
 import { ModeToggle } from "@/components/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 export default async function Article({
   params,
@@ -40,9 +38,6 @@ export default async function Article({
   };
 
   const { userId } = auth();
-
-  // @ts-ignore
-  const output = generateHTML(post.content, [StarterKit, Image]);
 
   return (
     <main>
@@ -83,10 +78,9 @@ export default async function Article({
           </div>
         </div>
 
-        <article
-          className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black"
-          dangerouslySetInnerHTML={{ __html: output }}
-        ></article>
+        <article className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
+          <MDXRemote source={post.content} />
+        </article>
 
         <div className="max-w-2xl mx-auto space-y-2">
           <p className="text-muted-foreground text-sm flex justify-end">

@@ -12,7 +12,7 @@ model Posts {
   id            String        @id @default(uuid()) @unique
   slug          String        @unique @db.VarChar(255)
   title         String        @db.VarChar(255)
-  content       Json?         @db.Json
+  content       String        @db.Text
   description   String?       @db.VarChar(1024)        
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt

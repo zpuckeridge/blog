@@ -1,16 +1,9 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import { useState, useEffect, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import { TipTapEditorExtensions } from "./extensions";
-import { TipTapEditorProps } from "./props";
-import { PatchDocType } from "@/app/api/posts/[id]/route";
-import { useDebouncedCallback } from "use-debounce";
-import { Button, buttonVariants } from "../ui/button";
-import { Badge } from "../ui/badge";
-import { Check, ExternalLink, Loader2, Settings } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import Link from "next/link";
+import { Editor as NovelEditor } from "novel";
+import Back from "@/components/back";
 import {
   Dialog,
   DialogContent,
@@ -20,25 +13,24 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
-import Link from "next/link";
-import { Input } from "../ui/input";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import { ModeToggle } from "@/components/mode-toggle";
-import Back from "../back";
+import { Check, ExternalLink, Loader2, Settings } from "lucide-react";
 
 export default function Editor({
   document,
   id,
 }: {
-  document: PatchDocType;
+  document: any;
   id: string;
 }) {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
   const [isSaving, setSaving] = useState(false); // Changed state variable
-  const [hydrated, setHydrated] = useState<boolean>(false);
-  const [content, setContent] = useState<PatchDocType["content"]>();
+  const [content, setContent] = useState(document.content);
   const [title, setTitle] = useState<string>(document.title);
   const [description, setDescription] = useState<string>(document.description);
   const [tag, setTag] = useState<string>(document.tag);
@@ -53,7 +45,7 @@ export default function Editor({
     slug: string,
     tag: string,
     published: boolean,
-    document: any,
+    content: any,
   ) {
     const response = await fetch(`/api/posts/${id}`, {
       method: "PATCH",
@@ -66,7 +58,7 @@ export default function Editor({
         slug: slug,
         tag: tag,
         published: published,
-        content: document,
+        content: content,
       }),
     });
 
@@ -76,42 +68,13 @@ export default function Editor({
     }
 
     setSaving(false);
-
-    startTransition(() => {
-      router.refresh();
-    });
   }
-
-  const debouncedUpdates = useDebouncedCallback(async ({ editor }) => {
-    const json = editor.getJSON();
-    setContent(json);
-    await patchRequest(id, title, description, slug, tag, published, json);
-    setTimeout(() => {
-      setSaving(false);
-    }, 500);
-  }, 1000);
-
-  const editor = useEditor({
-    extensions: TipTapEditorExtensions,
-    editorProps: TipTapEditorProps,
-    onUpdate: (e) => {
-      setSaving(true);
-      debouncedUpdates(e);
-    },
-    content: content,
-  });
-
-  // Hydrate the editor with the content from the database.
-  useEffect(() => {
-    if (editor && document && !hydrated) {
-      editor.commands.setContent(document.content);
-      setHydrated(true);
-    }
-  }, [editor, document, hydrated]);
 
   const handleSave = async () => {
     setSaving(true);
-    debouncedUpdates.flush(); // Trigger immediate save without debounce
+
+    localStorage.removeItem("novel__content");
+
 
     try {
       await patchRequest(id, title, description, slug, tag, published, content);
@@ -225,15 +188,16 @@ export default function Editor({
           <ModeToggle />
         </div>
       </div>
-      <div
-        onClick={() => {
-          editor?.chain().focus().run();
-        }}
-        className="max-w-2xl mx-auto space-y-8"
-      >
+      <div className="max-w-2xl mx-auto space-y-8">
         <h1 className="text-4xl font-bold">{title}</h1>
 
-        <EditorContent editor={editor} />
+        <NovelEditor
+          defaultValue={content}
+          onUpdate={(editor) => {
+            setContent(editor?.storage.markdown.getMarkdown())}}
+          onDebouncedUpdate={handleSave}
+          className="dark"
+        />
       </div>
     </div>
   );
