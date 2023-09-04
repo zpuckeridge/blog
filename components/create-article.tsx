@@ -80,7 +80,7 @@ export default function CreateDocButton() {
     setValues((prevValues) => ({ ...prevValues, title: event.target.value }));
   }
 
-  function handleDescriptionChnage(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleDescriptionChange(event: React.ChangeEvent<HTMLInputElement>) {
     setValues((prevValues) => ({
       ...prevValues,
       description: event.target.value,
@@ -115,9 +115,9 @@ export default function CreateDocButton() {
           </DialogHeader>
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 py-4">
-              <div>
+              <div className="space-y-1">
                 <Label htmlFor="title" className="my-1">
-                  Title
+                  Title<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   id="title"
@@ -125,21 +125,27 @@ export default function CreateDocButton() {
                   onChange={handleTitleChange}
                   placeholder="Awesome Article Title"
                 />
+                <p className="text-sm text-muted-foreground">
+                  Add a title for the article.
+                </p>
               </div>
-              <div>
+              <div className="space-y-1">
                 <Label htmlFor="description" className="my-1">
                   Description
                 </Label>
                 <Input
                   id="description"
                   value={values.description}
-                  onChange={handleDescriptionChnage}
+                  onChange={handleDescriptionChange}
                   placeholder="Awesome Article Description"
                 />
+                <p className="text-sm text-muted-foreground">
+                  Add a description for the article.
+                </p>
               </div>
-              <div>
+              <div className="space-y-1">
                 <Label htmlFor="slug" className="my-1">
-                  Slug
+                  Slug<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   id="slug"
@@ -147,10 +153,13 @@ export default function CreateDocButton() {
                   onChange={handleSlugChange}
                   placeholder="awesome-article"
                 />
+                <p className="text-sm text-muted-foreground">
+                  Create a slug for the article.
+                </p>
               </div>
-              <div>
+              <div className="space-y-1">
                 <Label htmlFor="tag" className="my-1">
-                  Tag
+                  Tag<span className="text-red-500">*</span>
                 </Label>
                 <Input
                   id="tag"
@@ -158,6 +167,9 @@ export default function CreateDocButton() {
                   onChange={handleTagChange}
                   placeholder="Epic"
                 />
+                <p className="text-sm text-muted-foreground">
+                  Add a tag for the article.
+                </p>
               </div>
             </div>
             <DialogFooter>

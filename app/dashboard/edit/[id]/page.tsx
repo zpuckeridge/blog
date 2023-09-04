@@ -1,4 +1,4 @@
-import Editor from "@/components/editor";
+import Editor from "@/components/edit-article";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { notFound, redirect } from "next/navigation";

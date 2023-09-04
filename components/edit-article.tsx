@@ -20,7 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Check, ExternalLink, Loader2, Settings } from "lucide-react";
+import { Check, ExternalLink, Eye, Loader2, Settings } from "lucide-react";
 
 export default function Editor({
   document,
@@ -75,7 +75,6 @@ export default function Editor({
 
     localStorage.removeItem("novel__content");
 
-
     try {
       await patchRequest(id, title, description, slug, tag, published, content);
       setShowEditDialog(false);
@@ -111,41 +110,44 @@ export default function Editor({
               <DialogHeader>
                 <DialogTitle>Edit Article</DialogTitle>
                 <DialogDescription>
-                  Update your article title, slug, tag and visibility status.
+                  Update the article title, slug, tag and visibility status.
                 </DialogDescription>
               </DialogHeader>
 
               <div className="grid gap-4 py-4">
-                <div>
-                  <Label htmlFor="title" className="my-1">
-                    Title
-                  </Label>
+                <div className="space-y-1">
+                  <Label htmlFor="title">Title</Label>
                   <Input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Update the article title.
+                  </p>
                 </div>
-                <div>
-                  <Label htmlFor="description" className="my-1">
-                    Description
-                  </Label>
+                <div className="space-y-1">
+                  <Label htmlFor="description">Description</Label>
                   <Textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Update the article description.
+                  </p>
                 </div>
-                <div>
-                  <Label htmlFor="slug" className="my-1">
-                    Slug
-                  </Label>
+                <div className="space-y-1">
+                  <Label htmlFor="slug">Slug</Label>
                   <Input
                     type="text"
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Update the article slug.
+                  </p>
                 </div>
-                <div>
+                <div className="space-y-1">
                   <Label htmlFor="tag" className="my-1">
                     Tag
                   </Label>
@@ -154,17 +156,26 @@ export default function Editor({
                     value={tag}
                     onChange={(e) => setTag(e.target.value)}
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Update the article tag.
+                  </p>
                 </div>
-                <div>
-                  <Label htmlFor="published" className="my-1">
-                    Published
-                  </Label>
-                  <div>
-                    <Switch
-                      checked={published}
-                      onCheckedChange={(isChecked) => setPublished(isChecked)}
-                    />
+                <div className=" flex items-center space-x-4 rounded-md border p-4">
+                  <Eye />
+                  <div className="flex-1 space-y-1">
+                    <Label htmlFor="published" className="my-1">
+                      Published
+                    </Label>
+                    <p className="text-sm text-muted-foreground">
+                      {published
+                        ? "This article is currently published."
+                        : "This article is currently not published."}
+                    </p>
                   </div>
+                  <Switch
+                    checked={published}
+                    onCheckedChange={(isChecked) => setPublished(isChecked)}
+                  />
                 </div>
               </div>
               <DialogFooter>
@@ -194,7 +205,8 @@ export default function Editor({
         <NovelEditor
           defaultValue={content}
           onUpdate={(editor) => {
-            setContent(editor?.storage.markdown.getMarkdown())}}
+            setContent(editor?.storage.markdown.getMarkdown());
+          }}
           onDebouncedUpdate={handleSave}
           className="dark"
         />
