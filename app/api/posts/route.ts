@@ -31,6 +31,7 @@ export async function POST(request: Request) {
         slug: body.slug,
         tag: body.tag,
         published: false,
+        content: "",
       },
     });
 
