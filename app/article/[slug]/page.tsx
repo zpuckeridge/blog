@@ -74,7 +74,7 @@ export default async function Article({
                 year: "numeric",
               })}
             </p>
-            <p>{post.views} views</p>
+            <p>{post.views + 1} views</p>
           </div>
         </div>
 
