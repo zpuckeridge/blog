@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import DocumentOperations from "@/components/document-operations";
+import DocumentOperations from "@/components/manage-article";
 import { Button } from "@/components/ui/button";
 
 export type Posts = {
