@@ -101,7 +101,7 @@ export default function Editor({
             <ExternalLink className="w-4 h-4" />
           </Link>
           <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-            <DialogTrigger>
+            <DialogTrigger asChild>
               <Button variant="ghost">
                 <Settings className="w-4 h-4" />
               </Button>
