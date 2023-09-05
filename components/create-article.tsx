@@ -18,7 +18,7 @@ import { nanoid } from "nanoid";
 import { CreateDocType } from "@/app/api/posts/route";
 import { Loader2, PlusIcon } from "lucide-react";
 
-export default function CreateDocButton() {
+export default function CreateArticle() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);

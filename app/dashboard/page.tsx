@@ -1,4 +1,4 @@
-import CreateDocButton from "@/components/create-article";
+import CreateArticle from "@/components/create-article";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -19,6 +19,7 @@ async function getDocuments() {
       slug: true,
       views: true,
       published: true,
+      createdAt: true,
     },
   });
 }
@@ -34,7 +35,7 @@ export default async function Sidebar() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <CreateDocButton />
+      <CreateArticle />
 
       <DataTable columns={columns} data={documents} />
     </div>

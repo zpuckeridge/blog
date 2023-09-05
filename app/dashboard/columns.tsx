@@ -1,9 +1,10 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import DocumentOperations from "@/components/manage-article";
+import { ArrowUpDown, Check, MoreHorizontal, X } from "lucide-react";
+import ManageArticle from "@/components/manage-article";
 import { Button } from "@/components/ui/button";
+import { format } from 'date-fns';
 
 export type Posts = {
   id: string;
@@ -12,6 +13,7 @@ export type Posts = {
   views: number;
   published: boolean;
   tag: string;
+  createdAt: Date;
 };
 
 export const columns: ColumnDef<Posts>[] = [
@@ -46,6 +48,19 @@ export const columns: ColumnDef<Posts>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      const published = row.original.published;
+
+      return (
+        <div className="flex justify-center">
+          {published ? (
+            <Check className="w-4 h-4" />
+          ) : (
+           <X className="w-4 h-4" />
+          )}
+        </div>
+      );
+    }
   },
   {
     accessorKey: "views",
@@ -61,6 +76,20 @@ export const columns: ColumnDef<Posts>[] = [
       );
     },
   },
+    {
+    accessorKey: "createdAt",
+    header: "Date",
+cell: ({ row }) => {
+  const date = row.original.createdAt;
+  const formattedDate = format(new Date(date), 'dd-MM-yyyy');
+
+  return (
+    <div className="flex items-center">
+      <span>{formattedDate}</span>
+    </div>
+  );
+}
+  },
   {
     header: "Actions",
     id: "actions",
@@ -69,7 +98,7 @@ export const columns: ColumnDef<Posts>[] = [
       const title = row.original.title;
       const slug = row.original.slug;
 
-      return <DocumentOperations id={id} title={title} slug={slug} />;
+      return <ManageArticle id={id} title={title} slug={slug} />;
     },
   },
 ];

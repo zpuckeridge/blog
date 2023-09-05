@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "./ui/use-toast";
 
-export default function DocumentOperations({
+export default function ManageArticle({
   id,
   title,
   slug,
@@ -65,7 +65,7 @@ export default function DocumentOperations({
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">
             <span className="sr-only">Open menu</span>
             <MoreHorizontal className="h-4 w-4" />
@@ -98,7 +98,7 @@ export default function DocumentOperations({
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              Are you sure you want to delete this document?
+              Are you sure you want to delete this article?
             </AlertDialogTitle>
             <AlertDialogDescription>
               This action cannot be undone.
@@ -122,7 +122,7 @@ export default function DocumentOperations({
                     router.refresh();
                   });
                   toast({
-                    title: "Document deleted.",
+                    title: "Article deleted.",
                     description: `${title} was successfully deleted.`,
                     variant: "default",
                   });
