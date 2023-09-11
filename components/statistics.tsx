@@ -166,6 +166,9 @@ export default async function Statistics() {
               </div>
             ))}
           </div>
+          <p className="text-muted-foreground text-sm text-center py-2">
+            Most listened to songs from the past week.
+          </p>
         </TabsContent>
         <TabsContent value="recent">
           <div className="grid grid-cols-1 gap-4 bg-muted p-4 rounded-md">
@@ -212,6 +215,9 @@ export default async function Statistics() {
               </div>
             ))}
           </div>
+          <p className="text-muted-foreground text-sm text-center py-2">
+            Most listened to songs from the past four weeks.
+          </p>
         </TabsContent>
         <TabsContent value="all-time">
           <div className="grid grid-cols-1 gap-4 bg-muted p-4 rounded-md">
@@ -258,6 +264,9 @@ export default async function Statistics() {
               </div>
             ))}
           </div>
+          <p className="text-muted-foreground text-sm text-center py-2">
+            Most listened to songs of all time.
+          </p>
         </TabsContent>
       </Tabs>
     </div>
