@@ -7,6 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import Navigation from "@/components/navigation";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,6 +94,11 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </body>
+        <Script
+          src="https://analytics.speedy.af/script.js"
+          data-website-id="78e1e886-685e-4eca-a3e4-ecca00a4d205"
+          strategy="afterInteractive"
+        />
       </html>
     </ClerkProvider>
   );
