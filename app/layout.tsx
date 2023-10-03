@@ -96,11 +96,7 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </body>
-        <Script
-          src={UMAMI_SCRIPT_URL}
-          data-website-id={UMAMI_WEBSITE_ID}
-          strategy="afterInteractive"
-        />
+        <Script src={UMAMI_SCRIPT_URL} data-website-id={UMAMI_WEBSITE_ID} />
       </html>
     </ClerkProvider>
   );
