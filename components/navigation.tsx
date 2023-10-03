@@ -54,6 +54,13 @@ export default function Navigation() {
             About
           </Link>
           <Link
+            href="/gallery"
+            className={buttonVariants({ variant: "ghost" })}
+            aria-label="Gallery Page"
+          >
+            Gallery
+          </Link>
+          <Link
             href="/uses"
             className={buttonVariants({ variant: "ghost" })}
             aria-label="Uses Page"

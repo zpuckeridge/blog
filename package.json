@@ -58,6 +58,7 @@
     "ai": "^2.2.11",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^1.41.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
@@ -78,12 +79,14 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.0",
     "react-icons": "^4.10.1",
+    "react-photo-album": "^2.3.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
     "typescript": "5.2.2",
     "use-debounce": "^9.0.4",
+    "yet-another-react-lightbox": "^3.12.2",
     "zod": "^3.22.2"
   },
   "devDependencies": {
