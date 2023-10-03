@@ -76,6 +76,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
+
 export default function RootLayout({
   children,
 }: {
@@ -95,8 +97,8 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
         <Script
-          src="https://analytics.speedy.af/script.js"
-          data-website-id="78e1e886-685e-4eca-a3e4-ecca00a4d205"
+          src={UMAMI_SCRIPT_URL}
+          data-website-id={UMAMI_WEBSITE_ID}
           strategy="afterInteractive"
         />
       </html>
