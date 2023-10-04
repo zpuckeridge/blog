@@ -6,7 +6,7 @@
     <br />
   </h1>
   <sup>
-     A blog leveraging Next.js, PlanetScale, Prisma, TipTap, Framer Motion, shadcn/ui and Tailwind CSS hosted with Vercel. </em>
+     A blog leveraging Next.js, PlanetScale, Prisma, Novel, Framer Motion, shadcn/ui and Tailwind CSS hosted with Vercel. </em>
     <br />
   </sup>
   <br />
@@ -44,7 +44,7 @@ pnpm run dev
 ## 🚩 Features
 
 - 🌙 Dark/Light Theme
-- 📝 TipTap Editor
+- 📝 Novel Editor
 - 📈 Vercel Analytics
 - ✍ Article Management
 - 👀 View Count
