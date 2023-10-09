@@ -12,7 +12,7 @@
   "dependencies": {
     "@clerk/nextjs": "^4.25.1",
     "@hookform/resolvers": "^3.3.1",
-    "@prisma/client": "5.3.1",
+    "@prisma/client": "^5.4.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
