@@ -14,11 +14,9 @@ const SheetTrigger = SheetPrimitive.Trigger;
 const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = ({
-  // @ts-ignore
   className,
   ...props
 }: SheetPrimitive.DialogPortalProps) => (
-  // @ts-ignore
   <SheetPrimitive.Portal className={cn(className)} {...props} />
 );
 SheetPortal.displayName = SheetPrimitive.Portal.displayName;
@@ -136,6 +134,8 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 export {
   Sheet,
+  SheetPortal,
+  SheetOverlay,
   SheetTrigger,
   SheetClose,
   SheetContent,

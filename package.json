@@ -10,9 +10,9 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.25.1",
+    "@clerk/nextjs": "^4.25.3",
     "@hookform/resolvers": "^3.3.1",
-    "@prisma/client": "^5.4.1",
+    "@prisma/client": "^5.4.2",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
@@ -47,7 +47,7 @@
     "@upstash/ratelimit": "^0.4.4",
     "@vercel/kv": "^0.2.3",
     "ai": "^2.2.14",
-    "autoprefixer": "10.4.15",
+    "autoprefixer": "^10.4.16",
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^1.41.0",
     "clsx": "^2.0.0",
@@ -63,6 +63,7 @@
     "next-themes": "^0.2.1",
     "novel": "^0.1.22",
     "openai": "^4.11.1",
+    "postcss": "^8.4.31",
     "prisma": "^5.4.1",
     "react": "18.2.0",
     "react-day-picker": "^8.8.2",
@@ -71,11 +72,11 @@
     "react-icons": "^4.11.0",
     "react-photo-album": "^2.3.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss": "3.3.3",
+    "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "yet-another-react-lightbox": "^3.12.2",
-    "zod": "^3.22.3"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
