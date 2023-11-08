@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Check, MoreHorizontal, X } from "lucide-react";
 import ManageArticle from "@/components/manage-article";
 import { Button } from "@/components/ui/button";
+import { utcToZonedTime } from "date-fns-tz";
 import { format } from "date-fns";
 
 export type Posts = {
@@ -78,10 +79,26 @@ export const columns: ColumnDef<Posts>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: "Date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       const date = row.original.createdAt;
-      const formattedDate = format(new Date(date), "dd-MM-yyyy");
+
+      const timezone = "Australia/Brisbane";
+
+      const formattedDate = format(
+        utcToZonedTime(new Date(date), timezone),
+        "MMMM d, yyyy",
+      );
 
       return (
         <div className="flex items-center">

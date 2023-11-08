@@ -5,25 +5,6 @@ import { redirect } from "next/navigation";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
-export type DocumentType = {
-  id: string;
-  title: string;
-};
-
-async function getDocuments() {
-  return await prisma.posts.findMany({
-    select: {
-      id: true,
-      title: true,
-      tag: true,
-      slug: true,
-      views: true,
-      published: true,
-      createdAt: true,
-    },
-  });
-}
-
 export default async function Sidebar() {
   const { userId } = auth();
 
@@ -31,13 +12,13 @@ export default async function Sidebar() {
     redirect("/unauthorised");
   }
 
-  const documents = await getDocuments();
+  const posts = await prisma.posts.findMany();
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-4xl mx-auto my-10">
       <CreateArticle />
 
-      <DataTable columns={columns} data={documents} />
+      <DataTable columns={columns} data={posts} />
     </div>
   );
 }

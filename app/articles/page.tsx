@@ -1,6 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import prisma from "@/lib/prisma";
-
 import Link from "next/link";
 
 export default async function Articles() {
@@ -12,31 +11,47 @@ export default async function Articles() {
   return (
     <main>
       <div className="mx-auto max-w-2xl space-y-8 my-10">
-        {posts.map((post) => (
-          <div key={post.id} className="p-8 bg-muted rounded-2xl">
-            <Link
-              href={`/article/${encodeURIComponent(post.slug)}`}
-              prefetch={false}
-              aria-label={post.title}
-            >
-              <div className="space-y-2">
-                <p className="font-semibold hover:underline">{post.title}</p>
-                <div className="flex gap-2">
-                  <p>{post.views} views</p>/
-                  <Badge variant="default">{post.tag}</Badge>/
-                  <p>
+        <div className="flex flex-wrap gap-8">
+          <div className="grid grid-cols-2 gap-4">
+            {posts.map((post) => (
+              <Link
+                key={post.id}
+                href={`/article/${encodeURIComponent(post.slug)}`}
+                prefetch={false}
+                aria-label={post.title}
+                className="relative p-4 border hover:bg-muted duration-300 transition hover:shadow-2xl rounded-lg h-[200px]"
+              >
+                <Badge
+                  variant="secondary"
+                  className="absolute bottom-4 right-4 font-mono"
+                >
+                  {post.views} views
+                </Badge>
+                <Badge
+                  variant="secondary"
+                  className="absolute bottom-4 left-4 font-mono"
+                >
+                  {post.tag}
+                </Badge>
+                <div className="space-y-2">
+                  <p className="font-semibold">{post.title}</p>
+
+                  <Badge variant="secondary" className="font-mono">
                     {new Date(post.createdAt).toLocaleDateString("en-US", {
                       day: "numeric",
                       month: "short",
                       year: "numeric",
                     })}
+                  </Badge>
+
+                  <p className="text-sm text-muted-foreground">
+                    {post.description}
                   </p>
                 </div>
-                <p>{post.description}</p>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </main>
   );

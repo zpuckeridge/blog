@@ -8,12 +8,8 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import Navigation from "@/components/navigation";
 import Script from "next/script";
+import { GeistSans, GeistMono } from "geist/font";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -40,7 +36,6 @@ export const metadata: Metadata = {
     "zacchary.me",
   ],
   referrer: "origin-when-cross-origin",
-  colorScheme: "dark light",
   icons: {
     icon: "/avatar.jpg",
   },
@@ -85,10 +80,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className}`}>
+        <body
+          className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}
+        >
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Navigation />
-            <div className="flex flex-col min-h-screen justify-between space-y-4 container">
+            <div className="flex flex-col min-h-screen justify-between space-y-4 px-4">
               {children}
               <Footer />
               <Toaster />

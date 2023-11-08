@@ -2,13 +2,18 @@ import { Github, Mail, Rss, Twitter } from "lucide-react";
 import { FaDiscord, FaSpotify } from "react-icons/fa6";
 import { Button, buttonVariants } from "./ui/button";
 import NowPlaying from "./now-playing";
+import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="max-w-2xl mx-auto w-full space-y-4">
+    <footer className="max-w-2xl mx-auto w-full space-y-4 font-mono">
       <NowPlaying />
+      <Separator />
       <div className="flex justify-between">
-        <p className="text-sm my-auto">Zacchary Puckeridge</p>
+        <Link href="/" className={buttonVariants({ variant: "ghost" })}>
+          Zacchary Puckeridge
+        </Link>
 
         <div className="flex my-auto">
           <Button variant="ghost" size="sm">

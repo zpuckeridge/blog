@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
-import Back from "./back";
 import { Button, buttonVariants } from "./ui/button";
 import Link from "next/link";
+import { MoveLeftIcon } from "lucide-react";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -18,8 +18,8 @@ export default function Navigation() {
   }
 
   return (
-    <div className="sticky py-4 top-0 z-50 w-full bg-opacity-75 backdrop-blur-lg">
-      <div className="flex justify-between container">
+    <div className="sticky py-4 px-4 top-4 z-50 max-w-4xl mx-auto rounded-lg bg-opacity-75 backdrop-blur-lg font-mono border">
+      <div className="flex justify-between">
         <div>
           {isHomePage ? (
             <div>
@@ -42,7 +42,14 @@ export default function Navigation() {
               </div>
             </div>
           ) : (
-            <Back />
+            <Link
+              href="/"
+              className={`flex gap-2 ${buttonVariants({
+                variant: "ghost",
+              })}`}
+            >
+              <MoveLeftIcon /> Back
+            </Link>
           )}
         </div>
         <div className="flex gap-2">

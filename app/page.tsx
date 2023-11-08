@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
@@ -8,15 +8,10 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowRight, CalendarIcon } from "lucide-react";
-import SocialButtons from "@/components/social-buttons";
+import { CalendarIcon, HardHat, MoveRight, Newspaper } from "lucide-react";
+import Call from "@/components/call";
+import Image from "next/image";
 
 export default async function Home() {
   const posts = await prisma.posts.findMany({
@@ -28,7 +23,16 @@ export default async function Home() {
   return (
     <main>
       <div className="mx-auto max-w-2xl space-y-8 my-10">
-        <h1 className="text-4xl font-bold">G&apos;day 👋</h1>
+        <div className="flex justify-between">
+          <h1 className="text-4xl font-bold ">G&apos;day 👋</h1>
+          <Image
+            src="/avatar.jpg"
+            width={35}
+            height={35}
+            alt="Zacchary Puckeridge"
+            className="rounded-full"
+          />
+        </div>
         <div>
           <div className="space-y-4">
             <p>
@@ -99,7 +103,7 @@ export default async function Home() {
                         <h4 className="text-sm font-semibold">
                           The Armoury Bookshop
                         </h4>
-                        <p className="text-sm">
+                        <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
                           A Christian Reformed bookshop based in Brisbane,
                           Australia. Providing good quality Christian books.
                         </p>
@@ -113,64 +117,118 @@ export default async function Home() {
                     </div>
                   </HoverCardContent>
                 </HoverCard>
+              </span>{" "}
+              and an education platform known as the{" "}
+              <span className="underline hover:no-underline cursor-pointer">
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <a href="https://haddoninstitute.org/" target="_blank">
+                      Haddon Institute
+                    </a>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80">
+                    <div className="flex justify-between space-x-4">
+                      <Avatar>
+                        <AvatarImage
+                          className="bg-white"
+                          src="https://haddoninstitute.org/_next/image?url=%2Flogos%2F3.png&w=750&q=75"
+                        />
+                        <AvatarFallback>TAB</AvatarFallback>
+                      </Avatar>
+                      <div className="space-y-1">
+                        <h4 className="text-sm font-semibold">
+                          Haddon Institute
+                        </h4>
+                        <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
+                          Our mission at the Haddon institute is to provide a
+                          Christ-centered education grounded in Reformed
+                          theology.
+                        </p>
+                        <div className="flex items-center pt-2">
+                          <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
+                          <span className="text-xs text-muted-foreground">
+                            Building @ Haddon since 2023
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
               </span>
               .
             </p>
           </div>
         </div>
 
-        <p className="font-semibold text-lg">Projects</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
+        <div className="flex justify-between my-auto border-b py-1">
+          <p className="font-semibold text-lg flex gap-2 my-auto">
+            <HardHat width={20} height={20} className="my-auto" />
+            Projects
+          </p>
+          <Link
+            href="/projects"
+            className={`flex gap-2 ${buttonVariants({
+              variant: "ghost",
+            })}`}
+            aria-label="All projects"
+          >
+            All projects
+            <MoveRight className="w-5 h-5" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
           {siteConfig.projects.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href={project.url}
-                      className="underline hover:no-underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {project.name}
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{project.url}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <p className="text-sm">{project.description}</p>
-            </div>
+            <a
+              key={project.name}
+              href={project.url}
+              className="space-y-4 rounded-lg p-4 hover:bg-muted hover:shadow-2xl transition-all duration-300"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="underline hover:no-underline">{project.name}</p>
+              <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
+                {project.description}
+              </p>
+            </a>
           ))}
         </div>
 
-        <div className="flex justify-between my-auto">
-          <p className="my-auto font-semibold text-lg">Articles</p>
+        <div className="flex justify-between my-auto border-b py-1">
+          <p className="my-auto font-semibold text-lg flex gap-2 ">
+            <Newspaper width={20} height={20} className="my-auto" /> Articles
+          </p>
           <Link
             href="/articles"
-            className={buttonVariants({ variant: "ghost" })}
+            className={`flex gap-2 ${buttonVariants({
+              variant: "ghost",
+            })}`}
             aria-label="All articles"
           >
             All articles
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <MoveRight className="w-5 h-5" />
           </Link>
         </div>
         <div>
-          <ul className="space-y-4">
+          <ul className="">
             {posts.map((post) => (
-              <li key={post.id}>
+              <li
+                key={post.id}
+                className="rounded-lg p-2 hover:bg-muted hover:shadow-2xl transition-all duration-300"
+              >
                 <Link
                   href={`/article/${encodeURIComponent(post.slug)}`}
                   prefetch={false}
                   aria-label={post.title}
                 >
                   <div className="sm:flex justify-between gap-2">
-                    <p className="truncate">{post.title}</p>
+                    <p className="truncate ">{post.title}</p>
 
                     <div className="flex gap-2">
                       <p className="whitespace-nowrap">{post.views} views</p>/
-                      <Badge variant="secondary">{post.tag}</Badge>/
+                      <Badge variant="secondary" className="font-mono">
+                        {post.tag}
+                      </Badge>
+                      /
                       <p className="whitespace-nowrap">
                         {new Date(post.createdAt).toLocaleDateString("en-US", {
                           day: "numeric",
@@ -185,7 +243,7 @@ export default async function Home() {
             ))}
           </ul>
         </div>
-        <SocialButtons />
+        <Call />
       </div>
     </main>
   );

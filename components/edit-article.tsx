@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Editor as NovelEditor } from "novel";
-import Back from "@/components/back";
 import {
   Dialog,
   DialogContent,
@@ -20,7 +19,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Check, ExternalLink, Eye, Loader2, Settings } from "lucide-react";
+import {
+  Check,
+  ExternalLink,
+  Eye,
+  Loader2,
+  MoveLeftIcon,
+  Settings,
+} from "lucide-react";
 
 export default function Editor({
   document,
@@ -87,23 +93,32 @@ export default function Editor({
 
   return (
     <div className="space-y-8">
-      <div className="sticky py-4 top-0 z-50 flex justify-between w-full bg-opacity-75 backdrop-blur-lg">
-        <Back />
+      <div className="sticky py-4 px-4 top-4 z-50 max-w-4xl mx-auto flex justify-between rounded-lg bg-opacity-75 backdrop-blur-lg font-mono border">
+        <Link
+          href="/dashboard"
+          className={`flex gap-2 ${buttonVariants({
+            variant: "ghost",
+          })}`}
+        >
+          <MoveLeftIcon /> Back
+        </Link>
 
         <p className="text-sm my-auto">{title}</p>
 
         <div className="flex gap-2 my-auto">
           <Link
             href={`/article/${slug}`}
-            className={buttonVariants({ variant: "ghost" })}
-            aria-label="View Post"
+            className={`flex gap-2 ${buttonVariants({
+              variant: "ghost",
+            })}`}
+            aria-label="View"
           >
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-4 h-4" /> View
           </Link>
           <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
             <DialogTrigger asChild>
-              <Button variant="ghost">
-                <Settings className="w-4 h-4" />
+              <Button variant="ghost" className="flex gap-2">
+                <Settings className="w-4 h-4" /> Edit
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -207,8 +222,9 @@ export default function Editor({
           onUpdate={(editor) => {
             setContent(editor?.storage.markdown.getMarkdown());
           }}
+          disableLocalStorage={true}
           onDebouncedUpdate={handleSave}
-          className="dark"
+          className="dark w-full"
         />
       </div>
     </div>

@@ -116,7 +116,7 @@ export default async function Statistics() {
     <div className="space-y-8">
       <h2 className="text-2xl font-bold">Top Tracks</h2>
       <Tabs defaultValue="current" className="w-full max-w-2xl">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-3 font-mono">
           <TabsTrigger value="current">Current</TabsTrigger>
           <TabsTrigger value="recent">Recent</TabsTrigger>
           <TabsTrigger value="all-time">All-Time</TabsTrigger>
@@ -136,7 +136,7 @@ export default async function Statistics() {
                     height={300}
                     className="rounded-md w-14 h-14"
                   />
-                  <div>
+                  <div className="my-auto">
                     <a
                       href={track.external_urls.spotify}
                       className="hover:underline line-clamp-1"
@@ -166,7 +166,7 @@ export default async function Statistics() {
               </div>
             ))}
           </div>
-          <p className="text-muted-foreground text-sm text-center py-2">
+          <p className="text-muted-foreground text-sm text-center py-2 font-mono">
             Most listened to songs from the past week.
           </p>
         </TabsContent>
@@ -185,7 +185,7 @@ export default async function Statistics() {
                     height={300}
                     className="rounded-md w-14 h-14"
                   />
-                  <div>
+                  <div className="my-auto">
                     <a
                       href={track.external_urls.spotify}
                       className="hover:underline line-clamp-1"
@@ -215,7 +215,7 @@ export default async function Statistics() {
               </div>
             ))}
           </div>
-          <p className="text-muted-foreground text-sm text-center py-2">
+          <p className="text-muted-foreground text-sm text-center py-2 font-mono">
             Most listened to songs from the past four weeks.
           </p>
         </TabsContent>
@@ -234,7 +234,7 @@ export default async function Statistics() {
                     height={300}
                     className="rounded-md w-14 h-14"
                   />
-                  <div>
+                  <div className="my-auto">
                     <a
                       href={track.external_urls.spotify}
                       className="hover:underline line-clamp-1"
@@ -264,7 +264,7 @@ export default async function Statistics() {
               </div>
             ))}
           </div>
-          <p className="text-muted-foreground text-sm text-center py-2">
+          <p className="text-muted-foreground text-sm text-center py-2 font-mono">
             Most listened to songs of all time.
           </p>
         </TabsContent>

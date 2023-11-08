@@ -14,6 +14,17 @@ export const siteConfig = {
       url: "https://thearmourybookshop.com.au",
     },
     {
+      name: "haddon-institute",
+      description:
+        "An online education platform to provide a Christ-centered education grounded in Reformed theology.",
+      url: "https://haddoninstitute.org",
+    },
+    {
+      name: "star-compass",
+      description: "A disability support service.",
+      url: "https://starcompass.com.au",
+    },
+    {
       name: "stand-firm",
       description:
         "A worldview conference focusing on standing firm on Godˈs word in a culture that is increasingly hostile to it.",
@@ -30,16 +41,6 @@ export const siteConfig = {
       description:
         "Personal video hosting and livestreaming platform for video game clips.",
       url: "https://sdelta.xyz",
-    },
-    {
-      name: "blog",
-      description: "This site.",
-      url: "https://zacchary.me",
-    },
-    {
-      name: "minden-baptist-church",
-      description: "A website for a local church.",
-      url: "https://mindenbaptist.org",
     },
   ],
 };
