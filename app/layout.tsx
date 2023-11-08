@@ -83,7 +83,7 @@ export default function RootLayout({
         <body
           className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}
         >
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navigation />
             <div className="flex flex-col min-h-screen justify-between space-y-4 px-4">
               {children}
