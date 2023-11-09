@@ -133,7 +133,7 @@ export default async function Home() {
                           className="bg-white"
                           src="https://haddoninstitute.org/_next/image?url=%2Flogos%2F3.png&w=750&q=75"
                         />
-                        <AvatarFallback>TAB</AvatarFallback>
+                        <AvatarFallback>HI</AvatarFallback>
                       </Avatar>
                       <div className="space-y-1">
                         <h4 className="text-sm font-semibold">
