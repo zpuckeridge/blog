@@ -210,7 +210,7 @@ export default async function Home() {
         </div>
         <div>
           <ul className="">
-            {posts.map((post) => (
+            {posts.map((post: any) => (
               <li
                 key={post.id}
                 className="rounded-lg p-2 hover:bg-muted hover:shadow-2xl transition-all duration-300"
