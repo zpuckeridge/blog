@@ -8,7 +8,8 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import Navigation from "@/components/navigation";
 import Script from "next/script";
-import { GeistSans, GeistMono } from "geist/font";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 
 export const metadata: Metadata = {

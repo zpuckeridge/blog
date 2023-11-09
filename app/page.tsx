@@ -27,10 +27,10 @@ export default async function Home() {
           <h1 className="text-4xl font-bold ">G&apos;day 👋</h1>
           <Image
             src="/avatar.jpg"
-            width={35}
-            height={35}
+            width={40}
+            height={40}
             alt="Zacchary Puckeridge"
-            className="rounded-full"
+            className="rounded-full aspect-auto"
           />
         </div>
         <div>
@@ -176,7 +176,7 @@ export default async function Home() {
             <MoveRight className="w-5 h-5" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {siteConfig.projects.map((project) => (
             <a
               key={project.name}
