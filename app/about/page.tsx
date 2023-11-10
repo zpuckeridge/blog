@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/tooltip";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ImageIcon, MoveRight } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Statistics from "@/components/statistics";
 
@@ -37,8 +37,8 @@ export default async function About() {
 
   return (
     <main className="mx-auto max-w-2xl space-y-8 my-10">
-      <h1 className="text-4xl font-bold">About</h1>
-      <div className="space-y-4">
+      <h1 className="text-4xl font-bold ">About</h1>
+      <div className="space-y-6">
         <p>
           Hey there! I am Zacc, a <Age /> year old Web Developer based in
           Brisbane. I currently work as an IT Administrator at the Rising Sun
@@ -85,15 +85,18 @@ export default async function About() {
       </div>
 
       <div className="space-y-8">
-        <div className="flex justify-between my-auto">
-          <h2 className="text-2xl font-bold">Gallery</h2>
+        <div className="flex justify-between my-auto border-b py-1">
+          <p className="font-semibold text-lg flex gap-2 my-auto">
+            <ImageIcon width={20} height={20} className="my-auto" />
+            Gallery
+          </p>
           <Link
             href="/gallery"
             className={buttonVariants({ variant: "ghost" })}
             aria-label="All images"
           >
             All images
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <MoveRight className="w-4 h-4 ml-2" />
           </Link>
         </div>
 

@@ -1,6 +1,7 @@
 import { getAccessToken } from "@/lib/spotify";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
+import { Music } from "lucide-react";
 
 async function getCurrentTopTracks() {
   try {
@@ -114,7 +115,10 @@ export default async function Statistics() {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-bold">Top Tracks</h2>
+      <p className="font-semibold text-lg flex gap-2 my-auto border-b py-1">
+        <Music width={20} height={20} className="my-auto" />
+        Musical Interests
+      </p>
       <Tabs defaultValue="current" className="w-full max-w-2xl">
         <TabsList className="grid w-full grid-cols-3 font-mono">
           <TabsTrigger value="current">Current</TabsTrigger>

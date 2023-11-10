@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import { MoveLeftIcon } from "lucide-react";
 

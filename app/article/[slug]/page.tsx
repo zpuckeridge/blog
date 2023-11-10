@@ -8,6 +8,12 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Separator } from "@/components/ui/separator";
+import CopyLink from "@/components/copy-link";
+
+function countWords(text: any) {
+  const words = text.trim().split(/\s+/);
+  return words.length;
+}
 
 export default async function Article({
   params,
@@ -38,6 +44,10 @@ export default async function Article({
   };
 
   const { userId } = auth();
+
+  const wordCount = countWords(post.content);
+  const averageWordsPerMinute = 250; // Adjust this based on audience reading speed
+  const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
   return (
     <main>
@@ -71,7 +81,10 @@ export default async function Article({
       </div>
       <div className="mx-auto my-10 space-y-12">
         <div className="max-w-2xl mx-auto space-y-2">
-          <h1 className="text-4xl font-bold">{post.title}</h1>
+          <div className="flex justify-between gap-8">
+            <h1 className="text-xl font-semibold truncate">{post.title}</h1>
+            <CopyLink />
+          </div>
           <div className="flex justify-between text-muted-foreground text-sm">
             <p>
               {new Date(post.createdAt).toLocaleDateString("en-US", {
@@ -80,7 +93,10 @@ export default async function Article({
                 year: "numeric",
               })}
             </p>
-            <p>{post.views + 1} views</p>
+            <div className="flex gap-4">
+              <p>{post.views + 1} views</p>
+              <p>{readingTime} minute read</p>
+            </div>
           </div>
           <Separator />
         </div>
