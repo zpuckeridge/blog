@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { Edit, MoveLeft, MoveLeftIcon } from "lucide-react";
+import { Edit, MoveLeft, MoveLeftIcon, MoveRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
@@ -48,6 +48,16 @@ export default async function Article({
   const wordCount = countWords(post.content);
   const averageWordsPerMinute = 250; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
+
+  const prevPost = await prisma.posts.findFirst({
+    where: { createdAt: { lt: post.createdAt }, published: true },
+    orderBy: { createdAt: "desc" },
+  });
+
+  const nextPost = await prisma.posts.findFirst({
+    where: { createdAt: { gt: post.createdAt }, published: true },
+    orderBy: { createdAt: "asc" },
+  });
 
   return (
     <main>
@@ -100,20 +110,49 @@ export default async function Article({
           </div>
           <Separator />
         </div>
-
         <article className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
           <MDXRemote source={post.content} />
         </article>
+        {post.updatedAt && (
+          <div className="max-w-2xl mx-auto space-y-2">
+            <p className="text-muted-foreground text-sm flex justify-end">
+              Last updated{" "}
+              {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+          </div>
+        )}
+        <div className="flex justify-between max-w-2xl mx-auto gap-4">
+          {prevPost && (
+            <Link
+              href={`/article/${prevPost.slug}`}
+              className={`flex gap-2 max-w-[20rem] w-full h-auto ${buttonVariants(
+                {
+                  variant: "ghost",
+                },
+              )}`}
+              style={{ justifyContent: "flex-start" }}
+            >
+              {prevPost.title}
+            </Link>
+          )}
 
-        <div className="max-w-2xl mx-auto space-y-2">
-          <p className="text-muted-foreground text-sm flex justify-end">
-            Last updated{" "}
-            {new Date(post.updatedAt).toLocaleDateString("en-US", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </p>
+          {nextPost && (
+            <Link
+              href={`/article/${nextPost.slug}`}
+              className={`flex gap-2 max-w-[20rem] w-full h-auto ${buttonVariants(
+                {
+                  variant: "ghost",
+                },
+              )}`}
+              style={{ justifyContent: "flex-end" }}
+            >
+              {nextPost.title}
+            </Link>
+          )}
         </div>
       </div>
     </main>
