@@ -10,6 +10,7 @@ import Script from "next/script";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
+import BackToTop from "@/components/back-to-top";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -89,6 +90,7 @@ export default function RootLayout({
               {children}
               <Footer />
               <Toaster />
+              <BackToTop />
             </div>
           </ThemeProvider>
         </body>

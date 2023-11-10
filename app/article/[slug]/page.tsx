@@ -125,6 +125,9 @@ export default async function Article({
             </p>
           </div>
         )}
+
+        <Separator className="max-w-2xl mx-auto" />
+
         <div className="flex justify-between max-w-2xl mx-auto gap-4">
           {prevPost && (
             <Link
