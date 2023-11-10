@@ -95,6 +95,7 @@ export async function PATCH(
         slug: body.slug,
         tag: body.tag,
         published: body.published,
+        updatedAt: new Date(),
       },
     });
 

@@ -9,14 +9,14 @@ datasource db {
 }
 
 model Posts {
-  id          String   @id @unique @default(uuid())
-  slug        String   @unique @db.VarChar(255)
-  title       String   @db.VarChar(255)
-  content     String   @db.Text
-  description String?  @db.VarChar(1024)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  published   Boolean  @default(false)
-  tag         String   @db.VarChar(100)
-  views       Int      @default(0)
+  id          String    @id @unique @default(uuid())
+  slug        String    @unique @db.VarChar(255)
+  title       String    @db.VarChar(255)
+  content     String    @db.Text
+  description String?   @db.VarChar(1024)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
+  published   Boolean   @default(false)
+  tag         String    @db.VarChar(100)
+  views       Int       @default(0)
 }
