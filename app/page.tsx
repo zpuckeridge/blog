@@ -9,7 +9,13 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CalendarIcon, HardHat, MoveRight, Newspaper } from "lucide-react";
+import {
+  CalendarIcon,
+  HandMetal,
+  HardHat,
+  MoveRight,
+  Newspaper,
+} from "lucide-react";
 import Call from "@/components/call";
 import Image from "next/image";
 
@@ -24,7 +30,10 @@ export default async function Home() {
     <main>
       <div className="mx-auto max-w-2xl space-y-8 my-10">
         <div className="flex justify-between">
-          <h1 className="text-4xl font-bold ">G&apos;day 👋</h1>
+          <h1 className="text-4xl font-bold flex gap-2">
+            G&apos;day
+            <HandMetal className="w-8 h-8 my-auto" />
+          </h1>
           <Image
             src="/avatar.jpg"
             width={40}
@@ -35,7 +44,7 @@ export default async function Home() {
         </div>
         <div>
           <div className="space-y-4">
-            <p>
+            <p className="text-muted-foreground">
               I&apos;m Zacchary, a Christian IT Administrator working for{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
@@ -44,6 +53,7 @@ export default async function Home() {
                       href="https://www.rsp.com.au/"
                       target="_blank"
                       aria-label="Rising Sun Pictures Website"
+                      className="text-white"
                     >
                       Rising Sun Pictures
                     </a>
@@ -58,7 +68,7 @@ export default async function Home() {
                         <h4 className="text-sm font-semibold">
                           Rising Sun Pictures
                         </h4>
-                        <p className="text-sm">
+                        <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
                           Over the past two decades, Rising Sun Pictures (RSP)
                           has been delighting and inspiring audiences worldwide,
                           by creating some of Hollywood’s most memorable screen
@@ -78,7 +88,7 @@ export default async function Home() {
               . Building better artist experiences by day, Web Developer by
               night.
             </p>
-            <p>
+            <p className="text-muted-foreground">
               Currently building a Christian Reformed bookstore called{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
@@ -86,6 +96,7 @@ export default async function Home() {
                     <a
                       href="https://thearmourybookshop.com.au/"
                       target="_blank"
+                      className="text-white"
                     >
                       The Armoury Bookshop
                     </a>
@@ -122,7 +133,11 @@ export default async function Home() {
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <a href="https://haddoninstitute.org/" target="_blank">
+                    <a
+                      href="https://haddoninstitute.org/"
+                      target="_blank"
+                      className="text-white"
+                    >
                       Haddon Institute
                     </a>
                   </HoverCardTrigger>
