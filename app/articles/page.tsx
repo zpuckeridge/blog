@@ -1,6 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import prisma from "@/lib/prisma";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Articles",
+  description: "Read Zacchary's articles.",
+};
 
 export default async function Articles() {
   const posts = await prisma.posts.findMany({

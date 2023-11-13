@@ -9,10 +9,49 @@ import { buttonVariants } from "@/components/ui/button";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Separator } from "@/components/ui/separator";
 import CopyLink from "@/components/copy-link";
+import type { Metadata, ResolvingMetadata } from "next";
 
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
   return words.length;
+}
+
+async function retrievePost(slug: string) {
+  const data = await prisma.posts.findUnique({
+    where: {
+      slug: slug,
+      published: true,
+    },
+  });
+
+  if (!data) {
+    redirect("/404");
+  }
+
+  return data;
+}
+
+export async function generateMetadata(
+  { params }: any,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const slug = params.slug;
+
+  if (!slug) {
+    redirect("/404");
+  }
+
+  const post = await retrievePost(slug);
+
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${post.title}`,
+    description: post.description,
+    openGraph: {
+      images: [post.image || "/avatar.jpg", ...previousImages],
+    },
+  };
 }
 
 export default async function Article({
@@ -20,15 +59,13 @@ export default async function Article({
 }: {
   params: { slug: string };
 }) {
-  const slug = params.slug;
+  const { slug } = params;
 
-  const post = await prisma.posts.findUnique({
-    where: { slug },
-  });
-
-  if (!post) {
+  if (!slug) {
     redirect("/404");
   }
+
+  const post = await retrievePost(slug);
 
   await prisma.posts.update({
     where: { slug },

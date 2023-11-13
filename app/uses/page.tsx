@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Uses",
+  description: "View the gear and software Zacchary uses daily.",
+};
+
 export default function Uses() {
   const UsesItem = ({ title, description }: any) => {
     return (

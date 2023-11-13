@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   title: {
     default: "Zacchary Puckeridge",
-    template: "%s | Zacchary Puckeridge",
+    template: "%s — Zacchary Puckeridge",
   },
   description:
     "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",

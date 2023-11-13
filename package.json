@@ -83,6 +83,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
+    "@types/mapbox-gl": "^2.7.18",
     "prettier": "3.0.3"
   }
 }

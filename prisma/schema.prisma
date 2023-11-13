@@ -12,6 +12,7 @@ model Posts {
   id          String    @id @unique @default(uuid())
   slug        String    @unique @db.VarChar(255)
   title       String    @db.VarChar(255)
+  image       String?
   content     String    @db.Text
   description String?   @db.VarChar(1024)
   createdAt   DateTime  @default(now())

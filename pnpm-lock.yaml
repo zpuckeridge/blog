@@ -217,6 +217,9 @@ devDependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.10
     version: 0.5.10(tailwindcss@3.3.5)
+  '@types/mapbox-gl':
+    specifier: ^2.7.18
+    version: 2.7.18
   prettier:
     specifier: 3.0.3
     version: 3.0.3
@@ -3089,6 +3092,10 @@ packages:
       '@types/serve-static': 1.15.5
     dev: false
 
+  /@types/geojson@7946.0.13:
+    resolution: {integrity: sha512-bmrNrgKMOhM3WsafmbGmC+6dsF2Z308vLFsQ3a/bT8X8Sv5clVYpPars/UPq+sAaJP+5OoLAYgwbkS5QEJdLUQ==}
+    dev: true
+
   /@types/hast@2.3.8:
     resolution: {integrity: sha512-aMIqAlFd2wTIDZuvLbhUT+TGvMxrNC8ECUIVtH6xxy0sQLs3iu6NO8Kp/VT5je7i5ufnebXzdV1dNDMnvaH6IQ==}
     dependencies:
@@ -3138,6 +3145,12 @@ packages:
   /@types/linkify-it@3.0.5:
     resolution: {integrity: sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==}
     dev: false
+
+  /@types/mapbox-gl@2.7.18:
+    resolution: {integrity: sha512-3Yq4v8IdigSs2oD70dRJuWY/6PoW9i6MyXOx8DvJNc6CuSXRMleVdNiFYa5E0w6tSCfL+b+cGau5Em09MIujtQ==}
+    dependencies:
+      '@types/geojson': 7946.0.13
+    dev: true
 
   /@types/markdown-it@12.2.3:
     resolution: {integrity: sha512-GKMHFfv3458yYy+v/N8gjufHO6MSZKCOXpZc5GXIWWy8uldwfmPn98vp81gZ5f9SVw8YYBctgfJ22a2d7AOMeQ==}
