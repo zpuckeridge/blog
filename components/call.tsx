@@ -50,10 +50,7 @@ export default function Call() {
   };
 
   return (
-    <Button
-      variant="ghost"
-      className="relative h-48 w-full border p-4 font-mono"
-    >
+    <button className="relative h-48 w-full border p-4 font-mono hover:shadow-2xl transition-all duration-300 rounded-lg hover:bg-muted">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -75,6 +72,6 @@ export default function Call() {
           </p>
         </div>
       ))}
-    </Button>
+    </button>
   );
 }
