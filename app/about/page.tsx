@@ -30,7 +30,7 @@ export default async function About() {
           <TooltipTrigger>
             <a
               href={url}
-              className="underline hover:no-underline text-white"
+              className="underline hover:no-underline text-black dark:text-white"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={name}
@@ -123,7 +123,7 @@ export default async function About() {
           <span className="underline hover:no-underline cursor-pointer">
             <HoverCard>
               <HoverCardTrigger asChild>
-                <p className="text-white">Soli Deo Gloria</p>
+                <p className="text-black dark:text-white">Soli Deo Gloria</p>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
