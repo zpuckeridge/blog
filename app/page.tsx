@@ -53,7 +53,7 @@ export default async function Home() {
                       href="https://www.rsp.com.au/"
                       target="_blank"
                       aria-label="Rising Sun Pictures Website"
-                      className="text-white"
+                      className="text-black dark:text-white"
                     >
                       Rising Sun Pictures
                     </a>
@@ -96,7 +96,7 @@ export default async function Home() {
                     <a
                       href="https://thearmourybookshop.com.au/"
                       target="_blank"
-                      className="text-white"
+                      className="text-black dark:text-white"
                     >
                       The Armoury Bookshop
                     </a>
@@ -136,7 +136,7 @@ export default async function Home() {
                     <a
                       href="https://haddoninstitute.org/"
                       target="_blank"
-                      className="text-white"
+                      className="text-black dark:text-white"
                     >
                       Haddon Institute
                     </a>
