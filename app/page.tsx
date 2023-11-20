@@ -44,7 +44,7 @@ export default async function Home() {
         </div>
         <div>
           <div className="space-y-4">
-            <p className="text-muted-foreground">
+            <p className="dark:text-muted-foreground text-black">
               I&apos;m Zacchary, a Christian IT Administrator working for{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
@@ -88,7 +88,7 @@ export default async function Home() {
               . Building better artist experiences by day, Web Developer by
               night.
             </p>
-            <p className="text-muted-foreground">
+            <p className="dark:text-muted-foreground text-black">
               Currently building a Christian Reformed bookstore called{" "}
               <span className="underline hover:no-underline cursor-pointer">
                 <HoverCard>
@@ -235,10 +235,10 @@ export default async function Home() {
                   prefetch={false}
                   aria-label={post.title}
                 >
-                  <div className="sm:flex justify-between gap-2">
-                    <p className="truncate ">{post.title}</p>
+                  <div className="sm:flex justify-between gap-2 space-y-1 sm:space-y-0">
+                    <p className="truncate">{post.title}</p>
 
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 text-sm dark:text-muted-foreground text-black my-auto">
                       <p className="whitespace-nowrap">{post.views} views</p>/
                       <Badge variant="secondary" className="font-mono">
                         {post.tag}

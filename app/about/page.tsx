@@ -52,20 +52,20 @@ export default async function About() {
       <div className="space-y-4">
         <div className="space-y-2">
           <h2 className="font-semibold">Background</h2>
-          <p className="text-muted-foreground">
+          <p className="dark:text-muted-foreground text-black">
             I&apos;m a <Age /> year old Christian born and raised in Brisbane,
             Australia. From a young age, tinkering with computers quickly became
             second nature to me. Exploring self-hosted and custom built
             solutions has been a passion of mine for a while now.
           </p>
-          <p className="text-muted-foreground">
+          <p className="dark:text-muted-foreground text-black">
             After graduating high school, I spent about 9 months studying a dual
             degree of Phsychology and Criminology. I quickly realised that
             wasn&apos;t the pathway for me. Shortly thereafter a close mate and
             I ended up in the United States for ~3 months working on a Summer
             Camp.
           </p>
-          <p className="text-muted-foreground">
+          <p className="dark:text-muted-foreground text-black">
             Another mate of mine hooked me up with a job providing support for a
             web hosting company shortly after I got back. That&apos;s where I
             developed my passion for web development and self-hosting.
@@ -74,7 +74,7 @@ export default async function About() {
         <div className="space-y-2">
           <h2 className="font-semibold">Stack</h2>
 
-          <p className="text-muted-foreground">
+          <p className="dark:text-muted-foreground text-black">
             My favourite stack right now is{" "}
             {generateTooltip("https://nextjs.org/", "Next.js")},{" "}
             {generateTooltip("https://tailwindcss.com/", "TailwindCSS")} with{" "}
@@ -92,7 +92,7 @@ export default async function About() {
             {generateTooltip("https://stripe.com/", "Stripe")}.
           </p>
         </div>
-        <p className="text-muted-foreground">
+        <p className="dark:text-muted-foreground text-black">
           I have also dabbled with{" "}
           {generateTooltip("https://cloud.google.com/", "Google Cloud")},{" "}
           {generateTooltip("https://cloud.oracle.com/", "Oracle Cloud")},{" "}
@@ -112,7 +112,7 @@ export default async function About() {
         </p>
         <div className="space-y-2">
           <h2 className="font-semibold">Now</h2>
-          <p className="text-muted-foreground">
+          <p className="dark:text-muted-foreground text-black">
             Now I&apos;m contributing to an intergenerational education platform
             and online bookshop to pass on the wisdom of those that paved the
             road before us. I&apos;m very proud to be working alongside some of

@@ -2,7 +2,6 @@
 
 import { MousePointerClick } from "lucide-react";
 import { useState } from "react";
-import { Button } from "./ui/button";
 
 export default function Call() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -60,14 +59,16 @@ export default function Call() {
           }`}
         >
           <p className="mx-12 select-none">{slide.text}</p>
-          <p className="absolute top-4 left-4 text-sm select-none">
+          <p className="absolute top-4 left-4 text-sm select-none dark:text-muted-foreground text-black">
             {slide.location}
           </p>
-          <p className="absolute bottom-4 left-4 text-sm select-none">ESV</p>
-          <p className="absolute bottom-4 right-4 text-sm select-none">
+          <p className="absolute bottom-4 left-4 text-sm select-none dark:text-muted-foreground text-black">
+            ESV
+          </p>
+          <p className="absolute bottom-4 right-4 text-sm select-none dark:text-muted-foreground text-black">
             {slide.verse}
           </p>
-          <p className="absolute top-4 right-4 text-sm select-none">
+          <p className="absolute top-4 right-4 text-sm select-none dark:text-muted-foreground text-black">
             <MousePointerClick className="w-4 h-4" />
           </p>
         </div>
