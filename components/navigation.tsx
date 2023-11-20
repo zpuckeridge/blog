@@ -4,7 +4,13 @@ import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
-import { MoveLeftIcon } from "lucide-react";
+import {
+  CameraIcon,
+  ImageIcon,
+  MoveLeftIcon,
+  PocketKnife,
+  UserIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Navigation() {
@@ -78,23 +84,31 @@ export default function Navigation() {
         <div className="flex gap-2">
           <Link
             href="/about"
-            className={buttonVariants({ variant: "ghost" })}
+            className={`flex gap-2 ${buttonVariants({
+              variant: "ghost",
+            })}`}
             aria-label="About Page"
           >
-            About
+            <UserIcon className="w-4 h-4" /> About
           </Link>
           <Link
             href="/gallery"
-            className={buttonVariants({ variant: "ghost" })}
+            className={`flex gap-2 ${buttonVariants({
+              variant: "ghost",
+            })}`}
             aria-label="Gallery Page"
           >
+            <ImageIcon className="w-4 h-4" />
             Gallery
           </Link>
           <Link
             href="/uses"
-            className={buttonVariants({ variant: "ghost" })}
+            className={`flex gap-2 ${buttonVariants({
+              variant: "ghost",
+            })}`}
             aria-label="Uses Page"
           >
+            <PocketKnife className="w-4 h-4" />
             Uses
           </Link>
           <ModeToggle />
