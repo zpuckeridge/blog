@@ -59,17 +59,18 @@ export const metadata: Metadata = {
     title: "Zacchary Puckeridge",
     description:
       "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
-    images: [
-      {
-        url: "https://og.sznm.dev/api/generate?heading=zpuckeridge&text=https://zacchary.me", // to be replaced with own generator
-        alt: "zacchary.me og-image",
-      },
-    ],
+    images: "/avatar.jpg",
     siteName: "zpuckeridge",
   },
   twitter: {
     creator: "@zpuckeridge",
     card: "summary_large_image",
+    images: "/avatar.jpg",
+    description:
+      "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
+    creatorId: "zpuckeridge",
+    title: "Zacchary Puckeridge",
+    site: "@zpuckeridge",
   },
 };
 
@@ -82,10 +83,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}
+          className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased bg-[#fafafa] dark:bg-[#0a0a0a]`}
         >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Navigation />
+
             <div className="flex flex-col min-h-screen justify-between space-y-4 px-4">
               {children}
               <Footer />

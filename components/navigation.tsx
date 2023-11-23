@@ -77,7 +77,7 @@ export default function Navigation() {
                 variant: "ghost",
               })}`}
             >
-              <MoveLeftIcon /> Back
+              <MoveLeftIcon className="w-4 h-4" /> Back
             </Link>
           )}
         </div>
@@ -89,7 +89,8 @@ export default function Navigation() {
             })}`}
             aria-label="About Page"
           >
-            <UserIcon className="w-4 h-4" /> About
+            <UserIcon className="w-4 h-4" />
+            <span className="hidden sm:inline">About</span>
           </Link>
           <Link
             href="/gallery"
@@ -99,7 +100,7 @@ export default function Navigation() {
             aria-label="Gallery Page"
           >
             <ImageIcon className="w-4 h-4" />
-            Gallery
+            <span className="hidden sm:inline">Gallery</span>
           </Link>
           <Link
             href="/uses"
@@ -109,7 +110,7 @@ export default function Navigation() {
             aria-label="Uses Page"
           >
             <PocketKnife className="w-4 h-4" />
-            Uses
+            <span className="hidden sm:inline">Uses</span>
           </Link>
           <ModeToggle />
         </div>

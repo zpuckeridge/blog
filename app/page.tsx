@@ -1,6 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import {
@@ -18,6 +17,7 @@ import {
 } from "lucide-react";
 import Call from "@/components/call";
 import Image from "next/image";
+import { CardHover } from "@/components/card-hover";
 
 export default async function Home() {
   const posts = await prisma.posts.findMany({
@@ -30,16 +30,16 @@ export default async function Home() {
     <main>
       <div className="mx-auto max-w-2xl space-y-8 my-10">
         <div className="flex justify-between">
-          <h1 className="text-4xl font-bold flex gap-2">
+          <h1 className="text-4xl font-bold flex gap-2 my-auto">
             G&apos;day
             <HandMetal className="w-8 h-8 my-auto" />
           </h1>
           <Image
             src="/avatar.jpg"
-            width={40}
-            height={40}
+            width={200}
+            height={200}
             alt="Zacchary Puckeridge"
-            className="rounded-full aspect-auto"
+            className="w-14 h-14 rounded-full border-4 border-muted my-auto"
           />
         </div>
         <div>
@@ -68,7 +68,7 @@ export default async function Home() {
                         <h4 className="text-sm font-semibold">
                           Rising Sun Pictures
                         </h4>
-                        <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
+                        <p className="text-sm text-muted-foreground">
                           Over the past two decades, Rising Sun Pictures (RSP)
                           has been delighting and inspiring audiences worldwide,
                           by creating some of Hollywood’s most memorable screen
@@ -76,7 +76,7 @@ export default async function Home() {
                         </p>
                         <div className="flex items-center pt-2">
                           <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs">
                             Working @ RSP since 2022
                           </span>
                         </div>
@@ -114,13 +114,13 @@ export default async function Home() {
                         <h4 className="text-sm font-semibold">
                           The Armoury Bookshop
                         </h4>
-                        <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
+                        <p className="text-sm text-muted-foreground">
                           A Christian Reformed bookshop based in Brisbane,
                           Australia. Providing good quality Christian books.
                         </p>
                         <div className="flex items-center pt-2">
                           <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs">
                             Building @ TAB since 2023
                           </span>
                         </div>
@@ -154,14 +154,14 @@ export default async function Home() {
                         <h4 className="text-sm font-semibold">
                           Haddon Institute
                         </h4>
-                        <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
+                        <p className="text-sm text-muted-foreground">
                           Our mission at the Haddon institute is to provide a
                           Christ-centered education grounded in Reformed
                           theology.
                         </p>
                         <div className="flex items-center pt-2">
                           <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs">
                             Building @ Haddon since 2023
                           </span>
                         </div>
@@ -191,21 +191,8 @@ export default async function Home() {
             <MoveRight className="w-5 h-5" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-          {siteConfig.projects.map((project) => (
-            <a
-              key={project.name}
-              href={project.url}
-              className="space-y-4 rounded-lg p-4 hover:bg-muted hover:shadow-2xl transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <p className="underline hover:no-underline">{project.name}</p>
-              <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
-                {project.description}
-              </p>
-            </a>
-          ))}
+        <div>
+          <CardHover />
         </div>
 
         <div className="flex justify-between my-auto border-b py-1">

@@ -8,39 +8,44 @@ export const siteConfig = {
   url: "https://zacchary.me",
   projects: [
     {
-      name: "the-armoury-bookshop",
+      name: "The Armoury Bookshop",
       description:
         "A Christian Reformed bookshop based in Brisbane, Australia. Providing good quality Christian books.",
       url: "https://thearmourybookshop.com.au",
+      icon: "/logos/the-armoury-bookshop.png",
     },
     {
-      name: "haddon-institute",
+      name: "Haddon Institute",
       description:
         "An online education platform to provide a Christ-centered education grounded in Reformed theology.",
       url: "https://haddoninstitute.org",
+      icon: "/logos/haddon-institute.png",
     },
     {
-      name: "star-compass",
+      name: "Star Compass",
       description: "A disability support service.",
       url: "https://starcompass.com.au",
+      icon: "/logos/star-compass.png",
     },
     {
-      name: "stand-firm",
+      name: "Stand Firm",
       description:
         "A worldview conference focusing on standing firm on Godˈs word in a culture that is increasingly hostile to it.",
       url: "https://stand-firm.com.au",
+      icon: "/logos/stand-firm.webp",
     },
     {
-      name: "simply-photos",
-      description:
-        "A minimalistic photography portfolio website built for a friend.",
+      name: "Simply Photos",
+      description: "A photography portfolio website built for a friend.",
       url: "https://simplyphotos.info",
+      icon: "/logos/simply-photos.avif",
     },
     {
-      name: "livestream",
+      name: "Livestream",
       description:
         "Personal video hosting and livestreaming platform for video game clips.",
       url: "https://sdelta.xyz",
+      icon: "/logos/sdelta.webp",
     },
   ],
 };

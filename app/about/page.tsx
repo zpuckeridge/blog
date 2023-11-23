@@ -60,7 +60,7 @@ export default async function About() {
           </p>
           <p className="dark:text-muted-foreground text-black">
             After graduating high school, I spent about 9 months studying a dual
-            degree of Phsychology and Criminology. I quickly realised that
+            degree of Psychology and Criminology. I quickly realised that
             wasn&apos;t the pathway for me. Shortly thereafter a close mate and
             I ended up in the United States for ~3 months working on a Summer
             Camp.
@@ -126,9 +126,7 @@ export default async function About() {
                 <p className="text-black dark:text-white">Soli Deo Gloria</p>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
-                <p className="text-sm text-black dark:text-transparent bg-clip-text bg-gradient-to-br dark:from-muted-foreground from-40% dark:to-muted">
-                  Glory to God alone.
-                </p>
+                <p className="text-sm">Glory to God alone.</p>
               </HoverCardContent>
             </HoverCard>
           </span>
