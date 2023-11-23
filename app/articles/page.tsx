@@ -18,7 +18,7 @@ export default async function Articles() {
     <main>
       <div className="mx-auto max-w-2xl space-y-8 my-10">
         <div className="flex flex-wrap gap-8">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {posts.map((post: any) => (
               <Link
                 key={post.id}

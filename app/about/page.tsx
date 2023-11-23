@@ -49,9 +49,9 @@ export default async function About() {
   return (
     <main className="mx-auto max-w-2xl space-y-8 my-10">
       <h1 className="text-4xl font-bold ">About</h1>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <h2 className="font-semibold">Background</h2>
+      <div className="space-y-10">
+        <div className="space-y-4">
+          <h2 className="text-sm uppercase font-mono">Background</h2>
           <p className="dark:text-muted-foreground text-black">
             I&apos;m a <Age /> year old Christian born and raised in Brisbane,
             Australia. From a young age, tinkering with computers quickly became
@@ -71,8 +71,8 @@ export default async function About() {
             developed my passion for web development and self-hosting.
           </p>
         </div>
-        <div className="space-y-2">
-          <h2 className="font-semibold">Stack</h2>
+        <div className="space-y-4">
+          <h2 className="text-sm uppercase font-mono">Stack</h2>
 
           <p className="dark:text-muted-foreground text-black">
             My favourite stack right now is{" "}
@@ -91,27 +91,27 @@ export default async function About() {
             {generateTooltip("https://wordpress.com/", "WordPress")}, and{" "}
             {generateTooltip("https://stripe.com/", "Stripe")}.
           </p>
+          <p className="dark:text-muted-foreground text-black">
+            I have also dabbled with{" "}
+            {generateTooltip("https://cloud.google.com/", "Google Cloud")},{" "}
+            {generateTooltip("https://cloud.oracle.com/", "Oracle Cloud")},{" "}
+            {generateTooltip("https://railway.app/", "Railway")},{" "}
+            {generateTooltip("https://www.linode.com/", "Linode")} and{" "}
+            {generateTooltip("https://kubernetes.io/", "Kubernetes")} for dev
+            ops related work. If you are interested in what gear and software I
+            use on the day-to-day, check out{" "}
+            <Link
+              href="/uses"
+              className="underline hover:no-underline text-white"
+              aria-label="Uses Page"
+            >
+              /uses
+            </Link>
+            .
+          </p>
         </div>
-        <p className="dark:text-muted-foreground text-black">
-          I have also dabbled with{" "}
-          {generateTooltip("https://cloud.google.com/", "Google Cloud")},{" "}
-          {generateTooltip("https://cloud.oracle.com/", "Oracle Cloud")},{" "}
-          {generateTooltip("https://railway.app/", "Railway")},{" "}
-          {generateTooltip("https://www.linode.com/", "Linode")} and{" "}
-          {generateTooltip("https://kubernetes.io/", "Kubernetes")} for dev ops
-          related work. If you are interested in what gear and software I use on
-          the day-to-day, check out{" "}
-          <Link
-            href="/uses"
-            className="underline hover:no-underline text-white"
-            aria-label="Uses Page"
-          >
-            /uses
-          </Link>
-          .
-        </p>
-        <div className="space-y-2">
-          <h2 className="font-semibold">Now</h2>
+        <div className="space-y-4">
+          <h2 className="text-sm uppercase font-mono">Now</h2>
           <p className="dark:text-muted-foreground text-black">
             Now I&apos;m contributing to an intergenerational education platform
             and online bookshop to pass on the wisdom of those that paved the
@@ -149,8 +149,8 @@ export default async function About() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
-          <div className="row-span-2 col-span-2">
+        <div className="sm:grid grid-cols-1 sm:grid-cols-4 flex justify-center gap-2">
+          <div className="sm:row-span-2 sm:col-span-2">
             <Image
               src="https://res.cloudinary.com/denivusi1/image/upload/blog/P1011152_t1mdns"
               width={500}
