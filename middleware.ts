@@ -18,6 +18,7 @@ export default authMiddleware({
     "/unauthorised",
     "/sign-in",
     "/sign-up",
+    "/api/now-playing",
   ],
 });
 

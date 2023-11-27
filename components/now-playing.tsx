@@ -1,177 +1,114 @@
-import { getAccessToken } from "@/lib/spotify";
-import { PauseCircle, PlayCircle } from "lucide-react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { Loader2, PauseCircle, PlayCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Progress } from "./ui/progress";
 
-export const runtime = "edge";
+const getNowPlaying = async () => {
+  // use fetch to retreive /api/now-playing every 1 second
+  const res = await fetch("http://localhost:3000/api/now-playing");
 
-export const revalidate = 10;
+  return res.json();
+};
 
-export async function getNowPlaying() {
-  try {
-    const { access_token } = await getAccessToken();
+export default function NowPlaying() {
+  const [nowPlayingData, setNowPlayingData] = useState(null);
 
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/player/currently-playing`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      },
-    );
+  const fetchNowPlaying = async () => {
+    const data = await getNowPlaying();
+    setNowPlayingData(data);
+  };
 
-    if (!res.ok) {
-      if (res.status === 401) {
-        console.error("Unauthorized access. Please check your access token.");
-      } else {
-        console.error("Error fetching now playing data. Status:", res.status);
-      }
+  useEffect(() => {
+    const interval = setInterval(fetchNowPlaying, 1000);
 
-      return {
-        is_playing: false,
-      };
-    }
+    return () => clearInterval(interval); // Cleanup on unmount or re-render
+  }, []);
 
-    const data = await res.text();
-    if (!data) {
-      return {
-        is_playing: false,
-      };
-    }
-
-    try {
-      return JSON.parse(data);
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
-      return {
-        is_playing: false,
-      };
-    }
-  } catch (error) {
-    console.error("Error fetching now playing data:", error);
-    return {
-      is_playing: false,
-    };
-  }
-}
-
-export async function getLastPlayed() {
-  try {
-    const { access_token } = await getAccessToken();
-
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/player/recently-played?before=${Date.now()}&limit=1`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      },
-    );
-
-    if (!res.ok) {
-      if (res.status === 401) {
-        console.error("Unauthorized access. Please check your access token.");
-      } else {
-        console.error("Error fetching last played data. Status:", res.status);
-      }
-
-      return null;
-    }
-
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching last played data:", error);
-    return null;
-  }
-}
-
-export default async function NowPlaying() {
-  const playing = await getNowPlaying();
-  const lastPlayed = await getLastPlayed();
-
-  if (!playing || playing.is_playing === false) {
+  if (!nowPlayingData) {
     return (
-      <main className="rounded-md bg-muted max-w-xs w-full flex gap-4 p-2 mx-auto">
-        <Image
-          src={lastPlayed.items[0].track.album.images[0].url}
-          alt={lastPlayed.items[0].track.name}
-          width={300}
-          height={300}
-          className="rounded-md w-14 h-14"
-        />
-        <div>
-          <h1 className="text-xs text-muted-foreground flex gap-1">
-            <PauseCircle className="w-4 h-4 my-auto" />
-            Recently played
-          </h1>
-          <Link
-            href={lastPlayed.items[0].track.external_urls.spotify}
-            className="hover:underline line-clamp-1"
-            aria-label={lastPlayed.items[0].track.name}
-          >
-            {lastPlayed.items[0].track.name}
-          </Link>
-          <div className="flex gap-1 text-xs text-muted-foreground">
-            <Link
-              href={lastPlayed.items[0].track.album.external_urls.spotify}
-              className="hover:underline line-clamp-1"
-              aria-label={lastPlayed.items[0].track.album.name}
-            >
-              {lastPlayed.items[0].track.album.name}
-            </Link>
-            /
-            <Link
-              href={lastPlayed.items[0].track.artists[0].external_urls.spotify}
-              className="hover:underline line-clamp-1"
-              aria-label={lastPlayed.items[0].track.artists[0].name}
-            >
-              {lastPlayed.items[0].track.artists[0].name}
-            </Link>
-          </div>
+      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto">
+        <div className="h-16 w-full flex justify-center items-center">
+          <Loader2 className="w-5 h-5 animate-spin" />
         </div>
-      </main>
+      </div>
     );
   }
+
+  const { is_playing, song } = nowPlayingData;
+  const {
+    progress,
+    duration,
+    title,
+    album_art,
+    url,
+    album,
+    album_url,
+    album_artists,
+  } = song;
+
+  const minutesProgress = Math.floor(progress / 1000 / 60);
+  const secondsProgress = Math.floor((progress / 1000) % 60);
+  const minutesDuration = Math.floor(duration / 1000 / 60);
+  const secondsDuration = Math.floor((duration / 1000) % 60);
 
   return (
-    <main className="rounded-md bg-muted max-w-xs w-full flex gap-4 p-2 mx-auto">
+    <div className="rounded-md bg-muted max-w-xs w-full flex gap-2 p-2 mx-auto">
       <Image
-        src={playing.item.album.images[0].url}
-        alt={playing.item.name}
+        src={album_art}
+        alt={title}
         width={300}
         height={300}
-        className="rounded-md w-14 h-14"
+        className="rounded-md w-16 aspect-square"
       />
-      <div>
-        <h1 className="text-xs text-muted-foreground flex gap-1">
-          <PlayCircle className="w-4 h-4 my-auto" /> Currently playing
-        </h1>
-        <Link
-          href={playing.item.external_urls.spotify}
-          className="hover:underline line-clamp-1"
-          aria-label={playing.item.name}
-        >
-          {playing.item.name}
+      <div className="leading-tight my-auto">
+        {is_playing ? (
+          <h1 className="text-xs text-muted-foreground flex gap-1">
+            <PlayCircle className="w-4 h-4 my-auto" /> Currently Playing
+          </h1>
+        ) : (
+          <h1 className="text-xs text-muted-foreground flex gap-1">
+            <PauseCircle className="w-4 h-4 my-auto" /> Last Played
+          </h1>
+        )}
+
+        <Link href={url} className="hover:underline line-clamp-1" title={title}>
+          {title}
         </Link>
         <div className="flex gap-1 text-xs text-muted-foreground">
           <Link
-            href={playing.item.album.external_urls.spotify}
+            href={album_url}
             className="hover:underline line-clamp-1"
-            aria-label={playing.item.album.name}
+            title={album}
           >
-            {playing.item.album.name}
+            {album}
           </Link>
           /
-          <Link
-            href={playing.item.album.artists[0].external_urls.spotify}
-            className="hover:underline line-clamp-1"
-            aria-label={playing.item.album.artists[0].name}
+          <p
+            className="line-clamp-1 hover:underline cursor-default"
+            aria-label={album_artists}
+            title={album_artists}
           >
-            {playing.item.album.artists[0].name}
-          </Link>
+            {album_artists}
+          </p>
         </div>
+        {is_playing && (
+          <div className="text-xs text-muted-foreground flex gap-1">
+            <p className="flex gap-2 w-full">
+              {minutesProgress}:
+              {secondsProgress < 10 ? `0${secondsProgress}` : secondsProgress}{" "}
+              <Progress
+                value={(progress / duration) * 100}
+                className="my-auto"
+              />
+              {minutesDuration}:
+              {secondsDuration < 10 ? `0${secondsDuration}` : secondsDuration}
+            </p>
+          </div>
+        )}
       </div>
-    </main>
+    </div>
   );
 }
