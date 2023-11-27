@@ -8,7 +8,9 @@ import { Progress } from "./ui/progress";
 
 const getNowPlaying = async () => {
   // use fetch to retreive /api/now-playing every 1 second
-  const res = await fetch("http://localhost:3000/api/now-playing");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/now-playing`,
+  );
 
   return res.json();
 };
