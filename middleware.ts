@@ -19,6 +19,7 @@ export default authMiddleware({
     "/sign-in",
     "/sign-up",
     "/api/now-playing",
+    "/api/last-played",
   ],
 });
 

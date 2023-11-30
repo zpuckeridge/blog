@@ -6,35 +6,69 @@ import Image from "next/image";
 import Link from "next/link";
 import { Progress } from "./ui/progress";
 
-const getNowPlaying = async () => {
-  // use fetch to retreive /api/now-playing every 1 second
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/now-playing`,
-  );
+interface SongData {
+  progress: number;
+  duration: number;
+  title: string;
+  album_art: string;
+  url: string;
+  album: string;
+  album_url: string;
+  album_artists: string;
+}
 
-  return res.json();
+interface NowPlayingData {
+  is_playing: boolean;
+  song: SongData;
+}
+
+const getNowPlaying = async (): Promise<NowPlayingData | null> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/now-playing`,
+    );
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching now playing data:", error);
+    return null;
+  }
 };
 
 export default function NowPlaying() {
-  const [nowPlayingData, setNowPlayingData] = useState(null);
-
-  const fetchNowPlaying = async () => {
-    const data = await getNowPlaying();
-    setNowPlayingData(data);
-  };
+  const [nowPlayingData, setNowPlayingData] = useState<NowPlayingData | null>(
+    null,
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const interval = setInterval(fetchNowPlaying, 1000);
+    const interval = setInterval(() => {
+      getNowPlaying()
+        .then((data) => {
+          setNowPlayingData(data);
+          setIsLoading(false); // Data is available, no longer loading
+        })
+        .catch(() => {
+          setIsLoading(false); // Failed to fetch data, no longer loading
+        });
+    }, 1000);
 
-    return () => clearInterval(interval); // Cleanup on unmount or re-render
+    return () => clearInterval(interval);
   }, []);
 
-  if (!nowPlayingData) {
+  if (isLoading) {
     return (
-      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto">
-        <div className="h-16 w-full flex justify-center items-center">
-          <Loader2 className="w-5 h-5 animate-spin" />
-        </div>
+      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto h-16">
+        <Loader2 className="w-5 h-5 animate-spin" />
+      </div>
+    );
+  }
+
+  if (!nowPlayingData || !nowPlayingData.song) {
+    return (
+      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto h-16">
+        <p className="text-xs text-muted-foreground">
+          Music is not currently playing.
+        </p>
       </div>
     );
   }
