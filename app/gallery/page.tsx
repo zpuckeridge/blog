@@ -17,7 +17,7 @@ export default async function GalleryPage() {
 
   return (
     <>
-      <main>
+      <main className="max-w-4xl mx-auto my-10 px-4">
         <Gallery images={data.resources} />
       </main>
     </>

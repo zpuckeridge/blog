@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { ModeToggle } from "./mode-toggle";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import {
@@ -64,7 +63,9 @@ export default function Navigation() {
                 </div>
                 <div className="hidden sm:flex">
                   <div>
-                    <p>zpuckeridge</p>
+                    <p className="font-semibold uppercase leading-snug">
+                      Zacchary Puckeridge
+                    </p>
                     <p className="text-xs">
                       Zacchary /ˈzækəri/ - ˈthe Lord has rememberedˈ
                     </p>
@@ -113,7 +114,6 @@ export default function Navigation() {
               <PocketKnife className="w-4 h-4" />
               <span className="hidden sm:inline">Uses</span>
             </Link>
-            <ModeToggle />
           </div>
         </div>
       </div>

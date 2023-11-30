@@ -57,7 +57,7 @@ export default function NowPlaying() {
 
   if (isLoading) {
     return (
-      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto h-16">
+      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto h-16 mb-4">
         <Loader2 className="w-5 h-5 animate-spin" />
       </div>
     );
@@ -65,7 +65,7 @@ export default function NowPlaying() {
 
   if (!nowPlayingData || !nowPlayingData.song) {
     return (
-      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto h-16">
+      <div className="rounded-md bg-muted max-w-xs w-full flex justify-center items-center p-2 mx-auto h-16 mb-4">
         <p className="text-xs text-muted-foreground">
           Music is not currently playing.
         </p>
@@ -91,7 +91,7 @@ export default function NowPlaying() {
   const secondsDuration = Math.floor((duration / 1000) % 60);
 
   return (
-    <div className="rounded-md bg-muted max-w-xs w-full flex gap-2 p-2 mx-auto">
+    <div className="rounded-md bg-muted max-w-xs w-full flex gap-2 p-2 mx-auto mb-4">
       <Image
         src={album_art}
         alt={title}

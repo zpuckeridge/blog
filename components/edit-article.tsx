@@ -215,7 +215,7 @@ export default function Editor({
         </div>
       </div>
       <div className="max-w-2xl mx-auto space-y-8">
-        <h1 className="text-4xl font-bold">{title}</h1>
+        <h1 className="text-4xl font-semibold">{title}</h1>
 
         <NovelEditor
           defaultValue={content}

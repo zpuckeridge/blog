@@ -85,15 +85,13 @@ export default function RootLayout({
         <body
           className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased bg-[#fafafa] dark:bg-[#0a0a0a]`}
         >
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="dark">
             <Navigation />
 
-            <div className="flex flex-col min-h-screen justify-between space-y-4 px-4">
-              {children}
-              <Footer />
-              <Toaster />
-              <BackToTop />
-            </div>
+            {children}
+            <Footer />
+            <Toaster />
+            <BackToTop />
           </ThemeProvider>
         </body>
         <Script src={UMAMI_SCRIPT_URL} data-website-id={UMAMI_WEBSITE_ID} />

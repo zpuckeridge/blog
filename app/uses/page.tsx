@@ -17,11 +17,11 @@ export default function Uses() {
 
   return (
     <>
-      <main className="mx-auto max-w-2xl w-full space-y-8 my-10">
-        <h1 className="text-4xl font-bold">Uses</h1>
+      <main className="mx-auto max-w-2xl w-full space-y-8 my-10 px-4">
+        <h1 className="text-4xl font-semibold">Uses</h1>
         <p>Here is a list of gear and software that I use on the day-to-day.</p>
 
-        <h2 className="text-2xl font-bold">Office</h2>
+        <h2 className="text-2xl font-semibold">Office</h2>
         <div className="grid grid-cols-2 gap-4 w-full">
           <UsesItem
             title="Custom Desktop PC"
@@ -59,7 +59,7 @@ export default function Uses() {
           />
         </div>
 
-        <h2 className="text-2xl font-bold">Programming</h2>
+        <h2 className="text-2xl font-semibold">Programming</h2>
         <div className="grid grid-cols-2 gap-4 w-full">
           <UsesItem
             title="Visual Studio Code"
@@ -72,7 +72,7 @@ export default function Uses() {
           <UsesItem title="Carbon" description="Code sharing" />
         </div>
 
-        <h2 className="text-2xl font-bold">Self-hosting</h2>
+        <h2 className="text-2xl font-semibold">Self-hosting</h2>
         <div className="grid grid-cols-2 gap-4 w-full">
           <UsesItem title="Plausible" description="Analytics" />
           <UsesItem title="Uptime Kuma" description="Status monitoring" />
@@ -80,7 +80,7 @@ export default function Uses() {
           <UsesItem title="Memos" description="Note taking" />
         </div>
 
-        <h2 className="text-2xl font-bold">Other Tools</h2>
+        <h2 className="text-2xl font-semibold">Other Tools</h2>
         <div className="grid grid-cols-2 gap-4 w-full">
           <UsesItem title="Firefox" description="Web browser" />
           <UsesItem title="Proton Pass" description="Password manager" />
@@ -98,7 +98,7 @@ export default function Uses() {
           <UsesItem title="Microsoft PowerToys" description="Extra utilities" />
         </div>
 
-        <h2 className="text-2xl font-bold">Other Gear</h2>
+        <h2 className="text-2xl font-semibold">Other Gear</h2>
         <div className="grid grid-cols-2 gap-4 w-full">
           <UsesItem title="Google Pixel 6 Pro" description="Charcoal, 128GB" />
           <UsesItem title="ASUS Zenbook" description={`14.5" OLED laptop`} />
