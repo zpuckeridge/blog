@@ -1,113 +1,439 @@
-import Image from 'next/image'
+import {
+  ArrowDownIcon,
+  ArrowRightIcon,
+  DiscordLogoIcon,
+  DotFilledIcon,
+  EnvelopeClosedIcon,
+  FileTextIcon,
+  GitHubLogoIcon,
+  VideoIcon,
+} from "@radix-ui/react-icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { FaSpotify, FaXTwitter } from "react-icons/fa6";
+import ExperienceSection from "@/components/sections/experience-section";
+import ShowcaseSection from "@/components/sections/showcase-section";
+import MusicTracking from "@/components/sections/music-section";
+import BooksSection from "@/components/sections/books-section";
+import UsesSection from "@/components/sections/uses-section";
+import BackgroundSection from "@/components/sections/background-section";
+import CallToFaith from "@/components/call-to-faith";
+import Link from "next/link";
+import ContactSection from "@/components/sections/contact-section";
+import Lanyard from "@/components/lanyard";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="flex flex-col justify-between px-4 space-y-24 max-w-7xl mx-auto">
+      <div className="relative">
+        <div className="relative min-h-screen">
+          <div className="absolute top-20 w-full">
+            <Lanyard />
+          </div>
+          <div className="absolute bottom-4 flex gap-6 left-0 right-0">
+            <div className="hidden xl:flex flex-col space-y-6 border-r-2 pr-6 my-auto">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="https://discordapp.com/users/181324210876973056"
+                      target="_blank"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <DiscordLogoIcon className="w-5 h-5" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>Discord Profile</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="https://x.com/zpuckeridge"
+                      target="_blank"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <FaXTwitter className="w-5 h-5" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>X Profile</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="https://sdelta.xyz"
+                      target="_blank"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <VideoIcon className="w-5 h-5" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>Livestream Website</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="https://github.com/zpuckeridge"
+                      target="_blank"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <GitHubLogoIcon className="w-5 h-5" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>GitHub Profile</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
+                      target="_blank"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <FaSpotify className="w-5 h-5" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>Spotify Profile</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link
+                      href="/articles"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <FileTextIcon className="w-5 h-5" />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>Articles</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="mailto:hi@zacchary.me"
+                      target="_blank"
+                      className="hover:text-muted-foreground transition-all duration-200"
+                    >
+                      <EnvelopeClosedIcon className="w-5 h-5" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" align="center" sideOffset={30}>
+                    <p>Contact Email</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <div>
+              <p className="xl:text-4xl lg:text-3xl text-2xl font-bold leading-none tracking-tight uppercase">
+                Web Developer
+              </p>
+              <h1 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-6xl text-5xl font-bold leading-none tracking-tight uppercase text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
+                <div>Zacchary</div>
+                <div>Puckeridge</div>
+              </h1>
+            </div>
+          </div>
+
+          <div className="hidden sm:flex absolute bottom-8 right-0">
+            <Link
+              href="/#about"
+              className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 w-full"
+            >
+              Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="space-y-20" id="about">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" /> About
+        </p>
+        <p className="md:text-6xl sm:text-5xl text-4xl font-bold leading-none tracking-tight">
+          A Christian IT Administrator working for{" "}
+          <a
+            href="https://www.rsp.com.au/"
+            target="_blank"
+            aria-label="Rising Sun Pictures Website"
+            className="text-[#fff200] hover:text-[#fff200cb] transition-all duration-200"
+          >
+            Rising Sun Pictures
+          </a>
+          . Building better artist experiences by day, designing epic Web
+          Experiences by night.
+        </p>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Background
+        </p>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <BackgroundSection />
       </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Experience
+        </p>
+
+        <ExperienceSection />
+
+        <div className="space-y-2">
+          <p className="text-center text-lg">
+            Keep busy so that you might avoid temptation.
+          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="cursor-default w-auto text-center text-muted-foreground hover:text-white transition-all duration-200">
+                Romans 8:6
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <div className="flex flex-col gap-2 justify-between tracking-normal font-normal">
+                <p className="text-left">
+                  <cite>
+                    &quot;For to set the mind on the flesh is death, but to set
+                    the mind on the Spirit is life and peace.&quot;
+                  </cite>
+                </p>
+                <p className="text-left text-xs text-muted-foreground">ESV</p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
+      </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Qualifications
+        </p>
+        <div className="md:flex justify-between space-y-4 md:space-y-0 max-w-5xl mx-auto gap-4">
+          <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
+            <p className="font-mono uppercase text-xs font-semibold">
+              Haddon Institute
+            </p>
+            <p className="text-2xl font-bold leading-none tracking-tight">
+              Theology for Today’s World
+            </p>
+            <p className="font-normal leading-none tracking-tight">
+              Dec 2023{" "}
+              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" /> Jan
+              2024
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
+            <p className="font-mono uppercase text-xs font-semibold">
+              TAFE QLD
+            </p>
+            <p className="text-2xl font-bold leading-none tracking-tight">
+              Certificate III of Information Technology & Digital Media
+            </p>
+            <p className="font-normal leading-none tracking-tight">
+              Jan 2019{" "}
+              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" /> June
+              2020
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
+            <p className="font-mono uppercase text-xs font-semibold">
+              Parklands Christian College
+            </p>
+            <p className="text-2xl font-bold leading-none tracking-tight">
+              High School Certificate
+            </p>
+            <p className="font-normal leading-none tracking-tight">
+              Acquired in 2016
+            </p>
+          </div>
+        </div>
+        <div className="space-y-2">
+          <p className="text-center text-lg">
+            You don&apos;t necessarily need to be qualified to become good at
+            something.
+          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="cursor-default w-auto text-center text-muted-foreground hover:text-white transition-all duration-200">
+                1 Timothy 4:12
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <div className="flex flex-col gap-2 justify-between tracking-normal font-normal">
+                <p className="text-left">
+                  <cite>
+                    &quot;Let no one despise you for your youth, but set the
+                    believers an example in speech, in conduct, in love, in
+                    faith, in purity.&quot;
+                  </cite>
+                </p>
+                <p className="text-left text-xs text-muted-foreground">ESV</p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
+      </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Showcase
+        </p>
+
+        <ShowcaseSection />
+
+        <div className="space-y-2">
+          <p className="text-center text-lg">
+            Build something, so that you might have something to pass down to
+            the next generation.
+          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="cursor-default w-auto text-center text-muted-foreground hover:text-white transition-all duration-200">
+                Philippians 3:14-16
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <div className="flex flex-col gap-2 justify-between tracking-normal font-normal">
+                <p className="text-left">
+                  <cite>
+                    &quot;I press on toward the goal for the prize of the upward
+                    call of God in Christ Jesus. Let those of us who are mature
+                    think this way, and if in anything you think otherwise, God
+                    will reveal that also to you. Only let us hold true to what
+                    we have attained.&quot;
+                  </cite>
+                </p>
+                <p className="text-left text-xs text-muted-foreground">ESV</p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
+      </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" /> Music
+        </p>
+        <div>
+          <MusicTracking />
+        </div>
+        <div className="space-y-2">
+          <p className="text-center text-lg">
+            Your listening habits reveal a great deal about your character.
+          </p>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <p className="cursor-default w-auto text-center text-muted-foreground hover:text-white transition-all duration-200">
+                Proverbs 4:20-23
+              </p>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <div className="flex flex-col gap-2 justify-between tracking-normal font-normal">
+                <p className="text-left">
+                  <cite>
+                    &quot;My son, pay attention to what I say; turn your ear to
+                    my words. Do not let them out of your sight, keep them
+                    within your heart; for they are life to those who find them
+                    and health to one’s whole body. Above all else, guard your
+                    heart, for everything you do flows from it.&quot;
+                  </cite>
+                </p>
+                <p className="text-left text-xs text-muted-foreground">ESV</p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
+      </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Recommended Books
+        </p>
+
+        <BooksSection />
+      </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" /> Uses
+        </p>
+
+        <UsesSection />
+      </div>
+
+      <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Currently
+        </p>
+        <p className="md:text-6xl sm:text-5xl text-4xl font-bold leading-none tracking-tight">
+          Building a confessionally Reformed bookstore called{" "}
+          <a
+            href="https://thearmourybookshop.com.au/"
+            target="_blank"
+            aria-label="The Armoury Bookshop Website"
+            className="text-[#b93236] hover:text-[#b93236cb] transition-all duration-200"
+          >
+            The Armoury Bookshop
+          </a>{" "}
+          and seminary known as the{" "}
+          <a
+            href="https://haddoninstitute.org/"
+            target="_blank"
+            aria-label="Haddon Institute Website"
+            className="text-[#b69c65] hover:text-[#b69c65cb] transition-all duration-200"
+          >
+            Haddon Institute
+          </a>
+          .
+        </p>
+      </div>
+
+      {/* <div className="space-y-20">
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+          Contact
+        </p>
+
+        <ContactSection />
+      </div> */}
+
+      <CallToFaith />
     </main>
-  )
+  );
 }
