@@ -86,6 +86,23 @@ export default async function Article({
   return (
     <div className="mx-auto py-20 px-4 space-y-12">
       <div className="max-w-2xl mx-auto space-y-2">
+        <div className="flex gap-2 text-muted-foreground text-xs">
+          <Link
+            href="/"
+            className="hover:text-white transition-all duration-200"
+          >
+            Home
+          </Link>
+          <span> / </span>
+          <Link
+            href="/articles"
+            className="hover:text-white transition-all duration-200"
+          >
+            Articles
+          </Link>
+          <span> / </span>
+          <span className="text-white">{post.title}</span>
+        </div>
         <div className="flex justify-between gap-8">
           <h1 className="text-xl font-semibold truncate">{post.title}</h1>
           <CopyLink />
@@ -105,7 +122,7 @@ export default async function Article({
         </div>
         <Separator />
       </div>
-      <article className="prose prose-muted dark:prose-invert max-w-2xl mx-auto prose-img:shadow-2xl prose-img:rounded-md prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
+      <article className="prose prose-muted dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:border-muted max-w-2xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
         <MDXRemote source={post.content} />
       </article>
       {post.updatedAt && (
