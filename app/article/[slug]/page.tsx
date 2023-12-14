@@ -122,7 +122,7 @@ export default async function Article({
         </div>
         <Separator />
       </div>
-      <article className="prose prose-muted dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:border-muted max-w-2xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
+      <article className="prose prose-muted dark:prose-invert prose-ol:text-white prose-li:text-white prose-ul:text-white prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:border-muted max-w-2xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
         <MDXRemote source={post.content} />
       </article>
       {post.updatedAt && (
