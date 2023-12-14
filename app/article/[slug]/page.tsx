@@ -84,7 +84,7 @@ export default async function Article({
   });
 
   return (
-    <div className="mx-auto py-20 space-y-12">
+    <div className="mx-auto py-20 px-4 space-y-12">
       <div className="max-w-2xl mx-auto space-y-2">
         <div className="flex justify-between gap-8">
           <h1 className="text-xl font-semibold truncate">{post.title}</h1>
@@ -123,16 +123,11 @@ export default async function Article({
 
       <Separator className="max-w-2xl mx-auto" />
 
-      <div className="flex justify-between max-w-2xl mx-auto gap-4">
+      <div className="md:flex space-y-4 md:space-y-0 justify-between max-w-2xl mx-auto gap-4">
         {prevPost && (
           <Link
             href={`/article/${prevPost.slug}`}
-            className={`flex gap-2 max-w-[20rem] w-full h-auto ${buttonVariants(
-              {
-                variant: "ghost",
-              },
-            )}`}
-            style={{ justifyContent: "flex-start" }}
+            className={`flex gap-2 p-4 md:w-1/2 bg-neutral-900 rounded-lg border-2`}
           >
             {prevPost.title}
           </Link>
@@ -141,12 +136,7 @@ export default async function Article({
         {nextPost && (
           <Link
             href={`/article/${nextPost.slug}`}
-            className={`flex gap-2 max-w-[20rem] w-full h-auto ${buttonVariants(
-              {
-                variant: "ghost",
-              },
-            )}`}
-            style={{ justifyContent: "flex-end" }}
+            className={`flex gap-2 p-4 md:w-1/2 bg-neutral-900 rounded-lg border-2`}
           >
             {nextPost.title}
           </Link>
