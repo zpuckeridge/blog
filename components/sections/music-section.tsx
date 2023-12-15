@@ -2,99 +2,66 @@ import { getAccessToken } from "@/lib/spotify";
 import Image from "next/image";
 
 async function getCurrentTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
+  const { access_token } = await getAccessToken();
 
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
       },
-    );
+    },
+  );
 
-    if (!res.ok) {
-      if (res.status === 401) {
-        console.error("Unauthorized access. Please check your access token.");
-      } else {
-        console.error("Error fetching last played data. Status:", res.status);
-      }
-
-      return null;
-    }
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return null;
+  if (!res.ok) {
+    throw new Error("Error fetching current top tracks");
   }
+
+  const data = await res.json();
+
+  return data;
 }
 
 async function getRecentTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
+  const { access_token } = await getAccessToken();
 
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=5`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=5`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
       },
-    );
+    },
+  );
 
-    if (!res.ok) {
-      if (res.status === 401) {
-        console.error("Unauthorized access. Please check your access token.");
-      } else {
-        console.error("Error fetching last played data. Status:", res.status);
-      }
-
-      return null;
-    }
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return null;
+  if (!res.ok) {
+    throw new Error("Error fetching recent top tracks");
   }
+
+  const data = await res.json();
+
+  return data;
 }
 
 async function getAllTimeTopTracks() {
-  try {
-    const { access_token } = await getAccessToken();
+  const { access_token } = await getAccessToken();
 
-    const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+  const res = await fetch(
+    `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
       },
-    );
+    },
+  );
 
-    if (!res.ok) {
-      if (res.status === 401) {
-        console.error("Unauthorized access. Please check your access token.");
-      } else {
-        console.error("Error fetching last played data. Status:", res.status);
-      }
-
-      return null;
-    }
-
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return null;
+  if (!res.ok) {
+    throw new Error("Error fetching all time top tracks");
   }
+
+  const data = await res.json();
+
+  return data;
 }
 
 export default async function MusicTracking() {
@@ -102,13 +69,20 @@ export default async function MusicTracking() {
 
   try {
     currentTopTracks = await getCurrentTopTracks();
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
     recentTopTracks = await getRecentTopTracks();
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
     allTimeTopTracks = await getAllTimeTopTracks();
   } catch (error) {
-    console.error("Error fetching top tracks data:", error);
-    return (
-      <div>Oops! Something went wrong while fetching top tracks data.</div>
-    );
+    console.error(error);
   }
 
   return (
