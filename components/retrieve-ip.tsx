@@ -28,8 +28,10 @@ export default function RetrieveIP() {
   }, []);
 
   return data ? (
-    <TypewriterEffect
-      string={`Welcome back ${data.ip}, it's good to see someone from ${data.city}, ${data.country_name}!`}
-    />
+    <div className="max-w-sm">
+      <TypewriterEffect
+        string={`Welcome back ${data.ip}, it's good to see someone from ${data.city}, ${data.country_name}!`}
+      />
+    </div>
   ) : null;
 }

@@ -21,7 +21,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 py-1 border-b-2 w-full z-40 bg-background/75 backdrop-blur-3xl">
+    <div className="fixed top-0 py-1 border-b-2 w-full z-40 bg-background/75 backdrop-blur-lg">
       <div className="flex gap-2 justify-between px-4 max-w-7xl mx-auto">
         <div className="my-auto flex gap-2">
           <TooltipProvider>

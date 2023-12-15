@@ -75,6 +75,8 @@ export default function ShowcaseSection() {
               src="/showcase/haddon-institute.png"
               width={1000}
               height={1000}
+              priority
+              quality={100}
               alt="Haddon Institute Showcase"
             />
           </div>
@@ -155,6 +157,8 @@ export default function ShowcaseSection() {
               src="/showcase/star-compass.png"
               width={1000}
               height={1000}
+              priority
+              quality={100}
               alt="Star Compass Showcase"
             />
           </div>
@@ -172,6 +176,8 @@ export default function ShowcaseSection() {
               src="/showcase/the-armoury-bookshop.png"
               width={1000}
               height={1000}
+              priority
+              quality={100}
               alt="The Armoury Bookshop Showcase"
             />
           </div>
@@ -243,6 +249,8 @@ export default function ShowcaseSection() {
             <Image
               src="/showcase/simply-photos.png"
               width={1000}
+              priority
+              quality={100}
               height={1000}
               alt="Simply Photos Showcase"
             />

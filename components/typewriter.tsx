@@ -9,9 +9,13 @@ export default function TypewriterEffect({ string }: { string: string }) {
         onInit={(typewriter) => {
           typewriter
             .typeString(string)
+
             //   .pauseFor(2500)
             //   .deleteAll()
             .start();
+        }}
+        options={{
+          delay: 50,
         }}
       />
     </p>

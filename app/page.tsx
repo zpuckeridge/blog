@@ -37,11 +37,12 @@ export default function Home() {
     <main className="flex flex-col justify-between px-4 space-y-24 max-w-7xl mx-auto">
       <div className="relative">
         <div className="relative min-h-screen">
-          <div className="absolute top-20 w-full">
+          <div className="absolute top-20 w-full space-y-4">
             <Lanyard />
+
+            <RetrieveIP />
           </div>
           <div className="absolute bottom-4  left-0 right-0">
-            <RetrieveIP />
             <div className="flex gap-6">
               <div className="hidden xl:flex flex-col space-y-6 border-r-2 pr-6 my-auto">
                 <TooltipProvider>

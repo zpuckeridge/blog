@@ -3,6 +3,7 @@
 import { useLanyardWS } from "use-lanyard";
 import Age from "./age";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Lanyard() {
   const DISCORD_ID = "181324210876973056";
@@ -55,6 +56,12 @@ export default function Lanyard() {
     return () => clearInterval(interval);
   }, []);
 
+  const largeImage = data?.activities[0]?.assets?.large_image;
+  const largeImageSplit = largeImage?.split("/https/")[1];
+
+  const smallImage = data?.activities[0]?.assets?.small_image;
+  const smallImageSplit = smallImage?.split("/https/")[1];
+
   return (
     <div className="font-mono md:flex space-y-4 md:space-y-0 justify-between">
       <div className="text-muted-foreground text-sm">
@@ -74,13 +81,39 @@ export default function Lanyard() {
         {data?.activities?.map((activity) => {
           if (activity.name !== "Spotify") {
             return (
-              <div key={activity.id} className="text-sm text-muted-foreground">
-                <p>{activity.name}</p>
-                <p>
-                  {activity.assets?.large_text} in {activity.assets?.small_text}
-                </p>
-                <p>{activity.state}</p>
-                <p>{activity.details}</p>
+              <div
+                key={activity.id}
+                className="text-sm text-muted-foreground flex gap-4"
+              >
+                <div className="aspect-square relative w-[60px] h-[60px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://${largeImageSplit}` || ""}
+                    width={60}
+                    height={60}
+                    className="w-[60px] h-[60px] aspect-square rounded-lg border-2"
+                    alt="Activity Large Image"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://${smallImageSplit}` || ""}
+                    width={30}
+                    height={30}
+                    className="w-[30px] h-[30px] aspect-square absolute -bottom-2 -right-2 rounded-full border-2 border-black"
+                    alt="Activity Large Image"
+                  />
+                </div>
+                <div className="my-auto">
+                  <p className="text-ellipsis overflow-hidden line-clamp-1">
+                    {activity.name}
+                  </p>
+                  <p className="text-ellipsis overflow-hidden line-clamp-1">
+                    {activity.details}
+                  </p>
+                  <p className="text-ellipsis overflow-hidden line-clamp-1">
+                    {activity.state}
+                  </p>
+                </div>
               </div>
             );
           }

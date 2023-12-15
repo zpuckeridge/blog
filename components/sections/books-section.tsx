@@ -188,6 +188,7 @@ export default function BooksSection({
                 src={media.image}
                 width={200}
                 height={200}
+                priority
                 quality={100}
                 alt={media.title}
                 className="object-cover w-44 h-full rounded-md"
