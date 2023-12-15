@@ -30,6 +30,7 @@ import CallToFaith from "@/components/call-to-faith";
 import Link from "next/link";
 import ContactSection from "@/components/sections/contact-section";
 import Lanyard from "@/components/lanyard";
+import RetrieveIP from "@/components/retrieve-ip";
 
 export default function Home() {
   return (
@@ -39,138 +40,142 @@ export default function Home() {
           <div className="absolute top-20 w-full">
             <Lanyard />
           </div>
-          <div className="absolute bottom-4 flex gap-6 left-0 right-0">
-            <div className="hidden xl:flex flex-col space-y-6 border-r-2 pr-6 my-auto">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href="https://discordapp.com/users/181324210876973056"
-                      target="_blank"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <DiscordLogoIcon className="w-5 h-5" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>Discord Profile</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href="https://x.com/zpuckeridge"
-                      target="_blank"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <FaXTwitter className="w-5 h-5" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>X Profile</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href="https://sdelta.xyz"
-                      target="_blank"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <VideoIcon className="w-5 h-5" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>Livestream Website</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href="https://github.com/zpuckeridge"
-                      target="_blank"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <GitHubLogoIcon className="w-5 h-5" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>GitHub Profile</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
-                      target="_blank"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <FaSpotify className="w-5 h-5" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>Spotify Profile</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Link
-                      href="/articles"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <FileTextIcon className="w-5 h-5" />
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>Articles</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <a
-                      href="mailto:hi@zacchary.me"
-                      target="_blank"
-                      className="hover:text-muted-foreground transition-all duration-200"
-                    >
-                      <EnvelopeClosedIcon className="w-5 h-5" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent side="top" align="center" sideOffset={30}>
-                    <p>Contact Email</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-            <div>
-              <p className="xl:text-4xl lg:text-3xl text-2xl font-bold leading-none tracking-tight uppercase">
-                Web Developer
-              </p>
-              <h1 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-6xl text-5xl font-bold leading-none tracking-tight uppercase text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
-                <div>Zacchary</div>
-                <div>Puckeridge</div>
-              </h1>
-            </div>
-          </div>
+          <div className="absolute bottom-4  left-0 right-0">
+            <RetrieveIP />
+            <div className="flex gap-6">
+              <div className="hidden xl:flex flex-col space-y-6 border-r-2 pr-6 my-auto">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a
+                        href="https://discordapp.com/users/181324210876973056"
+                        target="_blank"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <DiscordLogoIcon className="w-5 h-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>Discord Profile</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a
+                        href="https://x.com/zpuckeridge"
+                        target="_blank"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <FaXTwitter className="w-5 h-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>X Profile</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a
+                        href="https://sdelta.xyz"
+                        target="_blank"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <VideoIcon className="w-5 h-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>Livestream Website</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a
+                        href="https://github.com/zpuckeridge"
+                        target="_blank"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <GitHubLogoIcon className="w-5 h-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>GitHub Profile</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a
+                        href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
+                        target="_blank"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <FaSpotify className="w-5 h-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>Spotify Profile</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Link
+                        href="/articles"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <FileTextIcon className="w-5 h-5" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>Articles</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a
+                        href="mailto:hi@zacchary.me"
+                        target="_blank"
+                        className="hover:text-muted-foreground transition-all duration-200"
+                      >
+                        <EnvelopeClosedIcon className="w-5 h-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" align="center" sideOffset={30}>
+                      <p>Contact Email</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
 
-          <div className="hidden sm:flex absolute bottom-8 right-0">
-            <Link
-              href="/#about"
-              className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 w-full"
-            >
-              Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
-            </Link>
+              <div>
+                <p className="xl:text-4xl lg:text-3xl text-2xl font-bold leading-none tracking-tight uppercase">
+                  Web Developer
+                </p>
+                <h1 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-6xl text-5xl font-bold leading-none tracking-tight uppercase text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
+                  <div>Zacchary</div>
+                  <div>Puckeridge</div>
+                </h1>
+              </div>
+            </div>
+
+            <div className="hidden sm:flex absolute bottom-8 right-0">
+              <Link
+                href="/#about"
+                className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 w-full"
+              >
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
