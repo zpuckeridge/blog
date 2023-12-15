@@ -159,7 +159,7 @@ export default function Home() {
                 </TooltipProvider>
               </div>
 
-              <div className="pb-10 md:pb-0">
+              <div className="pb-20 md:pb-0">
                 <p className="xl:text-4xl lg:text-3xl text-2xl font-bold leading-none tracking-tight uppercase">
                   Web Developer
                 </p>
