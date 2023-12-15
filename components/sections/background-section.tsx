@@ -23,34 +23,40 @@ export default function BackgroundSection() {
               Virginia to Los Angeles California.
             </p>
           </div>
-          <div className="md:flex md:space-y-0 space-y-4 justify-center py-20">
-            <Image
-              src="/roadtrip/P1011186_qkrix9.webp"
-              width={1000}
-              height={1000}
-              quality={100}
-              priority
-              alt=""
-              className="w-60 h-full rounded-lg border-2 border-muted md:-rotate-[10deg] z-30 my-auto md:-mr-4 shadow-2xl mx-auto md:mx-0"
-            />
-            <Image
-              src="/roadtrip/P1011348_ugskcv.webp"
-              width={1000}
-              height={1000}
-              quality={100}
-              priority
-              alt=""
-              className="w-96 h-full rounded-lg border-2 border-muted z-20 shadow-2xl mx-auto md:mx-0"
-            />
-            <Image
-              src="/roadtrip/P1011152_t1mdns.webp"
-              width={1000}
-              height={1000}
-              quality={100}
-              priority
-              alt=""
-              className="w-72 h-full rounded-lg border-2 border-muted md:rotate-[7deg] z-30 my-auto md:-ml-10 md:mt-14 shadow-2xl mx-auto md:mx-0"
-            />
+          <div className="md:flex md:space-y-0 space-y-4 justify-center py-20 px-8">
+            <div className="-mr-6 mt-20">
+              <Image
+                src="/roadtrip/P1011186_qkrix9.webp"
+                width={1000}
+                height={1000}
+                quality={100}
+                priority
+                alt=""
+                className="w-60 rounded-lg border-2 border-muted md:-rotate-[10deg] z-30 shadow-2xl mx-auto md:mx-0"
+              />
+            </div>
+            <div>
+              <Image
+                src="/roadtrip/P1011348_ugskcv.webp"
+                width={1000}
+                height={1000}
+                quality={100}
+                priority
+                alt=""
+                className="w-96 rounded-lg border-2 border-muted z-20 shadow-2xl mx-auto md:mx-0"
+              />
+            </div>
+            <div className="-ml-8 mt-20">
+              <Image
+                src="/roadtrip/P1011152_t1mdns.webp"
+                width={1000}
+                height={1000}
+                quality={100}
+                priority
+                alt=""
+                className="w-72 rounded-lg border-2 border-muted md:rotate-[7deg] z-30 shadow-2xl mx-auto md:mx-0"
+              />
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <p>

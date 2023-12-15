@@ -11,6 +11,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
+import ScrollToTop from "@/components/scroll-to-top";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zacchary.me"),
@@ -93,6 +94,7 @@ export default function RootLayout({
             <Dot />
             <Navigation />
             {children}
+            <ScrollToTop />
             <Toaster />
             <Footer />
           </ThemeProvider>

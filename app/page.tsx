@@ -31,6 +31,7 @@ import Link from "next/link";
 import ContactSection from "@/components/sections/contact-section";
 import Lanyard from "@/components/lanyard";
 import RetrieveIP from "@/components/retrieve-ip";
+import SmoothScrollLink from "@/components/scroll-down";
 
 export default function Home() {
   return (
@@ -169,35 +170,31 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hidden sm:flex absolute bottom-8 right-0">
-              <Link
-                href="/#about"
-                className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 w-full"
-              >
-                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
-              </Link>
-            </div>
+            <SmoothScrollLink />
           </div>
         </div>
       </div>
 
-      <div className="space-y-20" id="about">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" /> About
-        </p>
-        <p className="md:text-6xl sm:text-5xl text-4xl font-bold leading-none tracking-tight">
-          A Christian IT Administrator working for{" "}
-          <a
-            href="https://www.rsp.com.au/"
-            target="_blank"
-            aria-label="Rising Sun Pictures Website"
-            className="text-[#fff200] hover:text-[#fff200cb] transition-all duration-200"
-          >
-            Rising Sun Pictures
-          </a>
-          . Building better artist experiences by day, designing epic Web
-          Experiences by night.
-        </p>
+      <div className="pt-20" id="about">
+        <div className="space-y-20">
+          <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
+            <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+            About
+          </p>
+          <p className="md:text-6xl sm:text-5xl text-4xl font-bold leading-none tracking-tight">
+            A Christian IT Administrator working for{" "}
+            <a
+              href="https://www.rsp.com.au/"
+              target="_blank"
+              aria-label="Rising Sun Pictures Website"
+              className="text-[#fff200] hover:text-[#fff200cb] transition-all duration-200"
+            >
+              Rising Sun Pictures
+            </a>
+            . Building better artist experiences by day, designing epic Web
+            Experiences by night.
+          </p>
+        </div>
       </div>
 
       <div className="space-y-20">
