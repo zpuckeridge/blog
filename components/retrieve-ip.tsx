@@ -33,5 +33,11 @@ export default function RetrieveIP() {
         string={`Welcome back ${data.ip}, it's good to see someone from ${data.city}, ${data.country_name}!`}
       />
     </div>
-  ) : null;
+  ) : (
+    <div className="max-w-sm">
+      <TypewriterEffect
+        string={`You have eluded my IP grabber! Someones got some fancy DNS rules...`}
+      />
+    </div>
+  );
 }
