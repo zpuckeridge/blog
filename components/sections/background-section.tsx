@@ -24,7 +24,7 @@ export default function BackgroundSection() {
             </p>
           </div>
           <div className="md:flex md:space-y-0 space-y-4 justify-center py-20 px-8">
-            <div className="-mr-6 mt-20">
+            <div className="md:-mr-6 md:mt-20">
               <Image
                 src="/roadtrip/P1011186_qkrix9.webp"
                 width={1000}
@@ -32,7 +32,7 @@ export default function BackgroundSection() {
                 quality={100}
                 priority
                 alt=""
-                className="w-60 rounded-lg border-2 border-muted md:-rotate-[10deg] z-30 shadow-2xl mx-auto md:mx-0"
+                className="w-full md:w-60 rounded-lg border-2 border-muted md:-rotate-[10deg] z-30 shadow-2xl mx-auto md:mx-0"
               />
             </div>
             <div>
@@ -43,10 +43,10 @@ export default function BackgroundSection() {
                 quality={100}
                 priority
                 alt=""
-                className="w-96 rounded-lg border-2 border-muted z-20 shadow-2xl mx-auto md:mx-0"
+                className="w-full md:w-96 rounded-lg border-2 border-muted z-20 shadow-2xl mx-auto md:mx-0"
               />
             </div>
-            <div className="-ml-8 mt-20">
+            <div className="md:-ml-8 md:mt-20 ">
               <Image
                 src="/roadtrip/P1011152_t1mdns.webp"
                 width={1000}
@@ -54,7 +54,7 @@ export default function BackgroundSection() {
                 quality={100}
                 priority
                 alt=""
-                className="w-72 rounded-lg border-2 border-muted md:rotate-[7deg] z-30 shadow-2xl mx-auto md:mx-0"
+                className="w-full md:w-72 rounded-lg border-2 border-muted md:rotate-[7deg] z-30 shadow-2xl mx-auto md:mx-0"
               />
             </div>
           </div>
