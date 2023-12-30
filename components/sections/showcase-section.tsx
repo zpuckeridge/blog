@@ -1,71 +1,7 @@
-import {
-  ArrowTopRightIcon,
-  DrawingPinFilledIcon,
-  ExternalLinkIcon,
-} from "@radix-ui/react-icons";
+import { ArrowTopRightIcon, DrawingPinFilledIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
 export default function ShowcaseSection() {
-  // const media = [
-  //   {
-  //     title: "Haddon Institute",
-  //     image: "/showcase/haddon-institute.png",
-  //     description:
-  //       "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
-  //     technologies: [
-  //       "Next.JS",
-  //       "Framer Motion",
-  //       "Mux",
-  //       "Blocknotes",
-  //       "Radix UI",
-  //       "shadcn/ui",
-  //       "Tailwind CSS",
-  //       "Clerk",
-  //       "Stripe",
-  //       "Prisma",
-  //     ],
-  //     url: "https://haddoninstitute.org",
-  //   },
-  //   {
-  //     title: "Star",
-  //     image: "/showcase/star.png",
-  //     description:
-  //       "Star is a social media platform that allows you to share your thoughts and ideas with the world. It's a place to be yourself and to be heard.",
-  //     technologies: [
-  //       "Next.JS",
-  //       "Framer Motion",
-  //       "Mux",
-  //       "Blocknotes",
-  //       "Radix UI",
-  //       "shadcn/ui",
-  //       "Tailwind CSS",
-  //       "Clerk",
-  //       "Stripe",
-  //       "Prisma",
-  //     ],
-  //     url: "https://star.zacchary.me",
-  //   },
-  //   {
-  //     title: "Zacchary.me",
-  //     image: "/showcase/zacchary.me.png",
-  //     description:
-  //       "My personal website. This website is a place for me to showcase my work and my thoughts.",
-  //     technologies: [
-  //       "Next.JS",
-  //       "Framer Motion",
-  //       "Mux",
-  //       "Blocknotes",
-  //       "Radix UI",
-  //       "shadcn/ui",
-  //       "Tailwind CSS",
-  //       "Clerk",
-  //       "Stripe",
-  //       "Prisma",
-  //     ],
-  //     url: "https://zacchary.me",
-  //   },
-  // ];
-
   return (
     <div className="space-y-28">
       <div className="md:flex space-y-4 md:space-y-0 gap-12">
@@ -82,7 +18,7 @@ export default function ShowcaseSection() {
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
-            Gravatt East, Brisbane
+            Gravatt, Brisbane
           </p>
         </div>
         <div className="space-y-6 md:w-1/2 my-auto">
@@ -164,7 +100,7 @@ export default function ShowcaseSection() {
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
-            Gravatt East, Brisbane
+            Gravatt, Brisbane
           </p>
         </div>
       </div>
@@ -183,7 +119,7 @@ export default function ShowcaseSection() {
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
-            Gravatt East, Brisbane
+            Gravatt, Brisbane
           </p>
         </div>
         <div className="space-y-6 md:w-1/2 my-auto">
@@ -206,6 +142,108 @@ export default function ShowcaseSection() {
           <div>
             <a
               href="https://thearmourybookshop.com.au"
+              target="_blank"
+              className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm"
+            >
+              View Website{" "}
+              <ArrowTopRightIcon className="inline-block w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="md:flex space-y-4 md:space-y-0 gap-12">
+        <div className="space-y-6 md:w-1/2 my-auto">
+          <h1 className="md:text-7xl sm:text-6xl text-5xl uppercase font-bold leading-none tracking-tight text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
+            <div>61 Oaks Group</div>
+          </h1>
+          <p className="text-lg">
+            61 Oaks Group is a cohort of companies that participate in God’s
+            work in the marketplace. The downstream impacts of the gospel
+            include an experiential understanding and application of our
+            theology of business and therefore the interaction with each other
+            in the economy of products and services.
+          </p>
+          <div className="p-4 bg-neutral-900 border-2 rounded-lg">
+            <ul className="grid grid-cols-1 md:grid-cols-3">
+              <li>Next.JS</li>
+              <li>Framer Motion</li>
+              <li>Radix UI</li>
+              <li>shadcn/ui</li>
+              <li>Tailwind CSS</li>
+              <li>Ghost</li>
+              <li>Clerk</li>
+            </ul>
+          </div>
+          <div>
+            <a
+              href="https://61oaksgroup.com.au"
+              target="_blank"
+              className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm"
+            >
+              View Website{" "}
+              <ArrowTopRightIcon className="inline-block w-4 h-4" />
+            </a>
+          </div>
+        </div>
+        <div className="md:w-1/2 space-y-2">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+            <Image
+              src="/showcase/61-oaks-group.png"
+              width={1000}
+              height={1000}
+              priority
+              quality={100}
+              alt="61 Oaks Group Showcase"
+            />
+          </div>
+          <p className="text-xs font-mono uppercase">
+            <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
+            Gravatt, Brisbane
+          </p>
+        </div>
+      </div>
+
+      <div className="md:flex space-y-4 md:space-y-0 gap-12">
+        <div className="md:w-1/2 space-y-2">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+            <Image
+              src="/showcase/livestream.png"
+              width={1000}
+              height={1000}
+              priority
+              quality={100}
+              alt="Clip Sharing Platform Showcase"
+            />
+          </div>
+          <p className="text-xs font-mono uppercase">
+            <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Brisbane
+          </p>
+        </div>
+        <div className="space-y-6 md:w-1/2 my-auto">
+          <h1 className="md:text-7xl sm:text-6xl text-5xl uppercase font-bold leading-none tracking-tight text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
+            <div>Clip Sharing</div>
+            <div>Platform</div>
+          </h1>
+          <p className="text-lg">
+            A video sharing site built with Next.JS, Planetscale, Prisma, Mux,
+            and Tailwind CSS hosted on Vercel.
+          </p>
+          <div className="p-4 bg-neutral-900 border-2 rounded-lg">
+            <ul className="grid grid-cols-1 md:grid-cols-3">
+              <li>Next.JS</li>
+              <li>Planetscale</li>
+              <li>Prisma</li>
+              <li>Radix UI</li>
+              <li>shadcn/ui</li>
+              <li>Tailwind CSS</li>
+              <li>Mux</li>
+              <li>Clerk</li>
+            </ul>
+          </div>
+          <div>
+            <a
+              href="https://sdelta.xyz"
               target="_blank"
               className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm"
             >

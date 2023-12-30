@@ -53,7 +53,7 @@ export default function Navigation() {
           <div className="hidden md:flex gap-6 ">
             <Link
               className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
-                pathname === "/articles"
+                pathname.startsWith("/article")
                   ? "text-white underline underline-offset-4"
                   : ""
               }`}

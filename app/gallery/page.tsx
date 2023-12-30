@@ -16,7 +16,7 @@ export default async function GalleryPage() {
     .execute();
 
   return (
-    <div className="max-w-7xl mx-auto py-20">
+    <div className="max-w-7xl mx-auto py-20 px-4">
       <Gallery images={data.resources} />
     </div>
   );
