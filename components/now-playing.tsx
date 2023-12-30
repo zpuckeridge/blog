@@ -13,10 +13,10 @@ export default function NowPlaying() {
       <a
         href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
         target="_blank"
-        className="flex gap-2 font-mono uppercase tracking-tight leading-snug hover:text-muted-foreground transition-all duration-200"
+        className="flex gap-2 tracking-tight leading-snug hover:text-white text-muted-foreground hover:underline underline-offset-4 transition-all duration-200"
       >
         <div className="w-10 h-10 flex items-center justify-center">
-          <FaSpotify className="h-5 w-5" />
+          <FaSpotify className="h-5 w-5 text-white" />
         </div>
         <div className="my-auto">
           <p className="text-sm">Not Playing</p>
@@ -29,7 +29,7 @@ export default function NowPlaying() {
     <a
       href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
       target="_blank"
-      className="flex gap-2 font-mono uppercase tracking-tight leading-snug hover:text-muted-foreground transition-all duration-200"
+      className="flex gap-2 tracking-tight leading-snug hover:text-white text-muted-foreground transition-all duration-200"
     >
       <Image
         src={data.spotify?.album_art_url || "/avatar.jpg"}

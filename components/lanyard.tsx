@@ -1,75 +1,72 @@
 "use client";
 
 import { useLanyardWS } from "use-lanyard";
-import Age from "./age";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Age from "./age";
 
 export default function Lanyard() {
   const DISCORD_ID = "181324210876973056";
   const data = useLanyardWS(DISCORD_ID);
 
-  let statusText;
-  let dotColor;
-
-  if (!data || !data.discord_status) {
-    statusText = "Loading..."; // Default status while data is being fetched
-    dotColor = "bg-gray-400"; // Default color for loading
-  } else {
-    const discordStatus = data.discord_status;
-
-    // Check different status types and set the text and dot color accordingly
-    if (discordStatus === "idle") {
-      statusText = "Idle";
-      dotColor = "bg-yellow-300";
-    } else if (discordStatus === "online") {
-      statusText = "Online";
-      dotColor = "bg-green-500";
-    } else if (discordStatus === "dnd") {
-      statusText = "Do Not Disturb";
-      dotColor = "bg-red-500";
-    } else {
-      statusText = "Unknown Status";
-      dotColor = "bg-gray-400";
+  const getStatusTextAndColor = () => {
+    if (!data || !data.discord_status) {
+      return { statusText: "Loading...", dotColor: "bg-gray-400" };
     }
-  }
 
-  const [brisbaneTime, setBrisbaneTime] = useState("0:00:00 ?? GMT+10"); // State to hold Brisbane time
+    const discordStatus = data.discord_status;
+    let statusText, dotColor;
+
+    switch (discordStatus) {
+      case "idle":
+        statusText = "Idle";
+        dotColor = "bg-yellow-300";
+        break;
+      case "online":
+        statusText = "Online";
+        dotColor = "bg-green-500";
+        break;
+      case "dnd":
+        statusText = "Do Not Disturb";
+        dotColor = "bg-red-500";
+        break;
+      default:
+        statusText = "Unknown Status";
+        dotColor = "bg-gray-400";
+        break;
+    }
+
+    return { statusText, dotColor };
+  };
+
+  const [brisbaneTime, setBrisbaneTime] = useState("0:00:00 ?? GMT+10");
 
   useEffect(() => {
-    // Function to get current time in Brisbane
     const getCurrentTimeInBrisbane = () => {
-      const brisbaneTimezone = "Australia/Brisbane"; // Brisbane's timezone
+      const brisbaneTimezone = "Australia/Brisbane";
       const formatter = new Intl.DateTimeFormat("en-US", {
         timeZone: brisbaneTimezone,
-        timeStyle: "long", // You can change this to "short" or "long" as needed
-        hour12: true, // Set to true for 12-hour format, false for 24-hour format
+        timeStyle: "long",
+        hour12: true,
       });
       const currentTime = formatter.format(new Date());
       setBrisbaneTime(currentTime);
     };
 
-    // Update Brisbane time every second
     const interval = setInterval(getCurrentTimeInBrisbane, 1000);
 
-    // Clear interval on component unmount to prevent memory leaks
     return () => clearInterval(interval);
   }, []);
-
-  const largeImage = data?.activities[0]?.assets?.large_image;
-  const largeImageSplit = largeImage?.split("/https/")[1];
-
-  const smallImage = data?.activities[0]?.assets?.small_image;
-  const smallImageSplit = smallImage?.split("/https/")[1];
 
   return (
     <div className="font-mono md:flex space-y-4 md:space-y-0 justify-between">
       <div className="text-muted-foreground text-sm">
         <div className="flex gap-2">
           <div
-            className={`w-3 h-3 animate-pulse rounded-full my-auto ${dotColor}`}
+            className={`w-3 h-3 animate-pulse rounded-full my-auto ${
+              getStatusTextAndColor().dotColor
+            }`}
           />
-          <p className="my-auto">{statusText}</p>
+          <p className="my-auto">{getStatusTextAndColor().statusText}</p>
         </div>
         <p>
           <Age /> y/o Web Developer
@@ -80,13 +77,17 @@ export default function Lanyard() {
       <div className="my-auto">
         {data?.activities?.map((activity) => {
           if (activity.name !== "Spotify") {
+            const largeImageSplit =
+              activity?.assets?.large_image?.split("/https/")[1];
+            const smallImageSplit =
+              activity?.assets?.small_image?.split("/https/")[1];
+
             return (
               <div
                 key={activity.id}
                 className="text-sm text-muted-foreground flex gap-4"
               >
                 <div className="aspect-square relative w-[60px] h-[60px]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`https://${largeImageSplit}` || ""}
                     width={60}
@@ -94,7 +95,6 @@ export default function Lanyard() {
                     className="w-[60px] h-[60px] aspect-square rounded-lg border-2"
                     alt="Activity Large Image"
                   />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`https://${smallImageSplit}` || ""}
                     width={30}
@@ -117,6 +117,7 @@ export default function Lanyard() {
               </div>
             );
           }
+          return null;
         })}
       </div>
     </div>

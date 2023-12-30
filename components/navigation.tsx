@@ -75,7 +75,7 @@ export default function Navigation() {
         </div>
 
         <Link
-          className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
+          className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 hidden md:flex ${
             pathname === "/hire-me"
               ? "text-white underline underline-offset-4"
               : ""

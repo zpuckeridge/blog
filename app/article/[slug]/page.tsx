@@ -7,6 +7,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Separator } from "@/components/ui/separator";
 import CopyLink from "@/components/copy-link";
 import type { Metadata, ResolvingMetadata } from "next";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
@@ -144,18 +145,20 @@ export default async function Article({
         {prevPost && (
           <Link
             href={`/article/${prevPost.slug}`}
-            className={`flex gap-2 p-4 md:w-1/2 bg-neutral-900 rounded-lg border-2`}
+            className={`flex justify-between gap-2 p-4 md:w-1/2 bg-neutral-900 hover:bg-muted transition-all duration-200 rounded-lg border-2`}
           >
-            {prevPost.title}
+            <ArrowLeftIcon className="my-auto w-5 h-5" />{" "}
+            <p className="my-auto">{prevPost.title}</p>
           </Link>
         )}
 
         {nextPost && (
           <Link
             href={`/article/${nextPost.slug}`}
-            className={`flex gap-2 p-4 md:w-1/2 bg-neutral-900 rounded-lg border-2`}
+            className={`flex justify-between gap-2 p-4 md:w-1/2 bg-neutral-900 hover:bg-muted transition-all duration-200 rounded-lg border-2`}
           >
-            {nextPost.title}
+            <p className="my-auto">{nextPost.title}</p>{" "}
+            <ArrowRightIcon className="my-auto w-5 h-5" />
           </Link>
         )}
       </div>

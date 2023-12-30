@@ -16,9 +16,6 @@ export default async function Articles() {
 
   return (
     <div className="mx-auto max-w-7xl py-20 px-4">
-      {/* list latest article */}
-      {/* list featured articles */}
-
       <div className="flex flex-wrap gap-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {posts.map((post: any) => (

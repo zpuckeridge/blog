@@ -177,9 +177,8 @@ export default function Home() {
 
       <div className="pt-20" id="about">
         <div className="space-y-20">
-          <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-            <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
-            About
+          <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+            <DotFilledIcon className="w-4 h-4 animate-pulse my-auto" /> About
           </p>
           <p className="md:text-6xl sm:text-5xl text-4xl font-bold leading-none tracking-tight">
             A Christian IT Administrator working for{" "}
@@ -198,25 +197,23 @@ export default function Home() {
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
-          Background
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className="w-4 h-4 animate-pulse my-auto" /> Background
         </p>
 
         <BackgroundSection />
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
-          Experience
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className="w-4 h-4 animate-pulse my-auto" /> Experience
         </p>
 
         <ExperienceSection />
 
         <div className="space-y-2">
           <p className="text-center text-lg">
-            Keep busy so that you might avoid temptation.
+            Stay occupied to steer clear of temptation.
           </p>
           <HoverCard>
             <HoverCardTrigger asChild>
@@ -240,8 +237,8 @@ export default function Home() {
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className="w-4 h-4 animate-pulse my-auto" />{" "}
           Qualifications
         </p>
         <div className="md:flex justify-between space-y-4 md:space-y-0 max-w-5xl mx-auto gap-4">
@@ -254,8 +251,8 @@ export default function Home() {
             </p>
             <p className="font-normal leading-none tracking-tight">
               Dec 2023{" "}
-              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" /> Jan
-              2024
+              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" />{" "}
+              Current
             </p>
           </div>
           <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
@@ -285,8 +282,7 @@ export default function Home() {
         </div>
         <div className="space-y-2">
           <p className="text-center text-lg">
-            You don&apos;t necessarily need to be qualified to become good at
-            something.
+            Skill in something doesn&apos;t always demand prior qualifications.
           </p>
           <HoverCard>
             <HoverCardTrigger asChild>
@@ -311,9 +307,8 @@ export default function Home() {
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
-          Showcase
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className=" w-4 h-4 animate-pulse my-auto" /> Showcase
         </p>
 
         <ShowcaseSection />
@@ -348,8 +343,8 @@ export default function Home() {
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" /> Music
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className=" w-4 h-4 animate-pulse my-auto" /> Music
         </p>
         <div>
           <MusicTracking />
@@ -383,8 +378,8 @@ export default function Home() {
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className=" w-4 h-4 animate-pulse my-auto" />{" "}
           Recommended Books
         </p>
 
@@ -392,17 +387,16 @@ export default function Home() {
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" /> Uses
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className="w-4 h-4 animate-pulse my-auto" /> Uses
         </p>
 
         <UsesSection />
       </div>
 
       <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
-          Currently
+        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2 flex gap-2">
+          <DotFilledIcon className=" w-4 h-4 animate-pulse my-auto" /> Currently
         </p>
         <p className="md:text-6xl sm:text-5xl text-4xl font-bold leading-none tracking-tight">
           Building a confessionally Reformed bookstore called{" "}

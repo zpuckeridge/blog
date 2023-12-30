@@ -3,7 +3,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import ManageArticle from "@/components/dashboard/manage-article";
 import { Button } from "@/components/ui/button";
-import { utcToZonedTime } from "date-fns-tz";
 import { format } from "date-fns";
 import {
   ArrowTopRightIcon,
@@ -98,12 +97,7 @@ export const columns: ColumnDef<Posts>[] = [
     cell: ({ row }) => {
       const date = row.original.createdAt;
 
-      const timezone = "Australia/Brisbane";
-
-      const formattedDate = format(
-        utcToZonedTime(new Date(date), timezone),
-        "MMMM d, yyyy",
-      );
+      const formattedDate = format(date, "dd MMM yyyy");
 
       return (
         <div className="flex items-center">

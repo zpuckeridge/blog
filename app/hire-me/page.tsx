@@ -232,7 +232,7 @@ export default function HireMe() {
         </div>
 
         <div className="space-y-2 z-30">
-          <div className="rounded-md border-2 border-green-500 bg-background max-w-[450px] w-full mx-auto h-auto p-4 md:p-8 space-y-2">
+          <div className="rounded-md border-2 border-green-500 bg-background max-w-[450px] w-full mx-auto h-auto p-8 space-y-2">
             <p className="text-2xl text-center font-semibold">
               Receive a kickback of
             </p>
