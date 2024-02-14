@@ -3,12 +3,11 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import Image from "next/image";
 import NowPlaying from "./now-playing";
 
 export default function Footer() {
   return (
-    <div className="py-1 border-t w-full mt-10">
+    <div className="py-1 border-t-2 w-full mt-10">
       <div className="flex justify-between px-4 max-w-7xl mx-auto">
         <NowPlaying />
 

@@ -1,4 +1,8 @@
-import { ArrowTopRightIcon, DrawingPinFilledIcon } from "@radix-ui/react-icons";
+import {
+  ArrowDownIcon,
+  ArrowTopRightIcon,
+  DrawingPinFilledIcon,
+} from "@radix-ui/react-icons";
 import Image from "next/image";
 
 export default function ShowcaseSection() {
@@ -6,7 +10,7 @@ export default function ShowcaseSection() {
     <div className="space-y-28">
       <div className="md:flex space-y-4 md:space-y-0 gap-12">
         <div className="md:w-1/2 space-y-2">
-          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg ">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg scrollbar-hide relative">
             <Image
               src="/showcase/haddon-institute.png"
               width={1000}
@@ -15,6 +19,12 @@ export default function ShowcaseSection() {
               quality={100}
               alt="Haddon Institute Showcase"
             />
+            <div className="absolute bottom-2 right-2 ">
+              <div className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm relative">
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+                <div className="h-2 w-2 rounded-full bg-white animate-ping absolute -top-1 -right-1"></div>
+              </div>
+            </div>
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
@@ -88,7 +98,7 @@ export default function ShowcaseSection() {
           </div>
         </div>
         <div className="md:w-1/2 space-y-2">
-          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg scrollbar-hide relative">
             <Image
               src="/showcase/star-compass.png"
               width={1000}
@@ -97,6 +107,12 @@ export default function ShowcaseSection() {
               quality={100}
               alt="Star Compass Showcase"
             />
+            <div className="absolute bottom-2 right-2 ">
+              <div className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm relative">
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+                <div className="h-2 w-2 rounded-full bg-white animate-ping absolute -top-1 -right-1"></div>
+              </div>
+            </div>
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
@@ -107,7 +123,7 @@ export default function ShowcaseSection() {
 
       <div className="md:flex space-y-4 md:space-y-0 gap-12">
         <div className="md:w-1/2 space-y-2">
-          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg scrollbar-hide relative">
             <Image
               src="/showcase/the-armoury-bookshop.png"
               width={1000}
@@ -116,6 +132,12 @@ export default function ShowcaseSection() {
               quality={100}
               alt="The Armoury Bookshop Showcase"
             />
+            <div className="absolute bottom-2 right-2 ">
+              <div className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm relative">
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+                <div className="h-2 w-2 rounded-full bg-white animate-ping absolute -top-1 -right-1"></div>
+              </div>
+            </div>
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
@@ -187,7 +209,7 @@ export default function ShowcaseSection() {
           </div>
         </div>
         <div className="md:w-1/2 space-y-2">
-          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg scrollbar-hide relative">
             <Image
               src="/showcase/61-oaks-group.png"
               width={1000}
@@ -196,6 +218,12 @@ export default function ShowcaseSection() {
               quality={100}
               alt="61 Oaks Group Showcase"
             />
+            <div className="absolute bottom-2 right-2 ">
+              <div className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm relative">
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+                <div className="h-2 w-2 rounded-full bg-white animate-ping absolute -top-1 -right-1"></div>
+              </div>
+            </div>
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Mount
@@ -206,7 +234,7 @@ export default function ShowcaseSection() {
 
       <div className="md:flex space-y-4 md:space-y-0 gap-12">
         <div className="md:w-1/2 space-y-2">
-          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg scrollbar-hide relative">
             <Image
               src="/showcase/livestream.png"
               width={1000}
@@ -215,6 +243,12 @@ export default function ShowcaseSection() {
               quality={100}
               alt="Clip Sharing Platform Showcase"
             />
+            <div className="absolute bottom-2 right-2 ">
+              <div className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm relative">
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+                <div className="h-2 w-2 rounded-full bg-white animate-ping absolute -top-1 -right-1"></div>
+              </div>
+            </div>
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Brisbane
@@ -283,7 +317,7 @@ export default function ShowcaseSection() {
           </div>
         </div>
         <div className="md:w-1/2 space-y-2">
-          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg">
+          <div className="max-h-[450px] overflow-y-auto border-2 rounded-lg scrollbar-hide relative">
             <Image
               src="/showcase/simply-photos.png"
               width={1000}
@@ -292,6 +326,12 @@ export default function ShowcaseSection() {
               height={1000}
               alt="Simply Photos Showcase"
             />
+            <div className="absolute bottom-2 right-2 ">
+              <div className="px-2 py-1 bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 text-white font-mono uppercase tracking-tight leading-none text-sm relative">
+                Scroll Down <ArrowDownIcon className="inline-block w-4 h-4" />
+                <div className="h-2 w-2 rounded-full bg-white animate-ping absolute -top-1 -right-1"></div>
+              </div>
+            </div>
           </div>
           <p className="text-xs font-mono uppercase">
             <DrawingPinFilledIcon className="inline-block w-4 h-4" /> Toowong,

@@ -3,7 +3,7 @@ import Age from "../age";
 
 export default function BackgroundSection() {
   return (
-    <div className="flex flex-col gap-8 text-lg">
+    <div className="flex flex-col gap-8 text-lg leading-relaxed">
       <div>
         <div className="space-y-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
