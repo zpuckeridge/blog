@@ -90,7 +90,11 @@ export default function RootLayout({
             GeistMono.variable,
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+          >
             <Dot />
             <Navigation />
             {children}
