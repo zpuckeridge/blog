@@ -1,5 +1,4 @@
 import {
-  ArrowDownIcon,
   ArrowRightIcon,
   DiscordLogoIcon,
   DotFilledIcon,
@@ -28,7 +27,6 @@ import UsesSection from "@/components/sections/uses-section";
 import BackgroundSection from "@/components/sections/background-section";
 import CallToFaith from "@/components/call-to-faith";
 import Link from "next/link";
-import ContactSection from "@/components/sections/contact-section";
 import Lanyard from "@/components/lanyard";
 import RetrieveIP from "@/components/retrieve-ip";
 import SmoothScrollLink from "@/components/scroll-down";
@@ -420,15 +418,6 @@ export default function Home() {
           .
         </p>
       </div>
-
-      {/* <div className="space-y-20">
-        <p className="font-mono uppercase text-sm font-semibold px-2 py-1 bg-neutral-900 border-2">
-          <DotFilledIcon className="inline-block w-4 h-4 animate-pulse" />{" "}
-          Contact
-        </p>
-
-        <ContactSection />
-      </div> */}
 
       <CallToFaith />
     </main>

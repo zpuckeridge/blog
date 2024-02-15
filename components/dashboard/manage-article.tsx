@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -37,29 +37,42 @@ export default function ManageArticle({
   slug: string;
 }) {
   const router = useRouter();
-  const pathname = usePathname();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isPending, startTransition] = useTransition();
-  const isMutating = isLoading || isPending;
-
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
 
-  async function deleteDocument(id: string) {
-    const res = await fetch(`/api/posts/${id}`, {
-      method: "DELETE",
-    });
+  const handleDelete = async () => {
+    try {
+      setIsLoading(true);
 
-    if (!res?.ok) {
+      const response = await fetch(`/api/article/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Article Deleted",
+          description: "Article was successfully updated.",
+          variant: "destructive",
+        });
+
+        router.refresh();
+      }
+    } catch (e) {
       toast({
         title: "Something went wrong.",
-        description: "Your document was not deleted. Please try again.",
+        description: "Please try again.",
         variant: "destructive",
       });
-      return false;
+    } finally {
+      setIsLoading(false);
     }
-    return true;
-  }
+  };
 
   return (
     <>
@@ -100,38 +113,18 @@ export default function ManageArticle({
               Are you sure you want to delete this article?
             </AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone.
+              You are permanently deleting{" "}
+              <span className="font-semibold">{title}</span>. This action cannot
+              be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
-              onClick={async (event) => {
-                event.preventDefault();
-                setIsLoading(true);
-
-                const deleted = await deleteDocument(id);
-
-                if (deleted) {
-                  startTransition(() => {
-                    if (pathname.includes(id)) {
-                      router.push(`/`);
-                    }
-                    // Force a cache invalidation.
-                    router.refresh();
-                  });
-                  toast({
-                    title: "Article deleted.",
-                    description: `${title} was successfully deleted.`,
-                    variant: "default",
-                  });
-                }
-                setIsLoading(false);
-                setShowDeleteAlert(false);
-              }}
+              onClick={handleDelete}
               className={buttonVariants({ variant: "destructive" })}
             >
-              {isMutating ? (
+              {isLoading ? (
                 <TrashIcon className="mr-2 h-4 w-4" />
               ) : (
                 <TrashIcon className="mr-2 h-4 w-4" />

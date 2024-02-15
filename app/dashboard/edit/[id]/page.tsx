@@ -1,15 +1,9 @@
-import Editor from "@/components/dashboard/edit-article";
+import EditArticleForm from "@/components/dashboard/edit-article";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { notFound, redirect } from "next/navigation";
 
-type DocumentProps = {
-  params: {
-    id: string;
-  };
-};
-
-async function getDocument(id: string) {
+async function retrieveArticle(id: string) {
   return await prisma.posts.findFirst({
     where: {
       id: id,
@@ -18,6 +12,7 @@ async function getDocument(id: string) {
       title: true,
       description: true,
       content: true,
+      blocks: true,
       slug: true,
       tag: true,
       published: true,
@@ -25,29 +20,34 @@ async function getDocument(id: string) {
   });
 }
 
-export default async function DocumentPage(props: DocumentProps) {
+export default async function ArticlePage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { userId } = auth();
 
   if (userId !== process.env.ADMIN_ID) {
     redirect("/unauthorised");
   }
 
-  const document = await getDocument(props.params.id);
+  const article = await retrieveArticle(params.id);
 
-  if (!document) {
+  if (!article) {
     notFound();
   }
 
   return (
-    <Editor
-      id={props.params.id}
-      document={{
-        title: document.title,
-        description: document.description,
-        content: document.content,
-        slug: document.slug,
-        tag: document.tag,
-        published: document.published,
+    <EditArticleForm
+      id={params.id}
+      article={{
+        title: article.title,
+        description: article.description,
+        content: article.content,
+        blocks: article.blocks,
+        slug: article.slug,
+        tag: article.tag,
+        published: article.published,
       }}
     />
   );

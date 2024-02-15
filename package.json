@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,6 +14,8 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@blocknote/core": "^0.11.2",
+    "@blocknote/react": "^0.11.2",
     "@clerk/nextjs": "4.29.7",
     "@hookform/resolvers": "^3.3.4",
     "@prisma/client": "^5.9.1",
@@ -48,13 +50,7 @@
     "@react-hook/mouse-position": "^4.1.3",
     "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/typography": "^0.5.10",
-    "@tanstack/react-table": "^8.11.8",
-    "@tsparticles/engine": "^3.2.1",
-    "@tsparticles/react": "^3.0.0",
-    "@tsparticles/slim": "^3.2.1",
-    "@upstash/ratelimit": "^1.0.1",
-    "@vercel/kv": "^1.0.1",
-    "ai": "^2.2.35",
+    "@tanstack/react-table": "^8.12.0",
     "captions": "link:yet-another-react-lightbox/plugins/captions",
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^2.0.1",
@@ -70,8 +66,6 @@
     "next": "14.1.0",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
-    "novel": "^0.2.4",
-    "openai": "^4.28.0",
     "prisma": "^5.9.1",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.0",

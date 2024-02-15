@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { nanoid } from "nanoid";
-import { CreateDocType } from "@/app/api/posts/route";
+import { CreateDocType } from "@/app/api/article/route";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 export default function CreateArticle() {
@@ -48,7 +48,7 @@ export default function CreateArticle() {
     // Generate a new ID before submitting the form
     const newId = nanoid(12);
 
-    const res = await fetch("/api/posts", {
+    const res = await fetch("/api/article", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

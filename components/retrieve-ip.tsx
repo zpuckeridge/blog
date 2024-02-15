@@ -28,7 +28,7 @@ export default function RetrieveIP() {
   }, []);
 
   return data ? (
-    <div className="max-w-sm">
+    <div className="max-w-sm font-mono text-muted-foreground text-sm">
       <TypewriterEffect
         string={`Welcome back ${data.ip}, it's good to see someone from ${data.city}, ${data.country_name}!`}
       />
