@@ -13,6 +13,8 @@ import Script from "next/script";
 import { ClerkProvider } from "@clerk/nextjs";
 import ScrollToTop from "@/components/scroll-to-top";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://zacchary.me"),
   alternates: {
