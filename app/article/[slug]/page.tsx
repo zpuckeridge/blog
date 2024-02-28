@@ -9,6 +9,8 @@ import CopyLink from "@/components/copy-link";
 import type { Metadata, ResolvingMetadata } from "next";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
+export const runtime = "edge";
+
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
   return words.length;

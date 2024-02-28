@@ -2,6 +2,8 @@ import TypewriterEffectHireMe from "@/components/typewriter-hire-me";
 import { CalendarIcon, CheckIcon } from "@radix-ui/react-icons";
 import { FaInfinity } from "react-icons/fa6";
 
+export const runtime = "edge";
+
 export default function HireMe() {
   return (
     <div className="py-10 px-4">

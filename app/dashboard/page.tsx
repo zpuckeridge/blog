@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
+export const runtime = "edge";
+
 export default async function Sidebar() {
   const { userId } = auth();
 
