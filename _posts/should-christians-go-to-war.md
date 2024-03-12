@@ -5,10 +5,7 @@ tag: Faith
 description: How should Christians respond to the stirrings or war? Do we simply
   refuse to participate? Or do we do our duty and fight for our country?
 image: media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg
-imageAlt: Photo by <a
-  href="https://unsplash.com/@yaubinghui?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Bing
-  Hui Yau</a> on <a
-  href="https://unsplash.com/photos/gray-fighter-jet-in-mid-air-during-daytime-08t_sI5Al_0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+imageAlt: Photo by Bing Hui Yau on Unsplash
 ---
 How should Christians respond to the stirrings or war? Do we simply refuse to participate? Or do we do our duty and fight for our country? This article is a bit of primer on how we as Christians should begin to approach the problem of war time.
 
