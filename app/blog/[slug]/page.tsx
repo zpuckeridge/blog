@@ -85,6 +85,9 @@ export default function Post({ params }: { params: { slug: string } }) {
             alt={post.title}
             className="object-cover w-full rounded-lg border-2 border-muted"
           />
+          <p className="text-center text-xs text-muted-foreground pt-2">
+            {post.imageAlt}
+          </p>
         </div>
       )}
 
