@@ -20,7 +20,7 @@ What can I say except that he portrayed this movie in such a way that I essentia
 
 Growing up, I wasn't exposed to too many Disney films outside of the big classics (The Lion King/Tarzan) and never saw Goof Troop (the TV show predecessor to this movie) but I instantly fell in love with Goofy and the general premise of the movie.
 
-![](media/ducktales-a-goofy-movie-powerline-1213971-1280x0.jpeg)
+![](media/ducktales-a-goofy-movie-powerline-1213971-1280x0-1.jpeg)
 
 This is definitely one of my top 10 favourite films!
 
