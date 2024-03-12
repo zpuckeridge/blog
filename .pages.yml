@@ -3,7 +3,7 @@ media:
   output: media
 content:
   - name: articles
-    label: articles
+    label: Articles
     path: articles
     type: collection
     fields:
