@@ -4,8 +4,8 @@ date: 2023-10-26
 tag: Faith
 description: How should Christians respond to the stirrings or war? Do we simply
   refuse to participate? Or do we do our duty and fight for our country?
+image: media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg
 ---
-
 How should Christians respond to the stirrings or war? Do we simply refuse to participate? Or do we do our duty and fight for our country? This article is a bit of primer on how we as Christians should begin to approach the problem of war time.
 
 God has given the civil magistrate "the sword" to punish wrongdoers. Consider what Paul says in Romans 13:4-7:
