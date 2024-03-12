@@ -10,8 +10,7 @@
     "lint-staged": "lint-staged",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
-    "test": "pnpm lint && pnpm prettier:check",
-    "postinstall": "prisma generate"
+    "test": "pnpm lint && pnpm prettier:check"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
