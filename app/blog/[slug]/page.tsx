@@ -91,13 +91,24 @@ export default function Post({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      <article className="prose prose-muted dark:prose-invert prose-ol:text-white prose-li:text-white prose-ul:text-white prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:border-muted max-w-xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
+      <article className="prose prose-neutral prose-muted dark:prose-invert leading-8 prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:text-white prose-blockquote:border-muted max-w-xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-[#e9e9e9] prose-p:text-black">
         <MDXRemote source={post.content} />
       </article>
 
-      <Separator className="max-w-2xl mx-auto" />
+      {post.lastModified && (
+        <div className="max-w-2xl mx-auto space-y-2">
+          <p className="text-muted-foreground text-xs flex justify-end">
+            Last modified on{" "}
+            {new Date(post.lastModified).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </p>
+        </div>
+      )}
 
-      <div className="md:flex space-y-4 md:space-y-0 justify-between max-w-2xl mx-auto gap-4">
+      <div className="md:flex space-y-4 md:space-y-0 justify-between max-w-3xl mx-auto gap-4">
         {prevPost && (
           <Link
             href={`/blog/${prevPost.slug}`}

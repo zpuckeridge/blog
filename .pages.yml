@@ -21,3 +21,4 @@ content:
       - { name: image, label: Image, type: image }
       - { name: imageAlt, label: Image Attribute, type: string }
       - { name: body, label: Body, type: rich-text }
+      - { name: lastModified, label: Last Updated, type: date }
