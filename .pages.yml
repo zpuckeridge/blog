@@ -19,4 +19,5 @@ content:
           options: { maxlength: 160 },
         }
       - { name: image, label: Image, type: image }
+      - { name: imageAlt, label: Image Attribute, type: string }
       - { name: body, label: Body, type: rich-text }
