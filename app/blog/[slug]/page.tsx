@@ -6,6 +6,7 @@ import CopyLink from "@/components/copy-link";
 import { getAllPosts, getPostBySlug } from "@/lib/get-posts";
 import { Metadata } from "next";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
@@ -36,8 +37,8 @@ export default function Post({ params }: { params: { slug: string } }) {
     currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
   return (
-    <div className="mx-auto py-20 px-4 space-y-12">
-      <div className="max-w-2xl mx-auto space-y-2">
+    <div className="mx-auto py-20 px-4 space-y-8">
+      <div className="max-w-3xl mx-auto space-y-2">
         <div className="flex gap-2 text-muted-foreground text-xs">
           <Link
             href="/"
@@ -74,10 +75,25 @@ export default function Post({ params }: { params: { slug: string } }) {
         </div>
         <Separator />
       </div>
-      <article className="prose prose-muted dark:prose-invert prose-ol:text-white prose-li:text-white prose-ul:text-white prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:border-muted max-w-2xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
+
+      {post.image && (
+        <div className="max-w-3xl mx-auto">
+          <Image
+            src={`/${post.image}`}
+            width={800}
+            height={400}
+            alt={post.title}
+            className="object-cover w-full rounded-lg border-2 border-muted"
+          />
+        </div>
+      )}
+
+      <article className="prose prose-muted dark:prose-invert prose-ol:text-white prose-li:text-white prose-ul:text-white prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:border-muted max-w-xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-white prose-p:text-black">
         <MDXRemote source={post.content} />
       </article>
+
       <Separator className="max-w-2xl mx-auto" />
+
       <div className="md:flex space-y-4 md:space-y-0 justify-between max-w-2xl mx-auto gap-4">
         {prevPost && (
           <Link
