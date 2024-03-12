@@ -3,8 +3,6 @@ import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { notFound, redirect } from "next/navigation";
 
-export const runtime = "edge";
-
 async function retrieveArticle(id: string) {
   return await prisma.posts.findFirst({
     where: {

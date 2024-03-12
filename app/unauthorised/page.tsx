@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Unauthorised",
   description: "Oops! That wasn't supposed to happen! 😳",

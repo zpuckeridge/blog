@@ -2,8 +2,6 @@ import prisma from "@/lib/prisma";
 import * as z from "zod";
 import { auth } from "@clerk/nextjs";
 
-export const runtime = "edge";
-
 const createDocSchema = z.object({
   id: z.string(),
   title: z.string(),

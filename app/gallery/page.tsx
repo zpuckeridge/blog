@@ -2,8 +2,6 @@ import Gallery from "@/components/gallery";
 import cloudinary from "@/lib/cloudinary";
 import { Metadata } from "next";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Gallery",
   description:

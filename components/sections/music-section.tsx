@@ -1,8 +1,6 @@
 import { getAccessToken } from "@/lib/spotify";
 import Image from "next/image";
 
-export const runtime = "edge";
-
 async function getTopTracks(time_range: string) {
   try {
     const { access_token } = await getAccessToken();

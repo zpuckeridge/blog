@@ -4,8 +4,6 @@ import { ClockIcon, ReaderIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Articles",
   description:
