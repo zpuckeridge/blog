@@ -14,7 +14,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@blocknote/core": "^0.12.0",
+    "@blocknote/core": "^0.11.2",
     "@blocknote/react": "^0.12.0",
     "@clerk/nextjs": "4.29.9",
     "@hookform/resolvers": "^3.3.4",
