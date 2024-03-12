@@ -10,7 +10,6 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 import Script from "next/script";
-import { ClerkProvider } from "@clerk/nextjs";
 import ScrollToTop from "@/components/scroll-to-top";
 
 export const metadata: Metadata = {
@@ -81,30 +80,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased selection:bg-white selection:text-black",
-            GeistSans.variable,
-            GeistMono.variable,
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            forcedTheme="dark"
-          >
-            <Dot />
-            <Navigation />
-            {children}
-            <ScrollToTop />
-            <Toaster />
-            <Footer />
-          </ThemeProvider>
-        </body>
-        <Script src={UMAMI_SCRIPT_URL} data-website-id={UMAMI_WEBSITE_ID} />
-      </html>
-    </ClerkProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased selection:bg-white selection:text-black",
+          GeistSans.variable,
+          GeistMono.variable,
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
+          <Dot />
+          <Navigation />
+          {children}
+          <ScrollToTop />
+          <Toaster />
+          <Footer />
+        </ThemeProvider>
+      </body>
+      <Script src={UMAMI_SCRIPT_URL} data-website-id={UMAMI_WEBSITE_ID} />
+    </html>
   );
 }

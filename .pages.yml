@@ -2,15 +2,17 @@ media:
   input: public/media
   output: media
 content:
-  - name: articles
-    label: Articles
-    path: articles
+  - name: posts
+    label: Posts
+    path: _posts
     type: collection
     view:
-      fields: [ title, date ]
+      fields: [title, date]
     fields:
       - { name: title, label: Title, type: string }
       - { name: date, label: Date, type: date }
+      - { name: slug, label: Slug, type: string }
+      - { name: author, label: Author, type: string }
       - {
           name: description,
           label: Description,

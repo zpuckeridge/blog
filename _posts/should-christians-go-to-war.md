@@ -4,6 +4,7 @@ date: 2023-10-26
 description: How should Christians respond to the stirrings or war? Do we simply
   refuse to participate? Or do we do our duty and fight for our country?
 ---
+
 How should Christians respond to the stirrings or war? Do we simply refuse to participate? Or do we do our duty and fight for our country? This article is a bit of primer on how we as Christians should begin to approach the problem of war time.
 
 God has given the civil magistrate "the sword" to punish wrongdoers. Consider what Paul says in Romans 13:4-7:
@@ -15,11 +16,8 @@ God has given rulers the power to back up their laws with force. This includes c
 There are few different schools of thought when it comes to Christians going to war:
 
 1.  Pure pacifism
-    
 2.  Blind nationalism ie. "My country is never wrong"
-    
 3.  And finally, what may be considered a "just war"
-    
 
 ### Pure Pacifism
 
