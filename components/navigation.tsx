@@ -53,13 +53,13 @@ export default function Navigation() {
           <div className="hidden md:flex gap-6 ">
             <Link
               className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
-                pathname.startsWith("/article")
+                pathname.startsWith("/blog")
                   ? "text-white underline underline-offset-4"
                   : ""
               }`}
-              href="/articles"
+              href="/blog"
             >
-              Articles
+              Blog
             </Link>
             <Link
               className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
@@ -94,10 +94,10 @@ export default function Navigation() {
               <div className="flex flex-col gap-2 py-10">
                 <Link
                   onClick={() => setIsOpen(false)}
-                  href="/articles"
+                  href="/blog"
                   className="font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 px-2 py-3 w-full"
                 >
-                  <FileTextIcon className="inline-block w-4 h-4" /> Articles
+                  <FileTextIcon className="inline-block w-4 h-4" /> Blog
                 </Link>
                 <Link
                   onClick={() => setIsOpen(false)}

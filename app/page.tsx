@@ -128,14 +128,14 @@ export default function Home() {
                   <Tooltip>
                     <TooltipTrigger>
                       <Link
-                        href="/articles"
+                        href="/blog"
                         className="hover:text-muted-foreground transition-all duration-200"
                       >
                         <FileTextIcon className="w-5 h-5" />
                       </Link>
                     </TooltipTrigger>
                     <TooltipContent side="top" align="center" sideOffset={30}>
-                      <p>Articles</p>
+                      <p>Blog</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
