@@ -7,12 +7,11 @@ content:
     path: _posts
     type: collection
     view:
-      fields: [title, date]
+      fields: [title, tag, date]
     fields:
       - { name: title, label: Title, type: string }
       - { name: date, label: Date, type: date }
-      - { name: slug, label: Slug, type: string }
-      - { name: author, label: Author, type: string }
+      - { name: tag, label: Tag, type: string }
       - {
           name: description,
           label: Description,
