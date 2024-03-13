@@ -18,7 +18,7 @@ export default function ExperienceSection() {
               years
             </span>
           </p>
-          <p className="text-xl font-normal leading-none tracking-tight">
+          <p className="text-xl font-normal leading-none tracking-tight text-muted-foreground">
             Combined Experience
           </p>
         </div>
@@ -30,7 +30,7 @@ export default function ExperienceSection() {
                 years
               </span>
             </p>
-            <p className="text-lg font-normal leading-none tracking-tight">
+            <p className="text-lg font-normal leading-none tracking-tight text-muted-foreground">
               Web Development
             </p>
           </div>
@@ -42,7 +42,7 @@ export default function ExperienceSection() {
                 years
               </span>
             </p>
-            <p className="text-lg font-normal leading-none tracking-tight">
+            <p className="text-lg font-normal leading-none tracking-tight text-muted-foreground">
               Support Engineer
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function ExperienceSection() {
                 years
               </span>
             </p>
-            <p className="text-lg font-normal leading-none tracking-tight">
+            <p className="text-lg font-normal leading-none tracking-tight text-muted-foreground">
               Systems Administrator
             </p>
           </div>

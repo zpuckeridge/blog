@@ -83,7 +83,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased selection:bg-white selection:text-black",
+          "min-h-screen bg-[#111111] font-sans antialiased selection:bg-white selection:text-black ",
           GeistSans.variable,
           GeistMono.variable,
         )}
@@ -91,6 +91,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
           <Dot />
           <Navigation />
+
           {children}
           <ScrollToTop />
           <Toaster />

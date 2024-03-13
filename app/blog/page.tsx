@@ -32,7 +32,7 @@ export default async function Posts() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
             {posts.slice(0, 2).map((post: any) => (
               <Link
-                key={post.id}
+                key={post.slug}
                 href={`/blog/${encodeURIComponent(post.slug)}`}
                 prefetch={false}
                 aria-label={post.title}
@@ -72,7 +72,7 @@ export default async function Posts() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {posts.slice(2).map((post: any) => (
               <Link
-                key={post.id}
+                key={post.slug}
                 href={`/blog/${encodeURIComponent(post.slug)}`}
                 prefetch={false}
                 aria-label={post.title}

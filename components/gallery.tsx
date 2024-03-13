@@ -24,7 +24,7 @@ function NextJsImage({
         fill
         src={photo}
         {...{ alt, title, sizes, className, onClick }}
-        className="rounded-lg border-2"
+        className="rounded-xl"
       />
     </div>
   );
@@ -43,7 +43,7 @@ export default function Gallery({ images }: { images: any }) {
           height: image.height,
         }))}
         renderPhoto={NextJsImage}
-        targetRowHeight={200}
+        targetRowHeight={450}
         sizes={{ size: "calc(100vw - 240px)" }}
         onClick={({ index: current }) => setIndex(current)}
       />
