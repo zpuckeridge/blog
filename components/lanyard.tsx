@@ -1,7 +1,7 @@
 "use client";
 
-import { useLanyardWS } from "use-lanyard";
 import { useEffect, useState } from "react";
+import { useLanyardWS } from "use-lanyard";
 import Age from "./age";
 
 export default function Lanyard() {

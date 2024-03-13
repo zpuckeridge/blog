@@ -4,16 +4,14 @@ date: 2021-08-03
 tag: Technical
 description: Monitor your computers performance with Grafana and Prometheus.
 ---
+
 This article covers the installation and configuration process of OhmGraphite to work with Prometheus and send statistics to Grafana.
 
 ### Prerequisites
 
-*   Prometheus
-    
-*   Grafana
-    
-*   Windows 10/11 with Administrator Privileges
-    
+- Prometheus
+- Grafana
+- Windows 10/11 with Administrator Privileges
 
 NOTE: Administrator Privileges is required for installation.
 

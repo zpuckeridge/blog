@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
-import "./globals.css";
 import Dot from "@/components/follow-pointer";
-import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Navigation from "@/components/navigation";
+import ScrollToTop from "@/components/scroll-to-top";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
+import { cn } from "@/lib/utils";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next";
 import Script from "next/script";
-import ScrollToTop from "@/components/scroll-to-top";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zacchary.me"),

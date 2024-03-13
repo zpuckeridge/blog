@@ -6,6 +6,7 @@ description: Although secular, Bojack Horseman was an interesting show that got
   me thinking a lot.
 image: media/bojack-horseman-2020-4k-g9-3840x2400.jpg
 ---
+
 BoJack Horseman is the kind of character you can laugh with, cry, hate and love all at the same time. The show BoJack Horseman delves into a multitude of complex human issues, exploring themes such as family dynamics, love, fleeting happiness, addiction, nihilism, abuse, mortality, mental health, and the pursuit of legacy.
 
 The creators of the show demonstrate a deep affection for their characters. Writer Raphael Bob-Waksberg crafts unique character arcs that both inspire and challenge audiences. The depth and relatability of the side characters' lives ground the show in reality, even in moments like the interaction between BoJack and Eddie the dragonfly in S4 E2, where their desire for connection is palpable but are unable to make that final connection.

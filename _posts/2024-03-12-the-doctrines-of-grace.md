@@ -7,6 +7,7 @@ description: An overview of the doctrines of grace, what they are and what they
 image: media/ioann-mark-kuznietsov-USS2u1-98io-unsplash.jpg
 imageAlt: Photo by Ioann-Mark Kuznietsov on Unsplash
 ---
+
 ### Predestination/Unconditional Election
 
 Romans 8:29-30 tells us, “For those God foreknew he also predestined to be conformed to the likeness of his Son, that he might be the firstborn among many brothers. And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.” Ephesians 1:5 and 11 declare, “He predestined us to be adopted as his sons through Jesus Christ, in accordance with his pleasure and will…In him we were also chosen, having been predestined according to the plan of him who works out everything in conformity with the purpose of his will.”

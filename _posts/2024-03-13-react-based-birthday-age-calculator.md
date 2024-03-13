@@ -4,6 +4,7 @@ date: 2023-01-02
 tag: Technical
 description: Calculate age from a birthdate.
 ---
+
 In this short guide we'll be creating a simple React component that calculates and displays a person's age based on their birthday.
 
 Here's the code for the component:

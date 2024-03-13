@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Tilt from "react-parallax-tilt";
+import { twMerge } from "tailwind-merge";
 
 export default function BooksSection({
   direction = "left",

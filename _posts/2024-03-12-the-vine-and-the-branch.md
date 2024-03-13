@@ -6,6 +6,7 @@ description: A short study on John 15:4.
 image: media/sixteen-miles-out-L-mNqn89I2s-unsplash.jpg
 imageAlt: "Photo by Sixteen Miles Out on Unsplash "
 ---
+
 > Remain in me, and I will remain in you. For a branch cannot produce fruit if it is severed from the vine, and you cannot be fruitful unless you remain in me.
 
 — John 15:4

@@ -7,6 +7,7 @@ description: Jesus, came and suffered our punishment for us. We have already
 image: media/patrick-fore-b_SHPU5M3nk-unsplash.jpg
 imageAlt: "Photo by Patrick Fore on Unsplash "
 ---
+
 ### What does the Bible say?
 
 It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
@@ -49,6 +50,6 @@ It brings no glory to the creator of the universe if we sit and do nothing with 
 
 While Jesus' sacrifice for us on the cross allows us to appear faultless before God - it does not mean we are free from the consequence of sin here on earth. As Christians, we should all still strive to follow in Jesus' footsteps and lead a life He provided an example for.
 
-* * *
+---
 
 Remember, how you approach confessing to sin varies depending on the context. Sin that affects others should be handled with care and with the instruction of church elders.

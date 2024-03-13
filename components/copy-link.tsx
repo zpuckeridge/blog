@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useToast } from "@/components/ui/use-toast";
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
 export default function CopyLink() {
   const [copied, setCopied] = useState(false);

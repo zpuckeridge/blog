@@ -4,6 +4,7 @@ date: 2022-10-25
 tag: Faith
 description: Does the Bible contradict itself?
 ---
+
 ### Contradictory Statements
 
 When investigating seemingly contradictory statements in the Bible, it's critically important to remember that our thoughts and understanding pale in comparison to God.

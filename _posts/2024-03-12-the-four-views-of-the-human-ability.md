@@ -6,6 +6,7 @@ description: A primer on the four views of human ability and the reformed positi
 image: media/priscilla-du-preez-7aOhiPe6_30-unsplash.jpg
 imageAlt: "Photo by Priscilla Du Preez 🇨🇦 on Unsplash "
 ---
+
 Understanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.
 
 ### Pelagianism
@@ -16,14 +17,10 @@ Pelagius taught that it was unjust to punish one person for the sins of another;
 
 **Key Points:**
 
-*   Man is well.
-    
-*   Monergistic: Solely the work of man
-    
-*   Modern expression: Humanism/Secularism
-    
-*   Grace is not necessary. "If I ought, then I can."
-    
+- Man is well.
+- Monergistic: Solely the work of man
+- Modern expression: Humanism/Secularism
+- Grace is not necessary. "If I ought, then I can."
 
 Pelagianism was especially popular amongst Roman Elites, monks and the rest of the contemporary Christian world at the time.
 
@@ -37,16 +34,11 @@ So long as they use their free will to choose to follow God, God will respond wi
 
 **Key Points:**
 
-*   Man is corrupted, but not completely.
-    
-*   Assisting grace required: "I can, but God must assist."
-    
-*   Synergistic: Man works, then God.
-    
-*   Modern expression: Much of modern evangelicalism.
-    
-*   Grace is necessary, but not sufficient. The individual must actively choose God.
-    
+- Man is corrupted, but not completely.
+- Assisting grace required: "I can, but God must assist."
+- Synergistic: Man works, then God.
+- Modern expression: Much of modern evangelicalism.
+- Grace is necessary, but not sufficient. The individual must actively choose God.
 
 ### Arminianism
 
@@ -60,16 +52,11 @@ Through the preparatory (prevenient) grace given to all by the Holy Spirit, man 
 
 **Key Points:**
 
-*   Man is mostly dead.
-    
-*   Enabling grace required: "God must work, then I can."
-    
-*   Synergistic: God works, then man.
-    
-*   Modern Expression: Catholicism.
-    
-*   Grace is necessary, but not sufficient.
-    
+- Man is mostly dead.
+- Enabling grace required: "God must work, then I can."
+- Synergistic: God works, then man.
+- Modern Expression: Catholicism.
+- Grace is necessary, but not sufficient.
 
 ### Calvinism
 
@@ -77,16 +64,11 @@ Calvinism also known as Reformed Theology/Christianity is another major branch o
 
 The primary difference that sets Calvinism apart is TULIP.
 
-*   Total Depravity
-    
-*   Unconditional Election (ie. Predestination)
-    
-*   Limited Atonement
-    
-*   Irresistible Grace
-    
-*   Perseverance of the Saints
-    
+- Total Depravity
+- Unconditional Election (ie. Predestination)
+- Limited Atonement
+- Irresistible Grace
+- Perseverance of the Saints
 
 The primary difference between Arminianism and Calvinism is that of Predestination. Before the foundation of the world, God unconditionally chose (or "elected") some to be saved. The elect are chosen by God.
 
@@ -96,15 +78,10 @@ All men are totally depraved, and this depravity extends to the entire person, i
 
 **Key Points:**
 
-*   Man is dead.
-    
-*   Effectual grace required: "God must work, then I will."
-    
-*   Monergistic: Solely the work of God.
-    
-*   Modern expression: Reformed Churches.
-    
-*   Grace is necessary and sufficient.
-    
+- Man is dead.
+- Effectual grace required: "God must work, then I will."
+- Monergistic: Solely the work of God.
+- Modern expression: Reformed Churches.
+- Grace is necessary and sufficient.
 
 If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.

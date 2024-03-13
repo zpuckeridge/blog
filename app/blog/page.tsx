@@ -29,7 +29,7 @@ export default async function Posts() {
             <ClockIcon className="my-auto" /> Latest Posts
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
             {posts.slice(0, 2).map((post: any) => (
               <Link
                 key={post.id}
@@ -69,7 +69,7 @@ export default async function Posts() {
             <ReaderIcon className="my-auto" /> Read More
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {posts.slice(2).map((post: any) => (
               <Link
                 key={post.id}
@@ -78,12 +78,6 @@ export default async function Posts() {
                 aria-label={post.title}
                 className="relative p-4 border-2 hover:bg-neutral-900 duration-300 transition rounded-lg h-[200px]"
               >
-                <Badge
-                  variant="secondary"
-                  className="absolute bottom-4 right-4 font-mono"
-                >
-                  {post.views} views
-                </Badge>
                 <Badge
                   variant="secondary"
                   className="absolute bottom-4 left-4 font-mono"

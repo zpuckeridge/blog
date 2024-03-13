@@ -4,6 +4,7 @@ date: 2023-03-19
 tag: Technical
 description: Short guide on resizing a virtual machine.
 ---
+
 To increase the size of a hard disk, first power off the virtual machine, go to the `Hardware` tab, select the desired hard disk. Then, select `Resize` from the `Disk Action` drop-down menu, input the desired size increment, and select `Resize disk`.
 
 After resize has completed, start up your virtual machine and login.

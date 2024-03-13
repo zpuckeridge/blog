@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronUpIcon } from "@radix-ui/react-icons";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,12 +1,12 @@
+import CopyLink from "@/components/copy-link";
+import { Separator } from "@/components/ui/separator";
+import { getAllPosts, getPostBySlug } from "@/lib/get-posts";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import { Metadata } from "next";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { Separator } from "@/components/ui/separator";
-import CopyLink from "@/components/copy-link";
-import { getAllPosts, getPostBySlug } from "@/lib/get-posts";
-import { Metadata } from "next";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import Image from "next/image";
 
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
@@ -77,13 +77,13 @@ export default function Post({ params }: { params: { slug: string } }) {
       </div>
 
       {post.image && (
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto aspect-video">
           <Image
             src={`/${post.image}`}
             width={800}
             height={400}
             alt={post.title}
-            className="object-cover w-full rounded-lg border-2 border-muted"
+            className="object-cover w-full rounded-lg border-2 border-muted aspect-video"
           />
           <p className="text-center text-xs text-muted-foreground pt-2">
             {post.imageAlt}
@@ -91,7 +91,7 @@ export default function Post({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      <article className="prose prose-neutral prose-muted dark:prose-invert leading-8 prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:text-white prose-blockquote:border-muted max-w-xl mx-auto prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-[#e9e9e9] prose-p:text-black">
+      <article className="prose prose-neutral max-w-xl mx-auto prose-muted dark:prose-invert leading-8 prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:text-white prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-[#e9e9e9] prose-p:text-black">
         <MDXRemote source={post.content} />
       </article>
 

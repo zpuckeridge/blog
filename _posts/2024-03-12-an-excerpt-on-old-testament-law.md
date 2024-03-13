@@ -6,6 +6,7 @@ description: Are gentiles allowed to eat unclean meat?
 image: media/wright-brand-bacon-VVtVBLKkrik-unsplash.jpg
 imageAlt: "Photo by Wright Brand Bacon on Unsplash "
 ---
+
 Recently, a friend of mine had a run in with people that followed the Old Testament Law. They brought substantial evidence to the table that stood to prove that we, as Gentiles should not eat unclean meat or any food that has been sacrificed to idols. He believed them for a short time, but felt compelled to read up on the subject in a lot more detail and discovered that he had been mislead.
 
 First, let's get some context... In the early church, some of the earliest Gentile converts began joining Jewish believers in local fellowships. One of the earliest issues among these fellowships was the eating of meat sacrificed to idols. In Greco-Roman society idol worship was extremely popular and it was common for meat sold in the marketplace to have been sacrificed to a false god prior to its sale. Many Jews believed that partaking in the consumption of these meats would be some kind of "second-hand" idolatry. The conflict occurred when the Gentiles rejected the notion that such meat was tainted and many said that they could still eat meat sacrificed to idols without endorsing idolatry.
@@ -13,13 +14,13 @@ First, let's get some context... In the early church, some of the earliest Genti
 Paul helps us to understand how we should approach the issue.
 
 > So, what about eating meat that has been offered to idols? Well, we all know that an idol is not really a god and that there is only one God. There may be so-called gods both in heaven and on earth, and some people actually worship many gods and many lords. But for us,
-> 
+>
 > There is one God, the Father, by whom all things were created, and for whom we live.
-> 
+>
 > And there is one Lord, Jesus Christ, through whom all things were created, and through whom we live.
-> 
+>
 > However, not all believers know this. Some are accustomed to thinking of idols as being real, so when they eat food that has been offered to idols, they think of it as the worship of real gods, and their weak consciences are violated.
-> 
+>
 > It’s true that we can’t win God’s approval by what we eat. We don’t lose anything if we don’t eat it, and we don’t gain anything if we do.
 
 — 1 Cor. 8:4-8
@@ -59,7 +60,7 @@ Alternatively, you will keenly notice the words "to fulfil them" and the words "
 The first interpretation fails to see Jesus' fulfilment and accomplishment of the Law. The prophets that God sent in the Old Testament were sent as a consummation to indicate the end of ceremonial laws. By this understanding, by choosing to follow the Old Testament laws, we are in effect, refusing to submit to God's plan and fulfilment of the Law in Jesus.
 
 > It’s not what goes into your body that defiles you; you are defiled by what comes from your heart.
-> 
+>
 > Then Jesus went into a house to get away from the crowd, and his disciples asked him what he meant by the parable he had just used. “Don’t you understand either?” he asked. “Can’t you see that the food you put into your body cannot defile you? Food doesn’t go into your heart, but only passes through the stomach and then goes into the sewer.” (By saying this, he declared that every kind of food is acceptable in God’s eyes.)
 
 — Mark 7:15-19

@@ -1,3 +1,24 @@
+import CallToFaith from "@/components/call-to-faith";
+import Lanyard from "@/components/lanyard";
+import RetrieveIP from "@/components/retrieve-ip";
+import SmoothScrollLink from "@/components/scroll-down";
+import BackgroundSection from "@/components/sections/background-section";
+import BooksSection from "@/components/sections/books-section";
+import ExperienceSection from "@/components/sections/experience-section";
+import MusicTracking from "@/components/sections/music-section";
+import ShowcaseSection from "@/components/sections/showcase-section";
+import UsesSection from "@/components/sections/uses-section";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   ArrowRightIcon,
   DiscordLogoIcon,
@@ -7,29 +28,8 @@ import {
   GitHubLogoIcon,
   VideoIcon,
 } from "@radix-ui/react-icons";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import { FaSpotify, FaXTwitter } from "react-icons/fa6";
-import ExperienceSection from "@/components/sections/experience-section";
-import ShowcaseSection from "@/components/sections/showcase-section";
-import MusicTracking from "@/components/sections/music-section";
-import BooksSection from "@/components/sections/books-section";
-import UsesSection from "@/components/sections/uses-section";
-import BackgroundSection from "@/components/sections/background-section";
-import CallToFaith from "@/components/call-to-faith";
 import Link from "next/link";
-import Lanyard from "@/components/lanyard";
-import RetrieveIP from "@/components/retrieve-ip";
-import SmoothScrollLink from "@/components/scroll-down";
+import { FaSpotify, FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   return (
