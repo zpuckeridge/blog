@@ -1,6 +1,6 @@
 ---
 title: 📖 The Doctrines of Grace
-date: 2023-09-06
+date: 2019-09-06
 tag: Faith
 description: An overview of the doctrines of grace, what they are and what they
   mean for humanity.
