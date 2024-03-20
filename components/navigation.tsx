@@ -115,6 +115,7 @@ export default function Navigation() {
                 <HomeIcon className="w-5 h-5" /> Home
               </Link>
               <Link
+                onClick={() => setIsOpen(false)}
                 href="/blog"
                 className={`flex gap-2 ${buttonVariants({
                   variant: "outline",
@@ -124,6 +125,7 @@ export default function Navigation() {
                 <FileTextIcon className="w-5 h-5" /> Blog
               </Link>
               <Link
+                onClick={() => setIsOpen(false)}
                 href="/gallery"
                 className={`flex gap-2 ${buttonVariants({
                   variant: "outline",
@@ -133,6 +135,7 @@ export default function Navigation() {
                 <CameraIcon className="w-5 h-5" /> Gallery <br />
               </Link>
               <Link
+                onClick={() => setIsOpen(false)}
                 href="/hire-me"
                 className={`flex gap-2 ${buttonVariants({
                   variant: "outline",
