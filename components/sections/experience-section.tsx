@@ -81,6 +81,7 @@ export default function ExperienceSection() {
                   <Image
                     src="/logos/rsp.svg"
                     width={500}
+                    priority
                     height={500}
                     alt="Rising Sun Pictures Logo"
                     className="w-40"
@@ -119,6 +120,7 @@ export default function ExperienceSection() {
                     src="/logos/pixel-zoo.svg"
                     width={500}
                     height={500}
+                    priority
                     alt="Pixel Zoo Logo"
                     className="w-20"
                   />
@@ -158,6 +160,7 @@ export default function ExperienceSection() {
                     src="/logos/dev-demand.png"
                     width={500}
                     height={500}
+                    priority
                     alt="Dev Demand Logo"
                     className="w-36 grayscale invert"
                   />
@@ -193,6 +196,7 @@ export default function ExperienceSection() {
                     src="/logos/conetix.png"
                     width={500}
                     height={500}
+                    priority
                     alt="Conetix Logo"
                     className="w-36"
                   />
