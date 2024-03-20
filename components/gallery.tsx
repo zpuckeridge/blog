@@ -1,17 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import type { RenderPhotoProps } from "react-photo-album";
-import React, { useState } from "react";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
+import {
+  Captions,
+  Fullscreen,
+  Thumbnails,
+  Zoom,
+} from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/plugins/captions.css";
-import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/styles.css";
 
 function NextJsImage({
   photo,
@@ -24,7 +26,7 @@ function NextJsImage({
         fill
         src={photo}
         {...{ alt, title, sizes, className, onClick }}
-        className="rounded-lg border-2"
+        className="rounded-xl"
       />
     </div>
   );
@@ -43,7 +45,7 @@ export default function Gallery({ images }: { images: any }) {
           height: image.height,
         }))}
         renderPhoto={NextJsImage}
-        targetRowHeight={200}
+        targetRowHeight={450}
         sizes={{ size: "calc(100vw - 240px)" }}
         onClick={({ index: current }) => setIndex(current)}
       />

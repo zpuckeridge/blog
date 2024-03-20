@@ -20,12 +20,12 @@ const Dot = () => {
     };
   }, [positionX, positionY]);
 
-  const dotSize = 15;
+  const dotSize = 12;
 
   const springConfig = {
     type: "spring",
-    stiffness: 500,
-    damping: 50,
+    stiffness: 1000,
+    damping: 100,
   };
 
   const springX = useSpring(positionX, springConfig);

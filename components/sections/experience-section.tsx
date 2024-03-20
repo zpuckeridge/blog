@@ -18,7 +18,7 @@ export default function ExperienceSection() {
               years
             </span>
           </p>
-          <p className="text-xl font-normal leading-none tracking-tight">
+          <p className="text-xl font-normal leading-none tracking-tight text-muted-foreground">
             Combined Experience
           </p>
         </div>
@@ -30,7 +30,7 @@ export default function ExperienceSection() {
                 years
               </span>
             </p>
-            <p className="text-lg font-normal leading-none tracking-tight">
+            <p className="text-lg font-normal leading-none tracking-tight text-muted-foreground">
               Web Development
             </p>
           </div>
@@ -42,7 +42,7 @@ export default function ExperienceSection() {
                 years
               </span>
             </p>
-            <p className="text-lg font-normal leading-none tracking-tight">
+            <p className="text-lg font-normal leading-none tracking-tight text-muted-foreground">
               Support Engineer
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function ExperienceSection() {
                 years
               </span>
             </p>
-            <p className="text-lg font-normal leading-none tracking-tight">
+            <p className="text-lg font-normal leading-none tracking-tight text-muted-foreground">
               Systems Administrator
             </p>
           </div>
@@ -81,6 +81,7 @@ export default function ExperienceSection() {
                   <Image
                     src="/logos/rsp.svg"
                     width={500}
+                    priority
                     height={500}
                     alt="Rising Sun Pictures Logo"
                     className="w-40"
@@ -119,6 +120,7 @@ export default function ExperienceSection() {
                     src="/logos/pixel-zoo.svg"
                     width={500}
                     height={500}
+                    priority
                     alt="Pixel Zoo Logo"
                     className="w-20"
                   />
@@ -158,6 +160,7 @@ export default function ExperienceSection() {
                     src="/logos/dev-demand.png"
                     width={500}
                     height={500}
+                    priority
                     alt="Dev Demand Logo"
                     className="w-36 grayscale invert"
                   />
@@ -193,6 +196,7 @@ export default function ExperienceSection() {
                     src="/logos/conetix.png"
                     width={500}
                     height={500}
+                    priority
                     alt="Conetix Logo"
                     className="w-36"
                   />

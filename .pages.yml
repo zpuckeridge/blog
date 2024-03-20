@@ -2,15 +2,16 @@ media:
   input: public/media
   output: media
 content:
-  - name: articles
-    label: Articles
-    path: articles
+  - name: posts
+    label: Posts
+    path: _posts
     type: collection
     view:
-      fields: [ title, date ]
+      fields: [title, tag, date]
     fields:
       - { name: title, label: Title, type: string }
       - { name: date, label: Date, type: date }
+      - { name: tag, label: Tag, type: string }
       - {
           name: description,
           label: Description,
@@ -18,4 +19,7 @@ content:
           options: { maxlength: 160 },
         }
       - { name: image, label: Image, type: image }
+      - { name: imageAlt, label: Image Attribute, type: string }
       - { name: body, label: Body, type: rich-text }
+      - { name: lastModified, label: Last Updated, type: date }
+    filename: "{primary}.md"

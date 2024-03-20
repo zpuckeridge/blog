@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Tilt from "react-parallax-tilt";
+import { twMerge } from "tailwind-merge";
 
 export default function BooksSection({
   direction = "left",
@@ -18,7 +18,7 @@ export default function BooksSection({
     {
       id: 1,
       title: "It's Good To Be A Man",
-      image: "/media/it's-good-to-be-a-man.webp",
+      image: "/recommended-books/it's-good-to-be-a-man.webp",
       review:
         "This book opened my eyes to how far we, as men, have failed by falling into the lie of egalitarianism and feminism. It expoesd parts of my heart that had yet to be dealt with or even considered and laid out a Biblical framework for a return to a right and sanctified masculinity.",
       rating: 5,
@@ -27,7 +27,7 @@ export default function BooksSection({
     {
       id: 2,
       title: "Future Men",
-      image: "/media/future-men.jpg",
+      image: "/recommended-books/future-men.jpg",
       review:
         "This book preceeds It's Good To Be A Man and is more directed at parents raising young men. However, I found great value in this book - not only from a future parenting perspective but also from a personal perspective. It exposed areas that my parents failed and laid out the consequences of those failures, which lined up perfectly with my experience. This book has helped me understand why I am the way I am and how to begin changing that.",
       rating: 5,
@@ -36,7 +36,7 @@ export default function BooksSection({
     {
       id: 3,
       title: "Fight by Flight",
-      image: "/media/fight-by-flight.jpg",
+      image: "/recommended-books/fight-by-flight.jpg",
       review:
         "This book couldn't have come at a more perfect time. At the time of reading, I was weighing up my options between moving to rural Queensland or staying in Brisbane. There were a few reasons I was considering the change, the main factor being employment and the cost of living. This book helped me to make the decision to remain in Brisbane and to continue building God's kingdom where I was.",
       rating: 5,
@@ -45,7 +45,7 @@ export default function BooksSection({
     {
       id: 4,
       title: "Mere Christianity",
-      image: "/media/mere-christianity.jpg",
+      image: "/recommended-books/mere-christianity.jpg",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
@@ -54,7 +54,7 @@ export default function BooksSection({
     {
       id: 5,
       title: "Confessions of a Food Catholic",
-      image: "/media/confessions-of-a-food-catholic.jpg",
+      image: "/recommended-books/confessions-of-a-food-catholic.jpg",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
@@ -63,7 +63,7 @@ export default function BooksSection({
     {
       id: 6,
       title: "The Screwtape Letters",
-      image: "/media/the-screwtape-letters.jpg",
+      image: "/recommended-books/the-screwtape-letters.jpg",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
@@ -72,7 +72,7 @@ export default function BooksSection({
     {
       id: 7,
       title: "Mere Christendom",
-      image: "/media/mere-christendom.jpg",
+      image: "/recommended-books/mere-christendom.jpg",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
@@ -81,7 +81,7 @@ export default function BooksSection({
     {
       id: 8,
       title: "The Case for Christian Nationalism",
-      image: "/media/the-case-for-christian-nationalism.webp",
+      image: "/recommended-books/the-case-for-christian-nationalism.webp",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
@@ -90,7 +90,7 @@ export default function BooksSection({
     {
       id: 9,
       title: "Christian Nationalism",
-      image: "/media/christian-nationalism.jpg",
+      image: "/recommended-books/christian-nationalism.jpg",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,

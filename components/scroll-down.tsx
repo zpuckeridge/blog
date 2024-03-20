@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 const SmoothScrollLink = () => {
   const handleClick = (e: { preventDefault: () => void }) => {
