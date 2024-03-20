@@ -22,3 +22,4 @@ content:
       - { name: imageAlt, label: Image Attribute, type: string }
       - { name: body, label: Body, type: rich-text }
       - { name: lastModified, label: Last Updated, type: date }
+    filename: "{primary}.md"

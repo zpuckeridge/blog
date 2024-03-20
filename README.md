@@ -6,7 +6,7 @@
     <br />
   </h1>
   <sup>
-     A blog leveraging Next.js, PlanetScale, Prisma, Novel, Framer Motion, shadcn/ui and Tailwind CSS hosted with Vercel. </em>
+     A blog leveraging Next.js, PagesCMS, Framer Motion, Cloudinary, Lanyard, shadcn/ui and Tailwind CSS hosted with Vercel.</em>
     <br />
   </sup>
   <br />
@@ -23,9 +23,6 @@ git clone https://github.com/zpuckeridge/blog
 # Copy the .env.example and make the relevant changes
 cp .env.example .env.local
 
-# Create a .env file for the database and add your database url
-DATABASE_URL=
-
 # Install packages
 pnpm install
 
@@ -35,10 +32,8 @@ pnpm run dev
 
 ## 🚩 Features
 
-- 📝 Novel Editor
+- 📝 PagesCMS
 - 📈 Umami Analytics
-- ✍ Administrator Dashboard
-- 👀 View Count
 - ⚡ Tags
 - 🎶 Spotify Widget
 - 🧭 Discord Status
@@ -51,6 +46,5 @@ pnpm run dev
 - Article Search
 - Newsletter Subscription
 - Public Statistics Page
-- Syntax Copy Button
-- Syntax Filepath
-- Syntax Highlighting
+- View Count
+- Improved Syntax Highlighting

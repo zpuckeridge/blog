@@ -1,16 +1,12 @@
 {
   "name": "blog",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint-staged": "lint-staged",
-    "prettier": "prettier --write --ignore-unknown .",
-    "prettier:check": "prettier --check --ignore-unknown .",
-    "test": "pnpm lint && pnpm prettier:check"
+    "prettier": "prettier --write --ignore-unknown ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
