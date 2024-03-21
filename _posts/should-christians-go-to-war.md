@@ -35,8 +35,6 @@ This position holds the opinion that no Christian may ever take up arms in self-
 
 — Luke 22:35-37
 
-Please do not misunderstand my position here, the use of the sword should be used as restraining/preventative device and only deployed as a means of last resort.
-
 ### Blind Nationalism
 
 This position holds the opinion that because God has bestowed the power of the sword on the state, that they must be obeyed at all times. In many ways, people that hold this position worship the state as in their eyes, they believe that it can do no wrong. This position fails to take into account that human nature is fundamentally corruptible, and that no system is perfect. We are also called to civil disobedience when our leaders inevitably start to follow a path of corruption or evil. See 1 Kings 18, Joshua 2, Exodus 1, 1 Samuel 14:45, Acts 4:19-20 and Acts 5:29.
