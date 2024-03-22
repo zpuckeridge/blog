@@ -6,17 +6,17 @@ description: Jesus, came and suffered our punishment for us. We have already
   passed from death to life and no longer face condemnation.
 image: media/patrick-fore-b_SHPU5M3nk-unsplash.jpg
 imageAlt: "Photo by Patrick Fore on Unsplash "
+lastModified: 2024-03-21
 ---
-
 ### What does the Bible say?
 
 It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
 
-> ... there is no condemnation for those who belong to Christ Jesus.
+> There is no condemnation for those who belong to Christ Jesus.
 
-If you have accepted Christ as your saviour and invited Him guide your life/spirit, then you are righteous before the God. Jesus, came and suffered our punishment for us. We have already passed from death to life and do not face condemnation from the Father.
+If through faith alone you believe that Jesus bore the penalty for your sins, you stand justified before God. Jesus took upon Himself our punishment, and through Him, we have transitioned from death to life, no longer under the threat of condemnation from the Father.
 
-Even though many of us know this truth, we still continue to struggle with our past sin. In Philippians 3:12-14 Paul says:
+Despite our awareness of this truth, many of us still grapple with the burden of our past sins. In Philippians 3:12-14 Paul says:
 
 > I don’t mean to say that I have already achieved these things or that I have already reached perfection. But I press on to possess that perfection for which Christ Jesus first possessed me. No, dear brothers and sisters, I have not achieved it, but I focus on this one thing: Forgetting the past and looking forward to what lies ahead, I press on to reach the end of the race and receive the heavenly prize for which God, through Christ Jesus, is calling us.
 
@@ -24,32 +24,32 @@ Paul in this passage is stating that he forgets the awful memories of persecutin
 
 > Don’t forget that you Gentiles used to be outsiders. You were called “uncircumcised heathens” by the Jews, who were proud of their circumcision, even though it affected only their bodies and not their hearts. In those days you were living apart from Christ. You were excluded from citizenship among the people of Israel, and you did not know the covenant promises God had made to them. You lived in this world without God and without hope.
 
-These are two different messages that look contradictory of each other at first, but they actually go hand in hand. Paul is saying that we should forget our sins and press on, remembering them only for a deeper understanding of God's grace and mercy. Paul calls us not to be paralyzed by our sin, but to praise God and come back to Him in thanks for his mercy and forgiveness.
+At first glance, these two messages may seem contradictory, but they complement each other perfectly. Paul advocates for moving past our sins and looking forward, only recalling them to deepen our understanding of God's grace and mercy. He urges us not to be paralysed by our sins but to instead praise God and return to Him in gratitude for His mercy and forgiveness.
 
-It's imperative to recognise that wallowing in your own sin is also sin - by doing this, you are idolising yourself and saying that Jesus' forgiveness was not enough for you. What could possibly be more offensive in sight of the Heavenly Father, the Creator of all things, the almighty and righteous God. I myself, am terribly guilty of this and seek repentance for this sin often.
+It's crucial to acknowledge that dwelling on our sins is itself sinful. By doing so, we elevate ourselves and imply that Jesus' forgiveness was insufficient. What could be more offensive in the eyes of the Heavenly Father, the Creator of all things, the Almighty and Righteous God? I personally struggle with this and frequently seek repentance for this sin.
 
 ### So, should we forgive ourselves?
 
-Why would you forgive yourself if you trespass against someone else? The Bible makes it clear that we should seek forgiveness from those that we have wronged and from our Heavenly Father. Who made us the judge and executioner of our own sin? As Paul said, there is no condemnation for those who belong to Christ.
+Why would we grant ourselves forgiveness when we've wronged others? The Bible emphasizes seeking forgiveness from those we've harmed and from God Himself. Who appointed us as the arbitrators of our own wrongdoing?
 
-Paul in 2 Corinthians 7:8-10 talks about how the Corinthians repented and turned away from their wicked ways. Paul had previously called for their repentance, and he endears them for seeking reconciliation with the Father.
+<p style="text-align: start">In 2 Corinthians 7:8-10, Paul discusses the Corinthians' repentance and departure from their sinful ways. Having urged them to repent previously, Paul commends their efforts to reconcile with the Father.</p>
 
 > I am not sorry that I sent that severe letter to you, though I was sorry at first, for I know it was painful to you for a little while. Now I am glad I sent it, not because it hurt you, but because the pain caused you to repent and change your ways. It was the kind of sorrow God wants his people to have, so you were not harmed by us in any way. For the kind of sorrow God wants us to experience leads us away from sin and results in salvation. There’s no regret for that kind of sorrow. But worldly sorrow, which lacks repentance, results in spiritual death.
 
-Paul is clearly stating that you should have no regret for the God inspired sorrow you may feel about living a sinful life prior to salvation, but worldly sorrow tells of a lack of repentance and results in spiritual death.
+Paul expresses that there should be no remorse for the sorrow inspired by God regarding one's sinful life before salvation. Conversely, worldly sorrow indicates a lack of repentance and leads to spiritual death.
 
-He continues on to say that the Corinthians godly grief that they had suffered through produced repentance that lead to salvation without regret. Now they too can continue to look forward and toward the future that Christ has laid out for them.
+Furthermore, he elaborates that the Godly grief experienced by the Corinthians led to their repentance.
 
 > Just see what this godly sorrow produced in you! Such earnestness, such concern to clear yourselves, such indignation, such alarm, such longing to see me, such zeal, and such a readiness to punish wrong. You showed that you have done everything necessary to make things right.
 
-Taking all this into consideration, the Bible tells us that we do not necessarily forget our sins, but that we should strive to forget our sins and press on, remembering them only for a deeper understanding of God's grace and mercy, and to humble ourselves and step down from our seat of condemnation over our own life.
+In light of these points, the Bible teaches us that while we may not entirely erase our sins from memory, we ought to endeavour to move forward, repent, and seek forgiveness recalling them solely to gain a deeper appreciation of God's grace and mercy. Doing so humbles us, prompting us to relinquish the poison of self-condemnation.
 
-### One more thing to consider, nuance
+### One more thing to consider, nuance.
 
-It brings no glory to the creator of the universe if we sit and do nothing with our lives because we believe ourselves not worthy of existence. You have been **SET FREE THROUGH JESUS' SACRIFICE!** It's time to start living freely from sin and condemnation! If you still continue to struggle with your past sin, I implore you to reach out to your church elders so that may find a way for you to remain accountable.
+The creator of the universe is not glorified when we waste our lives in self-doubt and idleness. Remember, you have been liberated through Jesus' sacrifice! It's time to embrace a life free from sin and condemnation. If you find yourself still struggling with sin, I urge you to seek support from your church elders for guidance and accountability.
 
-While Jesus' sacrifice for us on the cross allows us to appear faultless before God - it does not mean we are free from the consequence of sin here on earth. As Christians, we should all still strive to follow in Jesus' footsteps and lead a life He provided an example for.
+While Jesus' sacrifice grants us forgiveness before God, it doesn't exempt us from earthly consequences of sin. As Christians, let's endeavour to emulate Jesus' example and live according to His teachings.
 
----
+* * *
 
-Remember, how you approach confessing to sin varies depending on the context. Sin that affects others should be handled with care and with the instruction of church elders.
+It's important to remember that the approach to confessing sin can vary depending on the situation. When the sin impacts others, it should be approached with sensitivity and under the guidance of church elders.

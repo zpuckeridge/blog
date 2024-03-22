@@ -8,24 +8,24 @@ image: media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg
 imageAlt: Photo by Bing Hui Yau on Unsplash
 lastModified: 2024-03-12
 ---
-
-How should Christians respond to the stirrings or war? Do we simply refuse to participate? Or do we do our duty and fight for our country? This article is a bit of primer on how we as Christians should begin to approach the problem of war time.
+What is the appropriate Christian response to the onset of conflict or war? Should we opt out of participation altogether, or fulfill our duty by defending our nation? This article serves as an introductory guide to help Christians navigate the complexities of wartime and determine the most ethical course of action.
 
 God has given the civil magistrate "the sword" to punish wrongdoers. Consider what Paul says in Romans 13:4-7:
 
 > For the one in authority is God’s servant for your good. But if you do wrong, be afraid, for rulers do not bear the sword for no reason. They are God’s servants, agents of wrath to bring punishment on the wrongdoer. Therefore, it is necessary to submit to the authorities, not only because of possible punishment but also as a matter of conscience. This is also why you pay taxes, for the authorities are God’s servants, who give their full time to governing. Give to everyone what you owe them: If you owe taxes, pay taxes; if revenue, then revenue; if respect, then respect; if honour, then honour.
 
-God has given rulers the power to back up their laws with force. This includes capital punishment and the power to go to war. Throughout history, this power has been used both for the right or wrong reasons.
+God has granted rulers the authority to enforce their laws through coercion, including measures such as capital punishment and engaging in warfare. Throughout history, this authority has been wielded for both righteous and unjust causes. When it comes to Christians participating in war, various perspectives exist:
 
-There are few different schools of thought when it comes to Christians going to war:
-
-1.  Pure pacifism
-2.  Blind nationalism ie. "My country is never wrong"
-3.  And finally, what may be considered a "just war"
+1.  Pure pacifism advocates for complete nonviolence under any circumstance.
+    
+2.  Blind nationalism reflects an uncritical allegiance to one's country, believing it can do no wrong.
+    
+3.  Finally, the concept of a "just war" suggests that some conflicts may be morally justified under certain conditions.
+    
 
 ### Pure Pacifism
 
-This position holds the opinion that no Christian may ever take up arms in self-defence. This includes the defence of ones country, and of themselves. While they are correct in understanding that Christians are called to be pacifists in the sense that we love peace and pursue it, they fail to take into account that the Bible has said that we are permitted to defend ourselves and our families. Consider Exodus 22 and Luke 22:35-37:
+This position holds the opinion that no Christian may ever take up arms in self-defence. This includes the defence of one's country, and of themselves. While they are correct in understanding that Christians are called to be pacifists in the sense that we love peace and pursue it, they fail to take into account that the Bible has said that we are permitted to defend ourselves and our families. Consider Exodus 22 and Luke 22:35-37:
 
 > If a thief is caught breaking in at night and is struck a fatal blow, the defender is not guilty of bloodshed.
 
@@ -35,22 +35,18 @@ This position holds the opinion that no Christian may ever take up arms in self-
 
 — Luke 22:35-37
 
-Please do not misunderstand my position here, the use of the sword should be used as restraining/preventative device and only deployed as a means of last resort.
-
 ### Blind Nationalism
 
-This position holds the opinion that because God has bestowed the power of the sword on the state, that they must be obeyed at all times. In many ways, people that hold this position worship the state as in their eyes, they believe that it can do no wrong. This position fails to take into account that human nature is fundamentally corruptible and that no system is perfect. We are also called to civil disobedience when our leaders inevitably start to follow a path of corruption or evil. See 1 Kings 18, Joshua 2, Exodus 1, 1 Samuel 14:45, Acts 4:19-20 and Acts 5:29.
+This position holds the opinion that because God has bestowed the power of the sword on the state, that they must be obeyed at all times. In many ways, people that hold this position worship the state as in their eyes, they believe that it can do no wrong. This position fails to take into account that human nature is fundamentally corruptible, and that no system is perfect. We are also called to civil disobedience when our leaders inevitably start to follow a path of corruption or evil. See 1 Kings 18, Joshua 2, Exodus 1, 1 Samuel 14:45, Acts 4:19-20 and Acts 5:29.
 
 I think civil disobedience might be better summed up in its own article, as there is a lot to unpack there.
 
 ### The Just War
 
-The just war fits somewhere between these two extremes and has been advocated by many Christian ethicists and theologians including Augustine, Constantine, Thomas Aquinas and John Calvin.
+The concept of a just war falls between the extremes of pure pacifism and blind nationalism and has been endorsed by numerous Christian thinkers throughout history, including Augustine, Constantine, Thomas Aquinas, and John Calvin.
 
-But what defines the just war? Simply put, the declaration of war should come from a place of mourning, it must be declared by a legitimate, just and god-fearing authority, waged as a last resort and with a reasonable chance of success. With such things, stringent moderation must be employed. Most importantly, the outcome must outweigh the cost of the destructive methods used.
+What distinguishes a just war? Essentially, it should be declared with solemnity, by a legitimate God fearing and righteous authority, as a last resort with a reasonable chance of success, and with careful restraint in the methods employed. Most importantly, the potential outcome should justify the costs incurred.
 
-Christians should oppose wars of aggression, because they are born only out of hatred and fear, vices the enemy uses to pit us against one another. A just war is defensive in nature. It is good and honourable to die protecting ones borders against an aggressor.
+Christians are called to oppose wars driven by aggression, which stem from hatred and fear, emotions exploited by adversaries to divide us. A just war is defensive in nature, and it is honourable to defend one's borders against aggressors.
 
-Granted, this a lot easier to say than to actually practice - the fog of war and the limited information and propaganda passed down to us make it ever increasingly difficult to distinguish truth from fiction.
-
-Mournful prayer, fasting and reading of scripture is required here to truly interpret God's will on the matter. We must be careful not to act carelessly, Christians should strive to be above reproach.
+However, putting this principle into practice is challenging amidst the fog of war and the distortions of information and propaganda. It necessitates mournful prayer, fasting, and scriptural reflection to discern God's will. Christians must act with caution and strive to maintain moral integrity in all actions.
