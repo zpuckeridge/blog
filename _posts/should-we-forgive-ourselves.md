@@ -8,6 +8,7 @@ image: media/patrick-fore-b_SHPU5M3nk-unsplash.jpg
 imageAlt: "Photo by Patrick Fore on Unsplash "
 lastModified: 2024-03-21
 ---
+
 ### What does the Bible say?
 
 It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
@@ -32,7 +33,7 @@ It's crucial to acknowledge that dwelling on our sins is itself sinful. By doing
 
 Why would we grant ourselves forgiveness when we've wronged others? The Bible emphasizes seeking forgiveness from those we've harmed and from God Himself. Who appointed us as the arbitrators of our own wrongdoing?
 
-<p style="text-align: start">In 2 Corinthians 7:8-10, Paul discusses the Corinthians' repentance and departure from their sinful ways. Having urged them to repent previously, Paul commends their efforts to reconcile with the Father.</p>
+In 2 Corinthians 7:8-10, Paul discusses the Corinthians' repentance and departure from their sinful ways. Having urged them to repent previously, Paul commends their efforts to reconcile with the Father.
 
 > I am not sorry that I sent that severe letter to you, though I was sorry at first, for I know it was painful to you for a little while. Now I am glad I sent it, not because it hurt you, but because the pain caused you to repent and change your ways. It was the kind of sorrow God wants his people to have, so you were not harmed by us in any way. For the kind of sorrow God wants us to experience leads us away from sin and results in salvation. There’s no regret for that kind of sorrow. But worldly sorrow, which lacks repentance, results in spiritual death.
 
@@ -50,6 +51,6 @@ The creator of the universe is not glorified when we waste our lives in self-dou
 
 While Jesus' sacrifice grants us forgiveness before God, it doesn't exempt us from earthly consequences of sin. As Christians, let's endeavour to emulate Jesus' example and live according to His teachings.
 
-* * *
+---
 
 It's important to remember that the approach to confessing sin can vary depending on the situation. When the sin impacts others, it should be approached with sensitivity and under the guidance of church elders.
