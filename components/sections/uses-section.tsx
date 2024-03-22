@@ -1,4 +1,4 @@
-import { Separator } from "../ui/separator";
+import { Separator } from "@/components/ui/separator";
 
 export default function UsesSection() {
   const UsesItem = ({ title, description }: any) => {
