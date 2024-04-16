@@ -91,7 +91,7 @@ export default function Post({ params }: { params: { slug: string } }) {
         </div>
       )}
 
-      <article className="prose prose-neutral max-w-xl mx-auto prose-muted dark:prose-invert leading-8 prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:text-white prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-[#bbbbbb] prose-p:text-black">
+      <article className="prose prose-neutral max-w-xl mx-auto prose-muted dark:prose-invert leading-9 prose-hr:border-muted prose-blockquote:border-l-4 prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:rounded-lg prose-img:border-2 prose-img:border-muted prose-img:mx-auto dark:prose-p:text-[#c9c9c9] prose-p:text-black">
         <MDXRemote source={post.content} />
       </article>
 
