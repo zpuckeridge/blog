@@ -5,12 +5,18 @@ import ScrollToTop from "@/components/scroll-to-top";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
-import { cn } from "@/lib/utils";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-accent",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://zacchary.me"),
@@ -82,11 +88,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          "min-h-screen bg-[#111111] font-sans antialiased selection:bg-white selection:text-black ",
-          GeistSans.variable,
-          GeistMono.variable,
-        )}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${montserrat.variable} min-h-screen bg-[#111111] font-sans antialiased selection:bg-white selection:text-black`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
           <Dot />

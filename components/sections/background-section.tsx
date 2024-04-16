@@ -24,15 +24,13 @@ export default function BackgroundSection() {
               >
                 Australia 🇦🇺
               </a>
-              . From a young age, tinkering with computers quickly became second
-              nature to me. Exploring self-hosted and custom built solutions has
-              been a passion of mine for a while now. After graduating high
-              school, I spent about 9 months studying a dual degree of
-              Psychology and Criminology.
+              . Since childhood, I&apos;ve had a natural affinity for computers,
+              diving deep into video games, tinkering and taking apart old
+              computers. After graduating high school, I spent about 9 months
+              studying a dual degree of Psychology and Criminology.
             </p>
             <p>
-              I dropped that course and instead a close mate and I travelled to
-              the{" "}
+              I dropped out of university and travelled to the{" "}
               <a
                 href="https://maps.app.goo.gl/7c5H8i3cnLwPFmKq9"
                 target="_blank"
@@ -40,10 +38,10 @@ export default function BackgroundSection() {
               >
                 United States 🇺🇸
               </a>{" "}
-              for ~3 months working on a Methodist Summer Camp in Virginia
-              meeting many wonderful people along the way! We ended our trip
-              with a road trip across the country from Loudoun County Virginia
-              to Los Angeles California.
+              for about 3 months, working at a Methodist Summer Camp in Virginia
+              with a mate. We met many wonderful people along the way! We ended
+              our trip with a road trip across the country from Loudoun County
+              Virginia to Los Angeles California.
             </p>
           </div>
           <div className="md:flex md:space-y-0 space-y-4 justify-center py-20 px-8">
@@ -113,16 +111,16 @@ export default function BackgroundSection() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t pt-20">
             <p>
-              After returning from the United States, my mates brother hooked me
-              up with a job providing support for a small web hosting company
-              shortly after I got back. That&apos;s where my passion for web
-              development and self-hosting really took off.
+              After coming back from the United States, I landed a job
+              supporting a small web hosting company, thanks to a connection
+              through my friend&apos;s brother. It was there that my enthusiasm
+              for web development and self-hosting took off.
             </p>
             <p>
-              Everything from Proxmox to Docker, to Kubernetes, I was tinkering
-              with it. There is something incredibly satisfying using Open
-              Source software to build and host your own applications. Nowadays,
-              it&apos;s JavaScript, NextJS and TailwindCSS!
+              I&apos;ve explored Proxmox, Docker, Kubernetes, and more, finding
+              satisfaction in using open-source software to build and host
+              applications. Nowadays, I&apos;m all about web development, that
+              software being - JavaScript, NextJS, and TailwindCSS.
             </p>
           </div>
         </div>
