@@ -211,20 +211,22 @@ export default function Home() {
 
         <div className="space-y-2">
           <p className="text-center text-lg">
-            Stay occupied to steer clear of temptation.
+            Idle hands are the devils workshop.
           </p>
           <HoverCard>
             <HoverCardTrigger asChild>
               <p className="cursor-default w-auto text-center text-muted-foreground hover:text-white transition-all duration-200">
-                Romans 8:6
+                Proverbs 16:27-29
               </p>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="flex flex-col gap-2 justify-between tracking-normal font-normal">
                 <p className="text-left">
                   <cite>
-                    &quot;For to set the mind on the flesh is death, but to set
-                    the mind on the Spirit is life and peace.&quot;
+                    &quot;A worthless man plots evil, and his speech is like a
+                    scorching fire. A dishonest man spreads strife, and a
+                    whisperer separates close friends. A man of violence entices
+                    his neighbor and leads him in a way that is not good.&quot;
                   </cite>
                 </p>
                 <p className="text-left text-xs text-muted-foreground">ESV</p>
@@ -239,18 +241,31 @@ export default function Home() {
           <DotFilledIcon className="w-4 h-4 animate-pulse my-auto" />{" "}
           Qualifications
         </p>
-        <div className="md:flex justify-between space-y-4 md:space-y-0 max-w-5xl mx-auto gap-4">
+        <div className="md:flex justify-between space-y-4 md:space-y-0 max-w-6xl mx-auto gap-4">
           <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
             <p className="font-mono uppercase text-xs font-semibold">
               Haddon Institute
             </p>
             <p className="text-2xl font-bold leading-none tracking-tight">
-              Theology for Today’s World
+              Systematic Theology
+            </p>
+            <p className="font-normal leading-none tracking-tight">
+              Apr 2024
+              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" />
+              Present
+            </p>
+          </div>
+          <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
+            <p className="font-mono uppercase text-xs font-semibold">
+              Haddon Institute
+            </p>
+            <p className="text-2xl font-bold leading-none tracking-tight">
+              Theology for Worldview
             </p>
             <p className="font-normal leading-none tracking-tight">
               Dec 2023{" "}
-              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" />{" "}
-              Current
+              <ArrowRightIcon className="inline-block w-4 h-4 my-auto" /> Feb
+              2024
             </p>
           </div>
           <div className="p-4 bg-neutral-900 rounded-lg border-2 w-full space-y-4">
@@ -280,7 +295,7 @@ export default function Home() {
         </div>
         <div className="space-y-2">
           <p className="text-center text-lg">
-            Skill in something doesn&apos;t always demand prior qualifications.
+            Expertise isn't always tied to formal credentials.
           </p>
           <HoverCard>
             <HoverCardTrigger asChild>

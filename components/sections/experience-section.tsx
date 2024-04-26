@@ -11,17 +11,6 @@ export default function ExperienceSection() {
   return (
     <div className="flex justify-center w-full">
       <div className="space-y-16 w-full">
-        <div className="flex text-center flex-col space-y-2 w-full">
-          <p className="text-8xl font-bold leading-none tracking-tight text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
-            9{" "}
-            <span className="text-4xl my-auto font-semibold leading-none tracking-tight text-white">
-              years
-            </span>
-          </p>
-          <p className="text-xl font-normal leading-none tracking-tight text-muted-foreground">
-            Combined Experience
-          </p>
-        </div>
         <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-8">
           <div className="flex flex-col space-y-2">
             <p className="text-6xl font-bold leading-none tracking-tight text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
