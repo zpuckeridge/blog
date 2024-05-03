@@ -19,6 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { FaMoneyBill } from "react-icons/fa6";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -74,6 +75,12 @@ export default function Navigation() {
               >
                 Gallery
               </Link>
+              <a
+                className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200`}
+                href="https://shop.zacchary.me"
+              >
+                Shop
+              </a>
             </div>
           </div>
 
@@ -133,6 +140,16 @@ export default function Navigation() {
                 })}`}
               >
                 <CameraIcon className="w-5 h-5" /> Gallery <br />
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href="https://shop.zacchary.me"
+                className={`flex gap-2 ${buttonVariants({
+                  variant: "outline",
+                  size: "lg",
+                })}`}
+              >
+                <FaMoneyBill className="w-5 h-5" /> Shop <br />
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
