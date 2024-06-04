@@ -1,8 +1,8 @@
 "use client";
 
+import { StarFilledIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Tilt from "react-parallax-tilt";
 import { twMerge } from "tailwind-merge";
 
 export default function BooksSection({
@@ -163,38 +163,47 @@ export default function BooksSection({
     <div
       ref={containerRef}
       className={twMerge(
-        "scroller relative z-20 group max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
       )}
     >
       <ul
         ref={scrollerRef}
         className={twMerge(
-          " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
+          "flex min-w-full shrink-0 gap-4 w-max flex-nowrap",
           start && "animate-scroll ",
-          pauseOnHover && "group-hover:[animation-play-state:paused]",
+          pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
-        {mediaData.map((media, idx) => (
-          <Tilt
-            key={idx}
-            glareEnable
-            glarePosition="all"
-            glareMaxOpacity={0.1}
-            tiltMaxAngleX={10}
-            tiltMaxAngleY={10}
+        {mediaData.map((media) => (
+          <a
+            href={media.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group z-10"
+            key={media.id}
           >
-            <a href={media.url} target="_blank">
+            <div>
               <Image
                 src={media.image}
-                width={200}
-                height={200}
+                width={205}
+                height={320}
                 priority
                 quality={100}
                 alt={media.title}
-                className="object-cover w-44 h-full rounded-md"
+                className="object-cover w-auto h-80 rounded-md aspect-auto"
               />
-            </a>
-          </Tilt>
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-4 left-4 group-hover:flex hidden">
+                <div className="flex items-end gap-1">
+                  {[...Array(media.rating)].map((_, index) => (
+                    <StarFilledIcon key={index} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </a>
         ))}
       </ul>
     </div>
