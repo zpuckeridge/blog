@@ -95,29 +95,29 @@ export default async function MusicTracking() {
 
   return (
     <div className="flex flex-col md:flex-row gap-2">
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         {currentTopTracks?.items?.map((track: any, index: number) => (
           <Track key={index} track={track} index={index} />
         ))}
-        <p className="text-muted-foreground text-sm text-center py-2 font-mono">
+        <p className="text-muted-foreground text-sm text-center pt-4 font-mono">
           Top tracks from this week
         </p>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         {recentTopTracks?.items?.map((track: any, index: number) => (
           <Track key={index} track={track} index={index} />
         ))}
-        <p className="text-muted-foreground text-sm text-center py-2 font-mono">
+        <p className="text-muted-foreground text-sm text-center pt-4 font-mono">
           Top tracks from last month
         </p>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         {allTimeTopTracks?.items?.map((track: any, index: number) => (
           <Track key={index} track={track} index={index} />
         ))}
-        <p className="text-muted-foreground text-sm text-center py-2 font-mono">
+        <p className="text-muted-foreground text-sm text-center pt-4 font-mono">
           Top tracks of all time
         </p>
       </div>
