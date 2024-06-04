@@ -25,14 +25,14 @@ export default function HireMe() {
             </p>
             <div className="space-y-2">
               <p className="font-bold text-6xl leading-none text-center">
-                $3000
+                $2000
               </p>
               <div>
                 <p className="text-center text-xs text-muted-foreground leading-snug">
                   for a single page site
                 </p>
                 <p className="text-muted-foreground text-xs text-center">
-                  + $50/m for maintenance
+                  + $25/m for maintenance
                 </p>
               </div>
             </div>
