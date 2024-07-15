@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  BackpackIcon,
   CameraIcon,
   FileTextIcon,
   HamburgerMenuIcon,
@@ -57,8 +58,18 @@ export default function Navigation() {
             <div className="hidden md:flex gap-6 ">
               <Link
                 className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
+                  pathname.startsWith("/work")
+                    ? "text-white underline underline-offset-4 italic"
+                    : ""
+                }`}
+                href="/work"
+              >
+                Work
+              </Link>
+              <Link
+                className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
                   pathname.startsWith("/blog")
-                    ? "text-white underline underline-offset-4"
+                    ? "text-white underline underline-offset-4 italic"
                     : ""
                 }`}
                 href="/blog"
@@ -68,7 +79,7 @@ export default function Navigation() {
               <Link
                 className={`link text-muted-foreground my-auto text-sm hover:text-white transition-all duration-200 ${
                   pathname === "/gallery"
-                    ? "text-white underline underline-offset-4"
+                    ? "text-white underline underline-offset-4 italic"
                     : ""
                 }`}
                 href="/gallery"
@@ -120,6 +131,16 @@ export default function Navigation() {
                 })}`}
               >
                 <HomeIcon className="w-5 h-5" /> Home
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href="/work"
+                className={`flex gap-2 ${buttonVariants({
+                  variant: "outline",
+                  size: "lg",
+                })}`}
+              >
+                <BackpackIcon className="w-5 h-5" /> Work
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
