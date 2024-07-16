@@ -40,7 +40,7 @@ export default function CopyLink() {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <CopyIcon className="w-4 h-4 my-auto text-muted-foreground" />
+              <CopyIcon className="my-auto text-muted-foreground" />
             </TooltipTrigger>
             <TooltipContent>
               <p>Copy URL</p>

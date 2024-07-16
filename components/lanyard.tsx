@@ -58,11 +58,11 @@ export default function Lanyard() {
   }, []);
 
   return (
-    <div className="font-mono md:flex space-y-4 md:space-y-0 justify-between">
-      <div className="text-muted-foreground text-sm">
+    <div className="md:flex space-y-4 md:space-y-0 justify-between">
+      <div className="text-muted-foreground text-xs">
         <div className="flex gap-2">
           <div
-            className={`w-3 h-3 animate-pulse rounded-full my-auto ${
+            className={`w-2.5 h-2.5 animate-pulse rounded-full my-auto ${
               getStatusTextAndColor().dotColor
             }`}
           />
