@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --write --ignore-unknown ."
+    "prettier": "prettier --write --ignore-unknown .",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",
