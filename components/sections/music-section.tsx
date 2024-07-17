@@ -11,27 +11,40 @@ const fetchTopTracks = async () => {
   return response.json();
 };
 
+const fetchTopArtists = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/spotify/top-artists`,
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch top artists");
+  }
+  return response.json();
+};
+
 export default async function MusicTracking() {
-  let responseData;
+  let tracksResponseData, artistsResponseData;
   try {
-    responseData = await fetchTopTracks();
+    tracksResponseData = await fetchTopTracks();
+    artistsResponseData = await fetchTopArtists();
   } catch (error) {
     console.error(error);
-    return <p>Failed to load top tracks</p>;
+    return <p>Failed to load top tracks and artists</p>;
   }
 
-  const getTopTracks = responseData?.data;
+  const getTopTracks = tracksResponseData?.data;
+  const getTopArtists = artistsResponseData?.data;
 
   if (!getTopTracks || !getTopTracks.items) {
     return <p>No top tracks available</p>;
   }
 
+  if (!getTopArtists || !getTopArtists.items) {
+    return <p>No top artists available</p>;
+  }
+
   const Track = ({ track, index }: { track: any; index: number }) => (
-    <div key={index} className="py-1 px-2">
-      <div className="flex gap-4">
-        <div className="text-muted-foreground my-auto whitespace-nowrap w-2">
-          {index + 1}
-        </div>
+    <div key={index} className="py-1 px-2 text-sm">
+      <div className="flex gap-2">
         <Image
           src={track.album.images[0].url}
           alt={track.name}
@@ -55,14 +68,43 @@ export default async function MusicTracking() {
             >
               {track.album.name}
             </a>
-            /
-            <a
-              href={track.artists[0].external_urls.spotify}
-              className="hover:underline line-clamp-1"
-              aria-label={track.artists[0].name}
-            >
-              {track.artists[0].name}
-            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const capitalizeWords = (str: string) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  const Artist = ({ artist, index }: { artist: any; index: number }) => (
+    <div key={index} className="py-1 px-2 text-sm">
+      <div className="flex gap-2">
+        <Image
+          src={artist.images[0]?.url || "/default_image_path.png"} // Fallback in case of missing image
+          alt={artist.name}
+          width={300}
+          height={300}
+          className="w-10 h-10"
+        />
+        <div className="my-auto">
+          <a
+            href={artist.external_urls.spotify}
+            className="hover:underline line-clamp-1"
+            aria-label={artist.name}
+          >
+            {artist.name}
+          </a>
+          <div className="flex gap-1 text-xs text-muted-foreground">
+            {artist.genres && artist.genres.length > 0 ? (
+              <span>{capitalizeWords(artist.genres[0])}</span>
+            ) : (
+              <span>Unknown</span>
+            )}
           </div>
         </div>
       </div>
@@ -70,14 +112,25 @@ export default async function MusicTracking() {
   );
 
   return (
-    <div className="flex flex-col w-full gap-2">
-      <p className="text-muted-foreground text-sm pt-4">
-        Most listened to tracks
-      </p>
-      <div>
-      {getTopTracks.items.map((track: any, index: number) => (
-        <Track key={index} track={track} index={index} />
-      ))}
+    <div className="flex flex-col w-full gap-20 text-sm">
+      <div className="flex flex-col w-full gap-2 text-sm">
+        <p className="text-muted-foreground text-sm">Most listened to tracks</p>
+        <div className="grid grid-cols-2 gap-2">
+          {getTopTracks.items.map((track: any, index: number) => (
+            <Track key={index} track={track} index={index} />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-col w-full gap-2 text-sm">
+        <p className="text-muted-foreground text-sm ">
+          Most listened to artists
+        </p>
+        <div className="grid grid-cols-2 gap-2">
+          {getTopArtists.items.map((artist: any, index: number) => (
+            <Artist key={index} artist={artist} index={index} />
+          ))}
+        </div>
       </div>
     </div>
   );

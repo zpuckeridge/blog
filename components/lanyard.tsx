@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useLanyardWS } from "use-lanyard";
-import Age from "./age";
 
 export default function Lanyard() {
   const DISCORD_ID = "181324210876973056";
@@ -68,11 +67,7 @@ export default function Lanyard() {
           />
           <p className="my-auto">{getStatusTextAndColor().statusText}</p>
         </div>
-        <p>
-          <Age /> y/o Web Developer
-        </p>
         <p>{brisbaneTime}</p>
-        <p>27.4705° S, 153.0260° E</p>
       </div>
       <div className="my-auto">
         {data?.activities?.map((activity) => {

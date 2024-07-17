@@ -16,11 +16,10 @@ export default async function GalleryPage() {
     .execute();
 
   return (
-    <div className="max-w-7xl mx-auto py-32 px-4">
+    <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
       <div className="flex flex-col gap-12">
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold">Gallery</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
+          <p className="text-sm">
             Welcome to my personal photo gallery. Here you&apos;ll find photos
             from my life and travels.
           </p>

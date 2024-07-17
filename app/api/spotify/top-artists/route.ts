@@ -6,7 +6,7 @@ export async function GET() {
     const { access_token } = await getAccessToken();
 
     const res = await fetch(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10`,
+      `https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10`,
       {
         headers: {
           Authorization: `Bearer ${access_token}`,
@@ -18,9 +18,7 @@ export async function GET() {
       if (res.status === 401) {
         throw new Error("Unauthorized access. Please check your access token.");
       } else {
-        throw new Error(
-          "Error fetching most played data. Status:" + res.status,
-        );
+        throw new Error("Error fetching top artists. Status:" + res.status);
       }
     }
 

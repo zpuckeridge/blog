@@ -161,6 +161,15 @@ export default function NavigationClient({ posts }: { posts: any }) {
                 </div>
               )}
             </div>
+
+            <Link
+              href="/gallery"
+              className={`${isActive("/resources")} hover:text-white flex justify-between`}
+            >
+              <p>Gallery</p>
+              <p>100+ images</p>
+            </Link>
+
             <Link
               href="/resources"
               className={`${isActive("/resources")} hover:text-white flex justify-between`}

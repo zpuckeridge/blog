@@ -163,7 +163,7 @@ export default function BooksSection({
     <div
       ref={containerRef}
       className={twMerge(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
+        "scroller relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
       )}
     >
       <ul
@@ -179,7 +179,7 @@ export default function BooksSection({
             href={media.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group z-10"
+            className="relative group"
             key={media.id}
           >
             <div>
@@ -190,15 +190,15 @@ export default function BooksSection({
                 priority
                 quality={100}
                 alt={media.title}
-                className="object-cover w-auto h-80 rounded-md aspect-auto"
+                className="object-cover w-auto h-40 rounded-md aspect-auto"
               />
             </div>
 
             <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="absolute bottom-4 left-4 group-hover:flex hidden">
+              <div className="absolute bottom-2 left-2 group-hover:flex hidden">
                 <div className="flex items-end gap-1">
                   {[...Array(media.rating)].map((_, index) => (
-                    <StarFilledIcon key={index} />
+                    <StarFilledIcon className="w-3 h-3" key={index} />
                   ))}
                 </div>
               </div>

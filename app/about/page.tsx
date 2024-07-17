@@ -1,10 +1,11 @@
 import Age from "@/components/age";
+import BooksSection from "@/components/sections/books-section";
 import MusicTracking from "@/components/sections/music-section";
 import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="max-w-md lg:mx-auto">
+    <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
       <div className="text-sm flex flex-col gap-2">
         <p>
           I'm a <Age /> year old{" "}
@@ -28,6 +29,29 @@ export default function About() {
           graduating high school, I spent about 9 months studying a dual degree
           of Psychology and Criminology.
         </p>
+
+        <div className="py-10 max-w-md mx-auto flex gap-2  items-center">
+          <div className="w-full relative">
+            <Image
+              src="/roadtrip/P1011152_t1mdns.avif"
+              width={1000}
+              height={1000}
+              priority
+              alt="Somewhere in the middle of the United States"
+              className="w-full aspect-square object-cover"
+            />
+          </div>
+          <div className="w-full relative">
+            <Image
+              src="/roadtrip/P1011435_hgzmov.avif"
+              width={1000}
+              height={1000}
+              priority
+              alt="Picture of rock formations in Arizona"
+              className="w-full aspect-square object-cover"
+            />
+          </div>
+        </div>
 
         <p>
           I dropped out of university and travelled to the{" "}
@@ -67,69 +91,26 @@ export default function About() {
           .
         </p>
 
-        <div className="lg:flex lg:space-y-0 space-y-4 justify-center py-14 px-8">
-          <div className="lg:-mr-64 lg:mt-40 lg:rotate-[2deg]">
-            <Image
-              src="/roadtrip/Friendsville.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Group photo in front of a sign that reads FRIENDSVILLE in Friendsville, Virginia"
-              className="w-full lg:w-48 rounded-lg border-2 border-muted  z-10 shadow-2xl mx-auto lg:mx-0"
-            />
-            <p className="text-xs text-muted-foreground text-right py-1">
-              Friendsville, Virginia
-            </p>
-          </div>
-          <div className="lg:-mr-6 lg:mt-20 lg:-rotate-[10deg]">
+        <div className="py-10 max-w-md mx-auto flex gap-2  items-center">
+          <div className="w-full">
             <Image
               src="/roadtrip/P1011186_qkrix9.avif"
               width={1000}
               height={1000}
               priority
               alt="Somewhere in Colorado"
-              className="w-full lg:w-60 rounded-lg border-2 border-muted  z-30 shadow-2xl mx-auto lg:mx-0"
+              className="w-full aspect-square object-cover"
             />
-            <p className="text-xs text-muted-foreground py-1">Colorado</p>
           </div>
-          <div>
-            <Image
-              src="/roadtrip/P1011435_hgzmov.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Somewhere in the Grand Canyon"
-              className="w-full lg:w-96 rounded-lg border-2 border-muted z-20 shadow-2xl mx-auto lg:mx-0"
-            />
-            <p className="text-xs text-muted-foreground text-center py-1">
-              Grand Canyon
-            </p>
-          </div>
-          <div className="lg:-ml-4 lg:mt-20 lg:rotate-[7deg]">
-            <Image
-              src="/roadtrip/P1011152_t1mdns.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Somewhere in the middle of the United States"
-              className="w-full lg:w-72 rounded-lg border-2 border-muted  z-30 shadow-2xl mx-auto lg:mx-0"
-            />
-            <p className="text-xs text-muted-foreground text-right py-1">
-              somewhere? 👀
-            </p>
-          </div>
-          <div className="lg:-ml-[18rem] lg:pt-40 lg:-rotate-[3deg]">
+          <div className="w-full">
             <Image
               src="/roadtrip/P1011212_xh4oep.avif"
               width={1000}
               height={1000}
               priority
               alt="Picture of rock formations in Arizona"
-              className="w-full lg:w-48 rounded-lg border-2 border-muted  z-40 shadow-2xl mx-auto lg:mx-0"
+              className="w-full aspect-square object-cover"
             />
-            <p className="text-xs text-muted-foreground text-right py-1">
-              Arizona
-            </p>
           </div>
         </div>
 
@@ -154,8 +135,26 @@ export default function About() {
           applications. Nowadays, I'm all about web development, that software
           being - JavaScript, NextJS, and TailwindCSS.
         </p>
+      </div>
 
-        <MusicTracking />
+      <MusicTracking />
+      <div className="flex flex-col w-full gap-2 text-sm">
+        <p className="text-muted-foreground text-sm">Recommended reads</p>
+
+        <BooksSection />
+      </div>
+
+      <div className="border-l-2 border-muted text-sm space-y-2">
+        <p className="ml-4">
+          &quot;Have nothing to do with irreverent, silly myths. Rather train
+          yourself for godliness; for while bodily training is of some value,
+          godliness is of value in every way, as it holds promise for the
+          present life and also for the life to come. The saying is trustworthy
+          and deserving of full acceptance. For to this end we toil and strive,
+          because we have our hope set on the living God, who is the Savior of
+          all people, especially of those who believe.&quot;
+        </p>
+        <p className="text-sm italic ml-4">1 Timothy 4:6-11</p>
       </div>
     </div>
   );

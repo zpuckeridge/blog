@@ -87,12 +87,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `min-h-screen bg-[#111111] font-sans antialiased selection:bg-green-950 selection:text-green-400`,
+          `min-h-screen bg-gradient-to-br from-[#111111] to-black  font-sans antialiased selection:bg-cyan-950 selection:text-cyan-400`,
           fontSans.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20 z-40 bg-gradient-to-t from-[#111111] dark:from-background" />
+          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-black dark:from-background z-10" />
 
           <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 md:justify-between p-8 ">
             <div className="flex flex-col lg:w-1/3 max-w-md lg:max-w-none lg:sticky top-0">
@@ -110,11 +110,11 @@ export default function RootLayout({
 
             <Navigation />
 
-            <div className="fixed bottom-8 left-8 hidden lg:block">
+            <div className="fixed bottom-8 left-8 hidden lg:block z-20">
               <Lanyard />
             </div>
 
-            <div className="fixed bottom-8 right-8 hidden lg:block">
+            <div className="fixed bottom-8 right-8 hidden lg:block z-20">
               <NowPlaying />
             </div>
           </div>
