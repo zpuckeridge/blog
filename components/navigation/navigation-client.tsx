@@ -7,7 +7,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Badge } from "../ui/badge";
 
-export default function NavigationClient({ posts }: { posts: any }) {
+export default function NavigationClient({
+  posts,
+  videos,
+}: {
+  posts: any;
+  videos: any;
+}) {
   const pathname = usePathname();
 
   const isActive = (href: string) => (pathname === href ? "text-white" : "");
@@ -115,6 +121,15 @@ export default function NavigationClient({ posts }: { posts: any }) {
                 </div>
               )}
             </div>
+
+            <Link
+              href="/videos"
+              className={`${isActive("/videos")} hover:text-white flex justify-between`}
+            >
+              <p>Videos</p>
+              <p>{videos.length} entries</p>
+            </Link>
+
             <div className="flex flex-col gap-2">
               <Link
                 href="/about"
@@ -161,22 +176,6 @@ export default function NavigationClient({ posts }: { posts: any }) {
                 </div>
               )}
             </div>
-
-            <Link
-              href="/gallery"
-              className={`${isActive("/resources")} hover:text-white flex justify-between`}
-            >
-              <p>Gallery</p>
-              <p>100+ images</p>
-            </Link>
-
-            <Link
-              href="/resources"
-              className={`${isActive("/resources")} hover:text-white flex justify-between`}
-            >
-              <p>Resources</p>
-              <p>9 entries</p>
-            </Link>
           </div>
           <hr />
           <div className="flex flex-col gap-2">
