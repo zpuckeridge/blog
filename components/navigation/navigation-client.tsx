@@ -151,6 +151,13 @@ export default function NavigationClient({
                     Read.cv
                   </a>
                   <a
+                    href="https://shop.zacchary.me/"
+                    target="_blank"
+                    className="hover:text-white"
+                  >
+                    Shop
+                  </a>
+                  <a
                     href="https://x.com/zpuckeridge"
                     target="_blank"
                     className="hover:text-white"
@@ -158,20 +165,41 @@ export default function NavigationClient({
                     X
                   </a>
                   <a
-                    href="https://sdelta.xyz"
+                    href="https://www.facebook.com/profile.php?id=61554733838731"
                     target="_blank"
-                    className="hover:text-white flex justify-between"
+                    className="hover:text-white"
                   >
-                    TV
-                    <Badge className="text-xs rounded-none hover:bg-muted hover:text-muted-foreground py-0 px-2 bg-muted text-muted-foreground">
-                      WIP
-                    </Badge>
+                    Facebook
+                  </a>
+                  <a
+                    href="https://linkedin.com/zpuckeridge"
+                    target="_blank"
+                    className="hover:text-white"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://instagram.com/zpuckeridge"
+                    target="_blank"
+                    className="hover:text-white"
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    href="https://cosmos.so/zpuckeridge"
+                    target="_blank"
+                    className="hover:text-white"
+                  >
+                    Cosmos
                   </a>
                   <Link
                     href="/about/uses"
-                    className="hover:text-white flex justify-between select-none"
+                    className="hover:text-white flex justify-between"
                   >
                     Uses
+                    <Badge className="text-xs rounded-none hover:bg-muted hover:text-muted-foreground py-0 px-2 bg-muted text-muted-foreground">
+                      WIP
+                    </Badge>
                   </Link>
                 </div>
               )}

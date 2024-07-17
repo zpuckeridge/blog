@@ -97,11 +97,24 @@ export default function RootLayout({
           <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 md:justify-between p-8 ">
             <div className="flex flex-col lg:w-1/3 max-w-md lg:max-w-none lg:sticky top-0">
               <div className="lg:sticky top-8 space-y-6">
-                <div className="flex gap-8 text-sm whitespace-nowrap">
-                  <Link href="/" className="hover:text-muted-foreground">
-                    Zacchary Puckeridge
+                <div className="space-y-2">
+                  <div className="flex gap-8 text-sm whitespace-nowrap">
+                    <Link href="/" className="hover:text-muted-foreground">
+                      Zacchary Puckeridge
+                    </Link>
+                    <p className="text-muted-foreground">Web Developer</p>
+                  </div>
+
+                  <Link
+                    href="/hire-me"
+                    className="rounded-full bg-green-500/10 border text-xs text-white font-semibold px-2 my-auto py-0.5 border-green-500 flex justify-center gap-2"
+                  >
+                    <div className="h-3 w-3 rounded-full animate-pulse bg-green-500/50 relative my-auto flex justify-center items-center">
+                      <div className="h-1.5 w-1.5 rounded-full animate-pulse bg-green-500" />
+                    </div>
+
+                    <div className="my-auto">I&apos;m available for work</div>
                   </Link>
-                  <p className="text-muted-foreground">Web Developer</p>
                 </div>
               </div>
             </div>
