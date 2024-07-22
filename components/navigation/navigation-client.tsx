@@ -5,6 +5,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { Badge } from "../ui/badge";
 
 export default function NavigationClient({
@@ -15,15 +16,20 @@ export default function NavigationClient({
   videos: any;
 }) {
   const pathname = usePathname();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const isActive = (href: string) => (pathname === href ? "text-white" : "");
+
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
 
   return (
     <>
       <div className="p-4 w-full border-t-2 border-muted z-50 fixed bottom-0 left-0 bg-[#111111] lg:hidden">
         <div className="flex justify-between">
           <p className="text-sm text-muted-foreground">/</p>
-          <Drawer>
+          <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <DrawerTrigger>
               <p className="text-sm flex gap-1 my-auto">
                 Open navigation{" "}
@@ -36,6 +42,7 @@ export default function NavigationClient({
                   <Link
                     href="/work"
                     className={`${isActive("/work")} hover:text-white flex justify-between`}
+                    onClick={handleDrawerClose}
                   >
                     <p>Work</p>
                     <p>7 projects</p>
@@ -43,6 +50,7 @@ export default function NavigationClient({
                   <Link
                     href="/timeline"
                     className={`${isActive("/timeline")} hover:text-white flex justify-between`}
+                    onClick={handleDrawerClose}
                   >
                     <p>Timeline</p>
                     <p>{posts.length} entries</p>
@@ -50,6 +58,7 @@ export default function NavigationClient({
                   <Link
                     href="/about"
                     className={`${isActive("/about")} hover:text-white flex justify-between`}
+                    onClick={handleDrawerClose}
                   >
                     <p>About</p>
                     <p>
@@ -59,6 +68,7 @@ export default function NavigationClient({
                   <Link
                     href="/resources"
                     className={`${isActive("/resources")} hover:text-white flex justify-between`}
+                    onClick={handleDrawerClose}
                   >
                     <p>Resources</p>
                     <p>9 entries</p>
@@ -69,6 +79,7 @@ export default function NavigationClient({
                   <Link
                     href="/colophon"
                     className={`${isActive("/colophon")} hover:text-white flex justify-between`}
+                    onClick={handleDrawerClose}
                   >
                     <p>Colophon</p>
                     <p>5 topics</p>
@@ -76,6 +87,7 @@ export default function NavigationClient({
                   <Link
                     href="/imprint"
                     className={`${isActive("/imprint")} hover:text-white`}
+                    onClick={handleDrawerClose}
                   >
                     Imprint
                   </Link>

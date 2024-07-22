@@ -98,7 +98,7 @@ export default function RootLayout({
             <div className="flex flex-col lg:w-1/3 max-w-md lg:max-w-none lg:sticky top-0">
               <div className="lg:sticky top-8 space-y-6">
                 <div className="space-y-2">
-                  <div className="flex gap-8 text-sm whitespace-nowrap">
+                  <div className="flex justify-between text-sm whitespace-nowrap">
                     <Link href="/" className="hover:text-muted-foreground">
                       Zacchary Puckeridge
                     </Link>
