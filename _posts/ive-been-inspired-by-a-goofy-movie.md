@@ -1,5 +1,5 @@
 ---
-title: 🖌️ I've been inspired by 'A Goofy Movie'
+title: I've been inspired by 'A Goofy Movie'
 date: 2021-07-26
 tag: Art
 description: Why I enjoyed 'A Goofy Movie' as an adult.

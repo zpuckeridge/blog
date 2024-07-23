@@ -6,7 +6,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Work_Sans as FontSans } from "next/font/google";
+import {
+  Work_Sans as FontSans,
+  Nanum_Myeongjo as FontSerif,
+} from "next/font/google";
 import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
@@ -14,6 +17,12 @@ import "./globals.css";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const fontSerif = FontSerif({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -88,6 +97,7 @@ export default function RootLayout({
         className={cn(
           `min-h-screen bg-black font-sans antialiased selection:bg-cyan-950 selection:text-cyan-400`,
           fontSans.variable,
+          fontSerif.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
@@ -103,17 +113,6 @@ export default function RootLayout({
                     </Link>
                     <p className="text-muted-foreground">Web Developer</p>
                   </div>
-
-                  <Link
-                    href="/hire-me"
-                    className="rounded-full bg-green-500/10 border text-xs text-white font-semibold px-2 my-auto py-0.5 border-green-500 flex justify-center gap-2"
-                  >
-                    <div className="h-3 w-3 rounded-full animate-pulse bg-green-500/50 relative my-auto flex justify-center items-center">
-                      <div className="h-1.5 w-1.5 rounded-full animate-pulse bg-green-500" />
-                    </div>
-
-                    <div className="my-auto">I&apos;m available for work</div>
-                  </Link>
                 </div>
               </div>
             </div>

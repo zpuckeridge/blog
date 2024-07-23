@@ -60,7 +60,7 @@ export default function HireMe() {
           <a
             href="https://cal.com/zpuckeridge"
             target="_blank"
-            className="flex justify-center gap-2 font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 px-2 py-1"
+            className="flex justify-center gap-2 font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 border-2 px-2 py-1"
           >
             <CalendarIcon className="inline-block w-4 h-4" /> Schedule a Call
           </a>
@@ -243,7 +243,7 @@ export default function HireMe() {
           <a
             href="https://cal.com/zpuckeridge"
             target="_blank"
-            className="flex justify-center gap-2 max-w-sm mx-auto font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 px-2 py-1"
+            className="flex justify-center gap-2 max-w-sm mx-auto font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 border-2 px-2 py-1"
           >
             <CalendarIcon className="inline-block w-4 h-4" /> Schedule a Call
           </a>

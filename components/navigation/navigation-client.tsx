@@ -45,7 +45,7 @@ export default function NavigationClient({
                     onClick={handleDrawerClose}
                   >
                     <p>Work</p>
-                    <p>7 projects</p>
+                    <p>12 projects</p>
                   </Link>
                   <Link
                     href="/timeline"
@@ -82,14 +82,7 @@ export default function NavigationClient({
                     onClick={handleDrawerClose}
                   >
                     <p>Colophon</p>
-                    <p>4 topics</p>
-                  </Link>
-                  <Link
-                    href="/imprint"
-                    className={`${isActive("/imprint")} hover:text-white`}
-                    onClick={handleDrawerClose}
-                  >
-                    Imprint
+                    <p>5 topics</p>
                   </Link>
                 </div>
               </div>
@@ -106,7 +99,7 @@ export default function NavigationClient({
               className={`${isActive("/work")} hover:text-white flex justify-between`}
             >
               <p>Work</p>
-              <p>7 projects</p>
+              <p>12 projects</p>
             </Link>
             <div className="flex flex-col gap-2">
               <Link
@@ -224,13 +217,7 @@ export default function NavigationClient({
               className={`${isActive("/colophon")} hover:text-white flex justify-between`}
             >
               <p>Colophon</p>
-              <p>4 topics</p>
-            </Link>
-            <Link
-              href="/imprint"
-              className={`${isActive("/imprint")} hover:text-white`}
-            >
-              Imprint
+              <p>5 topics</p>
             </Link>
           </div>
         </div>

@@ -1,5 +1,5 @@
 ---
-title: 💥 Should Christians go to War?
+title: Should Christians go to War?
 date: 2023-10-26
 tag: Faith
 description: How should Christians respond to the stirrings or war? Do we simply

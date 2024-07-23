@@ -1,5 +1,5 @@
 ---
-title: 🎂 React based Birthday Age Calculator
+title: React based Birthday Age Calculator
 date: 2023-01-02
 tag: Technical
 description: Calculate age from a birthdate.

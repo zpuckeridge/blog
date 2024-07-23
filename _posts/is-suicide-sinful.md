@@ -1,5 +1,5 @@
 ---
-title: 🚩 Is suicide sinful?
+title: Is suicide sinful?
 date: 2019-11-06
 tag: Faith
 description: The act of suicide is sin because it's subjecting our own will onto

@@ -1,5 +1,5 @@
 ---
-title: 💌 Homosexuality - what does the Bible say?
+title: Homosexuality - what does the Bible say?
 date: 2020-07-07
 tag: Faith
 description: This article seeks to understand what God has said about homosexuality.

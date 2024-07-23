@@ -13,21 +13,29 @@ export default function Colophon() {
 
             <p>
               <a
-                href="https://fonts.google.com/specimen/Work+Sans?ref=zacchary.me"
+                href="https://fonts.google.com/specimen/Work+Sans"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
                 Work Sans
               </a>{" "}
-              and{" "}
+              as body text,{" "}
               <a
-                href="https://vercel.com/font?ref=zacchary.me"
+                href="https://vercel.com/font"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
-                Geist
-              </a>
-              .
+                Geist Mono
+              </a>{" "}
+              for code and{" "}
+              <a
+                href="https://fonts.google.com/specimen/Nanum+Myeongjo"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Nanum Myeongjo
+              </a>{" "}
+              for headings and flair.
             </p>
           </div>
 
@@ -45,7 +53,7 @@ export default function Colophon() {
               </a>
               ,{" "}
               <a
-                href="https://pagescms.org/?ref=zacchary.me"
+                href="https://pagescms.org?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
@@ -114,11 +122,25 @@ export default function Colophon() {
 
             <div className="flex flex-col gap-2">
               <a
-                href="https://linusrogge.com/?ref=zacchary.me"
+                href="https://linusrogge.com?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
                 linusrogge.com
+              </a>
+              <a
+                href="https://sdrn.co?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                sdrn.co
+              </a>
+              <a
+                href="https://alexcarpenter.me?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                alexcarpenter.me
               </a>
               <a
                 href="https://leerob.io?ref=zacchary.me"
@@ -135,14 +157,14 @@ export default function Colophon() {
                 joshwcomeau.com
               </a>
               <a
-                href="https://wesbos.com/?ref=zacchary.me"
+                href="https://wesbos.com?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
                 wesbos.com
               </a>
               <a
-                href="https://carlbarenbrug.com/?ref=zacchary.me"
+                href="https://carlbarenbrug.com?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
@@ -156,7 +178,7 @@ export default function Colophon() {
 
             <div className="flex flex-col gap-2">
               <a
-                href="https://61oaksgroup.com.au/?ref=zacchary.me"
+                href="https://61oaksgroup.com.au?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
@@ -177,14 +199,14 @@ export default function Colophon() {
                 Craig Ireland
               </a>
               <a
-                href="https://dougwils.com/?ref=zacchary.me"
+                href="https://dougwils.com?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
                 Douglas Wilson
               </a>
               <a
-                href="https://www.ligonier.org/?ref=zacchary.me"
+                href="https://www.ligonier.org?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
@@ -208,7 +230,7 @@ export default function Colophon() {
                 Jaydan Holmes
               </p>
               <a
-                href="https://drevan.me/?ref=zacchary.me"
+                href="https://drevan.me?ref=zacchary.me"
                 target="_blank"
                 className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
               >
@@ -217,6 +239,55 @@ export default function Colophon() {
               <p className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2">
                 Declan Ballantine
               </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="py-10 flex flex-col w-full gap-2">
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">Name</div>
+
+            <div className="w-4/6">Zacchary Puckeridge</div>
+          </div>
+
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">Location</div>
+
+            <div className="w-4/6">Brisbane, QLD</div>
+          </div>
+
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">Work</div>
+
+            <div className="w-4/6">
+              IT Administrator at{" "}
+              <a
+                href="https://rsp.com.au?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Rising Sun Pictures
+              </a>
+            </div>
+          </div>
+
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">Version</div>
+
+            <div className="w-4/6">5.0.0</div>
+          </div>
+
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">View source</div>
+
+            <div className="w-4/6">
+              <a
+                href="https://github.com/zpuckeridge/blog?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                zpuckeridge/blog
+              </a>
             </div>
           </div>
         </div>

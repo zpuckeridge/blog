@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -14,6 +15,13 @@ export default function NotFound() {
             <ArrowLeftIcon className="inline-flex" /> /
           </Link>
         </div>
+
+        <Image
+          src="/media/404.webp"
+          alt="Max Goof sighing and putting his head in his hands"
+          width={500}
+          height={500}
+        />
       </div>
     </div>
   );

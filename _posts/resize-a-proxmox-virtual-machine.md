@@ -1,5 +1,5 @@
 ---
-title: 💾 Resize a Proxmox Virtual Machine
+title: Resize a Proxmox Virtual Machine
 date: 2023-03-19
 tag: Technical
 description: Short guide on resizing a virtual machine.

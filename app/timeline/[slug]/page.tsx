@@ -29,18 +29,12 @@ export default function Post({ params }: { params: { slug: string } }) {
   const averageWordsPerMinute = 250; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
-  const allPosts = getAllPosts();
-  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
-  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
-  const nextPost =
-    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
-
   return (
     <div className="max-w-md lg:mx-auto pb-10">
       <div className="text-sm flex flex-col gap-20">
         <div className="space-y-2">
           <div className="flex justify-between gap-8">
-            <h1 className="truncate">{post.title}</h1>
+            <h1 className="font-serif text-2xl italic">{post.title}</h1>
             <CopyLink />
           </div>
 
@@ -110,27 +104,6 @@ export default function Post({ params }: { params: { slug: string } }) {
             )}
           </div>
         </div>
-
-        {/* <div className="md:flex space-y-4 md:space-y-0 justify-between max-w-3xl mx-auto gap-4">
-          {prevPost && (
-            <Link
-              href={`/blog/${prevPost.slug}`}
-              className={`flex justify-between gap-2 p-4 md:w-1/2 bg-neutral-900 hover:bg-muted transition-all duration-200 rounded-lg border-2`}
-            >
-              <ArrowLeftIcon className="my-auto w-5 h-5" />{" "}
-              <p className="my-auto">{prevPost.title}</p>
-            </Link>
-          )}
-          {nextPost && (
-            <Link
-              href={`/blog/${nextPost.slug}`}
-              className={`flex justify-between gap-2 p-4 md:w-1/2 bg-neutral-900 hover:bg-muted transition-all duration-200 rounded-lg border-2`}
-            >
-              <p className="my-auto">{nextPost.title}</p>{" "}
-              <ArrowRightIcon className="my-auto w-5 h-5" />
-            </Link>
-          )}
-        </div> */}
       </div>
     </div>
   );

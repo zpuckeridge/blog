@@ -1,5 +1,5 @@
 ---
-title: 🌲 The Limitations of Natural Revelation
+title: The Limitations of Natural Revelation
 date: 2024-02-23
 tag: Faith
 description: While natural revelation provides glimpses of God's existence and
