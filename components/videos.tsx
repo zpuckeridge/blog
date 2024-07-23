@@ -107,7 +107,7 @@ export default function Videos({ videos, itemsPerPage, tags }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-2 gap-2 mt-2">
         {currentVideos
           .filter((video) =>
             video.title.toLowerCase().includes(searchTerm.toLowerCase()),

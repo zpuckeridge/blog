@@ -5,7 +5,7 @@ import { Textarea } from "../ui/textarea";
 
 export default function ContactSection() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
       <div className="p-4 rounded-lg border-2 bg-neutral-900 w-full space-y-6">
         <h1 className="md:text-7xl sm:text-6xl text-5xl uppercase font-bold leading-none tracking-tight text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
           Contact Me

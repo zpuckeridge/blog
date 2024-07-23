@@ -1,14 +1,20 @@
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Work() {
   return (
     <div className="max-w-md lg:mx-auto">
-      <div className="text-sm flex flex-col gap-20">
-        <p>
-          I've been a web developer for around 3 years now, creating unique
-          marketing, e-commerce and web applications for clients. Below is a
-          selection of my work from the last few years.
-        </p>
+      <div className="text-sm flex flex-col gap-20 pb-20">
+        <div className="text-sm flex flex-col gap-2">
+          <p className="font-serif text-2xl italic ">Work</p>
+
+          <p>
+            I've been a web developer for around 3 years now, creating unique
+            marketing, e-commerce and web applications for clients. Below is a
+            selection of my work from the last few years.
+          </p>
+        </div>
 
         <div>
           <Image
@@ -218,6 +224,13 @@ export default function Work() {
             <p className="text-muted-foreground">2022</p>
           </div>
         </div>
+
+        <Link
+          href="/"
+          className="text-xs text-muted-foreground hover:text-white"
+        >
+          <ArrowLeftIcon className="inline-flex" /> /
+        </Link>
       </div>
     </div>
   );

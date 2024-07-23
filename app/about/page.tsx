@@ -2,11 +2,20 @@ import Age from "@/components/age";
 import ImageWithDetails from "@/components/image-with-details";
 import BooksSection from "@/components/sections/books-section";
 import MusicTracking from "@/components/sections/music-section";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "I'm a 24 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
+};
 
 export default function About() {
   return (
     <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
       <div className="text-sm flex flex-col gap-2">
+        <p className="font-serif text-2xl italic ">About</p>
+
         <p>
           I'm a <Age /> year old{" "}
           <a
@@ -30,7 +39,7 @@ export default function About() {
           of Psychology and Criminology.
         </p>
 
-        <div className="py-10 max-w-md mx-auto flex gap-2  items-center">
+        <div className="py-4 max-w-md mx-auto flex gap-2  items-center">
           <ImageWithDetails
             src="/roadtrip/P1011152_t1mdns.avif"
             alt="Somewhere in the middle of the United States"
@@ -86,7 +95,7 @@ export default function About() {
           .
         </p>
 
-        <div className="py-10 max-w-md mx-auto flex gap-2  items-center">
+        <div className="py-4 max-w-md mx-auto flex gap-2  items-center">
           <ImageWithDetails
             src="/roadtrip/P1011186_qkrix9.avif"
             alt="On the road in Colorado"

@@ -2,7 +2,7 @@
 
 import Age from "@/components/age";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -28,7 +28,12 @@ export default function NavigationClient({
     <>
       <div className="p-4 w-full border-t-2 border-muted z-50 fixed bottom-0 left-0 bg-[#111111] lg:hidden">
         <div className="flex justify-between">
-          <p className="text-sm text-muted-foreground">/</p>
+          <Link
+            href="/"
+            className="text-xs my-auto text-muted-foreground hover:text-white"
+          >
+            <ArrowLeftIcon className="inline-flex" /> /
+          </Link>
           <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <DrawerTrigger>
               <p className="text-sm flex gap-1 my-auto">
@@ -91,7 +96,7 @@ export default function NavigationClient({
         </div>
       </div>
 
-      <div className="lg:flex flex-col gap-6 lg:w-1/3 max-w-md lg:max-w-none text-sm text-muted-foreground hidden">
+      <div className="lg:flex flex-col gap-6 lg:w-1/3 max-w-sm text-sm text-muted-foreground hidden">
         <div className="lg:sticky top-8 space-y-6">
           <div className="flex flex-col gap-2">
             <Link
@@ -122,7 +127,7 @@ export default function NavigationClient({
                       {post.title}
                     </Link>
                   ))}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-10 lg:bottom-0 h-20 z-40 bg-gradient-to-t from-[#111111] dark:from-background" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-10 lg:bottom-0 h-20 z-40 bg-gradient-to-t from-black dark:from-black" />
                 </div>
               )}
             </div>

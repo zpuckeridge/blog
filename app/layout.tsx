@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   },
   title: {
     default: "Zacchary Puckeridge",
-    template: "%s | Zacchary Puckeridge",
+    template: "%s — Zacchary Puckeridge",
   },
   description:
     "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
@@ -101,13 +101,13 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-black dark:from-background z-10" />
+          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-black dark:from-black z-10" />
 
           <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 md:justify-between p-8 ">
-            <div className="flex flex-col lg:w-1/3 max-w-md lg:max-w-none lg:sticky top-0">
+            <div className="flex flex-col lg:w-1/3 max-w-sm lg:sticky top-0">
               <div className="lg:sticky top-8 space-y-6">
                 <div className="space-y-2">
-                  <div className="flex justify-between text-sm whitespace-nowrap">
+                  <div className="flex gap-2 justify-between text-sm whitespace-nowrap">
                     <Link href="/" className="hover:text-muted-foreground">
                       Zacchary Puckeridge
                     </Link>

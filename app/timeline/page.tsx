@@ -1,11 +1,12 @@
 import { getAllPosts } from "@/lib/get-posts";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Timeline",
   description:
-    "Zacchary's personal corner of the internet. Here you'll find posts about faith, technology, and life.",
+    "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
 };
 
 export default async function Posts() {
@@ -13,12 +14,14 @@ export default async function Posts() {
 
   return (
     <div className="max-w-md lg:mx-auto">
-      <div className="text-sm flex flex-col gap-20">
-        <div className="space-y-4">
+      <div className="text-sm flex flex-col gap-20 pb-20">
+        <div className="space-y-2">
+          <p className="font-serif text-2xl italic ">Timeline</p>
+
           <p>
             Welcome to my personal corner of the internet. Here you'll find
-            posts about my faith, technology I'm interested in, and things
-            happening in my life.
+            posts about my faith, technology I'm interested in, random notes,
+            code snippets and other things happening in my life.
           </p>
 
           <p className="text-xs text-muted-foreground">
@@ -26,24 +29,17 @@ export default async function Posts() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-6">
           {posts.map((post: any) => (
-            <Link
+            <div
               key={post.slug}
-              href={`/timeline/${encodeURIComponent(post.slug)}`}
-              prefetch={false}
-              aria-label={post.title}
-              className="relative border-t border-muted space-y-8 py-4"
+              className="flex gap-12 w-full border-b border-muted pb-6"
             >
-              <div className="flex justify-between">
-                <p className="text-muted-foreground text-xs">
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    weekday: "long",
-                  })}{" "}
-                  ·{" "}
+              <div className="w-1/6 space-y-2 text-muted-foreground">
+                <p className="text-muted-foreground text-nowrap">
                   {new Date(post.date).toLocaleDateString("en-US", {
                     day: "2-digit",
-                    month: "long",
+                    month: "short",
                     year: "numeric",
                   })}
                 </p>
@@ -51,16 +47,29 @@ export default async function Posts() {
                 <p className="text-muted-foreground text-xs">{post.tag}</p>
               </div>
 
-              <p className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2">
-                {post.title}
-              </p>
+              <div className="w-5/6 space-y-2">
+                <Link
+                  href={`/timeline/${post.slug}`}
+                  aria-label={post.title}
+                  className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+                >
+                  {post.title}
+                </Link>
 
-              <p className="text-sm text-muted-foreground">
-                {post.description}
-              </p>
-            </Link>
+                <p className="text-xs text-muted-foreground">
+                  {post.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
+
+        <Link
+          href="/"
+          className="text-xs text-muted-foreground hover:text-white"
+        >
+          <ArrowLeftIcon className="inline-flex" /> /
+        </Link>
       </div>
     </div>
   );

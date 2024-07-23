@@ -115,7 +115,7 @@ export default function HireMe() {
         </div>
 
         <div className="max-w-7xl mx-auto space-y-10">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div className="space-y-4 border-2 p-8 rounded-md">
               <p className="text-6xl font-bold font-mono">01</p>
               <div className="space-y-1">

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 
 interface ImageWithDetailsProps {
   src: string;
@@ -30,17 +29,17 @@ export default function ImageWithDetails({
         <div className="absolute z-10 bottom-4 left-4 right-4">
           <div className="flex flex-col gap-2 w-full">
             <hr className="border-muted-foreground" />
-            <div className="flex justify-between gap-4 w-full">
+            <div className="flex justify-between gap-2 w-full">
               <div>Name</div>
               <div className="w-full">{name}</div>
             </div>
             <hr className="border-muted-foreground" />
-            <div className="flex justify-between gap-4 w-full">
+            <div className="flex justify-between gap-2 w-full">
               <div>Location</div>
               <div className="w-full">{location}</div>
             </div>
             <hr className="border-muted-foreground" />
-            <div className="flex justify-between gap-4 w-full">
+            <div className="flex justify-between gap-2 w-full">
               <div>By</div>
               <div className="w-full">{author}</div>
             </div>

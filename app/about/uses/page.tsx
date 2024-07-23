@@ -1,5 +1,11 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Uses",
+  description: "A collection of tools and hardware I use.",
+};
 
 export default function Uses() {
   const UsesItem = ({ title, description }: any) => {
@@ -19,7 +25,7 @@ export default function Uses() {
             <p>Office</p>
             <hr className="w-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
             <UsesItem
               title="Custom Desktop PC"
               description="5800X CPU, 6600XT GPU, 64GB RAM"
@@ -62,7 +68,7 @@ export default function Uses() {
             <p>Programming</p>
             <hr className="w-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
             <UsesItem
               title="Visual Studio Code"
               description="GitHub Dark theme"
@@ -80,7 +86,7 @@ export default function Uses() {
             <p>Self-Hosting</p>
             <hr className="w-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
             <UsesItem title="Plausible" description="Analytics" />
             <UsesItem title="Uptime Kuma" description="Status monitoring" />
             <UsesItem title="Pingvin Share" description="File sharing" />
@@ -93,7 +99,7 @@ export default function Uses() {
             <p>Tools</p>
             <hr className="w-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
             <UsesItem title="Firefox" description="Web browser" />
             <UsesItem title="Proton Pass" description="Password manager" />
             <UsesItem title="Proton Mail" description="Email client" />
@@ -125,7 +131,7 @@ export default function Uses() {
             <p>Vehicles</p>
             <hr className="w-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
             <UsesItem title="Suzuki Grand Vitara" description="2009" />
             <UsesItem title="Honda CB500X" description="2013" />
           </div>
@@ -136,7 +142,7 @@ export default function Uses() {
             <p>EDC</p>
             <hr className="w-full" />
           </div>
-          <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
             <UsesItem
               title="Google Pixel 6 Pro"
               description="Charcoal, 128GB"

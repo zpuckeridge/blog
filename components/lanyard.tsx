@@ -80,7 +80,7 @@ export default function Lanyard() {
             return (
               <div
                 key={activity.id}
-                className="text-sm text-muted-foreground flex gap-4"
+                className="text-sm text-muted-foreground flex gap-2"
               >
                 <div className="aspect-square relative w-[60px] h-[60px]">
                   <img

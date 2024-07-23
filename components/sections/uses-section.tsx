@@ -15,7 +15,7 @@ export default function UsesSection() {
       <div className="space-y-8">
         <div className="md:grid space-y-4 md:space-y-0 grid-cols-2 gap-12 w-full">
           <h2 className="text-2xl font-semibold">Office</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
             <UsesItem
               title="Custom Desktop PC"
               description="5800X CPU, 6600XT GPU, 64GB RAM"
@@ -57,7 +57,7 @@ export default function UsesSection() {
 
         <div className="md:grid space-y-4 md:space-y-0 grid-cols-2 gap-12 w-full">
           <h2 className="text-2xl font-semibold">Programming</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
             <UsesItem
               title="Visual Studio Code"
               description="GitHub Dark theme"
@@ -74,7 +74,7 @@ export default function UsesSection() {
 
         <div className="md:grid space-y-4 md:space-y-0 grid-cols-2 gap-12 w-full">
           <h2 className="text-2xl font-semibold">Self-Hosting</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
             <UsesItem title="Plausible" description="Analytics" />
             <UsesItem title="Uptime Kuma" description="Status monitoring" />
             <UsesItem title="Pingvin Share" description="File sharing" />
@@ -86,7 +86,7 @@ export default function UsesSection() {
 
         <div className="md:grid space-y-4 md:space-y-0 grid-cols-2 gap-12 w-full">
           <h2 className="text-2xl font-semibold">Tools</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
             <UsesItem title="Firefox" description="Web browser" />
             <UsesItem title="Proton Pass" description="Password manager" />
             <UsesItem title="Proton Mail" description="Email client" />
@@ -117,7 +117,7 @@ export default function UsesSection() {
 
         <div className="md:grid space-y-4 md:space-y-0 grid-cols-2 gap-12 w-full">
           <h2 className="text-2xl font-semibold">Vehicles</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3  gap-4 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3  gap-2 w-full">
             <UsesItem title="Land Rover Discovery 1" description="1997" />
             <UsesItem title="Honda CB500X" description="2013" />
           </div>
@@ -127,7 +127,7 @@ export default function UsesSection() {
 
         <div className="md:grid space-y-4 md:space-y-0 grid-cols-2 gap-12 w-full">
           <h2 className="text-2xl font-semibold">Every Day Carry</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3  gap-4 w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-3  gap-2 w-full">
             <UsesItem
               title="Google Pixel 6 Pro"
               description="Charcoal, 128GB"

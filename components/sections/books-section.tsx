@@ -169,7 +169,7 @@ export default function BooksSection({
       <ul
         ref={scrollerRef}
         className={twMerge(
-          "flex min-w-full shrink-0 gap-4 w-max flex-nowrap",
+          "flex min-w-full shrink-0 gap-2 w-max flex-nowrap",
           start && "animate-scroll ",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
@@ -194,8 +194,8 @@ export default function BooksSection({
               />
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="absolute bottom-2 left-2 group-hover:flex hidden">
+            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100">
+              <div className="absolute bottom-2 left-2 right-2 group-hover:flex hidden justify-center ">
                 <div className="flex items-end gap-1">
                   {[...Array(media.rating)].map((_, index) => (
                     <StarFilledIcon className="w-3 h-3" key={index} />
