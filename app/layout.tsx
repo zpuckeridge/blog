@@ -86,7 +86,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `min-h-screen bg-gradient-to-br from-[#111111] to-black  font-sans antialiased selection:bg-cyan-950 selection:text-cyan-400`,
+          `min-h-screen bg-black font-sans antialiased selection:bg-cyan-950 selection:text-cyan-400`,
           fontSans.variable,
         )}
       >
@@ -121,6 +121,16 @@ export default function RootLayout({
             <div className="w-full">{children}</div>
 
             <Navigation />
+
+            {/* <div className="fixed bottom-8 right-8 hidden lg:block z-20 max-w-md">
+              <Image
+                src="/media/haddon.avif"
+                width={250}
+                height={250}
+                alt="Haddon Institute"
+                className="w-full h-full rounded-2xl"
+              />
+            </div> */}
 
             <div className="fixed bottom-8 left-8 hidden lg:block z-20">
               <Lanyard />

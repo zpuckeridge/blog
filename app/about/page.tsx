@@ -1,7 +1,7 @@
 import Age from "@/components/age";
+import ImageWithDetails from "@/components/image-with-details";
 import BooksSection from "@/components/sections/books-section";
 import MusicTracking from "@/components/sections/music-section";
-import Image from "next/image";
 
 export default function About() {
   return (
@@ -31,26 +31,21 @@ export default function About() {
         </p>
 
         <div className="py-10 max-w-md mx-auto flex gap-2  items-center">
-          <div className="w-full relative">
-            <Image
-              src="/roadtrip/P1011152_t1mdns.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Somewhere in the middle of the United States"
-              className="w-full aspect-square object-cover"
-            />
-          </div>
-          <div className="w-full relative">
-            <Image
-              src="/roadtrip/P1011435_hgzmov.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Picture of rock formations in Arizona"
-              className="w-full aspect-square object-cover"
-            />
-          </div>
+          <ImageWithDetails
+            src="/roadtrip/P1011152_t1mdns.avif"
+            alt="Somewhere in the middle of the United States"
+            name="Somewhere in the middle of the United States"
+            location="Somewhere, USA"
+            author="Zacchary Puckeridge"
+          />
+
+          <ImageWithDetails
+            src="/roadtrip/P1011435_hgzmov.avif"
+            alt="Somewhere in the middle of the United States"
+            name="Grand Canyon Lookout"
+            location="Arizona, USA"
+            author="Zacchary Puckeridge"
+          />
         </div>
 
         <p>
@@ -92,26 +87,21 @@ export default function About() {
         </p>
 
         <div className="py-10 max-w-md mx-auto flex gap-2  items-center">
-          <div className="w-full">
-            <Image
-              src="/roadtrip/P1011186_qkrix9.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Somewhere in Colorado"
-              className="w-full aspect-square object-cover"
-            />
-          </div>
-          <div className="w-full">
-            <Image
-              src="/roadtrip/P1011212_xh4oep.avif"
-              width={1000}
-              height={1000}
-              priority
-              alt="Picture of rock formations in Arizona"
-              className="w-full aspect-square object-cover"
-            />
-          </div>
+          <ImageWithDetails
+            src="/roadtrip/P1011186_qkrix9.avif"
+            alt="On the road in Colorado"
+            name="On the road in Colorado"
+            location="Colorado, USA"
+            author="Zacchary Puckeridge"
+          />
+
+          <ImageWithDetails
+            src="/roadtrip/P1011212_xh4oep.avif"
+            alt="Utah Lookout"
+            name="Utah Lookout"
+            location="Utah, USA"
+            author="Zacchary Puckeridge"
+          />
         </div>
 
         <p>

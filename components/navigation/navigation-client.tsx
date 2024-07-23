@@ -82,7 +82,7 @@ export default function NavigationClient({
                     onClick={handleDrawerClose}
                   >
                     <p>Colophon</p>
-                    <p>5 topics</p>
+                    <p>4 topics</p>
                   </Link>
                   <Link
                     href="/imprint"
@@ -224,7 +224,7 @@ export default function NavigationClient({
               className={`${isActive("/colophon")} hover:text-white flex justify-between`}
             >
               <p>Colophon</p>
-              <p>5 topics</p>
+              <p>4 topics</p>
             </Link>
             <Link
               href="/imprint"

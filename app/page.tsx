@@ -1,3 +1,5 @@
+import CallToFaith from "@/components/call-to-faith";
+import Image from "next/image";
 import Link from "next/link";
 import { Tweet } from "react-tweet";
 
@@ -58,6 +60,15 @@ export default function Home() {
           .
         </p>
       </div>
+
+      <Image
+        src="/media/haddon-institute-gang.avif"
+        alt="Haddon Institute Gang"
+        width={500}
+        height={500}
+      />
+
+      <CallToFaith />
     </div>
   );
 }

@@ -1,45 +1,225 @@
-import Link from "next/link";
-
 export default function Colophon() {
   return (
     <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
       <div className="text-sm flex flex-col gap-2">
         <p>
-          This blog is built using the power of Next.js, a React framework that
-          allows for building fast and user-friendly static and server-rendered
-          applications.
+          A comprehensive overview of the technologies and inspiration used to
+          build this website.
         </p>
-        <p>
-          The styling is provided by a combination of Tailwind CSS, which allows
-          for rapid building of custom designs, and custom CSS for unique
-          stylings.
-        </p>
-        <p>
-          Content is written in Markdown and enhanced with MDX to mix JavaScript
-          and Markdown content, offering the flexibility to embed interactive
-          components like Tweets, videos, and more.
-        </p>
-        <p>
-          All code for this blog is hosted on{" "}
-          <a
-            href="https://github.com"
-            target="_blank"
-            className="underline hover:no-underline decoration-dotted underline-offset-2"
-          >
-            GitHub
-          </a>
-          , making it easy to manage versions and collaborate with others.
-        </p>
-        <p>
-          Want to get in touch?{" "}
-          <Link
-            href="/contact"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
-          >
-            Contact me
-          </Link>
-          .
-        </p>
+
+        <div className="flex gap-2">
+          <div className="py-10 flex flex-col w-full gap-2">
+            <p className="text-muted-foreground">Typography</p>
+
+            <p>
+              <a
+                href="https://fonts.google.com/specimen/Work+Sans?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Work Sans
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://vercel.com/font?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Geist
+              </a>
+              .
+            </p>
+          </div>
+
+          <div className="py-10 flex flex-col w-full gap-2">
+            <p className="text-muted-foreground">Technical</p>
+
+            <p>
+              Built with{" "}
+              <a
+                href="https://nextjs.org?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Next.js
+              </a>
+              ,{" "}
+              <a
+                href="https://pagescms.org/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                PagesCMS
+              </a>
+              ,{" "}
+              <a
+                href="https://tailwindcss.com?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Tailwind
+              </a>
+              ,{" "}
+              <a
+                href="https://ui.shadcn.com?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                shadcn
+              </a>
+              ,{" "}
+              <a
+                href="https://www.prisma.io?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Prisma
+              </a>
+              , and{" "}
+              <a
+                href="https://vidstack.io?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Vidstack
+              </a>
+              .
+            </p>
+
+            <p>
+              Deployed and hosted on{" "}
+              <a
+                href="https://vercel.com?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Vercel
+              </a>
+              . Analytics provided by{" "}
+              <a
+                href="https://umami.is?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Umami
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-2 ">
+          <div className="py-10 flex flex-col w-full gap-2">
+            <p className="text-muted-foreground">Inspiration</p>
+
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://linusrogge.com/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                linusrogge.com
+              </a>
+              <a
+                href="https://leerob.io?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                leerob.io
+              </a>
+              <a
+                href="https://joshwcomeau.com?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                joshwcomeau.com
+              </a>
+              <a
+                href="https://wesbos.com/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                wesbos.com
+              </a>
+              <a
+                href="https://carlbarenbrug.com/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                carlbarenbrug.com
+              </a>
+            </div>
+          </div>
+
+          <div className="py-10 flex flex-col w-full gap-2">
+            <p className="text-muted-foreground">Influences</p>
+
+            <div className="flex flex-col gap-2">
+              <a
+                href="https://61oaksgroup.com.au/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Keith Sanga
+              </a>
+              <a
+                href="https://x.com/foord_tom?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Tom Foord
+              </a>
+              <a
+                href="https://x.com/craigcireland?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Craig Ireland
+              </a>
+              <a
+                href="https://dougwils.com/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Douglas Wilson
+              </a>
+              <a
+                href="https://www.ligonier.org/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                R.C. Sproul
+              </a>
+              <a
+                href="https://x.com/thisisfoster?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Michael Foster
+              </a>
+              <a
+                href="https://x.com/jaitaiwan?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                Daniel Holmes
+              </a>
+              <p className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2">
+                Jaydan Holmes
+              </p>
+              <a
+                href="https://drevan.me/?ref=zacchary.me"
+                target="_blank"
+                className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+              >
+                André van Tonder
+              </a>
+              <p className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2">
+                Declan Ballantine
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
