@@ -1,5 +1,5 @@
 ---
-title: ❓ What is Common Grace?
+title: What is Common Grace?
 date: 2020-04-26
 tag: Faith
 description: Common Grace pertains to the sovereign grace of God bestowed upon

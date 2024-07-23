@@ -1,5 +1,5 @@
 ---
-title: 📑 The Four Views of the Human Ability
+title: The Four Views of the Human Ability
 date: 2020-04-01
 tag: Faith
 description: A primer on the four views of human ability and the reformed position.

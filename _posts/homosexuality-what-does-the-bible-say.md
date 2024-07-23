@@ -1,5 +1,5 @@
 ---
-title: 💌 Homosexuality - what does the Bible say?
+title: Homosexuality - what does the Bible say?
 date: 2020-07-07
 tag: Faith
 description: This article seeks to understand what God has said about homosexuality.
@@ -7,17 +7,18 @@ image: media/cecilie-johnsen-G8CxFhKuPDU-unsplash.jpg
 imageAlt: Photo by Cecilie Johnsen on Unsplash
 lastModified: 2024-03-21
 ---
+
 Before I continue with this article, I'd like to take some time to pray for you, the reader, that the words on this page speak true to your heart and the hearts of others.
 
 > Dear Heavenly Father, thank you for your sacrifice and the provision of your grace upon my life. As I continue to write this article, may you be both with me and the reader to help us both to interpret the message you have for me to write, and the reader for whom receives it.
-> 
+>
 > I faithfully pray that you are in complete control and that the words displayed on this page are words which you intended to be there. I pray that you bring me back to this article over the years to correct and update it, improving its validity and relevance.
-> 
+>
 > In your Holy and righteous name, I pray these things. Amen.
 
 Let me be abundantly clear before we proceed any further. All sin is covered by the death and resurrection of Jesus Christ when He sacrificed himself for our sins. He bore our sins, future, past and present. To be free from the consequences of sin, one must hear the good news of Jesus' sacrifice and believe.
 
-* * *
+---
 
 ### Well, what does the Bible say then?
 
@@ -77,14 +78,11 @@ Not to mention, the New Testament makes it abundantly clear:
 
 If you wish to delve deeper into the significance of this concept, its interpretation, distinctions between moral, ceremonial, and civil law, and the enduring relevance of the moral law today, I highly recommend listening to the following sermons:
 
-*   [The Law & Covenant](https://www.youtube.com/watch?v=Ohz_Z4yJyKM)
-    
-*   [God & The Law](https://www.youtube.com/watch?v=eg_L0Dv8vFk)
-    
-*   [God's Law: A Multi-Tool](https://www.youtube.com/watch?v=70HRCTxYeg0)
-    
+- [The Law & Covenant](https://www.youtube.com/watch?v=Ohz_Z4yJyKM)
+- [God & The Law](https://www.youtube.com/watch?v=eg_L0Dv8vFk)
+- [God's Law: A Multi-Tool](https://www.youtube.com/watch?v=70HRCTxYeg0)
 
-* * *
+---
 
 ### So? Jesus never spoke to homosexuality directly, and only His words matter!
 
@@ -100,7 +98,7 @@ For those that only follow what Jesus actually said because the rest of the Bibl
 
 — 2 Timothy 3:16
 
-* * *
+---
 
 ### Leviticus 20:13 refers to boys, not men - paedophilia, therefore it does not condemn homosexuality.
 
@@ -118,7 +116,7 @@ To further prove this point, God destroyed Sodom and Gomorrah because they were 
 
 — Genesis 19:5
 
-* * *
+---
 
 ### But I thought homosexuality was natural?
 
@@ -168,7 +166,7 @@ If my great-great-grandfather engages in unrepentant homosexual sin, his "geneti
 
 [Another argument to bring to the forefront is the very well documented health risks of homosexual promiscuity.](https://www.catholiceducation.org/en/marriage-and-family/sexuality/the-health-risks-of-gay-sex.html)
 
-* * *
+---
 
 ### Natural Inclination
 
@@ -180,7 +178,7 @@ Homosexuality may _feel_ natural to some, but our guide to what is "natural" or 
 
 Homosexuality will never result in procreation - therefore it is impossible for it to bring life. If we are charged to bring life to the world, then how does homosexuality fit into this outlook? One might argue that they weren't called to bear children, which is a fair argument, but this argument really only works if they've dedicated, they're life in service of Christ.
 
-* * *
+---
 
 ### Can I practice homosexuality and remain a Christian?
 
@@ -204,13 +202,13 @@ Armed with a good spiritual routine of Bible study, prayer and worship, we will 
 
 If our identity is in that of the world and not of Christ, we are nothing but an imposter and are self-deceiving ourselves. Scripture does not allow for any possible scenario where homosexual behaviour is glorifying to God.
 
-* * *
+---
 
 ### Conclusion
 
 The Bible is very clear on its stance of homosexual behaviour. I simply cannot find an honest interpretation (and not for lack of trying) that affirms homosexual behaviour in any form. Personally, I have really struggled with homosexuality in my personal life, and it is not a light topic for me to talk about, but I felt it prudent to record my thoughts and research in this article. I pray that others might find this useful in their own walks.
 
-* * *
+---
 
 ### References
 

@@ -1,5 +1,5 @@
 ---
-title: 💔 Is God's love reckless?
+title: Is God's love reckless?
 date: 2020-06-25
 tag: Faith
 description: Does God act recklessly? No, He is the very antithesis of reckless.

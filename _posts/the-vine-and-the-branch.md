@@ -1,5 +1,5 @@
 ---
-title: 🌿 The Vine and the Branch
+title: The Vine and the Branch
 date: 2021-03-19
 tag: Faith
 description: A short study on John 15:4.

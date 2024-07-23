@@ -1,21 +1,28 @@
-import Dot from "@/components/follow-pointer";
-import Footer from "@/components/footer";
-import Navigation from "@/components/navigation";
-import ScrollToTop from "@/components/scroll-to-top";
+import Lanyard from "@/components/lanyard";
+import Navigation from "@/components/navigation/navigation";
+import NowPlaying from "@/components/now-playing";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import {
+  Work_Sans as FontSans,
+  Nanum_Myeongjo as FontSerif,
+} from "next/font/google";
+import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
 
-const montserrat = Montserrat({
+const fontSans = FontSans({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-accent",
+  variable: "--font-sans",
+});
+
+const fontSerif = FontSerif({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -53,10 +60,9 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
-  manifest: "/manifest.json",
   title: {
     default: "Zacchary Puckeridge",
-    template: "%s | Zacchary Puckeridge",
+    template: "%s — Zacchary Puckeridge",
   },
   description:
     "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
@@ -88,16 +94,53 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} ${montserrat.variable} min-h-screen bg-[#111111] font-sans antialiased selection:bg-white selection:text-black`}
+        className={cn(
+          `min-h-screen bg-black font-sans antialiased selection:bg-cyan-950 selection:text-cyan-400`,
+          fontSans.variable,
+          fontSerif.variable,
+        )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-          <Dot />
-          <Navigation />
+          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-black dark:from-black z-10" />
 
-          {children}
-          <ScrollToTop />
+          <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 md:justify-between p-8 ">
+            <div className="flex flex-col lg:w-1/3 max-w-sm lg:sticky top-0">
+              <div className="lg:sticky top-8 space-y-6">
+                <div className="space-y-2">
+                  <div className="flex gap-2 justify-between text-sm whitespace-nowrap">
+                    <Link href="/" className="hover:text-muted-foreground">
+                      Zacchary Puckeridge
+                    </Link>
+                    <p className="text-muted-foreground">Web Developer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full">{children}</div>
+
+            <Navigation />
+
+            {/* <div className="fixed bottom-8 right-8 hidden lg:block z-20 max-w-md">
+              <Image
+                src="/media/haddon.avif"
+                width={250}
+                height={250}
+                alt="Haddon Institute"
+                className="w-full h-full rounded-2xl"
+              />
+            </div> */}
+
+            <div className="fixed bottom-8 left-8 hidden lg:block z-20">
+              <Lanyard />
+            </div>
+
+            <div className="fixed bottom-8 right-8 hidden lg:block z-20">
+              <NowPlaying />
+            </div>
+          </div>
+
           <Toaster />
-          <Footer />
         </ThemeProvider>
       </body>
       <Script src={UMAMI_SCRIPT_URL} data-website-id={UMAMI_WEBSITE_ID} />

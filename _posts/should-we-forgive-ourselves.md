@@ -1,5 +1,5 @@
 ---
-title: 🙏 Should we forgive ourselves?
+title: Should we forgive ourselves?
 date: 2020-11-12
 tag: Faith
 description: Jesus, came and suffered our punishment for us. We have already

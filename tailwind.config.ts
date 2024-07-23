@@ -1,5 +1,5 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
 const svgToDataUri = require("mini-svg-data-uri");
-
 const colors = require("tailwindcss/colors");
 const {
   default: flattenColorPalette,
@@ -96,9 +96,8 @@ module.exports = {
         spotlight: "spotlight 2s ease .75s 1 forwards",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-geist-mono)"],
-        accent: ["var(--font-accent)"],
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        serif: ["var(--font-serif)", ...fontFamily.serif],
       },
     },
   },

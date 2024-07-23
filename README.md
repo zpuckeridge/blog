@@ -48,3 +48,8 @@ pnpm run dev
 - Public Statistics Page
 - View Count
 - Improved Syntax Highlighting
+
+- Remove reliance on Prisma, use PagesCMS to manage content
+- Setup Resources section, track uses/apps/blogs/typefaces/etc. managed by PagesCMS.
+- Setup a Resume page
+- Fix article typography

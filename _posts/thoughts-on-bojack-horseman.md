@@ -1,5 +1,5 @@
 ---
-title: 🐴 Thoughts on BoJack Horseman
+title: Thoughts on BoJack Horseman
 date: 2021-10-02
 tag: Art
 description: Although secular, Bojack Horseman was an interesting show that got

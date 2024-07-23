@@ -1,5 +1,5 @@
 ---
-title: 🧠 Does God change His mind?
+title: Does God change His mind?
 date: 2022-10-25
 tag: Faith
 description: Does the Bible contradict itself?

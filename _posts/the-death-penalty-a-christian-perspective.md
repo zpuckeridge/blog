@@ -1,5 +1,5 @@
 ---
-title: 💀 The Death Penalty - A Christian Perspective
+title: The Death Penalty - A Christian Perspective
 date: 2023-09-06
 tag: Faith
 description: Does the death penalty apply post-Christ? Can it be effectively

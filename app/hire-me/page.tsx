@@ -4,86 +4,70 @@ import { FaInfinity } from "react-icons/fa6";
 
 export default function HireMe() {
   return (
-    <div className="py-10 px-4">
-      <div className="max-w-7xl mx-auto space-y-10 py-10 md:py-20 lg:space-y-0 lg:flex justify-between w-full">
-        <div>
-          <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 max-w-4xl">
-            Bespoke Web Development for Startups
+    <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
+      <div className="space-y-2 z-30">
+        <div className="rounded-md border-2 bg-background max-w-96 md:w-96 w-full mx-auto h-auto p-4 md:p-8 space-y-8">
+          <p className="uppercase font-mono text-center font-semibold">
+            Entry Level
           </p>
-          <p className="max-w-2xl text-muted-foreground">
-            Are you looking for a web refresh? Perhaps you&apos;re looking to
-            build a new web application? I&apos;m a full-stack web developer
-            with a passion for building modern, functional, and accessible web
-            applications. I&apos;m here to help bring your ideas to life.
-          </p>
-        </div>
-
-        <div className="space-y-2 z-30">
-          <div className="rounded-md border-2 bg-background max-w-96 md:w-96 w-full mx-auto h-auto p-4 md:p-8 space-y-8">
-            <p className="uppercase font-mono text-center font-semibold">
-              Entry Level
-            </p>
-            <div className="space-y-2">
-              <p className="font-bold text-6xl leading-none text-center">
-                $2000
+          <div className="space-y-2">
+            <p className="font-bold text-6xl leading-none text-center">$2000</p>
+            <div>
+              <p className="text-center text-xs text-muted-foreground leading-snug">
+                for a single page site
               </p>
-              <div>
-                <p className="text-center text-xs text-muted-foreground leading-snug">
-                  for a single page site
-                </p>
-                <p className="text-muted-foreground text-xs text-center">
-                  + $25/m for maintenance
-                </p>
-              </div>
+              <p className="text-muted-foreground text-xs text-center">
+                + $25/m for maintenance
+              </p>
             </div>
-            <div className="flex justify-center">
-              <ul className="text-sm">
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  Unlimited revisions
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  3-5 day turnaround time
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  Slack and email updates
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  Access to source code
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  Responsive design
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  24/hr support turnaround
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  Next.js / TailwindCSS
-                </li>
-                <li className="flex gap-2">
-                  <CheckIcon className="w-5 h-5 my-auto text-green-500" />
-                  Payments via Stripe
-                </li>
-              </ul>
-            </div>
-            <a
-              href="https://cal.com/zpuckeridge"
-              target="_blank"
-              className="flex justify-center gap-2 font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 px-2 py-1"
-            >
-              <CalendarIcon className="inline-block w-4 h-4" /> Schedule a Call
-            </a>
           </div>
-          <p className="text-center text-xs text-muted-foreground">
-            Simple pricing, no hidden fees.
-          </p>
+          <div className="flex justify-center">
+            <ul className="text-sm">
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                Unlimited revisions
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                3-5 day turnaround time
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                Slack and email updates
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                Access to source code
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                Responsive design
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                24/hr support turnaround
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                Next.js / TailwindCSS
+              </li>
+              <li className="flex gap-2">
+                <CheckIcon className="w-5 h-5 my-auto text-green-500" />
+                Payments via Stripe
+              </li>
+            </ul>
+          </div>
+          <a
+            href="https://cal.com/zpuckeridge"
+            target="_blank"
+            className="flex justify-center gap-2 font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 border-2 px-2 py-1"
+          >
+            <CalendarIcon className="inline-block w-4 h-4" /> Schedule a Call
+          </a>
         </div>
+        <p className="text-center text-xs text-muted-foreground">
+          Simple pricing, no hidden fees.
+        </p>
       </div>
 
       <div className="space-y-20">
@@ -131,7 +115,7 @@ export default function HireMe() {
         </div>
 
         <div className="max-w-7xl mx-auto space-y-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             <div className="space-y-4 border-2 p-8 rounded-md">
               <p className="text-6xl font-bold font-mono">01</p>
               <div className="space-y-1">
@@ -259,7 +243,7 @@ export default function HireMe() {
           <a
             href="https://cal.com/zpuckeridge"
             target="_blank"
-            className="flex justify-center gap-2 max-w-sm mx-auto font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 transition-all duration-200 border-2 px-2 py-1"
+            className="flex justify-center gap-2 max-w-sm mx-auto font-mono uppercase text-sm font-semibold my-auto bg-neutral-900 hover:bg-neutral-800 border-2 px-2 py-1"
           >
             <CalendarIcon className="inline-block w-4 h-4" /> Schedule a Call
           </a>

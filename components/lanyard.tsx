@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useLanyardWS } from "use-lanyard";
-import Age from "./age";
 
 export default function Lanyard() {
   const DISCORD_ID = "181324210876973056";
@@ -58,21 +57,17 @@ export default function Lanyard() {
   }, []);
 
   return (
-    <div className="font-mono md:flex space-y-4 md:space-y-0 justify-between">
-      <div className="text-muted-foreground text-sm">
+    <div className="md:flex space-y-4 md:space-y-0 justify-between">
+      <div className="text-muted-foreground text-xs">
         <div className="flex gap-2">
           <div
-            className={`w-3 h-3 animate-pulse rounded-full my-auto ${
+            className={`w-2.5 h-2.5 animate-pulse rounded-full my-auto ${
               getStatusTextAndColor().dotColor
             }`}
           />
           <p className="my-auto">{getStatusTextAndColor().statusText}</p>
         </div>
-        <p>
-          <Age /> y/o Web Developer
-        </p>
         <p>{brisbaneTime}</p>
-        <p>27.4705° S, 153.0260° E</p>
       </div>
       <div className="my-auto">
         {data?.activities?.map((activity) => {
@@ -85,7 +80,7 @@ export default function Lanyard() {
             return (
               <div
                 key={activity.id}
-                className="text-sm text-muted-foreground flex gap-4"
+                className="text-sm text-muted-foreground flex gap-2"
               >
                 <div className="aspect-square relative w-[60px] h-[60px]">
                   <img

@@ -22,12 +22,7 @@ function NextJsImage({
 }: RenderPhotoProps) {
   return (
     <div style={{ ...wrapperStyle, position: "relative" }}>
-      <Image
-        fill
-        src={photo}
-        {...{ alt, title, sizes, className, onClick }}
-        className="rounded-xl"
-      />
+      <Image fill src={photo} {...{ alt, title, sizes, className, onClick }} />
     </div>
   );
 }
@@ -38,14 +33,14 @@ export default function Gallery({ images }: { images: any }) {
   return (
     <>
       <PhotoAlbum
-        layout="rows"
+        layout="masonry"
         photos={images.map((image: any) => ({
           src: image.secure_url,
           width: image.width,
           height: image.height,
         }))}
         renderPhoto={NextJsImage}
-        targetRowHeight={450}
+        targetRowHeight={200}
         sizes={{ size: "calc(100vw - 240px)" }}
         onClick={({ index: current }) => setIndex(current)}
       />

@@ -1,5 +1,5 @@
 ---
-title: 🖌️ I've been inspired by 'A Goofy Movie'
+title: I've been inspired by 'A Goofy Movie'
 date: 2021-07-26
 tag: Art
 description: Why I enjoyed 'A Goofy Movie' as an adult.
@@ -21,7 +21,7 @@ What can I say except that he portrayed this movie in such a way that I essentia
 
 Growing up, I wasn't exposed to too many Disney films outside of the big classics (The Lion King/Tarzan) and never saw Goof Troop (the TV show predecessor to this movie) but I instantly fell in love with Goofy and the general premise of the movie.
 
-![](public/media/ducktales-a-goofy-movie-powerline-1213971-1280x0-1.jpeg)
+![](/media/ducktales-a-goofy-movie-powerline-1213971-1280x0-1.jpeg)
 
 This is definitely one of my top 10 favourite films!
 
@@ -31,7 +31,7 @@ Yet it doesn't just stop there, it continues to develop on the themes it introdu
 
 From the opening number, to meeting Roxanne, to seeing Goofy and the strong desire Max has to be _anything_ but his father. It sets the stage so perfectly for what is an amazing father-son adventure full of life lessons for both the characters that translate exceptionally well to the audience.
 
-![](public/media/a-goofy-movie-max-big-foot-and-goofy.jpg)
+![](/media/a-goofy-movie-max-big-foot-and-goofy.jpg)
 
 I'm fortunate to have a great relationship with my father, but I still felt like I needed to catch up and give him a massive hug after watching this movie.
 
@@ -45,7 +45,7 @@ Unlike Luca though, A Goofy Movie actually addresses these issues and our main c
 
 The dynamic between these characters in the more serious scenes is serviced so well that it adds an incredibly difficult to replicate layer of depth to the topics outlined. Jason Marsden and Bill Farmer execute these scenes perfectly and stay true to their characters through and through.
 
-![](/public/media/0f92b16b782807c21c8bdae5c7316e84.jpg)
+![](/media/0f92b16b782807c21c8bdae5c7316e84.jpg)
 
 But why am I inspired you might ask?
 

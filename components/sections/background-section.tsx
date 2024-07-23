@@ -12,7 +12,7 @@ export default function BackgroundSection() {
               <a
                 href="https://1689londonbaptistconfession.com/"
                 target="_blank"
-                className="font-semibold underline decoration-wavy decoration-[0.5px] decoration-sky-700 hover:decoration-sky-500 transition-all duration-200"
+                className="font-semibold underline decoration-wavy decoration-[0.5px] decoration-sky-700 hover:decoration-sky-500"
               >
                 Reformed Baptist
               </a>{" "}
@@ -20,7 +20,7 @@ export default function BackgroundSection() {
               <a
                 href="https://maps.app.goo.gl/BikC7wpFxkio2f7A8"
                 target="_blank"
-                className="font-semibold underline decoration-wavy decoration-[0.5px] decoration-sky-700 hover:decoration-sky-500 transition-all duration-200"
+                className="font-semibold underline decoration-wavy decoration-[0.5px] decoration-sky-700 hover:decoration-sky-500"
               >
                 Australia 🇦🇺
               </a>
@@ -34,7 +34,7 @@ export default function BackgroundSection() {
               <a
                 href="https://maps.app.goo.gl/7c5H8i3cnLwPFmKq9"
                 target="_blank"
-                className="font-semibold underline decoration-wavy decoration-[0.5px] decoration-sky-700 hover:decoration-sky-500 transition-all duration-200"
+                className="font-semibold underline decoration-wavy decoration-[0.5px] decoration-sky-700 hover:decoration-sky-500"
               >
                 United States 🇺🇸
               </a>{" "}

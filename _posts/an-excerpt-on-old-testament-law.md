@@ -1,5 +1,5 @@
 ---
-title: 💭 An excerpt on Old Testament Law
+title: An excerpt on Old Testament Law
 date: 2020-11-16
 tag: Faith
 description: Are gentiles allowed to eat unclean meat?

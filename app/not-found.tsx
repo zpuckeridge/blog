@@ -1,30 +1,28 @@
-import { buttonVariants } from "@/components/ui/button";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen px-4 space-y-20 max-w-7xl mx-auto">
-      <div className="text-center space-y-8">
+    <div className="max-w-md lg:mx-auto">
+      <div className="text-sm flex flex-col gap-20">
         <div>
-          <h1 className="xl:text-[40rem] lg:text-[30rem] text-[10rem] font-bold leading-none tracking-tight uppercase text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
-            404
-          </h1>
-          <h2 className="text-7xl font-bold leading-none tracking-tight uppercase text-black dark:text-transparent bg-clip-text bg-gradient-to-b dark:from-[#ffffff] from-10% dark:to-muted">
-            Page could not be found
-          </h2>
-        </div>
-        <div className="flex justify-center">
+          <p>Error - 404</p>
           <Link
             href="/"
-            className={`flex gap-2 ${buttonVariants({
-              variant: "outline",
-              size: "lg",
-            })}`}
+            className="text-xs text-muted-foreground hover:text-white"
           >
-            Return Home
+            <ArrowLeftIcon className="inline-flex" /> /
           </Link>
         </div>
+
+        <Image
+          src="/media/404.webp"
+          alt="Max Goof sighing and putting his head in his hands"
+          width={500}
+          height={500}
+        />
       </div>
-    </main>
+    </div>
   );
 }
