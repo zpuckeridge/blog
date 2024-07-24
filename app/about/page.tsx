@@ -1,7 +1,7 @@
 import Age from "@/components/age";
+import BooksSection from "@/components/books";
 import ImageWithDetails from "@/components/image-with-details";
-import BooksSection from "@/components/sections/books-section";
-import MusicTracking from "@/components/sections/music-section";
+import MusicTracking from "@/components/music";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
