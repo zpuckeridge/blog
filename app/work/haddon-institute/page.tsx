@@ -1,21 +1,3 @@
-import { FadeText } from "@/components/magicui/fade-text";
-import IconCloud from "@/components/magicui/icon-cloud";
-
-const slugs = [
-  "typescript",
-  "react",
-  "nextdotjs",
-  "prisma",
-  "postgresql",
-  "vercel",
-  "backblaze",
-  "tailwindcss",
-  "radix",
-  "cloudinary",
-  "github",
-  "visualstudiocode",
-];
-
 export default function Work() {
   return (
     <div className="max-w-7xl mx-auto px-8 py-40">
@@ -27,14 +9,7 @@ export default function Work() {
             </p>
 
             <div className="max-w-4xl">
-              <FadeText
-                className="text-5xl font-extrabold "
-                direction="right"
-                framerProps={{
-                  show: { transition: { delay: 0.2 } },
-                }}
-                text="Building a Student Portal and Seminary website to save the world."
-              />
+              Building a Student Portal and Seminary website to save the world.
             </div>
 
             <div className="flex gap-8">
@@ -51,10 +26,6 @@ export default function Work() {
                 2023—Present
               </p>
             </div>
-          </div>
-
-          <div className="lg:w-1/3 max-w-[30rem]">
-            <IconCloud iconSlugs={slugs} />
           </div>
         </div>
 
