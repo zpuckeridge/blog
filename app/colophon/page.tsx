@@ -1,7 +1,11 @@
+import { Badge } from "@/components/ui/badge";
+
 export default function Colophon() {
   return (
     <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
       <div className="text-sm flex flex-col gap-2">
+        <p className="font-serif text-2xl italic ">Colophon</p>
+
         <p>
           A comprehensive overview of the technologies and inspiration used to
           build this website.
@@ -288,6 +292,26 @@ export default function Colophon() {
               >
                 zpuckeridge/blog
               </a>
+            </div>
+          </div>
+
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">Carbon footprint</div>
+
+            <div className="w-4/6">
+              <Badge className="text-xs rounded-none hover:bg-muted hover:text-muted-foreground py-0 px-2 bg-muted text-muted-foreground">
+                WIP
+              </Badge>
+            </div>
+          </div>
+
+          <div className="flex w-full border-b border-muted pb-2">
+            <div className="w-2/6 text-muted-foreground">Speed insights</div>
+
+            <div className="w-4/6">
+              <Badge className="text-xs rounded-none hover:bg-muted hover:text-muted-foreground py-0 px-2 bg-muted text-muted-foreground">
+                WIP
+              </Badge>
             </div>
           </div>
         </div>

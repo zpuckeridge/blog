@@ -20,6 +20,12 @@ export default function Uses() {
   return (
     <div className="max-w-md lg:mx-auto pb-10">
       <div className="text-sm flex flex-col gap-20">
+        <div className="text-sm flex flex-col gap-2">
+          <p className="font-serif text-2xl italic ">Uses</p>
+
+          <p>A collection of tools and hardware I use regularly.</p>
+        </div>
+
         <div className="flex flex-col gap-6 w-full">
           <div>
             <p>Office</p>
