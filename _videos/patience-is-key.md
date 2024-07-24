@@ -1,0 +1,8 @@
+---
+title: Patience is key!
+date: 2022-11-12 00:00:00
+tag: CS
+description:
+videoUrl: Ptr3Jyv6W2aO7XOLc01DD9iwNd50127WpSHzqa00TbISNA
+duration: 179
+---

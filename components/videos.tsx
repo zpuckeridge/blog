@@ -1,28 +1,18 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { Video } from "@/interfaces/video";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-interface Video {
-  asset_id: string;
-  playback_id: string;
-  title: string;
-  duration: number;
-  tag: string;
-  views: number;
-  date: Date;
-}
-
 interface Props {
   videos: Video[];
-  tags: { tag: string }[];
   itemsPerPage: number;
 }
 
-export default function Videos({ videos, itemsPerPage, tags }: Props) {
+export default function Videos({ videos, itemsPerPage }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -67,8 +57,9 @@ export default function Videos({ videos, itemsPerPage, tags }: Props) {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  //   @ts-ignore
-  const uniqueTags = [...new Set(tags.map((item: any) => item.tag))];
+  // Extract unique tags from videos array
+  // @ts-ignore
+  const uniqueTags = [...new Set(videos.map((video) => video.tag))];
 
   return (
     <div className="space-y-20">
@@ -83,7 +74,7 @@ export default function Videos({ videos, itemsPerPage, tags }: Props) {
         />
 
         <div className="md:inline-flex gap-2 grid grid-cols-2 mt-2">
-          {uniqueTags.map((tag: any, index: number) => (
+          {uniqueTags.map((tag, index) => (
             <button
               className={`text-sm ${
                 selectedTag === tag
@@ -114,9 +105,9 @@ export default function Videos({ videos, itemsPerPage, tags }: Props) {
           )
           .map((video: Video) => (
             <Link
-              href={`/video/${video.asset_id}`}
+              href={`/video/${video.slug}`}
               title={video.title}
-              key={video.asset_id}
+              key={video.slug}
             >
               <div className="transform">
                 <div className="absolute top-2 left-2 text-white bg-black/75 p-1 text-xs font-semibold ">
@@ -133,7 +124,7 @@ export default function Videos({ videos, itemsPerPage, tags }: Props) {
                 </div>
 
                 <Image
-                  src={`https://image.mux.com/${video.playback_id}/thumbnail.png`}
+                  src={`https://image.mux.com/${video.videoUrl}/thumbnail.png`}
                   alt={video.title}
                   width={600}
                   height={600}
@@ -153,7 +144,6 @@ export default function Videos({ videos, itemsPerPage, tags }: Props) {
                       day: "numeric",
                     })}
                   </p>
-                  {video.views} views
                 </div>
               </div>
             </Link>
