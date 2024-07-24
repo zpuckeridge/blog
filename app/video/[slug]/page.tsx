@@ -68,10 +68,24 @@ export function generateMetadata({ params }: Params): Metadata {
   const description = `${video.description}`;
 
   return {
-    title,
+    title: title,
+    description: description,
     openGraph: {
-      title,
-      description,
+      type: "video.other",
+      siteName: `zacchary.me`,
+      title: title,
+      description: description,
+      url: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
+      countryName: "Australia",
+      locale: "en_AU",
+      videos: [
+        {
+          url: `https://stream.mux.com/${video.videoUrl}/high.mp4`,
+          width: 1920,
+          height: 1080,
+          type: "video/mp4",
+        },
+      ],
     },
   };
 }
@@ -83,34 +97,3 @@ export async function generateStaticParams() {
     slug: video.slug,
   }));
 }
-
-// export async function generateMetadata(
-//   { params }: any,
-//   parent: ResolvingMetadata,
-// ): Promise<Metadata> {
-//   const id = params.id;
-
-//   const video = await retrieveVideo(id);
-
-//   return {
-//     title: `${video.title}`,
-//     description: video.description,
-//     openGraph: {
-//       type: "video.other",
-//       siteName: `sdelta.xyz`,
-//       title: `${video.title}`,
-//       description: video.description,
-//       url: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/clip/${video.asset_id}`,
-//       countryName: "Australia",
-//       locale: "en_AU",
-//       videos: [
-//         {
-//           url: `https://stream.mux.com/${video.playback_id}/high.mp4`,
-//           width: 1920,
-//           height: 1080,
-//           type: "video/mp4",
-//         },
-//       ],
-//     },
-//   };
-// }
