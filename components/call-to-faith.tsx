@@ -61,7 +61,7 @@ export default function CallToFaith() {
       <CarouselContent>
         {slides.map((slide) => (
           <CarouselItem key={slide.index}>
-            <div className="my-auto h-[15vh] flex place-items-center justify-center text-center px-4">
+            <div className="my-auto h-[15vh] flex place-items-center ">
               <div className="flex flex-col gap-2 text-sm">
                 <p>{slide.text}</p>
                 <p className="text-xs">

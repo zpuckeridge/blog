@@ -41,15 +41,13 @@ pnpm run dev
 
 ## 👀 Coming soon
 
-- Better Open Graph Support
 - Tag Page
 - Article Search
 - Newsletter Subscription
 - Public Statistics Page
-- View Count
+  - Page Speed Insights
+  - Carbon Footprint
 - Improved Syntax Highlighting
-
-- Remove reliance on Prisma, use PagesCMS to manage content
 - Setup Resources section, track uses/apps/blogs/typefaces/etc. managed by PagesCMS.
 - Setup a Resume page
 - Fix article typography
