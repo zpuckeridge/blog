@@ -8,7 +8,6 @@ image: media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg
 imageAlt: Photo by Bing Hui Yau on Unsplash
 lastModified: 2024-03-12
 ---
-
 What is the appropriate Christian response to the onset of conflict or war? Should we opt out of participation altogether, or fulfill our duty by defending our nation? This article serves as an introductory guide to help Christians navigate the complexities of wartime and determine the most ethical course of action.
 
 God has given the civil magistrate "the sword" to punish wrongdoers. Consider what Paul says in Romans 13:4-7:
@@ -18,10 +17,13 @@ God has given the civil magistrate "the sword" to punish wrongdoers. Consider wh
 God has granted rulers the authority to enforce their laws through coercion, including measures such as capital punishment and engaging in warfare. Throughout history, this authority has been wielded for both righteous and unjust causes. When it comes to Christians participating in war, various perspectives exist:
 
 1.  Pure pacifism advocates for complete nonviolence under any circumstance.
+    
 2.  Blind nationalism reflects an uncritical allegiance to one's country, believing it can do no wrong.
+    
 3.  Finally, the concept of a "just war" suggests that some conflicts may be morally justified under certain conditions.
+    
 
-### Pure Pacifism
+**Pure Pacifism**
 
 This position holds the opinion that no Christian may ever take up arms in self-defence. This includes the defence of one's country, and of themselves. While they are correct in understanding that Christians are called to be pacifists in the sense that we love peace and pursue it, they fail to take into account that the Bible has said that we are permitted to defend ourselves and our families. Consider Exodus 22 and Luke 22:35-37:
 
@@ -33,13 +35,13 @@ This position holds the opinion that no Christian may ever take up arms in self-
 
 — Luke 22:35-37
 
-### Blind Nationalism
+**Blind Nationalism**
 
 This position holds the opinion that because God has bestowed the power of the sword on the state, that they must be obeyed at all times. In many ways, people that hold this position worship the state as in their eyes, they believe that it can do no wrong. This position fails to take into account that human nature is fundamentally corruptible, and that no system is perfect. We are also called to civil disobedience when our leaders inevitably start to follow a path of corruption or evil. See 1 Kings 18, Joshua 2, Exodus 1, 1 Samuel 14:45, Acts 4:19-20 and Acts 5:29.
 
 I think civil disobedience might be better summed up in its own article, as there is a lot to unpack there.
 
-### The Just War
+**The Just War**
 
 The concept of a just war falls between the extremes of pure pacifism and blind nationalism and has been endorsed by numerous Christian thinkers throughout history, including Augustine, Constantine, Thomas Aquinas, and John Calvin.
 
