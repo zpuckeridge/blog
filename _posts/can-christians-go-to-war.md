@@ -6,7 +6,7 @@ description: How should Christians respond to the stirrings or war? Do we simply
   refuse to participate? Or do we do our duty and fight for our country?
 image: media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg
 imageAlt: Photo by Bing Hui Yau on Unsplash
-lastModified: 2024-03-12
+lastModified: 2024-07-25
 ---
 What is the appropriate Christian response to the onset of conflict or war? Should we opt out of participation altogether, or fulfill our duty by defending our nation? This article serves as an introductory guide to help Christians navigate the complexities of wartime and determine the most ethical course of action.
 
