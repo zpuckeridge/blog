@@ -6,10 +6,9 @@ description: Jesus, came and suffered our punishment for us. We have already
   passed from death to life and no longer face condemnation.
 image: media/patrick-fore-b_SHPU5M3nk-unsplash.jpg
 imageAlt: "Photo by Patrick Fore on Unsplash "
-lastModified: 2024-03-21
+lastModified: 2024-07-25
 ---
-
-### What does the Bible say?
+**What does the Bible say?**
 
 It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
 
@@ -29,7 +28,7 @@ At first glance, these two messages may seem contradictory, but they complement 
 
 It's crucial to acknowledge that dwelling on our sins is itself sinful. By doing so, we elevate ourselves and imply that Jesus' forgiveness was insufficient. What could be more offensive in the eyes of the Heavenly Father, the Creator of all things, the Almighty and Righteous God? I personally struggle with this and frequently seek repentance for this sin.
 
-### So, should we forgive ourselves?
+**So, should we forgive ourselves?**
 
 Why would we grant ourselves forgiveness when we've wronged others? The Bible emphasizes seeking forgiveness from those we've harmed and from God Himself. Who appointed us as the arbitrators of our own wrongdoing?
 
@@ -45,12 +44,12 @@ Furthermore, he elaborates that the Godly grief experienced by the Corinthians l
 
 In light of these points, the Bible teaches us that while we may not entirely erase our sins from memory, we ought to endeavour to move forward, repent, and seek forgiveness recalling them solely to gain a deeper appreciation of God's grace and mercy. Doing so humbles us, prompting us to relinquish the poison of self-condemnation.
 
-### One more thing to consider, nuance.
+**One more thing to consider, nuance.**
 
 The creator of the universe is not glorified when we waste our lives in self-doubt and idleness. Remember, you have been liberated through Jesus' sacrifice! It's time to embrace a life free from sin and condemnation. If you find yourself still struggling with sin, I urge you to seek support from your church elders for guidance and accountability.
 
 While Jesus' sacrifice grants us forgiveness before God, it doesn't exempt us from earthly consequences of sin. As Christians, let's endeavour to emulate Jesus' example and live according to His teachings.
 
----
+* * *
 
 It's important to remember that the approach to confessing sin can vary depending on the situation. When the sin impacts others, it should be approached with sensitivity and under the guidance of church elders.
