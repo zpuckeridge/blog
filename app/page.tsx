@@ -69,7 +69,7 @@ export default function Home() {
         </p>
 
         <p>
-          I have limited availability but am open to hearing about your project.
+          I have limited availability but am open to hearing about your project.{" "}
           If you're looking for a web developer, please feel free to reach out
           via{" "}
           <a
@@ -79,13 +79,13 @@ export default function Home() {
           >
             email
           </a>{" "}
-          or book a{" "}
+          or{" "}
           <a
             href="https://cal.com/zpuckeridge?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2 bg-violet-950/50 text-violet-400"
           >
-            call
+            schedule a call
           </a>
           .
         </p>
