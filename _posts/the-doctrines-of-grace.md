@@ -6,9 +6,9 @@ description: An overview of the doctrines of grace, what they are and what they
   mean for humanity.
 image: media/ioann-mark-kuznietsov-USS2u1-98io-unsplash.jpg
 imageAlt: Photo by Ioann-Mark Kuznietsov on Unsplash
+lastModified: 2024-07-25
 ---
-
-### Predestination/Unconditional Election
+**Predestination/Unconditional Election**
 
 Romans 8:29-30 tells us, “For those God foreknew he also predestined to be conformed to the likeness of his Son, that he might be the firstborn among many brothers. And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.” Ephesians 1:5 and 11 declare, “He predestined us to be adopted as his sons through Jesus Christ, in accordance with his pleasure and will…In him we were also chosen, having been predestined according to the plan of him who works out everything in conformity with the purpose of his will.”
 
@@ -29,5 +29,3 @@ God has elected a particular people to be the recipients of Christ’s atoning w
 **Perseverance of the Saints**
 
 The particular people God has elected and drawn to Himself through the Holy Spirit will persevere in faith. None of those whom God has elected will be lost; they are eternally secure in Him (John 10:27–29; Romans 8:29–30; Ephesians 1:3–14). Some Reformed theologians prefer to use the term “Preservation of the Saints” as they believe that this choice of words more accurately describes how God is directly responsible for the preservation of His elect. It is clear in Scripture that Christ continues to intercede for His people (Romans 8:34; Hebrews 7:25). This continues to provide believers with the assurance that those that belong to Christ are eternally His.
-
-If you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.
