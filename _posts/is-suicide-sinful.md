@@ -6,9 +6,9 @@ description: The act of suicide is sin because it's subjecting our own will onto
   something that is strictly God's decision.
 image: media/nikko-macaspac-6SNbWyFwuhk-unsplash.jpg
 imageAlt: "Photo by nikko macaspac on Unsplash "
+lastModified: 2024-07-25
 ---
-
-### What does the Bible say?
+**What does the Bible say?**
 
 The act of suicide is sin, because it's taking something that is strictly under God's commandments (life and death) and subjecting it to our own will. It robs a person of the amazing gift of life given to them by God alone.
 
@@ -28,6 +28,6 @@ Suicide is only mentioned in the Bible six times. In the case of Abimelech (Judg
 
 Works performed outside of God are sin. If you believe this to be true, the deaths depicted in these texts can be quickly and easily explained as sinful, or as righteous (as we see in Samson's example).
 
-### Nuance
+**Nuance is required**
 
 Please note that by writing this I am not saying that people who commit suicide are not saved. Context should be applied to each situation. God is all knowing, just and merciful. He knows us inside and out - we have no right to judge who we think is or isn't saved because how can we truly know? This article was written more so to point out the selfishness of suicide and how it is toxic and ultimately sinful.
