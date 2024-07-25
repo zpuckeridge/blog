@@ -3,9 +3,9 @@ title: Does God change His mind?
 date: 2022-10-25
 tag: Faith
 description: Does the Bible contradict itself?
+lastModified: 2024-07-25
 ---
-
-### Contradictory Statements
+**Contradictory Statements**
 
 When investigating seemingly contradictory statements in the Bible, it's critically important to remember that our thoughts and understanding pale in comparison to God.
 
@@ -27,7 +27,7 @@ Additionally, God's word contains many examples of phenomenological language (th
 
 From the perspective of the reader, it appears that the Bible declares that God is immutable, sovereign and yet also refers to God regretting and relenting in certain situations:
 
-#### God is immutable and does not change His mind:
+**God is immutable and does not change His mind:**
 
 > God is not man, that he should lie, or a son of man, that he should change his mind. Has he said, and will he not do it? Or has he spoken, and will he not fulfil it?
 
@@ -41,7 +41,7 @@ From the perspective of the reader, it appears that the Bible declares that God 
 
 — James 1:17
 
-#### God is Sovereign:
+**God is Sovereign:**
 
 > \[Our Lord Jesus Christ\] who is the blessed and only Sovereign, the King of kings and Lord of lords.
 
@@ -51,7 +51,7 @@ From the perspective of the reader, it appears that the Bible declares that God 
 
 — Revelation 6:10
 
-#### God can do whatever He pleases, everything is through Him and because of Him:
+**God can do whatever He pleases, everything is through Him and because of Him:**
 
 > Our God is in the heavens; he does all that he pleases.
 
@@ -69,7 +69,7 @@ From the perspective of the reader, it appears that the Bible declares that God 
 
 — James 4:15
 
-#### Examples of God grieving and relenting:
+**Examples of God grieving and relenting:**
 
 > And the LORD regretted that he had made man on the earth, and it grieved him to his heart.
 
@@ -87,7 +87,7 @@ From the perspective of the reader, it appears that the Bible declares that God 
 
 — Jonah 3:9–10
 
-### How can all of these statements be true at once?
+**How can all of these statements be true at once?**
 
 There are a few things that we need to begin unpacking here. The best place to start is at 1 Samuel 15:11 where it says:
 
