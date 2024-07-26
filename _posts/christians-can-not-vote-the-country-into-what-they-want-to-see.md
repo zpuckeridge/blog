@@ -1,6 +1,6 @@
 ---
 title: Christians can not vote the country into what they want to see
-date: 2024-07-26
+date: 2024-07-09
 tag: Faith
 description: They must go out and witness to the lost.
 lastModified: 2024-07-26
