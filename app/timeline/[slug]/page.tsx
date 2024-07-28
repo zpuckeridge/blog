@@ -69,7 +69,7 @@ export default function Post({ params }: { params: { slug: string } }) {
                 width={800}
                 height={400}
                 alt={post.title}
-                className="object-cover w-full aspect-video"
+                className="object-cover w-full"
               />
               <p className="text-center text-xs text-muted-foreground pt-2">
                 {post.imageAlt}
