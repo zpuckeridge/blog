@@ -25,7 +25,7 @@ export default function NowPlaying() {
           <a
             href="https://open.spotify.com/user/oid25p8bf0jm4zfezkf765o03?si=f67b4f43e7fa4620"
             target="_blank"
-            className="flex gap-2 hover:text-white text-muted-foreground"
+            className="flex gap-2 hover:text-violet-400 text-muted-foreground"
           >
             <Image
               src={data.spotify?.album_art_url || "/avatar.jpg"}

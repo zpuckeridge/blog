@@ -159,7 +159,7 @@ export default function Uses() {
 
         <Link
           href="/about"
-          className="text-xs text-muted-foreground hover:text-white"
+          className="text-xs text-muted-foreground hover:text-violet-400"
         >
           <ArrowLeftIcon className="inline-flex" /> /about
         </Link>

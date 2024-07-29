@@ -10,7 +10,7 @@ export default function NotFound() {
           <p>Error - 404</p>
           <Link
             href="/"
-            className="text-xs text-muted-foreground hover:text-white"
+            className="text-xs text-muted-foreground hover:text-violet-400"
           >
             <ArrowLeftIcon className="inline-flex" /> /
           </Link>

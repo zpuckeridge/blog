@@ -77,7 +77,7 @@ export default function Post({ params }: { params: { slug: string } }) {
             </div>
           )}
 
-          <article className="prose max-w-xl prose-a:underline prose-a:font-normal prose-a:decoration-dotted prose-a:underline-offset-2 prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:mx-auto prose-img:h-full prose-p:text-white">
+          <article className="prose max-w-prose prose-a:underline hover:prose-a:text-violet-400 hover:prose-a:no-underline prose-a:font-normal prose-a:decoration-dotted prose-a:underline-offset-2 prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:mx-auto prose-img:h-full prose-p:text-white">
             <MDXRemote source={post.content} />
           </article>
         </div>
@@ -86,7 +86,7 @@ export default function Post({ params }: { params: { slug: string } }) {
           <div>
             <Link
               href="/timeline"
-              className="text-xs text-muted-foreground hover:text-white"
+              className="text-xs text-muted-foreground hover:text-violet-400"
             >
               <ArrowLeftIcon className="inline-flex" /> /timeline
             </Link>

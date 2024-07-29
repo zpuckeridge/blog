@@ -21,7 +21,7 @@ export default function About() {
           <a
             href="https://1689londonbaptistconfession.com/"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Reformed Baptist
           </a>{" "}
@@ -29,7 +29,7 @@ export default function About() {
           <a
             href="https://maps.app.goo.gl/BikC7wpFxkio2f7A8"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Australia
           </a>
@@ -62,7 +62,7 @@ export default function About() {
           <a
             href="https://maps.app.goo.gl/7c5H8i3cnLwPFmKq9"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             United States
           </a>{" "}
@@ -70,7 +70,7 @@ export default function About() {
           <a
             href="https://www.camphighroad.org/"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Methodist Summer Camp
           </a>{" "}
@@ -80,7 +80,7 @@ export default function About() {
           <a
             href="https://maps.app.goo.gl/hSzzFMENPnHd4AXv6"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Loudown County Virginia
           </a>{" "}
@@ -88,7 +88,7 @@ export default function About() {
           <a
             href="https://maps.app.goo.gl/NM2AVWxE4wpJswuw5"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Los Angeles California
           </a>
@@ -119,7 +119,7 @@ export default function About() {
           <a
             href="https://conetix.com.au/"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Conetix
           </a>

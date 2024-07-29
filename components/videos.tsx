@@ -79,7 +79,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
               className={`text-sm ${
                 selectedTag === tag
                   ? "text-white"
-                  : "text-muted-foreground hover:text-white"
+                  : "text-muted-foreground hover:text-violet-400"
               }`}
               key={index}
               onClick={() => {
@@ -153,14 +153,14 @@ export default function Videos({ videos, itemsPerPage }: Props) {
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
-          className="text-xs text-muted-foreground hover:text-white"
+          className="text-xs text-muted-foreground hover:text-violet-400"
         >
           <ArrowLeftIcon className="inline-flex" /> Prev Page
         </button>
 
         <button
           onClick={() => setCurrentPage(1)}
-          className="text-xs text-muted-foreground hover:text-white"
+          className="text-xs text-muted-foreground hover:text-violet-400"
         >
           {currentPage} of {totalPages}
         </button>
@@ -168,7 +168,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
-          className="text-xs text-muted-foreground hover:text-white"
+          className="text-xs text-muted-foreground hover:text-violet-400"
         >
           Next Page <ArrowRightIcon className="inline-flex" />
         </button>

@@ -51,7 +51,7 @@ export default async function Posts() {
                 <Link
                   href={`/timeline/${post.slug}`}
                   aria-label={post.title}
-                  className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+                  className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
                 >
                   {post.title}
                 </Link>
@@ -66,7 +66,7 @@ export default async function Posts() {
 
         <Link
           href="/"
-          className="text-xs text-muted-foreground hover:text-white"
+          className="text-xs text-muted-foreground hover:text-violet-400"
         >
           <ArrowLeftIcon className="inline-flex" /> /
         </Link>

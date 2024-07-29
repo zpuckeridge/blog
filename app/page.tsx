@@ -25,7 +25,7 @@ export default function Home() {
           <a
             href="https://61oaksgroup.com.au?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             61 Oaks Group
           </a>{" "}
@@ -33,7 +33,7 @@ export default function Home() {
           <a
             href="https://haddoninstitute.org?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Haddon Institute
           </a>
@@ -41,7 +41,7 @@ export default function Home() {
           <a
             href="https://thearmourybookshop.com.au?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             The Armoury Bookshop
           </a>
@@ -49,7 +49,7 @@ export default function Home() {
           <a
             href="https://starcompass.com.au?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Star Compass
           </a>
@@ -61,7 +61,7 @@ export default function Home() {
           <a
             href="https://rsp.com.au?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Rising Sun Pictures
           </a>{" "}
@@ -75,7 +75,7 @@ export default function Home() {
           <a
             href="mailto:hi@zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             email
           </a>{" "}
@@ -83,7 +83,7 @@ export default function Home() {
           <a
             href="https://cal.com/zpuckeridge?ref=zacchary.me"
             target="_blank"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2 bg-violet-950/50 text-violet-400"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2 bg-violet-950/50 text-violet-400"
           >
             schedule a call
           </a>
@@ -93,14 +93,14 @@ export default function Home() {
         <p>
           <Link
             href="/about"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             Read more about me
           </Link>{" "}
           or{" "}
           <Link
             href="/work"
-            className="underline hover:text-muted-foreground hover:no-underline decoration-dotted underline-offset-2"
+            className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
           >
             view my work
           </Link>

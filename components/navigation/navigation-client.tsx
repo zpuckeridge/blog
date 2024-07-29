@@ -18,7 +18,8 @@ export default function NavigationClient({
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const isActive = (href: string) => (pathname === href ? "text-white" : "");
+  const isActive = (href: string) =>
+    pathname === href ? "text-violet-400" : "";
 
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
@@ -30,7 +31,7 @@ export default function NavigationClient({
         <div className="flex justify-between">
           <Link
             href="/"
-            className="text-xs my-auto text-muted-foreground hover:text-white"
+            className="text-xs my-auto text-muted-foreground hover:text-violet-400"
           >
             <ArrowLeftIcon className="inline-flex" /> /
           </Link>
@@ -46,7 +47,7 @@ export default function NavigationClient({
                 <div className="flex flex-col gap-2">
                   <Link
                     href="/work"
-                    className={`${isActive("/work")} hover:text-white flex justify-between`}
+                    className={`${isActive("/work")} hover:text-violet-400 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>Work</p>
@@ -54,7 +55,7 @@ export default function NavigationClient({
                   </Link>
                   <Link
                     href="/timeline"
-                    className={`${isActive("/timeline")} hover:text-white flex justify-between`}
+                    className={`${isActive("/timeline")} hover:text-violet-400 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>Timeline</p>
@@ -62,7 +63,7 @@ export default function NavigationClient({
                   </Link>
                   <Link
                     href="/about"
-                    className={`${isActive("/about")} hover:text-white flex justify-between`}
+                    className={`${isActive("/about")} hover:text-violet-400 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>About</p>
@@ -72,7 +73,7 @@ export default function NavigationClient({
                   </Link>
                   <Link
                     href="/resources"
-                    className={`${isActive("/resources")} hover:text-white flex justify-between`}
+                    className={`${isActive("/resources")} hover:text-violet-400 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>Resources</p>
@@ -83,7 +84,7 @@ export default function NavigationClient({
                 <div className="flex flex-col gap-2">
                   <Link
                     href="/colophon"
-                    className={`${isActive("/colophon")} hover:text-white flex justify-between`}
+                    className={`${isActive("/colophon")} hover:text-violet-400 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>Colophon</p>
@@ -101,7 +102,7 @@ export default function NavigationClient({
           <div className="flex flex-col gap-2">
             <Link
               href="/work"
-              className={`${isActive("/work")} hover:text-white flex justify-between`}
+              className={`${isActive("/work")} hover:text-violet-400 flex justify-between`}
             >
               <p>Work</p>
               <p>12 projects</p>
@@ -109,7 +110,7 @@ export default function NavigationClient({
             <div className="flex flex-col gap-2">
               <Link
                 href="/timeline"
-                className={`${pathname.includes("/timeline") ? "text-white" : ""} hover:text-white flex justify-between`}
+                className={`${pathname.includes("/timeline") ? "text-violet-400" : ""} hover:text-violet-400 flex justify-between`}
               >
                 <p>Timeline</p>
                 <p>{posts.length} entries</p>
@@ -122,7 +123,7 @@ export default function NavigationClient({
                       key={post.slug}
                       href={`/timeline/${post.slug}`}
                       aria-label={post.title}
-                      className="hover:text-white"
+                      className="hover:text-violet-400"
                     >
                       {post.title}
                     </Link>
@@ -134,7 +135,7 @@ export default function NavigationClient({
 
             <Link
               href="/videos"
-              className={`${isActive("/videos")} hover:text-white flex justify-between`}
+              className={`${isActive("/videos")} hover:text-violet-400 flex justify-between`}
             >
               <p>Videos</p>
               <p>{videos.length} entries</p>
@@ -143,7 +144,7 @@ export default function NavigationClient({
             <div className="flex flex-col gap-2">
               <Link
                 href="/about"
-                className={`${pathname.includes("/about") ? "text-white" : ""} hover:text-white flex justify-between`}
+                className={`${pathname.includes("/about") ? "text-violet-400" : ""} hover:text-violet-400 flex justify-between`}
               >
                 <p>About</p>
                 <p>
@@ -156,58 +157,58 @@ export default function NavigationClient({
                   <a
                     href="https://read.cv/zpuckeridge"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     Read.cv
                   </a>
                   <a
                     href="https://shop.zacchary.me/"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     Shop
                   </a>
                   <a
                     href="https://x.com/zpuckeridge"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     X
                   </a>
                   <a
                     href="https://www.facebook.com/profile.php?id=61554733838731"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     Facebook
                   </a>
                   <a
                     href="https://linkedin.com/zpuckeridge"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     LinkedIn
                   </a>
                   <a
                     href="https://instagram.com/zpuckeridge"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     Instagram
                   </a>
                   <a
                     href="https://cosmos.so/zpuckeridge"
                     target="_blank"
-                    className="hover:text-white"
+                    className="hover:text-violet-400"
                   >
                     Cosmos
                   </a>
                   <Link
                     href="/about/uses"
-                    className="hover:text-white flex justify-between"
+                    className="hover:text-violet-400 flex justify-between"
                   >
                     Uses
-                    <Badge className="text-xs rounded-none hover:bg-muted hover:text-muted-foreground py-0 px-2 bg-muted text-muted-foreground">
+                    <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
                       WIP
                     </Badge>
                   </Link>
@@ -219,7 +220,7 @@ export default function NavigationClient({
           <div className="flex flex-col gap-2">
             <Link
               href="/colophon"
-              className={`${isActive("/colophon")} hover:text-white flex justify-between`}
+              className={`${isActive("/colophon")} hover:text-violet-400 flex justify-between`}
             >
               <p>Colophon</p>
               <p>5 topics</p>

@@ -95,7 +95,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `min-h-screen bg-black font-sans antialiased selection:bg-violet-950/50 selection:text-violet-400`,
+          `min-h-screen bg-black font-sans subpixel-antialiased selection:bg-violet-950/50 selection:text-violet-400`,
           fontSans.variable,
           fontSerif.variable,
         )}
@@ -108,7 +108,7 @@ export default function RootLayout({
               <div className="lg:sticky top-8 space-y-6">
                 <div className="space-y-2">
                   <div className="flex gap-2 justify-between text-sm whitespace-nowrap">
-                    <Link href="/" className="hover:text-muted-foreground">
+                    <Link href="/" className="hover:text-violet-400">
                       Zacchary Puckeridge
                     </Link>
                     <p className="text-muted-foreground">Web Developer</p>

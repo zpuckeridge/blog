@@ -227,7 +227,7 @@ export default function Work() {
 
         <Link
           href="/"
-          className="text-xs text-muted-foreground hover:text-white"
+          className="text-xs text-muted-foreground hover:text-violet-400"
         >
           <ArrowLeftIcon className="inline-flex" /> /
         </Link>
