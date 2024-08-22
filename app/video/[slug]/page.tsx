@@ -77,6 +77,7 @@ export function generateMetadata({ params }: Params): Metadata {
       type: "video.other",
       title: title,
       description: description,
+      siteName: "zacchary.me",
       images: [
         {
           url: thumbnailUrl,
