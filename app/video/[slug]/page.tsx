@@ -2,7 +2,7 @@ import CopyLink from "@/components/copy-link";
 import Player from "@/components/player";
 import { getVideoBySlug } from "@/lib/get-videos";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -52,67 +52,67 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   );
 }
 
-// type Params = {
-//   params: {
-//     slug: string;
-//   };
-// };
+type Params = {
+  params: {
+    slug: string;
+  };
+};
 
-// export function generateMetadata({ params }: Params): Metadata {
-//   const video = getVideoBySlug(params.slug);
-
-//   if (!video) {
-//     return notFound();
-//   }
-
-//   const title = `${video.title}`;
-//   const description = `${video.description}`;
-
-//   console.log(`https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`);
-
-//   return {
-//     title: title,
-//     description: description,
-//     openGraph: {
-//       type: "video.other",
-//       title: title,
-//       description: description,
-//       url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
-//       videos: [
-//         {
-//           url: `https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`,
-//           width: 1920,
-//           height: 1080,
-//           type: "video/mp4",
-//         },
-//       ],
-//     },
-//   };
-// }
-
-export async function generateMetadata(
-  { params }: any,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export function generateMetadata({ params }: Params): Metadata {
   const video = getVideoBySlug(params.slug);
 
+  if (!video) {
+    return notFound();
+  }
+
+  const title = `${video.title}`;
+  const description = `${video.description}`;
+  const videoUrl = `https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`;
+  const thumbnailUrl = `https://image.mux.com/${video.videoUrl}/thumbnail.jpg`;
+
   return {
-    title: `${video.title}`,
-    description: video.description,
+    title: title,
+    description: description,
     openGraph: {
       type: "video.other",
-      siteName: `sdelta.xyz`,
-      title: `${video.title}`,
-      description: video.description,
-      url: `https://zacchary.me/video/${video.slug}`,
-      countryName: "Australia",
-      locale: "en_AU",
+      title: title,
+      description: description,
+      images: [
+        {
+          url: thumbnailUrl,
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
       videos: [
         {
-          url: `https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`,
+          url: videoUrl,
           width: 1920,
           height: 1080,
           type: "video/mp4",
+        },
+      ],
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
+    },
+    twitter: {
+      card: "player",
+      title: title,
+      description: description,
+      players: [
+        {
+          playerUrl: videoUrl,
+          streamUrl: videoUrl,
+          width: 1920,
+          height: 1080,
+        },
+      ],
+      images: [
+        {
+          url: thumbnailUrl,
+          width: 1920,
+          height: 1080,
+          alt: title,
         },
       ],
     },
