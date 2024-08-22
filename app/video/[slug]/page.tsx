@@ -72,15 +72,12 @@ export function generateMetadata({ params }: Params): Metadata {
     description: description,
     openGraph: {
       type: "video.other",
-      siteName: `zacchary.me`,
       title: title,
       description: description,
       url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
-      countryName: "Australia",
-      locale: "en_AU",
       videos: [
         {
-          url: `https://stream.mux.com/${video.videoUrl}/high.mp4`,
+          url: `https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`,
           width: 1920,
           height: 1080,
           type: "video/mp4",
