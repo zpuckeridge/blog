@@ -1,8 +1,8 @@
 import CopyLink from "@/components/copy-link";
 import Player from "@/components/player";
-import { getAllVideos, getVideoBySlug } from "@/lib/get-videos";
+import { getVideoBySlug } from "@/lib/get-videos";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -37,6 +37,7 @@ export default async function Clip({ params }: { params: { slug: string } }) {
               day: "numeric",
             })}
           </div>
+          {video.videoUrl}
         </div>
       </div>
       <div>
@@ -51,30 +52,61 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   );
 }
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
+// type Params = {
+//   params: {
+//     slug: string;
+//   };
+// };
 
-export function generateMetadata({ params }: Params): Metadata {
+// export function generateMetadata({ params }: Params): Metadata {
+//   const video = getVideoBySlug(params.slug);
+
+//   if (!video) {
+//     return notFound();
+//   }
+
+//   const title = `${video.title}`;
+//   const description = `${video.description}`;
+
+//   console.log(`https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`);
+
+//   return {
+//     title: title,
+//     description: description,
+//     openGraph: {
+//       type: "video.other",
+//       title: title,
+//       description: description,
+//       url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
+//       videos: [
+//         {
+//           url: `https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`,
+//           width: 1920,
+//           height: 1080,
+//           type: "video/mp4",
+//         },
+//       ],
+//     },
+//   };
+// }
+
+export async function generateMetadata(
+  { params }: any,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const video = getVideoBySlug(params.slug);
 
-  if (!video) {
-    return notFound();
-  }
-
-  const title = `${video.title}`;
-  const description = `${video.description}`;
-
   return {
-    title: title,
-    description: description,
+    title: `${video.title}`,
+    description: video.description,
     openGraph: {
       type: "video.other",
-      title: title,
-      description: description,
-      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
+      siteName: `sdelta.xyz`,
+      title: `${video.title}`,
+      description: video.description,
+      url: `https://zacchary.me/video/${video.slug}`,
+      countryName: "Australia",
+      locale: "en_AU",
       videos: [
         {
           url: `https://stream.mux.com/${video.videoUrl}/capped-1080p.mp4`,
@@ -85,12 +117,4 @@ export function generateMetadata({ params }: Params): Metadata {
       ],
     },
   };
-}
-
-export async function generateStaticParams() {
-  const videos = getAllVideos();
-
-  return videos.map((video) => ({
-    slug: video.slug,
-  }));
 }
