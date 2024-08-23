@@ -38,7 +38,6 @@ export default function NavigationClient({
           <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <DrawerTrigger>
               <p className="text-sm flex gap-1 my-auto">
-                Open navigation{" "}
                 <HamburgerMenuIcon className="my-auto w-5 h-5" />
               </p>
             </DrawerTrigger>
@@ -53,32 +52,116 @@ export default function NavigationClient({
                     <p>Work</p>
                     <p>12 projects</p>
                   </Link>
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      href="/timeline"
+                      className={`${pathname.includes("/timeline") ? "text-violet-400" : ""} hover:text-violet-400 flex justify-between`}
+                      onClick={handleDrawerClose}
+                    >
+                      <p>Timeline</p>
+                      <p>{posts.length} entries</p>
+                    </Link>
+
+                    {pathname.includes("/timeline") && (
+                      <div className="ml-4 flex flex-col gap-2  h-40 overflow-y-hidden relative">
+                        {posts.map((post: any) => (
+                          <Link
+                            key={post.slug}
+                            href={`/timeline/${post.slug}`}
+                            aria-label={post.title}
+                            className="hover:text-violet-400"
+                            onClick={handleDrawerClose}
+                          >
+                            {post.title}
+                          </Link>
+                        ))}
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-gradient-to-t from-black dark:from-black" />
+                      </div>
+                    )}
+                  </div>
                   <Link
-                    href="/timeline"
-                    className={`${isActive("/timeline")} hover:text-violet-400 flex justify-between`}
+                    href="/videos"
+                    className={`${isActive("/videos")} hover:text-violet-400 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
-                    <p>Timeline</p>
-                    <p>{posts.length} entries</p>
+                    <p>Videos</p>
+                    <p>{videos.length} entries</p>
                   </Link>
-                  <Link
-                    href="/about"
-                    className={`${isActive("/about")} hover:text-violet-400 flex justify-between`}
-                    onClick={handleDrawerClose}
-                  >
-                    <p>About</p>
-                    <p>
-                      <Age /> years
-                    </p>
-                  </Link>
-                  <Link
-                    href="/resources"
-                    className={`${isActive("/resources")} hover:text-violet-400 flex justify-between`}
-                    onClick={handleDrawerClose}
-                  >
-                    <p>Resources</p>
-                    <p>9 entries</p>
-                  </Link>
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      href="/about"
+                      className={`${pathname.includes("/about") ? "text-violet-400" : ""} hover:text-violet-400 flex justify-between`}
+                      onClick={handleDrawerClose}
+                    >
+                      <p>About</p>
+                      <p>
+                        <Age /> years
+                      </p>
+                    </Link>
+
+                    {pathname.includes("/about") && (
+                      <div className="ml-4 flex flex-col gap-2 overflow-y-hidden relative">
+                        <a
+                          href="https://read.cv/zpuckeridge"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          Read.cv
+                        </a>
+                        <a
+                          href="https://shop.zacchary.me/"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          Shop
+                        </a>
+                        <a
+                          href="https://x.com/zpuckeridge"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          X
+                        </a>
+                        <a
+                          href="https://www.facebook.com/profile.php?id=61554733838731"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          Facebook
+                        </a>
+                        <a
+                          href="https://linkedin.com/zpuckeridge"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          LinkedIn
+                        </a>
+                        <a
+                          href="https://instagram.com/zpuckeridge"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          Instagram
+                        </a>
+                        <a
+                          href="https://cosmos.so/zpuckeridge"
+                          target="_blank"
+                          className="hover:text-violet-400"
+                        >
+                          Cosmos
+                        </a>
+                        <Link
+                          href="/about/uses"
+                          className="hover:text-violet-400 flex justify-between"
+                        >
+                          Uses
+                          <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
+                            WIP
+                          </Badge>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <hr />
                 <div className="flex flex-col gap-2">
