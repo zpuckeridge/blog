@@ -7,6 +7,7 @@ image: media/mccall-alexander-W7HQQpi80AA-unsplash.jpg
 imageAlt: "Photo by McCall Alexander on Unsplash "
 lastModified: 2024-07-25
 ---
+
 The idea that God's love is reckless was popularized by the worship song "Reckless Love" written by Caleb Culver, Cory Asbury and Ran Jackson.
 
 It was an incredibly popular song and has been listened to millions of times across the globe. It's sparked controversy regarding the use of the word 'reckless' to describe God's love.

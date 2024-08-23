@@ -7,6 +7,7 @@ description: Cramming information is useful if you want to look smart, but
 image: media/pinky-and-the-brain.jpg
 lastModified: 2024-07-29
 ---
+
 Cramming information is useful if you want to look smart, but thinking and approaching problems the right way is an attribute few possess.
 
 Institutions would do well to teach their students how to think and approach problems with critical thought over throwing buckets of information at them. Being able to critical assess a problem, see an argument from both sides, rationalise their worldview and accept when their wrong will prepare a student for lifelong success.

@@ -8,6 +8,7 @@ image: media/nikko-macaspac-6SNbWyFwuhk-unsplash.jpg
 imageAlt: "Photo by nikko macaspac on Unsplash "
 lastModified: 2024-07-25
 ---
+
 **What does the Bible say?**
 
 The act of suicide is sin, because it's taking something that is strictly under God's commandments (life and death) and subjecting it to our own will. It robs a person of the amazing gift of life given to them by God alone.

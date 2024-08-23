@@ -5,6 +5,7 @@ tag: Quote
 description: — Benjamin Franklin
 lastModified: 2024-07-30
 ---
+
 > Either write something worth reading or do something worth writing.
 
 — Benjamin Franklin

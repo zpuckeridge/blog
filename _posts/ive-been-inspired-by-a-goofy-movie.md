@@ -7,6 +7,7 @@ image: media/a-goofy-movie-2000-af1010c308e44155a276e0f67b07f166.jpg
 imageAlt: Max and Goofy - A Goofy Movie
 lastModified: 2024-07-16
 ---
+
 It was Wednesday the 14th of July and I was bored out of my mind, so much so I remember wishing for the weekend. My two remaining brain cells had evaporated and I knew it was time to find something to give my brain a break.
 
 I mean sure, there were half a dozen things I probably could have been doing instead, learning web dev, cleaning my office etc. But for some reason, rather unsurprisingly, I found myself browsing YouTube once again.

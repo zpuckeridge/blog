@@ -5,4 +5,5 @@ tag: Faith
 description: They must go out and witness to the lost.
 lastModified: 2024-07-26
 ---
+
 They must go out and witness to the lost. Nations rise and fall as God judges them. To be a faithful Christian is to evangelise the lost and see souls saved—only then will we see a nations morality improve.

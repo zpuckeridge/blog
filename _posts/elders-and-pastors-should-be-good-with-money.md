@@ -5,6 +5,7 @@ tag: Faith
 description: Do your elders manage their households well?
 lastModified: 2024-07-26
 ---
+
 [Do your elders manage their households well?](https://x.com/PerfInjust/status/1814819350768914771) And no, I'm not just talking about the relationships between their wife and children, but also their finances, their conduct and general wisdom. Are they above [reproach](https://www.merriam-webster.com/dictionary/reproach)?
 
 If we are to entrust our elders to the finances of the church, the tithe and other financial decisions, then it is reasonable to expect them to have a decent understanding of realestate, economics and almost certainly politics. How else could they come to a well reasoned conclusion about a specific direction the church should take?

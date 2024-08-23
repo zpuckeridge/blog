@@ -33,7 +33,12 @@ content:
       - { name: title, label: Title, type: string }
       - { name: date, label: Date, type: date }
       - { name: tag, label: Tag, type: string }
-      - { name: description, label: Description, type: string, options: { maxlength: 160 } }
+      - {
+          name: description,
+          label: Description,
+          type: string,
+          options: { maxlength: 160 },
+        }
       - { name: videoUrl, label: Video URL, type: string }
       - { name: duration, label: Duration, type: string }
       - { name: lastModified, label: Last Updated, type: date }

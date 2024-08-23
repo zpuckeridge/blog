@@ -8,6 +8,7 @@ image: media/patrick-fore-b_SHPU5M3nk-unsplash.jpg
 imageAlt: "Photo by Patrick Fore on Unsplash "
 lastModified: 2024-07-25
 ---
+
 **What does the Bible say?**
 
 It's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:
@@ -50,6 +51,6 @@ The creator of the universe is not glorified when we waste our lives in self-dou
 
 While Jesus' sacrifice grants us forgiveness before God, it doesn't exempt us from earthly consequences of sin. As Christians, let's endeavour to emulate Jesus' example and live according to His teachings.
 
-* * *
+---
 
 It's important to remember that the approach to confessing sin can vary depending on the situation. When the sin impacts others, it should be approached with sensitivity and under the guidance of church elders.

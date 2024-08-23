@@ -6,14 +6,13 @@ description: Does the death penalty apply post-Christ? Can it be effectively
   used as a deterrant?
 lastModified: 2024-07-25
 ---
+
 The interpretation of scripture regarding the death penalty is a topic of hot debate amongst Christians. Some argue that it is mandated, while others question its applicability in the post-Christ era.
 
 This article seeks to answer the following questions:
 
-*   Does scripture mandate the death penalty?
-    
-*   Is the death penalty still applicable post-Christ?
-    
+- Does scripture mandate the death penalty?
+- Is the death penalty still applicable post-Christ?
 
 **Does scripture mandate the death penalty?**
 
@@ -30,9 +29,9 @@ Take also the law as it was given to Moses. It ordains the death penalty for var
 These items are carried over in the moral law to the New Testament and are re-iterated by Jesus and the apostles. The New Testament would definitely assume the existence of the death penalty, but there aren't any clear cut examples of how it applies. Romans 13:1-7 also calls us to submit to the authority of the government.
 
 > Let every person be subject to the governing authorities. For there is no authority except from God, and those that exist have been instituted by God. Therefore whoever resists the authorities resists what God has appointed, and those who resist will incur judgment. For rulers are not a terror to good conduct, but to bad.
-> 
+>
 > Would you have no fear of the one who is in authority? Then do what is good, and you will receive his approval, for he is God's servant for your good. But if you do wrong, be afraid, for he does not bear the sword in vain. For he is the servant of God, an avenger who carries out God's wrath on the wrongdoer.
-> 
+>
 > Therefore one must be in subjection, not only to avoid God's wrath but also for the sake of conscience. For because of this you also pay taxes, for the authorities are ministers of God, attending to this very thing. Pay to all what is owed to them: taxes to whom taxes are owed, revenue to whom revenue is owed, respect to whom respect is owed, honour to whom honour is owed.
 
 — Romans 13:1-7 ESV
