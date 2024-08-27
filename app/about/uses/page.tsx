@@ -84,6 +84,8 @@ export default function Uses() {
             <UsesItem title="Oracle" description="Remote development" />
             <UsesItem title="Lucide" description="Icons" />
             <UsesItem title="Carbon" description="Code sharing" />
+            <UsesItem title="Neon" description="Postgres provider" />
+            <UsesItem title="Clerk" description="Authentication" />
           </div>
         </div>
 
@@ -93,10 +95,7 @@ export default function Uses() {
             <hr className="w-full" />
           </div>
           <div className="grid grid-cols-2 gap-2 w-full">
-            <UsesItem title="Plausible" description="Analytics" />
-            <UsesItem title="Uptime Kuma" description="Status monitoring" />
-            <UsesItem title="Pingvin Share" description="File sharing" />
-            <UsesItem title="Memos" description="Note taking" />
+            <UsesItem title="Umami" description="Analytics" />
           </div>
         </div>
 

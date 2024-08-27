@@ -43,3 +43,16 @@ content:
       - { name: duration, label: Duration, type: string }
       - { name: lastModified, label: Last Updated, type: date }
     filename: "{primary}.md"
+  - name: inventory
+    label: Inventory
+    path: _inventory
+    type: collection
+    view:
+      fields: [item, date, tag, reason]
+    fields:
+      - { name: item, label: Item, type: string }
+      - { name: date, label: Purchased, type: date }
+      - { name: tag, label: Tag, type: string }
+      - { name: reason, label: Reason, type: string }
+      - { name: image, label: Image, type: image }
+    filename: "{primary}.md"
