@@ -17,7 +17,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.1.2",
-    "@tailwindcss/typography": "^0.5.14",
+    "@tailwindcss/typography": "^0.5.15",
     "@vidstack/react": "^1.12.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -39,7 +39,7 @@
     "vaul": "^0.9.1"
   },
   "devDependencies": {
-    "@types/node": "^20.16.1",
+    "@types/node": "^20.16.2",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
