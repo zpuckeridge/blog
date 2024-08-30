@@ -126,11 +126,35 @@ export function generateMetadata({ params }: Params): Metadata {
   const description = `${post.description}`;
 
   return {
-    title,
+    title: title,
+    description: description,
     openGraph: {
-      title,
-      description,
-      images: [post.image || "/avatar.jpg"],
+      type: "article",
+      title: title,
+      description: description,
+      siteName: "zacchary.me",
+      images: [
+        {
+          url: post.image || "/avatar.avif",
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${post.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      images: [
+        {
+          url: post.image || "/avatar.avif",
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
     },
   };
 }

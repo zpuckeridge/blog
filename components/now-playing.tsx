@@ -28,7 +28,7 @@ export default function NowPlaying() {
             className="flex gap-2 hover:text-violet-400 text-muted-foreground"
           >
             <Image
-              src={data.spotify?.album_art_url || "/avatar.jpg"}
+              src={data.spotify?.album_art_url || "/avatar.avif"}
               alt={`${data.spotify?.artist} - ${data.spotify?.song}`}
               width={250}
               height={250}
