@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 interface Post {
-  slug: string;
+  url: string;
   title: string;
   date: string;
 }
@@ -28,8 +28,8 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
             <div className="flex flex-col w-full">
               {yearPosts.map((post: Post, index: number) => (
                 <Link
-                  key={post.slug}
-                  href={`/timeline/${post.slug}`}
+                  key={post.url}
+                  href={`${post.url}`}
                   className={`flex justify-between w-full py-3 gap-8 ${index === yearPosts.length - 1 ? "" : "border-b border-muted"}`}
                   onMouseEnter={() =>
                     setHoveredIndex((prev) => ({ ...prev, [year]: index }))

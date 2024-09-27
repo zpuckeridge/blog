@@ -1,7 +1,8 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import PostRendering from "@/components/posts";
-import { getAllPosts } from "@/lib/get-posts";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { allPosts } from "contentlayer/generated";
+import { compareDesc } from "date-fns";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -11,15 +12,15 @@ export const metadata: Metadata = {
     "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
 };
 
-export default async function Posts() {
-  const posts = await getAllPosts(); // Await the asynchronous function
-
-  const postsByYear = posts.reduce((acc: Record<number, any[]>, post: any) => {
-    const year = new Date(post.date).getFullYear();
-    if (!acc[year]) acc[year] = [];
-    acc[year].push(post);
-    return acc;
-  }, {});
+export default function Posts() {
+  const posts = allPosts
+    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+    .reduce((acc: Record<number, any[]>, post: any) => {
+      const year = new Date(post.date).getFullYear();
+      if (!acc[year]) acc[year] = [];
+      acc[year].push(post);
+      return acc;
+    }, {});
 
   return (
     <div className="max-w-lg lg:mx-auto">
@@ -42,7 +43,7 @@ export default async function Posts() {
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <PostRendering postsByYear={postsByYear} />
+          <PostRendering postsByYear={posts} />
         </BlurFade>
 
         <Link

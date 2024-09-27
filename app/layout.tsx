@@ -114,16 +114,6 @@ export default function RootLayout({
 
             <Navigation />
 
-            {/* <div className="fixed bottom-8 right-8 hidden lg:block z-20 max-w-md">
-              <Image
-                src="/media/haddon.avif"
-                width={250}
-                height={250}
-                alt="Haddon Institute"
-                className="w-full h-full rounded-2xl"
-              />
-            </div> */}
-
             <div className="fixed bottom-8 left-8 hidden lg:block z-20">
               <Lanyard />
             </div>

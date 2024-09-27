@@ -10,7 +10,10 @@ export default function Home() {
           <p
             className="font-serif text-2xl italic"
             role="heading"
-            aria-label="Introduction"
+            aria-level={1}
+            aria-label="Christian IT Administrator working for Rising Sun Pictures. Building
+            better artist experiences by day, designing epic web experiences by
+            night."
           >
             Christian IT Administrator working for Rising Sun Pictures. Building
             better artist experiences by day, designing epic web experiences by

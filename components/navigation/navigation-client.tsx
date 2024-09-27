@@ -26,7 +26,7 @@ export default function NavigationClient({
 
   return (
     <>
-      <div className="p-4 w-full border-t-2 border-muted z-50 fixed bottom-0 left-0 bg-[#111111] lg:hidden leading-relaxed">
+      <div className="p-4 w-full border-t-2 border-muted z-50 fixed bottom-0 left-0 bg-white/90 backdrop-blur-md lg:hidden leading-relaxed">
         <div className="flex justify-between">
           <Link
             href="/"
@@ -65,8 +65,8 @@ export default function NavigationClient({
                       <div className="ml-4 flex flex-col gap-2  h-40 overflow-y-hidden relative">
                         {posts.map((post: any) => (
                           <Link
-                            key={post.slug}
-                            href={`/timeline/${post.slug}`}
+                            key={post.url}
+                            href={`/timeline/${post.url}`}
                             aria-label={post.title}
                             className="hover:text-blue-400 transition"
                             onClick={handleDrawerClose}
@@ -202,8 +202,8 @@ export default function NavigationClient({
                 <div className="ml-4 flex flex-col gap-2  h-40 overflow-y-hidden relative">
                   {posts.map((post: any) => (
                     <Link
-                      key={post.slug}
-                      href={`/timeline/${post.slug}`}
+                      key={post.url}
+                      href={`${post.url}`}
                       aria-label={post.title}
                       className="hover:text-blue-400 transition"
                     >

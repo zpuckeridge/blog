@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TypewriterEffect from "./typewriter";
 
 interface IPData {
   ip: string;
@@ -29,9 +28,10 @@ export default function RetrieveIP() {
 
   return data ? (
     <div className="max-w-sm font-mono text-muted-foreground text-sm">
-      <TypewriterEffect
-        string={`Welcome back ${data.ip}, it's good to see someone from ${data.city}, ${data.country_name}!`}
-      />
+      <p>
+        Welcome back {data.ip}, it's good to see someone from {data.city},{" "}
+        {data.country_name}!
+      </p>
     </div>
   ) : null;
 }
