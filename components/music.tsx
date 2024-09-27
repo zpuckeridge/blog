@@ -50,7 +50,7 @@ export default async function MusicTracking() {
           alt={track.name}
           width={300}
           height={300}
-          className="w-10 h-10"
+          className="w-10 h-10 rounded"
         />
         <div className="my-auto">
           <a
@@ -89,7 +89,7 @@ export default async function MusicTracking() {
           alt={artist.name}
           width={300}
           height={300}
-          className="w-10 h-10"
+          className="w-10 h-10 rounded"
         />
         <div className="my-auto">
           <a
@@ -113,24 +113,34 @@ export default async function MusicTracking() {
 
   return (
     <div className="flex flex-col w-full gap-20 text-sm">
-      <div className="flex flex-col w-full gap-2 text-sm">
-        <p className="text-muted-foreground text-sm">Most listened to tracks</p>
-        <div className="grid grid-cols-2 gap-2">
-          {getTopTracks.items.map((track: any, index: number) => (
-            <Track key={index} track={track} index={index} />
-          ))}
+      <div className="space-y-4">
+        <div className="bg-[#f9f9f9] border rounded-xl p-6">
+          <div className="flex flex-col w-full gap-2 text-sm">
+            <div className="grid grid-cols-2 gap-2">
+              {getTopTracks.items.map((track: any, index: number) => (
+                <Track key={index} track={track} index={index} />
+              ))}
+            </div>
+          </div>
         </div>
+        <p className="text-center text-muted-foreground text-xs ">
+          Most listened to tracks
+        </p>
       </div>
 
-      <div className="flex flex-col w-full gap-2 text-sm">
-        <p className="text-muted-foreground text-sm ">
+      <div className="space-y-4">
+        <div className="bg-[#f9f9f9] border rounded-xl p-6">
+          <div className="flex flex-col w-full gap-2 text-sm">
+            <div className="grid grid-cols-2 gap-2">
+              {getTopArtists.items.map((artist: any, index: number) => (
+                <Artist key={index} artist={artist} index={index} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <p className="text-center text-muted-foreground text-xs ">
           Most listened to artists
         </p>
-        <div className="grid grid-cols-2 gap-2">
-          {getTopArtists.items.map((artist: any, index: number) => (
-            <Artist key={index} artist={artist} index={index} />
-          ))}
-        </div>
       </div>
     </div>
   );

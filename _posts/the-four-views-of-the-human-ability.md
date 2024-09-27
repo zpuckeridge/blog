@@ -6,6 +6,7 @@ description: A primer on the four views of human ability and the reformed positi
 image: media/priscilla-du-preez-7aOhiPe6_30-unsplash.jpg
 imageAlt: "Photo by Priscilla Du Preez 🇨🇦 on Unsplash "
 lastModified: 2024-07-25
+signature: true
 ---
 
 Understanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.

@@ -67,6 +67,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
         <Input
           placeholder="Search videos"
           value={searchTerm}
+          className="rounded"
           onChange={(e) => {
             setSearchTerm(e.target.value);
             setCurrentPage(1);
@@ -78,8 +79,8 @@ export default function Videos({ videos, itemsPerPage }: Props) {
             <button
               className={`text-sm ${
                 selectedTag === tag
-                  ? "text-white"
-                  : "text-muted-foreground hover:text-violet-400"
+                  ? "text-blue-500"
+                  : "text-muted-foreground hover:text-blue-400 transition"
               }`}
               key={index}
               onClick={() => {
@@ -98,7 +99,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 mt-2">
+      <div className="grid grid-cols-2 gap-6 mt-2">
         {currentVideos
           .filter((video) =>
             video.title.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -110,10 +111,10 @@ export default function Videos({ videos, itemsPerPage }: Props) {
               key={video.slug}
             >
               <div className="transform">
-                <div className="absolute top-2 left-2 text-white bg-black/75 p-1 text-xs font-semibold ">
+                <div className="absolute top-2 left-2 text-white bg-black/75 rounded p-1 text-xs font-semibold ">
                   {video.tag}
                 </div>
-                <div className="absolute top-2 right-2 text-white bg-black/75 p-1 text-xs font-semibold ">
+                <div className="absolute top-2 right-2 text-white bg-black/75 rounded p-1 text-xs font-semibold ">
                   {video.duration ? (
                     <span className="duration">
                       {formatDuration(video.duration)}
@@ -128,7 +129,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
                   alt={video.title}
                   width={600}
                   height={600}
-                  className="aspect-video"
+                  className="aspect-video rounded"
                   priority={true}
                 />
                 <div className="flex justify-between mt-1">

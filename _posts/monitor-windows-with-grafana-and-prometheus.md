@@ -3,6 +3,7 @@ title: Monitor Windows with Grafana and Prometheus
 date: 2021-08-03
 tag: Technical
 description: Monitor your computers performance with Grafana and Prometheus.
+signature: true
 ---
 
 This article covers the installation and configuration process of OhmGraphite to work with Prometheus and send statistics to Grafana.

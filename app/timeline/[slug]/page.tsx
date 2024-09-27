@@ -1,4 +1,6 @@
+import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
+import LinkWithIcon from "@/components/link-with-icon";
 import { getAllPosts, getPostBySlug } from "@/lib/get-posts";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
@@ -30,8 +32,8 @@ export default function Post({ params }: { params: { slug: string } }) {
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
   return (
-    <div className="max-w-md lg:mx-auto pb-10">
-      <div className="text-sm flex flex-col gap-20">
+    <div className="max-w-lg lg:mx-auto">
+      <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
         <div className="space-y-2">
           <div className="flex justify-between gap-8">
             <h1 className="font-serif text-2xl italic">{post.title}</h1>
@@ -61,25 +63,48 @@ export default function Post({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col gap-4">
           {post.image && (
-            <div>
+            <div className="flex flex-col gap-4">
               <Image
                 src={`/${post.image}`}
                 width={800}
                 height={400}
                 alt={post.title}
-                className="object-cover w-full"
+                className="object-cover w-full rounded-xl"
               />
-              <p className="text-center text-xs text-muted-foreground pt-2">
+              <p className="text-center text-xs text-muted-foreground">
                 {post.imageAlt}
               </p>
             </div>
           )}
 
-          <article className="prose max-w-prose prose-a:underline hover:prose-a:text-violet-400 hover:prose-a:no-underline prose-a:font-normal prose-a:decoration-dotted prose-a:underline-offset-2 prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:mx-auto prose-img:h-full prose-p:text-white">
-            <MDXRemote source={post.content} />
+          <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed">
+            <MDXRemote
+              source={post.content}
+              components={{
+                a: (props) => (
+                  <LinkWithIcon
+                    {...props}
+                    href={props.href || ""}
+                    children={props.children}
+                  />
+                ),
+              }}
+            />
           </article>
+
+          {post.signature && (
+            <div className="flex flex-col gap-1">
+              <AnimatedSignature />
+              <div>
+                <p className="text-sm">Zacchary Puckeridge</p>
+                <p className="text-xs text-muted-foreground">
+                  Web Developer & Designer
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-between">

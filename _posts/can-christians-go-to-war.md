@@ -7,6 +7,7 @@ description: How should Christians respond to the stirrings or war? Do we simply
 image: media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg
 imageAlt: Photo by Bing Hui Yau on Unsplash
 lastModified: 2024-07-25
+signature: true
 ---
 
 What is the appropriate Christian response to the onset of conflict or war? Should we opt out of participation altogether, or fulfill our duty by defending our nation? This article serves as an introductory guide to help Christians navigate the complexities of wartime and determine the most ethical course of action.
@@ -17,9 +18,9 @@ God has given the civil magistrate "the sword" to punish wrongdoers. Consider wh
 
 God has granted rulers the authority to enforce their laws through coercion, including measures such as capital punishment and engaging in warfare. Throughout history, this authority has been wielded for both righteous and unjust causes. When it comes to Christians participating in war, various perspectives exist:
 
-1.  Pure pacifism advocates for complete nonviolence under any circumstance.
-2.  Blind nationalism reflects an uncritical allegiance to one's country, believing it can do no wrong.
-3.  Finally, the concept of a "just war" suggests that some conflicts may be morally justified under certain conditions.
+1. Pure pacifism advocates for complete nonviolence under any circumstance.
+2. Blind nationalism reflects an uncritical allegiance to one's country, believing it can do no wrong.
+3. Finally, the concept of a "just war" suggests that some conflicts may be morally justified under certain conditions.
 
 **Pure Pacifism**
 

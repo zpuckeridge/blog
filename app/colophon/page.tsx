@@ -1,320 +1,230 @@
+import LinkWithIcon from "@/components/link-with-icon";
+import BlurFade from "@/components/magicui/blur-fade";
 import { Badge } from "@/components/ui/badge";
 
 export default function Colophon() {
   return (
-    <div className="max-w-md lg:mx-auto flex flex-col gap-20 pb-20">
-      <div className="text-sm flex flex-col gap-2">
+    <div className="max-w-lg lg:mx-auto flex flex-col gap-20 pb-20">
+      <BlurFade delay={0.1}>
         <p className="font-serif text-2xl italic ">Colophon</p>
+      </BlurFade>
+      <div className="text-sm leading-relaxed flex flex-col gap-2">
+        <BlurFade delay={0.2}>
+          <p>
+            A comprehensive overview of the technologies and inspiration used to
+            build this website.
+          </p>
+        </BlurFade>
 
-        <p>
-          A comprehensive overview of the technologies and inspiration used to
-          build this website.
-        </p>
+        <BlurFade delay={0.3}>
+          <div className="flex gap-2">
+            <div className="py-10 flex flex-col w-full gap-2">
+              <p className="text-muted-foreground">Typography</p>
 
-        <div className="flex gap-2">
-          <div className="py-10 flex flex-col w-full gap-2">
-            <p className="text-muted-foreground">Typography</p>
-
-            <p>
-              <a
-                href="https://fonts.google.com/specimen/Work+Sans"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Work Sans
-              </a>{" "}
-              as body text,{" "}
-              <a
-                href="https://vercel.com/font"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Geist Mono
-              </a>{" "}
-              for code and{" "}
-              <a
-                href="https://fonts.google.com/specimen/Nanum+Myeongjo"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Nanum Myeongjo
-              </a>{" "}
-              for headings and flair.
-            </p>
-          </div>
-
-          <div className="py-10 flex flex-col w-full gap-2">
-            <p className="text-muted-foreground">Technical</p>
-
-            <p>
-              Built with{" "}
-              <a
-                href="https://nextjs.org?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Next.js
-              </a>
-              ,{" "}
-              <a
-                href="https://pagescms.org?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                PagesCMS
-              </a>
-              ,{" "}
-              <a
-                href="https://tailwindcss.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Tailwind
-              </a>
-              ,{" "}
-              <a
-                href="https://ui.shadcn.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                shadcn
-              </a>
-              ,{" "}
-              <a
-                href="https://www.prisma.io?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Prisma
-              </a>
-              , and{" "}
-              <a
-                href="https://vidstack.io?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Vidstack
-              </a>
-              .
-            </p>
-
-            <p>
-              Deployed and hosted on{" "}
-              <a
-                href="https://vercel.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Vercel
-              </a>
-              . Analytics provided by{" "}
-              <a
-                href="https://umami.is?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Umami
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-
-        <div className="flex gap-2 ">
-          <div className="py-10 flex flex-col w-full gap-2">
-            <p className="text-muted-foreground">Inspiration</p>
-
-            <div className="flex flex-col gap-2">
-              <a
-                href="https://linusrogge.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                linusrogge.com
-              </a>
-              <a
-                href="https://sdrn.co?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                sdrn.co
-              </a>
-              <a
-                href="https://alexcarpenter.me?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                alexcarpenter.me
-              </a>
-              <a
-                href="https://leerob.io?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                leerob.io
-              </a>
-              <a
-                href="https://joshwcomeau.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                joshwcomeau.com
-              </a>
-              <a
-                href="https://wesbos.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                wesbos.com
-              </a>
-              <a
-                href="https://carlbarenbrug.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                carlbarenbrug.com
-              </a>
-            </div>
-          </div>
-
-          <div className="py-10 flex flex-col w-full gap-2">
-            <p className="text-muted-foreground">Influences</p>
-
-            <div className="flex flex-col gap-2">
-              <a
-                href="https://61oaksgroup.com.au?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Keith Sanga
-              </a>
-              <a
-                href="https://x.com/foord_tom?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Tom Foord
-              </a>
-              <a
-                href="https://x.com/craigcireland?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Craig Ireland
-              </a>
-              <a
-                href="https://dougwils.com?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Douglas Wilson
-              </a>
-              <a
-                href="https://www.ligonier.org?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                R.C. Sproul
-              </a>
-              <a
-                href="https://x.com/thisisfoster?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Michael Foster
-              </a>
-              <a
-                href="https://x.com/jaitaiwan?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Daniel Holmes
-              </a>
-              <p className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2">
-                Jaydan Holmes
+              <p>
+                <LinkWithIcon href="https://fonts.google.com/specimen/Inter">
+                  Inter
+                </LinkWithIcon>{" "}
+                as body text,{" "}
+                <LinkWithIcon href="https://vercel.com/font">
+                  Geist Mono
+                </LinkWithIcon>{" "}
+                for code and{" "}
+                <LinkWithIcon href="https://fonts.google.com/specimen/Nanum+Myeongjo">
+                  Nanum Myeongjo
+                </LinkWithIcon>{" "}
+                for headings and flair.
               </p>
-              <a
-                href="https://drevan.me?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                André van Tonder
-              </a>
-              <p className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2">
-                Declan Ballantine
+            </div>
+
+            <div className="py-10 flex flex-col w-full gap-2">
+              <p className="text-muted-foreground">Technical</p>
+
+              <p>
+                Built with{" "}
+                <LinkWithIcon href="https://nextjs.org?ref=zacchary.me">
+                  Next.js
+                </LinkWithIcon>
+                ,{" "}
+                <LinkWithIcon href="https://pagescms.org?ref=zacchary.me">
+                  PagesCMS
+                </LinkWithIcon>
+                ,{" "}
+                <LinkWithIcon href="https://tailwindcss.com?ref=zacchary.me">
+                  Tailwind
+                </LinkWithIcon>
+                ,{" "}
+                <LinkWithIcon href="https://ui.shadcn.com?ref=zacchary.me">
+                  shadcn
+                </LinkWithIcon>
+                ,{" "}
+                <LinkWithIcon href="https://www.prisma.io?ref=zacchary.me">
+                  Prisma
+                </LinkWithIcon>
+                ,{" "}
+                <LinkWithIcon href="https://www.framer.com/motion?ref=zacchary.me">
+                  Framer Motion
+                </LinkWithIcon>
+                , and{" "}
+                <LinkWithIcon href="https://vidstack.io?ref=zacchary.me">
+                  Vidstack
+                </LinkWithIcon>
+                .
+              </p>
+
+              <p>
+                Deployed and hosted on{" "}
+                <LinkWithIcon href="https://vercel.com?ref=zacchary.me">
+                  Vercel
+                </LinkWithIcon>
+                . Analytics provided by{" "}
+                <LinkWithIcon href="https://umami.is?ref=zacchary.me">
+                  Umami
+                </LinkWithIcon>
+                .
               </p>
             </div>
           </div>
-        </div>
+        </BlurFade>
 
-        <div className="py-10 flex flex-col w-full gap-2">
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">Name</div>
+        <BlurFade delay={0.4}>
+          <div className="flex gap-2 ">
+            <div className="py-10 flex flex-col w-full gap-2">
+              <p className="text-muted-foreground">Inspiration</p>
+              <div className="flex flex-col gap-2">
+                <LinkWithIcon href="https://linusrogge.com?ref=zacchary.me">
+                  linusrogge.com
+                </LinkWithIcon>
+                <LinkWithIcon href="https://sdrn.co?ref=zacchary.me">
+                  sdrn.co
+                </LinkWithIcon>
+                <LinkWithIcon href="https://alexcarpenter.me?ref=zacchary.me">
+                  alexcarpenter.me
+                </LinkWithIcon>
+                <LinkWithIcon href="https://leerob.io?ref=zacchary.me">
+                  leerob.io
+                </LinkWithIcon>
+                <LinkWithIcon href="https://joshwcomeau.com?ref=zacchary.me">
+                  joshwcomeau.com
+                </LinkWithIcon>
+                <LinkWithIcon href="https://wesbos.com?ref=zacchary.me">
+                  wesbos.com
+                </LinkWithIcon>
+                <LinkWithIcon href="https://carlbarenbrug.com?ref=zacchary.me">
+                  carlbarenbrug.com
+                </LinkWithIcon>
+                <LinkWithIcon href="https://paco.me?ref=zacchary.me">
+                  paco.me
+                </LinkWithIcon>
+                <LinkWithIcon href="https://benji.org?ref=zacchary.me">
+                  benji.org
+                </LinkWithIcon>
+              </div>{" "}
+            </div>
 
-            <div className="w-4/6">Zacchary Puckeridge</div>
-          </div>
+            <div className="py-10 flex flex-col w-full gap-2">
+              <p className="text-muted-foreground">Influences</p>
 
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">Location</div>
-
-            <div className="w-4/6">Brisbane, QLD</div>
-          </div>
-
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">Work</div>
-
-            <div className="w-4/6">
-              IT Administrator at{" "}
-              <a
-                href="https://rsp.com.au?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                Rising Sun Pictures
-              </a>
+              <div className="flex flex-col gap-2">
+                <LinkWithIcon href="https://61oaksgroup.com.au?ref=zacchary.me">
+                  Keith Sanga
+                </LinkWithIcon>
+                <LinkWithIcon href="https://x.com/foord_tom?ref=zacchary.me">
+                  Tom Foord
+                </LinkWithIcon>
+                <LinkWithIcon href="https://x.com/craigcireland?ref=zacchary.me">
+                  Craig Ireland
+                </LinkWithIcon>
+                <LinkWithIcon href="https://dougwils.com?ref=zacchary.me">
+                  Douglas Wilson
+                </LinkWithIcon>
+                <LinkWithIcon href="https://www.ligonier.org?ref=zacchary.me">
+                  R.C. Sproul
+                </LinkWithIcon>
+                <LinkWithIcon href="https://x.com/thisisfoster?ref=zacchary.me">
+                  Michael Foster
+                </LinkWithIcon>
+                <LinkWithIcon href="https://x.com/jaitaiwan?ref=zacchary.me">
+                  Daniel Holmes
+                </LinkWithIcon>
+                <LinkWithIcon href="https://www.facebook.com/jd.holmes.52?ref=zacchary.me">
+                  Jaydan Holmes
+                </LinkWithIcon>
+                <LinkWithIcon href="https://drevan.me?ref=zacchary.me">
+                  André van Tonder
+                </LinkWithIcon>
+                <LinkWithIcon href="https://www.facebook.com/declan.ballantine?ref=zacchary.me">
+                  Declan Ballantine
+                </LinkWithIcon>
+              </div>
             </div>
           </div>
+        </BlurFade>
 
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">Version</div>
+        <BlurFade delay={0.5}>
+          <div className="py-10 flex flex-col w-full gap-2">
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">Name</div>
 
-            <div className="w-4/6">5.0.0</div>
-          </div>
+              <div className="w-4/6">Zacchary Puckeridge</div>
+            </div>
 
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">View source</div>
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">Location</div>
 
-            <div className="w-4/6">
-              <a
-                href="https://github.com/zpuckeridge/blog?ref=zacchary.me"
-                target="_blank"
-                className="underline hover:text-violet-400 hover:no-underline decoration-dotted underline-offset-2"
-              >
-                zpuckeridge/blog
-              </a>
+              <div className="w-4/6">Brisbane, QLD</div>
+            </div>
+
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">Work</div>
+
+              <div className="w-4/6">
+                IT Administrator at{" "}
+                <LinkWithIcon href="https://rsp.com.au?ref=zacchary.me">
+                  Rising Sun Pictures
+                </LinkWithIcon>
+              </div>
+            </div>
+
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">Version</div>
+
+              <div className="w-4/6">5.0.0</div>
+            </div>
+
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">View source</div>
+
+              <div className="w-4/6">
+                <LinkWithIcon href="https://github.com/zpuckeridge/blog?ref=zacchary.me">
+                  zpuckeridge/blog
+                </LinkWithIcon>
+              </div>
+            </div>
+
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">
+                Carbon footprint
+              </div>
+
+              <div className="w-4/6">
+                <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
+                  WIP
+                </Badge>
+              </div>
+            </div>
+
+            <div className="flex w-full border-b border-muted pb-2">
+              <div className="w-2/6 text-muted-foreground">Speed insights</div>
+
+              <div className="w-4/6">
+                <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
+                  WIP
+                </Badge>
+              </div>
             </div>
           </div>
-
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">Carbon footprint</div>
-
-            <div className="w-4/6">
-              <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
-                WIP
-              </Badge>
-            </div>
-          </div>
-
-          <div className="flex w-full border-b border-muted pb-2">
-            <div className="w-2/6 text-muted-foreground">Speed insights</div>
-
-            <div className="w-4/6">
-              <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
-                WIP
-              </Badge>
-            </div>
-          </div>
-        </div>
+        </BlurFade>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ description: This article seeks to understand what God has said about homosexual
 image: media/cecilie-johnsen-G8CxFhKuPDU-unsplash.jpg
 imageAlt: Photo by Cecilie Johnsen on Unsplash
 lastModified: 2024-07-25
+signature: true
 ---
 
 Before I continue with this article, I'd like to take some time to pray for you, the reader, that the words on this page speak true to your heart and the hearts of others.

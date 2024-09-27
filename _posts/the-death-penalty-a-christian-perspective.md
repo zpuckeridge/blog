@@ -5,6 +5,7 @@ tag: Faith
 description: Does the death penalty apply post-Christ? Can it be effectively
   used as a deterrant?
 lastModified: 2024-07-25
+signature: true
 ---
 
 The interpretation of scripture regarding the death penalty is a topic of hot debate amongst Christians. Some argue that it is mandated, while others question its applicability in the post-Christ era.

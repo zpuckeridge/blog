@@ -1,12 +1,8 @@
 "use client";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
+import BlurFade from "@/components/magicui/blur-fade";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import { useEffect, useRef, useState } from "react";
 
 export default function CallToFaith() {
   const slides = [
@@ -47,29 +43,121 @@ export default function CallToFaith() {
     },
   ];
 
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentSlide = slides[currentSlideIndex];
+
+  const [timeLeft, setTimeLeft] = useState(5); // 5 seconds
+  const requestRef = useRef<number>();
+  const previousTimeRef = useRef<number>();
+
+  const radius = 90;
+  const circumference = radius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (timeLeft / 5) * circumference;
+
+  const animate = (time: number) => {
+    if (previousTimeRef.current !== undefined) {
+      const deltaTime = time - previousTimeRef.current;
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 0) {
+          return 5; // Reset to 5 when it reaches 0
+        }
+        return Math.max(0, prevTime - deltaTime / 1000);
+      });
+    }
+    previousTimeRef.current = time;
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current!);
+  }, []);
+
+  const goToPreviousSlide = () => {
+    setCurrentSlideIndex(
+      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length,
+    );
+  };
+
+  const goToNextSlide = () => {
+    setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  };
 
   return (
-    <Carousel
-      className="w-full"
-      plugins={[plugin.current]}
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
-    >
-      <CarouselContent>
-        {slides.map((slide) => (
-          <CarouselItem key={slide.index}>
-            <div className="my-auto h-[15vh] flex place-items-center ">
-              <div className="flex flex-col gap-2 text-sm">
-                <p>{slide.text}</p>
-                <p className="text-xs">
-                  {slide.reference} — {slide.index} / 7
-                </p>
-              </div>
+    <div className="w-full">
+      <div className="my-auto flex place-items-center">
+        <div className="flex flex-col gap-2 text-sm w-full">
+          <BlurFade key={currentSlideIndex} delay={0.25} inView>
+            <div className="h-[4rem] flex items-center">
+              <p className="text-sm leading-relaxed">{currentSlide.text}</p>
             </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+          </BlurFade>
+          <div className="flex justify-between gap-2">
+            <div className="flex gap-2">
+              <p className="text-xs text-muted-foreground">
+                {currentSlide.reference} — {currentSlide.index} /{" "}
+                {slides.length}
+              </p>
+
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 200 200"
+                className="my-auto"
+              >
+                <circle
+                  cx="100"
+                  cy="100"
+                  r={radius}
+                  fill="none"
+                  stroke="#e2e8f0"
+                  strokeWidth="20"
+                />
+                <circle
+                  cx="100"
+                  cy="100"
+                  r={radius}
+                  fill="none"
+                  stroke="#3b82f6"
+                  strokeWidth="20"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  transform="rotate(-90 100 100)"
+                  style={{ transition: "stroke-dashoffset 0.1s linear" }}
+                />
+              </svg>
+            </div>
+
+            <div className="flex my-auto gap-1">
+              <button
+                onClick={goToPreviousSlide}
+                className="hover:text-blue-400 transition"
+              >
+                <ArrowLeftIcon />
+              </button>
+              <button
+                onClick={goToNextSlide}
+                className="hover:text-blue-400 transition"
+              >
+                <ArrowRightIcon />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
+
+// TODO:
+// Need to make sure that the timer is reset when the user clicks on the previous or next button.

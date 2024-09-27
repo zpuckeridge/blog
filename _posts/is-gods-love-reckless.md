@@ -6,6 +6,7 @@ description: Does God act recklessly? No, He is the very antithesis of reckless.
 image: media/mccall-alexander-W7HQQpi80AA-unsplash.jpg
 imageAlt: "Photo by McCall Alexander on Unsplash "
 lastModified: 2024-07-25
+signature: true
 ---
 
 The idea that God's love is reckless was popularized by the worship song "Reckless Love" written by Caleb Culver, Cory Asbury and Ran Jackson.

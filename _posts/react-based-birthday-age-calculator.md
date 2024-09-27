@@ -3,6 +3,7 @@ title: React based Birthday Age Calculator
 date: 2023-01-02
 tag: Technical
 description: Calculate age from a birthdate.
+signature: true
 ---
 
 In this short guide we'll be creating a simple React component that calculates and displays a person's age based on their birthday.

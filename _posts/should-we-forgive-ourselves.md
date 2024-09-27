@@ -7,6 +7,7 @@ description: Jesus, came and suffered our punishment for us. We have already
 image: media/patrick-fore-b_SHPU5M3nk-unsplash.jpg
 imageAlt: "Photo by Patrick Fore on Unsplash "
 lastModified: 2024-07-25
+signature: true
 ---
 
 **What does the Bible say?**

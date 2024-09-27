@@ -65,11 +65,13 @@ export default function Lanyard() {
               getStatusTextAndColor().dotColor
             }`}
           />
-          <p className="my-auto">{getStatusTextAndColor().statusText}</p>
+          <p className="my-auto text-black">
+            {getStatusTextAndColor().statusText}
+          </p>
         </div>
         <p>{brisbaneTime}</p>
       </div>
-      <div className="my-auto">
+      {/* <div className="my-auto">
         {data?.activities?.map((activity) => {
           if (activity.name !== "Spotify") {
             const largeImageSplit =
@@ -114,7 +116,7 @@ export default function Lanyard() {
           }
           return null;
         })}
-      </div>
+      </div> */}
     </div>
   );
 }

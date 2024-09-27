@@ -5,6 +5,7 @@ tag: Art
 description: Although secular, Bojack Horseman was an interesting show that got
   me thinking a lot.
 image: media/bojack-horseman-2020-4k-g9-3840x2400.jpg
+signature: true
 ---
 
 BoJack Horseman is the kind of character you can laugh with, cry, hate and love all at the same time. The show BoJack Horseman delves into a multitude of complex human issues, exploring themes such as family dynamics, love, fleeting happiness, addiction, nihilism, abuse, mortality, mental health, and the pursuit of legacy.

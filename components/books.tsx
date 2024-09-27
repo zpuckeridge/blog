@@ -179,7 +179,7 @@ export default function BooksSection({
             href={media.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group"
+            className="relative group overflow-hidden rounded-xl"
             key={media.id}
           >
             <div>
@@ -190,12 +190,12 @@ export default function BooksSection({
                 priority
                 quality={100}
                 alt={media.title}
-                className="object-cover w-auto h-40 rounded-md aspect-auto"
+                className="object-cover w-auto h-64 aspect-auto group-hover:blur-sm rounded-xl transition-all"
               />
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/75 to-transparent opacity-0 group-hover:opacity-100">
-              <div className="absolute bottom-2 left-2 right-2 group-hover:flex hidden justify-center ">
+            <div className="absolute inset-0 bg-black text-white bg-opacity-0 group-hover:bg-opacity-50 opacity-0 group-hover:opacity-100 rounded-xl transition-all">
+              <div className="absolute z-10 bottom-4 left-4 right-4">
                 <div className="flex items-end gap-1">
                   {[...Array(media.rating)].map((_, index) => (
                     <StarFilledIcon className="w-3 h-3" key={index} />

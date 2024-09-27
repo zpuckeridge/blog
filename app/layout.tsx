@@ -1,16 +1,16 @@
 import Lanyard from "@/components/lanyard";
 import Navigation from "@/components/navigation/navigation";
 import NowPlaying from "@/components/now-playing";
+import ReturnToIndex from "@/components/return-to-index";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import {
-  Work_Sans as FontSans,
+  Inter as FontSans,
   Nanum_Myeongjo as FontSerif,
 } from "next/font/google";
-import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
 
@@ -95,27 +95,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `min-h-screen bg-black font-sans subpixel-antialiased selection:bg-violet-950/50 selection:text-violet-400`,
+          `min-h-screen font-sans antialiased selection:bg-neutral-200/75 `,
           fontSans.variable,
           fontSerif.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-black dark:from-black z-10" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          forcedTheme="light"
+        >
+          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-white dark:from-white z-10" />
 
           <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 md:justify-between p-8 ">
-            <div className="flex flex-col lg:w-1/3 max-w-sm lg:sticky top-0">
-              <div className="lg:sticky top-8 space-y-6">
-                <div className="space-y-2">
-                  <div className="flex gap-2 justify-between text-sm whitespace-nowrap">
-                    <Link href="/" className="hover:text-violet-400">
-                      Zacchary Puckeridge
-                    </Link>
-                    <p className="text-muted-foreground">Web Developer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ReturnToIndex />
 
             <div className="w-full">{children}</div>
 
