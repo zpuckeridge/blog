@@ -18,7 +18,7 @@ export default function NavigationClient({
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const isActive = (href: string) => (pathname === href ? "text-blue-500" : "");
+  const isActive = (href: string) => (pathname === href ? "text-blue-600" : "");
 
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
@@ -54,7 +54,7 @@ export default function NavigationClient({
                   <div className="flex flex-col gap-2">
                     <Link
                       href="/timeline"
-                      className={`${pathname.includes("/timeline") ? "text-blue-500" : ""} hover:text-blue-400 transition flex justify-between`}
+                      className={`${pathname.includes("/timeline") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
                       onClick={handleDrawerClose}
                     >
                       <p>Timeline</p>
@@ -89,7 +89,7 @@ export default function NavigationClient({
                   <div className="flex flex-col gap-2">
                     <Link
                       href="/about"
-                      className={`${pathname.includes("/about") ? "text-blue-500" : ""} hover:text-blue-400 transition flex justify-between`}
+                      className={`${pathname.includes("/about") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
                       onClick={handleDrawerClose}
                     >
                       <p>About</p>
@@ -192,7 +192,7 @@ export default function NavigationClient({
             <div className="flex flex-col gap-2">
               <Link
                 href="/timeline"
-                className={`${pathname.includes("/timeline") ? "text-blue-500" : ""} hover:text-blue-400 transition flex justify-between`}
+                className={`${pathname.includes("/timeline") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
               >
                 <p>Timeline</p>
                 <p>{posts.length} entries</p>
@@ -226,7 +226,7 @@ export default function NavigationClient({
             <div className="flex flex-col gap-2">
               <Link
                 href="/about"
-                className={`${pathname.includes("/about") ? "text-blue-500" : ""} hover:text-blue-400 transition flex justify-between`}
+                className={`${pathname.includes("/about") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
               >
                 <p>About</p>
                 <p>

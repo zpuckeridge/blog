@@ -127,7 +127,7 @@ export default function CallToFaith() {
                   cy="100"
                   r={radius}
                   fill="none"
-                  stroke="#3b82f6"
+                  stroke="#65a8ec"
                   strokeWidth="20"
                   strokeDasharray={circumference}
                   strokeDashoffset={strokeDashoffset}
@@ -138,18 +138,20 @@ export default function CallToFaith() {
               </svg>
             </div>
 
-            <div className="flex my-auto gap-1">
+            <div className="flex my-auto gap-4">
               <button
                 onClick={goToPreviousSlide}
-                className="hover:text-blue-400 transition"
+                className="hover:text-blue-400 transition text-muted-foreground" // Added padding for larger touch target
+                aria-label="Previous slide"
               >
-                <ArrowLeftIcon />
+                <ArrowLeftIcon className="w-4 h-4" />
               </button>
               <button
                 onClick={goToNextSlide}
-                className="hover:text-blue-400 transition"
+                className="hover:text-blue-400 transition text-muted-foreground" // Added padding for larger touch target
+                aria-label="Next slide"
               >
-                <ArrowRightIcon />
+                <ArrowRightIcon className="w-4 h-4" />
               </button>
             </div>
           </div>

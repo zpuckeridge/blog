@@ -7,7 +7,11 @@ export default function Home() {
     <div className="max-w-lg lg:mx-auto flex flex-col gap-20 pb-20" role="main">
       <BlurFade delay={0.1} inView>
         <div className="text-sm flex flex-col gap-2">
-          <p className="font-serif text-2xl italic" role="heading">
+          <p
+            className="font-serif text-2xl italic"
+            role="heading"
+            aria-label="Introduction"
+          >
             Christian IT Administrator working for Rising Sun Pictures. Building
             better artist experiences by day, designing epic web experiences by
             night.
