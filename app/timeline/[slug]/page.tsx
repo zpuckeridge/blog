@@ -1,7 +1,9 @@
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
+import LinkWithIcon from "@/components/link-with-icon";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { allPosts } from "contentlayer/generated";
+import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
@@ -12,6 +14,21 @@ function countWords(text: any) {
   const words = text.trim().split(/\s+/);
   return words.length;
 }
+
+const mdxComponents: MDXComponents = {
+  a: ({ href, children, ...props }) => {
+    // Check if the link is a footnote reference
+    if (href?.startsWith("#user-content") || href?.startsWith("#fnref-")) {
+      return (
+        <a href={href} {...props} className="text-muted-foreground">
+          {children}
+        </a>
+      );
+    }
+    // For all other links, use the LinkWithIcon component
+    return <LinkWithIcon href={href as string}>{children}</LinkWithIcon>;
+  },
+};
 
 export default function Post({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -80,8 +97,8 @@ export default function Post({ params }: { params: { slug: string } }) {
             </div>
           )}
 
-          <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed">
-            <MDXContent />
+          <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed prose-ul:text-black prose-ol:text-black prose-li:text-black">
+            <MDXContent components={mdxComponents} />
           </article>
 
           {post.signature && (
