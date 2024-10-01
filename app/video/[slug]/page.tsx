@@ -1,4 +1,5 @@
 import CopyLink from "@/components/copy-link";
+import BlurFade from "@/components/magicui/blur-fade";
 import Player from "@/components/player";
 import { getVideoBySlug } from "@/lib/get-videos";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
@@ -21,32 +22,40 @@ export default async function Clip({ params }: { params: { slug: string } }) {
 
   return (
     <div className="max-w-lg mx-auto space-y-2 ">
-      <Player src={video.videoUrl} />
-      <div className="space-y-1">
-        <div className="flex justify-between">
-          <h1 className="font-semibold text-sm truncate">{video.title}</h1>
-          <div className="inline-flex ">
-            <CopyLink />
+      <BlurFade delay={0.1}>
+        <Player src={video.videoUrl} />
+      </BlurFade>
+
+      <BlurFade delay={0.2}>
+        <div className="space-y-1">
+          <div className="flex justify-between">
+            <h1 className="font-semibold text-sm truncate">{video.title}</h1>
+            <div className="inline-flex ">
+              <CopyLink />
+            </div>
+          </div>
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <div>
+              {new Date(video.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </div>
           </div>
         </div>
-        <div className="flex justify-between text-xs text-muted-foreground">
-          <div>
-            {new Date(video.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </div>
+      </BlurFade>
+
+      <BlurFade delay={0.3}>
+        <div>
+          <Link
+            href="/videos"
+            className="text-xs text-muted-foreground hover:text-violet-400"
+          >
+            <ArrowLeftIcon className="inline-flex" /> /videos
+          </Link>
         </div>
-      </div>
-      <div>
-        <Link
-          href="/videos"
-          className="text-xs text-muted-foreground hover:text-violet-400"
-        >
-          <ArrowLeftIcon className="inline-flex" /> /videos
-        </Link>
-      </div>
+      </BlurFade>
     </div>
   );
 }

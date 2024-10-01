@@ -1,6 +1,6 @@
 "use client";
 
-import { SlashIcon } from "@radix-ui/react-icons";
+import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLanyardWS } from "use-lanyard";
@@ -19,7 +19,7 @@ export default function NowPlaying() {
   return (
     <div className="now-playing-container">
       {loading ? (
-        <SlashIcon className="animate-spin" />
+        <Loader2 className="w-4 h-4 animate-spin" />
       ) : (
         data?.listening_to_spotify && (
           <a

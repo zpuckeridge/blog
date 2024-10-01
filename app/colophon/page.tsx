@@ -208,7 +208,7 @@ export default function Colophon() {
               </div>
 
               <div className="w-4/6">
-                <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
+                <Badge className="text-xs rounded-none hover:bg-muted hover:text-blue-400 py-0 px-2 bg-muted text-muted-foreground">
                   WIP
                 </Badge>
               </div>
@@ -218,7 +218,7 @@ export default function Colophon() {
               <div className="w-2/6 text-muted-foreground">Speed insights</div>
 
               <div className="w-4/6">
-                <Badge className="text-xs rounded-none hover:bg-muted hover:text-violet-400 py-0 px-2 bg-muted text-muted-foreground">
+                <Badge className="text-xs rounded-none hover:bg-muted hover:text-blue-400 py-0 px-2 bg-muted text-muted-foreground">
                   WIP
                 </Badge>
               </div>

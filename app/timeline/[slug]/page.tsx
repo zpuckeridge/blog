@@ -1,6 +1,7 @@
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
 import LinkWithIcon from "@/components/link-with-icon";
+import BlurFade from "@/components/magicui/blur-fade";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
@@ -52,66 +53,75 @@ export default function Post({ params }: { params: { slug: string } }) {
   return (
     <div className="max-w-lg lg:mx-auto">
       <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
-        <div className="space-y-2">
-          <div className="flex justify-between gap-8">
-            <h1 className="font-serif text-2xl italic">{post.title}</h1>
-            <CopyLink />
-          </div>
-
-          <div className="flex gap-1 justify-between text-muted-foreground text-sm">
-            <div className="text-nowrap">
-              <p className="text-muted-foreground text-xs">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  weekday: "long",
-                })}{" "}
-                ·{" "}
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </p>
+        <BlurFade delay={0.1}>
+          <div className="space-y-2">
+            <div className="flex justify-between gap-8">
+              <h1 className="font-serif text-2xl italic">{post.title}</h1>
+              <CopyLink />
             </div>
-            <hr className="w-full border-muted my-auto" />
-            <div className="flex gap-2 text-nowrap">
-              <p className="text-muted-foreground text-xs">
-                {readingTime} minute read
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div className="space-y-4 flex flex-col gap-4">
-          {post.image && (
-            <div className="flex flex-col gap-4">
-              <Image
-                src={`/${post.image}`}
-                width={800}
-                height={400}
-                alt={post.title}
-                className="object-cover w-full rounded-xl"
-              />
-              <p className="text-center text-xs text-muted-foreground">
-                {post.imageAlt}
-              </p>
-            </div>
-          )}
-
-          <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed prose-ul:text-black prose-ol:text-black prose-li:text-black">
-            <MDXContent components={mdxComponents} />
-          </article>
-
-          {post.signature && (
-            <div className="flex flex-col gap-1">
-              <AnimatedSignature />
-              <div>
-                <p className="text-sm">Zacchary Puckeridge</p>
-                <p className="text-xs text-muted-foreground">
-                  Web Developer & Designer
+            <div className="flex gap-1 justify-between text-muted-foreground text-sm">
+              <div className="text-nowrap">
+                <p className="text-muted-foreground text-xs">
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    weekday: "long",
+                  })}{" "}
+                  ·{" "}
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+              </div>
+              <hr className="w-full border-muted my-auto" />
+              <div className="flex gap-2 text-nowrap">
+                <p className="text-muted-foreground text-xs">
+                  {readingTime} minute read
                 </p>
               </div>
             </div>
-          )}
+          </div>
+        </BlurFade>
+
+        <div className="space-y-4 flex flex-col gap-4">
+          <BlurFade delay={0.2}>
+            {post.image && (
+              <div className="flex flex-col gap-4">
+                <Image
+                  src={`/${post.image}`}
+                  width={800}
+                  height={400}
+                  priority
+                  alt={post.title}
+                  className="object-cover w-full rounded-xl"
+                />
+                <p className="text-center text-xs text-muted-foreground">
+                  {post.imageAlt}
+                </p>
+              </div>
+            )}
+          </BlurFade>
+
+          <BlurFade delay={post.image ? 0.3 : 0.2}>
+            <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed prose-ul:text-black prose-ol:text-black prose-li:text-black">
+              <MDXContent components={mdxComponents} />
+            </article>
+          </BlurFade>
+
+          <BlurFade delay={0.4}>
+            {post.signature && (
+              <div className="flex flex-col gap-2">
+                <AnimatedSignature />
+                <div>
+                  <p className="text-sm">Zacchary Puckeridge</p>
+                  <p className="text-xs text-muted-foreground">
+                    Web Developer & Designer
+                  </p>
+                </div>
+              </div>
+            )}
+          </BlurFade>
         </div>
 
         <div className="flex justify-between">
