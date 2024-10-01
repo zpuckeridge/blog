@@ -1,8 +1,11 @@
+import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
-import { getAllPosts, getPostBySlug } from "@/lib/get-posts";
+import LinkWithIcon from "@/components/link-with-icon";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { allPosts } from "contentlayer/generated";
+import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { useMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,6 +15,21 @@ function countWords(text: any) {
   return words.length;
 }
 
+const mdxComponents: MDXComponents = {
+  a: ({ href, children, ...props }) => {
+    // Check if the link is a footnote reference
+    if (href?.startsWith("#user-content") || href?.startsWith("#fnref-")) {
+      return (
+        <a href={href} {...props} className="text-muted-foreground">
+          {children}
+        </a>
+      );
+    }
+    // For all other links, use the LinkWithIcon component
+    return <LinkWithIcon href={href as string}>{children}</LinkWithIcon>;
+  },
+};
+
 export default function Post({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
@@ -19,19 +37,21 @@ export default function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const post = getPostBySlug(slug);
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
 
   if (!post) {
     return notFound();
   }
 
-  const wordCount = countWords(post.content);
+  const wordCount = countWords(post.body.code);
   const averageWordsPerMinute = 250; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
+  const MDXContent = useMDXComponent(post.body.code);
+
   return (
-    <div className="max-w-md lg:mx-auto pb-10">
-      <div className="text-sm flex flex-col gap-20">
+    <div className="max-w-lg lg:mx-auto">
+      <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
         <div className="space-y-2">
           <div className="flex justify-between gap-8">
             <h1 className="font-serif text-2xl italic">{post.title}</h1>
@@ -61,25 +81,37 @@ export default function Post({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col gap-4">
           {post.image && (
-            <div>
+            <div className="flex flex-col gap-4">
               <Image
                 src={`/${post.image}`}
                 width={800}
                 height={400}
                 alt={post.title}
-                className="object-cover w-full"
+                className="object-cover w-full rounded-xl"
               />
-              <p className="text-center text-xs text-muted-foreground pt-2">
+              <p className="text-center text-xs text-muted-foreground">
                 {post.imageAlt}
               </p>
             </div>
           )}
 
-          <article className="prose max-w-prose prose-a:underline hover:prose-a:text-violet-400 hover:prose-a:no-underline prose-a:font-normal prose-a:decoration-dotted prose-a:underline-offset-2 prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:shadow-2xl prose-img:object-cover prose-img:w-full prose-img:mx-auto prose-img:h-full prose-p:text-white">
-            <MDXRemote source={post.content} />
+          <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed prose-ul:text-black prose-ol:text-black prose-li:text-black">
+            <MDXContent components={mdxComponents} />
           </article>
+
+          {post.signature && (
+            <div className="flex flex-col gap-1">
+              <AnimatedSignature />
+              <div>
+                <p className="text-sm">Zacchary Puckeridge</p>
+                <p className="text-xs text-muted-foreground">
+                  Web Developer & Designer
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-between">
@@ -91,7 +123,7 @@ export default function Post({ params }: { params: { slug: string } }) {
               <ArrowLeftIcon className="inline-flex" /> /timeline
             </Link>
           </div>
-          <div>
+          {/* <div>
             {post.lastModified && (
               <p className="text-muted-foreground text-xs">
                 Last modified on{" "}
@@ -102,7 +134,7 @@ export default function Post({ params }: { params: { slug: string } }) {
                 })}
               </p>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
@@ -116,53 +148,48 @@ type Params = {
 };
 
 export function generateMetadata({ params }: Params): Metadata {
-  const post = getPostBySlug(params.slug);
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
 
   if (!post) {
     return notFound();
   }
 
   const title = `${post.title}`;
-  const description = `${post.description}`;
+  // const description = `${post.description}`;
 
   return {
     title: title,
-    description: description,
-    openGraph: {
-      type: "article",
-      title: title,
-      description: description,
-      siteName: "zacchary.me",
-      images: [
-        {
-          url: post.image || "/avatar.avif",
-          width: 1920,
-          height: 1080,
-          alt: title,
-        },
-      ],
-      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${post.slug}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: title,
-      description: description,
-      images: [
-        {
-          url: post.image || "/avatar.avif",
-          width: 1920,
-          height: 1080,
-          alt: title,
-        },
-      ],
-    },
+    // description: description,
+    // openGraph: {
+    //   type: "article",
+    //   title: title,
+    //   description: description,
+    //   siteName: "zacchary.me",
+    //   images: [
+    //     {
+    //       url: post.image || "/avatar.avif",
+    //       width: 1920,
+    //       height: 1080,
+    //       alt: title,
+    //     },
+    //   ],
+    //   url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${post.slug}`,
+    // },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title: title,
+    //   description: description,
+    //   images: [
+    //     {
+    //       url: post.image || "/avatar.avif",
+    //       width: 1920,
+    //       height: 1080,
+    //       alt: title,
+    //     },
+    //   ],
+    // },
   };
 }
 
-export async function generateStaticParams() {
-  const posts = getAllPosts();
-
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+export const generateStaticParams = async () =>
+  allPosts.map((post) => ({ slug: post._raw.flattenedPath }));

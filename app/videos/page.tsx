@@ -12,7 +12,7 @@ export default async function Clips() {
 
   return (
     <>
-      <div className="max-w-md mx-auto pb-20">
+      <div className="max-w-lg mx-auto pb-20 text-sm leading-relaxed">
         <Videos videos={videos} itemsPerPage={6} />
       </div>
     </>

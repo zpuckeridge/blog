@@ -20,7 +20,7 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="max-w-md mx-auto space-y-2 ">
+    <div className="max-w-lg mx-auto space-y-2 ">
       <Player src={video.videoUrl} />
       <div className="space-y-1">
         <div className="flex justify-between">
@@ -37,7 +37,6 @@ export default async function Clip({ params }: { params: { slug: string } }) {
               day: "numeric",
             })}
           </div>
-          {video.videoUrl}
         </div>
       </div>
       <div>

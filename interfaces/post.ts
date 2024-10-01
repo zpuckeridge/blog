@@ -7,5 +7,6 @@ export type Post = {
   image: string;
   imageAlt: string;
   content: string;
+  signature: boolean;
   lastModified: string;
 };

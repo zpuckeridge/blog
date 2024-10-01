@@ -6,6 +6,7 @@ description: Cramming information is useful if you want to look smart, but
   thinking and approaching problems the right way is an attribute few possess.
 image: media/pinky-and-the-brain.jpg
 lastModified: 2024-07-29
+signature: true
 ---
 
 Cramming information is useful if you want to look smart, but thinking and approaching problems the right way is an attribute few possess.

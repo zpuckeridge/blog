@@ -7,6 +7,7 @@ description: The act of suicide is sin because it's subjecting our own will onto
 image: media/nikko-macaspac-6SNbWyFwuhk-unsplash.jpg
 imageAlt: "Photo by nikko macaspac on Unsplash "
 lastModified: 2024-07-25
+signature: true
 ---
 
 **What does the Bible say?**

@@ -3,6 +3,7 @@ title: Elders and pastors should be good with money
 date: 2024-07-26
 tag: Faith
 description: Do your elders manage their households well?
+signature: true
 lastModified: 2024-07-26
 ---
 

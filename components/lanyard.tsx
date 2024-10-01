@@ -44,7 +44,7 @@ export default function Lanyard() {
       const brisbaneTimezone = "Australia/Brisbane";
       const formatter = new Intl.DateTimeFormat("en-US", {
         timeZone: brisbaneTimezone,
-        timeStyle: "long",
+        timeStyle: "short",
         hour12: true,
       });
       const currentTime = formatter.format(new Date());
@@ -65,55 +65,11 @@ export default function Lanyard() {
               getStatusTextAndColor().dotColor
             }`}
           />
-          <p className="my-auto">{getStatusTextAndColor().statusText}</p>
+          <p className="my-auto text-black">
+            {getStatusTextAndColor().statusText}
+          </p>
         </div>
-        <p>{brisbaneTime}</p>
-      </div>
-      <div className="my-auto">
-        {data?.activities?.map((activity) => {
-          if (activity.name !== "Spotify") {
-            const largeImageSplit =
-              activity?.assets?.large_image?.split("/https/")[1];
-            const smallImageSplit =
-              activity?.assets?.small_image?.split("/https/")[1];
-
-            return (
-              <div
-                key={activity.id}
-                className="text-sm text-muted-foreground flex gap-2"
-              >
-                <div className="aspect-square relative w-[60px] h-[60px]">
-                  <img
-                    src={`https://${largeImageSplit}` || ""}
-                    width={60}
-                    height={60}
-                    className="w-[60px] h-[60px] aspect-square rounded-lg border-2"
-                    alt="Activity Large Image"
-                  />
-                  <img
-                    src={`https://${smallImageSplit}` || ""}
-                    width={30}
-                    height={30}
-                    className="w-[30px] h-[30px] aspect-square absolute -bottom-2 -right-2 rounded-full border-2 border-black"
-                    alt="Activity Large Image"
-                  />
-                </div>
-                <div className="my-auto">
-                  <p className="text-ellipsis overflow-hidden line-clamp-1">
-                    {activity.name}
-                  </p>
-                  <p className="text-ellipsis overflow-hidden line-clamp-1">
-                    {activity.details}
-                  </p>
-                  <p className="text-ellipsis overflow-hidden line-clamp-1">
-                    {activity.state}
-                  </p>
-                </div>
-              </div>
-            );
-          }
-          return null;
-        })}
+        <p>{brisbaneTime} GMT+10</p>
       </div>
     </div>
   );

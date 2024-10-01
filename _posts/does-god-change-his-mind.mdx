@@ -4,6 +4,7 @@ date: 2022-10-25
 tag: Faith
 description: Does the Bible contradict itself?
 lastModified: 2024-07-25
+signature: true
 ---
 
 **Contradictory Statements**

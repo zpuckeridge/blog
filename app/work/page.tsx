@@ -1,236 +1,97 @@
+import BlurFade from "@/components/magicui/blur-fade";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Work() {
+  const projects = [
+    {
+      name: "Haddon Institute",
+      image: "/projects/haddon-institute.avif",
+      year: "Present",
+    },
+    {
+      name: "Star Compass",
+      image: "/projects/star-compass.avif",
+      year: "Present",
+    },
+    {
+      name: "61 Oaks Group",
+      image: "/projects/61-oaks-group.avif",
+      year: "Present",
+    },
+    {
+      name: "The Armoury Bookshop",
+      image: "/projects/the-armoury-bookshop.avif",
+      year: "Present",
+    },
+    { name: "Stand Firm", image: null, year: "2024" },
+    { name: "Brisket and Briyani", image: null, year: "2024" },
+    { name: "Labu Consulting", image: null, year: "2024" },
+    { name: "First Principles", image: null, year: "2024" },
+    { name: "South East Psychology", image: null, year: "2024" },
+    { name: "ZSU", image: "/projects/zsu.avif", year: "2023" },
+    {
+      name: "Simply Photos",
+      image: "/projects/simply-photos.avif",
+      year: "2022",
+    },
+    { name: "Livestream", image: "/projects/sdelta.avif", year: "2022" },
+  ];
+
   return (
-    <div className="max-w-md lg:mx-auto">
+    <div className="max-w-lg lg:mx-auto">
       <div className="text-sm flex flex-col gap-20 pb-20">
-        <div className="text-sm flex flex-col gap-2">
+        <BlurFade delay={0.1}>
           <p className="font-serif text-2xl italic ">Work</p>
+        </BlurFade>
 
-          <p>
-            I've been a web developer for around 3 years now, creating unique
-            marketing, e-commerce and web applications for clients. Below is a
-            selection of my work from the last few years.
-          </p>
-        </div>
-
-        <div>
-          <Image
-            src="/projects/haddon-institute.avif"
-            width={1000}
-            height={1000}
-            priority
-            alt="Haddon Institute Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Haddon Institute</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">Present</p>
+        <BlurFade delay={0.2}>
+          <div className="text-sm leading-relaxed flex flex-col gap-2">
+            <p>
+              I've been a web developer for around 3 years now, creating unique
+              marketing, e-commerce and web applications for clients. Below is a
+              selection of my work from the last few years.
+            </p>
           </div>
-        </div>
+        </BlurFade>
 
-        <div>
-          <Image
-            src="/projects/star-compass.avif"
-            width={1000}
-            height={1000}
-            priority
-            alt="Star Compass Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Star Compass</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">Present</p>
-          </div>
-        </div>
-
-        <div>
-          <Image
-            src="/projects/61-oaks-group.avif"
-            width={1000}
-            height={1000}
-            priority
-            alt="61 Oaks Group Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">61 Oaks Group</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">Present</p>
-          </div>
-        </div>
-
-        <div>
-          <Image
-            src="/projects/the-armoury-bookshop.avif"
-            width={1000}
-            height={1000}
-            alt="The Armoury Bookshop Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">The Armoury Bookshop</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">Present</p>
-          </div>
-        </div>
-
-        <div>
-          {/* <Image
-            src="/projects/stand-firm.avif"
-            width={1000}
-            height={1000}
-            alt="Stand Firm Showcase"
-            className="aspect-video border border-muted"
-          /> */}
-
-          <div className="aspect-video border border-muted">
-            <div className="h-full flex place-items-center justify-center">
-              <p className="text-center">Image coming soon</p>
+        {projects.map((project, index) => (
+          <BlurFade key={project.name} delay={0.1 * (index + 3)}>
+            <div>
+              {project.image ? (
+                <Image
+                  src={project.image}
+                  width={1000}
+                  height={1000}
+                  priority={index < 4}
+                  alt={`${project.name} Showcase`}
+                  className="aspect-video border border-muted rounded-xl"
+                />
+              ) : (
+                <div className="aspect-video border border-muted rounded-xl">
+                  <div className="h-full flex place-items-center justify-center">
+                    <p className="text-center">Image coming soon</p>
+                  </div>
+                </div>
+              )}
+              <div className="flex justify-between text-sm pt-2 gap-2">
+                <p className="text-nowrap">{project.name}</p>
+                <hr className="w-full border-muted my-auto" />
+                <p className="text-muted-foreground">{project.year}</p>
+              </div>
             </div>
-          </div>
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Stand Firm</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2024</p>
-          </div>
-        </div>
+          </BlurFade>
+        ))}
 
-        <div>
-          {/* <Image
-            src="/projects/brisket-and-briyani.avif"
-            width={1000}
-            height={1000}
-            alt="Brisket and Briyani Showcase"
-            className="aspect-video border border-muted"
-          /> */}
-          <div className="aspect-video border border-muted">
-            <div className="h-full flex place-items-center justify-center">
-              <p className="text-center">Image coming soon</p>
-            </div>
-          </div>
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Brisket and Briyani</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2024</p>
-          </div>
-        </div>
-
-        <div>
-          {/* <Image
-            src="/projects/labu-consulting.avif"
-            width={1000}
-            height={1000}
-            alt="Labu Consulting Showcase"
-            className="aspect-video border border-muted"
-          /> */}
-          <div className="aspect-video border border-muted">
-            <div className="h-full flex place-items-center justify-center">
-              <p className="text-center">Image coming soon</p>
-            </div>
-          </div>
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Labu Consulting</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2024</p>
-          </div>
-        </div>
-
-        <div>
-          {/* <Image
-            src="/projects/first-principles.avif"
-            width={1000}
-            height={1000}
-            alt="First Principles Showcase"
-            className="aspect-video border border-muted"
-          /> */}
-          <div className="aspect-video border border-muted">
-            <div className="h-full flex place-items-center justify-center">
-              <p className="text-center">Image coming soon</p>
-            </div>
-          </div>
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">First Principles</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2024</p>
-          </div>
-        </div>
-
-        <div>
-          {/* <Image
-            src="/projects/south-east-psychology.avif"
-            width={1000}
-            height={1000}
-            alt="South East Psychology Showcase"
-            className="aspect-video border border-muted"
-          /> */}
-          <div className="aspect-video border border-muted">
-            <div className="h-full flex place-items-center justify-center">
-              <p className="text-center">Image coming soon</p>
-            </div>
-          </div>
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">South East Psychology</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2024</p>
-          </div>
-        </div>
-
-        <div>
-          <Image
-            src="/projects/zsu.avif"
-            width={1000}
-            height={1000}
-            alt="ZSU Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">ZSU</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2023</p>
-          </div>
-        </div>
-
-        <div>
-          <Image
-            src="/projects/simply-photos.avif"
-            width={1000}
-            height={1000}
-            alt="Simply Photos Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Simply Photos</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2022</p>
-          </div>
-        </div>
-
-        <div>
-          <Image
-            src="/projects/sdelta.avif"
-            width={1000}
-            height={1000}
-            alt="sdelta Showcase"
-            className="aspect-video border border-muted"
-          />
-          <div className="flex justify-between text-sm pt-2 gap-2">
-            <p className="text-nowrap">Livestream</p>
-            <hr className="w-full border-muted my-auto" />
-            <p className="text-muted-foreground">2022</p>
-          </div>
-        </div>
-
-        <Link
-          href="/"
-          className="text-xs text-muted-foreground hover:text-violet-400"
-        >
-          <ArrowLeftIcon className="inline-flex" /> /
-        </Link>
+        <BlurFade delay={0.1 * (projects.length + 3)}>
+          <Link
+            href="/"
+            className="text-xs text-muted-foreground hover:text-violet-400"
+          >
+            <ArrowLeftIcon className="inline-flex" /> /
+          </Link>
+        </BlurFade>
       </div>
     </div>
   );
