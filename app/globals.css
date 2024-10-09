@@ -84,6 +84,35 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.footnotes {
+  @apply py-10 my-10 border-t border-b border-border;
+}
+
+.footnotes :target {
+  @apply bg-blue-400;
+  @apply text-white;
+  animation: resetColors 3s forwards; /* Add animation */
+}
+
+/* New animation to reset colors */
+@keyframes resetColors {
+  100% {
+    @apply bg-white; /* Reset background to white */
+    @apply rounded;
+    @apply text-muted-foreground; /* Reset text color */
+  }
+}
+
+.footnotes ol {
+  @apply text-xs;
+  @apply text-muted-foreground;
+}
+
+.footnotes p {
+  @apply text-xs;
+  @apply text-muted-foreground;
+}
+
 @-webkit-keyframes animate-svg-stroke-1 {
   0% {
     stroke-dashoffset: 1798px;

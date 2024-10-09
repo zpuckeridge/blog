@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { useToast } from "@/components/ui/use-toast";
-import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
+import { CheckIcon, Link2Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
 export default function CopyLink() {
@@ -33,20 +27,9 @@ export default function CopyLink() {
   return (
     <button onClick={handleClick}>
       {copied ? (
-        <div className="inline-flex">
-          <CheckIcon className="w-4 h-4 my-auto text-muted-foreground" />
-        </div>
+        <CheckIcon className="w-4 h-4 my-auto text-muted-foreground" />
       ) : (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <CopyIcon className="my-auto text-muted-foreground" />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Copy URL</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Link2Icon className="my-auto text-muted-foreground" />
       )}
     </button>
   );

@@ -50,7 +50,7 @@ export default async function Clip({ params }: { params: { slug: string } }) {
         <div>
           <Link
             href="/videos"
-            className="text-xs text-muted-foreground hover:text-violet-400"
+            className="text-xs text-muted-foreground hover:text-blue-400 transition"
           >
             <ArrowLeftIcon className="inline-flex" /> /videos
           </Link>

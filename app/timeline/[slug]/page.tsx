@@ -1,8 +1,13 @@
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
+import CopyText from "@/components/copy-text";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  PaperPlaneIcon,
+} from "@radix-ui/react-icons";
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
@@ -10,6 +15,7 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
@@ -122,29 +128,78 @@ export default function Post({ params }: { params: { slug: string } }) {
               </div>
             )}
           </BlurFade>
+
+          <div className="mt-10 space-y-10">
+            <div className="space-y-3">
+              <h2 className="text-sm ">Share Article</h2>
+              <div className="flex gap-3 text-muted-foreground">
+                <a
+                  href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me${post.url}`}
+                  className="hover:text-black transition"
+                >
+                  <FaXTwitter className="w-4 h-4" />
+                </a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me${post.url}`}
+                  className="hover:text-black transition"
+                >
+                  <FaFacebook className="w-4 h-4" />
+                </a>
+                <a
+                  href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
+                  className="hover:text-black transition"
+                >
+                  <PaperPlaneIcon className="w-4 h-4" />
+                </a>
+                <CopyLink />
+              </div>
+            </div>
+            <div className="space-y-3">
+              <h2 className="text-sm ">Resources</h2>
+              <div className="flex flex-col gap-3 text-muted-foreground text-xs">
+                <CopyText text={post.body.raw} />
+                <div className="flex gap-2">
+                  <CalendarIcon className="w-4 h-4 my-auto" />
+
+                  {post.lastModified && (
+                    <p className="text-muted-foreground text-xs my-auto">
+                      Last modified on{" "}
+                      {new Date(post.lastModified).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </p>
+                  )}
+                </div>
+                {/* <a
+                  href="https://x.com/zpuckeridge"
+                  className="hover:text-black transition flex gap-2"
+                >
+                  <FaLink className="w-4 h-4" /> Download Images
+                </a> */}
+              </div>
+            </div>
+            <div className="space-y-2">
+              <h2 className="text-sm ">About Zacchary</h2>
+              <p className="text-xs text-muted-foreground">
+                Zacchary is Christian IT Administrator working for Rising Sun
+                Pictures. Building better artist experiences by day, designing
+                epic web experiences by night.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="flex justify-between">
           <div>
             <Link
               href="/timeline"
-              className="text-xs text-muted-foreground hover:text-violet-400"
+              className="text-xs text-muted-foreground hover:text-blue-400 transition"
             >
               <ArrowLeftIcon className="inline-flex" /> /timeline
             </Link>
           </div>
-          {/* <div>
-            {post.lastModified && (
-              <p className="text-muted-foreground text-xs">
-                Last modified on{" "}
-                {new Date(post.lastModified).toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </p>
-            )}
-          </div> */}
         </div>
       </div>
     </div>

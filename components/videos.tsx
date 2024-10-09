@@ -161,14 +161,14 @@ export default function Videos({ videos, itemsPerPage }: Props) {
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            className="text-xs text-muted-foreground hover:text-violet-400"
+            className="text-xs text-muted-foreground hover:text-blue-400 transition"
           >
             <ArrowLeftIcon className="inline-flex" /> Prev Page
           </button>
 
           <button
             onClick={() => setCurrentPage(1)}
-            className="text-xs text-muted-foreground hover:text-violet-400"
+            className="text-xs text-muted-foreground hover:text-blue-400 transition"
           >
             {currentPage} of {totalPages}
           </button>
@@ -176,7 +176,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
-            className="text-xs text-muted-foreground hover:text-violet-400"
+            className="text-xs text-muted-foreground hover:text-blue-400 transition"
           >
             Next Page <ArrowRightIcon className="inline-flex" />
           </button>

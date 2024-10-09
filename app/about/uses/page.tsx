@@ -202,7 +202,7 @@ export default function Uses() {
           <BlurFade delay={0.9}>
             <Link
               href="/about"
-              className="text-xs text-muted-foreground hover:text-violet-400"
+              className="text-xs text-muted-foreground hover:text-blue-400 transition"
             >
               <ArrowLeftIcon className="inline-flex" /> /about
             </Link>
