@@ -120,6 +120,7 @@ export default function CallToFaith() {
                   r={radius}
                   fill="none"
                   stroke="#e2e8f0"
+                  className="dark:stroke-[#a3a3a3]"
                   strokeWidth="20"
                 />
                 <circle
@@ -128,6 +129,7 @@ export default function CallToFaith() {
                   r={radius}
                   fill="none"
                   stroke="#65a8ec"
+                  className="dark:stroke-[#245fe0]"
                   strokeWidth="20"
                   strokeDasharray={circumference}
                   strokeDashoffset={strokeDashoffset}

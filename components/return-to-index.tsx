@@ -1,11 +1,22 @@
 "use client";
 
-import { ArrowLeftIcon, ChevronLeftIcon } from "@radix-ui/react-icons"; // {{ edit_1 }}
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  MoonIcon,
+  SunIcon,
+} from "@radix-ui/react-icons"; // {{ edit_1 }}
+import { useTheme } from "next-themes"; // {{ edit_1 }}
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // {{ edit_1 }}
 
 export default function ReturnToIndex() {
   const pathname = usePathname(); // {{ edit_2 }}
+  const { theme, setTheme } = useTheme(); // {{ edit_2 }}
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <div className="flex flex-col lg:w-1/3 max-w-sm lg:sticky top-0">
@@ -24,12 +35,25 @@ export default function ReturnToIndex() {
                 <span className="transition-all duration-300">Index</span>
               </Link>
             ) : (
-              <Link
-                href="/"
-                className="text-muted-foreground hover:text-blue-400 transition-all duration-300 ease-in-out italic font-serif"
-              >
-                Zacchary Puckeridge
-              </Link>
+              <div className="flex gap-6 items-center">
+                <Link
+                  href="/"
+                  className="text-muted-foreground hover:text-blue-400 transition-all duration-300 ease-in-out italic font-serif"
+                >
+                  Zacchary Puckeridge
+                </Link>
+
+                <button
+                  onClick={toggleTheme}
+                  className="text-muted-foreground hover:text-blue-400 transition-all duration-300 ease-in-out"
+                >
+                  {theme === "dark" ? (
+                    <SunIcon className="w-4 h-4" />
+                  ) : (
+                    <MoonIcon className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
             )}
           </div>
         </div>

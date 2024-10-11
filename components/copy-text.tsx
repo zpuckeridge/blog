@@ -1,4 +1,5 @@
 "use client";
+
 import { useToast } from "@/components/ui/use-toast";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
@@ -26,9 +27,9 @@ export default function CopyText({ text }: { text: string }) {
   return (
     <button
       onClick={handleClick}
-      className="text-muted-foreground hover:text-black transition flex gap-2 w-auto"
+      className="text-muted-foreground hover:text-blue-400 transition-all duration-300 flex gap-2 w-auto"
     >
-      <CopyIcon className="w-4 h-4" /> Copy Text
+      <CopyIcon className="w-4 h-4" /> {copied ? "Copied!" : "Copy Text"}
     </button>
   );
 }

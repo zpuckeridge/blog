@@ -65,7 +65,7 @@ export default function Lanyard() {
               getStatusTextAndColor().dotColor
             }`}
           />
-          <p className="my-auto text-black">
+          <p className="my-auto text-black dark:text-white">
             {getStatusTextAndColor().statusText}
           </p>
         </div>

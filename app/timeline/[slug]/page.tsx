@@ -57,14 +57,11 @@ export default function Post({ params }: { params: { slug: string } }) {
   const MDXContent = useMDXComponent(post.body.code);
 
   return (
-    <div className="max-w-lg lg:mx-auto">
+    <div className="max-w-lg mx-auto">
       <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
         <BlurFade delay={0.1}>
           <div className="space-y-2">
-            <div className="flex justify-between gap-8">
-              <h1 className="font-serif text-2xl italic">{post.title}</h1>
-              <CopyLink />
-            </div>
+            <h1 className="font-serif text-2xl italic">{post.title}</h1>
 
             <div className="flex gap-1 justify-between text-muted-foreground text-sm">
               <div className="text-nowrap">
@@ -110,7 +107,7 @@ export default function Post({ params }: { params: { slug: string } }) {
           </BlurFade>
 
           <BlurFade delay={post.image ? 0.3 : 0.2}>
-            <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black prose-p:leading-relaxed prose-ul:text-black prose-ol:text-black prose-li:text-black">
+            <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black dark:prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-white prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-white prose-ol:text-black dark:prose-ol:text-white prose-li:text-black dark:prose-li:text-white">
               <MDXContent components={mdxComponents} />
             </article>
           </BlurFade>
@@ -135,19 +132,19 @@ export default function Post({ params }: { params: { slug: string } }) {
               <div className="flex gap-3 text-muted-foreground">
                 <a
                   href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me${post.url}`}
-                  className="hover:text-black transition"
+                  className="hover:text-blue-400 transition-all duration-300"
                 >
                   <FaXTwitter className="w-4 h-4" />
                 </a>
                 <a
                   href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me${post.url}`}
-                  className="hover:text-black transition"
+                  className="hover:text-blue-400 transition-all duration-300"
                 >
                   <FaFacebook className="w-4 h-4" />
                 </a>
                 <a
                   href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
-                  className="hover:text-black transition"
+                  className="hover:text-blue-400 transition-all duration-300"
                 >
                   <PaperPlaneIcon className="w-4 h-4" />
                 </a>
@@ -158,10 +155,10 @@ export default function Post({ params }: { params: { slug: string } }) {
               <h2 className="text-sm ">Resources</h2>
               <div className="flex flex-col gap-3 text-muted-foreground text-xs">
                 <CopyText text={post.body.raw} />
-                <div className="flex gap-2">
-                  <CalendarIcon className="w-4 h-4 my-auto" />
+                {post.lastModified && (
+                  <div className="flex gap-2">
+                    <CalendarIcon className="w-4 h-4 my-auto" />
 
-                  {post.lastModified && (
                     <p className="text-muted-foreground text-xs my-auto">
                       Last modified on{" "}
                       {new Date(post.lastModified).toLocaleDateString("en-US", {
@@ -170,8 +167,8 @@ export default function Post({ params }: { params: { slug: string } }) {
                         year: "numeric",
                       })}
                     </p>
-                  )}
-                </div>
+                  </div>
+                )}
                 {/* <a
                   href="https://x.com/zpuckeridge"
                   className="hover:text-black transition flex gap-2"

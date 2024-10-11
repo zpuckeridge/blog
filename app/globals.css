@@ -97,7 +97,7 @@
 /* New animation to reset colors */
 @keyframes resetColors {
   100% {
-    @apply bg-white; /* Reset background to white */
+    @apply bg-background; /* Reset background to white in light mode, bg-background in dark mode */
     @apply rounded;
     @apply text-muted-foreground; /* Reset text color */
   }
