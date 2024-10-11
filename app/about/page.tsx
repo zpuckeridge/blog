@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="max-w-lg lg:mx-auto flex flex-col gap-20 pb-20">
+    <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20">
       <BlurFade delay={0.1}>
         <p className="font-serif text-2xl italic ">About</p>
       </BlurFade>

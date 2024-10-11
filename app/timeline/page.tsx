@@ -23,7 +23,7 @@ export default function Posts() {
     }, {});
 
   return (
-    <div className="max-w-lg lg:mx-auto">
+    <div className="max-w-lg mx-auto">
       <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
         <BlurFade delay={0.1}>
           <p className="font-serif text-2xl italic ">Timeline</p>

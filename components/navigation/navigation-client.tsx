@@ -6,7 +6,6 @@ import { ArrowLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Badge } from "../ui/badge";
 
 export default function NavigationClient({
   posts,
@@ -26,7 +25,7 @@ export default function NavigationClient({
 
   return (
     <>
-      <div className="p-4 w-full border-t-2 border-muted z-50 fixed bottom-0 left-0 bg-white/90 backdrop-blur-md lg:hidden leading-relaxed">
+      <div className="p-4 px-6 w-full border-t-2 border-muted z-50 fixed bottom-0 left-0 bg-white/90 rounded-t-3xl dark:bg-background backdrop-blur-md lg:hidden leading-relaxed">
         <div className="flex justify-between">
           <Link
             href="/"
@@ -37,11 +36,11 @@ export default function NavigationClient({
           <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <DrawerTrigger>
               <p className="text-sm flex gap-1 my-auto">
-                <HamburgerMenuIcon className="my-auto w-5 h-5" />
+                <HamburgerMenuIcon className="my-auto w-4 h-4" />
               </p>
             </DrawerTrigger>
             <DrawerContent className="px-4 pb-4">
-              <div className="flex flex-col pt-4 gap-6 lg:w-1/3 max-w-md lg:max-w-none text-sm text-muted-foreground ">
+              <div className="flex flex-col pt-4 gap-6 lg:w-1/3 max-w-lg mx-auto w-full text-sm text-muted-foreground ">
                 <div className="flex flex-col gap-2">
                   <Link
                     href="/work"
@@ -154,9 +153,6 @@ export default function NavigationClient({
                           className="hover:text-blue-400 transition flex justify-between"
                         >
                           Uses
-                          <Badge className="text-xs rounded-none hover:bg-muted hover:text-blue-400 transition py-0 px-2 bg-muted text-muted-foreground">
-                            WIP
-                          </Badge>
                         </Link>
                       </div>
                     )}
@@ -290,9 +286,6 @@ export default function NavigationClient({
                     className="hover:text-blue-400 transition flex justify-between"
                   >
                     Uses
-                    <Badge className="text-xs rounded-none hover:bg-muted hover:text-blue-400 transition py-0 px-2 bg-muted text-muted-foreground">
-                      WIP
-                    </Badge>
                   </Link>
                 </div>
               )}

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function Colophon() {
   return (
-    <div className="max-w-lg lg:mx-auto flex flex-col gap-20 pb-20">
+    <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20">
       <BlurFade delay={0.1}>
         <p className="font-serif text-2xl italic ">Colophon</p>
       </BlurFade>

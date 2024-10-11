@@ -4,7 +4,7 @@ import BlurFade from "@/components/magicui/blur-fade";
 
 export default function Home() {
   return (
-    <div className="max-w-lg lg:mx-auto flex flex-col gap-20 pb-20" role="main">
+    <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20" role="main">
       <BlurFade delay={0.1} inView>
         <div className="text-sm flex flex-col gap-2">
           <p
