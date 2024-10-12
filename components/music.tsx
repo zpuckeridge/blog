@@ -114,7 +114,7 @@ export default async function MusicTracking() {
   return (
     <div className="flex flex-col w-full gap-20 text-sm">
       <div className="space-y-4">
-        <div className="bg-[#f9f9f9] border rounded-xl p-6">
+        <div className="bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
           <div className="flex flex-col w-full gap-2 text-sm">
             <div className="grid grid-cols-2 gap-2">
               {getTopTracks.items.map((track: any, index: number) => (
@@ -129,7 +129,7 @@ export default async function MusicTracking() {
       </div>
 
       <div className="space-y-4">
-        <div className="bg-[#f9f9f9] border rounded-xl p-6">
+        <div className="bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
           <div className="flex flex-col w-full gap-2 text-sm">
             <div className="grid grid-cols-2 gap-2">
               {getTopArtists.items.map((artist: any, index: number) => (

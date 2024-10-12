@@ -107,7 +107,7 @@ export default function Post({ params }: { params: { slug: string } }) {
           </BlurFade>
 
           <BlurFade delay={post.image ? 0.3 : 0.2}>
-            <article className="w-full prose max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black dark:prose-blockquote:text-white font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-white prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-white prose-ol:text-black dark:prose-ol:text-white prose-li:text-black dark:prose-li:text-white">
+            <article className="w-full prose prose-headings:text-sm prose-headings:font-bold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm">
               <MDXContent components={mdxComponents} />
             </article>
           </BlurFade>

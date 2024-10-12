@@ -99,18 +99,23 @@
   100% {
     @apply bg-background; /* Reset background to white in light mode, bg-background in dark mode */
     @apply rounded;
-    @apply text-muted-foreground; /* Reset text color */
+    @apply text-muted-foreground dark:text-muted-foreground; /* Reset text color */
   }
 }
 
 .footnotes ol {
   @apply text-xs;
-  @apply text-muted-foreground;
+  @apply text-muted-foreground dark:text-muted-foreground;
+}
+
+.footnotes li {
+  @apply text-xs;
+  @apply text-muted-foreground dark:text-muted-foreground;
 }
 
 .footnotes p {
   @apply text-xs;
-  @apply text-muted-foreground;
+  @apply text-muted-foreground dark:text-muted-foreground;
 }
 
 @-webkit-keyframes animate-svg-stroke-1 {

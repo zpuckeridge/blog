@@ -32,7 +32,7 @@ export default function Uses() {
         <div className="flex flex-col gap-12">
           <BlurFade delay={0.3}>
             <div className="space-y-4">
-              <div className="flex flex-col gap-6 w-full bg-[#f9f9f9] border rounded-xl p-6">
+              <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <UsesItem
                     title="Custom Desktop PC"
@@ -81,7 +81,7 @@ export default function Uses() {
 
           <BlurFade delay={0.4}>
             <div className="space-y-4">
-              <div className="flex flex-col gap-6 w-full bg-[#f9f9f9] border rounded-xl p-6">
+              <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <UsesItem
                     title="Visual Studio Code"
@@ -104,7 +104,7 @@ export default function Uses() {
 
           <BlurFade delay={0.5}>
             <div className="space-y-4">
-              <div className="flex flex-col gap-6 w-full bg-[#f9f9f9] border rounded-xl p-6">
+              <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <UsesItem title="Umami" description="Analytics" />
                 </div>
@@ -117,7 +117,7 @@ export default function Uses() {
 
           <BlurFade delay={0.6}>
             <div className="space-y-4">
-              <div className="flex flex-col gap-6 w-full bg-[#f9f9f9] border rounded-xl p-6">
+              <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <UsesItem title="Firefox" description="Web browser" />
                   <UsesItem
@@ -164,7 +164,7 @@ export default function Uses() {
 
           <BlurFade delay={0.7}>
             <div className="space-y-4">
-              <div className="flex flex-col gap-6 w-full bg-[#f9f9f9] border rounded-xl p-6">
+              <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <UsesItem
                     title="Suzuki Grand Vitara Prestige"
@@ -181,7 +181,7 @@ export default function Uses() {
 
           <BlurFade delay={0.8}>
             <div className="space-y-4">
-              <div className="flex flex-col gap-6 w-full bg-[#f9f9f9] border rounded-xl p-6">
+              <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <UsesItem
                     title="Google Pixel 6 Pro"
