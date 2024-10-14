@@ -3,6 +3,7 @@ import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
+import TableOfContents from "@/components/toc";
 import {
   ArrowLeftIcon,
   CalendarIcon,
@@ -51,155 +52,162 @@ export default function Post({ params }: { params: { slug: string } }) {
   }
 
   const wordCount = countWords(post.body.code);
-  const averageWordsPerMinute = 250; // Adjust this based on audience reading speed
+  const averageWordsPerMinute = 300; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
   const MDXContent = useMDXComponent(post.body.code);
 
   return (
-    <div className="max-w-lg mx-auto">
-      <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
-        <BlurFade delay={0.1}>
-          <div className="space-y-2">
-            <h1 className="font-serif text-2xl italic">{post.title}</h1>
+    <>
+      <TableOfContents content={post.body.raw} />
 
-            <div className="flex gap-1 justify-between text-muted-foreground text-sm">
-              <div className="text-nowrap">
-                <p className="text-muted-foreground text-xs">
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    weekday: "long",
-                  })}{" "}
-                  ·{" "}
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-              </div>
-              <hr className="w-full border-muted my-auto" />
-              <div className="flex gap-2 text-nowrap">
-                <p className="text-muted-foreground text-xs">
-                  {readingTime} minute read
-                </p>
-              </div>
-            </div>
-          </div>
-        </BlurFade>
+      <div className="max-w-lg mx-auto">
+        <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
+          <BlurFade delay={0.1}>
+            <div className="space-y-2">
+              <h1 className="font-serif text-2xl italic">{post.title}</h1>
 
-        <div className="space-y-4 flex flex-col gap-4">
-          <BlurFade delay={0.2}>
-            {post.image && (
-              <div className="flex flex-col gap-4">
-                <Image
-                  src={`/${post.image}`}
-                  width={800}
-                  height={400}
-                  priority
-                  alt={post.title}
-                  className="object-cover w-full rounded-xl"
-                />
-                <p className="text-center text-xs text-muted-foreground">
-                  {post.imageAlt}
-                </p>
-              </div>
-            )}
-          </BlurFade>
-
-          <BlurFade delay={post.image ? 0.3 : 0.2}>
-            <article className="w-full prose prose-headings:text-sm prose-headings:font-bold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm">
-              <MDXContent components={mdxComponents} />
-            </article>
-          </BlurFade>
-
-          <BlurFade delay={0.4}>
-            {post.signature && (
-              <div className="flex flex-col gap-2">
-                <AnimatedSignature />
-                <div>
-                  <p className="text-sm">Zacchary Puckeridge</p>
-                  <p className="text-xs text-muted-foreground">
-                    Web Developer & Designer
+              <div className="flex gap-1 justify-between text-muted-foreground text-sm">
+                <div className="text-nowrap">
+                  <p className="text-muted-foreground text-xs">
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      weekday: "long",
+                    })}{" "}
+                    ·{" "}
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+                <hr className="w-full border-muted my-auto" />
+                <div className="flex gap-2 text-nowrap">
+                  <p className="text-muted-foreground text-xs">
+                    {readingTime} minute read
                   </p>
                 </div>
               </div>
-            )}
+            </div>
           </BlurFade>
 
-          <div className="mt-10 space-y-10">
-            <div className="space-y-3">
-              <h2 className="text-sm ">Share Article</h2>
-              <div className="flex gap-3 text-muted-foreground">
-                <a
-                  href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me${post.url}`}
-                  className="hover:text-blue-400 transition-all duration-300"
-                >
-                  <FaXTwitter className="w-4 h-4" />
-                </a>
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me${post.url}`}
-                  className="hover:text-blue-400 transition-all duration-300"
-                >
-                  <FaFacebook className="w-4 h-4" />
-                </a>
-                <a
-                  href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
-                  className="hover:text-blue-400 transition-all duration-300"
-                >
-                  <PaperPlaneIcon className="w-4 h-4" />
-                </a>
-                <CopyLink />
-              </div>
-            </div>
-            <div className="space-y-3">
-              <h2 className="text-sm ">Resources</h2>
-              <div className="flex flex-col gap-3 text-muted-foreground text-xs">
-                <CopyText text={post.body.raw} />
-                {post.lastModified && (
-                  <div className="flex gap-2">
-                    <CalendarIcon className="w-4 h-4 my-auto" />
+          <div className="space-y-4 flex flex-col gap-4">
+            <BlurFade delay={0.2}>
+              {post.image && (
+                <div className="flex flex-col gap-4">
+                  <Image
+                    src={`/${post.image}`}
+                    width={800}
+                    height={400}
+                    priority
+                    alt={post.title}
+                    className="object-cover w-full rounded-xl"
+                  />
+                  <p className="text-center text-xs text-muted-foreground">
+                    {post.imageAlt}
+                  </p>
+                </div>
+              )}
+            </BlurFade>
 
-                    <p className="text-muted-foreground text-xs my-auto">
-                      Last modified on{" "}
-                      {new Date(post.lastModified).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })}
+            <BlurFade delay={post.image ? 0.3 : 0.2}>
+              <article className="w-full prose prose-headings:text-sm prose-headings:font-bold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm">
+                <MDXContent components={mdxComponents} />
+              </article>
+            </BlurFade>
+
+            <BlurFade delay={0.4}>
+              {post.signature && (
+                <div className="flex flex-col gap-2">
+                  <AnimatedSignature />
+                  <div>
+                    <p className="text-sm">Zacchary Puckeridge</p>
+                    <p className="text-xs text-muted-foreground">
+                      Web Developer & Designer
                     </p>
                   </div>
-                )}
-                {/* <a
+                </div>
+              )}
+            </BlurFade>
+
+            <div className="mt-10 space-y-10">
+              <div className="space-y-3">
+                <h2 className="text-sm ">Share Article</h2>
+                <div className="flex gap-3 text-muted-foreground">
+                  <a
+                    href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me${post.url}`}
+                    className="hover:text-blue-400 transition-all duration-300"
+                  >
+                    <FaXTwitter className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me${post.url}`}
+                    className="hover:text-blue-400 transition-all duration-300"
+                  >
+                    <FaFacebook className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
+                    className="hover:text-blue-400 transition-all duration-300"
+                  >
+                    <PaperPlaneIcon className="w-4 h-4" />
+                  </a>
+                  <CopyLink />
+                </div>
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-sm ">Resources</h2>
+                <div className="flex flex-col gap-3 text-muted-foreground text-xs">
+                  <CopyText text={post.body.raw} />
+                  {post.lastModified && (
+                    <div className="flex gap-2">
+                      <CalendarIcon className="w-4 h-4 my-auto" />
+
+                      <p className="text-muted-foreground text-xs my-auto">
+                        Last modified on{" "}
+                        {new Date(post.lastModified).toLocaleDateString(
+                          "en-US",
+                          {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          },
+                        )}
+                      </p>
+                    </div>
+                  )}
+                  {/* <a
                   href="https://x.com/zpuckeridge"
                   className="hover:text-black transition flex gap-2"
                 >
                   <FaLink className="w-4 h-4" /> Download Images
                 </a> */}
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h2 className="text-sm ">About Zacchary</h2>
+                <p className="text-xs text-muted-foreground">
+                  Zacchary is Christian IT Administrator working for Rising Sun
+                  Pictures. Building better artist experiences by day, designing
+                  epic web experiences by night.
+                </p>
               </div>
             </div>
-            <div className="space-y-2">
-              <h2 className="text-sm ">About Zacchary</h2>
-              <p className="text-xs text-muted-foreground">
-                Zacchary is Christian IT Administrator working for Rising Sun
-                Pictures. Building better artist experiences by day, designing
-                epic web experiences by night.
-              </p>
-            </div>
           </div>
-        </div>
 
-        <div className="flex justify-between">
-          <div>
-            <Link
-              href="/timeline"
-              className="text-xs text-muted-foreground hover:text-blue-400 transition"
-            >
-              <ArrowLeftIcon className="inline-flex" /> /timeline
-            </Link>
+          <div className="flex justify-between">
+            <div>
+              <Link
+                href="/timeline"
+                className="text-xs text-muted-foreground hover:text-blue-400 transition"
+              >
+                <ArrowLeftIcon className="inline-flex" /> /timeline
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
