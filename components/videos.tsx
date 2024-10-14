@@ -64,7 +64,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
 
   return (
     <div className="space-y-20">
-      <BlurFade delay={0.1}>
+      <BlurFade delay={0.3}>
         <div className="w-full">
           <Input
             placeholder="Search videos"
@@ -102,7 +102,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
         </div>
       </BlurFade>
 
-      <BlurFade delay={0.2}>
+      <BlurFade delay={0.4}>
         <div className="grid grid-cols-2 gap-6 mt-2">
           {currentVideos
             .filter((video) =>
@@ -156,7 +156,7 @@ export default function Videos({ videos, itemsPerPage }: Props) {
         </div>
       </BlurFade>
 
-      <BlurFade delay={0.3}>
+      <BlurFade delay={0.5}>
         <div className="flex justify-between mt-4">
           <button
             onClick={handlePrevPage}
