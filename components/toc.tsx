@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function TableOfContents({ content }: { content: any }) {
   const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);
-
-  console.log(content);
+  const [activeId, setActiveId] = useState<string | null>(null); // Added state for active heading
 
   useEffect(() => {
     // New logic to extract headings from the markdown content
@@ -26,6 +25,28 @@ export default function TableOfContents({ content }: { content: any }) {
     setHeadings(newHeadings);
   }, [content]); // Added content as a dependency
 
+  // New effect to update active heading based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const currentHeading = headings.reduce(
+        (prev, heading) => {
+          const element = document.getElementById(heading.id);
+          if (element && element.offsetTop <= scrollPosition + 10) {
+            return heading; // Return the last heading that is in view
+          }
+          return prev; // Keep the previous heading if the current one is not in view
+        },
+        null as { id: string; text: string } | null,
+      );
+
+      setActiveId(currentHeading ? currentHeading.id : null);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [headings]);
+
   return (
     <div className="lg:fixed lg:top-20 lg:left-8 text-xs text-muted-foreground hidden lg:block">
       <ul className="space-y-2">
@@ -33,7 +54,7 @@ export default function TableOfContents({ content }: { content: any }) {
           <li key={heading.id}>
             <a
               href={`#${heading.id}`}
-              className="hover:text-blue-400 transition-all duration-300 max-w-[200px] line-clamp-3"
+              className={`hover:text-blue-400 transition-all duration-300 max-w-[200px] line-clamp-3 ${activeId === heading.id ? "text-blue-400" : ""}`} // Updated class for active link
             >
               {heading.text}
             </a>

@@ -36,6 +36,39 @@ const mdxComponents: MDXComponents = {
     // For all other links, use the LinkWithIcon component
     return <LinkWithIcon href={href as string}>{children}</LinkWithIcon>;
   },
+  h1: ({ children }) => {
+    const id = children
+      ? children
+          .toString()
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-")
+      : "";
+
+    return <h1 id={id}>{children}</h1>;
+  },
+  h2: ({ children }) => {
+    const id = children
+      ? children
+          .toString()
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-")
+      : "";
+
+    return <h2 id={id}>{children}</h2>;
+  },
+  h3: ({ children }) => {
+    const id = children
+      ? children
+          .toString()
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-")
+      : "";
+
+    return <h3 id={id}>{children}</h3>;
+  },
 };
 
 export default function Post({ params }: { params: { slug: string } }) {
@@ -51,7 +84,7 @@ export default function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const wordCount = countWords(post.body.code);
+  const wordCount = countWords(post.body.raw);
   const averageWordsPerMinute = 300; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
@@ -62,7 +95,7 @@ export default function Post({ params }: { params: { slug: string } }) {
       <TableOfContents content={post.body.raw} />
 
       <div className="max-w-lg mx-auto">
-        <div className="text-sm leading-relaxed flex flex-col gap-20 pb-20">
+        <div className="text-sm leading-relaxed flex flex-col gap-10 pb-20">
           <BlurFade delay={0.1}>
             <div className="space-y-2">
               <h1 className="font-serif text-2xl italic">{post.title}</h1>
