@@ -54,7 +54,7 @@ export default function TableOfContents({ content }: { content: any }) {
           <li key={heading.id}>
             <a
               href={`#${heading.id}`}
-              className={`hover:text-blue-400 transition-all duration-300 max-w-[200px] line-clamp-3 ${activeId === heading.id ? "text-blue-400" : ""}`} // Updated class for active link
+              className={`hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 max-w-[200px] line-clamp-3 ${activeId === heading.id ? "text-blue-600 dark:text-blue-400" : ""}`} // Updated class for active link
             >
               {heading.text}
             </a>

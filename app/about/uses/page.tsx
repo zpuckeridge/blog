@@ -19,7 +19,7 @@ export default function Uses() {
   };
 
   return (
-    <div className="max-w-md lg:mx-auto pb-10">
+    <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20">
       <div className="text-sm flex flex-col gap-20">
         <BlurFade delay={0.1}>
           <p className="font-serif text-2xl italic ">Uses</p>
@@ -202,7 +202,7 @@ export default function Uses() {
           <BlurFade delay={0.9}>
             <Link
               href="/about"
-              className="text-xs text-muted-foreground hover:text-blue-400 transition"
+              className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
             >
               <ArrowLeftIcon className="inline-flex" /> /about
             </Link>

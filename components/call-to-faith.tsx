@@ -143,14 +143,14 @@ export default function CallToFaith() {
             <div className="flex my-auto gap-4">
               <button
                 onClick={goToPreviousSlide}
-                className="hover:text-blue-400 transition text-muted-foreground" // Added padding for larger touch target
+                className="hover:text-blue-400 dark:hover:text-blue-600 transition text-muted-foreground" // Added padding for larger touch target
                 aria-label="Previous slide"
               >
                 <ArrowLeftIcon className="w-4 h-4" />
               </button>
               <button
                 onClick={goToNextSlide}
-                className="hover:text-blue-400 transition text-muted-foreground" // Added padding for larger touch target
+                className="hover:text-blue-400 dark:hover:text-blue-600 transition text-muted-foreground" // Added padding for larger touch target
                 aria-label="Next slide"
               >
                 <ArrowRightIcon className="w-4 h-4" />

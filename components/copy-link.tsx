@@ -29,7 +29,7 @@ export default function CopyLink() {
       {copied ? (
         <CheckIcon className="w-4 h-4 my-auto text-muted-foreground" />
       ) : (
-        <Link2Icon className="my-auto text-muted-foreground hover:text-blue-400 transition-all duration-300" />
+        <Link2Icon className="my-auto text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300" />
       )}
     </button>
   );

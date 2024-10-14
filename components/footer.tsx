@@ -13,7 +13,7 @@ export default function Footer() {
 
         <div className="text-sm px-2 py-1 my-auto">
           <HoverCard>
-            <HoverCardTrigger className="cursor-pointer tracking-tight leading-snug hover:text-blue-400 transition text-muted-foreground hover:underline underline-offset-4">
+            <HoverCardTrigger className="cursor-pointer tracking-tight leading-snug hover:text-blue-400 dark:hover:text-blue-600 transition text-muted-foreground hover:underline underline-offset-4">
               Soli Deo Gloria
             </HoverCardTrigger>
             <HoverCardContent className="text-center">

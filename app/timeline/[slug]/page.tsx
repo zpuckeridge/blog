@@ -169,19 +169,19 @@ export default function Post({ params }: { params: { slug: string } }) {
                 <div className="flex gap-3 text-muted-foreground">
                   <a
                     href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me${post.url}`}
-                    className="hover:text-blue-400 transition-all duration-300"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
                     <FaXTwitter className="w-4 h-4" />
                   </a>
                   <a
                     href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me${post.url}`}
-                    className="hover:text-blue-400 transition-all duration-300"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
                     <FaFacebook className="w-4 h-4" />
                   </a>
                   <a
                     href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
-                    className="hover:text-blue-400 transition-all duration-300"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
                     <PaperPlaneIcon className="w-4 h-4" />
                   </a>
@@ -232,7 +232,7 @@ export default function Post({ params }: { params: { slug: string } }) {
             <div>
               <Link
                 href="/timeline"
-                className="text-xs text-muted-foreground hover:text-blue-400 transition"
+                className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
               >
                 <ArrowLeftIcon className="inline-flex" /> /timeline
               </Link>

@@ -48,7 +48,7 @@ export default function Posts() {
 
         <Link
           href="/"
-          className="text-xs text-muted-foreground hover:text-blue-400 transition"
+          className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
         >
           <ArrowLeftIcon className="inline-flex" /> /
         </Link>

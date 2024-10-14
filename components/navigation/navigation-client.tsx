@@ -17,7 +17,8 @@ export default function NavigationClient({
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const isActive = (href: string) => (pathname === href ? "text-blue-600" : "");
+  const isActive = (href: string) =>
+    pathname === href ? "text-blue-600 dark:text-blue-400" : "";
 
   const handleDrawerClose = () => {
     setIsDrawerOpen(false);
@@ -29,13 +30,13 @@ export default function NavigationClient({
         <div className="flex justify-between">
           <Link
             href="/"
-            className="text-xs my-auto text-muted-foreground hover:text-blue-400 transition"
+            className="text-xs my-auto text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
           >
             <ArrowLeftIcon className="inline-flex" /> /
           </Link>
           <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <DrawerTrigger>
-              <p className="text-sm flex gap-1 my-auto">
+              <p className="text-sm flex gap-1 my-auto hover:text-blue-400 dark:hover:text-blue-600 transition">
                 <HamburgerMenuIcon className="my-auto w-4 h-4" />
               </p>
             </DrawerTrigger>
@@ -44,7 +45,7 @@ export default function NavigationClient({
                 <div className="flex flex-col gap-2">
                   <Link
                     href="/work"
-                    className={`${isActive("/work")} hover:text-blue-400 transition flex justify-between`}
+                    className={`${isActive("/work")} transition hover:text-blue-400 dark:hover:text-blue-600 flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>Work</p>
@@ -53,7 +54,7 @@ export default function NavigationClient({
                   <div className="flex flex-col gap-2">
                     <Link
                       href="/timeline"
-                      className={`${pathname.includes("/timeline") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
+                      className={`${pathname.includes("/timeline") ? "text-blue-600 dark:text-blue-400" : ""} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
                       onClick={handleDrawerClose}
                     >
                       <p>Timeline</p>
@@ -65,9 +66,9 @@ export default function NavigationClient({
                         {posts.map((post: any) => (
                           <Link
                             key={post.url}
-                            href={`/timeline/${post.url}`}
+                            href={`${post.url}`}
                             aria-label={post.title}
-                            className="hover:text-blue-400 transition"
+                            className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                             onClick={handleDrawerClose}
                           >
                             {post.title}
@@ -79,7 +80,7 @@ export default function NavigationClient({
                   </div>
                   <Link
                     href="/videos"
-                    className={`${isActive("/videos")} hover:text-blue-400 transition flex justify-between`}
+                    className={`${isActive("/videos")} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
                     onClick={handleDrawerClose}
                   >
                     <p>Videos</p>
@@ -88,7 +89,7 @@ export default function NavigationClient({
                   <div className="flex flex-col gap-2">
                     <Link
                       href="/about"
-                      className={`${pathname.includes("/about") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
+                      className={`${pathname.includes("/about") ? "text-blue-600 dark:text-blue-400" : ""} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
                       onClick={handleDrawerClose}
                     >
                       <p>About</p>
@@ -102,55 +103,56 @@ export default function NavigationClient({
                         <a
                           href="https://read.cv/zpuckeridge"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           Read.cv
                         </a>
                         <a
                           href="https://shop.zacchary.me/"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           Shop
                         </a>
                         <a
                           href="https://x.com/zpuckeridge"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           X
                         </a>
                         <a
                           href="https://www.facebook.com/profile.php?id=61554733838731"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           Facebook
                         </a>
                         <a
                           href="https://linkedin.com/zpuckeridge"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           LinkedIn
                         </a>
                         <a
                           href="https://instagram.com/zpuckeridge"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           Instagram
                         </a>
                         <a
                           href="https://cosmos.so/zpuckeridge"
                           target="_blank"
-                          className="hover:text-blue-400 transition"
+                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                         >
                           Cosmos
                         </a>
                         <Link
                           href="/about/uses"
-                          className="hover:text-blue-400 transition flex justify-between"
+                          className={`${isActive("/about/uses")} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
+                          onClick={handleDrawerClose}
                         >
                           Uses
                         </Link>
@@ -180,7 +182,7 @@ export default function NavigationClient({
           <div className="flex flex-col gap-2">
             <Link
               href="/work"
-              className={`${isActive("/work")} hover:text-blue-400 transition flex justify-between`}
+              className={`${isActive("/work")} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
             >
               <p>Work</p>
               <p>12 projects</p>
@@ -188,7 +190,7 @@ export default function NavigationClient({
             <div className="flex flex-col gap-2">
               <Link
                 href="/timeline"
-                className={`${pathname.includes("/timeline") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
+                className={`${pathname.includes("/timeline") ? "text-blue-600 dark:text-blue-400" : ""} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
               >
                 <p>Timeline</p>
                 <p>{posts.length} entries</p>
@@ -201,7 +203,7 @@ export default function NavigationClient({
                       key={post.url}
                       href={`${post.url}`}
                       aria-label={post.title}
-                      className="hover:text-blue-400 transition"
+                      className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                     >
                       {post.title}
                     </Link>
@@ -213,7 +215,7 @@ export default function NavigationClient({
 
             <Link
               href="/videos"
-              className={`${isActive("/videos")} hover:text-blue-400 transition flex justify-between`}
+              className={`${isActive("/videos")} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
             >
               <p>Videos</p>
               <p>{videos.length} entries</p>
@@ -222,7 +224,7 @@ export default function NavigationClient({
             <div className="flex flex-col gap-2">
               <Link
                 href="/about"
-                className={`${pathname.includes("/about") ? "text-blue-600" : ""} hover:text-blue-400 transition flex justify-between`}
+                className={`${pathname.includes("/about") ? "text-blue-600 dark:text-blue-400" : ""} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
               >
                 <p>About</p>
                 <p>
@@ -235,55 +237,55 @@ export default function NavigationClient({
                   <a
                     href="https://read.cv/zpuckeridge"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     Read.cv
                   </a>
                   <a
                     href="https://shop.zacchary.me/"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     Shop
                   </a>
                   <a
                     href="https://x.com/zpuckeridge"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     X
                   </a>
                   <a
                     href="https://www.facebook.com/profile.php?id=61554733838731"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     Facebook
                   </a>
                   <a
                     href="https://linkedin.com/zpuckeridge"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     LinkedIn
                   </a>
                   <a
                     href="https://instagram.com/zpuckeridge"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     Instagram
                   </a>
                   <a
                     href="https://cosmos.so/zpuckeridge"
                     target="_blank"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     Cosmos
                   </a>
                   <Link
                     href="/about/uses"
-                    className="hover:text-blue-400 transition flex justify-between"
+                    className={`${isActive("/about/uses")} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
                   >
                     Uses
                   </Link>
@@ -295,7 +297,7 @@ export default function NavigationClient({
           <div className="flex flex-col gap-2">
             <Link
               href="/colophon"
-              className={`${isActive("/colophon")} hover:text-blue-400 transition flex justify-between`}
+              className={`${isActive("/colophon")} hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between`}
             >
               <p>Colophon</p>
               <p>5 topics</p>

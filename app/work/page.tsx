@@ -87,7 +87,7 @@ export default function Work() {
         <BlurFade delay={0.1 * (projects.length + 3)}>
           <Link
             href="/"
-            className="text-xs text-muted-foreground hover:text-blue-400 transition"
+            className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
           >
             <ArrowLeftIcon className="inline-flex" /> /
           </Link>

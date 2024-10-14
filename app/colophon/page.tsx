@@ -66,7 +66,11 @@ export default function Colophon() {
                   <LinkWithIcon href="https://www.framer.com/motion?ref=zacchary.me">
                     Framer Motion
                   </LinkWithIcon>
-                  , and{" "}
+                  ,{" "}
+                  <LinkWithIcon href="https://www.mux.com?ref=zacchary.me">
+                    Mux
+                  </LinkWithIcon>{" "}
+                  and{" "}
                   <LinkWithIcon href="https://vidstack.io?ref=zacchary.me">
                     Vidstack
                   </LinkWithIcon>
@@ -222,7 +226,7 @@ export default function Colophon() {
                 </div>
 
                 <div className="w-4/6">
-                  <Badge className="text-xs rounded-none hover:bg-muted hover:text-blue-400 py-0 px-2 bg-muted text-muted-foreground">
+                  <Badge className="text-xs rounded-none hover:bg-muted hover:text-blue-400 dark:hover:text-blue-600 py-0 px-2 bg-muted text-muted-foreground">
                     WIP
                   </Badge>
                 </div>

@@ -26,7 +26,7 @@ export default function ReturnToIndex() {
             {pathname !== "/" ? ( // {{ edit_3 }}
               <Link
                 href="/"
-                className="text-muted-foreground hover:text-blue-400 italic font-serif flex items-center gap-1 group transition-all duration-300 ease-in-out"
+                className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 italic font-serif flex items-center gap-1 group transition-all duration-300 ease-in-out"
               >
                 <div className="relative w-4 h-4">
                   <ChevronLeftIcon className="absolute inset-0 w-4 h-4 transition-opacity duration-300 opacity-100 group-hover:opacity-0 -translate-x-0.5 ease-in-out" />
@@ -38,14 +38,14 @@ export default function ReturnToIndex() {
               <div className="flex gap-6 items-center">
                 <Link
                   href="/"
-                  className="text-muted-foreground hover:text-blue-400 transition-all duration-300 ease-in-out italic font-serif"
+                  className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out italic font-serif"
                 >
                   Zacchary Puckeridge
                 </Link>
 
                 <button
                   onClick={toggleTheme}
-                  className="text-muted-foreground hover:text-blue-400 transition-all duration-300 ease-in-out"
+                  className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
                 >
                   {theme === "dark" ? (
                     <SunIcon className="w-4 h-4" />
