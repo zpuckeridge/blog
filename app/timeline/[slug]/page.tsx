@@ -258,39 +258,39 @@ export function generateMetadata({ params }: Params): Metadata {
   }
 
   const title = `${post.title}`;
-  // const description = `${post.description}`;
+  const description = `${post.description}`;
 
   return {
     title: title,
-    // description: description,
-    // openGraph: {
-    //   type: "article",
-    //   title: title,
-    //   description: description,
-    //   siteName: "zacchary.me",
-    //   images: [
-    //     {
-    //       url: post.image || "/avatar.avif",
-    //       width: 1920,
-    //       height: 1080,
-    //       alt: title,
-    //     },
-    //   ],
-    //   url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${post.slug}`,
-    // },
-    // twitter: {
-    //   card: "summary_large_image",
-    //   title: title,
-    //   description: description,
-    //   images: [
-    //     {
-    //       url: post.image || "/avatar.avif",
-    //       width: 1920,
-    //       height: 1080,
-    //       alt: title,
-    //     },
-    //   ],
-    // },
+    description: description,
+    openGraph: {
+      type: "article",
+      title: title,
+      description: description,
+      siteName: "zacchary.me",
+      images: [
+        {
+          url: post.image || "/avatar.avif",
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}${post.url}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      images: [
+        {
+          url: post.image || "/avatar.avif",
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
+    },
   };
 }
 
