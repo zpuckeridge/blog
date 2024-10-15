@@ -21,7 +21,6 @@ export default function ImageWithDetails({
         src={src}
         width={1000}
         height={1000}
-        priority
         alt={alt}
         className="w-full aspect-square object-cover group-hover:blur-sm rounded-xl transition-all"
       />
@@ -29,10 +28,8 @@ export default function ImageWithDetails({
         <div className="absolute z-10 bottom-4 left-4 right-4">
           <div className="flex flex-col gap-0.5 w-full">
             <div className="w-full text-sm">{name}</div>
-            <div className="w-full text-xs text-muted-foreground">
-              {location}
-            </div>
-            <div className="w-full text-xs text-muted-foreground">{author}</div>
+            <div className="w-full text-xs text-neutral-400">{location}</div>
+            <div className="w-full text-xs text-neutral-400">{author}</div>
           </div>
         </div>
       </div>

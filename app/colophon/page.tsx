@@ -124,6 +124,12 @@ export default function Colophon() {
                   <LinkWithIcon href="https://benji.org?ref=zacchary.me">
                     benji.org
                   </LinkWithIcon>
+                  <LinkWithIcon href="https://tomorrow-happens.studio?ref=zacchary.me">
+                    tomorrow-happens.studio
+                  </LinkWithIcon>
+                  <LinkWithIcon href="https://loganliffick.com?ref=zacchary.me">
+                    loganliffick.com
+                  </LinkWithIcon>
                 </div>{" "}
               </div>
 
