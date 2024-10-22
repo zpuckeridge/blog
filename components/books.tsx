@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 
 export default function BooksSection({
   direction = "left",
-  speed = "slow",
+  speed = "normal",
   pauseOnHover = true,
 }: {
   direction?: "left" | "right";
@@ -18,83 +18,108 @@ export default function BooksSection({
     {
       id: 1,
       title: "It's Good To Be A Man",
-      image: "/recommended-books/it's-good-to-be-a-man.webp",
-      review:
-        "This book opened my eyes to how far we, as men, have failed by falling into the lie of egalitarianism and feminism. It expoesd parts of my heart that had yet to be dealt with or even considered and laid out a Biblical framework for a return to a right and sanctified masculinity.",
+      image: "/recommended-books/it's-good-to-be-a-man.avif",
+      review: "",
       rating: 5,
       url: "https://canonpress.com/products/its-good-to-be-a-man?_pos=1&_sid=e60b13112&_ss=r",
     },
     {
       id: 2,
       title: "Future Men",
-      image: "/recommended-books/future-men.jpg",
-      review:
-        "This book preceeds It's Good To Be A Man and is more directed at parents raising young men. However, I found great value in this book - not only from a future parenting perspective but also from a personal perspective. It exposed areas that my parents failed and laid out the consequences of those failures, which lined up perfectly with my experience. This book has helped me understand why I am the way I am and how to begin changing that.",
+      image: "/recommended-books/future-men.avif",
+      review: "",
       rating: 5,
       url: "https://canonpress.com/products/future-men-raising-boys-to-fight-giants?_pos=1&_sid=6196922ef&_ss=r",
     },
     {
       id: 3,
       title: "Fight by Flight",
-      image: "/recommended-books/fight-by-flight.jpg",
-      review:
-        "This book couldn't have come at a more perfect time. At the time of reading, I was weighing up my options between moving to rural Queensland or staying in Brisbane. There were a few reasons I was considering the change, the main factor being employment and the cost of living. This book helped me to make the decision to remain in Brisbane and to continue building God's kingdom where I was.",
+      image: "/recommended-books/fight-by-flight.avif",
+      review: "",
       rating: 5,
       url: "https://www.amazon.com.au/Fight-Flight-Leaving-Godless-Places/dp/B0C2SCMRBZ/ref=sr_1_1?crid=25W1Z733200ZK&keywords=fight+by+flight&qid=1702275370&sprefix=fight+by+fli%2Caps%2C342&sr=8-1",
     },
     {
       id: 4,
       title: "Mere Christianity",
-      image: "/recommended-books/mere-christianity.jpg",
-      review:
-        "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
+      image: "/recommended-books/mere-christianity.avif",
+      review: "",
       rating: 5,
-      url: "https://www.amazon.com.au/Mere-Christianity-C-S-Lewis/dp/0007461216/ref=sr_1_3?crid=37WN5RAOH0A00&keywords=mere+christianity+c.s.+lewis&qid=1702259670&sprefix=mere+christiant%2Caps%2C389&sr=8-3",
+      url: "https://www.amazon.com.au/Mere-Christianity-C-S-Lewis/dp/0007461216",
     },
     {
       id: 5,
       title: "Confessions of a Food Catholic",
-      image: "/recommended-books/confessions-of-a-food-catholic.jpg",
-      review:
-        "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
+      image: "/recommended-books/confessions-of-a-food-catholic.avif",
+      review: "",
       rating: 5,
-      url: "https://canonpress.com/products/confessions-of-a-food-catholic?_pos=1&_sid=e582c7a3f&_ss=r",
+      url: "https://canonpress.com/products/confessions-of-a-food-catholic",
     },
     {
       id: 6,
       title: "The Screwtape Letters",
-      image: "/recommended-books/the-screwtape-letters.jpg",
-      review:
-        "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
+      image: "/recommended-books/the-screwtape-letters.avif",
+      review: "",
       rating: 5,
-      url: "https://www.amazon.com.au/Screwtape-Letters-Senior-Junior-Devil-ebook/dp/B002RI9F5E/ref=reads_cwrtbar_d_sccl_1_6/358-6367346-9762325?pd_rd_w=RPSnv&content-id=amzn1.sym.c5c1c4a3-451f-4098-854a-da1c70e0a494&pf_rd_p=c5c1c4a3-451f-4098-854a-da1c70e0a494&pf_rd_r=68P4VBHG8FXM2S3RAF34&pd_rd_wg=Uc5c5&pd_rd_r=0f7d4c0d-a67f-48c6-80ea-71ebd647dae8&pd_rd_i=B002RI9F5E&psc=1",
+      url: "https://www.amazon.com.au/Screwtape-Letters-Senior-Junior-Devil-ebook/dp/B002RI9F5E",
     },
     {
       id: 7,
       title: "Mere Christendom",
-      image: "/recommended-books/mere-christendom.jpg",
+      image: "/recommended-books/mere-christendom.avif",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
-      url: "https://canonpress.com/products/mere-christendom?_pos=1&_sid=741f43936&_ss=r",
+      url: "https://canonpress.com/products/mere-christendom",
     },
     {
       id: 8,
       title: "The Case for Christian Nationalism",
-      image: "/recommended-books/the-case-for-christian-nationalism.webp",
-      review:
-        "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
+      image: "/recommended-books/the-case-for-christian-nationalism.avif",
+      review: "",
       rating: 5,
-      url: "https://canonpress.com/products/the-case-for-christian-nationalism?_pos=1&_sid=4d4a1370a&_ss=r",
+      url: "https://canonpress.com/products/the-case-for-christian-nationalism",
     },
     {
       id: 9,
       title: "Christian Nationalism",
-      image: "/recommended-books/christian-nationalism.jpg",
+      image: "/recommended-books/christian-nationalism.avif",
       review:
         "The Haddon Institute is phase one of a much loftier project to create a seminary. This website lays the ground work for the future of the seminary.",
       rating: 5,
-      url: "https://www.amazon.com.au/Christian-Nationalism-Biblical-Dominion-Discipling/dp/B0BCRZSHM3/ref=sr_1_1?crid=1QM4LUIWRL4VQ&keywords=Christian+Nationalism+andrew+torba&qid=1702259524&sprefix=christian+nationalism+andrew+to%2Caps%2C379&sr=8-1",
+      url: "https://www.amazon.com.au/Christian-Nationalism-Biblical-Dominion-Discipling/dp/B0BCRZSHM3",
+    },
+    {
+      id: 10,
+      title: "The Chronicles of Narnia",
+      image: "/recommended-books/the-chronicles-of-narnia.avif",
+      review: "",
+      rating: 5,
+      url: "https://www.amazon.com.au/Chronicles-Narnia-box-set/dp/0007528094",
+    },
+    {
+      id: 11,
+      title: "Live Like a Narnian",
+      image: "/recommended-books/live-like-a-narnian.avif",
+      review: "",
+      rating: 5,
+      url: "https://canonpress.com/products/live-like-a-narnian",
+    },
+    {
+      id: 12,
+      title: "What I Learned in Narnia",
+      image: "/recommended-books/what-i-learned-in-narnia.avif",
+      review: "",
+      rating: 5,
+      url: "https://canonpress.com/products/what-i-learned-in-narnia",
+    },
+    {
+      id: 13,
+      title: "How to Read a Book: Advice for Christian Readers",
+      image: "/recommended-books/how-to-read-a-book.avif",
+      review: "",
+      rating: 5,
+      url: "https://canonpress.com/products/how-to-read-a-book",
     },
   ];
 
