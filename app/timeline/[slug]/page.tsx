@@ -3,6 +3,7 @@ import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
+import SideNote from "@/components/side-note";
 import TableOfContents from "@/components/toc";
 import {
   ArrowLeftIcon,
@@ -24,6 +25,7 @@ function countWords(text: any) {
 }
 
 const mdxComponents: MDXComponents = {
+  SideNote: ({ children, note }) => <SideNote note={note}>{children}</SideNote>,
   a: ({ href, children, ...props }) => {
     // Check if the link is a footnote reference
     if (href?.startsWith("#user-content") || href?.startsWith("#fnref-")) {
@@ -220,9 +222,9 @@ export default function Post({ params }: { params: { slug: string } }) {
               <div className="space-y-2">
                 <h2 className="text-sm ">About Zacchary</h2>
                 <p className="text-xs text-muted-foreground">
-                  Zacchary is Christian IT Administrator working for Rising Sun
-                  Pictures. Building better artist experiences by day, designing
-                  epic web experiences by night.
+                  Zacchary is a Christian IT Administrator working for Rising
+                  Sun Pictures. Building better artist experiences by day,
+                  designing epic web experiences by night.
                 </p>
               </div>
             </div>
