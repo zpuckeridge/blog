@@ -134,7 +134,7 @@ export default function Post({ params }: { params: { slug: string } }) {
                     height={400}
                     priority
                     alt={post.title}
-                    className="object-cover w-full rounded-xl"
+                    className="object-cover w-full rounded-xl aspect-video"
                   />
                   <p className="text-center text-xs text-muted-foreground">
                     {post.imageAlt}

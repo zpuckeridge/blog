@@ -14,14 +14,12 @@ interface PostsProps {
 }
 
 const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<
-    Record<string, number | null>
-  >({}); // Change state to track hovered index per year
+  const [isAnyPostHovered, setIsAnyPostHovered] = useState(false);
 
   return (
-    <div className="flex flex-col w-full group ">
+    <div className="flex flex-col w-full group">
       {Object.entries(postsByYear)
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA)) // Sort years in descending order
+        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
         .map(([year, yearPosts]) => (
           <div key={year} className="border-t border-muted flex w-full">
             <h2 className="text-muted-foreground w-[100px] py-3">{year}</h2>
@@ -30,24 +28,32 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                 <Link
                   key={post.url}
                   href={`${post.url}`}
-                  className={`flex justify-between w-full py-3 gap-8 ${index === yearPosts.length - 1 ? "" : "border-b border-muted"}`}
-                  onMouseEnter={() =>
-                    setHoveredIndex((prev) => ({ ...prev, [year]: index }))
-                  } // Set hovered index for the specific year
-                  onMouseLeave={() =>
-                    setHoveredIndex((prev) => ({ ...prev, [year]: null }))
-                  } // Reset hovered index for the specific year
+                  className={`flex justify-between w-full py-3 gap-8 ${
+                    index === yearPosts.length - 1
+                      ? ""
+                      : "border-b border-muted"
+                  } group/item`}
+                  onMouseEnter={() => setIsAnyPostHovered(true)}
+                  onMouseLeave={() => setIsAnyPostHovered(false)}
                 >
-                  <div className="w-full group">
+                  <div className="w-full">
                     <p
-                      className={`opacity-100 ${hoveredIndex[year] === index ? "" : "group-hover:opacity-50"} transition-all line-clamp-2`} // Change condition to use hoveredIndex for the specific year
+                      className={`${
+                        isAnyPostHovered
+                          ? "opacity-50 group-hover/item:opacity-100"
+                          : "opacity-100"
+                      } transition-opacity`}
                     >
                       {post.title}
                     </p>
                   </div>
                   <div className="text-muted-foreground whitespace-nowrap">
                     <span
-                      className={`opacity-100 ${hoveredIndex[year] === index ? "" : "group-hover:opacity-50"} transition-all`}
+                      className={`${
+                        isAnyPostHovered
+                          ? "opacity-50 group-hover/item:opacity-100"
+                          : "opacity-100"
+                      } transition-opacity`}
                     >
                       {new Date(post.date).toLocaleDateString("en-US", {
                         day: "2-digit",
