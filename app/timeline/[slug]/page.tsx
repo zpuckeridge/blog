@@ -1,6 +1,7 @@
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
+import Definition from "@/components/definition";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
 import SideNote from "@/components/side-note";
@@ -26,6 +27,9 @@ function countWords(text: any) {
 }
 
 const mdxComponents: MDXComponents = {
+  Definition: ({ word, meaning, type }) => (
+    <Definition word={word} meaning={meaning} type={type} />
+  ),
   SideNote: ({ children, note }) => <SideNote note={note}>{children}</SideNote>,
   a: ({ href, children, ...props }) => {
     // Check if the link is a footnote reference
@@ -147,7 +151,7 @@ export default function Post({ params }: { params: { slug: string } }) {
             </BlurFade>
 
             <BlurFade delay={post.image ? 0.3 : 0.2}>
-              <article className="w-full prose prose-headings:text-sm prose-headings:font-bold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l-2 prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-medium prose-blockquote:border-muted prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm">
+              <article className="w-full prose  prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-black prose-li:marker:font-normal dark:prose-li:marker:text-neutral-300 prose-li:marker:text-sm">
                 <MDXContent components={mdxComponents} />
               </article>
             </BlurFade>
