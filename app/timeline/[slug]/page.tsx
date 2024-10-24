@@ -10,7 +10,7 @@ import TableOfContents from "@/components/toc";
 import {
   ArrowLeftIcon,
   CalendarIcon,
-  PaperPlaneIcon,
+  EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
@@ -151,7 +151,7 @@ export default function Post({ params }: { params: { slug: string } }) {
             </BlurFade>
 
             <BlurFade delay={post.image ? 0.3 : 0.2}>
-              <article className="w-full prose  prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-hr:border-muted prose-blockquote:border-l prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-black prose-li:marker:font-normal dark:prose-li:marker:text-neutral-300 prose-li:marker:text-sm">
+              <article className="w-full prose  prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-blockquote:border-l prose-hr:border-[#e5e5e5] dark:prose-hr:border-[#262626] prose-blockquote:border-[#e5e5e5] dark:prose-blockquote:border-[#262626] prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-muted-foreground prose-li:marker:font-normal prose-li:marker:text-xs">
                 <MDXContent components={mdxComponents} />
               </article>
             </BlurFade>
@@ -190,7 +190,7 @@ export default function Post({ params }: { params: { slug: string } }) {
                     href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
                     className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
-                    <PaperPlaneIcon className="w-4 h-4" />
+                    <EnvelopeClosedIcon className="w-4 h-4" />
                   </a>
                   <CopyLink />
                 </div>
