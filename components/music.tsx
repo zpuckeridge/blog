@@ -3,7 +3,7 @@ import Image from "next/image";
 // Fetch data with a full URL
 const fetchTopTracks = async () => {
   const response = await fetch(
-    `${process.env.VERCEL_URL}/api/spotify/top-tracks`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/spotify/top-tracks`,
   );
   if (!response.ok) {
     throw new Error("Failed to fetch top tracks");
@@ -13,7 +13,7 @@ const fetchTopTracks = async () => {
 
 const fetchTopArtists = async () => {
   const response = await fetch(
-    `${process.env.VERCEL_URL}/api/spotify/top-artists`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/spotify/top-artists`,
   );
   if (!response.ok) {
     throw new Error("Failed to fetch top artists");

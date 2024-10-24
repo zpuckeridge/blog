@@ -102,7 +102,7 @@ export function generateMetadata({ params }: Params): Metadata {
           type: "video/mp4",
         },
       ],
-      url: `${process.env.VERCEL_URL}/video/${video.slug}`,
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
     },
     twitter: {
       card: "player",
