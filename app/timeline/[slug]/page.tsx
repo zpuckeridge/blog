@@ -4,6 +4,7 @@ import CopyText from "@/components/copy-text";
 import Definition from "@/components/definition";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
+import PageViews from "@/components/page-views";
 import SideNote from "@/components/side-note";
 import Subscribe from "@/components/subscribe";
 import TableOfContents from "@/components/toc";
@@ -11,7 +12,6 @@ import {
   ArrowLeftIcon,
   CalendarIcon,
   EnvelopeClosedIcon,
-  EyeOpenIcon,
 } from "@radix-ui/react-icons";
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
@@ -21,6 +21,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
+
+export const dynamic = "force-dynamic";
 
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
@@ -97,10 +99,6 @@ export default async function Post({ params }: { params: { slug: string } }) {
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
   const MDXContent = useMDXComponent(post.body.code);
-
-  const views = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-views?url=${post.url}`,
-  ).then((res) => res.json());
 
   return (
     <>
@@ -205,14 +203,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="flex flex-col gap-3 text-muted-foreground text-xs">
                   <CopyText text={post.body.raw} />
 
-                  <div className="flex gap-2">
-                    <EyeOpenIcon className="w-4 h-4 my-auto" />
-
-                    <p className="text-muted-foreground text-xs my-auto">
-                      {views.views} {views.views === 1 ? "view" : "views"} in
-                      the last 30 days
-                    </p>
-                  </div>
+                  <PageViews url={post.url} />
 
                   {post.lastModified && (
                     <div className="flex gap-2">
