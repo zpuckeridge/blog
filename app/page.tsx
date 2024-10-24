@@ -3,6 +3,8 @@ import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
 import Visitors from "@/components/visitors";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   return (
     <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20" role="main">
