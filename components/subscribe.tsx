@@ -56,7 +56,7 @@ const Subscribe: React.FC = () => {
       <form onSubmit={handleSubmit} className="flex group relative">
         <label className="z-[1] pointer-events-none has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)):-translate-y-1/2 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:text-xs has-[+input:not(:placeholder-shown)]:font-medium has-[+input:not(:placeholder-shown)]:text-foreground origin-start absolute top-1/2 block -translate-y-1/2 cursor-text px-1 text-sm text-muted-foreground/70 transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:text-xs group-focus-within:font-medium group-focus-within:text-foreground">
           <span className="inline-flex text-xs bg-background px-2 relative -top-[1px]">
-            Enter your email address
+            Enter your email address to subscribe to new posts
           </span>
         </label>
         <Input

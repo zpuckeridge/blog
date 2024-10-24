@@ -224,10 +224,7 @@ export default function Post({ params }: { params: { slug: string } }) {
                 </p>
               </div>
 
-              <div className="space-y-2">
-                <h2 className="text-sm ">Subscribe</h2>
-                <Subscribe />
-              </div>
+              <Subscribe />
             </div>
           </div>
 
