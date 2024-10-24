@@ -4,6 +4,7 @@ import CopyText from "@/components/copy-text";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
 import SideNote from "@/components/side-note";
+import Subscribe from "@/components/subscribe";
 import TableOfContents from "@/components/toc";
 import {
   ArrowLeftIcon,
@@ -211,21 +212,21 @@ export default function Post({ params }: { params: { slug: string } }) {
                       </p>
                     </div>
                   )}
-                  {/* <a
-                  href="https://x.com/zpuckeridge"
-                  className="hover:text-black transition flex gap-2"
-                >
-                  <FaLink className="w-4 h-4" /> Download Images
-                </a> */}
                 </div>
               </div>
               <div className="space-y-2">
                 <h2 className="text-sm ">About Zacchary</h2>
+
                 <p className="text-xs text-muted-foreground">
                   Zacchary is a Christian IT Administrator working for Rising
                   Sun Pictures. Building better artist experiences by day,
                   designing epic web experiences by night.
                 </p>
+              </div>
+
+              <div className="space-y-2">
+                <h2 className="text-sm ">Subscribe</h2>
+                <Subscribe />
               </div>
             </div>
           </div>
