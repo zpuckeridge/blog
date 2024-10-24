@@ -3,13 +3,18 @@
 import { useToast } from "@/components/ui/use-toast";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Loader2 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 
 const Subscribe: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +55,10 @@ const Subscribe: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  if (!isMounted) {
+    return null; // or a loading placeholder
+  }
 
   return (
     <div className="space-y-2">
