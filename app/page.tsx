@@ -3,9 +3,9 @@ import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
 
 export default async function Home() {
-  const visitors = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/visitors`,
-  ).then((res) => res.json());
+  const visitors = await fetch(`${process.env.VERCEL_URL}/api/visitors`).then(
+    (res) => res.json(),
+  );
 
   return (
     <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20" role="main">

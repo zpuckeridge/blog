@@ -99,7 +99,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   const MDXContent = useMDXComponent(post.body.code);
 
   const views = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-views?url=${post.url}`,
+    `${process.env.VERCEL_URL}/api/page-views?url=${post.url}`,
   ).then((res) => res.json());
 
   return (
@@ -295,7 +295,7 @@ export function generateMetadata({ params }: Params): Metadata {
           alt: title,
         },
       ],
-      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}${post.url}`,
+      url: `${process.env.VERCEL_URL}${post.url}`,
     },
     twitter: {
       card: "summary_large_image",
