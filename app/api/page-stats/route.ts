@@ -17,7 +17,7 @@ async function getUmamiData(token: string, url: string) {
     url,
   });
 
-  const endpoint = `${UMAMI_URL}/api/websites/${NEXT_PUBLIC_UMAMI_WEBSITE_ID}/pageviews?${params}`;
+  const endpoint = `${UMAMI_URL}/api/websites/${NEXT_PUBLIC_UMAMI_WEBSITE_ID}/stats?${params}`;
 
   const statsResponse = await fetch(endpoint, {
     headers: {
@@ -35,7 +35,7 @@ async function getUmamiData(token: string, url: string) {
   }
 
   const stats = await statsResponse.json();
-  return stats.pageviews[0].y || 0; // Only return the number of pageviews
+  return stats; // Only return the number of pageviews
 }
 
 export async function GET(request: Request) {
@@ -51,8 +51,14 @@ export async function GET(request: Request) {
 
   try {
     const token = await getUmamiToken();
-    const pageViews = await getUmamiData(token, url);
-    return NextResponse.json({ views: pageViews });
+    const stats = await getUmamiData(token, url);
+    return NextResponse.json({
+      views: stats.pageviews,
+      visitors: stats.visitors,
+      visits: stats.visits,
+      bounces: stats.bounces,
+      totalTime: stats.totalTime,
+    });
   } catch (error) {
     console.error("Error fetching Umami data:", error);
     return NextResponse.json(

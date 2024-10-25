@@ -98,8 +98,8 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   const MDXContent = useMDXComponent(post.body.code);
 
-  const views = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-views?url=${post.url}`,
+  const stats = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=${post.url}`,
     { cache: "no-store" },
   ).then((res) => res.json());
 
@@ -210,8 +210,9 @@ export default async function Post({ params }: { params: { slug: string } }) {
                     <EyeOpenIcon className="w-4 h-4 my-auto" />
 
                     <p className="text-muted-foreground text-xs my-auto">
-                      {views.views} {views.views === 1 ? "view" : "views"} in
-                      the last 30 days
+                      {stats.views.value}{" "}
+                      {stats.views.value === 1 ? "view" : "views"} in the last
+                      30 days
                     </p>
                   </div>
 
