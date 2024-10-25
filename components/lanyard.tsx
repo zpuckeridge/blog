@@ -37,7 +37,7 @@ export default function Lanyard() {
     return { statusText, dotColor };
   };
 
-  const [brisbaneTime, setBrisbaneTime] = useState("0:00:00 ?? GMT+10");
+  const [brisbaneTime, setBrisbaneTime] = useState("00:00 ??");
 
   useEffect(() => {
     const getCurrentTimeInBrisbane = () => {

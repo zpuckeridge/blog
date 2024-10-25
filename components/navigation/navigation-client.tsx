@@ -35,10 +35,11 @@ export default function NavigationClient({
             <ArrowLeftIcon className="inline-flex" /> /
           </Link>
           <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
-            <DrawerTrigger>
-              <p className="text-sm flex gap-1 my-auto hover:text-blue-400 dark:hover:text-blue-600 transition">
-                <HamburgerMenuIcon className="my-auto w-4 h-4" />
-              </p>
+            <DrawerTrigger
+              aria-label="Open navigation"
+              className="text-sm flex gap-1 my-auto hover:text-blue-400 dark:hover:text-blue-600 transition"
+            >
+              <HamburgerMenuIcon className="my-auto w-4 h-4" />
             </DrawerTrigger>
             <DrawerContent className="px-4 pb-4">
               <div className="flex flex-col pt-4 gap-6 lg:w-1/3 max-w-lg mx-auto w-full text-sm text-muted-foreground ">

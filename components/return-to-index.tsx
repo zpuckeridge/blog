@@ -45,6 +45,7 @@ export default function ReturnToIndex() {
 
                 <button
                   onClick={toggleTheme}
+                  aria-label="Toggle theme"
                   className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
                 >
                   {theme === "dark" ? (
