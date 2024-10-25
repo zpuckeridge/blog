@@ -1,11 +1,13 @@
 import CallToFaith from "@/components/call-to-faith";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
-import Visitors from "@/components/visitors";
-
-export const dynamic = "force-dynamic";
 
 export default async function Home() {
+  const visitors = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/visitors`,
+    { cache: "no-store" },
+  ).then((res) => res.json());
+
   return (
     <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20" role="main">
       <BlurFade delay={0.1} inView>
@@ -33,7 +35,14 @@ export default async function Home() {
 
             <hr className="w-full border-muted my-auto" />
 
-            <Visitors />
+            <div className="flex gap-2 my-auto">
+              <div className="w-2 h-2 animate-pulse rounded-full my-auto bg-green-500" />
+
+              <p className="text-xs text-nowrap text-muted-foreground">
+                {visitors.visitors === 0 ? 1 : visitors.visitors} active{" "}
+                {visitors.visitors > 1 ? "visitors" : "visitor (that's you!)"}
+              </p>
+            </div>
           </div>
         </div>
       </BlurFade>
