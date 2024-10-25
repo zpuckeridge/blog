@@ -1,6 +1,12 @@
 "use client";
 
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   ArrowLeftIcon,
   ChevronLeftIcon,
   MoonIcon,
@@ -43,17 +49,22 @@ export default function ReturnToIndex() {
                   Zacchary Puckeridge
                 </Link>
 
-                <button
-                  onClick={toggleTheme}
-                  aria-label="Toggle theme"
-                  className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
-                >
-                  {theme === "dark" ? (
-                    <SunIcon className="w-4 h-4" />
-                  ) : (
-                    <MoonIcon className="w-4 h-4" />
-                  )}
-                </button>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger
+                      onClick={toggleTheme}
+                      aria-label="Toggle Theme"
+                      className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
+                    >
+                      {theme === "dark" ? (
+                        <SunIcon className="w-4 h-4" />
+                      ) : (
+                        <MoonIcon className="w-4 h-4" />
+                      )}
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom">Toggle Theme</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             )}
           </div>
