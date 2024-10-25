@@ -1,6 +1,8 @@
 import { getUmamiToken } from "@/lib/get-analytics";
 import { NextResponse } from "next/server";
 
+export const revalidate = 60;
+
 const { UMAMI_URL, NEXT_PUBLIC_UMAMI_WEBSITE_ID } = process.env;
 
 async function getActiveVisitors(token: string) {
