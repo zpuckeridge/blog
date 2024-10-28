@@ -1,16 +1,6 @@
-<div align="center">
-  <h1>
-    ✍️
-    <br />
-    Blog
-    <br />
-  </h1>
-  <sup>
-     A blog leveraging Next.js, PagesCMS, Framer Motion, Cloudinary, Lanyard, shadcn/ui and Tailwind CSS hosted with Vercel.</em>
-    <br />
-  </sup>
-  <br />
-</div>
+# ✍️ Blog
+
+Built with Next.js, PagesCMS, Tailwind, shadcn, Prisma, Framer Motion, Mux and Vidstack.
 
 ## 🚀 Install
 
@@ -24,10 +14,10 @@ git clone https://github.com/zpuckeridge/blog
 cp .env.example .env.local
 
 # Install packages
-pnpm install
+bun install
 
 # Run the server
-pnpm run dev
+bun run dev
 ```
 
 ## 🚩 Features
@@ -35,18 +25,24 @@ pnpm run dev
 - 📝 PagesCMS
 - 📈 Umami Analytics
 - ⚡ Tags
-- 🎶 Spotify Widget
+- 🎶 Spotify Now Playing Widget
 - 🧭 Discord Status
+- Side Notes
+- Inline Definitions
+- Table of Contents
+- Styled Footnotes
+- Videos (Mux)
+- Time to read estimate
 - Copy Link
+- Newsletter Integration (Beehiiv)
+- Carbon Rating of A
 
 ## 👀 Coming soon
 
 - Tag Page
 - Article Search
-- Newsletter Subscription
 - Public Statistics Page
   - Page Speed Insights
-  - Carbon Footprint
 - Improved Syntax Highlighting
 - Setup Resources section, track uses/apps/blogs/typefaces/etc. managed by PagesCMS.
 - Setup a Resume page

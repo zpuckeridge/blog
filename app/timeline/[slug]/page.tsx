@@ -77,6 +77,14 @@ const mdxComponents: MDXComponents = {
 
     return <h3 id={id}>{children}</h3>;
   },
+  pre: ({ children, ...props }) => (
+    <pre
+      {...props}
+      className="overflow-auto bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6 font-mono text-black dark:text-neutral-300 text-sm"
+    >
+      {children}
+    </pre>
+  ),
 };
 
 export default async function Post({ params }: { params: { slug: string } }) {
@@ -130,7 +138,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <hr className="w-full border-muted my-auto" />
                 <div className="flex gap-2 text-nowrap">
                   <p className="text-muted-foreground text-xs">
-                    {readingTime} minute read
+                    {post.tag} · {readingTime} minute read
                   </p>
                 </div>
               </div>
@@ -157,7 +165,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
             </BlurFade>
 
             <BlurFade delay={post.image ? 0.3 : 0.2}>
-              <article className="w-full prose  prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-blockquote:border-l prose-hr:border-[#e5e5e5] dark:prose-hr:border-[#262626] prose-blockquote:border-[#e5e5e5] dark:prose-blockquote:border-[#262626] prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-muted-foreground prose-li:marker:font-normal prose-li:marker:text-xs">
+              <article className="w-full prose  prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-blockquote:border-l prose-hr:border-[#e5e5e5] dark:prose-hr:border-[#262626] prose-blockquote:border-[#e5e5e5] dark:prose-blockquote:border-[#262626] prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-muted-foreground prose-li:marker:font-normal prose-li:marker:text-xs ">
                 <MDXContent components={mdxComponents} />
               </article>
             </BlurFade>

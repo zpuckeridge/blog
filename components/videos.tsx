@@ -2,10 +2,14 @@
 
 import { Input } from "@/components/ui/input";
 import { Video } from "@/interfaces/video";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  MagnifyingGlassIcon,
+} from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import BlurFade from "./magicui/blur-fade";
 
 interface Props {
@@ -17,27 +21,28 @@ export default function Videos({ videos, itemsPerPage }: Props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
 
-  const currentVideos = videos
-    .filter((video) =>
-      video.title.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-    .filter((video) => {
-      if (selectedTag === "") {
-        return true;
-      } else {
-        return video.tag.includes(selectedTag);
-      }
-    })
-    .slice(startIndex, endIndex);
+  // Memoize filtered videos
+  const filteredVideos = useMemo(() => {
+    return videos
+      .filter((video) =>
+        video.title.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
+      .filter((video) => !selectedTag || video.tag.includes(selectedTag));
+  }, [videos, searchTerm, selectedTag]);
 
-  const totalPages = Math.ceil(
-    videos.filter((video) =>
-      video.title.toLowerCase().includes(searchTerm.toLowerCase()),
-    ).length / itemsPerPage,
-  );
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
+
+  // Get current page videos
+  const currentVideos = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredVideos.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredVideos, currentPage, itemsPerPage]);
+
+  // Extract unique tags with proper typing
+  const uniqueTags = useMemo(() => {
+    return Array.from(new Set(videos.map((video) => video.tag)));
+  }, [videos]);
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
@@ -58,31 +63,39 @@ export default function Videos({ videos, itemsPerPage }: Props) {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  // Extract unique tags from videos array
-  // @ts-ignore
-  const uniqueTags = [...new Set(videos.map((video) => video.tag))];
-
   return (
-    <div className="space-y-20">
+    <div className="space-y-6">
       <BlurFade delay={0.3}>
-        <div className="w-full">
-          <Input
-            placeholder="Search videos"
-            value={searchTerm}
-            className="rounded"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setCurrentPage(1);
-            }}
-          />
+        <div className="space-y-2">
+          <div className="flex group relative">
+            <label className="z-[1] pointer-events-none has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)):-translate-y-1/2 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:text-xs has-[+input:not(:placeholder-shown)]:font-normal dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 has-[input:not(:placeholder-shown)]:text-black origin-start absolute top-1/2 block -translate-y-1/2 cursor-text px-1 text-sm text-muted-foreground transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:text-xs group-focus-within:font-normal group-focus-within:text-black dark:group-focus-within:text-neutral-300">
+              <span className="inline-flex text-xs bg-background px-2 relative -top-[1px]">
+                Search
+              </span>
+            </label>
+            <Input
+              type="text"
+              placeholder=""
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="-me-px text-xs flex-1 shadow-none text-black dark:text-neutral-300"
+            />
 
-          <div className="md:inline-flex gap-2 grid grid-cols-2 mt-2">
+            <div className="absolute text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
+              <MagnifyingGlassIcon />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
             {uniqueTags.map((tag, index) => (
               <button
-                className={`text-sm ${
-                  selectedTag === tag
-                    ? "text-blue-500"
-                    : "text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
+                className={`px-3 py-1 rounded-md text-xs ${
+                  selectedTag.includes(tag)
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
                 key={index}
                 onClick={() => {

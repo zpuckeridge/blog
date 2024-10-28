@@ -20,6 +20,13 @@ export default async function Clip({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
+  const stats = await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=/video/${video.slug}`,
+    { cache: "no-store" },
+  ).then((res) => res.json());
+
+  console.log(stats);
+
   return (
     <div className="max-w-lg mx-auto space-y-2 ">
       <BlurFade delay={0.1}>
@@ -35,13 +42,15 @@ export default async function Clip({ params }: { params: { slug: string } }) {
             </div>
           </div>
           <div className="flex justify-between text-xs text-muted-foreground">
-            <div>
+            <p>
               {new Date(video.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
-              })}
-            </div>
+              })}{" "}
+              · {stats.views.value} {stats.views.value === 1 ? "view" : "views"}{" "}
+              in the last 30 days
+            </p>
           </div>
         </div>
       </BlurFade>
