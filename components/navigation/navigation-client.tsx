@@ -67,7 +67,7 @@ export default function NavigationClient({
                         {posts.map((post: any) => (
                           <Link
                             key={post.url}
-                            href={`${post.url}`}
+                            href={`/timeline${post.url}`}
                             aria-label={post.title}
                             className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                             onClick={handleDrawerClose}
@@ -202,7 +202,7 @@ export default function NavigationClient({
                   {posts.map((post: any) => (
                     <Link
                       key={post.url}
-                      href={`${post.url}`}
+                      href={`/timeline${post.url}`}
                       aria-label={post.title}
                       className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                     >
