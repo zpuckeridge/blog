@@ -7,6 +7,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export async function generateStaticParams() {
+  return allVideos.map((video) => ({
+    slug: video._raw.flattenedPath,
+  }));
+}
+
 export default async function Clip({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
@@ -69,13 +75,11 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   );
 }
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
-export function generateMetadata({ params }: Params): Metadata {
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
   const video = allVideos.find(
     (video) => video._raw.flattenedPath === params.slug,
   );

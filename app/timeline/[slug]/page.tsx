@@ -16,7 +16,7 @@ import {
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { getMDXComponent } from "next-contentlayer/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -87,6 +87,12 @@ const mdxComponents: MDXComponents = {
   ),
 };
 
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post._raw.flattenedPath,
+  }));
+}
+
 export default async function Post({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
@@ -100,16 +106,16 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const wordCount = countWords(post.body.raw);
-  const averageWordsPerMinute = 300; // Adjust this based on audience reading speed
-  const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
-
-  const MDXContent = useMDXComponent(post.body.code);
-
   const stats = await fetch(
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=${post.url}`,
     { cache: "no-store" },
   ).then((res) => res.json());
+
+  const wordCount = countWords(post.body.raw);
+  const averageWordsPerMinute = 300; // Adjust this based on audience reading speed
+  const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
+
+  const MDXContent = getMDXComponent(post.body.code);
 
   return (
     <>
@@ -273,13 +279,11 @@ export default async function Post({ params }: { params: { slug: string } }) {
   );
 }
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
-export function generateMetadata({ params }: Params): Metadata {
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
 
   if (!post) {
@@ -322,6 +326,3 @@ export function generateMetadata({ params }: Params): Metadata {
     },
   };
 }
-
-export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: `timeline/${post._raw.flattenedPath}` }));
