@@ -30,7 +30,7 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   }
 
   const stats = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=${video.url}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=/video${video.url}`,
     { cache: "no-store" },
   ).then((res) => res.json());
 

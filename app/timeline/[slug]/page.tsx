@@ -110,7 +110,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
   }
 
   const stats = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=${post.url}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=/timeline${post.url}`,
     { cache: "no-store" },
   ).then((res) => res.json());
 
