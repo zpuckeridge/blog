@@ -53,28 +53,6 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
     return acc;
   }, {});
 
-  const Note = ({ post }: { post: Post }) => (
-    <div
-      key={post.url}
-      className={`bg-yellow-100 p-4 w-full rounded-xl space-y-2 selection:bg-yellow-200 selection:text-yellow-600 ${
-        isAnyPostHovered
-          ? "opacity-50 group-hover/item:opacity-100"
-          : "opacity-100"
-      } transition-opacity`}
-    >
-      <div className="text-xs text-muted-foreground text-yellow-600 flex justify-between">
-        <p>Note</p>
-        <p>
-          {new Date(post.date).toLocaleDateString("en-US", {
-            day: "2-digit",
-            month: "short",
-          })}
-        </p>
-      </div>
-      <p className="text-yellow-950">{post.body.raw}</p>
-    </div>
-  );
-
   return (
     <div className="flex flex-col w-full">
       <div className="space-y-2 mb-6">
@@ -134,7 +112,27 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                     onMouseEnter={() => setIsAnyPostHovered(true)}
                     onMouseLeave={() => setIsAnyPostHovered(false)}
                   >
-                    <Note post={post} />
+                    <div
+                      key={post.url}
+                      className={`bg-yellow-100 dark:bg-yellow-900 p-4 w-full rounded-xl space-y-2 selection:bg-yellow-200 selection:text-yellow-600 ${
+                        isAnyPostHovered
+                          ? "opacity-50 group-hover/item:opacity-100"
+                          : "opacity-100"
+                      } transition-opacity`}
+                    >
+                      <div className="text-xs text-muted-foreground text-yellow-600 dark:text-yellow-500 flex justify-between">
+                        <p>Note</p>
+                        <p>
+                          {new Date(post.date).toLocaleDateString("en-US", {
+                            day: "2-digit",
+                            month: "short",
+                          })}
+                        </p>
+                      </div>
+                      <p className="text-yellow-950 dark:text-yellow-100">
+                        {post.body.raw}
+                      </p>
+                    </div>
                   </div>
                 ) : (
                   <Link
