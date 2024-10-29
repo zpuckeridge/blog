@@ -1,4 +1,4 @@
-import { allPosts, allVideos } from "@/.contentlayer/generated";
+import { allPosts, allVideos } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import NavigationClient from "./navigation-client";
 

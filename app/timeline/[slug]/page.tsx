@@ -1,4 +1,3 @@
-import { allPosts } from "@/.contentlayer/generated";
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
@@ -14,6 +13,7 @@ import {
   EnvelopeClosedIcon,
   EyeOpenIcon,
 } from "@radix-ui/react-icons";
+import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";

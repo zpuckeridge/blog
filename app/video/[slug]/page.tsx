@@ -1,8 +1,8 @@
-import { allVideos } from "@/.contentlayer/generated";
 import CopyLink from "@/components/copy-link";
 import BlurFade from "@/components/magicui/blur-fade";
 import Player from "@/components/player";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { allVideos } from "contentlayer/generated";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
