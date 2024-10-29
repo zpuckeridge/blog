@@ -19,6 +19,7 @@ export default function NotFound() {
           width={500}
           quality={100}
           priority
+          unoptimized
           className="rounded-xl"
           height={500}
         />
