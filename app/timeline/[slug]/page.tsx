@@ -88,7 +88,7 @@ const mdxComponents: MDXComponents = {
 };
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
+  return allPosts.map((post: { _raw: { flattenedPath: string } }) => ({
     slug: post._raw.flattenedPath,
   }));
 }
@@ -100,7 +100,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+  const post = allPosts.find(
+    (post: { _raw: { flattenedPath: string } }) =>
+      post._raw.flattenedPath === params.slug,
+  );
 
   if (!post) {
     return notFound();
@@ -284,7 +287,10 @@ export function generateMetadata({
 }: {
   params: { slug: string };
 }): Metadata {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+  const post = allPosts.find(
+    (post: { _raw: { flattenedPath: string } }) =>
+      post._raw.flattenedPath === params.slug,
+  );
 
   if (!post) {
     return notFound();
