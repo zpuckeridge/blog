@@ -101,7 +101,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
               {yearPosts.map((post: Post, index: number) => (
                 <Link
                   key={post.url}
-                  href={`${post.url}`}
+                  href={`/timeline${post.url}`}
                   className={`flex justify-between w-full py-3 gap-8 ${
                     index === yearPosts.length - 1
                       ? ""

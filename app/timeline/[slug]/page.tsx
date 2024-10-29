@@ -94,11 +94,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const post = allPosts.find(
-    (post) => post._raw.flattenedPath === `timeline/${params.slug}`,
-  );
-
-  console.log(post);
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
 
   if (!post) {
     return notFound();

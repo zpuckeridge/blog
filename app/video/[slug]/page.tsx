@@ -15,7 +15,7 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   }
 
   const video = allVideos.find(
-    (video) => video._raw.flattenedPath === `video/${params.slug}`,
+    (video) => video._raw.flattenedPath === params.slug,
   );
 
   if (!video) {

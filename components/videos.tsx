@@ -137,7 +137,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
         <div className="grid grid-cols-2 gap-6 mt-2">
           {currentVideos.map((video: Video) => (
             <Link
-              href={`${video.url}`}
+              href={`/video${video.url}`}
               title={video.title}
               key={video.url}
               className="focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
