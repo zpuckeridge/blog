@@ -23,6 +23,27 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
+export const Note = defineDocumentType(() => ({
+  name: "Note",
+  filePathPattern: `notes/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    date: { type: "date", required: true },
+  },
+}));
+
+export const Link = defineDocumentType(() => ({
+  name: "Link",
+  filePathPattern: `links/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    date: { type: "date", required: true },
+    url: { type: "string", required: true },
+  },
+}));
+
 export const Video = defineDocumentType(() => ({
   name: "Video",
   filePathPattern: `video/**/*.mdx`,
@@ -45,7 +66,7 @@ export const Video = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "_content",
-  documentTypes: [Post, Video],
+  documentTypes: [Post, Video, Note, Link],
   mdx: {
     remarkPlugins: [remarkGfm],
   },

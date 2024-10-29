@@ -1,7 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import PostRendering from "@/components/posts";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { allPosts } from "contentlayer/generated";
+import { allLinks, allNotes, allPosts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -13,12 +13,14 @@ export const metadata: Metadata = {
 };
 
 export default function Posts() {
-  const posts = allPosts
+  const allContent = [...allPosts, ...allNotes, ...allLinks];
+
+  const content = allContent
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
-    .reduce((acc: Record<number, any[]>, post: any) => {
-      const year = new Date(post.date).getFullYear();
+    .reduce((acc: Record<number, any[]>, item: any) => {
+      const year = new Date(item.date).getFullYear();
       if (!acc[year]) acc[year] = [];
-      acc[year].push(post);
+      acc[year].push(item);
       return acc;
     }, {});
 
@@ -43,7 +45,7 @@ export default function Posts() {
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <PostRendering postsByYear={posts} />
+          <PostRendering postsByYear={content} />
         </BlurFade>
 
         <Link

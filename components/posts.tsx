@@ -9,7 +9,9 @@ interface Post {
   url: string;
   title: string;
   date: string;
-  tag: string; // Add tags to Post interface
+  tag: string;
+  type: string;
+  body: { raw: string };
 }
 
 interface PostsProps {
@@ -50,6 +52,28 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
     }
     return acc;
   }, {});
+
+  const Note = ({ post }: { post: Post }) => (
+    <div
+      key={post.url}
+      className={`bg-yellow-100 p-4 w-full rounded-xl space-y-2 selection:bg-yellow-200 selection:text-yellow-600 ${
+        isAnyPostHovered
+          ? "opacity-50 group-hover/item:opacity-100"
+          : "opacity-100"
+      } transition-opacity`}
+    >
+      <div className="text-xs text-muted-foreground text-yellow-600 flex justify-between">
+        <p>Note</p>
+        <p>
+          {new Date(post.date).toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "short",
+          })}
+        </p>
+      </div>
+      <p className="text-yellow-950">{post.body.raw}</p>
+    </div>
+  );
 
   return (
     <div className="flex flex-col w-full">
@@ -95,48 +119,63 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
       {Object.entries(filteredPostsByYear)
         .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
         .map(([year, yearPosts]) => (
-          <div key={year} className="border-t border-muted flex w-full">
+          <div key={year} className="border-t border-muted text-sm flex w-full">
             <h2 className="text-muted-foreground w-[100px] py-3">{year}</h2>
             <div className="flex flex-col w-full">
-              {yearPosts.map((post: Post, index: number) => (
-                <Link
-                  key={post.url}
-                  href={`/timeline${post.url}`}
-                  className={`flex justify-between w-full py-3 gap-8 ${
-                    index === yearPosts.length - 1
-                      ? ""
-                      : "border-b border-muted"
-                  } group/item`}
-                  onMouseEnter={() => setIsAnyPostHovered(true)}
-                  onMouseLeave={() => setIsAnyPostHovered(false)}
-                >
-                  <div className="w-full">
-                    <p
-                      className={`${
-                        isAnyPostHovered
-                          ? "opacity-50 group-hover/item:opacity-100"
-                          : "opacity-100"
-                      } transition-opacity`}
-                    >
-                      {post.title}
-                    </p>
+              {yearPosts.map((post: Post, index: number) =>
+                post.type === "Note" ? (
+                  <div
+                    key={post.url}
+                    className={`flex justify-between w-full py-3 gap-8 ${
+                      index === yearPosts.length - 1
+                        ? ""
+                        : "border-b border-muted"
+                    } group/item`}
+                    onMouseEnter={() => setIsAnyPostHovered(true)}
+                    onMouseLeave={() => setIsAnyPostHovered(false)}
+                  >
+                    <Note post={post} />
                   </div>
-                  <div className="text-muted-foreground whitespace-nowrap">
-                    <span
-                      className={`${
-                        isAnyPostHovered
-                          ? "opacity-50 group-hover/item:opacity-100"
-                          : "opacity-100"
-                      } transition-opacity`}
-                    >
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        day: "2-digit",
-                        month: "short",
-                      })}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                ) : (
+                  <Link
+                    key={post.url}
+                    href={`/timeline${post.url}`}
+                    className={`flex justify-between w-full py-3 gap-8 ${
+                      index === yearPosts.length - 1
+                        ? ""
+                        : "border-b border-muted"
+                    } group/item`}
+                    onMouseEnter={() => setIsAnyPostHovered(true)}
+                    onMouseLeave={() => setIsAnyPostHovered(false)}
+                  >
+                    <div className="w-full">
+                      <p
+                        className={`${
+                          isAnyPostHovered
+                            ? "opacity-50 group-hover/item:opacity-100"
+                            : "opacity-100"
+                        } transition-opacity`}
+                      >
+                        {post.title}
+                      </p>
+                    </div>
+                    <div className="text-muted-foreground whitespace-nowrap">
+                      <span
+                        className={`${
+                          isAnyPostHovered
+                            ? "opacity-50 group-hover/item:opacity-100"
+                            : "opacity-100"
+                        } transition-opacity`}
+                      >
+                        {new Date(post.date).toLocaleDateString("en-US", {
+                          day: "2-digit",
+                          month: "short",
+                        })}
+                      </span>
+                    </div>
+                  </Link>
+                ),
+              )}
             </div>
           </div>
         ))}
