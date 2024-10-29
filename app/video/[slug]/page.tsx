@@ -25,8 +25,6 @@ export default async function Clip({ params }: { params: { slug: string } }) {
     { cache: "no-store" },
   ).then((res) => res.json());
 
-  console.log(stats);
-
   return (
     <div className="max-w-lg mx-auto space-y-2 ">
       <BlurFade delay={0.1}>
