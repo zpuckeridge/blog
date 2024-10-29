@@ -1,3 +1,4 @@
+import { allPosts } from "@/.contentlayer/generated";
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
@@ -13,7 +14,6 @@ import {
   EnvelopeClosedIcon,
   EyeOpenIcon,
 } from "@radix-ui/react-icons";
-import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
@@ -94,7 +94,11 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
+  const post = allPosts.find(
+    (post) => post._raw.flattenedPath === `timeline/${params.slug}`,
+  );
+
+  console.log(post);
 
   if (!post) {
     return notFound();
@@ -324,4 +328,4 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
+  allPosts.map((post) => ({ slug: `timeline/${post._raw.flattenedPath}` }));

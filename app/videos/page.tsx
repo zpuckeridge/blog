@@ -1,6 +1,7 @@
+import { allVideos } from "@/.contentlayer/generated";
 import BlurFade from "@/components/magicui/blur-fade";
 import Videos from "@/components/videos";
-import { getAllVideos } from "@/lib/get-videos";
+import { compareDesc } from "date-fns";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Clips() {
-  const videos = getAllVideos();
+  const videos = allVideos.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date)),
+  );
 
   return (
     <>
@@ -25,7 +28,7 @@ export default async function Clips() {
             </p>
           </BlurFade>
         </div>
-        
+
         <Videos videos={videos} itemsPerPage={4} />
       </div>
     </>

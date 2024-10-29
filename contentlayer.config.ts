@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `timeline/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
@@ -18,14 +18,34 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (post) => `/timeline/${post._raw.flattenedPath}`,
+      resolve: (post) => `/${post._raw.flattenedPath}`,
+    },
+  },
+}));
+
+export const Video = defineDocumentType(() => ({
+  name: "Video",
+  filePathPattern: `video/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    date: { type: "date", required: true },
+    tag: { type: "string", required: true },
+    description: { type: "string", required: false },
+    videoUrl: { type: "string", required: true },
+    duration: { type: "number", required: true },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (video) => `/${video._raw.flattenedPath}`,
     },
   },
 }));
 
 export default makeSource({
-  contentDirPath: "_content/posts",
-  documentTypes: [Post],
+  contentDirPath: "_content",
+  documentTypes: [Post, Video],
   mdx: {
     remarkPlugins: [remarkGfm],
   },

@@ -1,5 +1,4 @@
-import { getAllVideos } from "@/lib/get-videos";
-import { allPosts } from "contentlayer/generated";
+import { allPosts, allVideos } from "@/.contentlayer/generated";
 import { compareDesc } from "date-fns";
 import NavigationClient from "./navigation-client";
 
@@ -8,7 +7,9 @@ export default async function Navigation() {
     compareDesc(new Date(a.date), new Date(b.date)),
   );
 
-  const videos = getAllVideos();
+  const videos = allVideos.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date)),
+  );
 
   return (
     <>

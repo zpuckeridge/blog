@@ -1,7 +1,7 @@
+import { allPosts } from "@/.contentlayer/generated";
 import BlurFade from "@/components/magicui/blur-fade";
 import PostRendering from "@/components/posts";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { allPosts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { Metadata } from "next";
 import Link from "next/link";

@@ -1,7 +1,7 @@
+import { allVideos } from "@/.contentlayer/generated";
 import CopyLink from "@/components/copy-link";
 import BlurFade from "@/components/magicui/blur-fade";
 import Player from "@/components/player";
-import { getVideoBySlug } from "@/lib/get-videos";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -14,14 +14,16 @@ export default async function Clip({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const video = getVideoBySlug(slug);
+  const video = allVideos.find(
+    (video) => video._raw.flattenedPath === `video/${params.slug}`,
+  );
 
   if (!video) {
     return notFound();
   }
 
   const stats = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=/video/${video.slug}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=${video.url}`,
     { cache: "no-store" },
   ).then((res) => res.json());
 
@@ -74,7 +76,9 @@ type Params = {
 };
 
 export function generateMetadata({ params }: Params): Metadata {
-  const video = getVideoBySlug(params.slug);
+  const video = allVideos.find(
+    (video) => video._raw.flattenedPath === params.slug,
+  );
 
   if (!video) {
     return notFound();
@@ -109,7 +113,7 @@ export function generateMetadata({ params }: Params): Metadata {
           type: "video/mp4",
         },
       ],
-      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${video.slug}`,
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}${video.url}`,
     },
     twitter: {
       card: "player",
