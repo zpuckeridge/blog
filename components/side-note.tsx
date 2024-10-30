@@ -2,7 +2,7 @@ import { FC } from "react";
 
 interface SideNoteProps {
   children: React.ReactNode;
-  note: string;
+  note: React.ReactNode;
 }
 
 const SideNote: FC<SideNoteProps> = ({ children, note }) => {
