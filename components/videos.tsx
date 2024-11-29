@@ -32,12 +32,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
   const [selectedTag, setSelectedTag] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Add error handling for empty state
-  if (!videos?.length) {
-    return <div className="text-center py-8">No videos available</div>;
-  }
-
-  // Memoize filtered videos
+  // Moved useMemo hooks before the early return
   const filteredVideos = useMemo(() => {
     return videos
       .filter((video) =>
@@ -46,18 +41,21 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
       .filter((video) => !selectedTag || video.tag.includes(selectedTag));
   }, [videos, searchTerm, selectedTag]);
 
-  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
-
-  // Get current page videos
   const currentVideos = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     return filteredVideos.slice(startIndex, startIndex + itemsPerPage);
   }, [filteredVideos, currentPage, itemsPerPage]);
 
-  // Extract unique tags with proper typing
   const uniqueTags = useMemo(() => {
-    return Array.from(new Set(videos.map((video) => video.tag)));
+    return Array.from(new Set(videos?.map((video) => video.tag) || []));
   }, [videos]);
+
+  // Moved the early return after all hooks
+  if (!videos?.length) {
+    return <div className="text-center py-8">No videos available</div>;
+  }
+
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
 
   const handlePrevPage = () => {
     if (currentPage > 1) {

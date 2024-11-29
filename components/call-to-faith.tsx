@@ -2,7 +2,7 @@
 
 import BlurFade from "@/components/magicui/blur-fade";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function CallToFaith() {
   const slides = [
@@ -51,7 +51,7 @@ export default function CallToFaith() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   const currentSlide = slides[currentSlideIndex];
 
@@ -63,7 +63,7 @@ export default function CallToFaith() {
   const circumference = radius * 2 * Math.PI;
   const strokeDashoffset = circumference - (timeLeft / 5) * circumference;
 
-  const animate = (time: number) => {
+  const animate = useCallback((time: number) => {
     if (previousTimeRef.current !== undefined) {
       const deltaTime = time - previousTimeRef.current;
       setTimeLeft((prevTime) => {
@@ -75,12 +75,12 @@ export default function CallToFaith() {
     }
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);
-  };
+  }, []);
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current!);
-  }, []);
+  }, [animate]);
 
   const goToPreviousSlide = () => {
     setCurrentSlideIndex(

@@ -33,9 +33,9 @@ export default function Posts() {
         <BlurFade delay={0.2}>
           <div className="space-y-2">
             <p>
-              Welcome to my personal corner of the internet. Here you'll find
-              posts about my faith, technology I'm interested in, random notes,
-              code snippets and other things happening in my life.
+              Welcome to my personal corner of the internet. Here you&apos;ll
+              find posts about my faith, technology I&apos;m interested in,
+              random notes, code snippets and other things happening in my life.
             </p>
 
             <p className="text-xs text-muted-foreground">

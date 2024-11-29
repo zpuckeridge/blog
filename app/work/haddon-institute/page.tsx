@@ -35,8 +35,8 @@ export default function Work() {
             A Reformed seminary in Australia? Yes, please.
           </h2>
           <p className="text-lg ">
-            In October 2023, Keith (Haddon's President) approached me looking to
-            develop a website for the Haddon Institute to{" "}
+            In October 2023, Keith (Haddon&apos;s President) approached me
+            looking to develop a website for the Haddon Institute to{" "}
             <span className="font-bold">
               help get it off the ground and put some momentum in its sails
             </span>

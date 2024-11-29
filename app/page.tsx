@@ -57,16 +57,16 @@ export default async function Home() {
             >
               61 Oaks Group
             </LinkWithIcon>
-            , a cohort of companies that participates in moving forward God’s
-            work within the marketplace. We created the{" "}
+            , a cohort of companies that participates in moving forward
+            God&apos;s work within the marketplace. We created the{" "}
             <LinkWithIcon
               href="https://haddoninstitute.org?ref=zacchary.me"
               aria-label="Haddon Institute website"
             >
               Haddon Institute
             </LinkWithIcon>
-            , a seminary known for its Spurgeonic and missional mindset. We've
-            also built{" "}
+            , a seminary known for its Spurgeonic and missional mindset.
+            We&apos;ve also built{" "}
             <LinkWithIcon
               href="https://thearmourybookshop.com.au?ref=zacchary.me"
               aria-label="The Armoury Bookshop website"
@@ -101,8 +101,8 @@ export default async function Home() {
         <BlurFade delay={0.4} inView>
           <p className="leading-relaxed" role="article">
             I have limited availability, but I am open to hearing about your
-            project! If you're looking for a web designer, please feel free to
-            reach out via{" "}
+            project! If you&apos;re looking for a web designer, please feel free
+            to reach out via{" "}
             <LinkWithIcon
               href="mailto:hi@zacchary.me"
               aria-label="Email Zacchary Puckeridge"

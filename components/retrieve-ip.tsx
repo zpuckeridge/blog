@@ -29,7 +29,7 @@ export default function RetrieveIP() {
   return data ? (
     <div className="max-w-sm font-mono text-muted-foreground text-sm">
       <p>
-        Welcome back {data.ip}, it's good to see someone from {data.city},{" "}
+        Welcome back {data.ip}, it&apos;s good to see someone from {data.city},{" "}
         {data.country_name}!
       </p>
     </div>

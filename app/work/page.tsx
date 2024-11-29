@@ -49,9 +49,9 @@ export default function Work() {
         <BlurFade delay={0.2}>
           <div className="text-sm leading-relaxed flex flex-col gap-2">
             <p>
-              I've been a web developer for around 3 years now, creating unique
-              marketing, e-commerce and web applications for clients. Below is a
-              selection of my work from the last few years.
+              I&apos;ve been a web developer for around 3 years now, creating
+              unique marketing, e-commerce and web applications for clients.
+              Below is a selection of my work from the last few years.
             </p>
           </div>
         </BlurFade>

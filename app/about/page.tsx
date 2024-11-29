@@ -21,7 +21,7 @@ export default function About() {
       <div className="text-sm flex flex-col gap-4">
         <BlurFade delay={0.2}>
           <p className="leading-relaxed">
-            I'm a <Age /> year old{" "}
+            I&apos;m a <Age /> year old{" "}
             <LinkWithIcon href="https://1689londonbaptistconfession.com/">
               Reformed Baptist
             </LinkWithIcon>{" "}
@@ -29,10 +29,10 @@ export default function About() {
             <LinkWithIcon href="https://maps.app.goo.gl/BikC7wpFxkio2f7A8">
               Australia
             </LinkWithIcon>
-            . Since childhood, I've had a natural affinity for computers, diving
-            deep into video games, tinkering and taking apart old computers.
-            After graduating high school, I spent about 9 months studying a dual
-            degree of Psychology and Criminology.
+            . Since childhood, I&apos;ve had a natural affinity for computers,
+            diving deep into video games, tinkering and taking apart old
+            computers. After graduating high school, I spent about 9 months
+            studying a dual degree of Psychology and Criminology.
           </p>
         </BlurFade>
 
@@ -105,18 +105,18 @@ export default function About() {
             After coming back from the United States, I landed a job supporting
             a small web hosting company called{" "}
             <LinkWithIcon href="https://conetix.com.au/">Conetix</LinkWithIcon>.
-            All thanks to Jaydan's brother Dan for that! It was there that my
-            enthusiasm for web development and self-hosting really began to take
-            off.
+            All thanks to Jaydan&apos;s brother Dan for that! It was there that
+            my enthusiasm for web development and self-hosting really began to
+            take off.
           </p>
         </BlurFade>
 
         <BlurFade delay={0.7}>
           <p className="leading-relaxed">
-            I've explored Proxmox, Docker, Kubernetes, and more, finding
+            I&apos;ve explored Proxmox, Docker, Kubernetes, and more, finding
             satisfaction in using open-source software to build and host
-            applications. Nowadays, I'm all about web development, that software
-            being - JavaScript, NextJS, and TailwindCSS.
+            applications. Nowadays, I&apos;m all about web development, that
+            software being - JavaScript, NextJS, and TailwindCSS.
           </p>
         </BlurFade>
       </div>
