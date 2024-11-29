@@ -16,7 +16,7 @@ import {
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
-import { getMDXComponent } from "next-contentlayer/hooks";
+import { getMDXComponent } from "next-contentlayer2/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -93,7 +93,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Post(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
   const { slug } = params;
 
   if (!slug) {
@@ -282,11 +285,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
   );
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const params = await props.params;
   const post = allPosts.find(
     (post: { _raw: { flattenedPath: string } }) =>
       post._raw.flattenedPath === params.slug,

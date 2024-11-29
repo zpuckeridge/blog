@@ -13,7 +13,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Clip({ params }: { params: { slug: string } }) {
+export default async function Clip(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
   const { slug } = params;
 
   if (!slug) {
@@ -76,11 +79,10 @@ export default async function Clip({ params }: { params: { slug: string } }) {
   );
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const params = await props.params;
   const video = allVideos.find(
     (video: { _raw: { flattenedPath: string } }) =>
       video._raw.flattenedPath === params.slug,

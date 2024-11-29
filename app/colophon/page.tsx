@@ -65,14 +65,10 @@ export default function Colophon() {
                   ,{" "}
                   <LinkWithIcon href="https://www.framer.com/motion?ref=zacchary.me">
                     Framer Motion
-                  </LinkWithIcon>
-                  ,{" "}
-                  <LinkWithIcon href="https://www.mux.com?ref=zacchary.me">
-                    Mux
                   </LinkWithIcon>{" "}
                   and{" "}
-                  <LinkWithIcon href="https://vidstack.io?ref=zacchary.me">
-                    Vidstack
+                  <LinkWithIcon href="https://www.mux.com?ref=zacchary.me">
+                    Mux
                   </LinkWithIcon>
                   .
                 </p>
