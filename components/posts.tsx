@@ -78,7 +78,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
         <div className="flex flex-wrap gap-2">
           {allTags.map((tag) => (
             <button
-              key={tag}
+              key={`tag-${tag}`}
               onClick={() =>
                 setSelectedTag(selectedTag.includes(tag) ? [] : [tag])
               }
@@ -97,13 +97,16 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
       {Object.entries(filteredPostsByYear)
         .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
         .map(([year, yearPosts]) => (
-          <div key={year} className="border-t border-muted text-sm flex w-full">
+          <div
+            key={`year-${year}`}
+            className="border-t border-muted text-sm flex w-full"
+          >
             <h2 className="text-muted-foreground w-[100px] py-3">{year}</h2>
             <div className="flex flex-col w-full">
               {yearPosts.map((post: Post, index: number) =>
                 post.type === "Note" ? (
                   <div
-                    key={post.url}
+                    key={`note-${post.url}-${post.date}`}
                     className={`flex justify-between w-full py-3 gap-8 ${
                       index === yearPosts.length - 1
                         ? ""
@@ -113,7 +116,6 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                     onMouseLeave={() => setIsAnyPostHovered(false)}
                   >
                     <div
-                      key={post.url}
                       className={`bg-yellow-100 dark:bg-yellow-900 p-4 w-full rounded-xl space-y-2 selection:bg-yellow-200 selection:text-yellow-600 ${
                         isAnyPostHovered
                           ? "opacity-50 group-hover/item:opacity-100"
@@ -136,7 +138,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                   </div>
                 ) : (
                   <Link
-                    key={post.url}
+                    key={`post-${post.url}-${post.date}`}
                     href={`/timeline${post.url}`}
                     className={`flex justify-between w-full py-3 gap-8 ${
                       index === yearPosts.length - 1

@@ -19,8 +19,12 @@ export default function Posts() {
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
     .reduce((acc: Record<number, any[]>, item: any) => {
       const year = new Date(item.date).getFullYear();
+      const itemWithId = {
+        ...item,
+        id: item._id || item.slug || `${item.date}-${item.title}`,
+      };
       if (!acc[year]) acc[year] = [];
-      acc[year].push(item);
+      acc[year].push(itemWithId);
       return acc;
     }, {});
 
