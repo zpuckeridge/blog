@@ -16,12 +16,12 @@ export default async function Home() {
             className="font-serif text-2xl italic"
             role="heading"
             aria-level={1}
-            aria-label="Christian IT Administrator working for Rising Sun Pictures. Building
-            better artist experiences by day, designing epic web experiences by
-            night."
+            aria-label="Chief Technical Officer working for 61 Oaks Group.
+            Building better participant experiences by day, designing epic web
+            experiences by night."
           >
-            Christian IT Administrator working for Rising Sun Pictures. Building
-            better artist experiences by day, designing epic web experiences by
+            Chief Technical Officer working for 61 Oaks Group. Building better
+            participant experiences by day, designing epic web experiences by
             night.
           </p>
 
@@ -50,7 +50,7 @@ export default async function Home() {
       <div className="text-sm flex flex-col gap-4">
         <BlurFade delay={0.2} inView>
           <p className="leading-relaxed" role="article">
-            I am the lead web designer for the{" "}
+            I am the CTO for the{" "}
             <LinkWithIcon
               href="https://61oaksgroup.com.au?ref=zacchary.me"
               aria-label="61 Oaks Group website"
@@ -85,20 +85,6 @@ export default async function Home() {
         </BlurFade>
 
         <BlurFade delay={0.3} inView>
-          <p className="leading-relaxed" role="article">
-            I also work as an IT Administrator for{" "}
-            <LinkWithIcon
-              href="https://rsp.com.au?ref=zacchary.me"
-              aria-label="Rising Sun Pictures website"
-            >
-              Rising Sun Pictures
-            </LinkWithIcon>{" "}
-            during the day. I deal with a variety of issues and ensure the
-            lights stay on!
-          </p>
-        </BlurFade>
-
-        <BlurFade delay={0.4} inView>
           <p className="leading-relaxed" role="article">
             I have limited availability, but I am open to hearing about your
             project! If you&apos;re looking for a web designer, please feel free
