@@ -109,13 +109,6 @@ export default function NavigationClient({
                           Read.cv
                         </a>
                         <a
-                          href="https://shop.zacchary.me/"
-                          target="_blank"
-                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
-                        >
-                          Shop
-                        </a>
-                        <a
                           href="https://x.com/zpuckeridge"
                           target="_blank"
                           className="hover:text-blue-400 dark:hover:text-blue-600 transition"
@@ -241,13 +234,6 @@ export default function NavigationClient({
                     className="hover:text-blue-400 dark:hover:text-blue-600 transition"
                   >
                     Read.cv
-                  </a>
-                  <a
-                    href="https://shop.zacchary.me/"
-                    target="_blank"
-                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
-                  >
-                    Shop
                   </a>
                   <a
                     href="https://x.com/zpuckeridge"
