@@ -56,15 +56,15 @@ export default function CallToFaith() {
   const currentSlide = slides[currentSlideIndex];
 
   const [timeLeft, setTimeLeft] = useState(5); // 5 seconds
-  const requestRef = useRef<number>();
-  const previousTimeRef = useRef<number>();
+  const requestRef = useRef<number | null>(null);
+  const previousTimeRef = useRef<number | null>(null);
 
   const radius = 90;
   const circumference = radius * 2 * Math.PI;
   const strokeDashoffset = circumference - (timeLeft / 5) * circumference;
 
   const animate = useCallback((time: number) => {
-    if (previousTimeRef.current !== undefined) {
+    if (previousTimeRef.current != null) {
       const deltaTime = time - previousTimeRef.current;
       setTimeLeft((prevTime) => {
         if (prevTime <= 0) {
@@ -86,10 +86,12 @@ export default function CallToFaith() {
     setCurrentSlideIndex(
       (prevIndex) => (prevIndex - 1 + slides.length) % slides.length,
     );
+    setTimeLeft(5); // Reset timer
   };
 
   const goToNextSlide = () => {
     setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    setTimeLeft(5); // Reset timer
   };
 
   return (
