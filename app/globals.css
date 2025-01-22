@@ -118,6 +118,16 @@
   @apply text-muted-foreground dark:text-muted-foreground;
 }
 
+.footnotes a {
+  content: url('/arrow-top-right.svg');
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  vertical-align: top;
+  filter: invert(60%); /* Makes the SVG icon muted */
+  @apply text-muted-foreground;
+}
+
 @-webkit-keyframes animate-svg-stroke-1 {
   0% {
     stroke-dashoffset: 1798px;
@@ -1781,3 +1791,4 @@
   -webkit-animation: animate-svg-stroke-57 0.03s ease-in-out 1.68s both;
   animation: animate-svg-stroke-57 0.03s ease-in-out 1.68s both;
 }
+
