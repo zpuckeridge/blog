@@ -106,7 +106,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-gradient-to-t from-white dark:from-background  z-10" />
+          <div className="pointer-events-none fixed inset-x-0 bottom-10 lg:bottom-0 h-20  bg-linear-to-t from-white dark:from-background  z-10" />
 
           <div className="flex lg:flex-row flex-col gap-8 lg:gap-0 md:justify-between p-8 ">
             <ReturnToIndex />

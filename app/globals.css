@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config '../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   :root {
@@ -89,17 +107,19 @@
 }
 
 .footnotes :target {
-  @apply bg-blue-400;
-  @apply text-white;
+  background-color: #60a5fa; /* bg-blue-400 */
+  color: #ffffff; /* text-white */
   animation: resetColors 3s forwards; /* Add animation */
 }
 
 /* New animation to reset colors */
 @keyframes resetColors {
   100% {
-    @apply bg-background; /* Reset background to white in light mode, bg-background in dark mode */
-    @apply rounded;
-    @apply text-muted-foreground dark:text-muted-foreground; /* Reset text color */
+    background-color: hsl(var(--background)); /* bg-background */
+    border-radius: var(--radius); /* rounded */
+    color: hsl(
+      var(--muted-foreground)
+    ); /* text-muted-foreground dark:text-muted-foreground */
   }
 }
 
@@ -119,7 +139,7 @@
 }
 
 .footnotes a {
-  content: url('/arrow-top-right.svg');
+  content: url("/arrow-top-right.svg");
   display: inline-block;
   width: 12px;
   height: 12px;
@@ -1791,4 +1811,3 @@
   -webkit-animation: animate-svg-stroke-57 0.03s ease-in-out 1.68s both;
   animation: animate-svg-stroke-57 0.03s ease-in-out 1.68s both;
 }
-

@@ -215,7 +215,7 @@ export default function BooksSection({
                 priority
                 quality={100}
                 alt={media.title}
-                className="object-cover w-auto h-64 aspect-auto group-hover:blur-sm rounded-xl transition-all"
+                className="object-cover w-auto h-64 aspect-auto group-hover:blur-xs rounded-xl transition-all"
               />
             </div>
 

@@ -138,7 +138,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
               href={`/video${video.url}`}
               title={video.title}
               key={video.url}
-              className="focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+              className="focus:outline-hidden focus:ring-2 focus:ring-blue-500 rounded"
             >
               <div className="transform">
                 <div className="absolute top-2 left-2 text-white bg-black/75 rounded p-1 text-xs font-semibold ">

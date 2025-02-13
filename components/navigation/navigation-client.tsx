@@ -75,7 +75,7 @@ export default function NavigationClient({
                             {post.title}
                           </Link>
                         ))}
-                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-gradient-to-t from-white dark:from-background" />
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-linear-to-t from-white dark:from-background" />
                       </div>
                     )}
                   </div>
@@ -202,7 +202,7 @@ export default function NavigationClient({
                       {post.title}
                     </Link>
                   ))}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-10 lg:bottom-0 h-20 z-40 bg-gradient-to-t from-white dark:from-background" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-10 lg:bottom-0 h-20 z-40 bg-linear-to-t from-white dark:from-background" />
                 </div>
               )}
             </div>
