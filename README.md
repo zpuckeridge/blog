@@ -1,6 +1,6 @@
 # ✍️ Blog
 
-Built with Next.js, PagesCMS, Tailwind, shadcn, Prisma, Framer Motion, Mux.
+Built with Next.js, PagesCMS, Tailwind, shadcn, Framer Motion, Mux.
 
 ## 🚀 Install
 
