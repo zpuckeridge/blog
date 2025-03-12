@@ -20,9 +20,8 @@ export default async function Home() {
             Building better participant experiences by day, designing epic web
             experiences by night."
           >
-            Chief Technical Officer working for 61 Oaks Group. Building better
-            participant experiences by day, designing epic web experiences by
-            night.
+            Waging war on weak culture—building digital strongholds, sharpening
+            minds, and advancing the Kingdom of God.
           </p>
 
           <div className="flex justify-between gap-2" role="contentinfo">
@@ -50,57 +49,44 @@ export default async function Home() {
       <div className="text-sm flex flex-col gap-4">
         <BlurFade delay={0.2} inView>
           <p className="leading-relaxed" role="article">
-            I am the CTO for the{" "}
-            <LinkWithIcon
-              href="https://61oaksgroup.com.au?ref=zacchary.me"
-              aria-label="61 Oaks Group website"
-            >
-              61 Oaks Group
-            </LinkWithIcon>
-            , a cohort of companies that participates in moving forward
-            God&apos;s work within the marketplace. We created the{" "}
-            <LinkWithIcon
-              href="https://haddoninstitute.org?ref=zacchary.me"
-              aria-label="Haddon Institute website"
-            >
-              Haddon Institute
-            </LinkWithIcon>
-            , a seminary known for its Spurgeonic and missional mindset.
-            We&apos;ve also built{" "}
-            <LinkWithIcon
-              href="https://thearmourybookshop.com.au?ref=zacchary.me"
-              aria-label="The Armoury Bookshop website"
-            >
-              The Armoury Bookshop
-            </LinkWithIcon>
-            , a Reformed Christian bookstore and{" "}
+            Working for{" "}
             <LinkWithIcon
               href="https://starcompass.com.au?ref=zacchary.me"
               aria-label="Star Compass website"
             >
               Star Compass
             </LinkWithIcon>
-            , a disability support service operating in Brisbane Australia.
+            , a disability support service operating in Brisbane Australia and{" "}
+            <LinkWithIcon
+              href="https://haddoninstitute.org?ref=zacchary.me"
+              aria-label="Haddon Institute website"
+            >
+              Haddon Institute
+            </LinkWithIcon>
+            , a distinctly Reformed seminary seeking for the Australian Church
+            to fear and behold the majesty of our creator King. My goal is to
+            advance the Kingdom of God through companies that participate in the
+            global marketplace.
           </p>
         </BlurFade>
 
         <BlurFade delay={0.3} inView>
           <p className="leading-relaxed" role="article">
-            I have limited availability, but I am open to hearing about your
+            I also run a web design studio known as{" "}
+            <LinkWithIcon
+              href="https://obambulo.studio?ref=zacchary.me"
+              aria-label="obambulo studio website"
+            >
+              obambulo studio
+            </LinkWithIcon>
+            . I have limited availability, but I am open to hearing about your
             project! If you&apos;re looking for a web designer, please feel free
             to reach out via{" "}
             <LinkWithIcon
-              href="mailto:hi@zacchary.me"
+              href="mailto:zacc@obambulo.studio"
               aria-label="Email Zacchary Puckeridge"
             >
               email
-            </LinkWithIcon>{" "}
-            or{" "}
-            <LinkWithIcon
-              href="https://cal.com/zpuckeridge?ref=zacchary.me"
-              aria-label="Schedule a call with Zacchary Puckeridge"
-            >
-              schedule a call
             </LinkWithIcon>
             .
           </p>
