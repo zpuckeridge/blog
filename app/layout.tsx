@@ -7,16 +7,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import {
-  Inter as FontSans,
-  Nanum_Myeongjo as FontSerif,
-} from "next/font/google";
+import { Nanum_Myeongjo as FontSerif } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
+const fontSans = localFont({
+  src: "../fonts/satoshi-variable.woff2",
   variable: "--font-sans",
+  weight: "500",
 });
 
 const fontSerif = FontSerif({
@@ -95,7 +94,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `min-h-screen font-sans antialiased text-black dark:text-neutral-300 selection:bg-neutral-200/75 dark:selection:bg-neutral-700/75 `,
+          `min-h-screen font-sans text-black dark:text-neutral-300 selection:bg-neutral-200/75 dark:selection:bg-neutral-700/75 subpixel-antialiased`,
           fontSans.variable,
           fontSerif.variable,
         )}

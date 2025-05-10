@@ -33,7 +33,11 @@ export default function CopyLink() {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger onClick={handleClick} aria-label="Copy Link">
+        <TooltipTrigger
+          onClick={handleClick}
+          aria-label="Copy Link"
+          className="cursor-pointer"
+        >
           {copied ? (
             <CheckIcon className="w-4 h-4 my-auto text-muted-foreground" />
           ) : (
