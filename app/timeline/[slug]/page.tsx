@@ -263,9 +263,25 @@ export default async function Post(props: {
                 <h2 className="text-sm ">About Zacchary</h2>
 
                 <p className="text-xs text-muted-foreground">
-                  Zacchary is a Christian IT Administrator working for Rising
-                  Sun Pictures. Building better artist experiences by day,
-                  designing epic web experiences by night.
+                  Zacchary is a Christian working for{" "}
+                  <LinkWithIcon
+                    href="https://starcompass.com.au?ref=zacchary.me"
+                    aria-label="Star Compass website"
+                  >
+                    Star Compass
+                  </LinkWithIcon>
+                  , a disability support service operating in Brisbane Australia
+                  and{" "}
+                  <LinkWithIcon
+                    href="https://haddoninstitute.org?ref=zacchary.me"
+                    aria-label="Haddon Institute website"
+                  >
+                    Haddon Institute
+                  </LinkWithIcon>
+                  , a distinctly Reformed seminary seeking for the Australian
+                  Church to fear and behold the majesty of the creator King. His
+                  goal is to advance the Kingdom of God through companies that
+                  participate in the global marketplace.
                 </p>
               </div>
 
