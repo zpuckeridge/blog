@@ -31,7 +31,11 @@ const mdxComponents: MDXComponents = {
   Definition: ({ word, meaning, type }) => (
     <Definition word={word} meaning={meaning} type={type} />
   ),
-  SideNote: ({ children, note }) => <SideNote note={note}>{children}</SideNote>,
+  SideNote: ({ children, note, position }) => (
+    <SideNote note={note} position={position}>
+      {children}
+    </SideNote>
+  ),
   a: ({ href, children, ...props }) => {
     // Check if the link is a footnote reference
     if (href?.startsWith("#user-content") || href?.startsWith("#fnref-")) {
