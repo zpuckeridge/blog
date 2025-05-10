@@ -24,7 +24,7 @@ async function getActiveVisitors(token: string) {
   }
 
   const data = await response.json();
-  return data.x; // The 'x' property contains the number of active visitors
+  return data.visitors;
 }
 
 export async function GET() {
