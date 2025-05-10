@@ -23,8 +23,8 @@ export default function Colophon() {
                 <p className="text-muted-foreground">Typography</p>
 
                 <p>
-                  <LinkWithIcon href="https://fonts.google.com/specimen/Inter">
-                    Inter
+                  <LinkWithIcon href="https://fontshare.com/fonts/satoshi">
+                    Satoshi
                   </LinkWithIcon>{" "}
                   as body text,{" "}
                   <LinkWithIcon href="https://vercel.com/font">
@@ -126,7 +126,22 @@ export default function Colophon() {
                   <LinkWithIcon href="https://loganliffick.com?ref=zacchary.me">
                     loganliffick.com
                   </LinkWithIcon>
-                </div>{" "}
+                  <LinkWithIcon href="https://davidreina.com?ref=zacchary.me">
+                    davidreina.com
+                  </LinkWithIcon>
+                  <LinkWithIcon href="https://henribredt.de?ref=zacchary.me">
+                    henribredt.de
+                  </LinkWithIcon>
+                  <LinkWithIcon href="https://1of1studio.com?ref=zacchary.me">
+                    1of1studio.com
+                  </LinkWithIcon>
+                  <LinkWithIcon href="https://minimal.gallery?ref=zacchary.me">
+                    minimal.gallery
+                  </LinkWithIcon>
+                  <LinkWithIcon href="https://minimalism.com?ref=zacchary.me">
+                    minimalism.com
+                  </LinkWithIcon>
+                </div>
               </div>
 
               <div className="py-10 flex flex-col w-full gap-2">
@@ -186,9 +201,13 @@ export default function Colophon() {
                 <div className="w-2/6 text-muted-foreground">Work</div>
 
                 <div className="w-4/6">
-                  IT Administrator at{" "}
-                  <LinkWithIcon href="https://rsp.com.au?ref=zacchary.me">
-                    Rising Sun Pictures
+                  Generalist for{" "}
+                  <LinkWithIcon href="https://starcompass.com.au?ref=zacchary.me">
+                    Star Compass
+                  </LinkWithIcon>{" "}
+                  and{" "}
+                  <LinkWithIcon href="https://haddoninstitute.org?ref=zacchary.me">
+                    Haddon Institute
                   </LinkWithIcon>
                 </div>
               </div>
