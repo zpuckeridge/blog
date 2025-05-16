@@ -28,7 +28,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.11.0",
+    "framer-motion": "^12.11.4",
     "geist": "^1.4.2",
     "lucide-react": "^0.510.0",
     "mini-svg-data-uri": "^1.4.4",
@@ -47,15 +47,15 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.6",
-    "@types/node": "^22.15.17",
+    "@tailwindcss/postcss": "^4.1.7",
+    "@types/node": "^22.15.18",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
     "eslint": "^9.26.0",
     "eslint-config-next": "15.3.2",
     "postcss": "^8.5.3",
     "prettier": "3.5.3",
-    "tailwindcss": "^4.1.6",
+    "tailwindcss": "^4.1.7",
     "typescript": "^5.8.3"
   },
   "trustedDependencies": [
