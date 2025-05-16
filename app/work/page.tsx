@@ -92,7 +92,6 @@ export default function Work() {
       image: null,
       year: "2023",
       status: "Archived",
-      link: "https://thearmourybookshop.com.au",
     },
     {
       name: "Brisket and Briyani",
