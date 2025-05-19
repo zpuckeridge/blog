@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `timeline/**/*.mdx`,
+  filePathPattern: `posts/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
@@ -18,7 +18,10 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (post) => `/${post._raw.flattenedPath}`,
+      resolve: (post) => {
+        const path = post._raw.flattenedPath;
+        return `/${path.replace("posts/", "")}`;
+      },
     },
   },
 }));
@@ -30,6 +33,16 @@ export const Note = defineDocumentType(() => ({
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
+    tag: { type: "string", required: true },
+  },
+  computedFields: {
+    url: {
+      type: "string",
+      resolve: (note) => {
+        const path = note._raw.flattenedPath;
+        return `/${path.replace("notes/", "")}`;
+      },
+    },
   },
 }));
 
@@ -46,7 +59,7 @@ export const Link = defineDocumentType(() => ({
 
 export const Video = defineDocumentType(() => ({
   name: "Video",
-  filePathPattern: `video/**/*.mdx`,
+  filePathPattern: `videos/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
@@ -59,7 +72,10 @@ export const Video = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: "string",
-      resolve: (video) => `/${video._raw.flattenedPath}`,
+      resolve: (video) => {
+        const path = video._raw.flattenedPath;
+        return `/${path.replace("videos/", "")}`;
+      },
     },
   },
 }));

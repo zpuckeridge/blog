@@ -92,8 +92,8 @@ const mdxComponents: MDXComponents = {
 };
 
 export async function generateStaticParams() {
-  return allPosts.map((post: { _raw: { flattenedPath: string } }) => ({
-    slug: post._raw.flattenedPath,
+  return allPosts.map((post: { url: string }) => ({
+    slug: post.url.replace("/", ""),
   }));
 }
 
@@ -108,8 +108,7 @@ export default async function Post(props: {
   }
 
   const post = allPosts.find(
-    (post: { _raw: { flattenedPath: string } }) =>
-      post._raw.flattenedPath === params.slug,
+    (post: { url: string }) => post.url.replace("/", "") === slug,
   );
 
   if (!post) {
@@ -310,8 +309,7 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
   const post = allPosts.find(
-    (post: { _raw: { flattenedPath: string } }) =>
-      post._raw.flattenedPath === params.slug,
+    (post: { url: string }) => post.url.replace("/", "") === params.slug,
   );
 
   if (!post) {
