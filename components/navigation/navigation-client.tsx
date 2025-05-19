@@ -50,7 +50,7 @@ export default function NavigationClient({
                     onClick={handleDrawerClose}
                   >
                     <p>Work</p>
-                    <p>12 projects</p>
+                    <p>19 projects</p>
                   </Link>
                   <div className="flex flex-col gap-2">
                     <Link
