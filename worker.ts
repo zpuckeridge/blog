@@ -1,3 +1,4 @@
+import type { ExecutionContext } from "@cloudflare/workers-types";
 import { ActiveViewersDO } from "./lib/active-viewers-do";
 
 export { ActiveViewersDO };

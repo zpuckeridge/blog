@@ -53,6 +53,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250604.0",
     "@tailwindcss/postcss": "^4.1.8",
     "@types/node": "^22.15.29",
     "@types/react": "^19.1.6",
