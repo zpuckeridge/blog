@@ -6,6 +6,10 @@ import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 
+interface SubscribeResponse {
+  message: string;
+}
+
 const Subscribe: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +33,7 @@ const Subscribe: React.FC = () => {
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as SubscribeResponse;
 
       if (response.ok) {
         toast({
