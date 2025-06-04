@@ -1,13 +1,13 @@
+import Lanyard from "@/components/lanyard";
 import Navigation from "@/components/navigation/navigation";
+import NowPlaying from "@/components/now-playing";
 import ReturnToIndex from "@/components/return-to-index";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import { UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID } from "@/lib/umami";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Nanum_Myeongjo as FontSerif } from "next/font/google";
 import localFont from "next/font/local";
-import Script from "next/script";
 import "./globals.css";
 
 const fontSans = localFont({
@@ -112,19 +112,18 @@ export default function RootLayout({
 
             <Navigation />
 
-            {/* <div className="fixed bottom-8 left-8 hidden lg:block z-20">
+            <div className="fixed bottom-8 left-8 hidden lg:block z-20">
               <Lanyard />
-            </div> */}
+            </div>
 
-            {/* <div className="fixed bottom-8 right-8 hidden lg:block z-20">
+            <div className="fixed bottom-8 right-8 hidden lg:block z-20">
               <NowPlaying />
-            </div> */}
+            </div>
           </div>
 
           <Toaster />
         </ThemeProvider>
       </body>
-      <Script src={UMAMI_SCRIPT_URL} data-website-id={UMAMI_WEBSITE_ID} />
     </html>
   );
 }

@@ -1,45 +1,30 @@
-import { getUmamiToken } from "@/lib/get-analytics";
 import { NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const runtime = "edge";
 
-const { UMAMI_URL, NEXT_PUBLIC_UMAMI_WEBSITE_ID } = process.env;
+// Get the Durable Object namespace from the environment
+declare const ACTIVE_VIEWERS: DurableObjectNamespace;
 
-async function getActiveVisitors(token: string) {
-  const endpoint = `${UMAMI_URL}/api/websites/${NEXT_PUBLIC_UMAMI_WEBSITE_ID}/active`;
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const action = searchParams.get("action");
+  const viewerId = searchParams.get("viewerId");
 
-  const response = await fetch(endpoint, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-    },
-  });
+  // Get the Durable Object ID for the active viewers
+  const id = ACTIVE_VIEWERS.idFromName("active-viewers");
+  const obj = ACTIVE_VIEWERS.get(id);
 
-  if (!response.ok) {
-    console.error(`Umami API responded with status: ${response.status}`);
-    console.error(`Response text: ${await response.text()}`);
-    throw new Error(
-      `Failed to fetch active visitors data: ${response.statusText}`,
-    );
-  }
-
+  // Forward the request to the Durable Object
+  const response = await obj.fetch(request);
   const data = await response.json();
-  return data.visitors;
-}
 
-export async function GET() {
-  try {
-    const token = await getUmamiToken();
-    const activeVisitors = await getActiveVisitors(token);
-    return NextResponse.json({ visitors: activeVisitors });
-  } catch (error) {
-    console.error("Error fetching active visitors data:", error);
-    return NextResponse.json(
-      {
-        error: "Failed to fetch active visitors data",
-        details: (error as Error).message,
-      },
-      { status: 500 },
-    );
+  if (action === "connect" && !viewerId) {
+    // Generate a new viewer ID if one wasn't provided
+    const newViewerId = uuidv4();
+    return NextResponse.json({ ...data, viewerId: newViewerId });
   }
+
+  return NextResponse.json(data);
 }

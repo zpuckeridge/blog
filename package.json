@@ -26,6 +26,7 @@
     "@radix-ui/react-toast": "^1.2.14",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/uuid": "^10.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "contentlayer2": "^0.5.8",
@@ -48,6 +49,7 @@
     "tailwind-merge": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",
     "use-lanyard": "^1.7.0",
+    "uuid": "^11.1.0",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
