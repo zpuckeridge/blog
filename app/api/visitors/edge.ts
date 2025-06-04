@@ -3,6 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 // Get the Durable Object namespace from the environment
 declare const ACTIVE_VIEWERS: DurableObjectNamespace;
 
+interface ViewerData {
+  viewers: number;
+}
+
 export const runtime = "edge";
 
 export async function GET(request: Request) {
@@ -16,7 +20,7 @@ export async function GET(request: Request) {
 
   // Forward the request to the Durable Object
   const response = await obj.fetch(request);
-  const data = await response.json();
+  const data = (await response.json()) as ViewerData;
 
   if (action === "connect" && !viewerId) {
     // Generate a new viewer ID if one wasn't provided
