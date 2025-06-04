@@ -3,10 +3,10 @@ import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
 
 export default async function Home() {
-  const visitors = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/visitors`,
-    { cache: "no-store" },
-  ).then((res) => res.json());
+  // const visitors = await fetch(
+  //   `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/visitors`,
+  //   { cache: "no-store" },
+  // ).then((res) => res.json());
 
   return (
     <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20" role="main">
@@ -37,10 +37,10 @@ export default async function Home() {
             <div className="flex gap-2 my-auto">
               <div className="w-2 h-2 animate-pulse rounded-full my-auto bg-green-500" />
 
-              <p className="text-xs text-nowrap text-muted-foreground">
+              {/* <p className="text-xs text-nowrap text-muted-foreground">
                 {visitors.visitors === 0 ? 1 : visitors.visitors} active{" "}
                 {visitors.visitors > 1 ? "visitors" : "visitor (that's you!)"}
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
