@@ -1,7 +1,7 @@
 "use client";
 
 import AnimatedGradientText from "@/components/animated-gradient-text";
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";

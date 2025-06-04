@@ -1,4 +1,4 @@
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -183,14 +183,8 @@ export default function Uses() {
             <div className="space-y-4">
               <div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
                 <div className="grid grid-cols-2 gap-2 w-full">
-                  <UsesItem
-                    title="Google Pixel 6 Pro"
-                    description="Charcoal, 128GB"
-                  />
-                  <UsesItem
-                    title="ASUS Zenbook"
-                    description={`14.5" OLED laptop`}
-                  />
+                  <UsesItem title="iPhone 14" description="Midnight" />
+                  <UsesItem title="Macbook Air M3" description="Midnight" />
                 </div>
               </div>{" "}
               <p className="text-center text-muted-foreground text-xs ">

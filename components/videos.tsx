@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import BlurFade from "./magicui/blur-fade";
+import { BlurFade } from "./magicui/blur-fade";
 
 // Add proper interfaces at the top
 interface Video {

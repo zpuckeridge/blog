@@ -1,21 +1,15 @@
 "use client";
 
-import { useToast } from "@/components/ui/use-toast";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-
+import { toast } from "sonner";
 export default function CopyText({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
-
-  const { toast } = useToast();
 
   const handleClick = () => {
     navigator.clipboard.writeText(text);
 
-    toast({
-      title: "Text Copied!",
-      description: "The post text has been copied to your clipboard.",
-    });
+    toast.success("Text Copied!");
 
     setCopied(true);
 

@@ -1,4 +1,4 @@
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import Videos from "@/components/videos";
 import { allVideos } from "contentlayer/generated";
 import { compareDesc } from "date-fns";

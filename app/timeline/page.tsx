@@ -1,4 +1,4 @@
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import PostRendering from "@/components/posts";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { allLinks, allNotes, allPosts } from "contentlayer/generated";

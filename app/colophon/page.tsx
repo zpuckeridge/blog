@@ -1,5 +1,5 @@
 import LinkWithIcon from "@/components/link-with-icon";
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import { Badge } from "@/components/ui/badge";
 
 export default function Colophon() {

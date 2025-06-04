@@ -2,8 +2,7 @@
 
 import CallToFaith from "@/components/call-to-faith";
 import LinkWithIcon from "@/components/link-with-icon";
-import BlurFade from "@/components/magicui/blur-fade";
-import ViewerCount from "@/components/ViewerCount";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
 export default function Home() {
   return (
@@ -31,8 +30,6 @@ export default function Home() {
             </p>
 
             <hr className="w-full border-muted my-auto" />
-
-            <ViewerCount />
           </div>
         </div>
       </BlurFade>
@@ -84,7 +81,7 @@ export default function Home() {
         </BlurFade>
       </div>
 
-      <BlurFade delay={0.5} inView>
+      <BlurFade delay={0.4} inView>
         <CallToFaith />
       </BlurFade>
     </div>

@@ -1,9 +1,9 @@
 "use client";
 
-import { useToast } from "@/components/ui/use-toast";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { Input } from "./ui/input";
 
 interface SubscribeResponse {
@@ -14,7 +14,6 @@ const Subscribe: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const { toast } = useToast();
 
   useEffect(() => {
     setIsMounted(true);
@@ -36,25 +35,14 @@ const Subscribe: React.FC = () => {
       const data = (await response.json()) as SubscribeResponse;
 
       if (response.ok) {
-        toast({
-          title: "Success!",
-          description: data.message,
-        });
+        toast.success(data.message);
         setEmail("");
       } else {
-        toast({
-          title: "Error",
-          description: data.message || "Failed to subscribe. Please try again.",
-          variant: "destructive",
-        });
+        toast.error(data.message || "Failed to subscribe. Please try again.");
       }
     } catch (error) {
       console.error("Error subscribing:", error);
-      toast({
-        title: "Error",
-        description: "An error occurred. Please try again later.",
-        variant: "destructive",
-      });
+      toast.error("An error occurred. Please try again later.");
     } finally {
       setIsLoading(false);
     }

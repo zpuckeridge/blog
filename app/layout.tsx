@@ -3,7 +3,7 @@ import Navigation from "@/components/navigation/navigation";
 import NowPlaying from "@/components/now-playing";
 import ReturnToIndex from "@/components/return-to-index";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Nanum_Myeongjo as FontSerif } from "next/font/google";
@@ -121,7 +121,7 @@ export default function RootLayout({
             </div>
           </div>
 
-          <Toaster />
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

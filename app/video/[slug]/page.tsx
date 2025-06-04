@@ -1,5 +1,5 @@
 import CopyLink from "@/components/copy-link";
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import Player from "@/components/player";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { allVideos } from "contentlayer/generated";

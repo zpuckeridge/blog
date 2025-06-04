@@ -6,22 +6,17 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useToast } from "@/components/ui/use-toast";
 import { CheckIcon, Link2Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function CopyLink() {
   const [copied, setCopied] = useState(false);
 
-  const { toast } = useToast();
-
   const handleClick = () => {
     navigator.clipboard.writeText(window.location.href);
 
-    toast({
-      title: "URL Copied!",
-      description: "The page URL has been copied to your clipboard.",
-    });
+    toast.success("URL Copied!");
 
     setCopied(true);
 

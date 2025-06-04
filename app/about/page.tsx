@@ -2,24 +2,23 @@ import Age from "@/components/age";
 import BooksSection from "@/components/books";
 import ImageWithDetails from "@/components/image-with-details";
 import LinkWithIcon from "@/components/link-with-icon";
-import BlurFade from "@/components/magicui/blur-fade";
-import MusicTracking from "@/components/music";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "I'm a 24 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
+    "I'm a 25 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
 };
 
 export default function About() {
   return (
     <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20">
-      <BlurFade delay={0.1}>
+      <BlurFade inView delay={0.1}>
         <p className="font-serif text-2xl italic ">About</p>
       </BlurFade>
       <div className="text-sm flex flex-col gap-4">
-        <BlurFade delay={0.2}>
+        <BlurFade inView delay={0.1}>
           <p className="leading-relaxed">
             I&apos;m a <Age /> year old{" "}
             <LinkWithIcon href="https://1689londonbaptistconfession.com/">
@@ -36,7 +35,7 @@ export default function About() {
           </p>
         </BlurFade>
 
-        <BlurFade delay={0.3}>
+        <BlurFade inView delay={0.1}>
           <div className="py-4 mx-auto flex gap-4">
             <ImageWithDetails
               src="/roadtrip/P1011152_t1mdns.avif"
@@ -56,7 +55,7 @@ export default function About() {
           </div>
         </BlurFade>
 
-        <BlurFade delay={0.4}>
+        <BlurFade inView delay={0.1}>
           <p className="leading-relaxed">
             I dropped out of university and travelled to the{" "}
             <LinkWithIcon href="https://maps.app.goo.gl/7c5H8i3cnLwPFmKq9">
@@ -80,7 +79,7 @@ export default function About() {
           </p>
         </BlurFade>
 
-        <BlurFade delay={0.5}>
+        <BlurFade inView delay={0.1}>
           <div className="py-4 mx-auto flex gap-4">
             <ImageWithDetails
               src="/roadtrip/P1011186_qkrix9.avif"
@@ -100,7 +99,7 @@ export default function About() {
           </div>
         </BlurFade>
 
-        <BlurFade delay={0.6}>
+        <BlurFade inView delay={0.1}>
           <p className="leading-relaxed">
             After coming back from the United States, I landed a job supporting
             a small web hosting company called{" "}
@@ -111,7 +110,7 @@ export default function About() {
           </p>
         </BlurFade>
 
-        <BlurFade delay={0.7}>
+        <BlurFade inView delay={0.1}>
           <p className="leading-relaxed">
             I&apos;ve explored Proxmox, Docker, Kubernetes, and more, finding
             satisfaction in using open-source software to build and host
@@ -121,11 +120,7 @@ export default function About() {
         </BlurFade>
       </div>
 
-      <BlurFade delay={0.8}>
-        <MusicTracking />
-      </BlurFade>
-
-      <BlurFade delay={0.9}>
+      <BlurFade inView delay={0.1}>
         <div className="flex flex-col w-full gap-4 text-sm">
           <BooksSection />
           <p className="text-muted-foreground text-xs text-center">
@@ -134,7 +129,7 @@ export default function About() {
         </div>
       </BlurFade>
 
-      <BlurFade delay={1.0}>
+      <BlurFade inView delay={0.1}>
         <div className=" space-y-4">
           <p className="leading-relaxed max-w-sm mx-auto text-center text-sm">
             Have nothing to do with irreverent, silly myths. Rather train

@@ -3,7 +3,7 @@ import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
 import Definition from "@/components/definition";
 import LinkWithIcon from "@/components/link-with-icon";
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 import SideNote from "@/components/side-note";
 import Subscribe from "@/components/subscribe";
 import TableOfContents from "@/components/toc";
