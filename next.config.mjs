@@ -1,4 +1,20 @@
 /** @type {import('next').NextConfig} */
+import createMDX from "@next/mdx";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkGfm from "remark-gfm";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [
+      remarkFrontmatter,
+      [remarkMdxFrontmatter, { name: "frontmatter" }],
+      remarkGfm,
+    ],
+  },
+});
+
 const nextConfig = {
   images: {
     loader: "custom",
@@ -26,8 +42,7 @@ const nextConfig = {
       },
     ],
   },
-  // Enable MDX
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

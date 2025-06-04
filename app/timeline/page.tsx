@@ -1,14 +1,11 @@
+import type { MDXModule } from "@/_content";
+import * as mdxIndex from "@/_content";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import PostRendering from "@/components/posts";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { compareDesc } from "date-fns";
-import fs from "fs";
-import matter from "gray-matter";
 import { Metadata } from "next";
 import Link from "next/link";
-import path from "path";
-
-export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Timeline",
@@ -35,34 +32,28 @@ interface ContentItem {
 }
 
 async function getAllContent(): Promise<ContentItem[]> {
-  const contentDir = path.join(process.cwd(), "_content");
-  const postsDir = path.join(contentDir, "posts");
-  const notesDir = path.join(contentDir, "notes");
-
-  const getAllFiles = (dir: string): ContentItem[] => {
-    const files = fs.readdirSync(dir);
-    return files.map((file) => {
-      const filePath = path.join(dir, file);
-      const fileContent = fs.readFileSync(filePath, "utf8");
-      const { data, content } = matter(fileContent);
-      const slug = file.replace(".mdx", "");
-      return {
-        ...data,
-        content,
-        slug,
-        type: data.type || "Post",
-        url: `/${slug}`,
-        body: {
-          raw: content,
-        },
-      } as ContentItem;
+  // Get all MDX modules from the index
+  const mdxModules = Object.entries(mdxIndex)
+    .filter(([key]) => key.startsWith("_mdx_"))
+    .map(([_, module]) => module as MDXModule)
+    .filter((module) => {
+      const type = module.frontmatter.type || "Post";
+      return type === "Post" || type === "Note";
     });
-  };
 
-  const posts = getAllFiles(postsDir);
-  const notes = getAllFiles(notesDir);
-
-  return [...posts, ...notes];
+  return mdxModules.map(
+    (module) =>
+      ({
+        ...module.frontmatter,
+        content: module.content,
+        slug: module.frontmatter.slug,
+        type: module.frontmatter.type || "Post",
+        url: `/${module.frontmatter.slug}`,
+        body: {
+          raw: module.content,
+        },
+      }) as ContentItem,
+  );
 }
 
 export default async function Posts() {

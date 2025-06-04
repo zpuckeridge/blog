@@ -6,8 +6,6 @@ import matter from "gray-matter";
 import { Metadata } from "next";
 import path from "path";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = {
   title: "Videos",
   description: "A collection of videos I've created.",
