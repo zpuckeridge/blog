@@ -32,11 +32,6 @@ export default async function Clip(props: {
     return notFound();
   }
 
-  const stats = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=/video${video.url}`,
-    { cache: "no-store" },
-  ).then((res) => res.json());
-
   return (
     <div className="max-w-lg mx-auto space-y-2 ">
       <BlurFade delay={0.1}>

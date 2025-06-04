@@ -1,5 +1,28 @@
 import Image from "next/image";
 
+interface SpotifyTrack {
+  name: string;
+  album: {
+    name: string;
+    images: { url: string }[];
+    external_urls: { spotify: string };
+  };
+  external_urls: { spotify: string };
+}
+
+interface SpotifyArtist {
+  name: string;
+  images: { url: string }[];
+  genres: string[];
+  external_urls: { spotify: string };
+}
+
+interface SpotifyResponse<T> {
+  data: {
+    items: T[];
+  };
+}
+
 // Fetch data with a full URL
 const fetchTopTracks = async () => {
   const response = await fetch(
@@ -8,7 +31,7 @@ const fetchTopTracks = async () => {
   if (!response.ok) {
     throw new Error("Failed to fetch top tracks");
   }
-  return response.json();
+  return response.json() as Promise<SpotifyResponse<SpotifyTrack>>;
 };
 
 const fetchTopArtists = async () => {
@@ -18,7 +41,7 @@ const fetchTopArtists = async () => {
   if (!response.ok) {
     throw new Error("Failed to fetch top artists");
   }
-  return response.json();
+  return response.json() as Promise<SpotifyResponse<SpotifyArtist>>;
 };
 
 export default async function MusicTracking() {
