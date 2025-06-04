@@ -12,21 +12,19 @@ import {
   CalendarIcon,
   EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
-import { allPosts } from "contentlayer/generated";
+import fs from "fs";
+import matter from "gray-matter";
 import type { MDXComponents } from "mdx/types";
 import { Metadata } from "next";
-import { getMDXComponent } from "next-contentlayer2/hooks";
+import { compileMDX } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import path from "path";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
+import remarkGfm from "remark-gfm";
 
 export const dynamic = "force-static";
-
-function countWords(text: any) {
-  const words = text.trim().split(/\s+/);
-  return words.length;
-}
 
 const mdxComponents: MDXComponents = {
   Definition: ({ word, meaning, type }) => (
@@ -93,8 +91,12 @@ const mdxComponents: MDXComponents = {
 };
 
 export async function generateStaticParams() {
-  return allPosts.map((post: { url: string }) => ({
-    slug: post.url.replace("/", ""),
+  const contentDir = path.join(process.cwd(), "_content");
+  const postsDir = path.join(contentDir, "posts");
+  const files = fs.readdirSync(postsDir);
+
+  return files.map((file) => ({
+    slug: file.replace(".mdx", ""),
   }));
 }
 
@@ -108,38 +110,51 @@ export default async function Post(props: {
     return notFound();
   }
 
-  const post = allPosts.find(
-    (post: { url: string }) => post.url.replace("/", "") === slug,
-  );
+  const contentDir = path.join(process.cwd(), "_content");
+  const postsDir = path.join(contentDir, "posts");
+  const filePath = path.join(postsDir, `${slug}.mdx`);
 
-  if (!post) {
+  if (!fs.existsSync(filePath)) {
     return notFound();
   }
 
-  const wordCount = countWords(post.body.raw);
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const { data: frontmatter, content } = matter(fileContent);
+  const { content: mdxContent } = await compileMDX({
+    source: content,
+    components: mdxComponents,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+      },
+    },
+  });
+
+  const wordCount = content.split(/\s+/).length;
   const averageWordsPerMinute = 300; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
-  const MDXContent = getMDXComponent(post.body.code);
-
   return (
     <>
-      <TableOfContents content={post.body.raw} />
+      <TableOfContents content={content} />
 
       <div className="max-w-lg mx-auto">
         <div className="text-sm leading-relaxed flex flex-col gap-10 pb-20">
           <BlurFade delay={0.1}>
             <div className="space-y-2">
-              <h1 className="font-serif text-2xl italic">{post.title}</h1>
+              <h1 className="font-serif text-2xl italic">
+                {frontmatter.title}
+              </h1>
 
               <div className="flex gap-1 justify-between text-muted-foreground text-sm">
                 <div className="text-nowrap">
                   <p className="text-muted-foreground text-xs">
-                    {new Date(post.date).toLocaleDateString("en-US", {
+                    {new Date(frontmatter.date).toLocaleDateString("en-US", {
                       weekday: "long",
                     })}{" "}
                     ·{" "}
-                    {new Date(post.date).toLocaleDateString("en-US", {
+                    {new Date(frontmatter.date).toLocaleDateString("en-US", {
                       day: "2-digit",
                       month: "long",
                       year: "numeric",
@@ -149,7 +164,7 @@ export default async function Post(props: {
                 <hr className="w-full border-muted my-auto" />
                 <div className="flex gap-2 text-nowrap">
                   <p className="text-muted-foreground text-xs">
-                    {post.tag} · {readingTime} minute read
+                    {frontmatter.tag} · {readingTime} minute read
                   </p>
                 </div>
               </div>
@@ -158,31 +173,31 @@ export default async function Post(props: {
 
           <div className="space-y-4 flex flex-col gap-4">
             <BlurFade delay={0.2}>
-              {post.image && (
+              {frontmatter.image && (
                 <div className="flex flex-col gap-4">
                   <Image
-                    src={`/${post.image}`}
+                    src={`/${frontmatter.image}`}
                     width={800}
                     height={400}
                     priority
-                    alt={post.title}
+                    alt={frontmatter.title}
                     className="object-cover w-full rounded-xl aspect-video"
                   />
                   <p className="text-center text-xs text-muted-foreground">
-                    {post.imageAlt}
+                    {frontmatter.imageAlt}
                   </p>
                 </div>
               )}
             </BlurFade>
 
-            <BlurFade delay={post.image ? 0.3 : 0.2}>
-              <article className="w-full prose  prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-blockquote:border-l prose-hr:border-[#e5e5e5] dark:prose-hr:border-[#262626] prose-blockquote:border-[#e5e5e5] dark:prose-blockquote:border-[#262626] prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-muted-foreground prose-li:marker:font-normal prose-li:marker:text-xs ">
-                <MDXContent components={mdxComponents} />
+            <BlurFade delay={frontmatter.image ? 0.3 : 0.2}>
+              <article className="w-full prose prose-blockquote:not-italic prose-headings:text-sm prose-headings:font-semibold prose-headings:text-black dark:prose-headings:text-neutral-300 max-w-prose prose-a:font-normal prose-a:no-underline prose-p:text-sm prose-p:font-normal mx-auto dark:prose-invert prose-blockquote:border-l prose-hr:border-[#e5e5e5] dark:prose-hr:border-[#262626] prose-blockquote:border-[#e5e5e5] dark:prose-blockquote:border-[#262626] prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 font-normal prose-img:rounded-xl prose-img:mx-auto prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed prose-ul:text-black dark:prose-ul:text-neutral-300 prose-ol:text-black dark:prose-ol:text-neutral-300 prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300 prose-li:marker:text-muted-foreground prose-li:marker:font-normal prose-li:marker:text-xs">
+                {mdxContent}
               </article>
             </BlurFade>
 
             <BlurFade delay={0.4}>
-              {post.signature && (
+              {frontmatter.signature && (
                 <div className="flex flex-col gap-2">
                   <AnimatedSignature />
                   <div>
@@ -200,19 +215,19 @@ export default async function Post(props: {
                 <h2 className="text-sm ">Share Article</h2>
                 <div className="flex gap-3 text-muted-foreground">
                   <a
-                    href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me${post.url}`}
+                    href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
                     className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
                     <FaXTwitter className="w-4 h-4" />
                   </a>
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me${post.url}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
                     className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
                     <FaFacebook className="w-4 h-4" />
                   </a>
                   <a
-                    href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me${post.url}`}
+                    href={`mailto:?subject=${frontmatter.title}&body=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
                     className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
                   >
                     <EnvelopeClosedIcon className="w-4 h-4" />
@@ -223,25 +238,15 @@ export default async function Post(props: {
               <div className="space-y-3">
                 <h2 className="text-sm ">Resources</h2>
                 <div className="flex flex-col gap-3 text-muted-foreground text-xs">
-                  <CopyText text={post.body.raw} />
+                  <CopyText text={content} />
 
-                  {/* <div className="flex gap-2">
-                    <EyeOpenIcon className="w-4 h-4 my-auto" />
-
-                    <p className="text-muted-foreground text-xs my-auto">
-                      {stats.views.value}{" "}
-                      {stats.views.value === 1 ? "view" : "views"} in the last
-                      30 days
-                    </p>
-                  </div> */}
-
-                  {post.lastModified && (
+                  {frontmatter.lastModified && (
                     <div className="flex gap-2">
                       <CalendarIcon className="w-4 h-4 my-auto" />
 
                       <p className="text-muted-foreground text-xs my-auto">
                         Last modified on{" "}
-                        {new Date(post.lastModified).toLocaleDateString(
+                        {new Date(frontmatter.lastModified).toLocaleDateString(
                           "en-US",
                           {
                             day: "numeric",
@@ -304,16 +309,21 @@ export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const post = allPosts.find(
-    (post: { url: string }) => post.url.replace("/", "") === params.slug,
-  );
+  const { slug } = params;
 
-  if (!post) {
+  const contentDir = path.join(process.cwd(), "_content");
+  const postsDir = path.join(contentDir, "posts");
+  const filePath = path.join(postsDir, `${slug}.mdx`);
+
+  if (!fs.existsSync(filePath)) {
     return notFound();
   }
 
-  const title = `${post.title}`;
-  const description = `${post.description}`;
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const { data: frontmatter } = matter(fileContent);
+
+  const title = frontmatter.title;
+  const description = frontmatter.description;
 
   return {
     title: title,
@@ -325,13 +335,13 @@ export async function generateMetadata(props: {
       siteName: "zacchary.me",
       images: [
         {
-          url: post.image || "/avatar.avif",
+          url: frontmatter.image || "/avatar.avif",
           width: 1920,
           height: 1080,
           alt: title,
         },
       ],
-      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}${post.url}`,
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -339,7 +349,7 @@ export async function generateMetadata(props: {
       description: description,
       images: [
         {
-          url: post.image || "/avatar.avif",
+          url: frontmatter.image || "/avatar.avif",
           width: 1920,
           height: 1080,
           alt: title,

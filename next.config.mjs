@@ -1,5 +1,3 @@
-import { withContentlayer } from "next-contentlayer2";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -28,6 +26,8 @@ const nextConfig = {
       },
     ],
   },
+  // Enable MDX
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 };
 
-export default withContentlayer(nextConfig);
+export default nextConfig;
