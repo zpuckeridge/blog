@@ -11,7 +11,6 @@ import {
   ArrowLeftIcon,
   CalendarIcon,
   EnvelopeClosedIcon,
-  EyeOpenIcon,
 } from "@radix-ui/react-icons";
 import { allPosts } from "contentlayer/generated";
 import type { MDXComponents } from "mdx/types";
@@ -229,7 +228,7 @@ export default async function Post(props: {
                 <div className="flex flex-col gap-3 text-muted-foreground text-xs">
                   <CopyText text={post.body.raw} />
 
-                  <div className="flex gap-2">
+                  {/* <div className="flex gap-2">
                     <EyeOpenIcon className="w-4 h-4 my-auto" />
 
                     <p className="text-muted-foreground text-xs my-auto">
@@ -237,7 +236,7 @@ export default async function Post(props: {
                       {stats.views.value === 1 ? "view" : "views"} in the last
                       30 days
                     </p>
-                  </div>
+                  </div> */}
 
                   {post.lastModified && (
                     <div className="flex gap-2">
