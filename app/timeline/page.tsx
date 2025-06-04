@@ -17,6 +17,7 @@ export default async function Posts() {
   const allContent = await getAllContent();
 
   const content = allContent
+    .filter((item) => item.type === "Note" || item.type === "Post")
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
     .reduce((acc: Record<number, ContentItem[]>, item: ContentItem) => {
       const year = new Date(item.date).getFullYear();
