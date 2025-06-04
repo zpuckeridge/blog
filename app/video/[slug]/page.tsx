@@ -57,9 +57,7 @@ export default async function Clip(props: {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
-              })}{" "}
-              · {stats.views.value} {stats.views.value === 1 ? "view" : "views"}{" "}
-              in the last 30 days
+              })}
             </p>
           </div>
         </div>
