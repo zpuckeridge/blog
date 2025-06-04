@@ -1,7 +1,7 @@
-import type { MDXModule } from "@/_content";
-import * as mdxIndex from "@/_content";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import PostRendering from "@/components/posts";
+import { ContentItem } from "@/interfaces/content-item";
+import { getAllContent } from "@/lib/getAllContent";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { compareDesc } from "date-fns";
 import { Metadata } from "next";
@@ -12,49 +12,6 @@ export const metadata: Metadata = {
   description:
     "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
 };
-
-interface ContentItem {
-  title: string;
-  date: string;
-  description?: string;
-  tag: string;
-  image?: string;
-  imageAlt?: string;
-  signature?: boolean;
-  lastModified?: string;
-  content: string;
-  slug: string;
-  type: string;
-  url: string;
-  body: {
-    raw: string;
-  };
-}
-
-async function getAllContent(): Promise<ContentItem[]> {
-  // Get all MDX modules from the index
-  const mdxModules = Object.entries(mdxIndex)
-    .filter(([key]) => key.startsWith("_mdx_"))
-    .map(([_, module]) => module as MDXModule)
-    .filter((module) => {
-      const type = module.frontmatter.type || "Post";
-      return type === "Post" || type === "Note";
-    });
-
-  return mdxModules.map(
-    (module) =>
-      ({
-        ...module.frontmatter,
-        content: module.content,
-        slug: module.frontmatter.slug,
-        type: module.frontmatter.type || "Post",
-        url: `/${module.frontmatter.slug}`,
-        body: {
-          raw: module.content,
-        },
-      }) as ContentItem,
-  );
-}
 
 export default async function Posts() {
   const allContent = await getAllContent();
