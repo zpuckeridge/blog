@@ -3,11 +3,9 @@
 import CallToFaith from "@/components/call-to-faith";
 import LinkWithIcon from "@/components/link-with-icon";
 import BlurFade from "@/components/magicui/blur-fade";
-import { useActiveViewers } from "@/lib/use-active-viewers";
+import ViewerCount from "@/components/ViewerCount";
 
 export default function Home() {
-  const activeViewers = useActiveViewers();
-
   return (
     <div className="max-w-lg mx-auto flex flex-col gap-20 pb-20" role="main">
       <BlurFade delay={0.1} inView>
@@ -34,14 +32,7 @@ export default function Home() {
 
             <hr className="w-full border-muted my-auto" />
 
-            <div className="flex gap-2 my-auto">
-              <div className="w-2 h-2 animate-pulse rounded-full my-auto bg-green-500" />
-
-              <p className="text-xs text-nowrap text-muted-foreground">
-                {activeViewers === 0 ? 1 : activeViewers} active{" "}
-                {activeViewers > 1 ? "visitors" : "visitor (that's you!)"}
-              </p>
-            </div>
+            <ViewerCount />
           </div>
         </div>
       </BlurFade>
