@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const { access_token } = await getAccessToken();
+    const { access_token } = (await getAccessToken()) as {
+      access_token: string;
+    };
 
     const res = await fetch(
       `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10`,

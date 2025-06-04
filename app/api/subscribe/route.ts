@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const { email } = (await req.json()) as { email: string };
 
     const response = await fetch(
       `https://api.beehiiv.com/v2/publications/${process.env.PUBLICATION_ID}/subscriptions`,
