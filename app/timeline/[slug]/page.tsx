@@ -114,11 +114,6 @@ export default async function Post(props: {
     return notFound();
   }
 
-  const stats = await fetch(
-    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/page-stats?url=/timeline${post.url}`,
-    { cache: "no-store" },
-  ).then((res) => res.json());
-
   const wordCount = countWords(post.body.raw);
   const averageWordsPerMinute = 300; // Adjust this based on audience reading speed
   const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
