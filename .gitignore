@@ -36,3 +36,10 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+
+# cloudflare
+wrangler.toml
+.wrangler
+
+# open-next
+/.open-next
