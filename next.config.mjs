@@ -2,9 +2,9 @@ import { withContentlayer } from "next-contentlayer2";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  loader: "custom",
-  loaderFile: "./image-loader.ts",
   images: {
+    loader: "custom",
+    loaderFile: "./image-loader.ts",
     remotePatterns: [
       {
         protocol: "https",
