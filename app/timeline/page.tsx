@@ -6,6 +6,8 @@ import { compareDesc } from "date-fns";
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Timeline",
   description:

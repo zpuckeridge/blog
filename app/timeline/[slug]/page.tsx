@@ -21,6 +21,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 
+export const dynamic = "force-static";
+
 function countWords(text: any) {
   const words = text.trim().split(/\s+/);
   return words.length;

@@ -1,6 +1,5 @@
 import Lanyard from "@/components/lanyard";
 import Navigation from "@/components/navigation/navigation";
-import NowPlaying from "@/components/now-playing";
 import ReturnToIndex from "@/components/return-to-index";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
@@ -115,13 +114,9 @@ export default function RootLayout({
             <div className="fixed bottom-8 left-8 hidden lg:block z-20">
               <Lanyard />
             </div>
-
-            <div className="fixed bottom-8 right-8 hidden lg:block z-20">
-              <NowPlaying />
-            </div>
           </div>
 
-          <Toaster richColors />
+          <Toaster richColors position="top-center" />
         </ThemeProvider>
       </body>
     </html>
