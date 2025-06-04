@@ -11,6 +11,8 @@ export interface ContentItem {
   slug: string;
   type: string;
   url: string;
+  videoUrl: string;
+  duration: number;
   body: {
     raw: string;
   };

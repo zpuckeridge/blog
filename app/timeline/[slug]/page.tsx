@@ -285,54 +285,55 @@ export default async function Post({
   );
 }
 
-// export async function generateMetadata(props: {
-//   params: Promise<{ slug: string }>;
-// }): Promise<Metadata> {
-//   const params = await props.params;
-//   const { slug } = params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-//   const contentUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/content/${slug}`;
-//   const response = await fetch(contentUrl);
+  let frontmatter;
 
-//   if (!response.ok) {
-//     return notFound();
-//   }
+  try {
+    const post = await import(`@/_content/posts/${slug}.mdx`);
+    frontmatter = post.frontmatter;
+  } catch {
+    return notFound();
+  }
 
-//   const { frontmatter } = await response.json();
+  const title = frontmatter.title;
+  const description = frontmatter.description;
 
-//   const title = frontmatter.title;
-//   const description = frontmatter.description;
-
-//   return {
-//     title: title,
-//     description: description,
-//     openGraph: {
-//       type: "article",
-//       title: title,
-//       description: description,
-//       siteName: "zacchary.me",
-//       images: [
-//         {
-//           url: frontmatter.image || "/avatar.avif",
-//           width: 1920,
-//           height: 1080,
-//           alt: title,
-//         },
-//       ],
-//       url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${slug}`,
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title: title,
-//       description: description,
-//       images: [
-//         {
-//           url: frontmatter.image || "/avatar.avif",
-//           width: 1920,
-//           height: 1080,
-//           alt: title,
-//         },
-//       ],
-//     },
-//   };
-// }
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      type: "article",
+      title: title,
+      description: description,
+      siteName: "zacchary.me",
+      images: [
+        {
+          url: frontmatter.image || "/avatar.avif",
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/timeline/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      images: [
+        {
+          url: frontmatter.image || "/avatar.avif",
+          width: 1920,
+          height: 1080,
+          alt: title,
+        },
+      ],
+    },
+  };
+}
