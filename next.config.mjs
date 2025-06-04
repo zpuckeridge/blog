@@ -2,7 +2,8 @@ import { withContentlayer } from "next-contentlayer2";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  loader: "custom",
+  loaderFile: "./image-loader.ts",
   images: {
     remotePatterns: [
       {

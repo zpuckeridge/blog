@@ -1,6 +1,4 @@
-import Lanyard from "@/components/lanyard";
 import Navigation from "@/components/navigation/navigation";
-import NowPlaying from "@/components/now-playing";
 import ReturnToIndex from "@/components/return-to-index";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -114,13 +112,13 @@ export default function RootLayout({
 
             <Navigation />
 
-            <div className="fixed bottom-8 left-8 hidden lg:block z-20">
+            {/* <div className="fixed bottom-8 left-8 hidden lg:block z-20">
               <Lanyard />
-            </div>
+            </div> */}
 
-            <div className="fixed bottom-8 right-8 hidden lg:block z-20">
+            {/* <div className="fixed bottom-8 right-8 hidden lg:block z-20">
               <NowPlaying />
-            </div>
+            </div> */}
           </div>
 
           <Toaster />
