@@ -58,7 +58,7 @@ export default function Work() {
       name: "61 Oaks Group",
       image: null,
       year: "2024",
-      link: "https://61oaksgroup.org",
+      link: "https://61oaksgroup.com.au",
     },
 
     {
@@ -116,7 +116,6 @@ export default function Work() {
       image: "/projects/simply-photos.avif",
       year: "2022",
       status: "Archived",
-      link: "https://simplyphotos.com.au/",
     },
     {
       name: "Livestream",

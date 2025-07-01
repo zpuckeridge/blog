@@ -102,13 +102,6 @@ export default function NavigationClient({
                     {pathname.includes("/about") && (
                       <div className="ml-4 flex flex-col gap-2 overflow-y-hidden relative">
                         <a
-                          href="https://read.cv/zpuckeridge"
-                          target="_blank"
-                          className="hover:text-blue-400 dark:hover:text-blue-600 transition"
-                        >
-                          Read.cv
-                        </a>
-                        <a
                           href="https://x.com/zpuckeridge"
                           target="_blank"
                           className="hover:text-blue-400 dark:hover:text-blue-600 transition"
@@ -228,13 +221,6 @@ export default function NavigationClient({
 
               {pathname.includes("/about") && (
                 <div className="ml-4 flex flex-col gap-2 overflow-y-hidden relative">
-                  <a
-                    href="https://read.cv/zpuckeridge"
-                    target="_blank"
-                    className="hover:text-blue-400 dark:hover:text-blue-600 transition"
-                  >
-                    Read.cv
-                  </a>
                   <a
                     href="https://x.com/zpuckeridge"
                     target="_blank"
