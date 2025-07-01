@@ -5,19 +5,17 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Nanum_Myeongjo as FontSerif } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
 const fontSans = localFont({
-  src: "../fonts/satoshi-variable.woff2",
+  src: "../public/fonts/archivo.woff2",
   variable: "--font-sans",
   weight: "500",
 });
 
-const fontSerif = FontSerif({
-  subsets: ["latin"],
-  weight: ["400"],
+const fontSerif = localFont({
+  src: "../public/fonts/gambarino.woff2",
   variable: "--font-serif",
 });
 
@@ -91,7 +89,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          `min-h-screen font-sans text-black dark:text-neutral-300 selection:bg-blue-400/50 selection:text-blue-600 dark:selection:bg-blue-950/50 dark:selection:text-blue-400 subpixel-antialiased`,
+          `min-h-screen font-sans text-black dark:text-neutral-300 selection:bg-blue-400/50 selection:text-blue-600 dark:selection:bg-blue-950/50 dark:selection:text-blue-400 antialiased`,
           fontSans.variable,
           fontSerif.variable,
         )}

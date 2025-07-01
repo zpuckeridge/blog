@@ -18,21 +18,21 @@ export default function Colophon() {
           </BlurFade>
 
           <BlurFade delay={0.3}>
-            <div className="flex gap-2">
+            <div className="flex gap-4">
               <div className="py-10 flex flex-col w-full gap-2">
                 <p className="text-muted-foreground">Typography</p>
 
                 <p>
-                  <LinkWithIcon href="https://fontshare.com/fonts/satoshi">
-                    Satoshi
+                  <LinkWithIcon href="https://fontshare.com/fonts/archivo">
+                    Archivo
                   </LinkWithIcon>{" "}
                   as body text,{" "}
                   <LinkWithIcon href="https://vercel.com/font">
                     Geist Mono
                   </LinkWithIcon>{" "}
                   for code and{" "}
-                  <LinkWithIcon href="https://fonts.google.com/specimen/Nanum+Myeongjo">
-                    Nanum Myeongjo
+                  <LinkWithIcon href="https://fontshare.com/fonts/gambarino">
+                    Gambarino
                   </LinkWithIcon>{" "}
                   for headings and flair.
                 </p>
@@ -59,10 +59,6 @@ export default function Colophon() {
                     shadcn
                   </LinkWithIcon>
                   ,{" "}
-                  <LinkWithIcon href="https://www.prisma.io?ref=zacchary.me">
-                    Prisma
-                  </LinkWithIcon>
-                  ,{" "}
                   <LinkWithIcon href="https://www.framer.com/motion?ref=zacchary.me">
                     Framer Motion
                   </LinkWithIcon>{" "}
@@ -75,12 +71,12 @@ export default function Colophon() {
 
                 <p>
                   Deployed and hosted on{" "}
-                  <LinkWithIcon href="https://vercel.com?ref=zacchary.me">
-                    Vercel
+                  <LinkWithIcon href="https://workers.dev?ref=zacchary.me">
+                    Cloudflare Workers
                   </LinkWithIcon>
                   . Analytics provided by{" "}
-                  <LinkWithIcon href="https://umami.is?ref=zacchary.me">
-                    Umami
+                  <LinkWithIcon href="https://cloudflare.com?ref=zacchary.me">
+                    Cloudflare
                   </LinkWithIcon>
                   .
                 </p>
@@ -205,7 +201,7 @@ export default function Colophon() {
                   <LinkWithIcon href="https://starcompass.com.au?ref=zacchary.me">
                     Star Compass
                   </LinkWithIcon>{" "}
-                  and{" "}
+                  &{" "}
                   <LinkWithIcon href="https://haddoninstitute.org?ref=zacchary.me">
                     Haddon Institute
                   </LinkWithIcon>

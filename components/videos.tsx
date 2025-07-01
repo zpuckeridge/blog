@@ -138,13 +138,13 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
               href={`/video${video.url}`}
               title={video.title}
               key={video.url}
-              className="focus:outline-hidden focus:ring-2 focus:ring-blue-500 rounded"
+              className="relative rounded hover:grayscale transition-all duration-300"
             >
               <div className="transform">
-                <div className="absolute top-2 left-2 text-white bg-black/75 rounded p-1 text-xs font-semibold ">
+                <div className="absolute top-2 left-2 text-white bg-black/75 rounded py-0.5 px-2 text-xs">
                   {video.tag}
                 </div>
-                <div className="absolute top-2 right-2 text-white bg-black/75 rounded p-1 text-xs font-semibold ">
+                <div className="absolute top-2 right-2 text-white bg-black/75 rounded py-0.5 px-2 text-xs ">
                   {video.duration ? (
                     <span className="duration">
                       {formatDuration(video.duration)}
@@ -163,9 +163,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                   priority={true}
                 />
                 <div className="flex justify-between mt-1">
-                  <div className="font-semibold text-sm truncate ">
-                    {video.title}
-                  </div>
+                  <div className="text-sm truncate ">{video.title}</div>
                 </div>
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <p>
