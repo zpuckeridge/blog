@@ -41,7 +41,7 @@ export default function CopyLink() {
         </TooltipTrigger>
         <TooltipContent
           side="bottom"
-          className="text-xs bg-neutral-900 text-muted-foreground"
+          className="text-xs bg-muted dark:bg-neutral-900 text-black dark:text-muted-foreground"
         >
           Copy Link
         </TooltipContent>

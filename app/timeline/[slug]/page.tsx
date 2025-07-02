@@ -166,7 +166,7 @@ export default async function Post({
                       </TooltipTrigger>
                       <TooltipContent
                         side="bottom"
-                        className="text-xs bg-neutral-900 text-muted-foreground"
+                        className="text-xs bg-muted dark:bg-neutral-900 text-black dark:text-muted-foreground"
                       >
                         {new Date(frontmatter.date).toLocaleDateString(
                           "en-US",
