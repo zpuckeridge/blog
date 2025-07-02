@@ -158,6 +158,20 @@
   @apply text-muted-foreground;
 }
 
+/* Hide the automatic "Footnotes" heading from remarkGfm */
+.footnotes h1:first-child,
+.footnotes h2:first-child,
+.footnotes h3:first-child {
+  display: none;
+}
+
+/* Alternative: Hide any heading that contains "Footnotes" text */
+h1:has(+ .footnotes),
+h2:has(+ .footnotes),
+h3:has(+ .footnotes) {
+  display: none;
+}
+
 @-webkit-keyframes animate-svg-stroke-1 {
   0% {
     stroke-dashoffset: 1798px;

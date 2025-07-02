@@ -6,7 +6,6 @@ import FootnotesNavigation from "@/components/footnotes-navigation";
 import LinkWithIcon from "@/components/link-with-icon";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import SideNote from "@/components/side-note";
-import Subscribe from "@/components/subscribe";
 import TableOfContents from "@/components/toc";
 import {
   Tooltip,
@@ -140,7 +139,7 @@ export default async function Post({
 
   return (
     <>
-      <TableOfContents content={content} />
+      <TableOfContents />
       <div className="max-w-lg mx-auto ">
         <div className="text-sm leading-relaxed flex flex-col gap-10 pb-20">
           <BlurFade delay={0.1}>
@@ -209,20 +208,20 @@ export default async function Post({
                 <MDXContent components={mdxComponents} />
               </article>
             </BlurFade>
-            <BlurFade delay={0.4}>
-              {frontmatter.signature && (
-                <div className="flex flex-col gap-2">
-                  <AnimatedSignature />
-                  <div>
-                    <p className="text-sm">Zacchary Puckeridge</p>
-                    <p className="text-xs text-muted-foreground">
-                      Web Developer & Designer
-                    </p>
+            <div className="space-y-10">
+              <BlurFade delay={0.4}>
+                {frontmatter.signature && (
+                  <div className="flex flex-col gap-2">
+                    <AnimatedSignature />
+                    <div>
+                      <p className="text-sm">Zacchary Puckeridge</p>
+                      <p className="text-xs text-muted-foreground">
+                        Web Developer & Designer
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )}
-            </BlurFade>
-            <div className="mt-10 space-y-10">
+                )}
+              </BlurFade>
               <div className="space-y-3">
                 <h2 className="text-sm ">Share Article</h2>
                 <div className="flex gap-3 text-muted-foreground">
@@ -265,31 +264,6 @@ export default async function Post({
                   )}
                 </div>
               </div>
-              <div className="space-y-2">
-                <h2 className="text-sm ">About Zacchary</h2>
-                <p className="text-xs text-muted-foreground">
-                  Zacchary is a Christian working for{" "}
-                  <LinkWithIcon
-                    href="https://starcompass.com.au?ref=zacchary.me"
-                    aria-label="Star Compass website"
-                  >
-                    Star Compass
-                  </LinkWithIcon>
-                  , a disability support service operating in Brisbane Australia
-                  and{" "}
-                  <LinkWithIcon
-                    href="https://haddoninstitute.org?ref=zacchary.me"
-                    aria-label="Haddon Institute website"
-                  >
-                    Haddon Institute
-                  </LinkWithIcon>
-                  , a distinctly Reformed seminary seeking for the Australian
-                  Church to fear and behold the majesty of the creator King. His
-                  goal is to advance the Kingdom of God through companies that
-                  participate in the global marketplace.
-                </p>
-              </div>
-              <Subscribe />
             </div>
           </div>
           <div className="flex justify-between">
