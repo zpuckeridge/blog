@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { CheckIcon, Link2Icon } from "@radix-ui/react-icons";
+import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -34,12 +34,17 @@ export default function CopyLink() {
           className="cursor-pointer"
         >
           {copied ? (
-            <CheckIcon className="w-4 h-4 my-auto text-muted-foreground" />
+            <CheckIcon className="my-auto text-green-500 animate-in fade-in-0 zoom-in-95 duration-300" />
           ) : (
-            <Link2Icon className="my-auto text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300" />
+            <CopyIcon className="my-auto text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all animate-in fade-in-0 zoom-in-95 duration-300" />
           )}
         </TooltipTrigger>
-        <TooltipContent side="bottom">Copy Link</TooltipContent>
+        <TooltipContent
+          side="bottom"
+          className="text-xs bg-neutral-900 text-muted-foreground"
+        >
+          Copy Link
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

@@ -2,14 +2,22 @@ import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
 import CopyText from "@/components/copy-text";
 import Definition from "@/components/definition";
+import FootnotesNavigation from "@/components/footnotes-navigation";
 import LinkWithIcon from "@/components/link-with-icon";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import SideNote from "@/components/side-note";
 import Subscribe from "@/components/subscribe";
 import TableOfContents from "@/components/toc";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   ArrowLeftIcon,
   CalendarIcon,
+  DotsHorizontalIcon,
   EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
 import Image from "next/image";
@@ -51,9 +59,9 @@ const mdxComponents = {
   }) => {
     if (href.startsWith("#user-content") || href.startsWith("#fnref-")) {
       return (
-        <a href={href} {...props} className="text-muted-foreground">
+        <FootnotesNavigation href={href} {...props}>
           {children}
-        </a>
+        </FootnotesNavigation>
       );
     }
     return <LinkWithIcon href={href}>{children}</LinkWithIcon>;
@@ -133,32 +141,47 @@ export default async function Post({
   return (
     <>
       <TableOfContents content={content} />
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-lg mx-auto ">
         <div className="text-sm leading-relaxed flex flex-col gap-10 pb-20">
           <BlurFade delay={0.1}>
             <div className="space-y-2">
               <h1 className="font-serif text-2xl italic">
                 {frontmatter.title}
               </h1>
-              <div className="flex gap-1 justify-between text-muted-foreground text-sm">
-                <div className="text-nowrap">
-                  <p className="text-muted-foreground text-xs">
-                    {new Date(frontmatter.date).toLocaleDateString("en-US", {
-                      weekday: "long",
-                    })}{" "}
-                    ·{" "}
-                    {new Date(frontmatter.date).toLocaleDateString("en-US", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
+              <div className="flex gap-3 justify-between text-muted-foreground text-sm w-full">
+                <div className="w-full text-muted-foreground text-xs">
+                  {new Date(frontmatter.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    year: "numeric",
+                  })}
                 </div>
-                <hr className="w-full border-muted my-auto" />
-                <div className="flex gap-2 text-nowrap">
-                  <p className="text-muted-foreground text-xs">
-                    {frontmatter.tag} · {readingTime} minute read
-                  </p>
+                <div className="flex items-center gap-3">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger
+                        asChild
+                        className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
+                      >
+                        <DotsHorizontalIcon />
+                      </TooltipTrigger>
+                      <TooltipContent
+                        side="bottom"
+                        className="text-xs bg-neutral-900 text-muted-foreground"
+                      >
+                        {new Date(frontmatter.date).toLocaleDateString(
+                          "en-US",
+                          {
+                            weekday: "long",
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                          },
+                        )}{" "}
+                        · {frontmatter.tag} · {readingTime} minute read
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <CopyLink />
                 </div>
               </div>
             </div>
