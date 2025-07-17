@@ -22,7 +22,7 @@ export default function Navigation() {
 
 			<div className="flex flex-row gap-4 text-xs text-muted-foreground items-center justify-end">
 				{menuItems.map((item) => {
-					const isActive = pathname === item.href;
+					const isActive = pathname === item.href || pathname.includes(item.href);
 
 					return (
 						<Link

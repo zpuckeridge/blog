@@ -27,19 +27,19 @@ export default function ReturnToIndex() {
 						{pathname !== "/" ? ( // {{ edit_3 }}
 							<Link
 								href="/"
-								className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600  flex items-center gap-1 group transition-all duration-300 ease-in-out"
+								className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600  flex items-center gap-1 group transition-all duration-200 ease-in-out"
 							>
 								<div className="relative w-4 h-4">
-									<ChevronLeftIcon className="absolute inset-0 w-4 h-4 transition-opacity duration-300 opacity-100 group-hover:opacity-0 -translate-x-0.5 ease-in-out" />
-									<ArrowLeftIcon className="absolute inset-0 w-4 h-4 transition-all duration-300 opacity-0 group-hover:opacity-100 ease-in-out" />
+									<ChevronLeftIcon className="absolute inset-0 w-4 h-4 transition-opacity duration-200 opacity-100 group-hover:opacity-0 -translate-x-0.5 ease-in-out" />
+									<ArrowLeftIcon className="absolute inset-0 w-4 h-4 transition-all duration-200 opacity-0 group-hover:opacity-100 ease-in-out" />
 								</div>
-								<span className="transition-all duration-300">Index</span>
+								<span className="transition-all duration-200">Index</span>
 							</Link>
 						) : (
 							<div className="flex gap-6 items-center">
 								<Link
 									href="/"
-									className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out "
+									className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out "
 								>
 									Zacchary Puckeridge
 								</Link>
@@ -49,7 +49,7 @@ export default function ReturnToIndex() {
 										<TooltipTrigger
 											onClick={toggleTheme}
 											aria-label="Toggle Theme"
-											className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
+											className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out"
 										>
 											{theme === "dark" ? (
 												<SunIcon className="w-4 h-4" />

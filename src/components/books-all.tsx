@@ -61,7 +61,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
 												</p>
 											</button>
 											<div
-												className={`overflow-hidden transition-all duration-300 ease-in-out ${
+												className={`overflow-hidden transition-all duration-200 ease-in-out ${
 													isExpanded ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
 												}`}
 											>
@@ -76,24 +76,24 @@ export default function BooksAll({ books }: { books: Book[] }) {
 															/>
 														</div>
 													)}
-													<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+													<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 														<p className="text-[0.7rem] text-muted-foreground">Rating</p>
 														<p className="text-sm">{book.review}/10</p>
 													</div>
 													{book.ISBN && (
-														<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 															<p className="text-[0.7rem] text-muted-foreground">ISBN</p>
 															<p className="text-sm">{book.ISBN}</p>
 														</div>
 													)}
 													{book.published && (
-														<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 															<p className="text-[0.7rem] text-muted-foreground">Published</p>
 															<p className="text-sm">{book.published}</p>
 														</div>
 													)}
 													{book.author && (
-														<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 															<p className="text-[0.7rem] text-muted-foreground">Author</p>
 															<p className="text-sm">{book.author}</p>
 														</div>

@@ -73,7 +73,7 @@ const Subscribe: React.FC = () => {
 				<button
 					type="submit"
 					disabled={isLoading}
-					className="absolute cursor-pointer text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+					className="absolute cursor-pointer text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
 				>
 					{isLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <PaperPlaneIcon />}
 				</button>

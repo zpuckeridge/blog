@@ -30,9 +30,9 @@ export default function CopyLink() {
 			<Tooltip>
 				<TooltipTrigger onClick={handleClick} aria-label="Copy Link" className="cursor-pointer">
 					{copied ? (
-						<CheckIcon className="my-auto text-green-500 animate-in fade-in-0 zoom-in-95 duration-300" />
+						<CheckIcon className="my-auto text-green-500 animate-in fade-in-0 zoom-in-95 duration-200" />
 					) : (
-						<CopyIcon className="my-auto text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all animate-in fade-in-0 zoom-in-95 duration-300" />
+						<CopyIcon className="my-auto text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all animate-in fade-in-0 zoom-in-95 duration-200" />
 					)}
 				</TooltipTrigger>
 				<TooltipContent

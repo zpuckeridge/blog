@@ -25,7 +25,7 @@ export function ToggleTheme() {
 				<Tooltip>
 					<TooltipTrigger
 						aria-label="Toggle Theme"
-						className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
+						className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out"
 					>
 						<MoonIcon className="w-3.5 h-3.5" />
 					</TooltipTrigger>
@@ -46,7 +46,7 @@ export function ToggleTheme() {
 				<TooltipTrigger
 					onClick={toggleTheme}
 					aria-label="Toggle Theme"
-					className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 ease-in-out"
+					className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out"
 				>
 					{theme === "dark" ? (
 						<SunIcon className="w-3.5 h-3.5" />

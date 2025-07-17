@@ -50,7 +50,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
 									</p>
 								</button>
 								<div
-									className={`overflow-hidden transition-all duration-300 ease-in-out ${
+									className={`overflow-hidden transition-all duration-200 ease-in-out ${
 										isExpanded ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
 									}`}
 								>
@@ -65,20 +65,20 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
 												/>
 											</div>
 										)}
-										<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+										<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 											<p className="text-[0.7rem] text-muted-foreground">Rating</p>
 											<p className="text-sm">{movie.review}/10</p>
 										</div>
 
 										{movie.setting && (
-											<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 												<p className="text-[0.7rem] text-muted-foreground">Setting</p>
 												<p className="text-sm">{movie.setting}</p>
 											</div>
 										)}
 
 										{movie.with && (
-											<div className="py-1 px-3 min-w-20 bg-neutral-900 rounded">
+											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 												<p className="text-[0.7rem] text-muted-foreground">With</p>
 												<p className="text-sm">
 													{movie.with.map((person) => person.name).join(", ")}

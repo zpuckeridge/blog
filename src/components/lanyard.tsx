@@ -67,7 +67,7 @@ export default function Lanyard() {
 	}
 
 	return (
-		<div className="flex gap-2 animate-in fade-in duration-300">
+		<div className="flex gap-2 animate-in fade-in duration-200">
 			<div
 				className={`w-2 h-2 ${isFullyLoaded ? "animate-pulse" : ""} rounded-full my-auto ${dotColor}`}
 			/>

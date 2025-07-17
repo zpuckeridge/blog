@@ -102,7 +102,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 				className="-me-px text-xs flex-1 shadow-none text-black dark:text-neutral-300 rounded-lg"
 			/>
 
-			<div className="absolute text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
+			<div className="absolute text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
 				<MagnifyingGlassIcon />
 			</div>
 		</div>
@@ -144,13 +144,13 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 						href={`/video${video.url}`}
 						title={video.title}
 						key={video.url}
-						className="relative rounded hover:grayscale transition-all duration-300 group "
+						className="relative rounded hover:grayscale transition-all duration-200 group "
 					>
 						<div className="transform">
-							<div className="z-10 absolute top-2 left-2 bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm rounded px-2.5 py-0.5 text-xs transition-opacity duration-300 group-hover:opacity-0">
+							<div className="z-10 absolute top-2 left-2 bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm rounded px-2.5 py-0.5 text-xs transition-opacity duration-200 group-hover:opacity-0">
 								{video.tag}
 							</div>
-							<div className="z-10 absolute top-2 right-2 bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm rounded px-2.5 py-0.5 text-xs transition-opacity duration-300 group-hover:opacity-0">
+							<div className="z-10 absolute top-2 right-2 bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm rounded px-2.5 py-0.5 text-xs transition-opacity duration-200 group-hover:opacity-0">
 								{video.duration ? (
 									<span className="duration">{formatDuration(video.duration)}</span>
 								) : (
@@ -158,13 +158,13 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 								)}
 							</div>
 
-							<div className="aspect-video rounded-lg overflow-hidden group-hover:drop-shadow-2xl transition-all duration-300">
+							<div className="aspect-video rounded-lg overflow-hidden group-hover:drop-shadow-2xl transition-all duration-200">
 								<Image
 									src={`https://image.mux.com/${video.videoUrl}/thumbnail.png`}
 									alt={video.title}
 									width={600}
 									height={600}
-									className="aspect-video rounded-lg group-hover:scale-110 transition-all duration-300"
+									className="aspect-video rounded-lg group-hover:scale-110 transition-all duration-200"
 									priority={true}
 								/>
 							</div>

@@ -3,7 +3,7 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "@/src/components/ui/switch";
 import { Input } from "./ui/input";
 
 interface Post {
@@ -72,7 +72,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 						className="-me-px text-xs flex-1 shadow-none text-black dark:text-neutral-300 rounded-lg"
 					/>
 
-					<div className="absolute text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
+					<div className="absolute text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
 						<MagnifyingGlassIcon />
 					</div>
 				</div>

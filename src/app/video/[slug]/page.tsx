@@ -43,7 +43,7 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 									<Tooltip>
 										<TooltipTrigger
 											asChild
-											className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300"
+											className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200"
 										>
 											<DotsHorizontalIcon />
 										</TooltipTrigger>
