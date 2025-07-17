@@ -4,1806 +4,2032 @@ Import every single MDX file in the content folder. This gets around the fact th
 */
 
 export interface MDXModule {
-  frontmatter: {
-    title: string;
-    date: string;
-    tag: string;
-    slug: string;
-    type?: string;
-    image?: string;
-    imageAlt?: string;
-    videoUrl?: string;
-    duration?: number;
-    description?: string;
-    lastModified?: string;
-    signature?: boolean;
-  };
-  content: string;
+	frontmatter: {
+		title: string;
+		date: string;
+		tag?: string;
+		slug: string;
+		type?: string;
+		image?: string;
+		imageAlt?: string;
+		videoUrl?: string;
+		duration?: number;
+		description?: string;
+		lastModified?: string;
+		signature?: boolean;
+		ISBN?: number;
+		published?: string;
+		author?: string;
+		review?: number;
+		setting?: string;
+		with?: {
+			name: string;
+		}[];
+	};
+	content: string;
 }
 
 export const _mdx_0_: MDXModule = {
-  frontmatter: {
-    title: "AI-generated marketing is dumb",
-    date: "2025-05-21T00:00:00.000Z",
-    type: "Note",
-    tag: "AI",
-    slug: "ai-marketing-is-dumb",
-    description: "",
-  },
-  content:
-    "\nAI-generated marketing is like a toddler with a thesaurus and a Red Bull addiction trying to sell you a used car. It’s loud, it’s chaotic, it’s full of buzzwords it doesn’t understand, and you’re left wondering if it’s trying to scam you or just genuinely confused about what it’s selling.\n",
+	frontmatter: {
+		title: "Confessions of a Food Catholic",
+		date: "2023-05-19T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/confessions-of-a-food-catholic.avif",
+		slug: "confessions-of-a-food-catholic",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_1_: MDXModule = {
-  frontmatter: {
-    title:
-      "Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be",
-    date: "2024-08-27T00:00:00.000Z",
-    type: "Note",
-    tag: "Quote",
-    slug: "busyness-paradoxically-is-a-form-of-laziness-lazy-thinking-or-no-thinking-at-all-just-an-acceptance-that-busy-is-where-we-should-be",
-    description: "",
-  },
-  content:
-    '\n"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be." — Carl Phillips\n',
+	frontmatter: {
+		title: "The Case for Christian Nationalism",
+		date: "2023-04-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/the-case-for-christian-nationalism.avif",
+		slug: "the-case-for-christian-nationalism",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_2_: MDXModule = {
-  frontmatter: {
-    title: "Church is an ICU for sinners",
-    date: "2024-09-06T00:00:00.000Z",
-    type: "Note",
-    tag: "Quote",
-    slug: "church-is-an-icu-for-sinners",
-    description: "",
-  },
-  content: '\n"Church is an ICU for sinners." — Douglas Wilson\n',
+	frontmatter: {
+		title: "Mere Christianity",
+		date: "2023-04-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/mere-christianity.avif",
+		slug: "mere-christianity",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_3_: MDXModule = {
-  frontmatter: {
-    title: "Either write something worth reading or do something worth writing",
-    date: "2024-07-30T00:00:00.000Z",
-    type: "Note",
-    tag: "Quote",
-    slug: "either-write-something-worth-reading-or-do-something-worth-writing",
-    description: "",
-  },
-  content:
-    '\n"Either write something worth reading or do something worth writing." — Benjamin Franklin\n',
+	frontmatter: {
+		title: "What I Learned in Narnia",
+		date: "2024-12-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/what-i-learned-in-narnia.avif",
+		slug: "what-i-learned-in-narnia",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_4_: MDXModule = {
-  frontmatter: {
-    title: "Becoming trans is the only way to reject white privilege",
-    date: "2024-11-01T00:00:00.000Z",
-    type: "Note",
-    tag: "Quote",
-    slug: "jd-vance-the-only-way-to-reject-white-privilege",
-    description: "",
-  },
-  content:
-    "\n\"[I wonder] if there is a dynamic going on where if you become trans, that is the way to reject your white privilege. That's the social signifier, the only one that's available in the hyper woke mindset is if you become gender non-binary.\" — JD Vance\n",
+	frontmatter: {
+		title: "Live Like a Narnian",
+		date: "2025-01-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/live-like-a-narnian.avif",
+		slug: "live-like-a-narnian",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_5_: MDXModule = {
-  frontmatter: {
-    title:
-      "Men without land, a home, a wife or a business are not worth listening to.",
-    date: "2025-05-19T00:00:00.000Z",
-    type: "Note",
-    tag: "Lesson",
-    slug: "men-that-have-no-household",
-    description: "",
-  },
-  content:
-    "\nMen without land, a home, a wife or a business are not worth listening to.\n",
+	frontmatter: {
+		title: "Future Men",
+		date: "2023-02-01T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/future-men.avif",
+		slug: "future-men",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_6_: MDXModule = {
-  frontmatter: {
-    title: "I'm a White Australian and I'm not sorry",
-    date: "2025-05-26T00:00:00.000Z",
-    type: "Note",
-    tag: "Politics",
-    slug: "not-sorry",
-    description: "",
-  },
-  content:
-    "\nI'm not sorry that Australia was colonised.\n\nI'm not sorry about the stolen generation.\n\nI'm not ashamed to be Australian, or of my English heritage.\n\nAnd I don't need to be welcomed to the country my people built.\n\nAustralia is for Australians.\n",
+	frontmatter: {
+		title: "Fight by Flight",
+		date: "2023-05-19T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/fight-by-flight.avif",
+		slug: "fight-by-flight",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_7_: MDXModule = {
-  frontmatter: {
-    title: "Phone calls vs text",
-    date: "2025-03-13T00:00:00.000Z",
-    type: "Note",
-    tag: "Lesson",
-    slug: "phone-calls-vs-text",
-    description: "",
-  },
-  content:
-    "\nOne of the biggest things I’ve had to learn moving away from a purely technical role is that a quick phone call is 100x more efficient and reliable than text.\n\nNon-technical people do not read messages. At all.\n",
+	frontmatter: {
+		title: "The Chronicles of Narnia",
+		date: "2024-11-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/the-chronicles-of-narnia.avif",
+		slug: "the-chronicles-of-narnia",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_8_: MDXModule = {
-  frontmatter: {
-    title: "Politicians are blatantly gaslighting us on housing",
-    date: "2025-03-10T00:00:00.000Z",
-    type: "Note",
-    tag: "Politics",
-    slug: "politicans-are-gaslighting-us",
-    description: "",
-  },
-  content:
-    "\nPoliticians say the number of homes being built is the problem. Not the mass unchecked immigration.\n\nThat importing more workers to build them faster is the solution.\n\nThey don't seem to realise that the more people you bring in, the more houses you need to build - exacerbating the problem even further. Not to mention the additional strain on other resources (i.e. hospitals, schools etc.)\n\nThe solution is simple.\n\nStop the mass unchecked immigration.\n",
+	frontmatter: {
+		title: "How to Read a Book",
+		date: "2025-04-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/how-to-read-a-book.avif",
+		slug: "how-to-read-a-book-advice-for-christian-readers",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_9_: MDXModule = {
-  frontmatter: {
-    title: "An excerpt on Old Testament Law",
-    date: "2020-11-16T00:00:00.000Z",
-    tag: "Faith",
-    description: "Are gentiles allowed to eat unclean meat?",
-    image: "media/wright-brand-bacon-VVtVBLKkrik-unsplash.jpg",
-    imageAlt: "Photo by Wright Brand Bacon on Unsplash ",
-    signature: true,
-    type: "Post",
-    slug: "an-excerpt-on-old-testament-law",
-  },
-  content:
-    "\nRecently, a friend of mine had a run in with people that followed the Old Testament Law. They brought substantial evidence to the table that stood to prove that we, as Gentiles should not eat unclean meat or any food that has been sacrificed to idols. He believed them for a short time, but felt compelled to read up on the subject in a lot more detail and discovered that he had been mislead.\n\nFirst, let's get some context... In the early church, some of the earliest Gentile converts began joining Jewish believers in local fellowships. One of the earliest issues among these fellowships was the eating of meat sacrificed to idols. In Greco-Roman society idol worship was extremely popular and it was common for meat sold in the marketplace to have been sacrificed to a false god prior to its sale. Many Jews believed that partaking in the consumption of these meats would be some kind of \"second-hand\" idolatry. The conflict occurred when the Gentiles rejected the notion that such meat was tainted and many said that they could still eat meat sacrificed to idols without endorsing idolatry.\n\nPaul helps us to understand how we should approach the issue.\n\n> So, what about eating meat that has been offered to idols? Well, we all know that an idol is not really a god and that there is only one God. There may be so-called gods both in heaven and on earth, and some people actually worship many gods and many lords. But for us,\n>\n> There is one God, the Father, by whom all things were created, and for whom we live.\n>\n> And there is one Lord, Jesus Christ, through whom all things were created, and through whom we live.\n>\n> However, not all believers know this. Some are accustomed to thinking of idols as being real, so when they eat food that has been offered to idols, they think of it as the worship of real gods, and their weak consciences are violated.\n>\n> It’s true that we can’t win God’s approval by what we eat. We don’t lose anything if we don’t eat it, and we don’t gain anything if we do.\n\n— 1 Cor. 8:4-8\n\nPaul is saying that what we eat doesn't bring us closer or push us further away from God, the food itself is amoral. He also states that idols are nothing at all, they are inanimate and hold no power.\n\nWell, what does this mean? Does that mean that some people shouldn't worry and others should? Well not quite. Paul goes on to warn us in verse 9 that we should be careful to avoid stumbling others with a weaker conscience.\n\n> But you must be careful so that your freedom does not cause others with a weaker conscience to stumble.\n\n— 1 Corinthians 8:9\n\nBelievers with a background of idol worship, were still very sensitive concerning this issue at the time and many still considered it morally wrong to eat meat sacrificed to idols. Under no circumstances, Paul says, should a believer encourage another believer to violate his conscience. Paul also clarifies this in Titus by saying:\n\n> To the pure, all things are pure, but to the defiled and unbelieving, nothing is pure; but both their minds and their consciences are defiled.\n\n— Titus 1:15\n\nA 'weaker brother' is not one that chooses to abstain from certain practices, but one who is in danger of falling into sin. Your conscience helps to define what things are morally right/are not contradictory your restoration in Christ.\n\nThe article on [gotquestions.org](http://gotquestions.org) puts it perfectly:\n\n> To illustrate, let’s say there are two 1st-century Christians named Demetrius and Clement. Both are former idolaters, now saved by faith in Christ. Demetrius shuns everything to do with his old way of life, including the meat sold in the marketplace, because, for him, eating such meat would constitute a return to paganism. Clement avoids the temple and refuses to participate in the pagan festivals, but he has no problem eating the meat from the market. Clement understands (correctly) that an idol has no power to corrupt good meat, and, for him, eating such meat is a non-issue. Then one day, as both men are in the marketplace, Demetrius sees Clement eating meat that was sacrificed to idols. Demetrius is horrified, but Clement laughs it off and encourages Demetrius to eat some, too. When Demetrius hesitates, Clement cuts off a piece and hands it to him. Demetrius—emboldened by Clement’s confidence—eats the meat. Biblically, both believers have sinned. Clement sinned by violating the conscience of a fellow believer. Demetrius sinned in that he essentially returned to idolatry—at least, that’s what his conscience is telling him. More importantly, Demetrius is learning how to ignore his conscience—a very dangerous thing to learn. \\*\\***The principle here is that the conscience of a weaker Christian is more important than individual freedom. Doing something “permitted” should never hinder the spiritual health of someone else.**\n\nIt is a naturally health response to read about the laws in the Old Testament and want to follow them out of a love and appreciation for God's grace. But this comes out of a misunderstanding for what Jesus came to do.\n\nJesus came to fulfil the law of the Old Testament and teaches us how to obey God in its regard.\n\n> Don’t misunderstand why I have come. I did not come to abolish the law of Moses or the writings of the prophets. No, I came to accomplish their purpose. I tell you the truth, until heaven and earth disappear, not even the smallest detail of God’s law will disappear until its purpose is achieved.\n\n— Matthew 5:17-18\n\nYou can read this in two ways - one assuming that we must follow every element of the Old Law until heaven and earth pass away.\n\nAlternatively, you will keenly notice the words \"to fulfil them\" and the words \"until all is accomplished\".\n\nThe first interpretation fails to see Jesus' fulfilment and accomplishment of the Law. The prophets that God sent in the Old Testament were sent as a consummation to indicate the end of ceremonial laws. By this understanding, by choosing to follow the Old Testament laws, we are in effect, refusing to submit to God's plan and fulfilment of the Law in Jesus.\n\n> It’s not what goes into your body that defiles you; you are defiled by what comes from your heart.\n>\n> Then Jesus went into a house to get away from the crowd, and his disciples asked him what he meant by the parable he had just used. “Don’t you understand either?” he asked. “Can’t you see that the food you put into your body cannot defile you? Food doesn’t go into your heart, but only passes through the stomach and then goes into the sewer.” (By saying this, he declared that every kind of food is acceptable in God’s eyes.)\n\n— Mark 7:15-19\n\nJesus is saying that the prohibition of certain foods as unclean was only a temporary part of God's way of making Israel distinct from the nations of the world. God wanted the Jews and new Christians to understand that we would become a global people from every tribe, language, ethnicity and race.\n\nWith that declaration, God brings into the fold all the nations of the world and their individual convictions about what to eat, when to eat, how to eat etc.\n\nHebrews also makes it clear to us that the Old Covenant was temporary and only in place until a new system could be established.\n\n> ... the gifts and sacrifices that the priests offer are not able to cleanse the consciences of the people who bring them.For that old system deals only with food and drink and various cleansing ceremonies—physical regulations that were in effect only until a better system could be established.\n\n— Hebrews 9:9\n\n> Under the old system, the blood of goats and bulls and the ashes of a heifer could cleanse people’s bodies from ceremonial impurity. Just think how much more the blood of Christ will purify our consciences from sinful deeds so that we can worship the living God. For by the power of the eternal Spirit, Christ offered himself to God as a perfect sacrifice for our sins. That is why he is the one who mediates a new covenant between God and people, so that all who are called can receive the eternal inheritance God has promised them. For Christ died to set them free from the penalty of the sins they had committed under that first covenant.\n\n— Hebrews 9:13-15\n\nSo then, are we free to eat pork? Yes! That's right! But Paul in Galatians 5:2 also tells what we are not to with pork, or any law of the Old Testament.\n\n> Listen! I, Paul, tell you this: If you are counting on circumcision to make you right with God, then Christ will be of no benefit to you. I’ll say it again. If you are trying to find favour with God by being circumcised, you must obey every regulation in the whole law of Moses. For if you are trying to make yourselves right with God by keeping the law, you have been cut off from Christ! You have fallen away from God’s grace.\n\n— Galatians 5:2\n\nPaul is saying here that when we make an Old Testament Law, or a new law entirely, a necessity for justification before God, then we are cutting ourselves off from God's grace.\n\nUltimately, if someone chooses not to eat a certain meat or partake in a certain practice because they believe it may draw them back into their sinful nature or it goes against their conscience, let them, and do not get in the way of their nature.\n\nDo not let the new or old laws get become justification for salvation. The moment abstinence becomes intertwined with biblical authority as a path of salvation, a line is crossed that contradicts Jesus' sacrifice and the Gospel He established.\n\n> I tell you the truth, those who listen to my message and believe in God who sent me have eternal life. They will never be condemned for their sins, but they have already passed from death into life.\n\n— John 5:24\n\n> So don’t let anyone condemn you for what you eat or drink, or for not celebrating certain holy days or new moon ceremonies or Sabbaths. For these rules are only shadows of the reality yet to come. And Christ himself is that reality.\n\n— Colossians 2:16-17\n\nIf you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.\n",
+	frontmatter: {
+		title: "Mere Christendom",
+		date: "2024-04-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/mere-christendom.avif",
+		slug: "mere-christendom",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_10_: MDXModule = {
-  frontmatter: {
-    title: "Can Christians go to War?",
-    date: "2023-10-26T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "How should Christians respond to the stirrings or war? Do we simply refuse to participate? Or do we do our duty and fight for our country?",
-    image: "media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg",
-    imageAlt: "Photo by Bing Hui Yau on Unsplash",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "can-christians-go-to-war",
-  },
-  content:
-    "\nWhat is the appropriate Christian response to the onset of conflict or war? Should we opt out of participation altogether, or fulfill our duty by defending our nation? This article serves as an introductory guide to help Christians navigate the complexities of wartime and determine the most ethical course of action.\n\nGod has given the civil magistrate \"the sword\" to punish wrongdoers. Consider what Paul says in Romans 13:4-7:\n\n> For the one in authority is God’s servant for your good. But if you do wrong, be afraid, for rulers do not bear the sword for no reason. They are God’s servants, agents of wrath to bring punishment on the wrongdoer. Therefore, it is necessary to submit to the authorities, not only because of possible punishment but also as a matter of conscience. This is also why you pay taxes, for the authorities are God’s servants, who give their full time to governing. Give to everyone what you owe them: If you owe taxes, pay taxes; if revenue, then revenue; if respect, then respect; if honour, then honour.\n\nGod has granted rulers the authority to enforce their laws through coercion, including measures such as capital punishment and engaging in warfare. Throughout history, this authority has been wielded for both righteous and unjust causes. When it comes to Christians participating in war, various perspectives exist:\n\n1. Pure pacifism advocates for complete nonviolence under any circumstance.\n2. Blind nationalism reflects an uncritical allegiance to one's country, believing it can do no wrong.\n3. Finally, the concept of a \"just war\" suggests that some conflicts may be morally justified under certain conditions.\n\n# Pure Pacifism\n\nThis position holds the opinion that no Christian may ever take up arms in self-defence. This includes the defence of one's country, and of themselves. While they are correct in understanding that Christians are called to be pacifists in the sense that we love peace and pursue it, they fail to take into account that the Bible has said that we are permitted to defend ourselves and our families. Consider Exodus 22 and Luke 22:35-37:\n\n> If a thief is caught breaking in at night and is struck a fatal blow, the defender is not guilty of bloodshed.\n\n— Exodus 22:2\n\n> Then Jesus asked them, “When I sent you without purse, bag or sandals, did you lack anything? “Nothing,” they answered. He said to them, “But now if you have a purse, take it, and also a bag; and if you don’t have a sword, sell your cloak and buy one. It is written: ‘And he was numbered with the transgressors’; and I tell you that this must be fulfilled in me. Yes, what is written about me is reaching its fulfilment.\n\n— Luke 22:35-37\n\n# Blind Nationalism\n\nThis position holds the opinion that because God has bestowed the power of the sword on the state, that they must be obeyed at all times. In many ways, people that hold this position worship the state as in their eyes, they believe that it can do no wrong. This position fails to take into account that human nature is fundamentally corruptible, and that no system is perfect. We are also called to civil disobedience when our leaders inevitably start to follow a path of corruption or evil. See 1 Kings 18, Joshua 2, Exodus 1, 1 Samuel 14:45, Acts 4:19-20 and Acts 5:29.\n\nI think civil disobedience might be better summed up in its own article, as there is a lot to unpack there.\n\n# The Just War\n\nThe concept of a just war falls between the extremes of pure pacifism and blind nationalism and has been endorsed by numerous Christian thinkers throughout history, including Augustine, Constantine, Thomas Aquinas, and John Calvin.\n\nWhat distinguishes a just war? Essentially, it should be declared with solemnity, by a legitimate God fearing and righteous authority, as a last resort with a reasonable chance of success, and with careful restraint in the methods employed. Most importantly, the potential outcome should justify the costs incurred.\n\nChristians are called to oppose wars driven by aggression, which stem from hatred and fear, emotions exploited by adversaries to divide us. A just war is defensive in nature, and it is honourable to defend one's borders against aggressors.\n\nHowever, putting this principle into practice is challenging amidst the fog of war and the distortions of information and propaganda. It necessitates mournful prayer, fasting, and scriptural reflection to discern God's will. Christians must act with caution and strive to maintain moral integrity in all actions.\n",
+	frontmatter: {
+		title: "The Screwtape Letters",
+		date: "2024-04-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/the-screwtape-letters.avif",
+		slug: "the-screwtape-letters",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_11_: MDXModule = {
-  frontmatter: {
-    title: "Christians can not vote the country into what they want to see",
-    date: "2024-07-09T00:00:00.000Z",
-    tag: "Faith",
-    description: "They must go out and witness to the lost.",
-    lastModified: "2024-07-26T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "christians-can-not-vote-the-country-into-what-they-want-to-see",
-  },
-  content:
-    "\nThey must go out and witness to the lost. Nations rise and fall as God judges them. To be a faithful Christian is to evangelise the lost and see souls saved—only then will we see a nations morality improve.\n",
+	frontmatter: {
+		title: "It's Good To Be A Man",
+		date: "2023-04-20T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		image: "/recommended-books/its-good-to-be-a-man.avif",
+		slug: "its-good-to-be-a-man",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_12_: MDXModule = {
-  frontmatter: {
-    title: "Does God change His mind?",
-    date: "2022-10-25T00:00:00.000Z",
-    tag: "Faith",
-    description: "Does the Bible contradict itself?",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "does-god-change-his-mind",
-  },
-  content:
-    '\n# Contradictory Statements\n\nWhen investigating seemingly contradictory statements in the Bible, it\'s critically important to remember that our thoughts and understanding pale in comparison to God.\n\n> For my thoughts are not your thoughts, neither are your ways my ways, declares the LORD.\n\n— Isaiah 55:8\n\n> For the foolishness of God is wiser than men, and the weakness of God is stronger than men.\n\n— 1 Corinthians 1:25\n\nMen cannot understand the God of the universe in all of His magnitude, we simply are not capable of this understanding. While we are able to know God, our knowledge of Him and how He works will never be complete. His nature exceeds all that we can fathom, He has only given us what we ought to know about Him now.\n\nHowever, we are made in His image, therefore we have the capacity to understand the things He reveals to us, especially with the Holy Spirit as our helper.\n\nWhen God speaks to mankind, He does so either communicating clearly in a way that we understand or He does so in a way in which He only wants _some_ people to understand. See Matthew 13:10-17.\n\nAdditionally, God\'s word contains many examples of phenomenological language (the illusion or appearance of something in "the way that we see it"). We must exercise caution to avoid taking things out of context to ensure that we get a full and rich understanding of the truth.\n\nFrom the perspective of the reader, it appears that the Bible declares that God is immutable, sovereign and yet also refers to God regretting and relenting in certain situations:\n\n# God is immutable and does not change His mind\n\n> God is not man, that he should lie, or a son of man, that he should change his mind. Has he said, and will he not do it? Or has he spoken, and will he not fulfil it?\n\n— Numbers 23:19\n\n> “For I the LORD do not change; therefore you, O children of Jacob, are not consumed.\n\n— Malachi 3:6\n\n> Every good gift and every perfect gift is from above, coming down from the Father of lights, with whom there is no variation or shadow due to change.\n\n— James 1:17\n\n# God is Sovereign\n\n> \\[Our Lord Jesus Christ\\] who is the blessed and only Sovereign, the King of kings and Lord of lords.\n\n1 Timothy 6:15b\n\n> They cried out with a loud voice, “O Sovereign Lord, holy and true, how long before you will judge and avenge our blood on those who dwell on the earth?\n\n— Revelation 6:10\n\n# God can do whatever He pleases, everything is through Him and because of Him\n\n> Our God is in the heavens; he does all that he pleases.\n\n— Psalm 115:3\n\n> In him we have obtained an inheritance, having been predestined according to the purpose of him who works all things according to the counsel of his will.\n\n— Ephesians 1:11\n\n> So then he has mercy on whomever he wills, and he hardens whomever he wills.\n\n— Romans 9:18\n\n> Instead you ought to say, "If the Lord wills, we will live and do this or that.\n\n— James 4:15\n\n# Examples of God grieving and relenting\n\n> And the LORD regretted that he had made man on the earth, and it grieved him to his heart.\n\n— Genesis 6:6\n\n> And the LORD relented from the disaster that he had spoken of bringing on his people.\n\n— Exodus 32:14\n\n> If at any time I declare concerning a nation or a kingdom, that I will pluck up and break down and destroy it, and if that nation, concerning which I have spoken, turns from its evil, I will relent of the disaster that I intended to do to it.\n\n— Jeremiah 18:7–8\n\n> Who knows? God may turn and relent and turn from his fierce anger, so that we may not perish.” When God saw what they did, how they turned from their evil way, God relented of the disaster that he had said he would do to them, and he did not do it.\n\n— Jonah 3:9–10\n\n# How can all of these statements be true at once?\n\nThere are a few things that we need to begin unpacking here. The best place to start is at 1 Samuel 15:11 where it says:\n\n> I regret that I have made Saul king, because he has turned away from me and has not carried out my instructions.” Samuel was angry, and he cried out to the Lord all that night.\n\nand 1 Samuel 15:35 where it also says:\n\n> Until the day Samuel died, he did not go to see Saul again, though Samuel mourned for him. And the Lord regretted that he had made Saul king over Israel.\n\nAt first glance, this seems to prove that God has regretted and changed His mind on his appointment of Saul as king. However, in 1 Samuel 15:29:\n\n> And he who is the Glory of Israel will not lie, nor will he change his mind, for he is not a man that he should change his mind!\n\nIn Samuel the writer uses the Hebrew word "נָחַם" i.e., "nacham" which has the same meaning, regret, change mind etc. However, the hint remains within 1 Samuel 15:29 where God states that the Glory of Israel "will not lie, nor will he change his mind". God cannot lie, He always speaks the truth. Therefore, we can say that God literally never changes His mind. It may appear as a change of mind, but the appearance of a change of action is not the same as changing ones mind.\n\nFrom a human perspective, it is difficult to wrap our heads around this. But consider it this way, if God was to change His mind or go against His own word - He could no longer be considered trustworthy.\n\nWhile at first glance, these verses appear to be contradicting each other, it is not actually the case.\n\nGod knows the future. In fact, He places His authority on the matter in Isaiah.\n\n> Remember this and stand firm, recall it to mind, you transgressors, remember the former things of old; for I am God, and there is no other; I am God, and there is none like me, declaring the end from the beginning and from ancient times things not yet done, saying, ‘My counsel shall stand, and I will accomplish all my purpose,’ calling a bird of prey from the east, the man of my counsel from a far country. I have spoken, and I will bring it to pass; I have purposed, and I will do it.\n\n— Isaiah 46:8–11\n\nGod is the only being that can declare the beginning from the end. Logically therefore, we can suppose that God already knew the outcome of every situation. If this be the case, then God has not changed His mind, but has used promises to instil Godly fear which turns the nations back to Him. We see this play out throughout multiple examples in the Old Testament.\n\nThe Old Testament passages where God appears to repent, or change His mind almost always deal with threats of judgement, of which are followed by repentance of the people, or intercessory petitions of their leaders. God is not changing His mind, simply doing what He had already promised to do. He will not punish sinners that repent and turn away from their evil. He is simply fulfilling His promises.\n\nIt is not that God is changing His mind, although it may appear so from our perspective. God has already made promises of grace for people that turn from their sinful lives.\n\nThe point of these passages are to help us realise Christ\'s intercessions that allows us to live in grace. It should bring us back to prayer and bring us to repentance from our sinful nature.\n',
+	frontmatter: {
+		title: "Christian Nationalism",
+		date: "2023-05-19T00:00:00.000Z",
+		type: "Book",
+		review: 10,
+		ISBN: 1234567890,
+		published: "09-09-1999",
+		author: "John Doe",
+		image: "/recommended-books/christian-nationalism.avif",
+		slug: "christian-nationalism",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_13_: MDXModule = {
-  frontmatter: {
-    title: "Elders and pastors should be good with money",
-    date: "2024-07-26T00:00:00.000Z",
-    tag: "Faith",
-    description: "Do your elders manage their households well?",
-    image: "media/pepi-stojanovski-MJSFNZ8BAXw-unsplash.jpg",
-    imageAlt: "Photo by Pepi Stojanovski on Unsplash",
-    lastModified: "2024-10-23T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "elders-and-pastors-should-be-good-with-money",
-  },
-  content:
-    "\n[Do your elders manage their households well?](https://x.com/PerfInjust/status/1814819350768914771) And no, I'm not just talking about the relationships between their wife and children, but also their finances, their conduct and general wisdom. Are they above [reproach](https://www.merriam-webster.com/dictionary/reproach)?\n\nIf we are to entrust our elders to the finances of the church, the tithe and other financial decisions, then it is reasonable to expect them to have a decent understanding of realestate, economics and almost certainly politics. How else could they come to a well reasoned conclusion about a specific direction the church should take?\n\n> \"The saying is trustworthy: If anyone aspires to the office of overseer, he desires a noble task. Therefore an overseer must be above reproach, the husband of one wife, sober-minded, self-controlled, respectable, hospitable, able to teach, not a drunkard, not violent but gentle, not quarrelsome, not a lover of money. He must manage his own household well, with all dignity keeping his children submissive, for if someone does not know how to manage his own household, how will he care for God's church? He must not be a recent convert, or he may become puffed up with conceit and fall into the condemnation of the devil. Moreover, he must be well thought of by outsiders, so that he may not fall into disgrace, into a snare of the devil.\" — 1 Timothy 3:1-7\n\nI would argue that we should definitely look to our elders when it comes to these things. Why else would we have elected them?\n\nI'm not arguing that the elder should be an economist or expert on foreign policy, merely that he would be aware of these things and have a good understanding of how they can affect his flock.\n",
+	frontmatter: {
+		title: "The Limitations of Natural Revelation",
+		date: "2024-02-23T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"While natural revelation provides glimpses of God's existence and character, it falls short of revealing the fullness of His redemptive plan.",
+		image: "media/konrad-hofmann-DjlYzy7zkP8-unsplash.jpg",
+		imageAlt: "Photo by Konrad Hofmann on Unsplash",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "the-limitations-of-natural-revelation",
+	},
+	content:
+		'\nThis article was written as an assessment piece for [Theology for Worldview](https://haddoninstitute.org/course/theology-for-worldview) via the [Haddon Institute](https://haddoninstitute.org), a course lectured by [Craig Ireland](https://x.com/craigcireland).\n\n# Introduction\n\nJob poses a fundamental question about the nature of the universe: can we truly grasp the depths of God\'s wisdom and the limits of His power?[^1] This query resonates with our own quest for understanding. Do we claim to know God fully, or do we humbly acknowledge our limited comprehension? The richness of God\'s attributes and the inscrutability of His ways are acknowledged throughout scripture[^2], reminding us of the inherent limitations of human understanding. While natural revelation provides glimpses of God\'s existence and character, it falls short of revealing the fullness of His redemptive plan. Can natural revelation, a theology that does not include the special revelation of Scripture, unveil God to humanity?\n\n# Understanding Natural Revelation\n\nNatural revelation, also known as general revelation, is the truth about God that can be discerned by looking at the world around us. It posits that "God has revealed Himself so clearly in the natural order that no person will ever be able to stand before the Creator and claim that there is insufficient evidence that He exists and should be worshiped."[^3]\n\nIn London Baptist and Westminster Confessions of Faith, natural revelation is often referred to as "the light of nature" and "the works of creation and providence."[^4] Let us elaborate on these to understand what the Puritans and Reformers intended for us to understand.\n\nThe "works of creation and providence" refers to the visible universe, which God brought into existence out of nothing[^5] and which God sustains by the word of his power[^6]. These works of God serve to reveal God. In the words of the Psalmist, "The heavens declare the glory of God, and the sky above proclaims his handiwork"[^7].\n\nThe Reformers and Puritans use the phrase "light of nature" to refer to natural revelation in a generalized way.[^8] Other times the phrase is used to refer to the innate knowledge of God within man, which is a particular mode of natural revelation.[^9] Such innate knowledge would include human reason and conscience.[^10]\n\nWhat does natural revelation reveal? As articulated by the apostle Paul, the observable universe demonstrates God\'s "eternal power"[^11]. Paul also asserts that divine providence reveals God\'s "goodness"[^12]. Similarly, the Psalmist sees God\'s "wisdom" evident in creation and God\'s providence[^13].\n\nIs the scope of natural revelation limited to these three divine attributes (eternal power, goodness, wisdom)? A faithful interpretation suggests that while these attributes are integral to God, they do not encompass the entirety of His being. The heavens proclaim, "the glory of God"[^14], encompassing all attributes pertaining to His sovereignty and role as Creator. Moreover, the language of the confessions implies, and Scriptures explicitly affirm, that natural revelation following humanity\'s fall into sin also unveils God\'s justice and wrath against sin.[^15]\n\nIn Romans 1, Paul highlights the inherent revelation of God evident in the world around us. He asserts that humanity possesses an innate awareness of God\'s existence and attributes, which are plainly discernible through observation of the natural world. From the dawn of creation, the eternal power and divine nature of God have been manifest in the intricacies of His handiwork.\n\nThis revelation is not obscure or hidden but rather conspicuous and unmistakable. Paul emphasizes that humanity, throughout time, has had the capacity to perceive and comprehend these aspects of God through the wonders of creation. However, despite this awareness, many fail to acknowledge or honour God as they should.\n\nThe failure to recognize and revere God, despite the clarity of His revelation, leaves humanity without a valid excuse. Paul underscores the accountability of individuals for their unbelief, emphasizing that even though they possess knowledge of God, they often disregard His rightful place and fail to accord Him the reverence and worship due to Him.[^16]\n\nThe first facet of natural revelation, nature, comprises both the existence of the universe (cosmos) and its apparent design (teleology).[^17] The second facet, conscience, originates from the belief that we are made in the likeness of God[^18] and endowed with intellect and morality. It encompasses our capacity to understand, our inherent awareness of God\'s presence, and our discernment between right and wrong. The last form of natural revelation, providence, pertains to God\'s inherent blessings bestowed upon all individuals (referred to as common grace) and his sovereign orchestration of history.[^19]\n\nThe Bible emphasizes that natural revelation is universally accessible, holding individuals responsible for their reactions to it. This concept assumes that despite humanity\'s fallen state, the inherent image of God and cognitive abilities remain sufficiently intact for people to grasp an understanding of God through logical reasoning.\n\n# The Insufficiency of Natural Revelation\n\nRomans 1 asserts that God\'s presence is clearly manifested in nature, yet it also acknowledges the constraints of natural revelation.[^20] While it provides sufficient evidence of God\'s existence, it falls short of imparting salvation. Paul explains that when individuals encounter natural revelation, they suppress the truth of God that is revealed to them. The fall of man makes this clear, "Every intention of the thoughts of his heart was only evil continually"[^21] and Paul expands on this saying, "the mind that is set on the flesh is hostile to God, for it does not submit to God\'s law; indeed, it cannot"[^22]. Paul emphasizes the inherent resistance in human nature. Additionally, he notes that "The god of this world has blinded the minds of the unbelievers"[^23] and highlights the state of being alienated and hostile in mind. "You, who once were alienated and hostile in mind"[^24]. Despite God successfully revealing His nature in and to man through creation, humanity struggles to interpret this revelation faithfully.\n\nConsider this, if natural revelation is universally available to everyone, why does anyone choose not to worship the creator? Without a faith in Christ, when man begins to explore the wonders of God\'s creation, their thoughts become futile, and their hearts are darkened.[^25] They fail to acknowledge the Lord or express gratitude towards Him. Furthermore, they forsake the truth evident in the natural world, opting instead for falsehoods, embracing various forms of false religion and idol worship. They divert their reverence from the Creator to creation itself. Those who encounter the revelation of nature without the grace of God and His plan for salvation distort God\'s image to fit their own desires, rejecting the worship of the true Lord.[^26]\n\nThe London Baptist Confession backs up this point in chapter 10, "Much less can men, not professing the Christian religion, be saved in any other way whatsoever, be they never so diligent to frame their lives according to the light of nature, and the laws of that religion they do profess. And, to assert and maintain that they may, is very pernicious, and to be detested"[^27].\n\nThe idolatry that arises from individuals receiving natural revelation is not attributed to any shortcomings in natural revelation itself. Rather, it stems from the inherent sin present in fallen human beings. God cursed the ground when Adam sinned. Nature from that point forth, was broken and not operating as a part of the original plan. John Calvin says "Before the fall, the state of the world was a most fair and delightful mirror of the divine favour and paternal indulgence towards man. Now, in all the elements we perceive that we are cursed"[^28].\n\nWhile natural revelation provides compelling evidence of God\'s existence, it alone cannot bring about salvation. Despite the clarity of God\'s presence in nature, humanity\'s sinful nature leads to the suppression of this truth. Salvation requires the transformative work of the Holy Spirit, transcending the limitations of natural revelation. Although natural revelation universally attests to God\'s existence and character, it cannot supplant the distinct revelation of God\'s redemptive plan through Jesus Christ.\n\n# The Requirement for Special Revelation\n\nWhere natural revelation is a universal method of witnessing God\'s existence and character, special revelation presupposes that it is "not sufficient to give that knowledge of God, and of His will, which is necessary unto salvation."[^29] Natural revelation reveals God, but it does not reveal Jesus Christ and His salvific work on the cross. Special revelation is the revelation of the way to salvation.[^30]\n\nScripture describes God\'s word (special revelation) as a higher authority over natural revelation. "For you have been born again, not of perishable seed, but of imperishable, through the living and enduring word of God."[^31] Scripture here places an authority on the living and enduring word of God. We can also see the same charge in Psalm 19 where David places an emphasis on natural revelation, but also on God\'s law, which could only be acquired through special revelation (the prophets).\n\nPaul, in his writings to the Corinthians states "But a natural man does not accept the things of the Spirit of God, for they are foolishness to him; and he cannot understand them, because they are spiritually appraised."[^32] Here, we can see that natural revelation is universally understood by man, but it cannot be accepted. The Holy Spirit must work on the heart of man before he would come to believe. John Calvin puts this well: "[All men], whether they want to or not, they are repeatedly brought up short by this thought, that there is a divinity by whose decision they stand or fall."[^33]\n\nFortunately, the value of natural revelation is not nullified for us. Its significance is revitalized through divine grace, but this revitalization occurs only when we undergo reconciliation with God and undergo a transformation through the Holy Spirit. "[You] have embraced the new self, constantly renewed in knowledge to reflect the likeness of its creator."[^34] In this unity with the divine, reason discovers its true revival. Nevertheless, it is not solely the revival of reason that reinstates the reliability of natural theology; rather, it is reason being rejuvenated and humbled by the foundation of divine revelation.[^35] By delving into the teachings of scripture, we unravel the insights embedded within nature.\n\nSalvation hinges on the Holy Spirit\'s intervention, without which humanity cannot enter God\'s kingdom. Although natural revelation alone is not sufficient for salvation, God did not design it for that purpose. Paul clarifies that natural revelation functions to unveil truths about God, leading individuals to acknowledge their sinful condition and the imperative need for salvation.[^36] However, redemption requires more than this; it necessitates special revelation - knowledge of God\'s actions throughout history, notably in Jesus Christ. Such insight, which nature is unable to provide, is exclusively conveyed through Scripture.\n\n# Conclusion\n\nIn conclusion, the profound revelations inherent in natural revelation provide us with a glimpse into the magnificent tapestry of God\'s creation and the moral order woven into the fabric of the universe. The intricate design of nature and the moral compass it reflects undoubtedly point to a divine Creator. However, it is crucial to recognize the limitations of natural revelation in the context of our salvation journey.\n\nWhile nature declares the glory of God, it cannot bridge the gap between humanity and the divine or offer the necessary remedy for our brokenness. The gospel, centered on the life, death, and resurrection of Jesus Christ, stands as the ultimate revelation of God\'s redemptive plan for humanity. Scripture unfolds the narrative of God\'s love and mercy, highlighting the sacrificial work of Christ as how we are reconciled to God.\n\nIn embracing the gospel, we find not only forgiveness for our sins but also a transformative power that transcends the external manifestations of natural revelation. The saving grace offered through Jesus Christ brings about a profound internal renewal, reshaping our hearts and minds. It is through this transformative process that we experience true freedom from the bondage of sin and a restored relationship with our Creator.\n\nWhile natural revelation serves as a compelling witness to God\'s existence and moral standards, it functions more as a precursor, preparing hearts to receive the fullness of salvation in Christ. Our marvel at the wonders of creation should, therefore, propel us toward a deeper exploration of the redemptive narrative found in scripture. Our unwavering hope rests not in the captivating beauty of the natural world but in the unmerited grace and love extended to us through the person of Jesus Christ, the cornerstone of our faith and the pathway to eternal life.\n\n[^1]: Job 11:7\n\n[^2]: Romans 11:33-34\n\n[^3]: "The Limits of Natural Revelation" (Article, Ligonier Ministries, Ligonier)\n\n[^4]: Robert Gonzales, "The Necessity of Scripture: General Revelation Is Not Enough" (Article, July 3, 2018)\n\n[^5]: Genesis 1:1, John 1:3, Colossians 1:15\n\n[^6]: Psalms 104, Acts 14:14-17, Hebrews 1:3\n\n[^7]: Psalm 19:1\n\n[^8]: Robert Gonzales, "The Necessity of Scripture: General Revelation Is Not Enough" (Article, July 3, 2018)\n\n[^9]: Robert Gonzales, "The Necessity of Scripture: General Revelation Is Not Enough" (Article, July 3, 2018)\n\n[^10]: Matthew Henry associates the "light of nature" with the human conscience in his exposition of Romans 2:12-16. A Commentary on the Whole Bible, vol. 6 (New Jersey: Fleming H. Revell Company, n.d.), 374-77.\n\n[^11]: Romans 1:20\n\n[^12]: Acts 14:17\n\n[^13]: Psalm 104\n\n[^14]: Psalm 19:1\n\n[^15]: Romans 1:18; 2:1-16\n\n[^16]: Romans 1:18-32\n\n[^17]: Craig Ireland, "Worldview for theology or theology for worldview?" (Lecture, Haddon Institute, Australia, December 4, 2023) theology-for-worldview Craig Ireland, "Where do we find ourselves?" (Lecture, Haddon Institute, Australia, December 11, 2023) where-do-we-find-ourselves\n\n[^18]: Genesis 1:26-27\n\n[^19]: Neal Hardin, "The Limitations of Knowing God Using Natural Theology" (Article, January 31, 2017)\n\n[^20]: Romans 1\n\n[^21]: Genesis 6:5\n\n[^22]: Romans 8:7\n\n[^23]: 2 Corinthians 4:4\n\n[^24]: Colossians 1:21\n\n[^25]: "The Limits of Natural Revelation" (Article, Ligonier Ministries, Ligonier)\n\n[^26]: Romans 1:18-32\n\n[^27]: London Baptist Confession of Faith (10.4)\n\n[^28]: John Calvin, "COMMENTARIES ON THE FIRST BOOK OF MOSES CALLED GENESIS" (Commentary, Chapter 3.17)\n\n[^29]: Westminster Confession of Faith, (I.1)\n\n[^30]: Keith Mathison, "General and Special Revelation" (Article, Ligonier Ministries, Ligonier)\n\n[^31]: 1 Peter 1:23\n\n[^32]: 1 Corinthians 2:14\n\n[^33]: Calvin\'s 1538 Catechism, Art 2\n\n[^34]: Colossians 3:10\n\n[^35]: John Hartley "Natural Revelation: Is Natural Theology Reliable?" (Article, October 1, 2018)\n\n[^36]: Romans 1 – 3\n',
 };
 
 export const _mdx_14_: MDXModule = {
-  frontmatter: {
-    title: '"Freedom" isn\'t freedom',
-    date: "2024-08-30T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "Freedom the way the world sees it isn't freedom - it's slavery.",
-    image: "media/deann-dasilva-0jIg_-j_tTc-unsplash.jpg",
-    imageAlt: "Photo by Deann DaSilva on Unsplash",
-    lastModified: "2024-08-30T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "freedom-isnt-freedom",
-  },
-  content:
-    "\nFreedom isn't freedom if you're enslaved to your flesh.\n\nIf your entire life is realised by decisions that gratify your base desires, are you really operating of your own thoughts and free will? No, you aren't. You are controlled by the desires of your flesh - that isn't freedom. That's slavery—slavery to sin.\n\nGod has offered us the only way to be free from this slavery through the death and resurrection of Jesus Christ for the sins of the world. Although we do not deserve it, He has seen it fit to send His one and only son to bear the punishment for our crimes.\n\nNot only did we trample and poison His creation, but we also killed God's own son. The fact He does not just destroy us all will always remain a mystery to me.\n\nGod has offered us a second chance - all you must do now is repent and believe in the saving work of Christ on the cross and you will be saved.\n\nDo you want to be free?\n",
+	frontmatter: {
+		title: "Christians can not vote the country into what they want to see",
+		date: "2024-07-09T00:00:00.000Z",
+		tag: "Faith",
+		description: "They must go out and witness to the lost.",
+		lastModified: "2024-07-26T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "christians-can-not-vote-the-country-into-what-they-want-to-see",
+	},
+	content:
+		"\nThey must go out and witness to the lost. Nations rise and fall as God judges them. To be a faithful Christian is to evangelise the lost and see souls saved—only then will we see a nations morality improve.\n",
 };
 
 export const _mdx_15_: MDXModule = {
-  frontmatter: {
-    title: "Homosexuality — what does the Bible say?",
-    date: "2020-07-07T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "This article seeks to understand what God has said about homosexuality.",
-    image: "media/cecilie-johnsen-G8CxFhKuPDU-unsplash.jpg",
-    imageAlt: "Photo by Cecilie Johnsen on Unsplash",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "homosexuality-what-does-the-bible-say",
-  },
-  content:
-    '\nBefore I continue with this article, I\'d like to take some time to pray for you, the reader, that the words on this page speak true to your heart and the hearts of others.\n\n> Dear Heavenly Father, thank you for your sacrifice and the provision of your grace upon my life. As I continue to write this article, may you be both with me and the reader to help us both to interpret the message you have for me to write, and the reader for whom receives it.\n>\n> I faithfully pray that you are in complete control and that the words displayed on this page are words which you intended to be there. I pray that you bring me back to this article over the years to correct and update it, improving its validity and relevance.\n>\n> In your Holy and righteous name, I pray these things. Amen.\n\nLet me be abundantly clear before we proceed any further. All sin is covered by the death and resurrection of Jesus Christ when He sacrificed himself for our sins. He bore our sins, future, past and present. To be free from the consequences of sin, one must hear the good news of Jesus\' sacrifice and believe.\n\n---\n\n# Well, what does the Bible say then?\n\nGod has not made Himself unclear. The first mention of homosexuality in the Bible is found in Genesis 13:13.\n\n> The men of Sodom were exceedingly wicked and sinful against the LORD.\n\nA few chapters later we find out the “exceedingly wicked” behaviour they were participating in.\n\n> Before they had gone to bed, all the men from every part of the city of Sodom—both young and old—surrounded the house. They called to Lot, “Where are the men who came to you tonight? Bring them out to us so that we can have sex with them.\n\n— Genesis 19:4-5\n\nThe book of Jude reveals to us the consequence of their actions, making it very clear to us that God does not approve of this behaviour.\n\n> In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.\n\n— Jude 7\n\nIn the Law of the Bible, death was the order for homosexuals.\n\n> If a man has sexual relations with a man as one does with a woman, both of them have done what is detestable. They are to be put to death; their blood will be on their own heads.\n\n— Leviticus 20:13\n\nHomosexuality is listed with a whole host of other sins including the uncovering of nakedness of near of kin, those near in relations, or during menstruation, adultery, bestiality etc.\n\n> Do not have sexual relations with a man as one does with a woman; that is detestable.\n\n— Leviticus 18:22\n\nEverything in Leviticus 18 is considered an "abomination" to God and are clearly practices that He has always hated. He also leaves a very clear warning:\n\n> Do not defile yourselves in any of these ways, because this is how the nations that I am going to drive out before you became defiled. Even the land was defiled; so I punished it for its sin, and the land vomited out its inhabitants. But you must keep my decrees and my laws. The native-born and the foreigners residing among you must not do any of these detestable things, for all these things were done by the people who lived in the land before you, and the land became defiled. And if you defile the land, it will vomit you out as it vomited out the nations that were before you. Everyone who does any of these detestable things—such persons must be cut off from their people. Keep my requirements and do not follow any of the detestable customs that were practised before you came and do not defile yourselves with them. I am the Lord your God.\n\n— Leviticus 18:24-30\n\n---\n\n# But those are all examples from the Old Testament!\n\nFor those that argue that the Old Testament need not apply as it has "passed away", we must remember that Jesus\' purpose was not to set aside the Law of Moses.\n\n> Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfil them. For truly I tell you, until heaven and earth disappear, not the smallest letter, not the least stroke of a pen, will by any means disappear from the Law until everything is accomplished. Therefore anyone who sets aside one of the least of these commands and teaches others accordingly will be called least in the kingdom of heaven, but whoever practices and teaches these commands will be called great in the kingdom of heaven. For I tell you that unless your righteousness surpasses that of the Pharisees and the teachers of the law, you will certainly not enter the kingdom of heaven.\n\n— Matthew 5:17 - 20\n\nJesus commanded obedience to Moses\' Law and its original intent. Whereas murder was “liable for judgment” (Matthew 5:21) in the Law, now “anger is liable for judgment.” (Matthew 5:22) and “hell-fire.” Whereas adultery was prohibited in the Law, now “lustful intent” is condemned, since it is indeed the source of adulterous behaviour. In sum, the Messiah did not come to lay aside the Law, but to fulfil its original purpose.\n\nNot to mention, the New Testament makes it abundantly clear:\n\n> Therefore God gave them over in the sinful desires of their hearts to sexual impurity for the degrading of their bodies with one another. They exchanged the truth about God for a lie, and worshipped and served created things rather than the Creator—who is forever praised. Amen. Because of this, God gave them over to shameful lusts. Even their women exchanged natural sexual relations for unnatural ones. In the same way the men also abandoned natural relations with women and were inflamed with lust for one another. Men committed shameful acts with other men, and received in themselves the due penalty for their error.\n\n— Romans 1:​24-27\n\n> Do not be misled. Those who are sexually immoral, idolaters, adulterers, men who submit to homosexual acts, men who practice homosexuality, thieves, greedy people, drunkards, revilers, and extortioners will not inherit God’s Kingdom.\n\n— 1 Corinthians 6:​9, 10\n\nIf you wish to delve deeper into the significance of this concept, its interpretation, distinctions between moral, ceremonial, and civil law, and the enduring relevance of the moral law today, I highly recommend listening to the following sermons:\n\n- [The Law & Covenant](https://www.youtube.com/watch?v=Ohz_Z4yJyKM)\n\n- [God & The Law](https://www.youtube.com/watch?v=eg_L0Dv8vFk)\n\n- [God\'s Law: A Multi-Tool](https://www.youtube.com/watch?v=70HRCTxYeg0)\n\n---\n\n# So? Jesus never spoke to homosexuality directly, and only His words matter!\n\nActually, Jesus directly addresses sexually deviant behaviours, which include homosexuality (a precedent set in Old Testament). Jesus directly confronts "porneia" in Matthew 15:19 which is often translated as fornication or sexual immorality. This includes all sexually deviant behaviour outside of the bond of marriage between one man and one woman.\n\n> But the things that come out of a person’s mouth come from the heart, and these defile them. For out of the heart come evil thoughts—murder, adultery, sexual immorality, theft, false testimony, slander.\n\n— Matthew 15:18 - 19\n\nFor those that only follow what Jesus actually said because the rest of the Bible was written by man and is therefore fallible, how then are we supposed to trust the recorded words that Jesus spoke as precisely what He said? Either it\'s completely untrustworthy or:\n\n> All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.\n\n— 2 Timothy 3:16\n\n---\n\n# Leviticus 20:13 refers to boys, not men - paedophilia, therefore it does not condemn homosexuality.\n\nWhile it may be tempting to latch onto these interpretations, we must use history to determine whether this was an acceptable practice in the church. In church history, there have been no examples of homosexual marriage or condoned homosexual relationships. Translations from these periods tend to be sketchy, as many writers of the KJV were known for putting in their own convenient interpretations.\n\nTo know the truth, we must refer to Jewish history and the dead sea scrolls (which our modern translations are based off of) - which clearly show that homosexual marriage was not a condoned practice.\n\nTo further prove this point, God destroyed Sodom and Gomorrah because they were partaking in:\n\n> Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.\n\n— Jude 1:7\n\n> They called to Lot, “Where are the men who came to you tonight? Bring them out to us so that we can have sex with them.\n\n— Genesis 19:5\n\n---\n\n# But I thought homosexuality was natural?\n\nMany people are quick to point out that homosexuals are simply "born that way". Although it is alleged to have some genetic basis, scientific research has not been explicitly conclusive.[^1][^2]\n\nThe inconclusiveness of these studies left leading Columbia University psychiatrists Byne and Parsons to conclude that:\n\n> There is no evidence at present to substantiate a biological theory, just as there is no compelling evidence to support any singular psychosocial explanation. The appeal of current biological explanations may derive more from dissatisfaction with the present status of psychosocial explanations than from a substantiating body of experimental data. Critical review shows the evidence favouring a biological theory to be lacking.[^3]\n\nFrom a scientific standpoint, there is no good reason to believe that there exists a biological link to homosexual behaviour. If a link were ever established, it would still not morally justify homosexuality for a few reasons.\n\nA lot more research would need to be completed to work out why this behaviour exists and how it translates into the lives of everyday people. One will also need to differentiate if homosexual behaviour causes the biological condition or if the biological condition is the cause of the homosexual behaviour.\n\nIf the biological condition causes homosexuality or predisposes it in an individual, it will still not make the behaviour "good" or morally permissible.\n\n---\n\n# If I am \'naturally\' predisposed towards homosexuality, then it must be good!\n\nThis train of thought does not overlap so well in other areas of life. For example, what if I am naturally selfish, violent or predisposed toward addiction, adultery or paedophilia? Researchers believe that there is a definite genetic basis for alcoholism, yet we do not think that alcoholism is good. Any reasonable person would believe that alcoholism should be treated and "cured".\n\nIf this is true, should we not attempt to "cure" homosexuals from a behaviour that appears divergent from the norm much the same way as alcoholism?\n\nDoes our natural inclination or desire for things make them good? The Bible teaches us that the human heart is corrupt and must be made regenerate via Jesus\' sacrifice.\n\n> If any man be in Christ he is a **new creation**. The old is passed, behold the new is come.\n\n— 2 Corinthians 5.17\n\n---\n\n# Animals engage in homosexual behaviour, what makes them so different than us? Even chimpanzees and other apes are known to engage in the behaviour. So, if it occurs in nature, it must be natural for humans too!\n\nSimilarly to the first argument, this doesn\'t overlap very well when you apply this concept to the actions of other animals.\n\nAnimals are not civilised. For example, many animals eat their young as soon as they are born. That certainly isn\'t permissible for human beings... If we are to hold to this premise literally, it would imply that there is no moral difference between animals and humans. Let the flood gates open.\n\nJust because some animals engage in homosexual behaviour, does not mean that human homosexuality is natural, or morally good. Studies also show clear abnormalities with regard to homosexuality amongst animals. Thomas Schmidt explains that:\n\n> Animals do not engage in long-term homosexual bonding as humans do. Some monkeys and apes mount or fondle each other to the point of sexual arousal, but even this behaviour involves numerous qualifications: most important, the behaviour does not continue when the individual matures and has a heterosexual option.[^4]\n\nEven if this was a good argument for homosexuality, one would argue that animals and the natural order of things have been corrupted when sin was introduced to the world through Adam.\n\nThere is, however, a point in favour of genetic homosexuality in the Bible. It talks about inter-generational sin and how the sins of the father are passed down for up to four generations.\n\n> The Lord passed before him and proclaimed, “The Lord, the Lord, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness, keeping steadfast love for thousands, forgiving iniquity and transgression and sin, but who will by no means clear the guilty, visiting the iniquity of the fathers on the children and the children\'s children, to the third and the fourth generation."\n\n— Exodus 34 6 - 7\n\nIf my great-great-grandfather engages in unrepentant homosexual sin, his "genetic sin" is actually passed down to me by blood according to the Bible, which is also why all new-borns are technically born in sin in the eyes of the Lord.\n\nAnother argument to bring to the forefront is the very well documented [health risks of homosexual promiscuity](https://www.catholiceducation.org/en/marriage-and-family/sexuality/the-health-risks-of-gay-sex.html).\n\n---\n\n# Natural Inclination\n\nHomosexuality may _feel_ natural to some, but our guide to what is "natural" or "good" is the Bible, not our flesh. God\'s desires for His creation are not that it is tarnished by sin, but that it is set free from its corruptive and destructive nature.\n\n> The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.\n\n— John 10:10\n\nHomosexuality will never result in procreation - therefore it is impossible for it to bring life. If we are charged to bring life to the world, then how does homosexuality fit into this outlook? One might argue that they weren\'t called to bear children, which is a fair argument, but this argument really only works if they\'ve dedicated, they\'re life in service of Christ.\n\n---\n\n# Can I practice homosexuality and remain a Christian?\n\nThis question ultimately comes down to whether or not our identity lies within Christ or our own sexuality. Christians are in union with Christ and that should be our only identity. See Ephesians 2:6.\n\nWe are all required to lay down our selfish desires at the cross and follow Jesus. See Mark 8:34. Our sexual attractions should never be the foundation of our identity. Christ is our rock and our strength. Our identity is what God says about us in His Word.\n\nAll Christians have desires or attractions which do not conform with our new nature in Christ. These can take form in anything from greed, to lust, to lying etc.\n\nAs a Christian who struggles with the sin of homosexuality, I am not a "gay Christian". I am a Christian that struggles with the sin of homosexuality. Homosexuality does not define who I am, or what God says I am or am capable of.\n\nIf you are a Christian that struggles with same sex attraction, you need to start by agreeing that this is not something God desires for your life. We need to stay close to God to avoid temptation or self-deceive ourselves into believing that homosexuality is acceptable before God.\n\nTemptation is part of the life of the Christian and can only be resisted by remaining faithful to God. We must choose not to nurture temptation or act on urges set on by its luring grasp.\n\n> So I say, walk by the Spirit, and you will not gratify the desires of the flesh.\n\n— Galatians 5:16\n\nArmed with a good spiritual routine of Bible study, prayer and worship, we will have the strength to resist temptation.\n\nIf our identity is in that of the world and not of Christ, we are nothing but an imposter and are self-deceiving ourselves. Scripture does not allow for any possible scenario where homosexual behaviour is glorifying to God.\n\n---\n\n# Conclusion\n\nThe Bible is very clear on its stance of homosexual behaviour. I simply cannot find an honest interpretation (and not for lack of trying) that affirms homosexual behaviour in any form. Personally, I have really struggled with homosexuality in my personal life, and it is not a light topic for me to talk about, but I felt it prudent to record my thoughts and research in this article. I pray that others might find this useful in their own walks.\n\n[^1]: Simon LeVay, "A Difference in Hypothalmic Structure Between Heterosexual and Homosexual Men" Science 258 (Aug. 30, 1991)\n\n[^2]: J.M Bailey and Richard Pillard, "A Genetic Study of Male Sexual Orientation" Archives of General Psychiatry 48 (1991)\n\n[^3]: W. Byne and B. Parsons, “Human Sexual Orientation: The Biologic Theories Reappraised,” Archives of General Psychiatry 50 (March 1993): 228.\n\n[^4]: Thomas E. Schmidt, Straight and Narrow, 134.\n',
+	frontmatter: {
+		title: "We should care more about learning how to think versus cramming information",
+		date: "2024-07-29T00:00:00.000Z",
+		tag: "Education",
+		description:
+			"Cramming information is useful if you want to look smart, but thinking and approaching problems the right way is an attribute few possess.",
+		image: "media/pinky-and-the-brain.jpg",
+		lastModified: "2024-07-29T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "we-should-care-more-about-learning-how-to-think-versus-cramming-information",
+	},
+	content:
+		"\nCramming information is useful if you want to look smart, but thinking and approaching problems the right way is an attribute few possess.\n\nInstitutions would do well to teach their students how to think and approach problems with critical thought over throwing buckets of information at them. Being able to critical assess a problem, see an argument from both sides, rationalise their worldview and accept when their wrong will prepare a student for lifelong success.\n\nNot only will this create well rounded non-emotionally driven individuals (just par the course), it will also create opportunities and incredible student outcomes. Only critical thinkers or \"smart\" people lead businesses, go into politics and make the world a better place, well, that's how it should be unless you're a DEI hire or bark the right tune...\n",
 };
 
 export const _mdx_16_: MDXModule = {
-  frontmatter: {
-    title: "How to have a secure election",
-    date: "2024-10-31T00:00:00.000Z",
-    tag: "Politics",
-    description: "It's simple really.",
-    image: "media/arnaud-jaegers-IBWJsMObnnU-unsplash.jpg",
-    imageAlt: "Photo by Arnaud Jaegers on Unsplash",
-    signature: true,
-    type: "Post",
-    slug: "how-to-have-a-secure-election",
-  },
-  content:
-    "\n1\\. Citizens must attend secure voting booths and present proof of citizenship to access premises. Early in-person voting should be available for up to 30 days in advance.\n\n2\\. A unique ballot with a unique ID/barcode is printed by a machine upon the citizens arrival. This updates a database country wide preventing the printing of another ballot for this citizen.\n\n3\\. Citizen fills out vote. Citizen signs ballot. Citizen submits ballot in ballot box.\n\n4\\. Ballot boxes are securely locked and transported in secure vans with armed guards to secure location.\n\n5\\. Ballots are tabulated by machine first, then tabulated by a human.\n\n6\\. Federal elections are organised, funded and setup by the federal government. No state has the right to interfere or modify any part of the process.\n\n7\\. Citizens from the local community are invited to witness tabulation and ensure validity.\n\nHow can America, one of the richest countries in the world, be so backwards in this department?\n",
+	frontmatter: {
+		title: "Work-life balance complaints are overblown",
+		date: "2025-03-11T00:00:00.000Z",
+		type: "Post",
+		lastModified: "2025-03-11T00:00:00.000Z",
+		signature: true,
+		tag: "Politics",
+		description: "Reflecting on work-life balance and arguing against common complaints.",
+		slug: "work-life-balance",
+	},
+	content:
+		"\nOn X recently, I saw a post complaining about the modern work-life balance.\n\nhttps://x.com/Jxxtlucky/status/1898726460770435209\n\nReflecting on it for a moment, I started thinking about all of the free time I would have if I didn't keep myself busy with the projects I'm working on.\n\nAfter some thought, I came to this conclusion:\n\nThere are 168 hours total in a week, 56 hours for sleep (8 per night), 55 hours for work (7am - 6pm, allowing time for commute)\n\n168-111 = 57 hours to browse TikTok (kidding of course).\n\nWake up at 7. Commute to work. Work from 9-5. Get home at 5:30, cook dinner/eat. Then, from 6pm build/do something for 5 hours. That's 25 hours of work possible during the week with the remainder split across the weekends.\n\nSeems pretty balanced to me! Sure, it could be better - less travel time, better economic buying power for time spent etc.\n\nBut really, we live in some of the best working conditions in all of human history. We really only have minor complaints.\n\nLet's use all the hours that God has granted us to their maximum potential!\n",
 };
 
 export const _mdx_17_: MDXModule = {
-  frontmatter: {
-    title: "Is God's love reckless?",
-    date: "2020-06-25T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "Does God act recklessly? No, He is the very antithesis of reckless.",
-    image: "media/mccall-alexander-W7HQQpi80AA-unsplash.jpg",
-    imageAlt: "Photo by McCall Alexander on Unsplash ",
-    lastModified: "2024-10-23T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "is-gods-love-reckless",
-  },
-  content:
-    "\n# Introduction\n\nThe idea that God's love is reckless was popularized by the worship song \"Reckless Love\" written by Caleb Culver, Cory Asbury and Ran Jackson.\n\nIt was an incredibly popular song and has been listened to millions of times across the globe. It's sparked controversy regarding the use of the word 'reckless' to describe God's love.\n\n# Let's get the definitions right\n\nMany people are quick to defend the use of the word with the following argument:\n\n> \"The word is not to describe God himself, but to describe the love he shows us. From a human perspective, the way God gives himself up for us appears reckless.\"\n\nCory Asbury himself also came out with a defence for the use of the word 'reckless':\n\n<SideNote\n  note={\n    <a href=\"https://www.facebook.com/coryasburymusic/posts/many-have-asked-me-for-clarity-on-the-phrase-reckless-love-many-have-wondered-wh/10158977378510171/\">\n      Link to full statement\n    </a>\n  }\n>\n  > \"When I use the phrase, “the reckless love of God”, I’m not saying that God\n  > Himself is reckless. I am, however, saying that the way He loves, is in many\n  > regards, quite so.\" — Cory Asbury\n</SideNote>\n\nFirstly, to understand the controversy and why there is an issue with the word, we must look at the definition of 'reckless'.\n\n<Definition\n  word=\"Reckless\"\n  meaning=\"Utterly unconcerned about the consequences of some action; without caution; careless.\"\n  type=\"adjective\"\n/>\n\nBy this definition[^1], to act in a reckless manner is to act without caution or care, to show no concern for the consequences or outcome of one's action.\n\n# Defending the nature of God\n\nDoes God fit this description? Unequivocally not. God is omniscient, all-knowing and exercises perfect judgement at all times. By this understanding of God, it is impossible for Him to act recklessly.\n\nGod, not once throughout all of scripture has ever acted without caution or concern for His actions. God exercises flawless judgment in every circumstance. Everything we have done and will ever do has always been known by God, before we were even born.[^2]\n\nSecondly, the defence that \"God himself isn't 'reckless' but his love nonetheless is\" is simply nonsensical. This is the crux of Cory's defence of 'reckless', but it doesn't make sense grammatically. If my actions are reckless, I am by definition, a reckless person. By the same token, if God's love is reckless, than God is defined as reckless.\n\nThirdly, the defence by declaring that God's love _appears_ reckless by human standards is the most plausible interpretation of the song. By this interpretation, we are assuming that 'reckless' is used as a hyperbole. But even if we assume that the word 'reckless' is used as a hyperbole, it still wouldn't make much sense.\n\n<Definition\n  word=\"Hyperbole\"\n  meaning=\"Exaggeration for emphasis or effect.\"\n  type=\"noun\"\n/>\n\nThe hyperbolic description of recklessness connotes not the methodical, steady and unwavering love of God, but rather the unstable, unreasonable and impulsive attitude commonly seen in a young adult.\n\nGod's love is not impulsive. Paul explains this to us in Ephesians.\n\n> \"Praise be to the God and Father of our Lord Jesus Christ, who has blessed us in the heavenly realms with every spiritual blessing in Christ. For he chose us in him before the creation of the world to be holy and blameless in his sight. In love he predestined us for adoption to sonship through Jesus Christ, in accordance with his pleasure and will to the praise of his glorious grace, which he has freely given us in the One he loves. In him we have redemption through his blood, the forgiveness of sins, in accordance with the riches of God’s grace that he lavished on us. With all wisdom and understanding,he made known to us the mystery of his will according to his good pleasure, which he purposed in Christ,to be put into effect when the times reach their fulfilment—to bring unity to all things in heaven and on earth under Christ.\" — Ephesians 1:3-10\n\n# Why this matters\n\nWords have incredible weight and power. Many Christian's learn their theology through worship! This theology is passed onto their friends, their neighbours and even the non-believers they meet in their day to day. This is why it is imperative that Pastors and Worship Leaders select strong Biblical worship songs. If churches were singing heretical songs, the messages of these songs would be passed on among fellow believers and non-believers becoming a stumbling block for any would-be believers as they would not be correctly understand who God really is.\n\nI considered not writing this article so as to avoid irreverent babble[^3]. However, this is most certainly not the case here. This article serves as a direct defence and proclamation of the true nature of God.\n\nWorship that divides people affects non-believers and believers alike. Especially when we call God's love reckless. If I were a non-believer and was told that God's love was reckless, I would immediately assume that God is reckless, and would most certainly not trust Him with my eternity.\n\nUltimately, we as Christians should avoid songs that divide people or force people to have to change the meaning of a song in order to be faithful. Christians should more closely assess worship songs that come out of fundamentally heretical churches to ensure their scriptural validity.\n\n# God's love is not reckless\n\nGod's love is the very antithesis of recklessness. God's love can not be seen as reckless in any way because doing so frames God's love as impulsive and inconsiderate versus the steady, all knowing, perfect love that is evident in scripture and is poured out for us everyday.\n\n[^1]: reckless: utterly unconcerned about the consequences of some action; without caution; careless. — https://www.dictionary.com/browse/reckless\n\n[^2]: Psalm 139:4\n\n[^3]: 2 Timothy 2:16\n",
+	frontmatter: {
+		title: "An excerpt on Old Testament Law",
+		date: "2020-11-16T00:00:00.000Z",
+		tag: "Faith",
+		description: "Are gentiles allowed to eat unclean meat?",
+		image: "media/wright-brand-bacon-VVtVBLKkrik-unsplash.jpg",
+		imageAlt: "Photo by Wright Brand Bacon on Unsplash ",
+		signature: true,
+		type: "Post",
+		slug: "an-excerpt-on-old-testament-law",
+	},
+	content:
+		"\nRecently, a friend of mine had a run in with people that followed the Old Testament Law. They brought substantial evidence to the table that stood to prove that we, as Gentiles should not eat unclean meat or any food that has been sacrificed to idols. He believed them for a short time, but felt compelled to read up on the subject in a lot more detail and discovered that he had been mislead.\n\nFirst, let's get some context... In the early church, some of the earliest Gentile converts began joining Jewish believers in local fellowships. One of the earliest issues among these fellowships was the eating of meat sacrificed to idols. In Greco-Roman society idol worship was extremely popular and it was common for meat sold in the marketplace to have been sacrificed to a false god prior to its sale. Many Jews believed that partaking in the consumption of these meats would be some kind of \"second-hand\" idolatry. The conflict occurred when the Gentiles rejected the notion that such meat was tainted and many said that they could still eat meat sacrificed to idols without endorsing idolatry.\n\nPaul helps us to understand how we should approach the issue.\n\n> So, what about eating meat that has been offered to idols? Well, we all know that an idol is not really a god and that there is only one God. There may be so-called gods both in heaven and on earth, and some people actually worship many gods and many lords. But for us,\n>\n> There is one God, the Father, by whom all things were created, and for whom we live.\n>\n> And there is one Lord, Jesus Christ, through whom all things were created, and through whom we live.\n>\n> However, not all believers know this. Some are accustomed to thinking of idols as being real, so when they eat food that has been offered to idols, they think of it as the worship of real gods, and their weak consciences are violated.\n>\n> It’s true that we can’t win God’s approval by what we eat. We don’t lose anything if we don’t eat it, and we don’t gain anything if we do.\n\n— 1 Cor. 8:4-8\n\nPaul is saying that what we eat doesn't bring us closer or push us further away from God, the food itself is amoral. He also states that idols are nothing at all, they are inanimate and hold no power.\n\nWell, what does this mean? Does that mean that some people shouldn't worry and others should? Well not quite. Paul goes on to warn us in verse 9 that we should be careful to avoid stumbling others with a weaker conscience.\n\n> But you must be careful so that your freedom does not cause others with a weaker conscience to stumble.\n\n— 1 Corinthians 8:9\n\nBelievers with a background of idol worship, were still very sensitive concerning this issue at the time and many still considered it morally wrong to eat meat sacrificed to idols. Under no circumstances, Paul says, should a believer encourage another believer to violate his conscience. Paul also clarifies this in Titus by saying:\n\n> To the pure, all things are pure, but to the defiled and unbelieving, nothing is pure; but both their minds and their consciences are defiled.\n\n— Titus 1:15\n\nA 'weaker brother' is not one that chooses to abstain from certain practices, but one who is in danger of falling into sin. Your conscience helps to define what things are morally right/are not contradictory your restoration in Christ.\n\nThe article on [gotquestions.org](http://gotquestions.org) puts it perfectly:\n\n> To illustrate, let’s say there are two 1st-century Christians named Demetrius and Clement. Both are former idolaters, now saved by faith in Christ. Demetrius shuns everything to do with his old way of life, including the meat sold in the marketplace, because, for him, eating such meat would constitute a return to paganism. Clement avoids the temple and refuses to participate in the pagan festivals, but he has no problem eating the meat from the market. Clement understands (correctly) that an idol has no power to corrupt good meat, and, for him, eating such meat is a non-issue. Then one day, as both men are in the marketplace, Demetrius sees Clement eating meat that was sacrificed to idols. Demetrius is horrified, but Clement laughs it off and encourages Demetrius to eat some, too. When Demetrius hesitates, Clement cuts off a piece and hands it to him. Demetrius—emboldened by Clement’s confidence—eats the meat. Biblically, both believers have sinned. Clement sinned by violating the conscience of a fellow believer. Demetrius sinned in that he essentially returned to idolatry—at least, that’s what his conscience is telling him. More importantly, Demetrius is learning how to ignore his conscience—a very dangerous thing to learn. \\*\\***The principle here is that the conscience of a weaker Christian is more important than individual freedom. Doing something “permitted” should never hinder the spiritual health of someone else.**\n\nIt is a naturally health response to read about the laws in the Old Testament and want to follow them out of a love and appreciation for God's grace. But this comes out of a misunderstanding for what Jesus came to do.\n\nJesus came to fulfil the law of the Old Testament and teaches us how to obey God in its regard.\n\n> Don’t misunderstand why I have come. I did not come to abolish the law of Moses or the writings of the prophets. No, I came to accomplish their purpose. I tell you the truth, until heaven and earth disappear, not even the smallest detail of God’s law will disappear until its purpose is achieved.\n\n— Matthew 5:17-18\n\nYou can read this in two ways - one assuming that we must follow every element of the Old Law until heaven and earth pass away.\n\nAlternatively, you will keenly notice the words \"to fulfil them\" and the words \"until all is accomplished\".\n\nThe first interpretation fails to see Jesus' fulfilment and accomplishment of the Law. The prophets that God sent in the Old Testament were sent as a consummation to indicate the end of ceremonial laws. By this understanding, by choosing to follow the Old Testament laws, we are in effect, refusing to submit to God's plan and fulfilment of the Law in Jesus.\n\n> It’s not what goes into your body that defiles you; you are defiled by what comes from your heart.\n>\n> Then Jesus went into a house to get away from the crowd, and his disciples asked him what he meant by the parable he had just used. “Don’t you understand either?” he asked. “Can’t you see that the food you put into your body cannot defile you? Food doesn’t go into your heart, but only passes through the stomach and then goes into the sewer.” (By saying this, he declared that every kind of food is acceptable in God’s eyes.)\n\n— Mark 7:15-19\n\nJesus is saying that the prohibition of certain foods as unclean was only a temporary part of God's way of making Israel distinct from the nations of the world. God wanted the Jews and new Christians to understand that we would become a global people from every tribe, language, ethnicity and race.\n\nWith that declaration, God brings into the fold all the nations of the world and their individual convictions about what to eat, when to eat, how to eat etc.\n\nHebrews also makes it clear to us that the Old Covenant was temporary and only in place until a new system could be established.\n\n> ... the gifts and sacrifices that the priests offer are not able to cleanse the consciences of the people who bring them.For that old system deals only with food and drink and various cleansing ceremonies—physical regulations that were in effect only until a better system could be established.\n\n— Hebrews 9:9\n\n> Under the old system, the blood of goats and bulls and the ashes of a heifer could cleanse people’s bodies from ceremonial impurity. Just think how much more the blood of Christ will purify our consciences from sinful deeds so that we can worship the living God. For by the power of the eternal Spirit, Christ offered himself to God as a perfect sacrifice for our sins. That is why he is the one who mediates a new covenant between God and people, so that all who are called can receive the eternal inheritance God has promised them. For Christ died to set them free from the penalty of the sins they had committed under that first covenant.\n\n— Hebrews 9:13-15\n\nSo then, are we free to eat pork? Yes! That's right! But Paul in Galatians 5:2 also tells what we are not to with pork, or any law of the Old Testament.\n\n> Listen! I, Paul, tell you this: If you are counting on circumcision to make you right with God, then Christ will be of no benefit to you. I’ll say it again. If you are trying to find favour with God by being circumcised, you must obey every regulation in the whole law of Moses. For if you are trying to make yourselves right with God by keeping the law, you have been cut off from Christ! You have fallen away from God’s grace.\n\n— Galatians 5:2\n\nPaul is saying here that when we make an Old Testament Law, or a new law entirely, a necessity for justification before God, then we are cutting ourselves off from God's grace.\n\nUltimately, if someone chooses not to eat a certain meat or partake in a certain practice because they believe it may draw them back into their sinful nature or it goes against their conscience, let them, and do not get in the way of their nature.\n\nDo not let the new or old laws get become justification for salvation. The moment abstinence becomes intertwined with biblical authority as a path of salvation, a line is crossed that contradicts Jesus' sacrifice and the Gospel He established.\n\n> I tell you the truth, those who listen to my message and believe in God who sent me have eternal life. They will never be condemned for their sins, but they have already passed from death into life.\n\n— John 5:24\n\n> So don’t let anyone condemn you for what you eat or drink, or for not celebrating certain holy days or new moon ceremonies or Sabbaths. For these rules are only shadows of the reality yet to come. And Christ himself is that reality.\n\n— Colossians 2:16-17\n\nIf you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.\n",
 };
 
 export const _mdx_18_: MDXModule = {
-  frontmatter: {
-    title: "Is suicide sinful?",
-    date: "2019-11-06T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "The act of suicide is sin because it's subjecting our own will onto something that is strictly God's decision.",
-    image: "media/nikko-macaspac-6SNbWyFwuhk-unsplash.jpg",
-    imageAlt: "Photo by nikko macaspac on Unsplash ",
-    lastModified: "2024-10-23T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "is-suicide-sinful",
-  },
-  content:
-    "\n# What does the Bible say?\n\nThe act of suicide is sin, because it's taking something that is strictly under God's commandments (life and death) and subjecting it to our own will. It robs a person of the amazing gift of life given to them by God alone.\n\n> \"For you created my inmost being; you knit me together in my mother’s womb.\" — Psalm 139:13\n\nMore importantly the mental attitude and thought process of someone who commits suicide is certainly sinful. It is always based in a selfish thought process.\n\nThis is considered sinful because it is the purest form of unbelief in the promises of God. The general thought process of a suicidal person recognises that they do not believe God can help them. They believe no one can help them and that they are past the point of no return.\n\nDoes a true child of God show fruits of suicide? God certainly has mercies on those who can't make choices for themselves, but ultimately, those with a self-destructive behaviour or a debased mind as described in Romans 1:28 are ultimately choosing to service themselves over God.\n\nNote that no one has ever hated his own flesh[^1], such behaviour reveals that those who are suicidal have no faith in Christ. God has made Himself clear that the unrighteous will not inherit the kingdom of God[^2], and that the unbelieving go to the lake of fire[^3].\n\n# Biblical precedent\n\nSuicide is only mentioned in the Bible six times. In the case of Abimelech[^4], Samson[^5], Saul[^6], Ahithophel[^7], Zimri[^8], and Judas Iscariot[^9]. Each of these examples can be individually assessed and investigated as to how they speak about suicide through the eyes of the Father.\n\nWorks performed outside of God are sin. If you believe this to be true, the deaths depicted in these texts can be quickly and easily explained as sinful, or as righteous (as we see in Samson's example, it's more the case of a noble sacrifice over suicide).\n\n# Nuance is required\n\nPlease note that by writing this I am not saying that all people who commit suicide aren't saved. God is ultimately the judge and He will judge each person accordingly.\n\n[^1]: Mark 5:2-5, Ephesians 5:29\n\n[^2]: 1 Corinthians 6:9-10\n\n[^3]: Revelation 21:8\n\n[^4]: Judges 9:50-57\n\n[^5]: Judges 16:28-30\n\n[^6]: 1 Samuel 31:1-6; 2 Samuel 1:1-15; 1 Chronicles 10:1-13\n\n[^7]: 2 Samuel 17:23\n\n[^8]: 1 Kings 16:18-19\n\n[^9]: Matthew 27:5; Acts 1:18-20\n",
+	frontmatter: {
+		title: "How to have a secure election",
+		date: "2024-10-31T00:00:00.000Z",
+		tag: "Politics",
+		description: "It's simple really.",
+		image: "media/arnaud-jaegers-IBWJsMObnnU-unsplash.jpg",
+		imageAlt: "Photo by Arnaud Jaegers on Unsplash",
+		signature: true,
+		type: "Post",
+		slug: "how-to-have-a-secure-election",
+	},
+	content:
+		"\n1\\. Citizens must attend secure voting booths and present proof of citizenship to access premises. Early in-person voting should be available for up to 30 days in advance.\n\n2\\. A unique ballot with a unique ID/barcode is printed by a machine upon the citizens arrival. This updates a database country wide preventing the printing of another ballot for this citizen.\n\n3\\. Citizen fills out vote. Citizen signs ballot. Citizen submits ballot in ballot box.\n\n4\\. Ballot boxes are securely locked and transported in secure vans with armed guards to secure location.\n\n5\\. Ballots are tabulated by machine first, then tabulated by a human.\n\n6\\. Federal elections are organised, funded and setup by the federal government. No state has the right to interfere or modify any part of the process.\n\n7\\. Citizens from the local community are invited to witness tabulation and ensure validity.\n\nHow can America, one of the richest countries in the world, be so backwards in this department?\n",
 };
 
 export const _mdx_19_: MDXModule = {
-  frontmatter: {
-    title: "I've been inspired by 'A Goofy Movie'",
-    date: "2021-07-26T00:00:00.000Z",
-    tag: "Art",
-    description: "Why I enjoyed 'A Goofy Movie' as an adult.",
-    image: "media/a-goofy-movie-2000-af1010c308e44155a276e0f67b07f166.jpg",
-    imageAlt: "Max and Goofy - A Goofy Movie",
-    lastModified: "2025-05-27T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "ive-been-inspired-by-a-goofy-movie",
-  },
-  content:
-    "\nIt was Wednesday the 14th of July and I was bored out of my mind, so much so I remember wishing for the weekend. My two remaining brain cells had evaporated and I knew it was time to find something to give my brain a break.\n\nI mean sure, there were half a dozen things I probably could have been doing instead, learning web dev, cleaning my office etc. But for some reason, rather unsurprisingly, I found myself browsing YouTube once again.\n\n_scroll_ _scroll_ _scroll_ sigh... nothing interesting to watch.\n\nI was about to give up when I scrolled one more time and saw Sideways video on Why a Goofy movie is Better Than You Remember.\n\n<iframe\n  src=\"https://www.youtube.com/embed/N6j-562xQSs\"\n  title=\"Why A Goofy Movie is Better Than You Remember\"\n  frameborder=\"0\"\n  allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"\n  referrerpolicy=\"strict-origin-when-cross-origin\"\n  allowfullscreen\n  class=\"w-full aspect-video rounded-xl overflow-hidden\"\n/>\n\nIntrigued, I started watching only to find I was basically watching some dude fan boy over a 25 year old movie from the 90s. _Well now, he better hook me real quick or I'm outta here... didn't grow up in the 90s, can't relate, sorry._\n\nWhat can I say except that he portrayed this movie in such a way that I essentially _had_ to watch it!\n\nGrowing up, I wasn't exposed to too many Disney films outside of the big classics (The Lion King/Tarzan) and never saw Goof Troop (the TV show predecessor to this movie) but I instantly fell in love with Goofy and the general premise of the movie.\n\n![](/media/ducktales-a-goofy-movie-powerline-1213971-1280x0-1.jpeg)\n\nThis is definitely one of my top 10 favourite films!\n\nThis movie establishes itself so gawrsh darn well in the first five minutes, connecting its audience with the characters exceptionally well, exposing us to their flaws, desires, goals and hopes while also leaving plenty of room to expand on these characteristics.\n\nYet it doesn't just stop there, it continues to develop on the themes it introduced and offer thought provoking and challenging questions on how to raise your kids, a relationship between ones father and son, maturity, trust and other themes.\n\nFrom the opening number, to meeting Roxanne, to seeing Goofy and the strong desire Max has to be _anything_ but his father. It sets the stage so perfectly for what is an amazing father-son adventure full of life lessons for both the characters that translate exceptionally well to the audience.\n\n![](/media/a-goofy-movie-max-big-foot-and-goofy.jpg)\n\nI'm fortunate to have a great relationship with my father, but I still felt like I needed to catch up and give him a massive hug after watching this movie.\n\nThe entire movie hinges on the desires of Max and Goofy. Max wanting to abandon everything that makes him look like his father, to try and find his independence and Goofy simply trying to be more involved in his sons life, maybe a little too much for Max's own good.\n\nIt's a serious topic that doesn't get nearly enough screen time in media. The overbearing parent and rebellious child trope rarely ever find a middle ground.\n\nTypically, the overbearing parent is often used as a story trope to get the main character to do something they normally wouldn't do, then completely forgotten at the end of the movie once the villain or problem has been defeated. You can see a similar thing in the Pixar movie Luca with his overprotective mother. She basically flips her entire attitude at the end of the movie with not much of a second thought or any sort of conflict resolution.\n\nUnlike Luca though, A Goofy Movie actually addresses these issues and our main characters come to a mutual understanding. Goofy learns to back off a bit, and Max learns to let his father into his life more, both appreciating each other for their differences, yet also embracing them, allowing for both characters to mutually benefit from this much healthier father-son relationship.\n\nThe dynamic between these characters in the more serious scenes is serviced so well that it adds an incredibly difficult to replicate layer of depth to the topics outlined. Jason Marsden and Bill Farmer execute these scenes perfectly and stay true to their characters through and through.\n\n![](/media/0f92b16b782807c21c8bdae5c7316e84.jpg)\n\nBut why am I inspired you might ask?\n\nSimply put - I desire to tell stories like this film. I've never really thought about creating media, writing stories, drawing or animation as a career, but after watching this movie and seeing how it touched me, I want to replicate this over and over again, not just for myself, but for other people too.\n\nI desire to be apart of a team like the one that worked on A Goofy Movie. I want to animate, be creative and come up with ideas and stories that touch future generations like this movie had touched me - nearly 25+ years after it was made.\n\nPrimarily, I've been inspired to learn how to animate and make lovable and attractive characters that captivate audiences, so that they too may share the same depth and love that I have for A Goofy Movie.\n\nIt sounds completely outrageous for a 21 year old in tech to be suddenly interested in creative arts, but come to think of it, I can't say that I've been this interested in telling stories like A Goofy Movie.\n\nWill I completely drop tech? Definitely not! I need money to survive, don't be silly. Not to mention, I _love_ programming, networking and all of the goodness that entails, plus I still have plenty of things I want to learn in tech too - choppin' that up with more creative learning will certainly be a good thing for retaining information.\n\nAnyway, that's my rant about why A Goofy Movie is my favourite movie right now!\n\nPeace. ✌️\n\nPS - don't forget check out the music for this movie too. Absolute gold mine that I've had on repeat for weeks...\n",
+	frontmatter: {
+		title: "Should we forgive ourselves?",
+		date: "2020-11-12T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"Jesus, came and suffered our punishment for us. We have already passed from death to life and no longer face condemnation.",
+		image: "media/patrick-fore-b_SHPU5M3nk-unsplash.jpg",
+		imageAlt: "Photo by Patrick Fore on Unsplash ",
+		lastModified: "2024-07-25T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "should-we-forgive-ourselves",
+	},
+	content:
+		"\n**What does the Bible say?**\n\nIt's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:\n\n> There is no condemnation for those who belong to Christ Jesus.\n\nIf through faith alone you believe that Jesus bore the penalty for your sins, you stand justified before God. Jesus took upon Himself our punishment, and through Him, we have transitioned from death to life, no longer under the threat of condemnation from the Father.\n\nDespite our awareness of this truth, many of us still grapple with the burden of our past sins. In Philippians 3:12-14 Paul says:\n\n> I don’t mean to say that I have already achieved these things or that I have already reached perfection. But I press on to possess that perfection for which Christ Jesus first possessed me. No, dear brothers and sisters, I have not achieved it, but I focus on this one thing: Forgetting the past and looking forward to what lies ahead, I press on to reach the end of the race and receive the heavenly prize for which God, through Christ Jesus, is calling us.\n\nPaul in this passage is stating that he forgets the awful memories of persecuting Christians and rebellion against God. He looks forward; he doesn't dwell or wallow in the past. But he also says in Ephesians 2:11-12:\n\n> Don’t forget that you Gentiles used to be outsiders. You were called “uncircumcised heathens” by the Jews, who were proud of their circumcision, even though it affected only their bodies and not their hearts. In those days you were living apart from Christ. You were excluded from citizenship among the people of Israel, and you did not know the covenant promises God had made to them. You lived in this world without God and without hope.\n\nAt first glance, these two messages may seem contradictory, but they complement each other perfectly. Paul advocates for moving past our sins and looking forward, only recalling them to deepen our understanding of God's grace and mercy. He urges us not to be paralysed by our sins but to instead praise God and return to Him in gratitude for His mercy and forgiveness.\n\nIt's crucial to acknowledge that dwelling on our sins is itself sinful. By doing so, we elevate ourselves and imply that Jesus' forgiveness was insufficient. What could be more offensive in the eyes of the Heavenly Father, the Creator of all things, the Almighty and Righteous God? I personally struggle with this and frequently seek repentance for this sin.\n\n**So, should we forgive ourselves?**\n\nWhy would we grant ourselves forgiveness when we've wronged others? The Bible emphasizes seeking forgiveness from those we've harmed and from God Himself. Who appointed us as the arbitrators of our own wrongdoing?\n\nIn 2 Corinthians 7:8-10, Paul discusses the Corinthians' repentance and departure from their sinful ways. Having urged them to repent previously, Paul commends their efforts to reconcile with the Father.\n\n> I am not sorry that I sent that severe letter to you, though I was sorry at first, for I know it was painful to you for a little while. Now I am glad I sent it, not because it hurt you, but because the pain caused you to repent and change your ways. It was the kind of sorrow God wants his people to have, so you were not harmed by us in any way. For the kind of sorrow God wants us to experience leads us away from sin and results in salvation. There’s no regret for that kind of sorrow. But worldly sorrow, which lacks repentance, results in spiritual death.\n\nPaul expresses that there should be no remorse for the sorrow inspired by God regarding one's sinful life before salvation. Conversely, worldly sorrow indicates a lack of repentance and leads to spiritual death.\n\nFurthermore, he elaborates that the Godly grief experienced by the Corinthians led to their repentance.\n\n> Just see what this godly sorrow produced in you! Such earnestness, such concern to clear yourselves, such indignation, such alarm, such longing to see me, such zeal, and such a readiness to punish wrong. You showed that you have done everything necessary to make things right.\n\nIn light of these points, the Bible teaches us that while we may not entirely erase our sins from memory, we ought to endeavour to move forward, repent, and seek forgiveness recalling them solely to gain a deeper appreciation of God's grace and mercy. Doing so humbles us, prompting us to relinquish the poison of self-condemnation.\n\n**One more thing to consider, nuance.**\n\nThe creator of the universe is not glorified when we waste our lives in self-doubt and idleness. Remember, you have been liberated through Jesus' sacrifice! It's time to embrace a life free from sin and condemnation. If you find yourself still struggling with sin, I urge you to seek support from your church elders for guidance and accountability.\n\nWhile Jesus' sacrifice grants us forgiveness before God, it doesn't exempt us from earthly consequences of sin. As Christians, let's endeavour to emulate Jesus' example and live according to His teachings.\n\n---\n\nIt's important to remember that the approach to confessing sin can vary depending on the situation. When the sin impacts others, it should be approached with sensitivity and under the guidance of church elders.\n",
 };
 
 export const _mdx_20_: MDXModule = {
-  frontmatter: {
-    title: "Jesus is alive",
-    date: "2025-05-19T00:00:00.000Z",
-    tag: "Faith",
-    description: "Jesus isn't dead and buried. He is risen.",
-    image: "media/tomb.avif",
-    imageAlt: "Photo by Pisit Heng on Unsplash",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "jesus-is-alive",
-  },
-  content:
-    "\nJesus isn't dead and buried.[^1]\n\nHe is risen.[^2]\n\nHe is alive.[^3]\n\nHe is interceding for us at the right hand of the Father.[^4]\n\nOh, how great a truth! How foolish we are to doubt.[^5]\n\n[^1]: Luke 24:3\n\n[^2]: Matthew 28:6\n\n[^3]: Mark 16:14\n\n[^4]: Hebrews 7:25\n\n[^5]: James 1:6\n",
+	frontmatter: {
+		title: "I've been inspired by 'A Goofy Movie'",
+		date: "2021-07-26T00:00:00.000Z",
+		tag: "Art",
+		description: "Why I enjoyed 'A Goofy Movie' as an adult.",
+		image: "media/a-goofy-movie-2000-af1010c308e44155a276e0f67b07f166.jpg",
+		imageAlt: "Max and Goofy - A Goofy Movie",
+		lastModified: "2025-05-27T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "ive-been-inspired-by-a-goofy-movie",
+	},
+	content:
+		"\nIt was Wednesday the 14th of July and I was bored out of my mind, so much so I remember wishing for the weekend. My two remaining brain cells had evaporated and I knew it was time to find something to give my brain a break.\n\nI mean sure, there were half a dozen things I probably could have been doing instead, learning web dev, cleaning my office etc. But for some reason, rather unsurprisingly, I found myself browsing YouTube once again.\n\n_scroll_ _scroll_ _scroll_ sigh... nothing interesting to watch.\n\nI was about to give up when I scrolled one more time and saw Sideways video on Why a Goofy movie is Better Than You Remember.\n\n<iframe\n  src=\"https://www.youtube.com/embed/N6j-562xQSs\"\n  title=\"Why A Goofy Movie is Better Than You Remember\"\n  frameborder=\"0\"\n  allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"\n  referrerpolicy=\"strict-origin-when-cross-origin\"\n  allowfullscreen\n  class=\"w-full aspect-video rounded-xl overflow-hidden\"\n/>\n\nIntrigued, I started watching only to find I was basically watching some dude fan boy over a 25 year old movie from the 90s. _Well now, he better hook me real quick or I'm outta here... didn't grow up in the 90s, can't relate, sorry._\n\nWhat can I say except that he portrayed this movie in such a way that I essentially _had_ to watch it!\n\nGrowing up, I wasn't exposed to too many Disney films outside of the big classics (The Lion King/Tarzan) and never saw Goof Troop (the TV show predecessor to this movie) but I instantly fell in love with Goofy and the general premise of the movie.\n\n![](/media/ducktales-a-goofy-movie-powerline-1213971-1280x0-1.jpeg)\n\nThis is definitely one of my top 10 favourite films!\n\nThis movie establishes itself so gawrsh darn well in the first five minutes, connecting its audience with the characters exceptionally well, exposing us to their flaws, desires, goals and hopes while also leaving plenty of room to expand on these characteristics.\n\nYet it doesn't just stop there, it continues to develop on the themes it introduced and offer thought provoking and challenging questions on how to raise your kids, a relationship between ones father and son, maturity, trust and other themes.\n\nFrom the opening number, to meeting Roxanne, to seeing Goofy and the strong desire Max has to be _anything_ but his father. It sets the stage so perfectly for what is an amazing father-son adventure full of life lessons for both the characters that translate exceptionally well to the audience.\n\n![](/media/a-goofy-movie-max-big-foot-and-goofy.jpg)\n\nI'm fortunate to have a great relationship with my father, but I still felt like I needed to catch up and give him a massive hug after watching this movie.\n\nThe entire movie hinges on the desires of Max and Goofy. Max wanting to abandon everything that makes him look like his father, to try and find his independence and Goofy simply trying to be more involved in his sons life, maybe a little too much for Max's own good.\n\nIt's a serious topic that doesn't get nearly enough screen time in media. The overbearing parent and rebellious child trope rarely ever find a middle ground.\n\nTypically, the overbearing parent is often used as a story trope to get the main character to do something they normally wouldn't do, then completely forgotten at the end of the movie once the villain or problem has been defeated. You can see a similar thing in the Pixar movie Luca with his overprotective mother. She basically flips her entire attitude at the end of the movie with not much of a second thought or any sort of conflict resolution.\n\nUnlike Luca though, A Goofy Movie actually addresses these issues and our main characters come to a mutual understanding. Goofy learns to back off a bit, and Max learns to let his father into his life more, both appreciating each other for their differences, yet also embracing them, allowing for both characters to mutually benefit from this much healthier father-son relationship.\n\nThe dynamic between these characters in the more serious scenes is serviced so well that it adds an incredibly difficult to replicate layer of depth to the topics outlined. Jason Marsden and Bill Farmer execute these scenes perfectly and stay true to their characters through and through.\n\n![](/media/0f92b16b782807c21c8bdae5c7316e84.jpg)\n\nBut why am I inspired you might ask?\n\nSimply put - I desire to tell stories like this film. I've never really thought about creating media, writing stories, drawing or animation as a career, but after watching this movie and seeing how it touched me, I want to replicate this over and over again, not just for myself, but for other people too.\n\nI desire to be apart of a team like the one that worked on A Goofy Movie. I want to animate, be creative and come up with ideas and stories that touch future generations like this movie had touched me - nearly 25+ years after it was made.\n\nPrimarily, I've been inspired to learn how to animate and make lovable and attractive characters that captivate audiences, so that they too may share the same depth and love that I have for A Goofy Movie.\n\nIt sounds completely outrageous for a 21 year old in tech to be suddenly interested in creative arts, but come to think of it, I can't say that I've been this interested in telling stories like A Goofy Movie.\n\nWill I completely drop tech? Definitely not! I need money to survive, don't be silly. Not to mention, I _love_ programming, networking and all of the goodness that entails, plus I still have plenty of things I want to learn in tech too - choppin' that up with more creative learning will certainly be a good thing for retaining information.\n\nAnyway, that's my rant about why A Goofy Movie is my favourite movie right now!\n\nPeace. ✌️\n\nPS - don't forget check out the music for this movie too. Absolute gold mine that I've had on repeat for weeks...\n",
 };
 
 export const _mdx_21_: MDXModule = {
-  frontmatter: {
-    title: "Monitor Windows with Grafana and Prometheus",
-    date: "2021-08-03T00:00:00.000Z",
-    tag: "Technical",
-    description:
-      "Monitor your computers performance with Grafana and Prometheus.",
-    signature: true,
-    type: "Post",
-    slug: "monitor-windows-with-grafana-and-prometheus",
-  },
-  content:
-    '\nThis article covers the installation and configuration process of OhmGraphite to work with Prometheus and send statistics to Grafana.\n\n### Prerequisites\n\n- Prometheus\n- Grafana\n- Windows 10/11 with Administrator Privileges\n\nNOTE: Administrator Privileges is required for installation.\n\n### Getting Started\n\nBefore we begin the installation of OhmGraphite, let\'s first create a directory for our files to live in.\n\nFor this example, we will be storing OhmGraphite in the following directory:\n\n```\nC:\\OhmGraphite\\\n```\n\n### Downloading and Installing OhmGraphite\n\nWe will be using OhmGraphite as our statistic exporter. Head on over to: [https://github.com/nickbabcock/OhmGraphite/releases/latest](https://github.com/nickbabcock/OhmGraphite/releases/latest) to grab the latest version.\n\nOnce you have downloaded the Zip folder, extract it and place the contents in the folder we created earlier.\n\nNow let\'s edit the OhmGraphite.exe.config file to set it up to work with Prometheus.\n\nReplace the contents of the file with the following code:\n\n```\n<?xml version="1.0" encoding="utf-8" ?>\n<configuration>\n  <appSettings>\n    <add key="type" value="prometheus" />\n    <add key="prometheus_port" value="4445" />\n\n    <!-- This is the host that OhmGraphite listens on.\n         `*` means that it will listen on all interfaces.\n         Consider restricting to a given IP address -->\n    <add key="prometheus_host" value="*" />\n  </appSettings>\n</configuration>\n```\n\nSave and close the file.\n\nNOTE: You can edit this file at any time, but you will need to restart the application for the changes to make effect.\n\nOpen a Powershell window in Administrator mode and enter the following command:\n\n```\nC:\\OhmGraphite\\OhmGraphite.exe run\n```\n\nNext, run the following command to install OhmGraphite as service that starts on boot:\n\n```\nC:\\OhmGraphite\\OhmGraphite.exe install\n```\n\nAfter installation, run the following command to start OhmGraphite:\n\n```\nC:\\OhmGraphite\\OhmGraphite.exe start\n```\n\nOhmGraphite has been successfully setup and is ready to go! Now let\'s configure Prometheus.\n\n### Setup Prometheus to look for OhmGraphite\n\nIn your Prometheus configuration file, add an additional job to the stack:\n\n```\nglobal:\n  scrape_interval: 15s\nscrape_configs:\n  - job_name: \'ohmgraphite\'\n    static_configs:\n    - targets: [\'10.0.0.200:4445\']\n```\n\nOnce this has been added, restart Prometheus. OhmGraphite will now be picked up by Prometheus and be ready to serve to Grafana.\n\n### Grafana Dashboard\n\nIn your Grafana installation, import a new dashboard with the following code 11587.\n\nThis dashboard is pre-configured to look for OhmGraphite export by Prometheus.\n\nThe graphs should auto-populate with statistics as they roll in.\n\n### Conclusion\n\nIf you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.\n',
+	frontmatter: {
+		title: "What is Common Grace?",
+		date: "2020-04-26T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"Common Grace pertains to the sovereign grace of God bestowed upon all of mankind regardless of their election.",
+		image: "media/artem-sapegin-8c6eS43iq1o-unsplash.jpg",
+		imageAlt: "Photo by Artem Sapegin on Unsplash ",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "what-is-common-grace",
+	},
+	content:
+		"\nCommon Grace is a theological concept in Protestant Christianity hashed out in the late 19th and early 20th Century by Reformed Christians of the time. It pertains to the sovereign grace of God bestowed upon all of mankind regardless of their election. Effectively, this means that God has always bestowed His graciousness on all people in all parts of the world throughout all of history.\n\nThe Three Points of Common Grace were formulated in 1924 when the Christian Reformed Church adopted the doctrine at the Synod of Kalamazoo.\n\n# The First Point:\n\nThe first point refers to the favourable attitude of God toward all His creatures, not only toward the elect. \"The Lord is good to all; he has compassion on all he has made\" (Psalm 145:9).\n\nJesus said God causes “his sun to rise on the evil and the good, and sends rain on the righteous and the unrighteous” (Matthew 5:45) and God “is kind to the ungrateful and wicked” (Luke 6:35).\n\n# The Second Point:\n\nThe second point pertains to the restraint of sin in the life of an individual or society. Scriptures record many accounts of God directly intervening and restraining individuals from sinning. For example, in Genesis 20, God restrained Abimelech from touching Sarah, Abraham's wife. God appeared to Abimelech in a dream to affirm what had happened as described in Genesis 20:6.\n\nAnother clear example of God restraining the wicked hearts of evil men is seen in God's protection of the land of Israel and it's people from being invaded and killed by pagan nations on their border. God commanded the men of Israel that three times a year they would leave their plot of land to go and appear before Him (Exodus 34:23). To ensure the protection of God’s people from invasion during these times, even though the pagan nations surrounding them desired their land year-round, God promised that “no one will covet your land when you go up three times each year to appear before the Lord your God” (Exodus 34:24).\n\nNot only does the second point of Common Grace include God's restraining of evil, but also when he sovereignly releases it for His purposes. Scripture recounts the hardening of individuals hearts many times, (Exodus 4:21; Joshua 11:20; Isaiah 63:17), He does so by releasing His restraint on their hearts, thereby giving them over to the sin that resides there.\n\nIn Romans 1, Paul describes those who suppress the truth by their wickedness and how they ultimately fell before the Lord. God “gave them over in the sinful desires of their hearts to sexual impurity for the degrading of their bodies with one another” (Romans 1:28).\n\n# The Third Point:\n\nThose of mankind who do not have renewed hearts, will still be influenced by God's nature so that even they will perform good deeds toward his fellow man.\n\nAs Paul said of a group of unregenerate Gentiles, they “do by nature things required by the law, they are a law for themselves, even though they do not have the law” (Romans 2:14). The necessity of God restraining the hearts of the non-believer becomes clear when we understand the biblical doctrine of total depravity.\n\nIf God did not restrain the evil that resides in the hearts of all men, hearts which are “deceitful and desperately wicked” (Jeremiah 17:9), humanity would have destroyed itself centuries ago. But because He works through common grace given to all men, God’s sovereign plan for history is not thwarted by their evil hearts. In the doctrine of common grace, we see God’s purposes stand, His people blessed, and His glory magnified.\n",
 };
 
 export const _mdx_22_: MDXModule = {
-  frontmatter: {
-    title: "React based Birthday Age Calculator",
-    date: "2023-01-02T00:00:00.000Z",
-    tag: "Technical",
-    description: "Calculate age from a birthdate.",
-    signature: true,
-    type: "Post",
-    slug: "react-based-age-calculator",
-  },
-  content:
-    "\nIn this short guide we'll be creating a simple React component that calculates and displays a person's age based on their birthday.\n\nHere's the code for the component:\n\n```js\nexport default function Age() {\n  const birthday = new Date(1999, 8, 25); // September 25, 1999\n  const currentDate = new Date();\n  let age = currentDate.getFullYear() - birthday.getFullYear();\n\n  // If the current date is before the birthday, subtract 1 from the age\n  if (\n    currentDate.getMonth() < birthday.getMonth() ||\n    (currentDate.getMonth() === birthday.getMonth() &&\n      currentDate.getDate() < birthday.getDate())\n  ) {\n    age--;\n  }\n\n  return <span>{age}</span>;\n}\n```\n\nFirst, we create a new function called Age using the export default syntax, which makes the function available for import in other parts of our application. Inside the function, we create two Date objects: birthday and currentDate. birthday is set to September 25, 1999 (my actual birthday!) and currentDate is set to the current date.\n\nNext, we create a variable called age and set it equal to the difference between the current year and the year of the person's birthday. This will give us the age in years.\n\nHowever, this calculation is not entirely accurate because it doesn't take into account the month and day. For example, if the current date is January 1 and the person's birthday is on December 31, they have not yet had their birthday this year and are technically one year younger.\n\nTo fix this, we use an if statement to check if the current month and day are before the person's birthday. If it is, we subtract 1 from their age.\n\nFinally, we use a span element to wrap the age and return it to be rendered on the page.\n\nAnd that's it! With just a few lines of code, we've created a simple and effective NextJS and TypeScript component that calculates and displays a person's age.\n",
+	frontmatter: {
+		title: "Elders and pastors should be good with money",
+		date: "2024-07-26T00:00:00.000Z",
+		tag: "Faith",
+		description: "Do your elders manage their households well?",
+		image: "media/pepi-stojanovski-MJSFNZ8BAXw-unsplash.jpg",
+		imageAlt: "Photo by Pepi Stojanovski on Unsplash",
+		lastModified: "2024-10-23T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "elders-and-pastors-should-be-good-with-money",
+	},
+	content:
+		"\n[Do your elders manage their households well?](https://x.com/PerfInjust/status/1814819350768914771) And no, I'm not just talking about the relationships between their wife and children, but also their finances, their conduct and general wisdom. Are they above [reproach](https://www.merriam-webster.com/dictionary/reproach)?\n\nIf we are to entrust our elders to the finances of the church, the tithe and other financial decisions, then it is reasonable to expect them to have a decent understanding of realestate, economics and almost certainly politics. How else could they come to a well reasoned conclusion about a specific direction the church should take?\n\n> \"The saying is trustworthy: If anyone aspires to the office of overseer, he desires a noble task. Therefore an overseer must be above reproach, the husband of one wife, sober-minded, self-controlled, respectable, hospitable, able to teach, not a drunkard, not violent but gentle, not quarrelsome, not a lover of money. He must manage his own household well, with all dignity keeping his children submissive, for if someone does not know how to manage his own household, how will he care for God's church? He must not be a recent convert, or he may become puffed up with conceit and fall into the condemnation of the devil. Moreover, he must be well thought of by outsiders, so that he may not fall into disgrace, into a snare of the devil.\" — 1 Timothy 3:1-7\n\nI would argue that we should definitely look to our elders when it comes to these things. Why else would we have elected them?\n\nI'm not arguing that the elder should be an economist or expert on foreign policy, merely that he would be aware of these things and have a good understanding of how they can affect his flock.\n",
 };
 
 export const _mdx_23_: MDXModule = {
-  frontmatter: {
-    title: "Resize a Proxmox Virtual Machine",
-    date: "2023-03-19T00:00:00.000Z",
-    tag: "Technical",
-    description: "Short guide on resizing a virtual machine.",
-    signature: true,
-    type: "Post",
-    slug: "resize-a-proxmox-virtual-machine",
-  },
-  content:
-    "\nTo increase the size of a hard disk, first power off the virtual machine, go to the Hardware tab, select the desired hard disk. Then, select Resize from the Disk Action drop-down menu, input the desired size increment, and select Resize disk.\n\nAfter resize has completed, start up your virtual machine and login.\n\nConfirm the relevant disk has increased in size.\n\n```bash\n$ lsblk\nNAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT\nsda                         8:0    0    1T  0 disk\n├─sda1                      8:1    0    1M  0 part\n├─sda2                      8:2    0    1G  0 part /boot\n└─sda3                      8:3    0    1T  0 part\n  └─ubuntu--vg-ubuntu--lv 253:0    0   31G  0 lvm  /\n```\n\nResize the partition with parted.\n\n```bash\n$ sudo parted\nGNU Parted 3.3\nUsing /dev/sda\nWelcome to GNU Parted! Type 'help' to view a list of commands.\n(parted) resizepart 3 100%\n(parted) quit\nInformation: You may need to update /etc/fstab.\n```\n\nExtend the logical volume.\n\n```bash\n$ sudo lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv\nSize of logical volume ubuntu-vg/ubuntu-lv changed from <31.00 GiB (7935 extents) to 1.03 TiB (270079 extents).\nLogical volume ubuntu-vg/ubuntu-lv successfully resized.\nresize2fs 1.45.5 (07-Jan-2020)\nFilesystem at /dev/mapper/ubuntu--vg-ubuntu--lv is mounted on /; on-line resizing required\nold_desc_blocks = 4, new_desc_blocks = 132\nThe filesystem on /dev/mapper/ubuntu--vg-ubuntu--lv is now 276560896 (4k) blocks long.\n```\n\nConfirm resize is complete.\n\n```bash\n$ lsblk\nNAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT\nsda                         8:0    0    1T  0 disk\n├─sda1                      8:1    0    1M  0 part\n├─sda2                      8:2    0    1G  0 part /boot\n└─sda3                      8:3    0    1T  0 part\n  └─ubuntu--vg-ubuntu--lv 253:0    0    1T  0 lvm  /\n```\n\n🎉\n",
+	frontmatter: {
+		title: "React based Birthday Age Calculator",
+		date: "2023-01-02T00:00:00.000Z",
+		tag: "Technical",
+		description: "Calculate age from a birthdate.",
+		signature: true,
+		type: "Post",
+		slug: "react-based-age-calculator",
+	},
+	content:
+		"\nIn this short guide we'll be creating a simple React component that calculates and displays a person's age based on their birthday.\n\nHere's the code for the component:\n\n```js\nexport default function Age() {\n  const birthday = new Date(1999, 8, 25); // September 25, 1999\n  const currentDate = new Date();\n  let age = currentDate.getFullYear() - birthday.getFullYear();\n\n  // If the current date is before the birthday, subtract 1 from the age\n  if (\n    currentDate.getMonth() < birthday.getMonth() ||\n    (currentDate.getMonth() === birthday.getMonth() &&\n      currentDate.getDate() < birthday.getDate())\n  ) {\n    age--;\n  }\n\n  return <span>{age}</span>;\n}\n```\n\nFirst, we create a new function called Age using the export default syntax, which makes the function available for import in other parts of our application. Inside the function, we create two Date objects: birthday and currentDate. birthday is set to September 25, 1999 (my actual birthday!) and currentDate is set to the current date.\n\nNext, we create a variable called age and set it equal to the difference between the current year and the year of the person's birthday. This will give us the age in years.\n\nHowever, this calculation is not entirely accurate because it doesn't take into account the month and day. For example, if the current date is January 1 and the person's birthday is on December 31, they have not yet had their birthday this year and are technically one year younger.\n\nTo fix this, we use an if statement to check if the current month and day are before the person's birthday. If it is, we subtract 1 from their age.\n\nFinally, we use a span element to wrap the age and return it to be rendered on the page.\n\nAnd that's it! With just a few lines of code, we've created a simple and effective NextJS and TypeScript component that calculates and displays a person's age.\n",
 };
 
 export const _mdx_24_: MDXModule = {
-  frontmatter: {
-    title: "Should we forgive ourselves?",
-    date: "2020-11-12T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "Jesus, came and suffered our punishment for us. We have already passed from death to life and no longer face condemnation.",
-    image: "media/patrick-fore-b_SHPU5M3nk-unsplash.jpg",
-    imageAlt: "Photo by Patrick Fore on Unsplash ",
-    lastModified: "2024-07-25T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "should-we-forgive-ourselves",
-  },
-  content:
-    "\n**What does the Bible say?**\n\nIt's incredibly important to remember that there is no condemnation for those who are in Christ Jesus. Paul, in Romans 8:1 makes it clear to us that:\n\n> There is no condemnation for those who belong to Christ Jesus.\n\nIf through faith alone you believe that Jesus bore the penalty for your sins, you stand justified before God. Jesus took upon Himself our punishment, and through Him, we have transitioned from death to life, no longer under the threat of condemnation from the Father.\n\nDespite our awareness of this truth, many of us still grapple with the burden of our past sins. In Philippians 3:12-14 Paul says:\n\n> I don’t mean to say that I have already achieved these things or that I have already reached perfection. But I press on to possess that perfection for which Christ Jesus first possessed me. No, dear brothers and sisters, I have not achieved it, but I focus on this one thing: Forgetting the past and looking forward to what lies ahead, I press on to reach the end of the race and receive the heavenly prize for which God, through Christ Jesus, is calling us.\n\nPaul in this passage is stating that he forgets the awful memories of persecuting Christians and rebellion against God. He looks forward; he doesn't dwell or wallow in the past. But he also says in Ephesians 2:11-12:\n\n> Don’t forget that you Gentiles used to be outsiders. You were called “uncircumcised heathens” by the Jews, who were proud of their circumcision, even though it affected only their bodies and not their hearts. In those days you were living apart from Christ. You were excluded from citizenship among the people of Israel, and you did not know the covenant promises God had made to them. You lived in this world without God and without hope.\n\nAt first glance, these two messages may seem contradictory, but they complement each other perfectly. Paul advocates for moving past our sins and looking forward, only recalling them to deepen our understanding of God's grace and mercy. He urges us not to be paralysed by our sins but to instead praise God and return to Him in gratitude for His mercy and forgiveness.\n\nIt's crucial to acknowledge that dwelling on our sins is itself sinful. By doing so, we elevate ourselves and imply that Jesus' forgiveness was insufficient. What could be more offensive in the eyes of the Heavenly Father, the Creator of all things, the Almighty and Righteous God? I personally struggle with this and frequently seek repentance for this sin.\n\n**So, should we forgive ourselves?**\n\nWhy would we grant ourselves forgiveness when we've wronged others? The Bible emphasizes seeking forgiveness from those we've harmed and from God Himself. Who appointed us as the arbitrators of our own wrongdoing?\n\nIn 2 Corinthians 7:8-10, Paul discusses the Corinthians' repentance and departure from their sinful ways. Having urged them to repent previously, Paul commends their efforts to reconcile with the Father.\n\n> I am not sorry that I sent that severe letter to you, though I was sorry at first, for I know it was painful to you for a little while. Now I am glad I sent it, not because it hurt you, but because the pain caused you to repent and change your ways. It was the kind of sorrow God wants his people to have, so you were not harmed by us in any way. For the kind of sorrow God wants us to experience leads us away from sin and results in salvation. There’s no regret for that kind of sorrow. But worldly sorrow, which lacks repentance, results in spiritual death.\n\nPaul expresses that there should be no remorse for the sorrow inspired by God regarding one's sinful life before salvation. Conversely, worldly sorrow indicates a lack of repentance and leads to spiritual death.\n\nFurthermore, he elaborates that the Godly grief experienced by the Corinthians led to their repentance.\n\n> Just see what this godly sorrow produced in you! Such earnestness, such concern to clear yourselves, such indignation, such alarm, such longing to see me, such zeal, and such a readiness to punish wrong. You showed that you have done everything necessary to make things right.\n\nIn light of these points, the Bible teaches us that while we may not entirely erase our sins from memory, we ought to endeavour to move forward, repent, and seek forgiveness recalling them solely to gain a deeper appreciation of God's grace and mercy. Doing so humbles us, prompting us to relinquish the poison of self-condemnation.\n\n**One more thing to consider, nuance.**\n\nThe creator of the universe is not glorified when we waste our lives in self-doubt and idleness. Remember, you have been liberated through Jesus' sacrifice! It's time to embrace a life free from sin and condemnation. If you find yourself still struggling with sin, I urge you to seek support from your church elders for guidance and accountability.\n\nWhile Jesus' sacrifice grants us forgiveness before God, it doesn't exempt us from earthly consequences of sin. As Christians, let's endeavour to emulate Jesus' example and live according to His teachings.\n\n---\n\nIt's important to remember that the approach to confessing sin can vary depending on the situation. When the sin impacts others, it should be approached with sensitivity and under the guidance of church elders.\n",
+	frontmatter: {
+		title: "Monitor Windows with Grafana and Prometheus",
+		date: "2021-08-03T00:00:00.000Z",
+		tag: "Technical",
+		description: "Monitor your computers performance with Grafana and Prometheus.",
+		signature: true,
+		type: "Post",
+		slug: "monitor-windows-with-grafana-and-prometheus",
+	},
+	content:
+		'\nThis article covers the installation and configuration process of OhmGraphite to work with Prometheus and send statistics to Grafana.\n\n### Prerequisites\n\n- Prometheus\n- Grafana\n- Windows 10/11 with Administrator Privileges\n\nNOTE: Administrator Privileges is required for installation.\n\n### Getting Started\n\nBefore we begin the installation of OhmGraphite, let\'s first create a directory for our files to live in.\n\nFor this example, we will be storing OhmGraphite in the following directory:\n\n```\nC:\\OhmGraphite\\\n```\n\n### Downloading and Installing OhmGraphite\n\nWe will be using OhmGraphite as our statistic exporter. Head on over to: [https://github.com/nickbabcock/OhmGraphite/releases/latest](https://github.com/nickbabcock/OhmGraphite/releases/latest) to grab the latest version.\n\nOnce you have downloaded the Zip folder, extract it and place the contents in the folder we created earlier.\n\nNow let\'s edit the OhmGraphite.exe.config file to set it up to work with Prometheus.\n\nReplace the contents of the file with the following code:\n\n```\n<?xml version="1.0" encoding="utf-8" ?>\n<configuration>\n  <appSettings>\n    <add key="type" value="prometheus" />\n    <add key="prometheus_port" value="4445" />\n\n    <!-- This is the host that OhmGraphite listens on.\n         `*` means that it will listen on all interfaces.\n         Consider restricting to a given IP address -->\n    <add key="prometheus_host" value="*" />\n  </appSettings>\n</configuration>\n```\n\nSave and close the file.\n\nNOTE: You can edit this file at any time, but you will need to restart the application for the changes to make effect.\n\nOpen a Powershell window in Administrator mode and enter the following command:\n\n```\nC:\\OhmGraphite\\OhmGraphite.exe run\n```\n\nNext, run the following command to install OhmGraphite as service that starts on boot:\n\n```\nC:\\OhmGraphite\\OhmGraphite.exe install\n```\n\nAfter installation, run the following command to start OhmGraphite:\n\n```\nC:\\OhmGraphite\\OhmGraphite.exe start\n```\n\nOhmGraphite has been successfully setup and is ready to go! Now let\'s configure Prometheus.\n\n### Setup Prometheus to look for OhmGraphite\n\nIn your Prometheus configuration file, add an additional job to the stack:\n\n```\nglobal:\n  scrape_interval: 15s\nscrape_configs:\n  - job_name: \'ohmgraphite\'\n    static_configs:\n    - targets: [\'10.0.0.200:4445\']\n```\n\nOnce this has been added, restart Prometheus. OhmGraphite will now be picked up by Prometheus and be ready to serve to Grafana.\n\n### Grafana Dashboard\n\nIn your Grafana installation, import a new dashboard with the following code 11587.\n\nThis dashboard is pre-configured to look for OhmGraphite export by Prometheus.\n\nThe graphs should auto-populate with statistics as they roll in.\n\n### Conclusion\n\nIf you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.\n',
 };
 
 export const _mdx_25_: MDXModule = {
-  frontmatter: {
-    title: "The Death Penalty - A Christian Perspective",
-    date: "2023-09-06T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "Does the death penalty apply post-Christ? Can it be effectively used as a deterrant?",
-    image: "media/hasan-almasi-aIRBGPafi74-unsplash.jpg",
-    imageAlt: "Photo by Hasan Almasi on Unsplash",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    type: "Post",
-    slug: "the-death-penalty-a-christian-perspective",
-  },
-  content:
-    "\nThe interpretation of scripture regarding the death penalty is a topic of hot debate amongst Christians. Some argue that it is mandated, while others question its applicability in the post-Christ era.\n\nThis article seeks to answer the following questions:\n\n- Does scripture mandate the death penalty?\n- Is the death penalty still applicable post-Christ?\n\n# Does scripture mandate the death penalty?\n\nYes. The Old Testament contains dozens of examples where the death penalty is used as a punishment for a crime committed against a person or God. For example, take Genesis 9:6 which outlines the requirement of a blood penance for murder.\n\n> Whoever sheds the blood of man, by man shall his blood be shed, for God made man in his own image.\n\n— Genesis 9:6 ESV\n\nThis was part of a wider covenant made by God with Noah after the flood which reflects the value of human life and provides the reason for its value - that we are made in the image of God.\n\nTake also the law as it was given to Moses. It ordains the death penalty for various offences including murder in all forms except accidental, kidnapping, adultery, incest, bestiality, sodomy, rape, witchcraft and more. See Exodus 21, 22, 35; Leviticus 20 and 24; Deuteronomy 21-24.\n\nThese items are carried over in the moral law to the New Testament and are re-iterated by Jesus and the apostles. The New Testament would definitely assume the existence of the death penalty, but there aren't any clear cut examples of how it applies. Romans 13:1-7 also calls us to submit to the authority of the government.\n\n> Let every person be subject to the governing authorities. For there is no authority except from God, and those that exist have been instituted by God. Therefore whoever resists the authorities resists what God has appointed, and those who resist will incur judgment. For rulers are not a terror to good conduct, but to bad.\n>\n> Would you have no fear of the one who is in authority? Then do what is good, and you will receive his approval, for he is God's servant for your good. But if you do wrong, be afraid, for he does not bear the sword in vain. For he is the servant of God, an avenger who carries out God's wrath on the wrongdoer.\n>\n> Therefore one must be in subjection, not only to avoid God's wrath but also for the sake of conscience. For because of this you also pay taxes, for the authorities are ministers of God, attending to this very thing. Pay to all what is owed to them: taxes to whom taxes are owed, revenue to whom revenue is owed, respect to whom respect is owed, honour to whom honour is owed.\n\n— Romans 13:1-7 ESV\n\n# Does scripture prohibit the death penalty?\n\nAs we've clearly seen, the Old Testament is clear on its position of the death penalty. But does this carry on in the New Testament era?\n\nA common argument is that Israel was a theocracy ruled by God who had required Israel to be set apart from the world therefore making its law unique. When Israel ceased to exist as a nation, its law was nullified. However, this ignores that Jesus did not just come to institute a new law, but to fulfil the old. See Matthew 5:17-18.\n\n> Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfil them. For truly, I say to you, until heaven and earth pass away, not an iota, not a dot, will pass from the Law until all is accomplished.\n\n— Matthew 5:17-18 ESV\n\nThis viewpoint also ignores the differences between the moral, ceremonial and judicial law and how the moral law has carried on. To learn more about that, [check out this sermon](https://www.youtube.com/watch?v=Ohz_Z4yJyKM&list=PLp88AentmvGOYgMkbg7U3OAr5z0ph16_i&index=10).\n\nAnother argument is Christ's death. His death was the ultimate sacrifice, replacing the sacrifice of animals as a blood penance for our iniquity. See Hebrews 9:14.\n\n> How much more will the blood of Christ, who through the eternal Spirit offered himself without blemish to God, purify our conscience from dead works to serve the living God.\n\n— Hebrews 9:14 ESV\n\nBut perhaps the strongest arguments against the death penalty are examples where criminals who had every right to be killed were not. For example, Cain, Moses and David who had committed murder were not executed for their crimes. There is also the example of Jesus who refused to condemn the women caught in adultery. He suggested that those who were without sin to perform the execution, knowing full well that he was in the presence of sinners who all already deserved capital punishment.\n\nThere are also the following verses that require meditation:\n\n> Vengeance is mine, and recompense, for the time when their foot shall slip; for the day of their calamity is at hand, and their doom comes swiftly.’ For the Lord will vindicate his people and have compassion on his servants, when he sees that their power is gone and there is none remaining, bond or free.\n\n— Deuteronomy 32:35-36 ESV\n\n> Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, “Vengeance is mine, I will repay, says the Lord.”\n\n— Romans 12:19 ESV\n\n> No one transgress and wrong his brother in this matter, because the Lord is an avenger in all these things, as we told you beforehand and solemnly warned you.\n\n— 1 Thessalonians 4:6 ESV\n\n> For we know him who said, “Vengeance is mine; I will repay.” And again, “The Lord will judge his people.”\n\n— Hebrews 10:30 ESV\n\n> And will not God give justice to his elect, who cry to him day and night? Will he delay long over them? I tell you, he will give justice to them speedily. Nevertheless, when the Son of Man comes, will he find faith on earth?”\n\n— Luke 18:7-8 ESV\n\n# Well, is it permissible or not?\n\nI would argue that there are points here on both sides of the argument. Ultimately, I would not encourage the death penalty as outlined under the Old Testament law without using the rest of the Bible to inform us. For who would be guiltless in our modern day? As a society seared by sexual immorality in every sphere, the death penalty applied would be akin to a genocide.\n\nScripture permits capital punishment, but under the New Testament, it should be used as a last resort and with reluctance. See Ezekiel 33:11 for an example of God lamenting in the death of the wicked.\n\n> Say to them, As I live, declares the Lord God, I have no pleasure in the death of the wicked, but that the wicked turn from his way and live; turn back, turn back from your evil ways, for why will you die, O house of Israel?\n\n— Ezekiel 33:11 ESV\n\nThis text implies that the death penalty should be approached with reverence, care and used as a last resort. It also implies that repentance could commute the death sentence! And this is demonstrated with our relationship with God also, He relents against our destruction for His son has paid the blood penance for us. Don't forget Nineveh and their own repentance! God relented his judgement in that instance also!\n",
+	frontmatter: {
+		title: "Jesus is alive",
+		date: "2025-05-19T00:00:00.000Z",
+		tag: "Faith",
+		description: "Jesus isn't dead and buried. He is risen.",
+		image: "media/tomb.avif",
+		imageAlt: "Photo by Pisit Heng on Unsplash",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "jesus-is-alive",
+	},
+	content:
+		"\nJesus isn't dead and buried.[^1]\n\nHe is risen.[^2]\n\nHe is alive.[^3]\n\nHe is interceding for us at the right hand of the Father.[^4]\n\nOh, how great a truth! How foolish we are to doubt.[^5]\n\n[^1]: Luke 24:3\n\n[^2]: Matthew 28:6\n\n[^3]: Mark 16:14\n\n[^4]: Hebrews 7:25\n\n[^5]: James 1:6\n",
 };
 
 export const _mdx_26_: MDXModule = {
-  frontmatter: {
-    title: "The Doctrines of Grace",
-    date: "2019-09-06T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "An overview of the doctrines of grace, what they are and what they mean for humanity.",
-    image: "media/ioann-mark-kuznietsov-USS2u1-98io-unsplash.jpg",
-    imageAlt: "Photo by Ioann-Mark Kuznietsov on Unsplash",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "the-doctrines-of-grace",
-  },
-  content:
-    "\n# Predestination/Unconditional Election\n\nRomans 8:29-30 tells us, “For those God foreknew he also predestined to be conformed to the likeness of his Son, that he might be the firstborn among many brothers. And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.” Ephesians 1:5 and 11 declare, “He predestined us to be adopted as his sons through Jesus Christ, in accordance with his pleasure and will…In him we were also chosen, having been predestined according to the plan of him who works out everything in conformity with the purpose of his will.”\n\nThe words translated “predestined” in the Scriptures referenced above are from the Greek word proorizo, which carries the meaning of “determining beforehand,” “ordaining,” “deciding ahead of time.” So, predestination is God determining certain things to occur ahead of time. What did God determine ahead of time? According to Romans 8:29-30, God predetermined that certain individuals would be conformed to the likeness of His Son, be called, justified, and glorified. Essentially, God predetermines that certain individuals will be saved. Numerous scriptures refer to believers in Christ being chosen (Matthew 24:22, 31; Mark 13:20, 27; Romans 8:33, 9:11, 11:5-7, 28; Ephesians 1:11; Colossians 3:12; 1 Thessalonians 1:4; 1 Timothy 5:21; 2 Timothy 2:10; Titus 1:1; 1 Peter 1:1-2, 2:9; 2 Peter 1:10).\n\n# Total Depravity\n\nAs a result of Adam’s fall, the entire human race is affected; all of Adam’s descendants are spiritually dead in their trespasses and sins (Ephesians 2:1, 5). Calvinists are quick to point out that this does not mean that all people are as bad as they could be. Rather, this doctrine says that, as a result of man’s fall in Adam, all people are radically depraved from the inside and that their depravity affects every area of their lives.\n\n# Limited Atonement\n\nThe purpose of Christ’s atoning death was not to merely make men savable and thus leaving the salvation of humanity contingent on man’s response to God’s grace. Rather, the purpose of the atonement was to secure the redemption of a particular people (Ephesians 1:4–6; John 17:9). All whom God has elected and Christ died for will be saved (John 6:37–40, 44). Many Reformed Christians prefer the term “particular redemption” as they feel that this phrase more accurately captures the essence of this doctrine. It is not so much that Christ’s atonement is limited as it is particular, intended for a specific people—God’s elect.\n\n# Irresistible Grace\n\nGod has elected a particular people to be the recipients of Christ’s atoning work. These people are drawn to Christ by a grace that is irresistible. When God calls, man responds (John 6:37, 44; 10:16). This teaching does not mean that God saves men against their will. Rather, God changes the heart of the rebellious unbeliever so that he now desires to repent and be saved. God’s elect will be drawn to Him, and that grace that draws them is, in fact, irresistible. God replaces the unbeliever’s heart of stone with a heart of flesh (Ezekiel 36:26). In Reformed theology, regeneration precedes faith.\n\n# Perseverance of the Saints\n\nThe particular people God has elected and drawn to Himself through the Holy Spirit will persevere in faith. None of those whom God has elected will be lost; they are eternally secure in Him (John 10:27–29; Romans 8:29–30; Ephesians 1:3–14). Some Reformed theologians prefer to use the term “Preservation of the Saints” as they believe that this choice of words more accurately describes how God is directly responsible for the preservation of His elect. It is clear in Scripture that Christ continues to intercede for His people (Romans 8:34; Hebrews 7:25). This continues to provide believers with the assurance that those that belong to Christ are eternally His.\n",
+	frontmatter: {
+		title: "Resize a Proxmox Virtual Machine",
+		date: "2023-03-19T00:00:00.000Z",
+		tag: "Technical",
+		description: "Short guide on resizing a virtual machine.",
+		signature: true,
+		type: "Post",
+		slug: "resize-a-proxmox-virtual-machine",
+	},
+	content:
+		"\nTo increase the size of a hard disk, first power off the virtual machine, go to the Hardware tab, select the desired hard disk. Then, select Resize from the Disk Action drop-down menu, input the desired size increment, and select Resize disk.\n\nAfter resize has completed, start up your virtual machine and login.\n\nConfirm the relevant disk has increased in size.\n\n```bash\n$ lsblk\nNAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT\nsda                         8:0    0    1T  0 disk\n├─sda1                      8:1    0    1M  0 part\n├─sda2                      8:2    0    1G  0 part /boot\n└─sda3                      8:3    0    1T  0 part\n  └─ubuntu--vg-ubuntu--lv 253:0    0   31G  0 lvm  /\n```\n\nResize the partition with parted.\n\n```bash\n$ sudo parted\nGNU Parted 3.3\nUsing /dev/sda\nWelcome to GNU Parted! Type 'help' to view a list of commands.\n(parted) resizepart 3 100%\n(parted) quit\nInformation: You may need to update /etc/fstab.\n```\n\nExtend the logical volume.\n\n```bash\n$ sudo lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv\nSize of logical volume ubuntu-vg/ubuntu-lv changed from <31.00 GiB (7935 extents) to 1.03 TiB (270079 extents).\nLogical volume ubuntu-vg/ubuntu-lv successfully resized.\nresize2fs 1.45.5 (07-Jan-2020)\nFilesystem at /dev/mapper/ubuntu--vg-ubuntu--lv is mounted on /; on-line resizing required\nold_desc_blocks = 4, new_desc_blocks = 132\nThe filesystem on /dev/mapper/ubuntu--vg-ubuntu--lv is now 276560896 (4k) blocks long.\n```\n\nConfirm resize is complete.\n\n```bash\n$ lsblk\nNAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT\nsda                         8:0    0    1T  0 disk\n├─sda1                      8:1    0    1M  0 part\n├─sda2                      8:2    0    1G  0 part /boot\n└─sda3                      8:3    0    1T  0 part\n  └─ubuntu--vg-ubuntu--lv 253:0    0    1T  0 lvm  /\n```\n\n🎉\n",
 };
 
 export const _mdx_27_: MDXModule = {
-  frontmatter: {
-    title: "The Four Views of the Human Ability",
-    date: "2020-04-01T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "A primer on the four views of human ability and the reformed position.",
-    image: "media/priscilla-du-preez-7aOhiPe6_30-unsplash.jpg",
-    imageAlt: "Photo by Priscilla Du Preez 🇨🇦 on Unsplash ",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "the-four-views-of-the-human-ability",
-  },
-  content:
-    '\nUnderstanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.\n\n# Pelagianism\n\nPelagius was British monk who clashed with Augustine of Hippo during the 5th Century. To a large degree, the term \'Pelagianism\' is defined by Augustine and its original definitions as intended by Pelagius remain elusive. The theological position holds that the original sin committed by Adam and Eve did not taint human nature and that humans have the right to free will to achieve human perfection _without_ divine intervention.\n\nPelagius taught that it was unjust to punish one person for the sins of another; therefore, infants in his eyes were born blameless. He also taught that God could not command believers to do the impossible in His name. Therefore it must be possible to satisfy all divine commandments with natural human ability.\n\n**Key Points:**\n\n- Man is well.\n- Monergistic: Solely the work of man\n- Modern expression: Humanism/Secularism\n- Grace is not necessary. "If I ought, then I can."\n\nPelagianism was especially popular amongst Roman Elites, monks and the rest of the contemporary Christian world at the time.\n\n# Semi-Pelagianism\n\nThe term Semi-Pelagianism is used to describe the combination of Pelagianism and the soteriological school of thought on salvation. There were those that desired to hold an intermediary position between Augustine and Pelagius. Semi-Pelagianism became the dominant view in the Roman Catholic Church of the Medieval period.\n\nThis view holds that although all humans who descend from Adam by ordinary generation inherit the consequent corruption by Adams actions. However, this corruption does not extend to the whole man. There remains a part of the human person who is not corrupt. The Soteriological school thought meant that the human person must choose to follow God by engaging the un-fallen faculty which remains within them. As a result, God will provide grace to that individual which will serve to further sanctify that person.\n\nSo long as they use their free will to choose to follow God, God will respond with further grace.\n\n**Key Points:**\n\n- Man is corrupted, but not completely.\n- Assisting grace required: "I can, but God must assist."\n- Synergistic: Man works, then God.\n- Modern expression: Much of modern evangelicalism.\n- Grace is necessary, but not sufficient. The individual must actively choose God.\n\n# Arminianism\n\nArminianism is a branch of Protestantism based on the theological ideas of the Dutch Reformed theologian Jacobus Arminius. His teachings held to the five solae of the Reformation but were distinctly different from the teachings and beliefs of Martin Luther, Huldrych Zwingli, John Calvin and other Protestant Reformers.\n\nThe primary difference is that Jacobus Arminius believed that salvation was open to all persons and that God\'s election of individuals was determined by means of prescience (anti-predestination). Another key difference is that the Arminianism doctrine holds to the belief that the will of man was freed by Grace prior to regeneration.\n\nBecause prevenient grace is given to all men by the Holy Spirit, and this grace extends to the entire person, all people have free will.\n\nThrough the preparatory (prevenient) grace given to all by the Holy Spirit, man is able to cooperate with God and respond in faith to salvation. Through prevenient grace, God removed the effects of Adam\'s sin. Because of "free will" men are also able to resist God\'s grace.\n\n**Key Points:**\n\n- Man is mostly dead.\n- Enabling grace required: "God must work, then I can."\n- Synergistic: God works, then man.\n- Modern Expression: Catholicism.\n- Grace is necessary, but not sufficient.\n\n# Calvinism\n\nCalvinism also known as Reformed Theology/Christianity is another major branch of Protestantism that follows the theological tradition and forms of Christian practice set down by John Calvin and other reformation-era theologians.\n\nThe primary difference that sets Calvinism apart is TULIP.\n\n- Total Depravity\n- Unconditional Election (ie. Predestination)\n- Limited Atonement\n- Irresistible Grace\n- Perseverance of the Saints\n\nThe primary difference between Arminianism and Calvinism is that of Predestination. Before the foundation of the world, God unconditionally chose (or "elected") some to be saved. The elect are chosen by God.\n\nWhile God extends his common grace to all humankind, it is not sufficient to save anyone. Only God\'s irresistible grace can draw the elect to salvation and make a person willing to respond. This grace cannot be obstructed or resisted.\n\nAll men are totally depraved, and this depravity extends to the entire person, including the will. Except for God\'s irresistible grace, men are entirely incapable of responding to God on their own.\n\n**Key Points:**\n\n- Man is dead.\n- Effectual grace required: "God must work, then I will."\n- Monergistic: Solely the work of God.\n- Modern expression: Reformed Churches.\n- Grace is necessary and sufficient.\n',
+	frontmatter: {
+		title: "The Four Views of the Human Ability",
+		date: "2020-04-01T00:00:00.000Z",
+		tag: "Faith",
+		description: "A primer on the four views of human ability and the reformed position.",
+		image: "media/priscilla-du-preez-7aOhiPe6_30-unsplash.jpg",
+		imageAlt: "Photo by Priscilla Du Preez 🇨🇦 on Unsplash ",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "the-four-views-of-the-human-ability",
+	},
+	content:
+		'\nUnderstanding the Four Views of the Human Ability is an important first step in understanding what makes Reformed theology stand out.\n\n# Pelagianism\n\nPelagius was British monk who clashed with Augustine of Hippo during the 5th Century. To a large degree, the term \'Pelagianism\' is defined by Augustine and its original definitions as intended by Pelagius remain elusive. The theological position holds that the original sin committed by Adam and Eve did not taint human nature and that humans have the right to free will to achieve human perfection _without_ divine intervention.\n\nPelagius taught that it was unjust to punish one person for the sins of another; therefore, infants in his eyes were born blameless. He also taught that God could not command believers to do the impossible in His name. Therefore it must be possible to satisfy all divine commandments with natural human ability.\n\n**Key Points:**\n\n- Man is well.\n- Monergistic: Solely the work of man\n- Modern expression: Humanism/Secularism\n- Grace is not necessary. "If I ought, then I can."\n\nPelagianism was especially popular amongst Roman Elites, monks and the rest of the contemporary Christian world at the time.\n\n# Semi-Pelagianism\n\nThe term Semi-Pelagianism is used to describe the combination of Pelagianism and the soteriological school of thought on salvation. There were those that desired to hold an intermediary position between Augustine and Pelagius. Semi-Pelagianism became the dominant view in the Roman Catholic Church of the Medieval period.\n\nThis view holds that although all humans who descend from Adam by ordinary generation inherit the consequent corruption by Adams actions. However, this corruption does not extend to the whole man. There remains a part of the human person who is not corrupt. The Soteriological school thought meant that the human person must choose to follow God by engaging the un-fallen faculty which remains within them. As a result, God will provide grace to that individual which will serve to further sanctify that person.\n\nSo long as they use their free will to choose to follow God, God will respond with further grace.\n\n**Key Points:**\n\n- Man is corrupted, but not completely.\n- Assisting grace required: "I can, but God must assist."\n- Synergistic: Man works, then God.\n- Modern expression: Much of modern evangelicalism.\n- Grace is necessary, but not sufficient. The individual must actively choose God.\n\n# Arminianism\n\nArminianism is a branch of Protestantism based on the theological ideas of the Dutch Reformed theologian Jacobus Arminius. His teachings held to the five solae of the Reformation but were distinctly different from the teachings and beliefs of Martin Luther, Huldrych Zwingli, John Calvin and other Protestant Reformers.\n\nThe primary difference is that Jacobus Arminius believed that salvation was open to all persons and that God\'s election of individuals was determined by means of prescience (anti-predestination). Another key difference is that the Arminianism doctrine holds to the belief that the will of man was freed by Grace prior to regeneration.\n\nBecause prevenient grace is given to all men by the Holy Spirit, and this grace extends to the entire person, all people have free will.\n\nThrough the preparatory (prevenient) grace given to all by the Holy Spirit, man is able to cooperate with God and respond in faith to salvation. Through prevenient grace, God removed the effects of Adam\'s sin. Because of "free will" men are also able to resist God\'s grace.\n\n**Key Points:**\n\n- Man is mostly dead.\n- Enabling grace required: "God must work, then I can."\n- Synergistic: God works, then man.\n- Modern Expression: Catholicism.\n- Grace is necessary, but not sufficient.\n\n# Calvinism\n\nCalvinism also known as Reformed Theology/Christianity is another major branch of Protestantism that follows the theological tradition and forms of Christian practice set down by John Calvin and other reformation-era theologians.\n\nThe primary difference that sets Calvinism apart is TULIP.\n\n- Total Depravity\n- Unconditional Election (ie. Predestination)\n- Limited Atonement\n- Irresistible Grace\n- Perseverance of the Saints\n\nThe primary difference between Arminianism and Calvinism is that of Predestination. Before the foundation of the world, God unconditionally chose (or "elected") some to be saved. The elect are chosen by God.\n\nWhile God extends his common grace to all humankind, it is not sufficient to save anyone. Only God\'s irresistible grace can draw the elect to salvation and make a person willing to respond. This grace cannot be obstructed or resisted.\n\nAll men are totally depraved, and this depravity extends to the entire person, including the will. Except for God\'s irresistible grace, men are entirely incapable of responding to God on their own.\n\n**Key Points:**\n\n- Man is dead.\n- Effectual grace required: "God must work, then I will."\n- Monergistic: Solely the work of God.\n- Modern expression: Reformed Churches.\n- Grace is necessary and sufficient.\n',
 };
 
 export const _mdx_28_: MDXModule = {
-  frontmatter: {
-    title: "The Limitations of Natural Revelation",
-    date: "2024-02-23T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "While natural revelation provides glimpses of God's existence and character, it falls short of revealing the fullness of His redemptive plan.",
-    image: "media/konrad-hofmann-DjlYzy7zkP8-unsplash.jpg",
-    imageAlt: "Photo by Konrad Hofmann on Unsplash",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "the-limitations-of-natural-revelation",
-  },
-  content:
-    '\nThis article was written as an assessment piece for [Theology for Worldview](https://haddoninstitute.org/course/theology-for-worldview) via the [Haddon Institute](https://haddoninstitute.org), a course lectured by [Craig Ireland](https://x.com/craigcireland).\n\n# Introduction\n\nJob poses a fundamental question about the nature of the universe: can we truly grasp the depths of God\'s wisdom and the limits of His power?[^1] This query resonates with our own quest for understanding. Do we claim to know God fully, or do we humbly acknowledge our limited comprehension? The richness of God\'s attributes and the inscrutability of His ways are acknowledged throughout scripture[^2], reminding us of the inherent limitations of human understanding. While natural revelation provides glimpses of God\'s existence and character, it falls short of revealing the fullness of His redemptive plan. Can natural revelation, a theology that does not include the special revelation of Scripture, unveil God to humanity?\n\n# Understanding Natural Revelation\n\nNatural revelation, also known as general revelation, is the truth about God that can be discerned by looking at the world around us. It posits that "God has revealed Himself so clearly in the natural order that no person will ever be able to stand before the Creator and claim that there is insufficient evidence that He exists and should be worshiped."[^3]\n\nIn London Baptist and Westminster Confessions of Faith, natural revelation is often referred to as "the light of nature" and "the works of creation and providence."[^4] Let us elaborate on these to understand what the Puritans and Reformers intended for us to understand.\n\nThe "works of creation and providence" refers to the visible universe, which God brought into existence out of nothing[^5] and which God sustains by the word of his power[^6]. These works of God serve to reveal God. In the words of the Psalmist, "The heavens declare the glory of God, and the sky above proclaims his handiwork"[^7].\n\nThe Reformers and Puritans use the phrase "light of nature" to refer to natural revelation in a generalized way.[^8] Other times the phrase is used to refer to the innate knowledge of God within man, which is a particular mode of natural revelation.[^9] Such innate knowledge would include human reason and conscience.[^10]\n\nWhat does natural revelation reveal? As articulated by the apostle Paul, the observable universe demonstrates God\'s "eternal power"[^11]. Paul also asserts that divine providence reveals God\'s "goodness"[^12]. Similarly, the Psalmist sees God\'s "wisdom" evident in creation and God\'s providence[^13].\n\nIs the scope of natural revelation limited to these three divine attributes (eternal power, goodness, wisdom)? A faithful interpretation suggests that while these attributes are integral to God, they do not encompass the entirety of His being. The heavens proclaim, "the glory of God"[^14], encompassing all attributes pertaining to His sovereignty and role as Creator. Moreover, the language of the confessions implies, and Scriptures explicitly affirm, that natural revelation following humanity\'s fall into sin also unveils God\'s justice and wrath against sin.[^15]\n\nIn Romans 1, Paul highlights the inherent revelation of God evident in the world around us. He asserts that humanity possesses an innate awareness of God\'s existence and attributes, which are plainly discernible through observation of the natural world. From the dawn of creation, the eternal power and divine nature of God have been manifest in the intricacies of His handiwork.\n\nThis revelation is not obscure or hidden but rather conspicuous and unmistakable. Paul emphasizes that humanity, throughout time, has had the capacity to perceive and comprehend these aspects of God through the wonders of creation. However, despite this awareness, many fail to acknowledge or honour God as they should.\n\nThe failure to recognize and revere God, despite the clarity of His revelation, leaves humanity without a valid excuse. Paul underscores the accountability of individuals for their unbelief, emphasizing that even though they possess knowledge of God, they often disregard His rightful place and fail to accord Him the reverence and worship due to Him.[^16]\n\nThe first facet of natural revelation, nature, comprises both the existence of the universe (cosmos) and its apparent design (teleology).[^17] The second facet, conscience, originates from the belief that we are made in the likeness of God[^18] and endowed with intellect and morality. It encompasses our capacity to understand, our inherent awareness of God\'s presence, and our discernment between right and wrong. The last form of natural revelation, providence, pertains to God\'s inherent blessings bestowed upon all individuals (referred to as common grace) and his sovereign orchestration of history.[^19]\n\nThe Bible emphasizes that natural revelation is universally accessible, holding individuals responsible for their reactions to it. This concept assumes that despite humanity\'s fallen state, the inherent image of God and cognitive abilities remain sufficiently intact for people to grasp an understanding of God through logical reasoning.\n\n# The Insufficiency of Natural Revelation\n\nRomans 1 asserts that God\'s presence is clearly manifested in nature, yet it also acknowledges the constraints of natural revelation.[^20] While it provides sufficient evidence of God\'s existence, it falls short of imparting salvation. Paul explains that when individuals encounter natural revelation, they suppress the truth of God that is revealed to them. The fall of man makes this clear, "Every intention of the thoughts of his heart was only evil continually"[^21] and Paul expands on this saying, "the mind that is set on the flesh is hostile to God, for it does not submit to God\'s law; indeed, it cannot"[^22]. Paul emphasizes the inherent resistance in human nature. Additionally, he notes that "The god of this world has blinded the minds of the unbelievers"[^23] and highlights the state of being alienated and hostile in mind. "You, who once were alienated and hostile in mind"[^24]. Despite God successfully revealing His nature in and to man through creation, humanity struggles to interpret this revelation faithfully.\n\nConsider this, if natural revelation is universally available to everyone, why does anyone choose not to worship the creator? Without a faith in Christ, when man begins to explore the wonders of God\'s creation, their thoughts become futile, and their hearts are darkened.[^25] They fail to acknowledge the Lord or express gratitude towards Him. Furthermore, they forsake the truth evident in the natural world, opting instead for falsehoods, embracing various forms of false religion and idol worship. They divert their reverence from the Creator to creation itself. Those who encounter the revelation of nature without the grace of God and His plan for salvation distort God\'s image to fit their own desires, rejecting the worship of the true Lord.[^26]\n\nThe London Baptist Confession backs up this point in chapter 10, "Much less can men, not professing the Christian religion, be saved in any other way whatsoever, be they never so diligent to frame their lives according to the light of nature, and the laws of that religion they do profess. And, to assert and maintain that they may, is very pernicious, and to be detested"[^27].\n\nThe idolatry that arises from individuals receiving natural revelation is not attributed to any shortcomings in natural revelation itself. Rather, it stems from the inherent sin present in fallen human beings. God cursed the ground when Adam sinned. Nature from that point forth, was broken and not operating as a part of the original plan. John Calvin says "Before the fall, the state of the world was a most fair and delightful mirror of the divine favour and paternal indulgence towards man. Now, in all the elements we perceive that we are cursed"[^28].\n\nWhile natural revelation provides compelling evidence of God\'s existence, it alone cannot bring about salvation. Despite the clarity of God\'s presence in nature, humanity\'s sinful nature leads to the suppression of this truth. Salvation requires the transformative work of the Holy Spirit, transcending the limitations of natural revelation. Although natural revelation universally attests to God\'s existence and character, it cannot supplant the distinct revelation of God\'s redemptive plan through Jesus Christ.\n\n# The Requirement for Special Revelation\n\nWhere natural revelation is a universal method of witnessing God\'s existence and character, special revelation presupposes that it is "not sufficient to give that knowledge of God, and of His will, which is necessary unto salvation."[^29] Natural revelation reveals God, but it does not reveal Jesus Christ and His salvific work on the cross. Special revelation is the revelation of the way to salvation.[^30]\n\nScripture describes God\'s word (special revelation) as a higher authority over natural revelation. "For you have been born again, not of perishable seed, but of imperishable, through the living and enduring word of God."[^31] Scripture here places an authority on the living and enduring word of God. We can also see the same charge in Psalm 19 where David places an emphasis on natural revelation, but also on God\'s law, which could only be acquired through special revelation (the prophets).\n\nPaul, in his writings to the Corinthians states "But a natural man does not accept the things of the Spirit of God, for they are foolishness to him; and he cannot understand them, because they are spiritually appraised."[^32] Here, we can see that natural revelation is universally understood by man, but it cannot be accepted. The Holy Spirit must work on the heart of man before he would come to believe. John Calvin puts this well: "[All men], whether they want to or not, they are repeatedly brought up short by this thought, that there is a divinity by whose decision they stand or fall."[^33]\n\nFortunately, the value of natural revelation is not nullified for us. Its significance is revitalized through divine grace, but this revitalization occurs only when we undergo reconciliation with God and undergo a transformation through the Holy Spirit. "[You] have embraced the new self, constantly renewed in knowledge to reflect the likeness of its creator."[^34] In this unity with the divine, reason discovers its true revival. Nevertheless, it is not solely the revival of reason that reinstates the reliability of natural theology; rather, it is reason being rejuvenated and humbled by the foundation of divine revelation.[^35] By delving into the teachings of scripture, we unravel the insights embedded within nature.\n\nSalvation hinges on the Holy Spirit\'s intervention, without which humanity cannot enter God\'s kingdom. Although natural revelation alone is not sufficient for salvation, God did not design it for that purpose. Paul clarifies that natural revelation functions to unveil truths about God, leading individuals to acknowledge their sinful condition and the imperative need for salvation.[^36] However, redemption requires more than this; it necessitates special revelation - knowledge of God\'s actions throughout history, notably in Jesus Christ. Such insight, which nature is unable to provide, is exclusively conveyed through Scripture.\n\n# Conclusion\n\nIn conclusion, the profound revelations inherent in natural revelation provide us with a glimpse into the magnificent tapestry of God\'s creation and the moral order woven into the fabric of the universe. The intricate design of nature and the moral compass it reflects undoubtedly point to a divine Creator. However, it is crucial to recognize the limitations of natural revelation in the context of our salvation journey.\n\nWhile nature declares the glory of God, it cannot bridge the gap between humanity and the divine or offer the necessary remedy for our brokenness. The gospel, centered on the life, death, and resurrection of Jesus Christ, stands as the ultimate revelation of God\'s redemptive plan for humanity. Scripture unfolds the narrative of God\'s love and mercy, highlighting the sacrificial work of Christ as how we are reconciled to God.\n\nIn embracing the gospel, we find not only forgiveness for our sins but also a transformative power that transcends the external manifestations of natural revelation. The saving grace offered through Jesus Christ brings about a profound internal renewal, reshaping our hearts and minds. It is through this transformative process that we experience true freedom from the bondage of sin and a restored relationship with our Creator.\n\nWhile natural revelation serves as a compelling witness to God\'s existence and moral standards, it functions more as a precursor, preparing hearts to receive the fullness of salvation in Christ. Our marvel at the wonders of creation should, therefore, propel us toward a deeper exploration of the redemptive narrative found in scripture. Our unwavering hope rests not in the captivating beauty of the natural world but in the unmerited grace and love extended to us through the person of Jesus Christ, the cornerstone of our faith and the pathway to eternal life.\n\n[^1]: Job 11:7\n\n[^2]: Romans 11:33-34\n\n[^3]: "The Limits of Natural Revelation" (Article, Ligonier Ministries, Ligonier)\n\n[^4]: Robert Gonzales, "The Necessity of Scripture: General Revelation Is Not Enough" (Article, July 3, 2018)\n\n[^5]: Genesis 1:1, John 1:3, Colossians 1:15\n\n[^6]: Psalms 104, Acts 14:14-17, Hebrews 1:3\n\n[^7]: Psalm 19:1\n\n[^8]: Robert Gonzales, "The Necessity of Scripture: General Revelation Is Not Enough" (Article, July 3, 2018)\n\n[^9]: Robert Gonzales, "The Necessity of Scripture: General Revelation Is Not Enough" (Article, July 3, 2018)\n\n[^10]: Matthew Henry associates the "light of nature" with the human conscience in his exposition of Romans 2:12-16. A Commentary on the Whole Bible, vol. 6 (New Jersey: Fleming H. Revell Company, n.d.), 374-77.\n\n[^11]: Romans 1:20\n\n[^12]: Acts 14:17\n\n[^13]: Psalm 104\n\n[^14]: Psalm 19:1\n\n[^15]: Romans 1:18; 2:1-16\n\n[^16]: Romans 1:18-32\n\n[^17]: Craig Ireland, "Worldview for theology or theology for worldview?" (Lecture, Haddon Institute, Australia, December 4, 2023) theology-for-worldview Craig Ireland, "Where do we find ourselves?" (Lecture, Haddon Institute, Australia, December 11, 2023) where-do-we-find-ourselves\n\n[^18]: Genesis 1:26-27\n\n[^19]: Neal Hardin, "The Limitations of Knowing God Using Natural Theology" (Article, January 31, 2017)\n\n[^20]: Romans 1\n\n[^21]: Genesis 6:5\n\n[^22]: Romans 8:7\n\n[^23]: 2 Corinthians 4:4\n\n[^24]: Colossians 1:21\n\n[^25]: "The Limits of Natural Revelation" (Article, Ligonier Ministries, Ligonier)\n\n[^26]: Romans 1:18-32\n\n[^27]: London Baptist Confession of Faith (10.4)\n\n[^28]: John Calvin, "COMMENTARIES ON THE FIRST BOOK OF MOSES CALLED GENESIS" (Commentary, Chapter 3.17)\n\n[^29]: Westminster Confession of Faith, (I.1)\n\n[^30]: Keith Mathison, "General and Special Revelation" (Article, Ligonier Ministries, Ligonier)\n\n[^31]: 1 Peter 1:23\n\n[^32]: 1 Corinthians 2:14\n\n[^33]: Calvin\'s 1538 Catechism, Art 2\n\n[^34]: Colossians 3:10\n\n[^35]: John Hartley "Natural Revelation: Is Natural Theology Reliable?" (Article, October 1, 2018)\n\n[^36]: Romans 1 – 3\n',
+	frontmatter: {
+		title: "The Death Penalty - A Christian Perspective",
+		date: "2023-09-06T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"Does the death penalty apply post-Christ? Can it be effectively used as a deterrant?",
+		image: "media/hasan-almasi-aIRBGPafi74-unsplash.jpg",
+		imageAlt: "Photo by Hasan Almasi on Unsplash",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		type: "Post",
+		slug: "the-death-penalty-a-christian-perspective",
+	},
+	content:
+		"\nThe interpretation of scripture regarding the death penalty is a topic of hot debate amongst Christians. Some argue that it is mandated, while others question its applicability in the post-Christ era.\n\nThis article seeks to answer the following questions:\n\n- Does scripture mandate the death penalty?\n- Is the death penalty still applicable post-Christ?\n\n# Does scripture mandate the death penalty?\n\nYes. The Old Testament contains dozens of examples where the death penalty is used as a punishment for a crime committed against a person or God. For example, take Genesis 9:6 which outlines the requirement of a blood penance for murder.\n\n> Whoever sheds the blood of man, by man shall his blood be shed, for God made man in his own image.\n\n— Genesis 9:6 ESV\n\nThis was part of a wider covenant made by God with Noah after the flood which reflects the value of human life and provides the reason for its value - that we are made in the image of God.\n\nTake also the law as it was given to Moses. It ordains the death penalty for various offences including murder in all forms except accidental, kidnapping, adultery, incest, bestiality, sodomy, rape, witchcraft and more. See Exodus 21, 22, 35; Leviticus 20 and 24; Deuteronomy 21-24.\n\nThese items are carried over in the moral law to the New Testament and are re-iterated by Jesus and the apostles. The New Testament would definitely assume the existence of the death penalty, but there aren't any clear cut examples of how it applies. Romans 13:1-7 also calls us to submit to the authority of the government.\n\n> Let every person be subject to the governing authorities. For there is no authority except from God, and those that exist have been instituted by God. Therefore whoever resists the authorities resists what God has appointed, and those who resist will incur judgment. For rulers are not a terror to good conduct, but to bad.\n>\n> Would you have no fear of the one who is in authority? Then do what is good, and you will receive his approval, for he is God's servant for your good. But if you do wrong, be afraid, for he does not bear the sword in vain. For he is the servant of God, an avenger who carries out God's wrath on the wrongdoer.\n>\n> Therefore one must be in subjection, not only to avoid God's wrath but also for the sake of conscience. For because of this you also pay taxes, for the authorities are ministers of God, attending to this very thing. Pay to all what is owed to them: taxes to whom taxes are owed, revenue to whom revenue is owed, respect to whom respect is owed, honour to whom honour is owed.\n\n— Romans 13:1-7 ESV\n\n# Does scripture prohibit the death penalty?\n\nAs we've clearly seen, the Old Testament is clear on its position of the death penalty. But does this carry on in the New Testament era?\n\nA common argument is that Israel was a theocracy ruled by God who had required Israel to be set apart from the world therefore making its law unique. When Israel ceased to exist as a nation, its law was nullified. However, this ignores that Jesus did not just come to institute a new law, but to fulfil the old. See Matthew 5:17-18.\n\n> Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfil them. For truly, I say to you, until heaven and earth pass away, not an iota, not a dot, will pass from the Law until all is accomplished.\n\n— Matthew 5:17-18 ESV\n\nThis viewpoint also ignores the differences between the moral, ceremonial and judicial law and how the moral law has carried on. To learn more about that, [check out this sermon](https://www.youtube.com/watch?v=Ohz_Z4yJyKM&list=PLp88AentmvGOYgMkbg7U3OAr5z0ph16_i&index=10).\n\nAnother argument is Christ's death. His death was the ultimate sacrifice, replacing the sacrifice of animals as a blood penance for our iniquity. See Hebrews 9:14.\n\n> How much more will the blood of Christ, who through the eternal Spirit offered himself without blemish to God, purify our conscience from dead works to serve the living God.\n\n— Hebrews 9:14 ESV\n\nBut perhaps the strongest arguments against the death penalty are examples where criminals who had every right to be killed were not. For example, Cain, Moses and David who had committed murder were not executed for their crimes. There is also the example of Jesus who refused to condemn the women caught in adultery. He suggested that those who were without sin to perform the execution, knowing full well that he was in the presence of sinners who all already deserved capital punishment.\n\nThere are also the following verses that require meditation:\n\n> Vengeance is mine, and recompense, for the time when their foot shall slip; for the day of their calamity is at hand, and their doom comes swiftly.’ For the Lord will vindicate his people and have compassion on his servants, when he sees that their power is gone and there is none remaining, bond or free.\n\n— Deuteronomy 32:35-36 ESV\n\n> Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, “Vengeance is mine, I will repay, says the Lord.”\n\n— Romans 12:19 ESV\n\n> No one transgress and wrong his brother in this matter, because the Lord is an avenger in all these things, as we told you beforehand and solemnly warned you.\n\n— 1 Thessalonians 4:6 ESV\n\n> For we know him who said, “Vengeance is mine; I will repay.” And again, “The Lord will judge his people.”\n\n— Hebrews 10:30 ESV\n\n> And will not God give justice to his elect, who cry to him day and night? Will he delay long over them? I tell you, he will give justice to them speedily. Nevertheless, when the Son of Man comes, will he find faith on earth?”\n\n— Luke 18:7-8 ESV\n\n# Well, is it permissible or not?\n\nI would argue that there are points here on both sides of the argument. Ultimately, I would not encourage the death penalty as outlined under the Old Testament law without using the rest of the Bible to inform us. For who would be guiltless in our modern day? As a society seared by sexual immorality in every sphere, the death penalty applied would be akin to a genocide.\n\nScripture permits capital punishment, but under the New Testament, it should be used as a last resort and with reluctance. See Ezekiel 33:11 for an example of God lamenting in the death of the wicked.\n\n> Say to them, As I live, declares the Lord God, I have no pleasure in the death of the wicked, but that the wicked turn from his way and live; turn back, turn back from your evil ways, for why will you die, O house of Israel?\n\n— Ezekiel 33:11 ESV\n\nThis text implies that the death penalty should be approached with reverence, care and used as a last resort. It also implies that repentance could commute the death sentence! And this is demonstrated with our relationship with God also, He relents against our destruction for His son has paid the blood penance for us. Don't forget Nineveh and their own repentance! God relented his judgement in that instance also!\n",
 };
 
 export const _mdx_29_: MDXModule = {
-  frontmatter: {
-    title: "The Propitiation of Jesus is not Paganism",
-    date: "2024-10-23T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "The pagan religions of old believed that they must pacify or appease their gods through sacrifice because of their unpredictable nature.",
-    image: "media/hugues-de-buyer-mimeure--wT0iS-TSZM-unsplash(1).jpg",
-    imageAlt: "Photo by Hugues de Buyer-Mimeure on Unsplash",
-    lastModified: "2024-10-24T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "the-propitiation-of-jesus-is-not-paganism",
-  },
-  content:
-    '\n# Introduction\n\n<SideNote\n  note="Which appear to be making an alarming comeback, primarily just to be anti-Christian."\n  position="right"\n>\n  The pagan religions of old believed that they must pacify or appease their\n  gods through sacrifice because of their unpredictable nature. This practice is\n  known as propitiation, the appeasement or satisfaction of someone or\n  something.\n</SideNote>\n\n<Definition\n  word="Propitiation"\n  meaning="The act of gaining or regaining the favor or goodwill of someone or something."\n  type="noun"\n/>\n\nMany see the similarities between the faith of the pagans and that of the Christian in that they both try to appease their god (our God) by offering various gifts and sacrifices.\n\n# What sets the Christian faith apart?\n\nWhat sets the Christian faith apart, is that there is no sacrifice or method of appeasement that any man could bring that would pay for the eternal punishment demanded by God to reconcile even but one man to Himself.[^1] Once sin had entered the world through Adam and Eve, there was no way to fix what had been done except through an infinite and eternal sacrifice.[^2]\n\nFor this reason, God was the only one who could reconcile man to Himself. Therefore, he sent Jesus, His one and only Son,[^3] fully man and fully God,[^4] born of a virgin,[^5] to become the perfect propitiation for our sins.[^6] All of God\'s just and righteous wrath was poured out on Jesus at the cross therefore creating a way for all those who call on Him to be reconciled with God.[^7]\n\n> _“Till on that cross as Jesus died, the wrath of God was satisfied”_ — In Christ Alone Hymn\n\n<SideNote\n  note="Jesus did not partake in the final passover, but He did drink the bitter cup of wrath shortly thereafter."\n  position="left"\n>\n  By drinking the cup of wrath,[^8] Jesus took the wrath of God onto Himself.\n  The propitiation of Jesus, His taking on the satisfaction of God\'s wrath in\n  our stead is the fundamental Gospel message.\n</SideNote>\n\n# Pagan unpredictability, willingness and cost.\n\nPaganism is also differentiated in that the pagan gods are unpredictable. On the other hand, God revealed the law to us, and made His hatred of sin clear.[^9] In paganism, humans must be the arbitrators of the sacrifice, at their own cost, to appease the gods. Our God _was_ the sacrifice incurring no cost to us.[^10] Pagan sacrifices, be that animal or human, are unwilling, or ignorant of their sacrifice. Jesus came to earth willingly, fully aware of the pain and cost to come. He laid his life down willingly in agreement with the Father’s good will.[^11]\n\n<SideNote note="Although it seems contradictory, it is in fact, entirely consistent. This was why it had to be Jesus, a sinless, perfect propitiation.">\n  God abhors human sacrifice[^12] and has only accepted one human sacrifice in\n  all of history, that being Jesus, because he was fully worthy, and fully\n  willing to lay down his life for ours so that we would could have communion\n  with the Father.\n</SideNote>\n\n[^1]: Romans 6:23\n\n[^2]: Romans 5:1-21\n\n[^3]: John 3:16\n\n[^4]: John 1:14\n\n[^5]: Matthew 1:23, Luke 1:27 & 34\n\n[^6]: Hebrews 2:17\n\n[^7]: 1 John 4:10\n\n[^8]: Luke 22:42-44, Psalms 75:8, Revelation 14:10\n\n[^9]: Romans 7:7-25\n\n[^10]: Hebrews 10:5-7\n\n[^11]: John 10:17-18\n\n[^12]: Deuteronomy 12:31\n',
+	frontmatter: {
+		title: "Is suicide sinful?",
+		date: "2019-11-06T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"The act of suicide is sin because it's subjecting our own will onto something that is strictly God's decision.",
+		image: "media/nikko-macaspac-6SNbWyFwuhk-unsplash.jpg",
+		imageAlt: "Photo by nikko macaspac on Unsplash ",
+		lastModified: "2024-10-23T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "is-suicide-sinful",
+	},
+	content:
+		"\n# What does the Bible say?\n\nThe act of suicide is sin, because it's taking something that is strictly under God's commandments (life and death) and subjecting it to our own will. It robs a person of the amazing gift of life given to them by God alone.\n\n> \"For you created my inmost being; you knit me together in my mother’s womb.\" — Psalm 139:13\n\nMore importantly the mental attitude and thought process of someone who commits suicide is certainly sinful. It is always based in a selfish thought process.\n\nThis is considered sinful because it is the purest form of unbelief in the promises of God. The general thought process of a suicidal person recognises that they do not believe God can help them. They believe no one can help them and that they are past the point of no return.\n\nDoes a true child of God show fruits of suicide? God certainly has mercies on those who can't make choices for themselves, but ultimately, those with a self-destructive behaviour or a debased mind as described in Romans 1:28 are ultimately choosing to service themselves over God.\n\nNote that no one has ever hated his own flesh[^1], such behaviour reveals that those who are suicidal have no faith in Christ. God has made Himself clear that the unrighteous will not inherit the kingdom of God[^2], and that the unbelieving go to the lake of fire[^3].\n\n# Biblical precedent\n\nSuicide is only mentioned in the Bible six times. In the case of Abimelech[^4], Samson[^5], Saul[^6], Ahithophel[^7], Zimri[^8], and Judas Iscariot[^9]. Each of these examples can be individually assessed and investigated as to how they speak about suicide through the eyes of the Father.\n\nWorks performed outside of God are sin. If you believe this to be true, the deaths depicted in these texts can be quickly and easily explained as sinful, or as righteous (as we see in Samson's example, it's more the case of a noble sacrifice over suicide).\n\n# Nuance is required\n\nPlease note that by writing this I am not saying that all people who commit suicide aren't saved. God is ultimately the judge and He will judge each person accordingly.\n\n[^1]: Mark 5:2-5, Ephesians 5:29\n\n[^2]: 1 Corinthians 6:9-10\n\n[^3]: Revelation 21:8\n\n[^4]: Judges 9:50-57\n\n[^5]: Judges 16:28-30\n\n[^6]: 1 Samuel 31:1-6; 2 Samuel 1:1-15; 1 Chronicles 10:1-13\n\n[^7]: 2 Samuel 17:23\n\n[^8]: 1 Kings 16:18-19\n\n[^9]: Matthew 27:5; Acts 1:18-20\n",
 };
 
 export const _mdx_30_: MDXModule = {
-  frontmatter: {
-    title: "The Vine and the Branch",
-    date: "2021-03-19T00:00:00.000Z",
-    tag: "Faith",
-    description: "A short study on John 15:4.",
-    image: "media/sixteen-miles-out-L-mNqn89I2s-unsplash.jpg",
-    imageAlt: "Photo by Sixteen Miles Out on Unsplash ",
-    signature: true,
-    type: "Post",
-    slug: "the-vine-and-the-branch",
-  },
-  content:
-    "\n> Remain in me, and I will remain in you. For a branch cannot produce fruit if it is severed from the vine, and you cannot be fruitful unless you remain in me.\n\n— John 15:4\n\nJesus is speaking to his disciples as He prepares them for His sacrifice and departure. The verse applies to those who already apart of Christ's family. The verse is a promise that so long that we maintain a union with Christ, we will bear fruit.\n\nThe example Jesus provides is that God is the vine, and we are the branches. We, as gentiles, are grafted onto this vine upon the acceptance of Christ. We must abide in Christ, as a branch on a vine, which is supported by it, grows in it and eventually becomes fruitful. Breaking away from the vine can spell certain disaster - our safety depends on being grafted to that vine. To sustain genuine spiritual life in the world, we must remain intimately connected to Christ - like the branch.\n\nIf we do not produce fruit, we are cut-off from God and handed over to our own sinful desires.\n\n> Anyone who does not remain in me is thrown away like a useless branch and withers. Such branches are gathered into a pile to be burned. But if you remain in me and my words remain in you, you may ask for anything you want, and it will be granted! When you produce much fruit, you are my true disciples. This brings great glory to my Father.\n\n— John 15:6-8\n\nIn the verse, Jesus is speaking this over His disciples to prepare them for the time ahead. Jesus wants them to abide _in_ Him, not with Him. _In Him._ The command is not abide with Me, near me or under Me, but _In Him._ And He wants us to do the same.\n\nThe fruit-bearing branch is not only connected to the vine, near it, or under its shadow, it is within the vine and it abides inside of it.\n\nAlthough Jesus did not go into detail about how He will abide in us, our faithful residence and abidance, will lead to His feelings becoming our own feelings, we will think as He thinks, will as He wills and choose as He chooses. His righteousness will be come our righteousness, His strength our strength. He commands us to come out of ourselves and our own way of thinking, to step into Himself and His way of being.\n\nChrist abides in us, by shaping us into an instrument of His word, understood and believed under His influence where we think, feel, enjoy and choose along with Him.\n\nChrist has formed within us that it is not so much they who live, but Christ who lives within them.\n\n> Those who obey God’s commandments remain in fellowship with him, and he with them. And we know he lives in us because the Spirit he gave us lives in us.\n\n— 1 John 3:24\n\nIt is our faith that will unite us to our saviour and it is our continued faith which keeps us grafted to the True Vine.\n\nHe wants us to have a conscious union with Him on the deepest level. We must come to the realization that we can do nothing - we are dead branches without Him. We too often try to live as our own vine and act as though by our own power, we were to do God's will.\n\nWe have failed tremendously and yet Christ still invites us to humble ourselves and be redeemed as a branch.\n\nWe must surrender ourselves to Christ for His purposes, as the branch exists for the vine. But, in the same breath, the fullness of Christ is ours also.\n\nWhy does Jesus use 'vine' instead of 'tree'? And why does the Gospel of John refer to Jesus as the 'True Vine'?\n\nThe grapevine and the vineyard traditionally represented God's people, planted and tended by him in Israel (Psalms 80:8-18; Isaiah 5:1-7; Jeremiah 2:21; 12:10-11; Ezekiel 15:1-5; Hosea 10:1-2). When Jesus used this image, He made an important departure: He declared that He is the true grapevine and that a relationship with God requires attachment to Him. This in turn infuriated the church leaders of the time and is the reason why the Gospel of John refers to Jesus as the True Vine so as to differentiate Him from God's people.\n\nIf you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.\n",
+	frontmatter: {
+		title: "Thoughts on BoJack Horseman",
+		date: "2021-10-02T00:00:00.000Z",
+		tag: "Art",
+		description:
+			"Although secular, Bojack Horseman was an interesting show that got me thinking a lot.",
+		image: "media/bojack-horseman-2020-4k-g9-3840x2400.jpg",
+		signature: true,
+		type: "Post",
+		slug: "thoughts-on-bojack-horseman",
+	},
+	content:
+		"\nBoJack Horseman is the kind of character you can laugh with, cry, hate and love all at the same time. The show BoJack Horseman delves into a multitude of complex human issues, exploring themes such as family dynamics, love, fleeting happiness, addiction, nihilism, abuse, mortality, mental health, and the pursuit of legacy.\n\nThe creators of the show demonstrate a deep affection for their characters. Writer Raphael Bob-Waksberg crafts unique character arcs that both inspire and challenge audiences. The depth and relatability of the side characters' lives ground the show in reality, even in moments like the interaction between BoJack and Eddie the dragonfly in S4 E2, where their desire for connection is palpable but are unable to make that final connection.\n\nThe overarching theme of the show revolves around the struggle for happiness amidst life's cruelties and unmet expectations. BoJack copes by immersing himself in vices, seeking distractions from his inner turmoil, often leading to destructive behavior that affects his relationships. We saw that with Wanda, and frankly, most of his relationships.\n\nWe see a similar trend with all of the characters in the show of success and failure and never being quite satisfied with either. It wasn't until they began to take responsibility for their actions that they truly started to come to terms with their meaningless lives.\n\nBoJack Horseman offers a diverse range of narratives, with BoJack's relatability resonating with many viewers. The show prompts introspection, making audiences reflect on their own choices and experiences. While personally captivating, the emotional journey it leads viewers on is intense, akin to a mirror reflecting one's thoughts and desires with unfiltered honesty.\n\nAn emotional roller-coaster.\n\nDiane's closing words perfectly encapsulates the ebbs and flows of relationships and their profound impact on our lives. It's a reminder that even amidst the chaos, there is always a glimmer of hope, a chance for growth and redemption.\n\n> There are people that help you become the person you end up being, and you can be grateful for them, even if they were never meant to be in your life forever.\n\nEven though these are just animated anthropomorphic animal characters in a loosely realistic world, it doesn't change what the creators of this show wanted to convey. The scenarios portrayed in BoJack Horseman are exceptionally down to earth, so much so that we simply can't help but see ourselves in them at every turn.\n",
 };
 
 export const _mdx_31_: MDXModule = {
-  frontmatter: {
-    title: "Thoughts on BoJack Horseman",
-    date: "2021-10-02T00:00:00.000Z",
-    tag: "Art",
-    description:
-      "Although secular, Bojack Horseman was an interesting show that got me thinking a lot.",
-    image: "media/bojack-horseman-2020-4k-g9-3840x2400.jpg",
-    signature: true,
-    type: "Post",
-    slug: "thoughts-on-bojack-horseman",
-  },
-  content:
-    "\nBoJack Horseman is the kind of character you can laugh with, cry, hate and love all at the same time. The show BoJack Horseman delves into a multitude of complex human issues, exploring themes such as family dynamics, love, fleeting happiness, addiction, nihilism, abuse, mortality, mental health, and the pursuit of legacy.\n\nThe creators of the show demonstrate a deep affection for their characters. Writer Raphael Bob-Waksberg crafts unique character arcs that both inspire and challenge audiences. The depth and relatability of the side characters' lives ground the show in reality, even in moments like the interaction between BoJack and Eddie the dragonfly in S4 E2, where their desire for connection is palpable but are unable to make that final connection.\n\nThe overarching theme of the show revolves around the struggle for happiness amidst life's cruelties and unmet expectations. BoJack copes by immersing himself in vices, seeking distractions from his inner turmoil, often leading to destructive behavior that affects his relationships. We saw that with Wanda, and frankly, most of his relationships.\n\nWe see a similar trend with all of the characters in the show of success and failure and never being quite satisfied with either. It wasn't until they began to take responsibility for their actions that they truly started to come to terms with their meaningless lives.\n\nBoJack Horseman offers a diverse range of narratives, with BoJack's relatability resonating with many viewers. The show prompts introspection, making audiences reflect on their own choices and experiences. While personally captivating, the emotional journey it leads viewers on is intense, akin to a mirror reflecting one's thoughts and desires with unfiltered honesty.\n\nAn emotional roller-coaster.\n\nDiane's closing words perfectly encapsulates the ebbs and flows of relationships and their profound impact on our lives. It's a reminder that even amidst the chaos, there is always a glimmer of hope, a chance for growth and redemption.\n\n> There are people that help you become the person you end up being, and you can be grateful for them, even if they were never meant to be in your life forever.\n\nEven though these are just animated anthropomorphic animal characters in a loosely realistic world, it doesn't change what the creators of this show wanted to convey. The scenarios portrayed in BoJack Horseman are exceptionally down to earth, so much so that we simply can't help but see ourselves in them at every turn.\n",
+	frontmatter: {
+		title: "Can Christians go to War?",
+		date: "2023-10-26T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"How should Christians respond to the stirrings or war? Do we simply refuse to participate? Or do we do our duty and fight for our country?",
+		image: "media/bing-hui-yau-08t_sI5Al_0-unsplash.jpg",
+		imageAlt: "Photo by Bing Hui Yau on Unsplash",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "can-christians-go-to-war",
+	},
+	content:
+		"\nWhat is the appropriate Christian response to the onset of conflict or war? Should we opt out of participation altogether, or fulfill our duty by defending our nation? This article serves as an introductory guide to help Christians navigate the complexities of wartime and determine the most ethical course of action.\n\nGod has given the civil magistrate \"the sword\" to punish wrongdoers. Consider what Paul says in Romans 13:4-7:\n\n> For the one in authority is God’s servant for your good. But if you do wrong, be afraid, for rulers do not bear the sword for no reason. They are God’s servants, agents of wrath to bring punishment on the wrongdoer. Therefore, it is necessary to submit to the authorities, not only because of possible punishment but also as a matter of conscience. This is also why you pay taxes, for the authorities are God’s servants, who give their full time to governing. Give to everyone what you owe them: If you owe taxes, pay taxes; if revenue, then revenue; if respect, then respect; if honour, then honour.\n\nGod has granted rulers the authority to enforce their laws through coercion, including measures such as capital punishment and engaging in warfare. Throughout history, this authority has been wielded for both righteous and unjust causes. When it comes to Christians participating in war, various perspectives exist:\n\n1. Pure pacifism advocates for complete nonviolence under any circumstance.\n2. Blind nationalism reflects an uncritical allegiance to one's country, believing it can do no wrong.\n3. Finally, the concept of a \"just war\" suggests that some conflicts may be morally justified under certain conditions.\n\n# Pure Pacifism\n\nThis position holds the opinion that no Christian may ever take up arms in self-defence. This includes the defence of one's country, and of themselves. While they are correct in understanding that Christians are called to be pacifists in the sense that we love peace and pursue it, they fail to take into account that the Bible has said that we are permitted to defend ourselves and our families. Consider Exodus 22 and Luke 22:35-37:\n\n> If a thief is caught breaking in at night and is struck a fatal blow, the defender is not guilty of bloodshed.\n\n— Exodus 22:2\n\n> Then Jesus asked them, “When I sent you without purse, bag or sandals, did you lack anything? “Nothing,” they answered. He said to them, “But now if you have a purse, take it, and also a bag; and if you don’t have a sword, sell your cloak and buy one. It is written: ‘And he was numbered with the transgressors’; and I tell you that this must be fulfilled in me. Yes, what is written about me is reaching its fulfilment.\n\n— Luke 22:35-37\n\n# Blind Nationalism\n\nThis position holds the opinion that because God has bestowed the power of the sword on the state, that they must be obeyed at all times. In many ways, people that hold this position worship the state as in their eyes, they believe that it can do no wrong. This position fails to take into account that human nature is fundamentally corruptible, and that no system is perfect. We are also called to civil disobedience when our leaders inevitably start to follow a path of corruption or evil. See 1 Kings 18, Joshua 2, Exodus 1, 1 Samuel 14:45, Acts 4:19-20 and Acts 5:29.\n\nI think civil disobedience might be better summed up in its own article, as there is a lot to unpack there.\n\n# The Just War\n\nThe concept of a just war falls between the extremes of pure pacifism and blind nationalism and has been endorsed by numerous Christian thinkers throughout history, including Augustine, Constantine, Thomas Aquinas, and John Calvin.\n\nWhat distinguishes a just war? Essentially, it should be declared with solemnity, by a legitimate God fearing and righteous authority, as a last resort with a reasonable chance of success, and with careful restraint in the methods employed. Most importantly, the potential outcome should justify the costs incurred.\n\nChristians are called to oppose wars driven by aggression, which stem from hatred and fear, emotions exploited by adversaries to divide us. A just war is defensive in nature, and it is honourable to defend one's borders against aggressors.\n\nHowever, putting this principle into practice is challenging amidst the fog of war and the distortions of information and propaganda. It necessitates mournful prayer, fasting, and scriptural reflection to discern God's will. Christians must act with caution and strive to maintain moral integrity in all actions.\n",
 };
 
 export const _mdx_32_: MDXModule = {
-  frontmatter: {
-    title:
-      "We should care more about learning how to think versus cramming information",
-    date: "2024-07-29T00:00:00.000Z",
-    tag: "Education",
-    description:
-      "Cramming information is useful if you want to look smart, but thinking and approaching problems the right way is an attribute few possess.",
-    image: "media/pinky-and-the-brain.jpg",
-    lastModified: "2024-07-29T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "we-should-care-more-about-learning-how-to-think-versus-cramming-information",
-  },
-  content:
-    "\nCramming information is useful if you want to look smart, but thinking and approaching problems the right way is an attribute few possess.\n\nInstitutions would do well to teach their students how to think and approach problems with critical thought over throwing buckets of information at them. Being able to critical assess a problem, see an argument from both sides, rationalise their worldview and accept when their wrong will prepare a student for lifelong success.\n\nNot only will this create well rounded non-emotionally driven individuals (just par the course), it will also create opportunities and incredible student outcomes. Only critical thinkers or \"smart\" people lead businesses, go into politics and make the world a better place, well, that's how it should be unless you're a DEI hire or bark the right tune...\n",
+	frontmatter: {
+		title: "Homosexuality — what does the Bible say?",
+		date: "2020-07-07T00:00:00.000Z",
+		tag: "Faith",
+		description: "This article seeks to understand what God has said about homosexuality.",
+		image: "media/cecilie-johnsen-G8CxFhKuPDU-unsplash.jpg",
+		imageAlt: "Photo by Cecilie Johnsen on Unsplash",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "homosexuality-what-does-the-bible-say",
+	},
+	content:
+		'\nBefore I continue with this article, I\'d like to take some time to pray for you, the reader, that the words on this page speak true to your heart and the hearts of others.\n\n> Dear Heavenly Father, thank you for your sacrifice and the provision of your grace upon my life. As I continue to write this article, may you be both with me and the reader to help us both to interpret the message you have for me to write, and the reader for whom receives it.\n>\n> I faithfully pray that you are in complete control and that the words displayed on this page are words which you intended to be there. I pray that you bring me back to this article over the years to correct and update it, improving its validity and relevance.\n>\n> In your Holy and righteous name, I pray these things. Amen.\n\nLet me be abundantly clear before we proceed any further. All sin is covered by the death and resurrection of Jesus Christ when He sacrificed himself for our sins. He bore our sins, future, past and present. To be free from the consequences of sin, one must hear the good news of Jesus\' sacrifice and believe.\n\n---\n\n# Well, what does the Bible say then?\n\nGod has not made Himself unclear. The first mention of homosexuality in the Bible is found in Genesis 13:13.\n\n> The men of Sodom were exceedingly wicked and sinful against the LORD.\n\nA few chapters later we find out the “exceedingly wicked” behaviour they were participating in.\n\n> Before they had gone to bed, all the men from every part of the city of Sodom—both young and old—surrounded the house. They called to Lot, “Where are the men who came to you tonight? Bring them out to us so that we can have sex with them.\n\n— Genesis 19:4-5\n\nThe book of Jude reveals to us the consequence of their actions, making it very clear to us that God does not approve of this behaviour.\n\n> In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.\n\n— Jude 7\n\nIn the Law of the Bible, death was the order for homosexuals.\n\n> If a man has sexual relations with a man as one does with a woman, both of them have done what is detestable. They are to be put to death; their blood will be on their own heads.\n\n— Leviticus 20:13\n\nHomosexuality is listed with a whole host of other sins including the uncovering of nakedness of near of kin, those near in relations, or during menstruation, adultery, bestiality etc.\n\n> Do not have sexual relations with a man as one does with a woman; that is detestable.\n\n— Leviticus 18:22\n\nEverything in Leviticus 18 is considered an "abomination" to God and are clearly practices that He has always hated. He also leaves a very clear warning:\n\n> Do not defile yourselves in any of these ways, because this is how the nations that I am going to drive out before you became defiled. Even the land was defiled; so I punished it for its sin, and the land vomited out its inhabitants. But you must keep my decrees and my laws. The native-born and the foreigners residing among you must not do any of these detestable things, for all these things were done by the people who lived in the land before you, and the land became defiled. And if you defile the land, it will vomit you out as it vomited out the nations that were before you. Everyone who does any of these detestable things—such persons must be cut off from their people. Keep my requirements and do not follow any of the detestable customs that were practised before you came and do not defile yourselves with them. I am the Lord your God.\n\n— Leviticus 18:24-30\n\n---\n\n# But those are all examples from the Old Testament!\n\nFor those that argue that the Old Testament need not apply as it has "passed away", we must remember that Jesus\' purpose was not to set aside the Law of Moses.\n\n> Do not think that I have come to abolish the Law or the Prophets; I have not come to abolish them but to fulfil them. For truly I tell you, until heaven and earth disappear, not the smallest letter, not the least stroke of a pen, will by any means disappear from the Law until everything is accomplished. Therefore anyone who sets aside one of the least of these commands and teaches others accordingly will be called least in the kingdom of heaven, but whoever practices and teaches these commands will be called great in the kingdom of heaven. For I tell you that unless your righteousness surpasses that of the Pharisees and the teachers of the law, you will certainly not enter the kingdom of heaven.\n\n— Matthew 5:17 - 20\n\nJesus commanded obedience to Moses\' Law and its original intent. Whereas murder was “liable for judgment” (Matthew 5:21) in the Law, now “anger is liable for judgment.” (Matthew 5:22) and “hell-fire.” Whereas adultery was prohibited in the Law, now “lustful intent” is condemned, since it is indeed the source of adulterous behaviour. In sum, the Messiah did not come to lay aside the Law, but to fulfil its original purpose.\n\nNot to mention, the New Testament makes it abundantly clear:\n\n> Therefore God gave them over in the sinful desires of their hearts to sexual impurity for the degrading of their bodies with one another. They exchanged the truth about God for a lie, and worshipped and served created things rather than the Creator—who is forever praised. Amen. Because of this, God gave them over to shameful lusts. Even their women exchanged natural sexual relations for unnatural ones. In the same way the men also abandoned natural relations with women and were inflamed with lust for one another. Men committed shameful acts with other men, and received in themselves the due penalty for their error.\n\n— Romans 1:​24-27\n\n> Do not be misled. Those who are sexually immoral, idolaters, adulterers, men who submit to homosexual acts, men who practice homosexuality, thieves, greedy people, drunkards, revilers, and extortioners will not inherit God’s Kingdom.\n\n— 1 Corinthians 6:​9, 10\n\nIf you wish to delve deeper into the significance of this concept, its interpretation, distinctions between moral, ceremonial, and civil law, and the enduring relevance of the moral law today, I highly recommend listening to the following sermons:\n\n- [The Law & Covenant](https://www.youtube.com/watch?v=Ohz_Z4yJyKM)\n\n- [God & The Law](https://www.youtube.com/watch?v=eg_L0Dv8vFk)\n\n- [God\'s Law: A Multi-Tool](https://www.youtube.com/watch?v=70HRCTxYeg0)\n\n---\n\n# So? Jesus never spoke to homosexuality directly, and only His words matter!\n\nActually, Jesus directly addresses sexually deviant behaviours, which include homosexuality (a precedent set in Old Testament). Jesus directly confronts "porneia" in Matthew 15:19 which is often translated as fornication or sexual immorality. This includes all sexually deviant behaviour outside of the bond of marriage between one man and one woman.\n\n> But the things that come out of a person’s mouth come from the heart, and these defile them. For out of the heart come evil thoughts—murder, adultery, sexual immorality, theft, false testimony, slander.\n\n— Matthew 15:18 - 19\n\nFor those that only follow what Jesus actually said because the rest of the Bible was written by man and is therefore fallible, how then are we supposed to trust the recorded words that Jesus spoke as precisely what He said? Either it\'s completely untrustworthy or:\n\n> All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.\n\n— 2 Timothy 3:16\n\n---\n\n# Leviticus 20:13 refers to boys, not men - paedophilia, therefore it does not condemn homosexuality.\n\nWhile it may be tempting to latch onto these interpretations, we must use history to determine whether this was an acceptable practice in the church. In church history, there have been no examples of homosexual marriage or condoned homosexual relationships. Translations from these periods tend to be sketchy, as many writers of the KJV were known for putting in their own convenient interpretations.\n\nTo know the truth, we must refer to Jewish history and the dead sea scrolls (which our modern translations are based off of) - which clearly show that homosexual marriage was not a condoned practice.\n\nTo further prove this point, God destroyed Sodom and Gomorrah because they were partaking in:\n\n> Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.\n\n— Jude 1:7\n\n> They called to Lot, “Where are the men who came to you tonight? Bring them out to us so that we can have sex with them.\n\n— Genesis 19:5\n\n---\n\n# But I thought homosexuality was natural?\n\nMany people are quick to point out that homosexuals are simply "born that way". Although it is alleged to have some genetic basis, scientific research has not been explicitly conclusive.[^1][^2]\n\nThe inconclusiveness of these studies left leading Columbia University psychiatrists Byne and Parsons to conclude that:\n\n> There is no evidence at present to substantiate a biological theory, just as there is no compelling evidence to support any singular psychosocial explanation. The appeal of current biological explanations may derive more from dissatisfaction with the present status of psychosocial explanations than from a substantiating body of experimental data. Critical review shows the evidence favouring a biological theory to be lacking.[^3]\n\nFrom a scientific standpoint, there is no good reason to believe that there exists a biological link to homosexual behaviour. If a link were ever established, it would still not morally justify homosexuality for a few reasons.\n\nA lot more research would need to be completed to work out why this behaviour exists and how it translates into the lives of everyday people. One will also need to differentiate if homosexual behaviour causes the biological condition or if the biological condition is the cause of the homosexual behaviour.\n\nIf the biological condition causes homosexuality or predisposes it in an individual, it will still not make the behaviour "good" or morally permissible.\n\n---\n\n# If I am \'naturally\' predisposed towards homosexuality, then it must be good!\n\nThis train of thought does not overlap so well in other areas of life. For example, what if I am naturally selfish, violent or predisposed toward addiction, adultery or paedophilia? Researchers believe that there is a definite genetic basis for alcoholism, yet we do not think that alcoholism is good. Any reasonable person would believe that alcoholism should be treated and "cured".\n\nIf this is true, should we not attempt to "cure" homosexuals from a behaviour that appears divergent from the norm much the same way as alcoholism?\n\nDoes our natural inclination or desire for things make them good? The Bible teaches us that the human heart is corrupt and must be made regenerate via Jesus\' sacrifice.\n\n> If any man be in Christ he is a **new creation**. The old is passed, behold the new is come.\n\n— 2 Corinthians 5.17\n\n---\n\n# Animals engage in homosexual behaviour, what makes them so different than us? Even chimpanzees and other apes are known to engage in the behaviour. So, if it occurs in nature, it must be natural for humans too!\n\nSimilarly to the first argument, this doesn\'t overlap very well when you apply this concept to the actions of other animals.\n\nAnimals are not civilised. For example, many animals eat their young as soon as they are born. That certainly isn\'t permissible for human beings... If we are to hold to this premise literally, it would imply that there is no moral difference between animals and humans. Let the flood gates open.\n\nJust because some animals engage in homosexual behaviour, does not mean that human homosexuality is natural, or morally good. Studies also show clear abnormalities with regard to homosexuality amongst animals. Thomas Schmidt explains that:\n\n> Animals do not engage in long-term homosexual bonding as humans do. Some monkeys and apes mount or fondle each other to the point of sexual arousal, but even this behaviour involves numerous qualifications: most important, the behaviour does not continue when the individual matures and has a heterosexual option.[^4]\n\nEven if this was a good argument for homosexuality, one would argue that animals and the natural order of things have been corrupted when sin was introduced to the world through Adam.\n\nThere is, however, a point in favour of genetic homosexuality in the Bible. It talks about inter-generational sin and how the sins of the father are passed down for up to four generations.\n\n> The Lord passed before him and proclaimed, “The Lord, the Lord, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness, keeping steadfast love for thousands, forgiving iniquity and transgression and sin, but who will by no means clear the guilty, visiting the iniquity of the fathers on the children and the children\'s children, to the third and the fourth generation."\n\n— Exodus 34 6 - 7\n\nIf my great-great-grandfather engages in unrepentant homosexual sin, his "genetic sin" is actually passed down to me by blood according to the Bible, which is also why all new-borns are technically born in sin in the eyes of the Lord.\n\nAnother argument to bring to the forefront is the very well documented [health risks of homosexual promiscuity](https://www.catholiceducation.org/en/marriage-and-family/sexuality/the-health-risks-of-gay-sex.html).\n\n---\n\n# Natural Inclination\n\nHomosexuality may _feel_ natural to some, but our guide to what is "natural" or "good" is the Bible, not our flesh. God\'s desires for His creation are not that it is tarnished by sin, but that it is set free from its corruptive and destructive nature.\n\n> The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.\n\n— John 10:10\n\nHomosexuality will never result in procreation - therefore it is impossible for it to bring life. If we are charged to bring life to the world, then how does homosexuality fit into this outlook? One might argue that they weren\'t called to bear children, which is a fair argument, but this argument really only works if they\'ve dedicated, they\'re life in service of Christ.\n\n---\n\n# Can I practice homosexuality and remain a Christian?\n\nThis question ultimately comes down to whether or not our identity lies within Christ or our own sexuality. Christians are in union with Christ and that should be our only identity. See Ephesians 2:6.\n\nWe are all required to lay down our selfish desires at the cross and follow Jesus. See Mark 8:34. Our sexual attractions should never be the foundation of our identity. Christ is our rock and our strength. Our identity is what God says about us in His Word.\n\nAll Christians have desires or attractions which do not conform with our new nature in Christ. These can take form in anything from greed, to lust, to lying etc.\n\nAs a Christian who struggles with the sin of homosexuality, I am not a "gay Christian". I am a Christian that struggles with the sin of homosexuality. Homosexuality does not define who I am, or what God says I am or am capable of.\n\nIf you are a Christian that struggles with same sex attraction, you need to start by agreeing that this is not something God desires for your life. We need to stay close to God to avoid temptation or self-deceive ourselves into believing that homosexuality is acceptable before God.\n\nTemptation is part of the life of the Christian and can only be resisted by remaining faithful to God. We must choose not to nurture temptation or act on urges set on by its luring grasp.\n\n> So I say, walk by the Spirit, and you will not gratify the desires of the flesh.\n\n— Galatians 5:16\n\nArmed with a good spiritual routine of Bible study, prayer and worship, we will have the strength to resist temptation.\n\nIf our identity is in that of the world and not of Christ, we are nothing but an imposter and are self-deceiving ourselves. Scripture does not allow for any possible scenario where homosexual behaviour is glorifying to God.\n\n---\n\n# Conclusion\n\nThe Bible is very clear on its stance of homosexual behaviour. I simply cannot find an honest interpretation (and not for lack of trying) that affirms homosexual behaviour in any form. Personally, I have really struggled with homosexuality in my personal life, and it is not a light topic for me to talk about, but I felt it prudent to record my thoughts and research in this article. I pray that others might find this useful in their own walks.\n\n[^1]: Simon LeVay, "A Difference in Hypothalmic Structure Between Heterosexual and Homosexual Men" Science 258 (Aug. 30, 1991)\n\n[^2]: J.M Bailey and Richard Pillard, "A Genetic Study of Male Sexual Orientation" Archives of General Psychiatry 48 (1991)\n\n[^3]: W. Byne and B. Parsons, “Human Sexual Orientation: The Biologic Theories Reappraised,” Archives of General Psychiatry 50 (March 1993): 228.\n\n[^4]: Thomas E. Schmidt, Straight and Narrow, 134.\n',
 };
 
 export const _mdx_33_: MDXModule = {
-  frontmatter: {
-    title: "What is Common Grace?",
-    date: "2020-04-26T00:00:00.000Z",
-    tag: "Faith",
-    description:
-      "Common Grace pertains to the sovereign grace of God bestowed upon all of mankind regardless of their election.",
-    image: "media/artem-sapegin-8c6eS43iq1o-unsplash.jpg",
-    imageAlt: "Photo by Artem Sapegin on Unsplash ",
-    lastModified: "2024-10-14T00:00:00.000Z",
-    signature: true,
-    type: "Post",
-    slug: "what-is-common-grace",
-  },
-  content:
-    "\nCommon Grace is a theological concept in Protestant Christianity hashed out in the late 19th and early 20th Century by Reformed Christians of the time. It pertains to the sovereign grace of God bestowed upon all of mankind regardless of their election. Effectively, this means that God has always bestowed His graciousness on all people in all parts of the world throughout all of history.\n\nThe Three Points of Common Grace were formulated in 1924 when the Christian Reformed Church adopted the doctrine at the Synod of Kalamazoo.\n\n# The First Point:\n\nThe first point refers to the favourable attitude of God toward all His creatures, not only toward the elect. \"The Lord is good to all; he has compassion on all he has made\" (Psalm 145:9).\n\nJesus said God causes “his sun to rise on the evil and the good, and sends rain on the righteous and the unrighteous” (Matthew 5:45) and God “is kind to the ungrateful and wicked” (Luke 6:35).\n\n# The Second Point:\n\nThe second point pertains to the restraint of sin in the life of an individual or society. Scriptures record many accounts of God directly intervening and restraining individuals from sinning. For example, in Genesis 20, God restrained Abimelech from touching Sarah, Abraham's wife. God appeared to Abimelech in a dream to affirm what had happened as described in Genesis 20:6.\n\nAnother clear example of God restraining the wicked hearts of evil men is seen in God's protection of the land of Israel and it's people from being invaded and killed by pagan nations on their border. God commanded the men of Israel that three times a year they would leave their plot of land to go and appear before Him (Exodus 34:23). To ensure the protection of God’s people from invasion during these times, even though the pagan nations surrounding them desired their land year-round, God promised that “no one will covet your land when you go up three times each year to appear before the Lord your God” (Exodus 34:24).\n\nNot only does the second point of Common Grace include God's restraining of evil, but also when he sovereignly releases it for His purposes. Scripture recounts the hardening of individuals hearts many times, (Exodus 4:21; Joshua 11:20; Isaiah 63:17), He does so by releasing His restraint on their hearts, thereby giving them over to the sin that resides there.\n\nIn Romans 1, Paul describes those who suppress the truth by their wickedness and how they ultimately fell before the Lord. God “gave them over in the sinful desires of their hearts to sexual impurity for the degrading of their bodies with one another” (Romans 1:28).\n\n# The Third Point:\n\nThose of mankind who do not have renewed hearts, will still be influenced by God's nature so that even they will perform good deeds toward his fellow man.\n\nAs Paul said of a group of unregenerate Gentiles, they “do by nature things required by the law, they are a law for themselves, even though they do not have the law” (Romans 2:14). The necessity of God restraining the hearts of the non-believer becomes clear when we understand the biblical doctrine of total depravity.\n\nIf God did not restrain the evil that resides in the hearts of all men, hearts which are “deceitful and desperately wicked” (Jeremiah 17:9), humanity would have destroyed itself centuries ago. But because He works through common grace given to all men, God’s sovereign plan for history is not thwarted by their evil hearts. In the doctrine of common grace, we see God’s purposes stand, His people blessed, and His glory magnified.\n",
+	frontmatter: {
+		title: "Is God's love reckless?",
+		date: "2020-06-25T00:00:00.000Z",
+		tag: "Faith",
+		description: "Does God act recklessly? No, He is the very antithesis of reckless.",
+		image: "media/mccall-alexander-W7HQQpi80AA-unsplash.jpg",
+		imageAlt: "Photo by McCall Alexander on Unsplash ",
+		lastModified: "2024-10-23T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "is-gods-love-reckless",
+	},
+	content:
+		"\n# Introduction\n\nThe idea that God's love is reckless was popularized by the worship song \"Reckless Love\" written by Caleb Culver, Cory Asbury and Ran Jackson.\n\nIt was an incredibly popular song and has been listened to millions of times across the globe. It's sparked controversy regarding the use of the word 'reckless' to describe God's love.\n\n# Let's get the definitions right\n\nMany people are quick to defend the use of the word with the following argument:\n\n> \"The word is not to describe God himself, but to describe the love he shows us. From a human perspective, the way God gives himself up for us appears reckless.\"\n\nCory Asbury himself also came out with a defence for the use of the word 'reckless':\n\n<SideNote\n  note={\n    <a href=\"https://www.facebook.com/coryasburymusic/posts/many-have-asked-me-for-clarity-on-the-phrase-reckless-love-many-have-wondered-wh/10158977378510171/\">\n      Link to full statement\n    </a>\n  }\n>\n  > \"When I use the phrase, “the reckless love of God”, I’m not saying that God\n  > Himself is reckless. I am, however, saying that the way He loves, is in many\n  > regards, quite so.\" — Cory Asbury\n</SideNote>\n\nFirstly, to understand the controversy and why there is an issue with the word, we must look at the definition of 'reckless'.\n\n<Definition\n  word=\"Reckless\"\n  meaning=\"Utterly unconcerned about the consequences of some action; without caution; careless.\"\n  type=\"adjective\"\n/>\n\nBy this definition[^1], to act in a reckless manner is to act without caution or care, to show no concern for the consequences or outcome of one's action.\n\n# Defending the nature of God\n\nDoes God fit this description? Unequivocally not. God is omniscient, all-knowing and exercises perfect judgement at all times. By this understanding of God, it is impossible for Him to act recklessly.\n\nGod, not once throughout all of scripture has ever acted without caution or concern for His actions. God exercises flawless judgment in every circumstance. Everything we have done and will ever do has always been known by God, before we were even born.[^2]\n\nSecondly, the defence that \"God himself isn't 'reckless' but his love nonetheless is\" is simply nonsensical. This is the crux of Cory's defence of 'reckless', but it doesn't make sense grammatically. If my actions are reckless, I am by definition, a reckless person. By the same token, if God's love is reckless, than God is defined as reckless.\n\nThirdly, the defence by declaring that God's love _appears_ reckless by human standards is the most plausible interpretation of the song. By this interpretation, we are assuming that 'reckless' is used as a hyperbole. But even if we assume that the word 'reckless' is used as a hyperbole, it still wouldn't make much sense.\n\n<Definition\n  word=\"Hyperbole\"\n  meaning=\"Exaggeration for emphasis or effect.\"\n  type=\"noun\"\n/>\n\nThe hyperbolic description of recklessness connotes not the methodical, steady and unwavering love of God, but rather the unstable, unreasonable and impulsive attitude commonly seen in a young adult.\n\nGod's love is not impulsive. Paul explains this to us in Ephesians.\n\n> \"Praise be to the God and Father of our Lord Jesus Christ, who has blessed us in the heavenly realms with every spiritual blessing in Christ. For he chose us in him before the creation of the world to be holy and blameless in his sight. In love he predestined us for adoption to sonship through Jesus Christ, in accordance with his pleasure and will to the praise of his glorious grace, which he has freely given us in the One he loves. In him we have redemption through his blood, the forgiveness of sins, in accordance with the riches of God’s grace that he lavished on us. With all wisdom and understanding,he made known to us the mystery of his will according to his good pleasure, which he purposed in Christ,to be put into effect when the times reach their fulfilment—to bring unity to all things in heaven and on earth under Christ.\" — Ephesians 1:3-10\n\n# Why this matters\n\nWords have incredible weight and power. Many Christian's learn their theology through worship! This theology is passed onto their friends, their neighbours and even the non-believers they meet in their day to day. This is why it is imperative that Pastors and Worship Leaders select strong Biblical worship songs. If churches were singing heretical songs, the messages of these songs would be passed on among fellow believers and non-believers becoming a stumbling block for any would-be believers as they would not be correctly understand who God really is.\n\nI considered not writing this article so as to avoid irreverent babble[^3]. However, this is most certainly not the case here. This article serves as a direct defence and proclamation of the true nature of God.\n\nWorship that divides people affects non-believers and believers alike. Especially when we call God's love reckless. If I were a non-believer and was told that God's love was reckless, I would immediately assume that God is reckless, and would most certainly not trust Him with my eternity.\n\nUltimately, we as Christians should avoid songs that divide people or force people to have to change the meaning of a song in order to be faithful. Christians should more closely assess worship songs that come out of fundamentally heretical churches to ensure their scriptural validity.\n\n# God's love is not reckless\n\nGod's love is the very antithesis of recklessness. God's love can not be seen as reckless in any way because doing so frames God's love as impulsive and inconsiderate versus the steady, all knowing, perfect love that is evident in scripture and is poured out for us everyday.\n\n[^1]: reckless: utterly unconcerned about the consequences of some action; without caution; careless\n\n[^2]: Psalm 139:4\n\n[^3]: 2 Timothy 2:16\n",
 };
 
 export const _mdx_34_: MDXModule = {
-  frontmatter: {
-    title: "Work-life balance complaints are overblown",
-    date: "2025-03-11T00:00:00.000Z",
-    type: "Post",
-    lastModified: "2025-03-11T00:00:00.000Z",
-    signature: true,
-    tag: "Politics",
-    description:
-      "Reflecting on work-life balance and arguing against common complaints.",
-    slug: "work-life-balance",
-  },
-  content:
-    "\nOn X recently, I saw a post complaining about the modern work-life balance.\n\nhttps://x.com/Jxxtlucky/status/1898726460770435209\n\nReflecting on it for a moment, I started thinking about all of the free time I would have if I didn't keep myself busy with the projects I'm working on.\n\nAfter some thought, I came to this conclusion:\n\nThere are 168 hours total in a week, 56 hours for sleep (8 per night), 55 hours for work (7am - 6pm, allowing time for commute)\n\n168-111 = 57 hours to browse TikTok (kidding of course).\n\nWake up at 7. Commute to work. Work from 9-5. Get home at 5:30, cook dinner/eat. Then, from 6pm build/do something for 5 hours. That's 25 hours of work possible during the week with the remainder split across the weekends.\n\nSeems pretty balanced to me! Sure, it could be better - less travel time, better economic buying power for time spent etc.\n\nBut really, we live in some of the best working conditions in all of human history. We really only have minor complaints.\n\nLet's use all the hours that God has granted us to their maximum potential!\n",
+	frontmatter: {
+		title: "Does God change His mind?",
+		date: "2022-10-25T00:00:00.000Z",
+		tag: "Faith",
+		description: "Does the Bible contradict itself?",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "does-god-change-his-mind",
+	},
+	content:
+		'\n# Contradictory Statements\n\nWhen investigating seemingly contradictory statements in the Bible, it\'s critically important to remember that our thoughts and understanding pale in comparison to God.\n\n> For my thoughts are not your thoughts, neither are your ways my ways, declares the LORD.\n\n— Isaiah 55:8\n\n> For the foolishness of God is wiser than men, and the weakness of God is stronger than men.\n\n— 1 Corinthians 1:25\n\nMen cannot understand the God of the universe in all of His magnitude, we simply are not capable of this understanding. While we are able to know God, our knowledge of Him and how He works will never be complete. His nature exceeds all that we can fathom, He has only given us what we ought to know about Him now.\n\nHowever, we are made in His image, therefore we have the capacity to understand the things He reveals to us, especially with the Holy Spirit as our helper.\n\nWhen God speaks to mankind, He does so either communicating clearly in a way that we understand or He does so in a way in which He only wants _some_ people to understand. See Matthew 13:10-17.\n\nAdditionally, God\'s word contains many examples of phenomenological language (the illusion or appearance of something in "the way that we see it"). We must exercise caution to avoid taking things out of context to ensure that we get a full and rich understanding of the truth.\n\nFrom the perspective of the reader, it appears that the Bible declares that God is immutable, sovereign and yet also refers to God regretting and relenting in certain situations:\n\n# God is immutable and does not change His mind\n\n> God is not man, that he should lie, or a son of man, that he should change his mind. Has he said, and will he not do it? Or has he spoken, and will he not fulfil it?\n\n— Numbers 23:19\n\n> “For I the LORD do not change; therefore you, O children of Jacob, are not consumed.\n\n— Malachi 3:6\n\n> Every good gift and every perfect gift is from above, coming down from the Father of lights, with whom there is no variation or shadow due to change.\n\n— James 1:17\n\n# God is Sovereign\n\n> \\[Our Lord Jesus Christ\\] who is the blessed and only Sovereign, the King of kings and Lord of lords.\n\n1 Timothy 6:15b\n\n> They cried out with a loud voice, “O Sovereign Lord, holy and true, how long before you will judge and avenge our blood on those who dwell on the earth?\n\n— Revelation 6:10\n\n# God can do whatever He pleases, everything is through Him and because of Him\n\n> Our God is in the heavens; he does all that he pleases.\n\n— Psalm 115:3\n\n> In him we have obtained an inheritance, having been predestined according to the purpose of him who works all things according to the counsel of his will.\n\n— Ephesians 1:11\n\n> So then he has mercy on whomever he wills, and he hardens whomever he wills.\n\n— Romans 9:18\n\n> Instead you ought to say, "If the Lord wills, we will live and do this or that.\n\n— James 4:15\n\n# Examples of God grieving and relenting\n\n> And the LORD regretted that he had made man on the earth, and it grieved him to his heart.\n\n— Genesis 6:6\n\n> And the LORD relented from the disaster that he had spoken of bringing on his people.\n\n— Exodus 32:14\n\n> If at any time I declare concerning a nation or a kingdom, that I will pluck up and break down and destroy it, and if that nation, concerning which I have spoken, turns from its evil, I will relent of the disaster that I intended to do to it.\n\n— Jeremiah 18:7–8\n\n> Who knows? God may turn and relent and turn from his fierce anger, so that we may not perish.” When God saw what they did, how they turned from their evil way, God relented of the disaster that he had said he would do to them, and he did not do it.\n\n— Jonah 3:9–10\n\n# How can all of these statements be true at once?\n\nThere are a few things that we need to begin unpacking here. The best place to start is at 1 Samuel 15:11 where it says:\n\n> I regret that I have made Saul king, because he has turned away from me and has not carried out my instructions.” Samuel was angry, and he cried out to the Lord all that night.\n\nand 1 Samuel 15:35 where it also says:\n\n> Until the day Samuel died, he did not go to see Saul again, though Samuel mourned for him. And the Lord regretted that he had made Saul king over Israel.\n\nAt first glance, this seems to prove that God has regretted and changed His mind on his appointment of Saul as king. However, in 1 Samuel 15:29:\n\n> And he who is the Glory of Israel will not lie, nor will he change his mind, for he is not a man that he should change his mind!\n\nIn Samuel the writer uses the Hebrew word "נָחַם" i.e., "nacham" which has the same meaning, regret, change mind etc. However, the hint remains within 1 Samuel 15:29 where God states that the Glory of Israel "will not lie, nor will he change his mind". God cannot lie, He always speaks the truth. Therefore, we can say that God literally never changes His mind. It may appear as a change of mind, but the appearance of a change of action is not the same as changing ones mind.\n\nFrom a human perspective, it is difficult to wrap our heads around this. But consider it this way, if God was to change His mind or go against His own word - He could no longer be considered trustworthy.\n\nWhile at first glance, these verses appear to be contradicting each other, it is not actually the case.\n\nGod knows the future. In fact, He places His authority on the matter in Isaiah.\n\n> Remember this and stand firm, recall it to mind, you transgressors, remember the former things of old; for I am God, and there is no other; I am God, and there is none like me, declaring the end from the beginning and from ancient times things not yet done, saying, ‘My counsel shall stand, and I will accomplish all my purpose,’ calling a bird of prey from the east, the man of my counsel from a far country. I have spoken, and I will bring it to pass; I have purposed, and I will do it.\n\n— Isaiah 46:8–11\n\nGod is the only being that can declare the beginning from the end. Logically therefore, we can suppose that God already knew the outcome of every situation. If this be the case, then God has not changed His mind, but has used promises to instil Godly fear which turns the nations back to Him. We see this play out throughout multiple examples in the Old Testament.\n\nThe Old Testament passages where God appears to repent, or change His mind almost always deal with threats of judgement, of which are followed by repentance of the people, or intercessory petitions of their leaders. God is not changing His mind, simply doing what He had already promised to do. He will not punish sinners that repent and turn away from their evil. He is simply fulfilling His promises.\n\nIt is not that God is changing His mind, although it may appear so from our perspective. God has already made promises of grace for people that turn from their sinful lives.\n\nThe point of these passages are to help us realise Christ\'s intercessions that allows us to live in grace. It should bring us back to prayer and bring us to repentance from our sinful nature.\n',
 };
 
 export const _mdx_35_: MDXModule = {
-  frontmatter: {
-    title: "Amaru's Revenge",
-    date: "2023-06-18T00:00:00.000Z",
-    tag: "R6S",
-    description: "",
-    videoUrl: "OClHNSgCUAPLxvHI9SFmyjoxnquNeg2yP00NanaNOMR8",
-    duration: 43,
-    type: "Video",
-    slug: "amarus-revenge",
-  },
-  content: "",
+	frontmatter: {
+		title: "The Propitiation of Jesus is not Paganism",
+		date: "2024-10-23T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"The pagan religions of old believed that they must pacify or appease their gods through sacrifice because of their unpredictable nature.",
+		image: "media/hugues-de-buyer-mimeure--wT0iS-TSZM-unsplash(1).jpg",
+		imageAlt: "Photo by Hugues de Buyer-Mimeure on Unsplash",
+		lastModified: "2024-10-24T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "the-propitiation-of-jesus-is-not-paganism",
+	},
+	content:
+		'\n# Introduction\n\n<SideNote\n  note="Which appear to be making an alarming comeback, primarily just to be anti-Christian."\n  position="right"\n>\n  The pagan religions of old believed that they must pacify or appease their\n  gods through sacrifice because of their unpredictable nature. This practice is\n  known as propitiation, the appeasement or satisfaction of someone or\n  something.\n</SideNote>\n\n<Definition\n  word="Propitiation"\n  meaning="The act of gaining or regaining the favor or goodwill of someone or something."\n  type="noun"\n/>\n\nMany see the similarities between the faith of the pagans and that of the Christian in that they both try to appease their god (our God) by offering various gifts and sacrifices.\n\n# What sets the Christian faith apart?\n\nWhat sets the Christian faith apart, is that there is no sacrifice or method of appeasement that any man could bring that would pay for the eternal punishment demanded by God to reconcile even but one man to Himself.[^1] Once sin had entered the world through Adam and Eve, there was no way to fix what had been done except through an infinite and eternal sacrifice.[^2]\n\nFor this reason, God was the only one who could reconcile man to Himself. Therefore, he sent Jesus, His one and only Son,[^3] fully man and fully God,[^4] born of a virgin,[^5] to become the perfect propitiation for our sins.[^6] All of God\'s just and righteous wrath was poured out on Jesus at the cross therefore creating a way for all those who call on Him to be reconciled with God.[^7]\n\n> Till on that cross as Jesus died, the wrath of God was _satisfied_\n\n<AfterQuote text="Stuart Townend" subtext="In Christ Alone Hymn" link="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />\n\n<SideNote\n  note="Jesus did not partake in the final passover, but He did drink the bitter cup of wrath shortly thereafter."\n  position="left"\n>\n  By drinking the cup of wrath,[^8] Jesus took the wrath of God onto Himself.\n  The propitiation of Jesus, His taking on the satisfaction of God\'s wrath in\n  our stead is the fundamental Gospel message.\n</SideNote>\n\n# Pagan unpredictability, willingness and cost.\n\nPaganism is also differentiated in that the pagan gods are unpredictable. On the other hand, God revealed the law to us, and made His hatred of sin clear.[^9] In paganism, humans must be the arbitrators of the sacrifice, at their own cost, to appease the gods. Our God _was_ the sacrifice incurring no cost to us.[^10] Pagan sacrifices, be that animal or human, are unwilling, or ignorant of their sacrifice. Jesus came to earth willingly, fully aware of the pain and cost to come. He laid his life down willingly in agreement with the Father’s good will.[^11]\n\n<SideNote note="Although it seems contradictory, it is in fact, entirely consistent. This was why it had to be Jesus, a sinless, perfect propitiation.">\n  God abhors human sacrifice[^12] and has only accepted one human sacrifice in\n  all of history, that being Jesus, because he was fully worthy, and fully\n  willing to lay down his life for ours so that we would could have communion\n  with the Father.\n</SideNote>\n\n[^1]: Romans 6:23\n\n[^2]: Romans 5:1-21\n\n[^3]: John 3:16\n\n[^4]: John 1:14\n\n[^5]: Matthew 1:23, Luke 1:27 & 34\n\n[^6]: Hebrews 2:17\n\n[^7]: 1 John 4:10\n\n[^8]: Luke 22:42-44, Psalms 75:8, Revelation 14:10\n\n[^9]: Romans 7:7-25\n\n[^10]: Hebrews 10:5-7\n\n[^11]: John 10:17-18\n\n[^12]: Deuteronomy 12:31\n',
 };
 
 export const _mdx_36_: MDXModule = {
-  frontmatter: {
-    title: "Ballo Moments 💪",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "CS",
-    description: "",
-    videoUrl: "q01IDRnC1F200W2Y1yhfbwzB008eRqdW3y39YCk01PmP4XE",
-    duration: 69,
-    type: "Video",
-    slug: "ballo-moments",
-  },
-  content: "",
+	frontmatter: {
+		title: '"Freedom" isn\'t freedom',
+		date: "2024-08-30T00:00:00.000Z",
+		tag: "Faith",
+		description: "Freedom the way the world sees it isn't freedom - it's slavery.",
+		image: "media/deann-dasilva-0jIg_-j_tTc-unsplash.jpg",
+		imageAlt: "Photo by Deann DaSilva on Unsplash",
+		lastModified: "2024-08-30T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "freedom-isnt-freedom",
+	},
+	content:
+		"\nFreedom isn't freedom if you're enslaved to your flesh.\n\nIf your entire life is realised by decisions that gratify your base desires, are you really operating of your own thoughts and free will? No, you aren't. You are controlled by the desires of your flesh - that isn't freedom. That's slavery—slavery to sin.\n\nGod has offered us the only way to be free from this slavery through the death and resurrection of Jesus Christ for the sins of the world. Although we do not deserve it, He has seen it fit to send His one and only son to bear the punishment for our crimes.\n\nNot only did we trample and poison His creation, but we also killed God's own son. The fact He does not just destroy us all will always remain a mystery to me.\n\nGod has offered us a second chance - all you must do now is repent and believe in the saving work of Christ on the cross and you will be saved.\n\nDo you want to be free?\n",
 };
 
 export const _mdx_37_: MDXModule = {
-  frontmatter: {
-    title: "BALLS OF STEEL",
-    date: "2023-02-05T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "QvVLstup7qhoe3fXW00OAFT4MITcFMtV01KAvlKmUp00jI",
-    duration: 69,
-    type: "Video",
-    slug: "balls-of-steel",
-  },
-  content: "",
+	frontmatter: {
+		title: "The Doctrines of Grace",
+		date: "2019-09-06T00:00:00.000Z",
+		tag: "Faith",
+		description:
+			"An overview of the doctrines of grace, what they are and what they mean for humanity.",
+		image: "media/ioann-mark-kuznietsov-USS2u1-98io-unsplash.jpg",
+		imageAlt: "Photo by Ioann-Mark Kuznietsov on Unsplash",
+		lastModified: "2024-10-14T00:00:00.000Z",
+		signature: true,
+		type: "Post",
+		slug: "the-doctrines-of-grace",
+	},
+	content:
+		"\n# Predestination/Unconditional Election\n\nRomans 8:29-30 tells us, “For those God foreknew he also predestined to be conformed to the likeness of his Son, that he might be the firstborn among many brothers. And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.” Ephesians 1:5 and 11 declare, “He predestined us to be adopted as his sons through Jesus Christ, in accordance with his pleasure and will…In him we were also chosen, having been predestined according to the plan of him who works out everything in conformity with the purpose of his will.”\n\nThe words translated “predestined” in the Scriptures referenced above are from the Greek word proorizo, which carries the meaning of “determining beforehand,” “ordaining,” “deciding ahead of time.” So, predestination is God determining certain things to occur ahead of time. What did God determine ahead of time? According to Romans 8:29-30, God predetermined that certain individuals would be conformed to the likeness of His Son, be called, justified, and glorified. Essentially, God predetermines that certain individuals will be saved. Numerous scriptures refer to believers in Christ being chosen (Matthew 24:22, 31; Mark 13:20, 27; Romans 8:33, 9:11, 11:5-7, 28; Ephesians 1:11; Colossians 3:12; 1 Thessalonians 1:4; 1 Timothy 5:21; 2 Timothy 2:10; Titus 1:1; 1 Peter 1:1-2, 2:9; 2 Peter 1:10).\n\n# Total Depravity\n\nAs a result of Adam’s fall, the entire human race is affected; all of Adam’s descendants are spiritually dead in their trespasses and sins (Ephesians 2:1, 5). Calvinists are quick to point out that this does not mean that all people are as bad as they could be. Rather, this doctrine says that, as a result of man’s fall in Adam, all people are radically depraved from the inside and that their depravity affects every area of their lives.\n\n# Limited Atonement\n\nThe purpose of Christ’s atoning death was not to merely make men savable and thus leaving the salvation of humanity contingent on man’s response to God’s grace. Rather, the purpose of the atonement was to secure the redemption of a particular people (Ephesians 1:4–6; John 17:9). All whom God has elected and Christ died for will be saved (John 6:37–40, 44). Many Reformed Christians prefer the term “particular redemption” as they feel that this phrase more accurately captures the essence of this doctrine. It is not so much that Christ’s atonement is limited as it is particular, intended for a specific people—God’s elect.\n\n# Irresistible Grace\n\nGod has elected a particular people to be the recipients of Christ’s atoning work. These people are drawn to Christ by a grace that is irresistible. When God calls, man responds (John 6:37, 44; 10:16). This teaching does not mean that God saves men against their will. Rather, God changes the heart of the rebellious unbeliever so that he now desires to repent and be saved. God’s elect will be drawn to Him, and that grace that draws them is, in fact, irresistible. God replaces the unbeliever’s heart of stone with a heart of flesh (Ezekiel 36:26). In Reformed theology, regeneration precedes faith.\n\n# Perseverance of the Saints\n\nThe particular people God has elected and drawn to Himself through the Holy Spirit will persevere in faith. None of those whom God has elected will be lost; they are eternally secure in Him (John 10:27–29; Romans 8:29–30; Ephesians 1:3–14). Some Reformed theologians prefer to use the term “Preservation of the Saints” as they believe that this choice of words more accurately describes how God is directly responsible for the preservation of His elect. It is clear in Scripture that Christ continues to intercede for His people (Romans 8:34; Hebrews 7:25). This continues to provide believers with the assurance that those that belong to Christ are eternally His.\n",
 };
 
 export const _mdx_38_: MDXModule = {
-  frontmatter: {
-    title: "BEST ZSU DRIVER CONFIRMED",
-    date: "2023-08-22T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "ML82TnnHtRBHIPmqh8dwFs7puq9Zoptrfb2l56qsgLI",
-    duration: 72,
-    type: "Video",
-    slug: "best-zsu-driver-confirmed",
-  },
-  content: "",
+	frontmatter: {
+		title: "The Vine and the Branch",
+		date: "2021-03-19T00:00:00.000Z",
+		tag: "Faith",
+		description: "A short study on John 15:4.",
+		image: "media/sixteen-miles-out-L-mNqn89I2s-unsplash.jpg",
+		imageAlt: "Photo by Sixteen Miles Out on Unsplash ",
+		signature: true,
+		type: "Post",
+		slug: "the-vine-and-the-branch",
+	},
+	content:
+		"\n> Remain in me, and I will remain in you. For a branch cannot produce fruit if it is severed from the vine, and you cannot be fruitful unless you remain in me.\n\n— John 15:4\n\nJesus is speaking to his disciples as He prepares them for His sacrifice and departure. The verse applies to those who already apart of Christ's family. The verse is a promise that so long that we maintain a union with Christ, we will bear fruit.\n\nThe example Jesus provides is that God is the vine, and we are the branches. We, as gentiles, are grafted onto this vine upon the acceptance of Christ. We must abide in Christ, as a branch on a vine, which is supported by it, grows in it and eventually becomes fruitful. Breaking away from the vine can spell certain disaster - our safety depends on being grafted to that vine. To sustain genuine spiritual life in the world, we must remain intimately connected to Christ - like the branch.\n\nIf we do not produce fruit, we are cut-off from God and handed over to our own sinful desires.\n\n> Anyone who does not remain in me is thrown away like a useless branch and withers. Such branches are gathered into a pile to be burned. But if you remain in me and my words remain in you, you may ask for anything you want, and it will be granted! When you produce much fruit, you are my true disciples. This brings great glory to my Father.\n\n— John 15:6-8\n\nIn the verse, Jesus is speaking this over His disciples to prepare them for the time ahead. Jesus wants them to abide _in_ Him, not with Him. _In Him._ The command is not abide with Me, near me or under Me, but _In Him._ And He wants us to do the same.\n\nThe fruit-bearing branch is not only connected to the vine, near it, or under its shadow, it is within the vine and it abides inside of it.\n\nAlthough Jesus did not go into detail about how He will abide in us, our faithful residence and abidance, will lead to His feelings becoming our own feelings, we will think as He thinks, will as He wills and choose as He chooses. His righteousness will be come our righteousness, His strength our strength. He commands us to come out of ourselves and our own way of thinking, to step into Himself and His way of being.\n\nChrist abides in us, by shaping us into an instrument of His word, understood and believed under His influence where we think, feel, enjoy and choose along with Him.\n\nChrist has formed within us that it is not so much they who live, but Christ who lives within them.\n\n> Those who obey God’s commandments remain in fellowship with him, and he with them. And we know he lives in us because the Spirit he gave us lives in us.\n\n— 1 John 3:24\n\nIt is our faith that will unite us to our saviour and it is our continued faith which keeps us grafted to the True Vine.\n\nHe wants us to have a conscious union with Him on the deepest level. We must come to the realization that we can do nothing - we are dead branches without Him. We too often try to live as our own vine and act as though by our own power, we were to do God's will.\n\nWe have failed tremendously and yet Christ still invites us to humble ourselves and be redeemed as a branch.\n\nWe must surrender ourselves to Christ for His purposes, as the branch exists for the vine. But, in the same breath, the fullness of Christ is ours also.\n\nWhy does Jesus use 'vine' instead of 'tree'? And why does the Gospel of John refer to Jesus as the 'True Vine'?\n\nThe grapevine and the vineyard traditionally represented God's people, planted and tended by him in Israel (Psalms 80:8-18; Isaiah 5:1-7; Jeremiah 2:21; 12:10-11; Ezekiel 15:1-5; Hosea 10:1-2). When Jesus used this image, He made an important departure: He declared that He is the true grapevine and that a relationship with God requires attachment to Him. This in turn infuriated the church leaders of the time and is the reason why the Gospel of John refers to Jesus as the True Vine so as to differentiate Him from God's people.\n\nIf you have any questions or think I could have taken a better approach, let me know! Feel free to reach out in the comments below or reach out to me via email.\n",
 };
 
 export const _mdx_39_: MDXModule = {
-  frontmatter: {
-    title: "Bigger and better memes",
-    date: "2022-09-15T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "wyJuPxu4bdMoL5Db8T01xct02ITPK5ELxtHFkGlh02PIvA",
-    duration: 430,
-    type: "Video",
-    slug: "bigger-and-better-memes",
-  },
-  content: "",
+	frontmatter: {
+		title: "Test movie 2",
+		date: "2024-05-19T00:00:00.000Z",
+		type: "Movie",
+		setting: "Home",
+		review: 10,
+		with: [{ name: "Test Person" }, { name: "Test Person 2" }],
+		image: "/recommended-movies/test-movie.jpg",
+		slug: "test-movie-2",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_40_: MDXModule = {
-  frontmatter: {
-    title: "Birb ✈️",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "5xbaVvYj02wIEuJco00NpPabXui009Ct8XO8lBEXaXtaZw",
-    duration: 24,
-    type: "Video",
-    slug: "birb",
-  },
-  content: "",
+	frontmatter: {
+		title: "Test movie",
+		date: "2025-05-19T00:00:00.000Z",
+		type: "Movie",
+		setting: "Home",
+		review: 10,
+		with: [{ name: "Test Person" }, { name: "Test Person 2" }],
+		image: "/recommended-movies/test-movie.jpg",
+		slug: "test-movie",
+		description: "",
+	},
+	content: "",
 };
 
 export const _mdx_41_: MDXModule = {
-  frontmatter: {
-    title: "Breach and Clear",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "XKHaUeWhLNKgPFPKsUOkBARMPuMG5t01gBx4pouMoK94",
-    duration: 42,
-    type: "Video",
-    slug: "breach-and-clear",
-  },
-  content: "",
+	frontmatter: {
+		title: "Men without land, a home, a wife or a business are not worth listening to.",
+		date: "2025-05-19T00:00:00.000Z",
+		type: "Note",
+		tag: "Lesson",
+		slug: "men-that-have-no-household",
+		description: "",
+	},
+	content: "\nMen without land, a home, a wife or a business are not worth listening to.\n",
 };
 
 export const _mdx_42_: MDXModule = {
-  frontmatter: {
-    title: "Bridge Explosion",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "dqwnqkP01gDrvvYzJ71cmrpHVUG1f2R56cNDrEDu6NSw",
-    duration: 17,
-    type: "Video",
-    slug: "bridge-explosion",
-  },
-  content: "",
+	frontmatter: {
+		title: "Church is an ICU for sinners",
+		date: "2024-09-06T00:00:00.000Z",
+		type: "Note",
+		tag: "Quote",
+		slug: "church-is-an-icu-for-sinners",
+		description: "",
+	},
+	content: '\n"Church is an ICU for sinners." — Douglas Wilson\n',
 };
 
 export const _mdx_43_: MDXModule = {
-  frontmatter: {
-    title: "brr brr",
-    date: "2023-05-28T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "RBkvJmbSIigIVUV8YPWz19KYcx1pNyg6eJ6FtTCQgK8",
-    duration: 28,
-    type: "Video",
-    slug: "brr-brr",
-  },
-  content: "",
+	frontmatter: {
+		title: "Becoming trans is the only way to reject white privilege",
+		date: "2024-11-01T00:00:00.000Z",
+		type: "Note",
+		tag: "Quote",
+		slug: "jd-vance-the-only-way-to-reject-white-privilege",
+		description: "",
+	},
+	content:
+		"\n\"[I wonder] if there is a dynamic going on where if you become trans, that is the way to reject your white privilege. That's the social signifier, the only one that's available in the hyper woke mindset is if you become gender non-binary.\" — JD Vance\n",
 };
 
 export const _mdx_44_: MDXModule = {
-  frontmatter: {
-    title: "Chad SPG",
-    date: "2023-08-07T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "cqnSGEoH00MF1OZroz0200wh8xwbhHuPwDuKubzO5by01Ew",
-    duration: 228,
-    type: "Video",
-    slug: "chad-spg",
-  },
-  content: "",
+	frontmatter: {
+		title: "Politicians are blatantly gaslighting us on housing",
+		date: "2025-03-10T00:00:00.000Z",
+		type: "Note",
+		tag: "Politics",
+		slug: "politicans-are-gaslighting-us",
+		description: "",
+	},
+	content:
+		"\nPoliticians say the number of homes being built is the problem. Not the mass unchecked immigration.\n\nThat importing more workers to build them faster is the solution.\n\nThey don't seem to realise that the more people you bring in, the more houses you need to build - exacerbating the problem even further. Not to mention the additional strain on other resources (i.e. hospitals, schools etc.)\n\nThe solution is simple.\n\nStop the mass unchecked immigration.\n",
 };
 
 export const _mdx_45_: MDXModule = {
-  frontmatter: {
-    title: "Chain Gunner Attachment",
-    date: "2023-02-21T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "kUGDwuDQax8jGCJE6zRqBcWUKAmVHpCkM3Bb1upqV400",
-    duration: 41,
-    type: "Video",
-    slug: "chain-gunner-attachment",
-  },
-  content: "",
+	frontmatter: {
+		title: "Either write something worth reading or do something worth writing",
+		date: "2024-07-30T00:00:00.000Z",
+		type: "Note",
+		tag: "Quote",
+		slug: "either-write-something-worth-reading-or-do-something-worth-writing",
+		description: "",
+	},
+	content:
+		'\n"Either write something worth reading or do something worth writing." — Benjamin Franklin\n',
 };
 
 export const _mdx_46_: MDXModule = {
-  frontmatter: {
-    title: "Charge!",
-    date: "2023-02-21T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "SDaolytpG6QZRl00g8mUwX4rzbu1tJWFFEg8am9OUcI8",
-    duration: 37,
-    type: "Video",
-    slug: "charge",
-  },
-  content: "",
+	frontmatter: {
+		title: "AI-generated marketing is dumb",
+		date: "2025-05-21T00:00:00.000Z",
+		type: "Note",
+		tag: "AI",
+		slug: "ai-marketing-is-dumb",
+		description: "",
+	},
+	content:
+		"\nAI-generated marketing is like a toddler with a thesaurus and a Red Bull addiction trying to sell you a used car. It’s loud, it’s chaotic, it’s full of buzzwords it doesn’t understand, and you’re left wondering if it’s trying to scam you or just genuinely confused about what it’s selling.\n",
 };
 
 export const _mdx_47_: MDXModule = {
-  frontmatter: {
-    title: "Cheeky roleplay",
-    date: "2023-03-14T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "7jopx6EM02QSc9LqdWCXTMyfh39rvVFbC023AhoieZTd00",
-    duration: 227,
-    type: "Video",
-    slug: "cheeky-roleplay",
-  },
-  content: "",
+	frontmatter: {
+		title:
+			"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be",
+		date: "2024-08-27T00:00:00.000Z",
+		type: "Note",
+		tag: "Quote",
+		slug: "busyness-paradoxically-is-a-form-of-laziness-lazy-thinking-or-no-thinking-at-all-just-an-acceptance-that-busy-is-where-we-should-be",
+		description: "",
+	},
+	content:
+		'\n"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be." — Carl Phillips\n',
 };
 
 export const _mdx_48_: MDXModule = {
-  frontmatter: {
-    title: "Cherries and berries! ⚠",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "ll5wWfyBk95A00blYB2o8vHPm2YW01uA7EgjR6XhIZmo00",
-    duration: 31,
-    type: "Video",
-    slug: "cherries-and-berries",
-  },
-  content: "",
+	frontmatter: {
+		title: "I'm a White Australian and I'm not sorry",
+		date: "2025-05-26T00:00:00.000Z",
+		type: "Note",
+		tag: "Politics",
+		slug: "not-sorry",
+		description: "",
+	},
+	content:
+		"\nI'm not sorry that Australia was colonised.\n\nI'm not sorry about the stolen generation.\n\nI'm not ashamed to be Australian, or of my English heritage.\n\nAnd I don't need to be welcomed to the country my people built.\n\nAustralia is for Australians.\n",
 };
 
 export const _mdx_49_: MDXModule = {
-  frontmatter: {
-    title: "Chinchilla Melon Festival",
-    date: "2023-03-05T00:00:00.000Z",
-    tag: "Life",
-    description: "",
-    videoUrl: "7lB7zzgdFiG01GmlYSEhIqPQHYW2upBq7J3zoa78f6EQ",
-    duration: 8,
-    type: "Video",
-    slug: "chinchilla-melon-festival",
-  },
-  content: "",
+	frontmatter: {
+		title: "Sexual deviants should not work with children",
+		date: "2025-07-16T00:00:00.000Z",
+		type: "Note",
+		tag: "Politics",
+		slug: "sexual-deviants",
+		description: "",
+	},
+	content:
+		"\nSexual deviants (homosexuals, transgenders etc.) should not work with children.\n\nMen should teach boys.\nWomen should teach girls.\n\nParents should be more involved with education.",
 };
 
 export const _mdx_50_: MDXModule = {
-  frontmatter: {
-    title: "Counting?",
-    date: "2023-04-23T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "U1fk4KZavF7FPimZxEfFf5Zb4GJsGJJp89TQZiYc2rQ",
-    duration: 56,
-    type: "Video",
-    slug: "counting",
-  },
-  content: "",
+	frontmatter: {
+		title: "Phone calls vs text",
+		date: "2025-03-13T00:00:00.000Z",
+		type: "Note",
+		tag: "Lesson",
+		slug: "phone-calls-vs-text",
+		description: "",
+	},
+	content:
+		"\nOne of the biggest things I’ve had to learn moving away from a purely technical role is that a quick phone call is 100x more efficient and reliable than text.\n\nNon-technical people do not read messages. At all.\n",
 };
 
 export const _mdx_51_: MDXModule = {
-  frontmatter: {
-    title: "Dayum boi!",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "qhFl1zmifzhUCD1nMkeCOfJTCZyj67acnR9GVyQ3w2Y",
-    duration: 31,
-    type: "Video",
-    slug: "dayum-boi",
-  },
-  content: "",
+	frontmatter: {
+		title: "Birb ✈️",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "5xbaVvYj02wIEuJco00NpPabXui009Ct8XO8lBEXaXtaZw",
+		duration: 24,
+		type: "Video",
+		slug: "birb",
+	},
+	content: "",
 };
 
 export const _mdx_52_: MDXModule = {
-  frontmatter: {
-    title: "F for Vulkan and Sodel",
-    date: "2022-11-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "hao2qA02XoU1GU3h7u1Pj2ErVvE9drWx02P1DDHsEUPww",
-    duration: 437,
-    type: "Video",
-    slug: "f-for-vulkan-and-sodel",
-  },
-  content: "",
+	frontmatter: {
+		title: "Cherries and berries! ⚠",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "ll5wWfyBk95A00blYB2o8vHPm2YW01uA7EgjR6XhIZmo00",
+		duration: 31,
+		type: "Video",
+		slug: "cherries-and-berries",
+	},
+	content: "",
 };
 
 export const _mdx_53_: MDXModule = {
-  frontmatter: {
-    title: "FREEBALLIN' IT!",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "NACDkxdjM5HZZpovIYJHIhhVbXbo9ie3V01KXI02jJrLg",
-    duration: 31,
-    type: "Video",
-    slug: "freeballing-it",
-  },
-  content: "",
+	frontmatter: {
+		title: "Breach and Clear",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "XKHaUeWhLNKgPFPKsUOkBARMPuMG5t01gBx4pouMoK94",
+		duration: 42,
+		type: "Video",
+		slug: "breach-and-clear",
+	},
+	content: "",
 };
 
 export const _mdx_54_: MDXModule = {
-  frontmatter: {
-    title: "Get rotated idiot!",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "68DeD5jaZ3AO52VJajkesK01afPChhsHY2msFfmZK6IM",
-    duration: 16,
-    type: "Video",
-    slug: "get-rotated-idiot",
-  },
-  content: "",
+	frontmatter: {
+		title: "Bridge Explosion",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "dqwnqkP01gDrvvYzJ71cmrpHVUG1f2R56cNDrEDu6NSw",
+		duration: 17,
+		type: "Video",
+		slug: "bridge-explosion",
+	},
+	content: "",
 };
 
 export const _mdx_55_: MDXModule = {
-  frontmatter: {
-    title: "Glitterbeard's Cave",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "SOT",
-    description: "",
-    videoUrl: "16mLGoj2uixoYcy5oeQ7vzwGPAQvc1sbVqvt01uHnjS8",
-    duration: 346,
-    type: "Video",
-    slug: "glitterbeards-cave",
-  },
-  content: "",
+	frontmatter: {
+		title: "You wanna see some magic?",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "CDVv747QDSw3guVKo201Rn00bTex01F1kPl6VNnUlbwLk00",
+		duration: 8,
+		type: "Video",
+		slug: "you-wanna-see-some-magic",
+	},
+	content: "",
 };
 
 export const _mdx_56_: MDXModule = {
-  frontmatter: {
-    title: "Gun go brrr",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "n4sPliET01Oi1cRR64e02902xiveCCcwhqoxx6tiJWzQKk",
-    duration: 283,
-    type: "Video",
-    slug: "gun-go-brr",
-  },
-  content: "",
+	frontmatter: {
+		title: "Get rotated idiot!",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "68DeD5jaZ3AO52VJajkesK01afPChhsHY2msFfmZK6IM",
+		duration: 16,
+		type: "Video",
+		slug: "get-rotated-idiot",
+	},
+	content: "",
 };
 
 export const _mdx_57_: MDXModule = {
-  frontmatter: {
-    title: "Han the man 💪",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "WpwgltF5hnEehRtfzFWGxf1P9r7DnC8kNV6lfa00NLpM",
-    duration: 42,
-    type: "Video",
-    slug: "han-the-man",
-  },
-  content: "",
+	frontmatter: {
+		title: "out of ammo, run him down",
+		date: "2024-05-14T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "T4CAduSidc02Qd6t3003bOyHOKbTrWbTO0201aHqrkXBJyM",
+		duration: 32,
+		type: "Video",
+		slug: "out-of-ammo-run-him-down",
+	},
+	content: "",
 };
 
 export const _mdx_58_: MDXModule = {
-  frontmatter: {
-    title: "Hardcore Parkour",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "xdbMDfBQ3aIKccGWmHdXlZQerLSGxbvW6DRcaxt2E00c",
-    duration: 15,
-    type: "Video",
-    slug: "hardcore-parkour",
-  },
-  content: "",
+	frontmatter: {
+		title: "Why aren't they shooting him?",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "RJYz8UiZIilw8guusHQZK701SAJt00zE01yRmbmUJXpE3Q",
+		duration: 76,
+		type: "Video",
+		slug: "why-arent-they-shooting-him",
+	},
+	content: "",
 };
 
 export const _mdx_59_: MDXModule = {
-  frontmatter: {
-    title: "Hawaiian has rickets 😭",
-    date: "2023-07-16T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "ii01bS6L6Y01E6tXtf012gxcdVhrmmXO3cX9C4cRbxzCPs",
-    duration: 541,
-    type: "Video",
-    slug: "hawaiian-has-rickets",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - OPERATION KRUGERTOWN",
+		date: "2023-08-06T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "CSkKqSD01RKiY38ZFM2vhW2J00lym01s7eExiIuG01kIZ58",
+		duration: 192,
+		type: "Video",
+		slug: "zsu-operation-krugertown",
+	},
+	content: "",
 };
 
 export const _mdx_60_: MDXModule = {
-  frontmatter: {
-    title: "Hello! I've arrived!",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "FW00sQd9Ql8xto386Ky01QAfT6Qjd62nnQZlywkNxS9nU",
-    duration: 23,
-    type: "Video",
-    slug: "hello-ive-arrived",
-  },
-  content: "",
+	frontmatter: {
+		title: "BALLS OF STEEL",
+		date: "2023-02-05T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "QvVLstup7qhoe3fXW00OAFT4MITcFMtV01KAvlKmUp00jI",
+		duration: 69,
+		type: "Video",
+		slug: "balls-of-steel",
+	},
+	content: "",
 };
 
 export const _mdx_61_: MDXModule = {
-  frontmatter: {
-    title: "Hello there! 👋",
-    date: "2022-11-12T00:00:00.000Z",
-    tag: "CS",
-    description: "",
-    videoUrl: "F5Y01UgpT6ONkDrNaLlKiUhgMJDHD1KvtqAyhj7TmEio",
-    duration: 160,
-    type: "Video",
-    slug: "hello-there",
-  },
-  content: "",
+	frontmatter: {
+		title: "They see me rollin'",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "h6023hrNRavqcCr02jhu5Agovg01evXY00LiP4js7HdNtfc",
+		duration: 21,
+		type: "Video",
+		slug: "they-see-me-rollin",
+	},
+	content: "",
 };
 
 export const _mdx_62_: MDXModule = {
-  frontmatter: {
-    title: "I love this game sometimes hehe",
-    date: "2023-05-10T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "UVpThntGQR6sDK3YCFpfnWgYYwfR003emLGDJ1mIS021Q",
-    duration: 37,
-    type: "Video",
-    slug: "i-love-this-game-sometimes-hehe",
-  },
-  content: "",
+	frontmatter: {
+		title: "My heart",
+		date: "2023-06-06T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "quYsHiPF3Sgzx3sUxwM00kdjCfpAffg6qmXsKLi6qgNk",
+		duration: 47,
+		type: "Video",
+		slug: "my-heart",
+	},
+	content: "",
 };
 
 export const _mdx_63_: MDXModule = {
-  frontmatter: {
-    title: "I should have been more concerned...",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "UViut01neIcKcMxodpCNYifJXdW32kL74utoJRgeI3X00",
-    duration: 47,
-    type: "Video",
-    slug: "i-should-have-been-more-concerned",
-  },
-  content: "",
+	frontmatter: {
+		title: "Hawaiian has rickets 😭",
+		date: "2023-07-16T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "ii01bS6L6Y01E6tXtf012gxcdVhrmmXO3cX9C4cRbxzCPs",
+		duration: 541,
+		type: "Video",
+		slug: "hawaiian-has-rickets",
+	},
+	content: "",
 };
 
 export const _mdx_64_: MDXModule = {
-  frontmatter: {
-    title: "I spent most of this mission dead 💀",
-    date: "2022-11-06T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "3Sdo6ci3QhwzuOe26kunc02Ee00H2DZmcrYE4fL1YCK2Y",
-    duration: 194,
-    type: "Video",
-    slug: "i-spent-most-of-this-mission-dead",
-  },
-  content: "",
+	frontmatter: {
+		title: "Learn to drive!",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "jDFmqB2FHQ00aJ7YLYTTJfAwQ5cGFRcfgY5GR2YaUg18",
+		duration: 31,
+		type: "Video",
+		slug: "learn-to-drive",
+	},
+	content: "",
 };
 
 export const _mdx_65_: MDXModule = {
-  frontmatter: {
-    title: "I'm going to glass this place!",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "uWEIv48o51mCBa7576unp1Y00236SwhQt8HBKK1pm01IY",
-    duration: 5,
-    type: "Video",
-    slug: "im-going-to-glass-this-place",
-  },
-  content: "",
+	frontmatter: {
+		title: "I'm going to glass this place!",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "uWEIv48o51mCBa7576unp1Y00236SwhQt8HBKK1pm01IY",
+		duration: 5,
+		type: "Video",
+		slug: "im-going-to-glass-this-place",
+	},
+	content: "",
 };
 
 export const _mdx_66_: MDXModule = {
-  frontmatter: {
-    title: "Infinite Bullets Glitch",
-    date: "2023-12-02T00:00:00.000Z",
-    tag: "CS",
-    description: "",
-    videoUrl: "L2NszURWxdCqITUxpwmoNVru45ejUxwPV02glZfSSy00U",
-    duration: 37,
-    type: "Video",
-    slug: "infinite-bullets-glitch",
-  },
-  content: "",
+	frontmatter: {
+		title: "I spent most of this mission dead 💀",
+		date: "2022-11-06T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "3Sdo6ci3QhwzuOe26kunc02Ee00H2DZmcrYE4fL1YCK2Y",
+		duration: 194,
+		type: "Video",
+		slug: "i-spent-most-of-this-mission-dead",
+	},
+	content: "",
 };
 
 export const _mdx_67_: MDXModule = {
-  frontmatter: {
-    title: "Instant Death",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "Wreckfest",
-    description: "",
-    videoUrl: "NcjgWSUoHsCZ9LpCV8sXAWyT3XvTisASqKQJBhjdOLY",
-    duration: 39,
-    type: "Video",
-    slug: "instant-death",
-  },
-  content: "",
+	frontmatter: {
+		title: "Tank Engagements",
+		date: "2023-10-17T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "6r3Um892RaufSNM6LlYZbdjjqKdqxeMmYEYgnDkSvnQ",
+		duration: 250,
+		type: "Video",
+		slug: "tank-engagements",
+	},
+	content: "",
 };
 
 export const _mdx_68_: MDXModule = {
-  frontmatter: {
-    title: "Itkasumore",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "5ap01qR5eU1e01t5QAJJnE5Grp8KHqrX1yJJPY3rSJIww",
-    duration: 50,
-    type: "Video",
-    slug: "itkatsumore",
-  },
-  content: "",
+	frontmatter: {
+		title: "Hello there! 👋",
+		date: "2022-11-12T00:00:00.000Z",
+		tag: "CS",
+		description: "",
+		videoUrl: "F5Y01UgpT6ONkDrNaLlKiUhgMJDHD1KvtqAyhj7TmEio",
+		duration: 160,
+		type: "Video",
+		slug: "hello-there",
+	},
+	content: "",
 };
 
 export const _mdx_69_: MDXModule = {
-  frontmatter: {
-    title: "Javwin",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "01k4seQiLrrWFx02CcWT2D002uT02LUhIVnfxvzd8f3v6XA",
-    duration: 36,
-    type: "Video",
-    slug: "javwin",
-  },
-  content: "",
+	frontmatter: {
+		title: "Schwhacked",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "01it01PGaNlGpVqdYj6YWCR3S3mShTRAtV2YZnB3w00ycM",
+		duration: 14,
+		type: "Video",
+		slug: "schwacked",
+	},
+	content: "",
 };
 
 export const _mdx_70_: MDXModule = {
-  frontmatter: {
-    title: "Kapow!",
-    date: "1970-01-01T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc",
-    duration: 23,
-    type: "Video",
-    slug: "kapow",
-  },
-  content: "",
+	frontmatter: {
+		title: "Bigger and better memes",
+		date: "2022-09-15T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "wyJuPxu4bdMoL5Db8T01xct02ITPK5ELxtHFkGlh02PIvA",
+		duration: 430,
+		type: "Video",
+		slug: "bigger-and-better-memes",
+	},
+	content: "",
 };
 
 export const _mdx_71_: MDXModule = {
-  frontmatter: {
-    title: "Kapow!",
-    date: "1970-01-01T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc",
-    duration: 23,
-    type: "Video",
-    slug: "leap-of-faith",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - OPERATION OUTLAST",
+		date: "2023-10-24T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "VuF9DPXmr4mDLcDjLO8JrFOZGagucPyHMbY7c7PK9Ak",
+		duration: 113,
+		type: "Video",
+		slug: "zsu-operation-outlast",
+	},
+	content: "",
 };
 
 export const _mdx_72_: MDXModule = {
-  frontmatter: {
-    title: "Learn to drive!",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "jDFmqB2FHQ00aJ7YLYTTJfAwQ5cGFRcfgY5GR2YaUg18",
-    duration: 31,
-    type: "Video",
-    slug: "learn-to-drive",
-  },
-  content: "",
+	frontmatter: {
+		title: "Ballo Moments 💪",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "CS",
+		description: "",
+		videoUrl: "q01IDRnC1F200W2Y1yhfbwzB008eRqdW3y39YCk01PmP4XE",
+		duration: 69,
+		type: "Video",
+		slug: "ballo-moments",
+	},
+	content: "",
 };
 
 export const _mdx_73_: MDXModule = {
-  frontmatter: {
-    title: "My heart",
-    date: "2023-06-06T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "quYsHiPF3Sgzx3sUxwM00kdjCfpAffg6qmXsKLi6qgNk",
-    duration: 47,
-    type: "Video",
-    slug: "my-heart",
-  },
-  content: "",
+	frontmatter: {
+		title: "Some Questionable Tactics...",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "X6AzP7J26g6mfRLD6yBlMRv5cE3gI4ahkqeUmhUOmUg",
+		duration: 23,
+		type: "Video",
+		slug: "some-questionable-tactics",
+	},
+	content: "",
 };
 
 export const _mdx_74_: MDXModule = {
-  frontmatter: {
-    title: "My useless 10-10 drop 🤣",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "uMUIc7h4eYacNhlOdC4BB0000ySvS6nCPNBjn8G8C499w",
-    duration: 31,
-    type: "Video",
-    slug: "my-useless-10-10-drop",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Serpent Slayer",
+		date: "2023-03-26T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "7PSx02C9IkRSg2ITWriKT00xPuPSAyC00Fk51h8pJszIRA",
+		duration: 262,
+		type: "Video",
+		slug: "zsu-operation-serpent-slayer",
+	},
+	content: "",
 };
 
 export const _mdx_75_: MDXModule = {
-  frontmatter: {
-    title: "Never jump walls in an enemy AO!",
-    date: "2022-11-22T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "E02PTmeH1SlG6dab2fKtY00Y6rVFQqzxwfEUWgzNb4bZQ",
-    duration: 46,
-    type: "Video",
-    slug: "never-jump-walls-in-an-enemy-ao",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Genesis",
+		date: "2023-05-04T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "HHf93DYs102wZB01mlEVmJYo1XuVBoV01MmbwAazMaAT3I",
+		duration: 110,
+		type: "Video",
+		slug: "zsu-operation-genesis",
+	},
+	content: "",
 };
 
 export const _mdx_76_: MDXModule = {
-  frontmatter: {
-    title: "OFF TO WAR",
-    date: "2023-02-26T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "UWC7IvzTHPe026QEnUOUA5YUOsQcQ3R54VdW6iFscBTo",
-    duration: 16,
-    type: "Video",
-    slug: "off-to-war",
-  },
-  content: "",
+	frontmatter: {
+		title: "Javwin",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "01k4seQiLrrWFx02CcWT2D002uT02LUhIVnfxvzd8f3v6XA",
+		duration: 36,
+		type: "Video",
+		slug: "javwin",
+	},
+	content: "",
 };
 
 export const _mdx_77_: MDXModule = {
-  frontmatter: {
-    title: "Orenji's Boo Boo",
-    date: "2023-05-08T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "i1yDH2gXacyWfj71AtDMs01hLZ00N7wJ8yTIN2X1J2lyk",
-    duration: 27,
-    type: "Video",
-    slug: "orenjis-boo-boo",
-  },
-  content: "",
+	frontmatter: {
+		title: "Hardcore Parkour",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "xdbMDfBQ3aIKccGWmHdXlZQerLSGxbvW6DRcaxt2E00c",
+		duration: 15,
+		type: "Video",
+		slug: "hardcore-parkour",
+	},
+	content: "",
 };
 
 export const _mdx_78_: MDXModule = {
-  frontmatter: {
-    title: "out of ammo, run him down",
-    date: "2024-05-14T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "T4CAduSidc02Qd6t3003bOyHOKbTrWbTO0201aHqrkXBJyM",
-    duration: 32,
-    type: "Video",
-    slug: "out-of-ammo-run-him-down",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Bridge Baby",
+		date: "2023-02-16T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "Zc4LSuXTTfmWPw00pZCkz8OAVt01DCe601PQs5qzJb5fq8",
+		duration: 199,
+		type: "Video",
+		slug: "zsu-operation-bridge-baby",
+	},
+	content: "",
 };
 
 export const _mdx_79_: MDXModule = {
-  frontmatter: {
-    title: "Panzerfaust Time 💥",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "NY00FnT02k3Wo9FOjFgCD00l3v2xNXg1Y5nUZN9VK0135uw",
-    duration: 169,
-    type: "Video",
-    slug: "panzerfaust-time",
-  },
-  content: "",
+	frontmatter: {
+		title: "Charge!",
+		date: "2023-02-21T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "SDaolytpG6QZRl00g8mUwX4rzbu1tJWFFEg8am9OUcI8",
+		duration: 37,
+		type: "Video",
+		slug: "charge",
+	},
+	content: "",
 };
 
 export const _mdx_80_: MDXModule = {
-  frontmatter: {
-    title: "Patience is key!",
-    date: "2022-11-12T00:00:00.000Z",
-    tag: "CS",
-    description: "",
-    videoUrl: "Ptr3Jyv6W2aO7XOLc01DD9iwNd50127WpSHzqa00TbISNA",
-    duration: 179,
-    type: "Video",
-    slug: "patience-is-key",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Mud Washer PT. 2",
+		date: "2022-11-29T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "mSaFlXUIEFCqJB6q1wVOhwbujHn3wERfbcfJYhgIIDs",
+		duration: 522,
+		type: "Video",
+		slug: "zsu-operation-mud-washer-pt-2",
+	},
+	content: "",
 };
 
 export const _mdx_81_: MDXModule = {
-  frontmatter: {
-    title: "Pew! Pew pew!",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "FeypBRnGZ6lGzU600KVU1aWgvQa02lrlu4X4F9tqIPpBI",
-    duration: 17,
-    type: "Video",
-    slug: "pew-pew-pew",
-  },
-  content: "",
+	frontmatter: {
+		title: "Counting?",
+		date: "2023-04-23T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "U1fk4KZavF7FPimZxEfFf5Zb4GJsGJJp89TQZiYc2rQ",
+		duration: 56,
+		type: "Video",
+		slug: "counting",
+	},
+	content: "",
 };
 
 export const _mdx_82_: MDXModule = {
-  frontmatter: {
-    title: "Pistols and Shotguns are CRACKED",
-    date: "2024-05-18T00:00:00.000Z",
-    tag: "R6S",
-    description: "",
-    videoUrl: "qA7AxGh00uSjpUFj7Uk5aVgXK7pgTFGAeHO8Tcf8TYDA",
-    duration: 132,
-    type: "Video",
-    slug: "pistols-and-shotguns-are-cracked",
-  },
-  content: "",
+	frontmatter: {
+		title: "TT - German Rumble",
+		date: "2023-05-19T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "7lRjYo3T2M8urPQV4oIjMV1Grhhkfc5RgcBgDXXZouU",
+		duration: 50,
+		type: "Video",
+		slug: "tt-german-rumble",
+	},
+	content: "",
 };
 
 export const _mdx_83_: MDXModule = {
-  frontmatter: {
-    title: "Quick Flip!",
-    date: "2023-02-26T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "n400sseXb6l9OiLe95ZvE02FRevaO2zQYimayHXKh1FUk",
-    duration: 13,
-    type: "Video",
-    slug: "quick-flip",
-  },
-  content: "",
+	frontmatter: {
+		title: "Instant Death",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "Wreckfest",
+		description: "",
+		videoUrl: "NcjgWSUoHsCZ9LpCV8sXAWyT3XvTisASqKQJBhjdOLY",
+		duration: 39,
+		type: "Video",
+		slug: "instant-death",
+	},
+	content: "",
 };
 
 export const _mdx_84_: MDXModule = {
-  frontmatter: {
-    title: "Rampage 💀",
-    date: "1970-01-01T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "LAxVJrz2Xml5TUgixqG3w5wgtCjygW9GKIidMAoH61w",
-    duration: 227,
-    type: "Video",
-    slug: "rampage",
-  },
-  content: "",
+	frontmatter: {
+		title: "Quick Flip!",
+		date: "2023-02-26T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "n400sseXb6l9OiLe95ZvE02FRevaO2zQYimayHXKh1FUk",
+		duration: 13,
+		type: "Video",
+		slug: "quick-flip",
+	},
+	content: "",
 };
 
 export const _mdx_85_: MDXModule = {
-  frontmatter: {
-    title: "Raw Driving Skill",
-    date: "2023-09-17T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "uwkBnnDi00TqxhDpyJG00cFaMfHZyaja00MPSvVd200sJaw",
-    duration: 117,
-    type: "Video",
-    slug: "raw-driving-skill",
-  },
-  content: "",
+	frontmatter: {
+		title: "Itkasumore",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "5ap01qR5eU1e01t5QAJJnE5Grp8KHqrX1yJJPY3rSJIww",
+		duration: 50,
+		type: "Video",
+		slug: "itkatsumore",
+	},
+	content: "",
 };
 
 export const _mdx_86_: MDXModule = {
-  frontmatter: {
-    title: "Schwhacked",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "01it01PGaNlGpVqdYj6YWCR3S3mShTRAtV2YZnB3w00ycM",
-    duration: 14,
-    type: "Video",
-    slug: "schwacked",
-  },
-  content: "",
+	frontmatter: {
+		title: "Pew! Pew pew!",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "FeypBRnGZ6lGzU600KVU1aWgvQa02lrlu4X4F9tqIPpBI",
+		duration: 17,
+		type: "Video",
+		slug: "pew-pew-pew",
+	},
+	content: "",
 };
 
 export const _mdx_87_: MDXModule = {
-  frontmatter: {
-    title: "Some Questionable Tactics...",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "X6AzP7J26g6mfRLD6yBlMRv5cE3gI4ahkqeUmhUOmUg",
-    duration: 23,
-    type: "Video",
-    slug: "some-questionable-tactics",
-  },
-  content: "",
+	frontmatter: {
+		title: "Patience is key!",
+		date: "2022-11-12T00:00:00.000Z",
+		tag: "CS",
+		description: "",
+		videoUrl: "Ptr3Jyv6W2aO7XOLc01DD9iwNd50127WpSHzqa00TbISNA",
+		duration: 179,
+		type: "Video",
+		slug: "patience-is-key",
+	},
+	content: "",
 };
 
 export const _mdx_88_: MDXModule = {
-  frontmatter: {
-    title: "Spinbot 3000 🤖",
-    date: "2022-10-31T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "BArO00G8BBk4UcUHGb3joGQrqVBMVh16i0092DxizBERo",
-    duration: 112,
-    type: "Video",
-    slug: "spinbot-3000",
-  },
-  content: "",
+	frontmatter: {
+		title: "Cheeky roleplay",
+		date: "2023-03-14T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "7jopx6EM02QSc9LqdWCXTMyfh39rvVFbC023AhoieZTd00",
+		duration: 227,
+		type: "Video",
+		slug: "cheeky-roleplay",
+	},
+	content: "",
 };
 
 export const _mdx_89_: MDXModule = {
-  frontmatter: {
-    title: "Tank Engagements",
-    date: "2023-10-17T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "6r3Um892RaufSNM6LlYZbdjjqKdqxeMmYEYgnDkSvnQ",
-    duration: 250,
-    type: "Video",
-    slug: "tank-engagements",
-  },
-  content: "",
+	frontmatter: {
+		title: "Glitterbeard's Cave",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "SOT",
+		description: "",
+		videoUrl: "16mLGoj2uixoYcy5oeQ7vzwGPAQvc1sbVqvt01uHnjS8",
+		duration: 346,
+		type: "Video",
+		slug: "glitterbeards-cave",
+	},
+	content: "",
 };
 
 export const _mdx_90_: MDXModule = {
-  frontmatter: {
-    title: "TeamSpeak Shenanigans",
-    date: "2023-06-06T13:03:53.402Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "WY253YwZYzrc00ZvwNOpkjIbZmuuAMkfNJHMf5VAP01Q00",
-    duration: 26,
-    type: "Video",
-    slug: "teamspeak-shenanigans",
-  },
-  content: "",
+	frontmatter: {
+		title: "Never jump walls in an enemy AO!",
+		date: "2022-11-22T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "E02PTmeH1SlG6dab2fKtY00Y6rVFQqzxwfEUWgzNb4bZQ",
+		duration: 46,
+		type: "Video",
+		slug: "never-jump-walls-in-an-enemy-ao",
+	},
+	content: "",
 };
 
 export const _mdx_91_: MDXModule = {
-  frontmatter: {
-    title: "That was cracked!",
-    date: "1970-01-01T00:00:00.000Z",
-    tag: "CS",
-    description: "",
-    videoUrl: "93gifxfr2tT1LNNsJPgAVW02Tv0222IhvpSvldp02VhCOE",
-    duration: 28,
-    type: "Video",
-    slug: "that-was-cracked",
-  },
-  content: "",
+	frontmatter: {
+		title: "BEST ZSU DRIVER CONFIRMED",
+		date: "2023-08-22T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "ML82TnnHtRBHIPmqh8dwFs7puq9Zoptrfb2l56qsgLI",
+		duration: 72,
+		type: "Video",
+		slug: "best-zsu-driver-confirmed",
+	},
+	content: "",
 };
 
 export const _mdx_92_: MDXModule = {
-  frontmatter: {
-    title: "They see me rollin'",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "h6023hrNRavqcCr02jhu5Agovg01evXY00LiP4js7HdNtfc",
-    duration: 21,
-    type: "Video",
-    slug: "they-see-me-rollin",
-  },
-  content: "",
+	frontmatter: {
+		title: "Dayum boi!",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "qhFl1zmifzhUCD1nMkeCOfJTCZyj67acnR9GVyQ3w2Y",
+		duration: 31,
+		type: "Video",
+		slug: "dayum-boi",
+	},
+	content: "",
 };
 
 export const _mdx_93_: MDXModule = {
-  frontmatter: {
-    title: "They're what!?",
-    date: "1970-01-01T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "P00V3Hw9P8DNrYuAUp01d43vUz3Gqn8JedCfLZ02CoEqPc",
-    duration: 24,
-    type: "Video",
-    slug: "theyre-what",
-  },
-  content: "",
+	frontmatter: {
+		title: "Raw Driving Skill",
+		date: "2023-09-17T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "uwkBnnDi00TqxhDpyJG00cFaMfHZyaja00MPSvVd200sJaw",
+		duration: 117,
+		type: "Video",
+		slug: "raw-driving-skill",
+	},
+	content: "",
 };
 
 export const _mdx_94_: MDXModule = {
-  frontmatter: {
-    title: "Toaster Bath is a good driver!",
-    date: "2022-07-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "suRhinGJwEXafAh01Hp4buoqaleeQErhz6ruUFfmpY3c",
-    duration: 28,
-    type: "Video",
-    slug: "toaster-bath-is-a-good-driver",
-  },
-  content: "",
+	frontmatter: {
+		title: "I love this game sometimes hehe",
+		date: "2023-05-10T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "UVpThntGQR6sDK3YCFpfnWgYYwfR003emLGDJ1mIS021Q",
+		duration: 37,
+		type: "Video",
+		slug: "i-love-this-game-sometimes-hehe",
+	},
+	content: "",
 };
 
 export const _mdx_95_: MDXModule = {
-  frontmatter: {
-    title: "TT - German Rumble",
-    date: "2023-05-19T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "7lRjYo3T2M8urPQV4oIjMV1Grhhkfc5RgcBgDXXZouU",
-    duration: 50,
-    type: "Video",
-    slug: "tt-german-rumble",
-  },
-  content: "",
+	frontmatter: {
+		title: "Pistols and Shotguns are CRACKED",
+		date: "2024-05-18T00:00:00.000Z",
+		tag: "R6S",
+		description: "",
+		videoUrl: "qA7AxGh00uSjpUFj7Uk5aVgXK7pgTFGAeHO8Tcf8TYDA",
+		duration: 132,
+		type: "Video",
+		slug: "pistols-and-shotguns-are-cracked",
+	},
+	content: "",
 };
 
 export const _mdx_96_: MDXModule = {
-  frontmatter: {
-    title: "Vehicular Confusion",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "vNiXKX02FwAPS29I02zP8R3hRzv00ua3S01NN1QLopuDDN8",
-    duration: 264,
-    type: "Video",
-    slug: "vehicular-confusion",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - OPERATION BLITZKRIEG",
+		date: "2023-11-21T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "Bw00f8UKmc6woZmyJa01PU5QAU1NMmBdsiR90200yKFcOho",
+		duration: 117,
+		type: "Video",
+		slug: "zsu-operation-blitzkrieg",
+	},
+	content: "",
 };
 
 export const _mdx_97_: MDXModule = {
-  frontmatter: {
-    title: "What a round 😯",
-    date: "2022-11-17T00:00:00.000Z",
-    tag: "CS",
-    description: "",
-    videoUrl: "JoEg5Svt7IWkuH8fwH7tl8S3wcNw9QKaBqUsviQaQQs",
-    duration: 119,
-    type: "Video",
-    slug: "what-a-round",
-  },
-  content: "",
+	frontmatter: {
+		title: "Orenji's Boo Boo",
+		date: "2023-05-08T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "i1yDH2gXacyWfj71AtDMs01hLZ00N7wJ8yTIN2X1J2lyk",
+		duration: 27,
+		type: "Video",
+		slug: "orenjis-boo-boo",
+	},
+	content: "",
 };
 
 export const _mdx_98_: MDXModule = {
-  frontmatter: {
-    title: "What even is a straight line anyway?",
-    date: "2022-07-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "X696BYT41HaNeG5gVTUXIhFmcLisIwDNS6V6ZGDck0000",
-    duration: 9,
-    type: "Video",
-    slug: "what-even-is-a-straight-line-anyway",
-  },
-  content: "",
+	frontmatter: {
+		title: "Chinchilla Melon Festival",
+		date: "2023-03-05T00:00:00.000Z",
+		tag: "Life",
+		description: "",
+		videoUrl: "7lB7zzgdFiG01GmlYSEhIqPQHYW2upBq7J3zoa78f6EQ",
+		duration: 8,
+		type: "Video",
+		slug: "chinchilla-melon-festival",
+	},
+	content: "",
 };
 
 export const _mdx_99_: MDXModule = {
-  frontmatter: {
-    title: "What plane is this? 🤔",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "GnYqOxTbKvw2r6o35P4fhwBPp102Rdkh4dxjVXXBo016U",
-    duration: 52,
-    type: "Video",
-    slug: "what-plane-is-this",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Burning Pine",
+		date: "2022-12-20T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "VaVcjQTiYWKwscwPlN4klvo2ZT98aDegq900C00dLVGz4",
+		duration: 169,
+		type: "Video",
+		slug: "zsu-operation-burning-pine",
+	},
+	content: "",
 };
 
 export const _mdx_100_: MDXModule = {
-  frontmatter: {
-    title: "What's a grief and beef?",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "00TBAZ6emfP8DDmFZMPGODh5wP701lGv01Dz26PzPYKXAI",
-    duration: 23,
-    type: "Video",
-    slug: "whats-a-grief-and-beef",
-  },
-  content: "",
+	frontmatter: {
+		title: "Chain Gunner Attachment",
+		date: "2023-02-21T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "kUGDwuDQax8jGCJE6zRqBcWUKAmVHpCkM3Bb1upqV400",
+		duration: 41,
+		type: "Video",
+		slug: "chain-gunner-attachment",
+	},
+	content: "",
 };
 
 export const _mdx_101_: MDXModule = {
-  frontmatter: {
-    title: "Where's my boonie hat?",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "NNfQEH34801SPox7yVcmG6FyUXkFcnfdfe7l0073xysd8",
-    duration: 99,
-    type: "Video",
-    slug: "wheres-my-boonie-hat",
-  },
-  content: "",
+	frontmatter: {
+		title: "Kapow!",
+		date: "1970-01-01T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc",
+		duration: 23,
+		type: "Video",
+		slug: "kapow",
+	},
+	content: "",
 };
 
 export const _mdx_102_: MDXModule = {
-  frontmatter: {
-    title: "Why aren't they shooting him?",
-    date: "2022-11-11T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "RJYz8UiZIilw8guusHQZK701SAJt00zE01yRmbmUJXpE3Q",
-    duration: 76,
-    type: "Video",
-    slug: "why-arent-they-shooting-him",
-  },
-  content: "",
+	frontmatter: {
+		title: "zoomin'",
+		date: "2022-11-06T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "lSp6Rac8pugpOUb9rs01T7N0100vZ01p4RL877Jez8KBHBQ",
+		duration: 32,
+		type: "Video",
+		slug: "zoomin",
+	},
+	content: "",
 };
 
 export const _mdx_103_: MDXModule = {
-  frontmatter: {
-    title: "You wanna see some magic?",
-    date: "2022-07-13T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "CDVv747QDSw3guVKo201Rn00bTex01F1kPl6VNnUlbwLk00",
-    duration: 8,
-    type: "Video",
-    slug: "you-wanna-see-some-magic",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - OPERATION DERAILED",
+		date: "2023-11-14T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "vOEChCgeOmmU02b0102TNrxzkjQoaX1AsnAZLd00TuNOVe4",
+		duration: 87,
+		type: "Video",
+		slug: "zsu-operation-derailed",
+	},
+	content: "",
 };
 
 export const _mdx_104_: MDXModule = {
-  frontmatter: {
-    title: "Zero Operational Awareness",
-    date: "2022-11-12T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "crkZjNpM2jD4hLpRzdolLjkigyx94JWtXXF6006tNKF00",
-    duration: 58,
-    type: "Video",
-    slug: "zero-operational-awareness",
-  },
-  content: "",
+	frontmatter: {
+		title: "Han the man 💪",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "WpwgltF5hnEehRtfzFWGxf1P9r7DnC8kNV6lfa00NLpM",
+		duration: 42,
+		type: "Video",
+		slug: "han-the-man",
+	},
+	content: "",
 };
 
 export const _mdx_105_: MDXModule = {
-  frontmatter: {
-    title: "zoomin'",
-    date: "2022-11-06T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "lSp6Rac8pugpOUb9rs01T7N0100vZ01p4RL877Jez8KBHBQ",
-    duration: 32,
-    type: "Video",
-    slug: "zoomin",
-  },
-  content: "",
+	frontmatter: {
+		title: "Gun go brrr",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "n4sPliET01Oi1cRR64e02902xiveCCcwhqoxx6tiJWzQKk",
+		duration: 283,
+		type: "Video",
+		slug: "gun-go-brr",
+	},
+	content: "",
 };
 
 export const _mdx_106_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - OPERATION BAITED TRAPS",
-    date: "2023-10-17T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "C72bMNBrEQdUBv9prcDA4M9pk6QDtE6xFq8Ww5ukAWY",
-    duration: 138,
-    type: "Video",
-    slug: "zsu-operation-baited-traps",
-  },
-  content: "",
+	frontmatter: {
+		title: "Where's my boonie hat?",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "NNfQEH34801SPox7yVcmG6FyUXkFcnfdfe7l0073xysd8",
+		duration: 99,
+		type: "Video",
+		slug: "wheres-my-boonie-hat",
+	},
+	content: "",
 };
 
 export const _mdx_107_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Bay of Goats",
-    date: "2023-03-28T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "EApZnh02fN1ezC7vcUjqkK02ja4dh2BzjdD0202QQT2BFTM",
-    duration: 242,
-    type: "Video",
-    slug: "zsu-operation-bay-of-goats",
-  },
-  content: "",
+	frontmatter: {
+		title: "What even is a straight line anyway?",
+		date: "2022-07-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "X696BYT41HaNeG5gVTUXIhFmcLisIwDNS6V6ZGDck0000",
+		duration: 9,
+		type: "Video",
+		slug: "what-even-is-a-straight-line-anyway",
+	},
+	content: "",
 };
 
 export const _mdx_108_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - OPERATION BLITZKRIEG",
-    date: "2023-11-21T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "Bw00f8UKmc6woZmyJa01PU5QAU1NMmBdsiR90200yKFcOho",
-    duration: 117,
-    type: "Video",
-    slug: "zsu-operation-blitzkrieg",
-  },
-  content: "",
+	frontmatter: {
+		title: "They're what!?",
+		date: "1970-01-01T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "P00V3Hw9P8DNrYuAUp01d43vUz3Gqn8JedCfLZ02CoEqPc",
+		duration: 24,
+		type: "Video",
+		slug: "theyre-what",
+	},
+	content: "",
 };
 
 export const _mdx_109_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Bridge Baby",
-    date: "2023-02-16T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "Zc4LSuXTTfmWPw00pZCkz8OAVt01DCe601PQs5qzJb5fq8",
-    duration: 199,
-    type: "Video",
-    slug: "zsu-operation-bridge-baby",
-  },
-  content: "",
+	frontmatter: {
+		title: "Chad SPG",
+		date: "2023-08-07T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "cqnSGEoH00MF1OZroz0200wh8xwbhHuPwDuKubzO5by01Ew",
+		duration: 228,
+		type: "Video",
+		slug: "chad-spg",
+	},
+	content: "",
 };
 
 export const _mdx_110_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Burning Pine",
-    date: "2022-12-20T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "VaVcjQTiYWKwscwPlN4klvo2ZT98aDegq900C00dLVGz4",
-    duration: 169,
-    type: "Video",
-    slug: "zsu-operation-burning-pine",
-  },
-  content: "",
+	frontmatter: {
+		title: "Panzerfaust Time 💥",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "NY00FnT02k3Wo9FOjFgCD00l3v2xNXg1Y5nUZN9VK0135uw",
+		duration: 169,
+		type: "Video",
+		slug: "panzerfaust-time",
+	},
+	content: "",
 };
 
 export const _mdx_111_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - OPERATION DERAILED",
-    date: "2023-11-14T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "vOEChCgeOmmU02b0102TNrxzkjQoaX1AsnAZLd00TuNOVe4",
-    duration: 87,
-    type: "Video",
-    slug: "zsu-operation-derailed",
-  },
-  content: "",
+	frontmatter: {
+		title: "That was cracked!",
+		date: "1970-01-01T00:00:00.000Z",
+		tag: "CS",
+		description: "",
+		videoUrl: "93gifxfr2tT1LNNsJPgAVW02Tv0222IhvpSvldp02VhCOE",
+		duration: 28,
+		type: "Video",
+		slug: "that-was-cracked",
+	},
+	content: "",
 };
 
 export const _mdx_112_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Genesis",
-    date: "2023-05-04T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "HHf93DYs102wZB01mlEVmJYo1XuVBoV01MmbwAazMaAT3I",
-    duration: 110,
-    type: "Video",
-    slug: "zsu-operation-genesis",
-  },
-  content: "",
+	frontmatter: {
+		title: "F for Vulkan and Sodel",
+		date: "2022-11-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "hao2qA02XoU1GU3h7u1Pj2ErVvE9drWx02P1DDHsEUPww",
+		duration: 437,
+		type: "Video",
+		slug: "f-for-vulkan-and-sodel",
+	},
+	content: "",
 };
 
 export const _mdx_113_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Guiding Serpent",
-    date: "2023-03-21T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "lGe1Z3O8JQV1JvF015RjIOC2001gIo9j028BqAdn52yP5w",
-    duration: 146,
-    type: "Video",
-    slug: "zsu-operation-guiding-serpent",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Tzatziki Flip 2 Electric Boogaloo",
+		date: "2023-04-02T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "Kq01X027eQA6Ttw4LS02XcdIDu9EzgaLXLwLHPcWTY02fCY",
+		duration: 468,
+		type: "Video",
+		slug: "zsu-operation-tzatziki-flip-2-electric-boogaloo",
+	},
+	content: "",
 };
 
 export const _mdx_114_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - OPERATION KRUGERTOWN",
-    date: "2023-08-06T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "CSkKqSD01RKiY38ZFM2vhW2J00lym01s7eExiIuG01kIZ58",
-    duration: 192,
-    type: "Video",
-    slug: "zsu-operation-krugertown",
-  },
-  content: "",
+	frontmatter: {
+		title: "My useless 10-10 drop 🤣",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "uMUIc7h4eYacNhlOdC4BB0000ySvS6nCPNBjn8G8C499w",
+		duration: 31,
+		type: "Video",
+		slug: "my-useless-10-10-drop",
+	},
+	content: "",
 };
 
 export const _mdx_115_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Mud Washer PT. 2",
-    date: "2022-11-29T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "mSaFlXUIEFCqJB6q1wVOhwbujHn3wERfbcfJYhgIIDs",
-    duration: 522,
-    type: "Video",
-    slug: "zsu-operation-mud-washer-pt-2",
-  },
-  content: "",
+	frontmatter: {
+		title: "What's a grief and beef?",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "00TBAZ6emfP8DDmFZMPGODh5wP701lGv01Dz26PzPYKXAI",
+		duration: 23,
+		type: "Video",
+		slug: "whats-a-grief-and-beef",
+	},
+	content: "",
 };
 
 export const _mdx_116_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - OPERATION OUTLAST",
-    date: "2023-10-24T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "VuF9DPXmr4mDLcDjLO8JrFOZGagucPyHMbY7c7PK9Ak",
-    duration: 113,
-    type: "Video",
-    slug: "zsu-operation-outlast",
-  },
-  content: "",
+	frontmatter: {
+		title: "ZSU - Operation Overblown",
+		date: "2022-11-12T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "bHYCW6bDUE8a011xxh8fc00YXu02gnlcXbkscaPl02EDhzg",
+		duration: 720,
+		type: "Video",
+		slug: "zsu-operation-overblown",
+	},
+	content: "",
 };
 
 export const _mdx_117_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Overblown",
-    date: "2022-11-12T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "bHYCW6bDUE8a011xxh8fc00YXu02gnlcXbkscaPl02EDhzg",
-    duration: 720,
-    type: "Video",
-    slug: "zsu-operation-overblown",
-  },
-  content: "",
+	frontmatter: {
+		title: "OFF TO WAR",
+		date: "2023-02-26T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "UWC7IvzTHPe026QEnUOUA5YUOsQcQ3R54VdW6iFscBTo",
+		duration: 16,
+		type: "Video",
+		slug: "off-to-war",
+	},
+	content: "",
 };
 
 export const _mdx_118_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Peoples Highway",
-    date: "2023-04-04T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "gN901vV7sry101zHLoVby2wqK500X7Abbov2bcsTIoOTlc",
-    duration: 537,
-    type: "Video",
-    slug: "zsu-operation-peoples-highway",
-  },
-  content: "",
+	frontmatter: {
+		title: "What plane is this? 🤔",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "GnYqOxTbKvw2r6o35P4fhwBPp102Rdkh4dxjVXXBo016U",
+		duration: 52,
+		type: "Video",
+		slug: "what-plane-is-this",
+	},
+	content: "",
 };
 
 export const _mdx_119_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Poached Eggs",
-    date: "2023-02-05T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "qzvnp3z1zVjQb8Jne7dXgRaT8AFnrcEApPJgQlUkPWM",
-    duration: 225,
-    type: "Video",
-    slug: "zsu-operation-poached-eggs",
-  },
-  content: "",
+	frontmatter: {
+		title: "Kapow!",
+		date: "1970-01-01T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc",
+		duration: 23,
+		type: "Video",
+		slug: "leap-of-faith",
+	},
+	content: "",
 };
 
 export const _mdx_120_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Serpent Slayer",
-    date: "2023-03-26T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "7PSx02C9IkRSg2ITWriKT00xPuPSAyC00Fk51h8pJszIRA",
-    duration: 262,
-    type: "Video",
-    slug: "zsu-operation-serpent-slayer",
-  },
-  content: "",
+	frontmatter: {
+		title: "Infinite Bullets Glitch",
+		date: "2023-12-02T00:00:00.000Z",
+		tag: "CS",
+		description: "",
+		videoUrl: "L2NszURWxdCqITUxpwmoNVru45ejUxwPV02glZfSSy00U",
+		duration: 37,
+		type: "Video",
+		slug: "infinite-bullets-glitch",
+	},
+	content: "",
 };
 
 export const _mdx_121_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - OPERATION TEMPORAL HARVEST",
-    date: "2023-12-06T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "2fU2iF8pbbfux4ZYJGQnCxCUx59iM7mQBHC6024sWF2g",
-    duration: 534,
-    type: "Video",
-    slug: "zsu-operation-temporal-harvest",
-  },
-  content: "",
+	frontmatter: {
+		title: "Toaster Bath is a good driver!",
+		date: "2022-07-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "suRhinGJwEXafAh01Hp4buoqaleeQErhz6ruUFfmpY3c",
+		duration: 28,
+		type: "Video",
+		slug: "toaster-bath-is-a-good-driver",
+	},
+	content: "",
 };
 
 export const _mdx_122_: MDXModule = {
-  frontmatter: {
-    title: "ZSU - Operation Tzatziki Flip 2 Electric Boogaloo",
-    date: "2023-04-02T00:00:00.000Z",
-    tag: "ARMA",
-    description: "",
-    videoUrl: "Kq01X027eQA6Ttw4LS02XcdIDu9EzgaLXLwLHPcWTY02fCY",
-    duration: 468,
-    type: "Video",
-    slug: "zsu-operation-tzatziki-flip-2-electric-boogaloo",
-  },
-  content: "",
+	frontmatter: {
+		title: "Hello! I've arrived!",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "FW00sQd9Ql8xto386Ky01QAfT6Qjd62nnQZlywkNxS9nU",
+		duration: 23,
+		type: "Video",
+		slug: "hello-ive-arrived",
+	},
+	content: "",
+};
+
+export const _mdx_123_: MDXModule = {
+	frontmatter: {
+		title: "ZSU - Operation Peoples Highway",
+		date: "2023-04-04T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "gN901vV7sry101zHLoVby2wqK500X7Abbov2bcsTIoOTlc",
+		duration: 537,
+		type: "Video",
+		slug: "zsu-operation-peoples-highway",
+	},
+	content: "",
+};
+
+export const _mdx_124_: MDXModule = {
+	frontmatter: {
+		title: "What a round 😯",
+		date: "2022-11-17T00:00:00.000Z",
+		tag: "CS",
+		description: "",
+		videoUrl: "JoEg5Svt7IWkuH8fwH7tl8S3wcNw9QKaBqUsviQaQQs",
+		duration: 119,
+		type: "Video",
+		slug: "what-a-round",
+	},
+	content: "",
+};
+
+export const _mdx_125_: MDXModule = {
+	frontmatter: {
+		title: "ZSU - OPERATION TEMPORAL HARVEST",
+		date: "2023-12-06T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "2fU2iF8pbbfux4ZYJGQnCxCUx59iM7mQBHC6024sWF2g",
+		duration: 534,
+		type: "Video",
+		slug: "zsu-operation-temporal-harvest",
+	},
+	content: "",
+};
+
+export const _mdx_126_: MDXModule = {
+	frontmatter: {
+		title: "Vehicular Confusion",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "vNiXKX02FwAPS29I02zP8R3hRzv00ua3S01NN1QLopuDDN8",
+		duration: 264,
+		type: "Video",
+		slug: "vehicular-confusion",
+	},
+	content: "",
+};
+
+export const _mdx_127_: MDXModule = {
+	frontmatter: {
+		title: "Zero Operational Awareness",
+		date: "2022-11-12T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "crkZjNpM2jD4hLpRzdolLjkigyx94JWtXXF6006tNKF00",
+		duration: 58,
+		type: "Video",
+		slug: "zero-operational-awareness",
+	},
+	content: "",
+};
+
+export const _mdx_128_: MDXModule = {
+	frontmatter: {
+		title: "ZSU - Operation Poached Eggs",
+		date: "2023-02-05T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "qzvnp3z1zVjQb8Jne7dXgRaT8AFnrcEApPJgQlUkPWM",
+		duration: 225,
+		type: "Video",
+		slug: "zsu-operation-poached-eggs",
+	},
+	content: "",
+};
+
+export const _mdx_129_: MDXModule = {
+	frontmatter: {
+		title: "I should have been more concerned...",
+		date: "2022-11-11T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "UViut01neIcKcMxodpCNYifJXdW32kL74utoJRgeI3X00",
+		duration: 47,
+		type: "Video",
+		slug: "i-should-have-been-more-concerned",
+	},
+	content: "",
+};
+
+export const _mdx_130_: MDXModule = {
+	frontmatter: {
+		title: "Rampage 💀",
+		date: "1970-01-01T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "LAxVJrz2Xml5TUgixqG3w5wgtCjygW9GKIidMAoH61w",
+		duration: 227,
+		type: "Video",
+		slug: "rampage",
+	},
+	content: "",
+};
+
+export const _mdx_131_: MDXModule = {
+	frontmatter: {
+		title: "ZSU - Operation Bay of Goats",
+		date: "2023-03-28T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "EApZnh02fN1ezC7vcUjqkK02ja4dh2BzjdD0202QQT2BFTM",
+		duration: 242,
+		type: "Video",
+		slug: "zsu-operation-bay-of-goats",
+	},
+	content: "",
+};
+
+export const _mdx_132_: MDXModule = {
+	frontmatter: {
+		title: "TeamSpeak Shenanigans",
+		date: "2023-06-06T13:03:53.402Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "WY253YwZYzrc00ZvwNOpkjIbZmuuAMkfNJHMf5VAP01Q00",
+		duration: 26,
+		type: "Video",
+		slug: "teamspeak-shenanigans",
+	},
+	content: "",
+};
+
+export const _mdx_133_: MDXModule = {
+	frontmatter: {
+		title: "FREEBALLIN' IT!",
+		date: "2022-07-13T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "NACDkxdjM5HZZpovIYJHIhhVbXbo9ie3V01KXI02jJrLg",
+		duration: 31,
+		type: "Video",
+		slug: "freeballing-it",
+	},
+	content: "",
+};
+
+export const _mdx_134_: MDXModule = {
+	frontmatter: {
+		title: "ZSU - Operation Guiding Serpent",
+		date: "2023-03-21T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "lGe1Z3O8JQV1JvF015RjIOC2001gIo9j028BqAdn52yP5w",
+		duration: 146,
+		type: "Video",
+		slug: "zsu-operation-guiding-serpent",
+	},
+	content: "",
+};
+
+export const _mdx_135_: MDXModule = {
+	frontmatter: {
+		title: "Amaru's Revenge",
+		date: "2023-06-18T00:00:00.000Z",
+		tag: "R6S",
+		description: "",
+		videoUrl: "OClHNSgCUAPLxvHI9SFmyjoxnquNeg2yP00NanaNOMR8",
+		duration: 43,
+		type: "Video",
+		slug: "amarus-revenge",
+	},
+	content: "",
+};
+
+export const _mdx_136_: MDXModule = {
+	frontmatter: {
+		title: "ZSU - OPERATION BAITED TRAPS",
+		date: "2023-10-17T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "C72bMNBrEQdUBv9prcDA4M9pk6QDtE6xFq8Ww5ukAWY",
+		duration: 138,
+		type: "Video",
+		slug: "zsu-operation-baited-traps",
+	},
+	content: "",
+};
+
+export const _mdx_137_: MDXModule = {
+	frontmatter: {
+		title: "Spinbot 3000 🤖",
+		date: "2022-10-31T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "BArO00G8BBk4UcUHGb3joGQrqVBMVh16i0092DxizBERo",
+		duration: 112,
+		type: "Video",
+		slug: "spinbot-3000",
+	},
+	content: "",
+};
+
+export const _mdx_138_: MDXModule = {
+	frontmatter: {
+		title: "brr brr",
+		date: "2023-05-28T00:00:00.000Z",
+		tag: "ARMA",
+		description: "",
+		videoUrl: "RBkvJmbSIigIVUV8YPWz19KYcx1pNyg6eJ6FtTCQgK8",
+		duration: 28,
+		type: "Video",
+		slug: "brr-brr",
+	},
+	content: "",
 };
