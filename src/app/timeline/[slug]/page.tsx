@@ -20,6 +20,8 @@ import {
 	TooltipTrigger,
 } from "@/src/components/ui/tooltip";
 import type { Post } from "@/src/interfaces/content-item";
+import type { MDXModule } from "@/_content";
+import * as mdxIndex from "@/_content";
 
 const mdxComponents = {
 	Tweet: ({ id }: { id: string }) => <Tweet id={id} />,
@@ -115,18 +117,26 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 	let MDXContent: any, frontmatter: Post, content: string;
 
 	try {
+		// Find the MDX module for this slug
+		const mdxModule = Object.entries(mdxIndex)
+			.filter(([key]) => key.startsWith("_mdx_"))
+			.map(([_, module]) => module as MDXModule)
+			.find((module) => module.frontmatter.slug === slug && module.frontmatter.type === "Post");
+
+		if (!mdxModule) {
+			return notFound();
+		}
+
 		// Dynamically import the MDX file for the slug
 		const post = await import(`@/_content/posts/${slug}.mdx`);
 		MDXContent = post.default;
-		frontmatter = post.frontmatter;
-		content = post.default?.compiledSource || ""; // fallback if needed
+		frontmatter = mdxModule.frontmatter as Post;
+		content = mdxModule.content;
 	} catch {
 		return notFound();
 	}
 
-	// Calculate reading time
-	// If you want to use the raw content, you may need to import it differently
-	// For now, fallback to 1 minute if content is not available
+	// Calculate reading time using the actual content
 	const wordCount = content ? content.split(/\s+/).length : 200;
 	const averageWordsPerMinute = 300;
 	const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
@@ -284,8 +294,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 	let frontmatter: Post;
 
 	try {
-		const post = await import(`@/_content/posts/${slug}.mdx`);
-		frontmatter = post.frontmatter;
+		// Find the MDX module for this slug
+		const mdxModule = Object.entries(mdxIndex)
+			.filter(([key]) => key.startsWith("_mdx_"))
+			.map(([_, module]) => module as MDXModule)
+			.find((module) => module.frontmatter.slug === slug && module.frontmatter.type === "Post");
+
+		if (!mdxModule) {
+			return notFound();
+		}
+
+		frontmatter = mdxModule.frontmatter as Post;
 	} catch {
 		return notFound();
 	}
