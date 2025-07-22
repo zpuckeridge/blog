@@ -6,6 +6,7 @@ import LinkWithIcon from "@/src/components/link-with-icon";
 import type { Post, Video } from "@/src/interfaces/content-item";
 import { getAllPosts, getAllVideos } from "@/src/lib/getAllContent";
 import AnimatedGradientText from "../components/animated-gradient-text";
+import GitHubContributions from "../components/github-contributions";
 import { ToggleTheme } from "../components/toggle-theme";
 import { projects } from "../lib/projects";
 
@@ -112,6 +113,8 @@ export default async function Home() {
 							</p>
 						</div>
 					</div>
+
+					<GitHubContributions username="zpuckeridge" />
 
 					<hr className="border-dotted border-muted-foreground" />
 

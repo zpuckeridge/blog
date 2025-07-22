@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { Tweet } from "react-tweet";
+import type { MDXModule } from "@/_content";
+import * as mdxIndex from "@/_content";
 import AfterQuote from "@/src/components/after-quote";
 import AnimatedSignature from "@/src/components/animated-signature";
 import CopyLink from "@/src/components/copy-link";
@@ -20,8 +22,6 @@ import {
 	TooltipTrigger,
 } from "@/src/components/ui/tooltip";
 import type { Post } from "@/src/interfaces/content-item";
-import type { MDXModule } from "@/_content";
-import * as mdxIndex from "@/_content";
 
 const mdxComponents = {
 	Tweet: ({ id }: { id: string }) => <Tweet id={id} />,

@@ -7,12 +7,6 @@ export const projects = [
 		status: "WIP",
 	},
 	{
-		name: "Hope Reformed Baptist Church",
-		image: null,
-		year: "Present",
-		status: "WIP",
-	},
-	{
 		name: "Resurgence Church",
 		image: null,
 		year: "Present",
@@ -26,6 +20,12 @@ export const projects = [
 	},
 
 	// 2025 Projects
+	{
+		name: "Hope Reformed Baptist Church",
+		image: null,
+		year: "2025",
+		link: "https://hoperb.church",
+	},
 	{
 		name: "Finau Sanga Law & Consulting Group",
 		image: null,
