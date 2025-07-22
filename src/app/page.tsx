@@ -114,7 +114,8 @@ export default async function Home() {
 						</div>
 					</div>
 
-					<GitHubContributions username="zpuckeridge" />
+					{/* To Review: GitHub Contributions not displaying on deployment. */}
+					{/* <GitHubContributions username="zpuckeridge" /> */}
 
 					<hr className="border-dotted border-muted-foreground" />
 
