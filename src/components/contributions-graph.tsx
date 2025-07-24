@@ -30,11 +30,26 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 					`/api/github/contributions/graph?username=${encodeURIComponent(username)}`
 				);
 
-				if (!response.ok) {
-					throw new Error("Failed to fetch contributions");
-				}
-
 				const data = await response.json();
+
+				if (!response.ok) {
+					// Handle specific error cases
+					if (response.status === 401) {
+						throw new Error("GitHub authentication failed - token may be expired");
+					}
+					if (response.status === 403) {
+						throw new Error("GitHub access forbidden - check API permissions");
+					}
+					if (response.status === 404) {
+						throw new Error(`GitHub user '${username}' not found`);
+					}
+					if (response.status === 429) {
+						const resetTime = data.resetTime ? new Date(data.resetTime).toLocaleString() : "soon";
+						throw new Error(`GitHub API rate limit exceeded. Resets at ${resetTime}`);
+					}
+
+					throw new Error(data.error || `HTTP ${response.status}: Failed to fetch contributions`);
+				}
 
 				if (data.error) {
 					throw new Error(data.error);
@@ -42,7 +57,9 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 
 				setContributions(data.contributions);
 			} catch (err) {
-				setError(err instanceof Error ? err.message : "Failed to load contributions");
+				const errorMessage = err instanceof Error ? err.message : "Failed to load contributions";
+				console.error("GitHub contributions error:", errorMessage);
+				setError(errorMessage);
 			} finally {
 				setLoading(false);
 			}
@@ -76,13 +93,25 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 		return "bg-green-500 dark:bg-green-700";
 	};
 
+	// Show error state
+	if (error) {
+		return (
+			<article className="w-full text-left border-0 p-0 bg-transparent h-[120px] flex items-center">
+				<div className="text-xs text-muted-foreground">
+					<p>GitHub contributions unavailable</p>
+					<p className="text-red-500 dark:text-red-400">{error}</p>
+				</div>
+			</article>
+		);
+	}
+
 	return (
 		<article
 			className="w-full text-left border-0 p-0 bg-transparent transition-opacity duration-300 ease-in-out h-[120px]"
-			style={{ opacity: loading || error ? 0 : 1 }}
+			style={{ opacity: loading ? 0.5 : 1 }}
 			onMouseLeave={() => setHoveredDay(null)}
 		>
-			{!loading && !error && (
+			{!loading && (
 				<div className="space-y-2" ref={containerRef}>
 					<div className="flex gap-[4px] overflow-hidden flex justify-end">
 						{weeks.map((week, weekIndex) => {
