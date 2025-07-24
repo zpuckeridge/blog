@@ -20,9 +20,11 @@ const fontMono = Geist_Mono({
 });
 
 const fontSerif = Instrument_Serif({
-	subsets: ["latin"],
 	variable: "--font-serif",
-	weight: ["400"],
+	subsets: ["latin"],
+	display: "swap",
+	weight: "400",
+	style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {

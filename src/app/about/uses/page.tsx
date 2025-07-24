@@ -19,7 +19,7 @@ export default function Uses() {
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
-				<p className="font-serif text-2xl font-semibold">Uses</p>
+				<p className="font-serif text-2xl font-semibold italic">Uses</p>
 				<p>A summary of the tools and hardware I use on a daily basis.</p>
 
 				<div className="flex flex-col gap-12">

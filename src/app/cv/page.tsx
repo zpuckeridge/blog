@@ -12,7 +12,7 @@ export default function CV() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="text-sm flex flex-col gap-2">
-					<p className="text-2xl font-semibold font-serif">Curriculum Vitae</p>
+					<p className="text-2xl font-semibold font-serif italic">Curriculum Vitae</p>
 
 					<p>An overview of my work experience and education.</p>
 				</div>

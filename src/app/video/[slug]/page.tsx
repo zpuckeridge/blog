@@ -29,7 +29,7 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="space-y-4">
 					<div>
-						<h1 className="font-serif text-2xl font-semibold">{frontmatter.title}</h1>
+						<h1 className="font-serif text-2xl font-semibold italic">{frontmatter.title}</h1>
 
 						<div className="flex gap-3 justify-between text-muted-foreground text-sm w-full">
 							<div className="w-full text-muted-foreground text-xs">

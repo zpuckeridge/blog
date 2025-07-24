@@ -20,7 +20,7 @@ export default async function Clips() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="text-sm  flex flex-col gap-2">
-					<p className="text-2xl font-semibold font-serif">Videos</p>
+					<p className="text-2xl font-semibold font-serif italic">Videos</p>
 
 					<p>
 						A compilation of humorous, thrilling, and memorable moments from my life and some of the

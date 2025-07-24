@@ -35,7 +35,7 @@ export default async function Home() {
 			<div className="space-y-20">
 				<div className="space-y-4">
 					<div className="text-sm">
-						<p className="text-2xl font-semibold font-serif">Zacchary Puckeridge</p>
+						<p className="text-2xl font-semibold font-serif italic">Zacchary Puckeridge</p>
 						<p>Self-taught Web Developer & Generalist</p>
 						<p>Based in Brisbane, Australia</p>
 					</div>
