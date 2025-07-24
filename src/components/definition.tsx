@@ -13,7 +13,7 @@ const Definition: FC<DefinitionProps> = ({ word, meaning, type }) => {
 				<div className="text-sm">{word}</div> ·
 				{type && <div className="text-xs text-muted-foreground italic">{type}</div>}
 			</div>
-			<div className="text-xs">{meaning}</div>
+			<div className="text-sm ">{meaning}</div>
 		</div>
 	);
 };

@@ -6,6 +6,7 @@ import LinkWithIcon from "@/src/components/link-with-icon";
 import type { Post, Video } from "@/src/interfaces/content-item";
 import { getAllPosts, getAllVideos } from "@/src/lib/getAllContent";
 import AnimatedGradientText from "../components/animated-gradient-text";
+import GitHubContributions from "../components/contributions-graph";
 import { ToggleTheme } from "../components/toggle-theme";
 import { projects } from "../lib/projects";
 
@@ -34,10 +35,12 @@ export default async function Home() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="space-y-20">
 				<div className="space-y-4">
-					<div className="text-sm">
+					<div className="text-sm space-y-2">
 						<p className="text-2xl font-semibold font-serif italic">Zacchary Puckeridge</p>
-						<p>Self-taught Web Developer & Generalist</p>
-						<p>Based in Brisbane, Australia</p>
+						<div>
+							<p>Self-taught Web Developer & Generalist</p>
+							<p>Based in Brisbane, Australia</p>
+						</div>
 					</div>
 
 					<div className="flex flex-col md:flex-row md:justify-between gap-4">
@@ -112,9 +115,6 @@ export default async function Home() {
 							</p>
 						</div>
 					</div>
-
-					{/* To Review: GitHub Contributions not displaying on deployment. */}
-					{/* <GitHubContributions username="zpuckeridge" /> */}
 
 					<hr className="border-dotted border-muted-foreground" />
 
@@ -221,6 +221,7 @@ export default async function Home() {
 								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-linear-to-t from-white dark:from-background" />
 							</div>
 						</div>
+
 						<div className="flex justify-end">
 							<Link
 								href="/videos"
@@ -230,6 +231,8 @@ export default async function Home() {
 							</Link>
 						</div>
 					</div>
+
+					<GitHubContributions username="zpuckeridge" />
 
 					<hr className="border-dotted border-muted-foreground" />
 

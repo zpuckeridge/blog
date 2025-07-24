@@ -14,6 +14,7 @@ import Definition from "@/src/components/definition";
 import FootnotesNavigation from "@/src/components/footnotes-navigation";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import SideNote from "@/src/components/side-note";
+import Subscribe from "@/src/components/subscribe";
 import TableOfContents from "@/src/components/toc";
 import {
 	Tooltip,
@@ -274,6 +275,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 								)}
 							</div>
 						</div>
+						<Subscribe />
 					</div>
 				</div>
 

@@ -12,7 +12,7 @@ interface GitHubContributionsProps {
 	username: string;
 }
 
-export default function GitHubContributions({ username }: GitHubContributionsProps) {
+export default function ContributionsGraph({ username }: GitHubContributionsProps) {
 	const [contributions, setContributions] = useState<ContributionDay[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
@@ -27,7 +27,7 @@ export default function GitHubContributions({ username }: GitHubContributionsPro
 
 				// Fetch GitHub contributions data from our API route
 				const response = await fetch(
-					`/api/github-contributions?username=${encodeURIComponent(username)}`
+					`/api/github/contributions/graph?username=${encodeURIComponent(username)}`
 				);
 
 				if (!response.ok) {
@@ -50,22 +50,6 @@ export default function GitHubContributions({ username }: GitHubContributionsPro
 
 		fetchContributions();
 	}, [username]);
-
-	if (loading) {
-		return (
-			<div className="flex items-center justify-center py-4">
-				<div className="text-xs text-muted-foreground">Loading contributions...</div>
-			</div>
-		);
-	}
-
-	if (error) {
-		return (
-			<div className="flex items-center justify-center py-4">
-				<div className="text-xs text-muted-foreground">Unable to load contributions</div>
-			</div>
-		);
-	}
 
 	// Get the last 365 days of contributions
 	const last365Days = contributions.slice(-365);
@@ -94,45 +78,48 @@ export default function GitHubContributions({ username }: GitHubContributionsPro
 
 	return (
 		<article
-			className="w-full text-left border-0 p-0 bg-transparent"
+			className="w-full text-left border-0 p-0 bg-transparent transition-opacity duration-300 ease-in-out h-[120px]"
+			style={{ opacity: loading || error ? 0 : 1 }}
 			onMouseLeave={() => setHoveredDay(null)}
 		>
-			<div className="space-y-2" ref={containerRef}>
-				<div className="flex gap-[4px] overflow-hidden flex justify-end">
-					{weeks.map((week, weekIndex) => {
-						const weekStartDate = week[0]?.date || `week-${weekIndex}`;
-						return (
-							<div key={weekStartDate} className="flex flex-col gap-[4px]">
-								{week.map((day) => (
-									<button
-										key={day.date}
-										type="button"
-										className={`w-[9px] h-[9px] rounded-[2px] ${getContributionColor(day.contributionCount)}`}
-										onMouseEnter={() => setHoveredDay(day)}
-									/>
-								))}
+			{!loading && !error && (
+				<div className="space-y-2" ref={containerRef}>
+					<div className="flex gap-[4px] overflow-hidden flex justify-end">
+						{weeks.map((week, weekIndex) => {
+							const weekStartDate = week[0]?.date || `week-${weekIndex}`;
+							return (
+								<div key={weekStartDate} className="flex flex-col gap-[4px]">
+									{week.map((day) => (
+										<button
+											key={day.date}
+											type="button"
+											className={`w-[9px] h-[9px] rounded-[2px] ${getContributionColor(day.contributionCount)}`}
+											onMouseEnter={() => setHoveredDay(day)}
+										/>
+									))}
+								</div>
+							);
+						})}
+					</div>
+					<div className="flex justify-between text-xs text-muted-foreground">
+						{hoveredDay ? (
+							<div>
+								{`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${new Date(
+									hoveredDay.date
+								).toLocaleDateString("en-US", {
+									month: "short",
+									day: "numeric",
+									year: "numeric",
+								})}`}
 							</div>
-						);
-					})}
+						) : (
+							<div>
+								{`${contributions.reduce((sum, day) => sum + day.contributionCount, 0)} contributions in the last 12 months`}
+							</div>
+						)}
+					</div>
 				</div>
-				<div className="flex justify-between text-xs text-muted-foreground">
-					{hoveredDay ? (
-						<div>
-							{`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${new Date(
-								hoveredDay.date
-							).toLocaleDateString("en-US", {
-								month: "short",
-								day: "numeric",
-								year: "numeric",
-							})}`}
-						</div>
-					) : (
-						<div>
-							{`${contributions.reduce((sum, day) => sum + day.contributionCount, 0)} contributions in the last 12 months`}
-						</div>
-					)}
-				</div>
-			</div>
+			)}
 		</article>
 	);
 }

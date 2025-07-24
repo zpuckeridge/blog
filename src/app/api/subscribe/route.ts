@@ -1,32 +1,26 @@
-import { NextResponse } from "next/server";
+import { LoopsClient } from "loops";
+
+const loopsApiKey = process.env.LOOPS_API_KEY;
+
+if (!loopsApiKey) {
+	throw new Error("LOOPS_API_KEY environment variable is required");
+}
+
+const loops = new LoopsClient(loopsApiKey);
 
 export async function POST(req: Request) {
 	try {
-		const { email } = (await req.json()) as { email: string };
+		const { email } = await req.json();
 
-		const response = await fetch(
-			`https://api.beehiiv.com/v2/publications/${process.env.PUBLICATION_ID}/subscriptions`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${process.env.BEEHIIV_API_KEY}`,
-				},
-				body: JSON.stringify({ email }),
-			}
-		);
-
-		if (response.ok) {
-			return NextResponse.json({ message: "Successfully subscribed!" }, { status: 200 });
-		} else {
-			const errorData = await response.json();
-			return NextResponse.json(
-				{ message: "Failed to subscribe", error: errorData },
-				{ status: response.status }
-			);
+		if (!email) {
+			return Response.json({ error: "Email is required" }, { status: 400 });
 		}
+
+		await loops.createContact(email);
+
+		return Response.json({ success: true });
 	} catch (error) {
-		console.error("Error subscribing:", error);
-		return NextResponse.json({ message: "An error occurred" }, { status: 500 });
+		console.error("Subscribe error:", error);
+		return Response.json({ error: "Failed to subscribe" }, { status: 500 });
 	}
 }
