@@ -225,506 +225,516 @@ export const _mdx_38_: MDXModule = {
 };
 
 export const _mdx_39_: MDXModule = {
-  frontmatter: {"title":"Birb ✈️","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"5xbaVvYj02wIEuJco00NpPabXui009Ct8XO8lBEXaXtaZw","duration":24,"type":"Video","slug":"birb"},
-  content: ""
-};
-
-export const _mdx_40_: MDXModule = {
-  frontmatter: {"title":"Cherries and berries! ⚠","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"ll5wWfyBk95A00blYB2o8vHPm2YW01uA7EgjR6XhIZmo00","duration":31,"type":"Video","slug":"cherries-and-berries"},
-  content: ""
-};
-
-export const _mdx_41_: MDXModule = {
-  frontmatter: {"title":"Breach and Clear","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"XKHaUeWhLNKgPFPKsUOkBARMPuMG5t01gBx4pouMoK94","duration":42,"type":"Video","slug":"breach-and-clear"},
-  content: ""
-};
-
-export const _mdx_42_: MDXModule = {
-  frontmatter: {"title":"Bridge Explosion","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"dqwnqkP01gDrvvYzJ71cmrpHVUG1f2R56cNDrEDu6NSw","duration":17,"type":"Video","slug":"bridge-explosion"},
-  content: ""
-};
-
-export const _mdx_43_: MDXModule = {
-  frontmatter: {"title":"You wanna see some magic?","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"CDVv747QDSw3guVKo201Rn00bTex01F1kPl6VNnUlbwLk00","duration":8,"type":"Video","slug":"you-wanna-see-some-magic"},
-  content: ""
-};
-
-export const _mdx_44_: MDXModule = {
-  frontmatter: {"title":"Get rotated idiot!","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"68DeD5jaZ3AO52VJajkesK01afPChhsHY2msFfmZK6IM","duration":16,"type":"Video","slug":"get-rotated-idiot"},
-  content: ""
-};
-
-export const _mdx_45_: MDXModule = {
-  frontmatter: {"title":"out of ammo, run him down","date":"2024-05-14T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"T4CAduSidc02Qd6t3003bOyHOKbTrWbTO0201aHqrkXBJyM","duration":32,"type":"Video","slug":"out-of-ammo-run-him-down"},
-  content: ""
-};
-
-export const _mdx_46_: MDXModule = {
-  frontmatter: {"title":"Why aren't they shooting him?","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"RJYz8UiZIilw8guusHQZK701SAJt00zE01yRmbmUJXpE3Q","duration":76,"type":"Video","slug":"why-arent-they-shooting-him"},
-  content: ""
-};
-
-export const _mdx_47_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION KRUGERTOWN","date":"2023-08-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"CSkKqSD01RKiY38ZFM2vhW2J00lym01s7eExiIuG01kIZ58","duration":192,"type":"Video","slug":"zsu-operation-krugertown"},
-  content: ""
-};
-
-export const _mdx_48_: MDXModule = {
-  frontmatter: {"title":"BALLS OF STEEL","date":"2023-02-05T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"QvVLstup7qhoe3fXW00OAFT4MITcFMtV01KAvlKmUp00jI","duration":69,"type":"Video","slug":"balls-of-steel"},
-  content: ""
-};
-
-export const _mdx_49_: MDXModule = {
-  frontmatter: {"title":"They see me rollin'","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"h6023hrNRavqcCr02jhu5Agovg01evXY00LiP4js7HdNtfc","duration":21,"type":"Video","slug":"they-see-me-rollin"},
-  content: ""
-};
-
-export const _mdx_50_: MDXModule = {
-  frontmatter: {"title":"My heart","date":"2023-06-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"quYsHiPF3Sgzx3sUxwM00kdjCfpAffg6qmXsKLi6qgNk","duration":47,"type":"Video","slug":"my-heart"},
-  content: ""
-};
-
-export const _mdx_51_: MDXModule = {
-  frontmatter: {"title":"Hawaiian has rickets 😭","date":"2023-07-16T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"ii01bS6L6Y01E6tXtf012gxcdVhrmmXO3cX9C4cRbxzCPs","duration":541,"type":"Video","slug":"hawaiian-has-rickets"},
-  content: ""
-};
-
-export const _mdx_52_: MDXModule = {
-  frontmatter: {"title":"Learn to drive!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"jDFmqB2FHQ00aJ7YLYTTJfAwQ5cGFRcfgY5GR2YaUg18","duration":31,"type":"Video","slug":"learn-to-drive"},
-  content: ""
-};
-
-export const _mdx_53_: MDXModule = {
-  frontmatter: {"title":"I'm going to glass this place!","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"uWEIv48o51mCBa7576unp1Y00236SwhQt8HBKK1pm01IY","duration":5,"type":"Video","slug":"im-going-to-glass-this-place"},
-  content: ""
-};
-
-export const _mdx_54_: MDXModule = {
-  frontmatter: {"title":"I spent most of this mission dead 💀","date":"2022-11-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"3Sdo6ci3QhwzuOe26kunc02Ee00H2DZmcrYE4fL1YCK2Y","duration":194,"type":"Video","slug":"i-spent-most-of-this-mission-dead"},
-  content: ""
-};
-
-export const _mdx_55_: MDXModule = {
-  frontmatter: {"title":"Tank Engagements","date":"2023-10-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"6r3Um892RaufSNM6LlYZbdjjqKdqxeMmYEYgnDkSvnQ","duration":250,"type":"Video","slug":"tank-engagements"},
-  content: ""
-};
-
-export const _mdx_56_: MDXModule = {
-  frontmatter: {"title":"Hello there! 👋","date":"2022-11-12T00:00:00.000Z","tag":"CS","description":"","videoUrl":"F5Y01UgpT6ONkDrNaLlKiUhgMJDHD1KvtqAyhj7TmEio","duration":160,"type":"Video","slug":"hello-there"},
-  content: ""
-};
-
-export const _mdx_57_: MDXModule = {
-  frontmatter: {"title":"Schwhacked","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"01it01PGaNlGpVqdYj6YWCR3S3mShTRAtV2YZnB3w00ycM","duration":14,"type":"Video","slug":"schwacked"},
-  content: ""
-};
-
-export const _mdx_58_: MDXModule = {
-  frontmatter: {"title":"Bigger and better memes","date":"2022-09-15T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"wyJuPxu4bdMoL5Db8T01xct02ITPK5ELxtHFkGlh02PIvA","duration":430,"type":"Video","slug":"bigger-and-better-memes"},
-  content: ""
-};
-
-export const _mdx_59_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION OUTLAST","date":"2023-10-24T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"VuF9DPXmr4mDLcDjLO8JrFOZGagucPyHMbY7c7PK9Ak","duration":113,"type":"Video","slug":"zsu-operation-outlast"},
-  content: ""
-};
-
-export const _mdx_60_: MDXModule = {
-  frontmatter: {"title":"Ballo Moments 💪","date":"2022-11-11T00:00:00.000Z","tag":"CS","description":"","videoUrl":"q01IDRnC1F200W2Y1yhfbwzB008eRqdW3y39YCk01PmP4XE","duration":69,"type":"Video","slug":"ballo-moments"},
-  content: ""
-};
-
-export const _mdx_61_: MDXModule = {
-  frontmatter: {"title":"Some Questionable Tactics...","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"X6AzP7J26g6mfRLD6yBlMRv5cE3gI4ahkqeUmhUOmUg","duration":23,"type":"Video","slug":"some-questionable-tactics"},
-  content: ""
-};
-
-export const _mdx_62_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Serpent Slayer","date":"2023-03-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"7PSx02C9IkRSg2ITWriKT00xPuPSAyC00Fk51h8pJszIRA","duration":262,"type":"Video","slug":"zsu-operation-serpent-slayer"},
-  content: ""
-};
-
-export const _mdx_63_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Genesis","date":"2023-05-04T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"HHf93DYs102wZB01mlEVmJYo1XuVBoV01MmbwAazMaAT3I","duration":110,"type":"Video","slug":"zsu-operation-genesis"},
-  content: ""
-};
-
-export const _mdx_64_: MDXModule = {
-  frontmatter: {"title":"Javwin","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"01k4seQiLrrWFx02CcWT2D002uT02LUhIVnfxvzd8f3v6XA","duration":36,"type":"Video","slug":"javwin"},
-  content: ""
-};
-
-export const _mdx_65_: MDXModule = {
-  frontmatter: {"title":"Hardcore Parkour","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"xdbMDfBQ3aIKccGWmHdXlZQerLSGxbvW6DRcaxt2E00c","duration":15,"type":"Video","slug":"hardcore-parkour"},
-  content: ""
-};
-
-export const _mdx_66_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Bridge Baby","date":"2023-02-16T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"Zc4LSuXTTfmWPw00pZCkz8OAVt01DCe601PQs5qzJb5fq8","duration":199,"type":"Video","slug":"zsu-operation-bridge-baby"},
-  content: ""
-};
-
-export const _mdx_67_: MDXModule = {
-  frontmatter: {"title":"Charge!","date":"2023-02-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"SDaolytpG6QZRl00g8mUwX4rzbu1tJWFFEg8am9OUcI8","duration":37,"type":"Video","slug":"charge"},
-  content: ""
-};
-
-export const _mdx_68_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Mud Washer PT. 2","date":"2022-11-29T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"mSaFlXUIEFCqJB6q1wVOhwbujHn3wERfbcfJYhgIIDs","duration":522,"type":"Video","slug":"zsu-operation-mud-washer-pt-2"},
-  content: ""
-};
-
-export const _mdx_69_: MDXModule = {
-  frontmatter: {"title":"Counting?","date":"2023-04-23T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"U1fk4KZavF7FPimZxEfFf5Zb4GJsGJJp89TQZiYc2rQ","duration":56,"type":"Video","slug":"counting"},
-  content: ""
-};
-
-export const _mdx_70_: MDXModule = {
-  frontmatter: {"title":"TT - German Rumble","date":"2023-05-19T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"7lRjYo3T2M8urPQV4oIjMV1Grhhkfc5RgcBgDXXZouU","duration":50,"type":"Video","slug":"tt-german-rumble"},
-  content: ""
-};
-
-export const _mdx_71_: MDXModule = {
-  frontmatter: {"title":"Instant Death","date":"2022-11-11T00:00:00.000Z","tag":"Wreckfest","description":"","videoUrl":"NcjgWSUoHsCZ9LpCV8sXAWyT3XvTisASqKQJBhjdOLY","duration":39,"type":"Video","slug":"instant-death"},
-  content: ""
-};
-
-export const _mdx_72_: MDXModule = {
-  frontmatter: {"title":"Quick Flip!","date":"2023-02-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"n400sseXb6l9OiLe95ZvE02FRevaO2zQYimayHXKh1FUk","duration":13,"type":"Video","slug":"quick-flip"},
-  content: ""
-};
-
-export const _mdx_73_: MDXModule = {
-  frontmatter: {"title":"Itkasumore","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"5ap01qR5eU1e01t5QAJJnE5Grp8KHqrX1yJJPY3rSJIww","duration":50,"type":"Video","slug":"itkatsumore"},
-  content: ""
-};
-
-export const _mdx_74_: MDXModule = {
-  frontmatter: {"title":"Pew! Pew pew!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"FeypBRnGZ6lGzU600KVU1aWgvQa02lrlu4X4F9tqIPpBI","duration":17,"type":"Video","slug":"pew-pew-pew"},
-  content: ""
-};
-
-export const _mdx_75_: MDXModule = {
-  frontmatter: {"title":"Patience is key!","date":"2022-11-12T00:00:00.000Z","tag":"CS","description":"","videoUrl":"Ptr3Jyv6W2aO7XOLc01DD9iwNd50127WpSHzqa00TbISNA","duration":179,"type":"Video","slug":"patience-is-key"},
-  content: ""
-};
-
-export const _mdx_76_: MDXModule = {
-  frontmatter: {"title":"Cheeky roleplay","date":"2023-03-14T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"7jopx6EM02QSc9LqdWCXTMyfh39rvVFbC023AhoieZTd00","duration":227,"type":"Video","slug":"cheeky-roleplay"},
-  content: ""
-};
-
-export const _mdx_77_: MDXModule = {
-  frontmatter: {"title":"Glitterbeard's Cave","date":"2022-07-13T00:00:00.000Z","tag":"SOT","description":"","videoUrl":"16mLGoj2uixoYcy5oeQ7vzwGPAQvc1sbVqvt01uHnjS8","duration":346,"type":"Video","slug":"glitterbeards-cave"},
-  content: ""
-};
-
-export const _mdx_78_: MDXModule = {
-  frontmatter: {"title":"Never jump walls in an enemy AO!","date":"2022-11-22T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"E02PTmeH1SlG6dab2fKtY00Y6rVFQqzxwfEUWgzNb4bZQ","duration":46,"type":"Video","slug":"never-jump-walls-in-an-enemy-ao"},
-  content: ""
-};
-
-export const _mdx_79_: MDXModule = {
-  frontmatter: {"title":"BEST ZSU DRIVER CONFIRMED","date":"2023-08-22T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"ML82TnnHtRBHIPmqh8dwFs7puq9Zoptrfb2l56qsgLI","duration":72,"type":"Video","slug":"best-zsu-driver-confirmed"},
-  content: ""
-};
-
-export const _mdx_80_: MDXModule = {
-  frontmatter: {"title":"Dayum boi!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"qhFl1zmifzhUCD1nMkeCOfJTCZyj67acnR9GVyQ3w2Y","duration":31,"type":"Video","slug":"dayum-boi"},
-  content: ""
-};
-
-export const _mdx_81_: MDXModule = {
-  frontmatter: {"title":"Raw Driving Skill","date":"2023-09-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"uwkBnnDi00TqxhDpyJG00cFaMfHZyaja00MPSvVd200sJaw","duration":117,"type":"Video","slug":"raw-driving-skill"},
-  content: ""
-};
-
-export const _mdx_82_: MDXModule = {
-  frontmatter: {"title":"I love this game sometimes hehe","date":"2023-05-10T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UVpThntGQR6sDK3YCFpfnWgYYwfR003emLGDJ1mIS021Q","duration":37,"type":"Video","slug":"i-love-this-game-sometimes-hehe"},
-  content: ""
-};
-
-export const _mdx_83_: MDXModule = {
-  frontmatter: {"title":"Pistols and Shotguns are CRACKED","date":"2024-05-18T00:00:00.000Z","tag":"R6S","description":"","videoUrl":"qA7AxGh00uSjpUFj7Uk5aVgXK7pgTFGAeHO8Tcf8TYDA","duration":132,"type":"Video","slug":"pistols-and-shotguns-are-cracked"},
-  content: ""
-};
-
-export const _mdx_84_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION BLITZKRIEG","date":"2023-11-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"Bw00f8UKmc6woZmyJa01PU5QAU1NMmBdsiR90200yKFcOho","duration":117,"type":"Video","slug":"zsu-operation-blitzkrieg"},
-  content: ""
-};
-
-export const _mdx_85_: MDXModule = {
-  frontmatter: {"title":"Orenji's Boo Boo","date":"2023-05-08T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"i1yDH2gXacyWfj71AtDMs01hLZ00N7wJ8yTIN2X1J2lyk","duration":27,"type":"Video","slug":"orenjis-boo-boo"},
-  content: ""
-};
-
-export const _mdx_86_: MDXModule = {
-  frontmatter: {"title":"Chinchilla Melon Festival","date":"2023-03-05T00:00:00.000Z","tag":"Life","description":"","videoUrl":"7lB7zzgdFiG01GmlYSEhIqPQHYW2upBq7J3zoa78f6EQ","duration":8,"type":"Video","slug":"chinchilla-melon-festival"},
-  content: ""
-};
-
-export const _mdx_87_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Burning Pine","date":"2022-12-20T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"VaVcjQTiYWKwscwPlN4klvo2ZT98aDegq900C00dLVGz4","duration":169,"type":"Video","slug":"zsu-operation-burning-pine"},
-  content: ""
-};
-
-export const _mdx_88_: MDXModule = {
-  frontmatter: {"title":"Chain Gunner Attachment","date":"2023-02-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"kUGDwuDQax8jGCJE6zRqBcWUKAmVHpCkM3Bb1upqV400","duration":41,"type":"Video","slug":"chain-gunner-attachment"},
-  content: ""
-};
-
-export const _mdx_89_: MDXModule = {
-  frontmatter: {"title":"Kapow!","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc","duration":23,"type":"Video","slug":"kapow"},
-  content: ""
-};
-
-export const _mdx_90_: MDXModule = {
-  frontmatter: {"title":"zoomin'","date":"2022-11-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"lSp6Rac8pugpOUb9rs01T7N0100vZ01p4RL877Jez8KBHBQ","duration":32,"type":"Video","slug":"zoomin"},
-  content: ""
-};
-
-export const _mdx_91_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION DERAILED","date":"2023-11-14T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"vOEChCgeOmmU02b0102TNrxzkjQoaX1AsnAZLd00TuNOVe4","duration":87,"type":"Video","slug":"zsu-operation-derailed"},
-  content: ""
-};
-
-export const _mdx_92_: MDXModule = {
-  frontmatter: {"title":"Han the man 💪","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"WpwgltF5hnEehRtfzFWGxf1P9r7DnC8kNV6lfa00NLpM","duration":42,"type":"Video","slug":"han-the-man"},
-  content: ""
-};
-
-export const _mdx_93_: MDXModule = {
-  frontmatter: {"title":"Gun go brrr","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"n4sPliET01Oi1cRR64e02902xiveCCcwhqoxx6tiJWzQKk","duration":283,"type":"Video","slug":"gun-go-brr"},
-  content: ""
-};
-
-export const _mdx_94_: MDXModule = {
-  frontmatter: {"title":"Where's my boonie hat?","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NNfQEH34801SPox7yVcmG6FyUXkFcnfdfe7l0073xysd8","duration":99,"type":"Video","slug":"wheres-my-boonie-hat"},
-  content: ""
-};
-
-export const _mdx_95_: MDXModule = {
-  frontmatter: {"title":"What even is a straight line anyway?","date":"2022-07-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"X696BYT41HaNeG5gVTUXIhFmcLisIwDNS6V6ZGDck0000","duration":9,"type":"Video","slug":"what-even-is-a-straight-line-anyway"},
-  content: ""
-};
-
-export const _mdx_96_: MDXModule = {
-  frontmatter: {"title":"They're what!?","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"P00V3Hw9P8DNrYuAUp01d43vUz3Gqn8JedCfLZ02CoEqPc","duration":24,"type":"Video","slug":"theyre-what"},
-  content: ""
-};
-
-export const _mdx_97_: MDXModule = {
-  frontmatter: {"title":"Chad SPG","date":"2023-08-07T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"cqnSGEoH00MF1OZroz0200wh8xwbhHuPwDuKubzO5by01Ew","duration":228,"type":"Video","slug":"chad-spg"},
-  content: ""
-};
-
-export const _mdx_98_: MDXModule = {
-  frontmatter: {"title":"Panzerfaust Time 💥","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NY00FnT02k3Wo9FOjFgCD00l3v2xNXg1Y5nUZN9VK0135uw","duration":169,"type":"Video","slug":"panzerfaust-time"},
-  content: ""
-};
-
-export const _mdx_99_: MDXModule = {
-  frontmatter: {"title":"That was cracked!","date":"1970-01-01T00:00:00.000Z","tag":"CS","description":"","videoUrl":"93gifxfr2tT1LNNsJPgAVW02Tv0222IhvpSvldp02VhCOE","duration":28,"type":"Video","slug":"that-was-cracked"},
-  content: ""
-};
-
-export const _mdx_100_: MDXModule = {
-  frontmatter: {"title":"F for Vulkan and Sodel","date":"2022-11-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"hao2qA02XoU1GU3h7u1Pj2ErVvE9drWx02P1DDHsEUPww","duration":437,"type":"Video","slug":"f-for-vulkan-and-sodel"},
-  content: ""
-};
-
-export const _mdx_101_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Tzatziki Flip 2 Electric Boogaloo","date":"2023-04-02T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"Kq01X027eQA6Ttw4LS02XcdIDu9EzgaLXLwLHPcWTY02fCY","duration":468,"type":"Video","slug":"zsu-operation-tzatziki-flip-2-electric-boogaloo"},
-  content: ""
-};
-
-export const _mdx_102_: MDXModule = {
-  frontmatter: {"title":"My useless 10-10 drop 🤣","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"uMUIc7h4eYacNhlOdC4BB0000ySvS6nCPNBjn8G8C499w","duration":31,"type":"Video","slug":"my-useless-10-10-drop"},
-  content: ""
-};
-
-export const _mdx_103_: MDXModule = {
-  frontmatter: {"title":"What's a grief and beef?","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"00TBAZ6emfP8DDmFZMPGODh5wP701lGv01Dz26PzPYKXAI","duration":23,"type":"Video","slug":"whats-a-grief-and-beef"},
-  content: ""
-};
-
-export const _mdx_104_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Overblown","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"bHYCW6bDUE8a011xxh8fc00YXu02gnlcXbkscaPl02EDhzg","duration":720,"type":"Video","slug":"zsu-operation-overblown"},
-  content: ""
-};
-
-export const _mdx_105_: MDXModule = {
-  frontmatter: {"title":"OFF TO WAR","date":"2023-02-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UWC7IvzTHPe026QEnUOUA5YUOsQcQ3R54VdW6iFscBTo","duration":16,"type":"Video","slug":"off-to-war"},
-  content: ""
-};
-
-export const _mdx_106_: MDXModule = {
-  frontmatter: {"title":"What plane is this? 🤔","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"GnYqOxTbKvw2r6o35P4fhwBPp102Rdkh4dxjVXXBo016U","duration":52,"type":"Video","slug":"what-plane-is-this"},
-  content: ""
-};
-
-export const _mdx_107_: MDXModule = {
-  frontmatter: {"title":"Kapow!","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc","duration":23,"type":"Video","slug":"leap-of-faith"},
-  content: ""
-};
-
-export const _mdx_108_: MDXModule = {
-  frontmatter: {"title":"Infinite Bullets Glitch","date":"2023-12-02T00:00:00.000Z","tag":"CS","description":"","videoUrl":"L2NszURWxdCqITUxpwmoNVru45ejUxwPV02glZfSSy00U","duration":37,"type":"Video","slug":"infinite-bullets-glitch"},
-  content: ""
-};
-
-export const _mdx_109_: MDXModule = {
-  frontmatter: {"title":"Toaster Bath is a good driver!","date":"2022-07-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"suRhinGJwEXafAh01Hp4buoqaleeQErhz6ruUFfmpY3c","duration":28,"type":"Video","slug":"toaster-bath-is-a-good-driver"},
-  content: ""
-};
-
-export const _mdx_110_: MDXModule = {
-  frontmatter: {"title":"Hello! I've arrived!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"FW00sQd9Ql8xto386Ky01QAfT6Qjd62nnQZlywkNxS9nU","duration":23,"type":"Video","slug":"hello-ive-arrived"},
-  content: ""
-};
-
-export const _mdx_111_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Peoples Highway","date":"2023-04-04T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"gN901vV7sry101zHLoVby2wqK500X7Abbov2bcsTIoOTlc","duration":537,"type":"Video","slug":"zsu-operation-peoples-highway"},
-  content: ""
-};
-
-export const _mdx_112_: MDXModule = {
-  frontmatter: {"title":"What a round 😯","date":"2022-11-17T00:00:00.000Z","tag":"CS","description":"","videoUrl":"JoEg5Svt7IWkuH8fwH7tl8S3wcNw9QKaBqUsviQaQQs","duration":119,"type":"Video","slug":"what-a-round"},
-  content: ""
-};
-
-export const _mdx_113_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION TEMPORAL HARVEST","date":"2023-12-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"2fU2iF8pbbfux4ZYJGQnCxCUx59iM7mQBHC6024sWF2g","duration":534,"type":"Video","slug":"zsu-operation-temporal-harvest"},
-  content: ""
-};
-
-export const _mdx_114_: MDXModule = {
-  frontmatter: {"title":"Vehicular Confusion","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"vNiXKX02FwAPS29I02zP8R3hRzv00ua3S01NN1QLopuDDN8","duration":264,"type":"Video","slug":"vehicular-confusion"},
-  content: ""
-};
-
-export const _mdx_115_: MDXModule = {
-  frontmatter: {"title":"Zero Operational Awareness","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"crkZjNpM2jD4hLpRzdolLjkigyx94JWtXXF6006tNKF00","duration":58,"type":"Video","slug":"zero-operational-awareness"},
-  content: ""
-};
-
-export const _mdx_116_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Poached Eggs","date":"2023-02-05T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"qzvnp3z1zVjQb8Jne7dXgRaT8AFnrcEApPJgQlUkPWM","duration":225,"type":"Video","slug":"zsu-operation-poached-eggs"},
-  content: ""
-};
-
-export const _mdx_117_: MDXModule = {
-  frontmatter: {"title":"I should have been more concerned...","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UViut01neIcKcMxodpCNYifJXdW32kL74utoJRgeI3X00","duration":47,"type":"Video","slug":"i-should-have-been-more-concerned"},
-  content: ""
-};
-
-export const _mdx_118_: MDXModule = {
-  frontmatter: {"title":"Rampage 💀","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"LAxVJrz2Xml5TUgixqG3w5wgtCjygW9GKIidMAoH61w","duration":227,"type":"Video","slug":"rampage"},
-  content: ""
-};
-
-export const _mdx_119_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Bay of Goats","date":"2023-03-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"EApZnh02fN1ezC7vcUjqkK02ja4dh2BzjdD0202QQT2BFTM","duration":242,"type":"Video","slug":"zsu-operation-bay-of-goats"},
-  content: ""
-};
-
-export const _mdx_120_: MDXModule = {
-  frontmatter: {"title":"REPO Moments","date":"2025-08-01T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"K6Y7TT00z8c5vc02smKvb01Lrm6ymcKqR302UOHuZ02s23nA","duration":348,"type":"Video","slug":"repo-moments"},
-  content: ""
-};
-
-export const _mdx_121_: MDXModule = {
-  frontmatter: {"title":"TeamSpeak Shenanigans","date":"2023-06-06T13:03:53.402Z","tag":"ARMA","description":"","videoUrl":"WY253YwZYzrc00ZvwNOpkjIbZmuuAMkfNJHMf5VAP01Q00","duration":26,"type":"Video","slug":"teamspeak-shenanigans"},
-  content: ""
-};
-
-export const _mdx_122_: MDXModule = {
-  frontmatter: {"title":"FREEBALLIN' IT!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NACDkxdjM5HZZpovIYJHIhhVbXbo9ie3V01KXI02jJrLg","duration":31,"type":"Video","slug":"freeballing-it"},
-  content: ""
-};
-
-export const _mdx_123_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Guiding Serpent","date":"2023-03-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"lGe1Z3O8JQV1JvF015RjIOC2001gIo9j028BqAdn52yP5w","duration":146,"type":"Video","slug":"zsu-operation-guiding-serpent"},
-  content: ""
-};
-
-export const _mdx_124_: MDXModule = {
-  frontmatter: {"title":"Amaru's Revenge","date":"2023-06-18T00:00:00.000Z","tag":"R6S","description":"","videoUrl":"OClHNSgCUAPLxvHI9SFmyjoxnquNeg2yP00NanaNOMR8","duration":43,"type":"Video","slug":"amarus-revenge"},
-  content: ""
-};
-
-export const _mdx_125_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION BAITED TRAPS","date":"2023-10-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"C72bMNBrEQdUBv9prcDA4M9pk6QDtE6xFq8Ww5ukAWY","duration":138,"type":"Video","slug":"zsu-operation-baited-traps"},
-  content: ""
-};
-
-export const _mdx_126_: MDXModule = {
-  frontmatter: {"title":"Spinbot 3000 🤖","date":"2022-10-31T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"BArO00G8BBk4UcUHGb3joGQrqVBMVh16i0092DxizBERo","duration":112,"type":"Video","slug":"spinbot-3000"},
-  content: ""
-};
-
-export const _mdx_127_: MDXModule = {
-  frontmatter: {"title":"brr brr","date":"2023-05-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"RBkvJmbSIigIVUV8YPWz19KYcx1pNyg6eJ6FtTCQgK8","duration":28,"type":"Video","slug":"brr-brr"},
-  content: ""
-};
-
-export const _mdx_128_: MDXModule = {
-  frontmatter: {"title":"Men without land, a home, a wife or a business are not worth listening to.","date":"2025-05-19T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"men-that-have-no-household","description":""},
-  content: "\nMen without land, a home, a wife or a business are not worth listening to.\n"
-};
-
-export const _mdx_129_: MDXModule = {
-  frontmatter: {"title":"Church is an ICU for sinners","date":"2024-09-06T00:00:00.000Z","type":"Note","tag":"Quote","slug":"church-is-an-icu-for-sinners","description":""},
-  content: "\n\"Church is an ICU for sinners.\" — Douglas Wilson\n"
-};
-
-export const _mdx_130_: MDXModule = {
-  frontmatter: {"title":"Becoming trans is the only way to reject white privilege","date":"2024-11-01T00:00:00.000Z","type":"Note","tag":"Quote","slug":"jd-vance-the-only-way-to-reject-white-privilege","description":""},
-  content: "\n\"[I wonder] if there is a dynamic going on where if you become trans, that is the way to reject your white privilege. That's the social signifier, the only one that's available in the hyper woke mindset is if you become gender non-binary.\" — JD Vance\n"
-};
-
-export const _mdx_131_: MDXModule = {
-  frontmatter: {"title":"Politicians are blatantly gaslighting us on housing","date":"2025-03-10T00:00:00.000Z","type":"Note","tag":"Politics","slug":"politicans-are-gaslighting-us","description":""},
-  content: "\nPoliticians say the number of homes being built is the problem. Not the mass unchecked immigration.\n\nThat importing more workers to build them faster is the solution.\n\nThey don't seem to realise that the more people you bring in, the more houses you need to build - exacerbating the problem even further. Not to mention the additional strain on other resources (i.e. hospitals, schools etc.)\n\nThe solution is simple.\n\nStop the mass unchecked immigration.\n"
-};
-
-export const _mdx_132_: MDXModule = {
-  frontmatter: {"title":"Either write something worth reading or do something worth writing","date":"2024-07-30T00:00:00.000Z","type":"Note","tag":"Quote","slug":"either-write-something-worth-reading-or-do-something-worth-writing","description":""},
-  content: "\n\"Either write something worth reading or do something worth writing.\" — Benjamin Franklin\n"
-};
-
-export const _mdx_133_: MDXModule = {
-  frontmatter: {"title":"AI-generated marketing is dumb","date":"2025-05-21T00:00:00.000Z","type":"Note","tag":"AI","slug":"ai-marketing-is-dumb","description":""},
-  content: "\nAI-generated marketing is like a toddler with a thesaurus and a Red Bull addiction trying to sell you a used car. It’s loud, it’s chaotic, it’s full of buzzwords it doesn’t understand, and you’re left wondering if it’s trying to scam you or just genuinely confused about what it’s selling.\n"
-};
-
-export const _mdx_134_: MDXModule = {
-  frontmatter: {"title":"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be","date":"2024-08-27T00:00:00.000Z","type":"Note","tag":"Quote","slug":"busyness-paradoxically-is-a-form-of-laziness-lazy-thinking-or-no-thinking-at-all-just-an-acceptance-that-busy-is-where-we-should-be","description":""},
-  content: "\n\"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be.\" — Carl Phillips\n"
-};
-
-export const _mdx_135_: MDXModule = {
-  frontmatter: {"title":"I'm a White Australian and I'm not sorry","date":"2025-05-26T00:00:00.000Z","type":"Note","tag":"Politics","slug":"not-sorry","description":""},
-  content: "\nI'm not sorry that Australia was colonised.\n\nI'm not sorry about the stolen generation.\n\nI'm not ashamed to be Australian, or of my English heritage.\n\nAnd I don't need to be welcomed to the country my people built.\n\nAustralia is for Australians.\n"
-};
-
-export const _mdx_136_: MDXModule = {
-  frontmatter: {"title":"Sexual deviants should not work with children","date":"2025-07-16T00:00:00.000Z","type":"Note","tag":"Politics","slug":"sexual-deviants","description":""},
-  content: "\nSexual deviants (homosexuals, transgenders etc.) should not work with children.\n\nMen should teach boys.\nWomen should teach girls.\n\nParents should be more involved with education."
-};
-
-export const _mdx_137_: MDXModule = {
-  frontmatter: {"title":"Phone calls vs text","date":"2025-03-13T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"phone-calls-vs-text","description":""},
-  content: "\nOne of the biggest things I’ve had to learn moving away from a purely technical role is that a quick phone call is 100x more efficient and reliable than text.\n\nNon-technical people do not read messages. At all.\n"
-};
-
-export const _mdx_138_: MDXModule = {
   frontmatter: {"title":"Test movie 2","date":"2024-05-19T00:00:00.000Z","type":"Movie","setting":"Home","review":10,"with":[{"name":"Test Person"},{"name":"Test Person 2"}],"image":"/recommended-movies/test-movie.jpg","slug":"test-movie-2","description":""},
   content: ""
 };
 
-export const _mdx_139_: MDXModule = {
+export const _mdx_40_: MDXModule = {
   frontmatter: {"title":"Test movie","date":"2025-05-19T00:00:00.000Z","type":"Movie","setting":"Home","review":10,"with":[{"name":"Test Person"},{"name":"Test Person 2"}],"image":"/recommended-movies/test-movie.jpg","slug":"test-movie","description":""},
+  content: ""
+};
+
+export const _mdx_41_: MDXModule = {
+  frontmatter: {"title":"Men without land, a home, a wife or a business are not worth listening to.","date":"2025-05-19T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"men-that-have-no-household","description":""},
+  content: "\nMen without land, a home, a wife or a business are not worth listening to.\n"
+};
+
+export const _mdx_42_: MDXModule = {
+  frontmatter: {"title":"Church is an ICU for sinners","date":"2024-09-06T00:00:00.000Z","type":"Note","tag":"Quote","slug":"church-is-an-icu-for-sinners","description":""},
+  content: "\n\"Church is an ICU for sinners.\" — Douglas Wilson\n"
+};
+
+export const _mdx_43_: MDXModule = {
+  frontmatter: {"title":"Becoming trans is the only way to reject white privilege","date":"2024-11-01T00:00:00.000Z","type":"Note","tag":"Quote","slug":"jd-vance-the-only-way-to-reject-white-privilege","description":""},
+  content: "\n\"[I wonder] if there is a dynamic going on where if you become trans, that is the way to reject your white privilege. That's the social signifier, the only one that's available in the hyper woke mindset is if you become gender non-binary.\" — JD Vance\n"
+};
+
+export const _mdx_44_: MDXModule = {
+  frontmatter: {"title":"Politicians are blatantly gaslighting us on housing","date":"2025-03-10T00:00:00.000Z","type":"Note","tag":"Politics","slug":"politicans-are-gaslighting-us","description":""},
+  content: "\nPoliticians say the number of homes being built is the problem. Not the mass unchecked immigration.\n\nThat importing more workers to build them faster is the solution.\n\nThey don't seem to realise that the more people you bring in, the more houses you need to build - exacerbating the problem even further. Not to mention the additional strain on other resources (i.e. hospitals, schools etc.)\n\nThe solution is simple.\n\nStop the mass unchecked immigration.\n"
+};
+
+export const _mdx_45_: MDXModule = {
+  frontmatter: {"title":"Either write something worth reading or do something worth writing","date":"2024-07-30T00:00:00.000Z","type":"Note","tag":"Quote","slug":"either-write-something-worth-reading-or-do-something-worth-writing","description":""},
+  content: "\n\"Either write something worth reading or do something worth writing.\" — Benjamin Franklin\n"
+};
+
+export const _mdx_46_: MDXModule = {
+  frontmatter: {"title":"AI-generated marketing is dumb","date":"2025-05-21T00:00:00.000Z","type":"Note","tag":"AI","slug":"ai-marketing-is-dumb","description":""},
+  content: "\nAI-generated marketing is like a toddler with a thesaurus and a Red Bull addiction trying to sell you a used car. It’s loud, it’s chaotic, it’s full of buzzwords it doesn’t understand, and you’re left wondering if it’s trying to scam you or just genuinely confused about what it’s selling.\n"
+};
+
+export const _mdx_47_: MDXModule = {
+  frontmatter: {"title":"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be","date":"2024-08-27T00:00:00.000Z","type":"Note","tag":"Quote","slug":"busyness-paradoxically-is-a-form-of-laziness-lazy-thinking-or-no-thinking-at-all-just-an-acceptance-that-busy-is-where-we-should-be","description":""},
+  content: "\n\"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be.\" — Carl Phillips\n"
+};
+
+export const _mdx_48_: MDXModule = {
+  frontmatter: {"title":"I'm a White Australian and I'm not sorry","date":"2025-05-26T00:00:00.000Z","type":"Note","tag":"Politics","slug":"not-sorry","description":""},
+  content: "\nI'm not sorry that Australia was colonised.\n\nI'm not sorry about the stolen generation.\n\nI'm not ashamed to be Australian, or of my English heritage.\n\nAnd I don't need to be welcomed to the country my people built.\n\nAustralia is for Australians.\n"
+};
+
+export const _mdx_49_: MDXModule = {
+  frontmatter: {"title":"Sexual deviants should not work with children","date":"2025-07-16T00:00:00.000Z","type":"Note","tag":"Politics","slug":"sexual-deviants","description":""},
+  content: "\nSexual deviants (homosexuals, transgenders etc.) should not work with children.\n\nMen should teach boys.\nWomen should teach girls.\n\nParents should be more involved with education."
+};
+
+export const _mdx_50_: MDXModule = {
+  frontmatter: {"title":"Phone calls vs text","date":"2025-03-13T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"phone-calls-vs-text","description":""},
+  content: "\nOne of the biggest things I’ve had to learn moving away from a purely technical role is that a quick phone call is 100x more efficient and reliable than text.\n\nNon-technical people do not read messages. At all.\n"
+};
+
+export const _mdx_51_: MDXModule = {
+  frontmatter: {"title":"Birb ✈️","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"5xbaVvYj02wIEuJco00NpPabXui009Ct8XO8lBEXaXtaZw","duration":24,"type":"Video","slug":"birb"},
+  content: ""
+};
+
+export const _mdx_52_: MDXModule = {
+  frontmatter: {"title":"Cherries and berries! ⚠","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"ll5wWfyBk95A00blYB2o8vHPm2YW01uA7EgjR6XhIZmo00","duration":31,"type":"Video","slug":"cherries-and-berries"},
+  content: ""
+};
+
+export const _mdx_53_: MDXModule = {
+  frontmatter: {"title":"Breach and Clear","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"XKHaUeWhLNKgPFPKsUOkBARMPuMG5t01gBx4pouMoK94","duration":42,"type":"Video","slug":"breach-and-clear"},
+  content: ""
+};
+
+export const _mdx_54_: MDXModule = {
+  frontmatter: {"title":"Bridge Explosion","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"dqwnqkP01gDrvvYzJ71cmrpHVUG1f2R56cNDrEDu6NSw","duration":17,"type":"Video","slug":"bridge-explosion"},
+  content: ""
+};
+
+export const _mdx_55_: MDXModule = {
+  frontmatter: {"title":"You wanna see some magic?","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"CDVv747QDSw3guVKo201Rn00bTex01F1kPl6VNnUlbwLk00","duration":8,"type":"Video","slug":"you-wanna-see-some-magic"},
+  content: ""
+};
+
+export const _mdx_56_: MDXModule = {
+  frontmatter: {"title":"Get rotated idiot!","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"68DeD5jaZ3AO52VJajkesK01afPChhsHY2msFfmZK6IM","duration":16,"type":"Video","slug":"get-rotated-idiot"},
+  content: ""
+};
+
+export const _mdx_57_: MDXModule = {
+  frontmatter: {"title":"out of ammo, run him down","date":"2024-05-14T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"T4CAduSidc02Qd6t3003bOyHOKbTrWbTO0201aHqrkXBJyM","duration":32,"type":"Video","slug":"out-of-ammo-run-him-down"},
+  content: ""
+};
+
+export const _mdx_58_: MDXModule = {
+  frontmatter: {"title":"Why aren't they shooting him?","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"RJYz8UiZIilw8guusHQZK701SAJt00zE01yRmbmUJXpE3Q","duration":76,"type":"Video","slug":"why-arent-they-shooting-him"},
+  content: ""
+};
+
+export const _mdx_59_: MDXModule = {
+  frontmatter: {"title":"ZSU - OPERATION KRUGERTOWN","date":"2023-08-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"CSkKqSD01RKiY38ZFM2vhW2J00lym01s7eExiIuG01kIZ58","duration":192,"type":"Video","slug":"zsu-operation-krugertown"},
+  content: ""
+};
+
+export const _mdx_60_: MDXModule = {
+  frontmatter: {"title":"BALLS OF STEEL","date":"2023-02-05T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"QvVLstup7qhoe3fXW00OAFT4MITcFMtV01KAvlKmUp00jI","duration":69,"type":"Video","slug":"balls-of-steel"},
+  content: ""
+};
+
+export const _mdx_61_: MDXModule = {
+  frontmatter: {"title":"They see me rollin'","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"h6023hrNRavqcCr02jhu5Agovg01evXY00LiP4js7HdNtfc","duration":21,"type":"Video","slug":"they-see-me-rollin"},
+  content: ""
+};
+
+export const _mdx_62_: MDXModule = {
+  frontmatter: {"title":"My heart","date":"2023-06-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"quYsHiPF3Sgzx3sUxwM00kdjCfpAffg6qmXsKLi6qgNk","duration":47,"type":"Video","slug":"my-heart"},
+  content: ""
+};
+
+export const _mdx_63_: MDXModule = {
+  frontmatter: {"title":"Hawaiian has rickets 😭","date":"2023-07-16T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"ii01bS6L6Y01E6tXtf012gxcdVhrmmXO3cX9C4cRbxzCPs","duration":541,"type":"Video","slug":"hawaiian-has-rickets"},
+  content: ""
+};
+
+export const _mdx_64_: MDXModule = {
+  frontmatter: {"title":"Learn to drive!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"jDFmqB2FHQ00aJ7YLYTTJfAwQ5cGFRcfgY5GR2YaUg18","duration":31,"type":"Video","slug":"learn-to-drive"},
+  content: ""
+};
+
+export const _mdx_65_: MDXModule = {
+  frontmatter: {"title":"I'm going to glass this place!","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"uWEIv48o51mCBa7576unp1Y00236SwhQt8HBKK1pm01IY","duration":5,"type":"Video","slug":"im-going-to-glass-this-place"},
+  content: ""
+};
+
+export const _mdx_66_: MDXModule = {
+  frontmatter: {"title":"I spent most of this mission dead 💀","date":"2022-11-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"3Sdo6ci3QhwzuOe26kunc02Ee00H2DZmcrYE4fL1YCK2Y","duration":194,"type":"Video","slug":"i-spent-most-of-this-mission-dead"},
+  content: ""
+};
+
+export const _mdx_67_: MDXModule = {
+  frontmatter: {"title":"Tank Engagements","date":"2023-10-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"6r3Um892RaufSNM6LlYZbdjjqKdqxeMmYEYgnDkSvnQ","duration":250,"type":"Video","slug":"tank-engagements"},
+  content: ""
+};
+
+export const _mdx_68_: MDXModule = {
+  frontmatter: {"title":"Hello there! 👋","date":"2022-11-12T00:00:00.000Z","tag":"CS","description":"","videoUrl":"F5Y01UgpT6ONkDrNaLlKiUhgMJDHD1KvtqAyhj7TmEio","duration":160,"type":"Video","slug":"hello-there"},
+  content: ""
+};
+
+export const _mdx_69_: MDXModule = {
+  frontmatter: {"title":"Schwhacked","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"01it01PGaNlGpVqdYj6YWCR3S3mShTRAtV2YZnB3w00ycM","duration":14,"type":"Video","slug":"schwacked"},
+  content: ""
+};
+
+export const _mdx_70_: MDXModule = {
+  frontmatter: {"title":"Bigger and better memes","date":"2022-09-15T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"wyJuPxu4bdMoL5Db8T01xct02ITPK5ELxtHFkGlh02PIvA","duration":430,"type":"Video","slug":"bigger-and-better-memes"},
+  content: ""
+};
+
+export const _mdx_71_: MDXModule = {
+  frontmatter: {"title":"ZSU - OPERATION OUTLAST","date":"2023-10-24T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"VuF9DPXmr4mDLcDjLO8JrFOZGagucPyHMbY7c7PK9Ak","duration":113,"type":"Video","slug":"zsu-operation-outlast"},
+  content: ""
+};
+
+export const _mdx_72_: MDXModule = {
+  frontmatter: {"title":"Ballo Moments 💪","date":"2022-11-11T00:00:00.000Z","tag":"CS","description":"","videoUrl":"q01IDRnC1F200W2Y1yhfbwzB008eRqdW3y39YCk01PmP4XE","duration":69,"type":"Video","slug":"ballo-moments"},
+  content: ""
+};
+
+export const _mdx_73_: MDXModule = {
+  frontmatter: {"title":"Some Questionable Tactics...","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"X6AzP7J26g6mfRLD6yBlMRv5cE3gI4ahkqeUmhUOmUg","duration":23,"type":"Video","slug":"some-questionable-tactics"},
+  content: ""
+};
+
+export const _mdx_74_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Serpent Slayer","date":"2023-03-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"7PSx02C9IkRSg2ITWriKT00xPuPSAyC00Fk51h8pJszIRA","duration":262,"type":"Video","slug":"zsu-operation-serpent-slayer"},
+  content: ""
+};
+
+export const _mdx_75_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Genesis","date":"2023-05-04T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"HHf93DYs102wZB01mlEVmJYo1XuVBoV01MmbwAazMaAT3I","duration":110,"type":"Video","slug":"zsu-operation-genesis"},
+  content: ""
+};
+
+export const _mdx_76_: MDXModule = {
+  frontmatter: {"title":"Javwin","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"01k4seQiLrrWFx02CcWT2D002uT02LUhIVnfxvzd8f3v6XA","duration":36,"type":"Video","slug":"javwin"},
+  content: ""
+};
+
+export const _mdx_77_: MDXModule = {
+  frontmatter: {"title":"Hardcore Parkour","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"xdbMDfBQ3aIKccGWmHdXlZQerLSGxbvW6DRcaxt2E00c","duration":15,"type":"Video","slug":"hardcore-parkour"},
+  content: ""
+};
+
+export const _mdx_78_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Bridge Baby","date":"2023-02-16T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"Zc4LSuXTTfmWPw00pZCkz8OAVt01DCe601PQs5qzJb5fq8","duration":199,"type":"Video","slug":"zsu-operation-bridge-baby"},
+  content: ""
+};
+
+export const _mdx_79_: MDXModule = {
+  frontmatter: {"title":"Charge!","date":"2023-02-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"SDaolytpG6QZRl00g8mUwX4rzbu1tJWFFEg8am9OUcI8","duration":37,"type":"Video","slug":"charge"},
+  content: ""
+};
+
+export const _mdx_80_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Mud Washer PT. 2","date":"2022-11-29T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"mSaFlXUIEFCqJB6q1wVOhwbujHn3wERfbcfJYhgIIDs","duration":522,"type":"Video","slug":"zsu-operation-mud-washer-pt-2"},
+  content: ""
+};
+
+export const _mdx_81_: MDXModule = {
+  frontmatter: {"title":"Counting?","date":"2023-04-23T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"U1fk4KZavF7FPimZxEfFf5Zb4GJsGJJp89TQZiYc2rQ","duration":56,"type":"Video","slug":"counting"},
+  content: ""
+};
+
+export const _mdx_82_: MDXModule = {
+  frontmatter: {"title":"TT - German Rumble","date":"2023-05-19T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"7lRjYo3T2M8urPQV4oIjMV1Grhhkfc5RgcBgDXXZouU","duration":50,"type":"Video","slug":"tt-german-rumble"},
+  content: ""
+};
+
+export const _mdx_83_: MDXModule = {
+  frontmatter: {"title":"Instant Death","date":"2022-11-11T00:00:00.000Z","tag":"Wreckfest","description":"","videoUrl":"NcjgWSUoHsCZ9LpCV8sXAWyT3XvTisASqKQJBhjdOLY","duration":39,"type":"Video","slug":"instant-death"},
+  content: ""
+};
+
+export const _mdx_84_: MDXModule = {
+  frontmatter: {"title":"Quick Flip!","date":"2023-02-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"n400sseXb6l9OiLe95ZvE02FRevaO2zQYimayHXKh1FUk","duration":13,"type":"Video","slug":"quick-flip"},
+  content: ""
+};
+
+export const _mdx_85_: MDXModule = {
+  frontmatter: {"title":"Itkasumore","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"5ap01qR5eU1e01t5QAJJnE5Grp8KHqrX1yJJPY3rSJIww","duration":50,"type":"Video","slug":"itkatsumore"},
+  content: ""
+};
+
+export const _mdx_86_: MDXModule = {
+  frontmatter: {"title":"Pew! Pew pew!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"FeypBRnGZ6lGzU600KVU1aWgvQa02lrlu4X4F9tqIPpBI","duration":17,"type":"Video","slug":"pew-pew-pew"},
+  content: ""
+};
+
+export const _mdx_87_: MDXModule = {
+  frontmatter: {"title":"Patience is key!","date":"2022-11-12T00:00:00.000Z","tag":"CS","description":"","videoUrl":"Ptr3Jyv6W2aO7XOLc01DD9iwNd50127WpSHzqa00TbISNA","duration":179,"type":"Video","slug":"patience-is-key"},
+  content: ""
+};
+
+export const _mdx_88_: MDXModule = {
+  frontmatter: {"title":"Big Laser","date":"2025-08-05T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"CWRIoAsAP1s4hM3gs7EQBDidphwL6dL88ylgYF7L5004","duration":134,"type":"Video","slug":"big-laser"},
+  content: ""
+};
+
+export const _mdx_89_: MDXModule = {
+  frontmatter: {"title":"Cheeky roleplay","date":"2023-03-14T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"7jopx6EM02QSc9LqdWCXTMyfh39rvVFbC023AhoieZTd00","duration":227,"type":"Video","slug":"cheeky-roleplay"},
+  content: ""
+};
+
+export const _mdx_90_: MDXModule = {
+  frontmatter: {"title":"Glitterbeard's Cave","date":"2022-07-13T00:00:00.000Z","tag":"SOT","description":"","videoUrl":"16mLGoj2uixoYcy5oeQ7vzwGPAQvc1sbVqvt01uHnjS8","duration":346,"type":"Video","slug":"glitterbeards-cave"},
+  content: ""
+};
+
+export const _mdx_91_: MDXModule = {
+  frontmatter: {"title":"Never jump walls in an enemy AO!","date":"2022-11-22T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"E02PTmeH1SlG6dab2fKtY00Y6rVFQqzxwfEUWgzNb4bZQ","duration":46,"type":"Video","slug":"never-jump-walls-in-an-enemy-ao"},
+  content: ""
+};
+
+export const _mdx_92_: MDXModule = {
+  frontmatter: {"title":"BEST ZSU DRIVER CONFIRMED","date":"2023-08-22T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"ML82TnnHtRBHIPmqh8dwFs7puq9Zoptrfb2l56qsgLI","duration":72,"type":"Video","slug":"best-zsu-driver-confirmed"},
+  content: ""
+};
+
+export const _mdx_93_: MDXModule = {
+  frontmatter: {"title":"Dayum boi!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"qhFl1zmifzhUCD1nMkeCOfJTCZyj67acnR9GVyQ3w2Y","duration":31,"type":"Video","slug":"dayum-boi"},
+  content: ""
+};
+
+export const _mdx_94_: MDXModule = {
+  frontmatter: {"title":"Raw Driving Skill","date":"2023-09-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"uwkBnnDi00TqxhDpyJG00cFaMfHZyaja00MPSvVd200sJaw","duration":117,"type":"Video","slug":"raw-driving-skill"},
+  content: ""
+};
+
+export const _mdx_95_: MDXModule = {
+  frontmatter: {"title":"I love this game sometimes hehe","date":"2023-05-10T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UVpThntGQR6sDK3YCFpfnWgYYwfR003emLGDJ1mIS021Q","duration":37,"type":"Video","slug":"i-love-this-game-sometimes-hehe"},
+  content: ""
+};
+
+export const _mdx_96_: MDXModule = {
+  frontmatter: {"title":"Pistols and Shotguns are CRACKED","date":"2024-05-18T00:00:00.000Z","tag":"R6S","description":"","videoUrl":"qA7AxGh00uSjpUFj7Uk5aVgXK7pgTFGAeHO8Tcf8TYDA","duration":132,"type":"Video","slug":"pistols-and-shotguns-are-cracked"},
+  content: ""
+};
+
+export const _mdx_97_: MDXModule = {
+  frontmatter: {"title":"ZSU - OPERATION BLITZKRIEG","date":"2023-11-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"Bw00f8UKmc6woZmyJa01PU5QAU1NMmBdsiR90200yKFcOho","duration":117,"type":"Video","slug":"zsu-operation-blitzkrieg"},
+  content: ""
+};
+
+export const _mdx_98_: MDXModule = {
+  frontmatter: {"title":"Orenji's Boo Boo","date":"2023-05-08T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"i1yDH2gXacyWfj71AtDMs01hLZ00N7wJ8yTIN2X1J2lyk","duration":27,"type":"Video","slug":"orenjis-boo-boo"},
+  content: ""
+};
+
+export const _mdx_99_: MDXModule = {
+  frontmatter: {"title":"Chinchilla Melon Festival","date":"2023-03-05T00:00:00.000Z","tag":"Life","description":"","videoUrl":"7lB7zzgdFiG01GmlYSEhIqPQHYW2upBq7J3zoa78f6EQ","duration":8,"type":"Video","slug":"chinchilla-melon-festival"},
+  content: ""
+};
+
+export const _mdx_100_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Burning Pine","date":"2022-12-20T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"VaVcjQTiYWKwscwPlN4klvo2ZT98aDegq900C00dLVGz4","duration":169,"type":"Video","slug":"zsu-operation-burning-pine"},
+  content: ""
+};
+
+export const _mdx_101_: MDXModule = {
+  frontmatter: {"title":"Chain Gunner Attachment","date":"2023-02-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"kUGDwuDQax8jGCJE6zRqBcWUKAmVHpCkM3Bb1upqV400","duration":41,"type":"Video","slug":"chain-gunner-attachment"},
+  content: ""
+};
+
+export const _mdx_102_: MDXModule = {
+  frontmatter: {"title":"Sodding Idiots","date":"2025-08-04T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"522kvchQPRDmYfOScMLw02C01y02r4J009jPgn3khk5WOx4","duration":100,"type":"Video","slug":"sodding-idiots"},
+  content: ""
+};
+
+export const _mdx_103_: MDXModule = {
+  frontmatter: {"title":"Kapow!","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc","duration":23,"type":"Video","slug":"kapow"},
+  content: ""
+};
+
+export const _mdx_104_: MDXModule = {
+  frontmatter: {"title":"zoomin'","date":"2022-11-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"lSp6Rac8pugpOUb9rs01T7N0100vZ01p4RL877Jez8KBHBQ","duration":32,"type":"Video","slug":"zoomin"},
+  content: ""
+};
+
+export const _mdx_105_: MDXModule = {
+  frontmatter: {"title":"ZSU - OPERATION DERAILED","date":"2023-11-14T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"vOEChCgeOmmU02b0102TNrxzkjQoaX1AsnAZLd00TuNOVe4","duration":87,"type":"Video","slug":"zsu-operation-derailed"},
+  content: ""
+};
+
+export const _mdx_106_: MDXModule = {
+  frontmatter: {"title":"Han the man 💪","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"WpwgltF5hnEehRtfzFWGxf1P9r7DnC8kNV6lfa00NLpM","duration":42,"type":"Video","slug":"han-the-man"},
+  content: ""
+};
+
+export const _mdx_107_: MDXModule = {
+  frontmatter: {"title":"Gun go brrr","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"n4sPliET01Oi1cRR64e02902xiveCCcwhqoxx6tiJWzQKk","duration":283,"type":"Video","slug":"gun-go-brr"},
+  content: ""
+};
+
+export const _mdx_108_: MDXModule = {
+  frontmatter: {"title":"Where's my boonie hat?","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NNfQEH34801SPox7yVcmG6FyUXkFcnfdfe7l0073xysd8","duration":99,"type":"Video","slug":"wheres-my-boonie-hat"},
+  content: ""
+};
+
+export const _mdx_109_: MDXModule = {
+  frontmatter: {"title":"What even is a straight line anyway?","date":"2022-07-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"X696BYT41HaNeG5gVTUXIhFmcLisIwDNS6V6ZGDck0000","duration":9,"type":"Video","slug":"what-even-is-a-straight-line-anyway"},
+  content: ""
+};
+
+export const _mdx_110_: MDXModule = {
+  frontmatter: {"title":"They're what!?","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"P00V3Hw9P8DNrYuAUp01d43vUz3Gqn8JedCfLZ02CoEqPc","duration":24,"type":"Video","slug":"theyre-what"},
+  content: ""
+};
+
+export const _mdx_111_: MDXModule = {
+  frontmatter: {"title":"Chad SPG","date":"2023-08-07T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"cqnSGEoH00MF1OZroz0200wh8xwbhHuPwDuKubzO5by01Ew","duration":228,"type":"Video","slug":"chad-spg"},
+  content: ""
+};
+
+export const _mdx_112_: MDXModule = {
+  frontmatter: {"title":"Panzerfaust Time 💥","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NY00FnT02k3Wo9FOjFgCD00l3v2xNXg1Y5nUZN9VK0135uw","duration":169,"type":"Video","slug":"panzerfaust-time"},
+  content: ""
+};
+
+export const _mdx_113_: MDXModule = {
+  frontmatter: {"title":"That was cracked!","date":"1970-01-01T00:00:00.000Z","tag":"CS","description":"","videoUrl":"93gifxfr2tT1LNNsJPgAVW02Tv0222IhvpSvldp02VhCOE","duration":28,"type":"Video","slug":"that-was-cracked"},
+  content: ""
+};
+
+export const _mdx_114_: MDXModule = {
+  frontmatter: {"title":"F for Vulkan and Sodel","date":"2022-11-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"hao2qA02XoU1GU3h7u1Pj2ErVvE9drWx02P1DDHsEUPww","duration":437,"type":"Video","slug":"f-for-vulkan-and-sodel"},
+  content: ""
+};
+
+export const _mdx_115_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Tzatziki Flip 2 Electric Boogaloo","date":"2023-04-02T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"Kq01X027eQA6Ttw4LS02XcdIDu9EzgaLXLwLHPcWTY02fCY","duration":468,"type":"Video","slug":"zsu-operation-tzatziki-flip-2-electric-boogaloo"},
+  content: ""
+};
+
+export const _mdx_116_: MDXModule = {
+  frontmatter: {"title":"My useless 10-10 drop 🤣","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"uMUIc7h4eYacNhlOdC4BB0000ySvS6nCPNBjn8G8C499w","duration":31,"type":"Video","slug":"my-useless-10-10-drop"},
+  content: ""
+};
+
+export const _mdx_117_: MDXModule = {
+  frontmatter: {"title":"What's a grief and beef?","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"00TBAZ6emfP8DDmFZMPGODh5wP701lGv01Dz26PzPYKXAI","duration":23,"type":"Video","slug":"whats-a-grief-and-beef"},
+  content: ""
+};
+
+export const _mdx_118_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Overblown","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"bHYCW6bDUE8a011xxh8fc00YXu02gnlcXbkscaPl02EDhzg","duration":720,"type":"Video","slug":"zsu-operation-overblown"},
+  content: ""
+};
+
+export const _mdx_119_: MDXModule = {
+  frontmatter: {"title":"OFF TO WAR","date":"2023-02-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UWC7IvzTHPe026QEnUOUA5YUOsQcQ3R54VdW6iFscBTo","duration":16,"type":"Video","slug":"off-to-war"},
+  content: ""
+};
+
+export const _mdx_120_: MDXModule = {
+  frontmatter: {"title":"What plane is this? 🤔","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"GnYqOxTbKvw2r6o35P4fhwBPp102Rdkh4dxjVXXBo016U","duration":52,"type":"Video","slug":"what-plane-is-this"},
+  content: ""
+};
+
+export const _mdx_121_: MDXModule = {
+  frontmatter: {"title":"Kapow!","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc","duration":23,"type":"Video","slug":"leap-of-faith"},
+  content: ""
+};
+
+export const _mdx_122_: MDXModule = {
+  frontmatter: {"title":"Infinite Bullets Glitch","date":"2023-12-02T00:00:00.000Z","tag":"CS","description":"","videoUrl":"L2NszURWxdCqITUxpwmoNVru45ejUxwPV02glZfSSy00U","duration":37,"type":"Video","slug":"infinite-bullets-glitch"},
+  content: ""
+};
+
+export const _mdx_123_: MDXModule = {
+  frontmatter: {"title":"Toaster Bath is a good driver!","date":"2022-07-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"suRhinGJwEXafAh01Hp4buoqaleeQErhz6ruUFfmpY3c","duration":28,"type":"Video","slug":"toaster-bath-is-a-good-driver"},
+  content: ""
+};
+
+export const _mdx_124_: MDXModule = {
+  frontmatter: {"title":"Hello! I've arrived!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"FW00sQd9Ql8xto386Ky01QAfT6Qjd62nnQZlywkNxS9nU","duration":23,"type":"Video","slug":"hello-ive-arrived"},
+  content: ""
+};
+
+export const _mdx_125_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Peoples Highway","date":"2023-04-04T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"gN901vV7sry101zHLoVby2wqK500X7Abbov2bcsTIoOTlc","duration":537,"type":"Video","slug":"zsu-operation-peoples-highway"},
+  content: ""
+};
+
+export const _mdx_126_: MDXModule = {
+  frontmatter: {"title":"What a round 😯","date":"2022-11-17T00:00:00.000Z","tag":"CS","description":"","videoUrl":"JoEg5Svt7IWkuH8fwH7tl8S3wcNw9QKaBqUsviQaQQs","duration":119,"type":"Video","slug":"what-a-round"},
+  content: ""
+};
+
+export const _mdx_127_: MDXModule = {
+  frontmatter: {"title":"ZSU - OPERATION TEMPORAL HARVEST","date":"2023-12-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"2fU2iF8pbbfux4ZYJGQnCxCUx59iM7mQBHC6024sWF2g","duration":534,"type":"Video","slug":"zsu-operation-temporal-harvest"},
+  content: ""
+};
+
+export const _mdx_128_: MDXModule = {
+  frontmatter: {"title":"Vehicular Confusion","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"vNiXKX02FwAPS29I02zP8R3hRzv00ua3S01NN1QLopuDDN8","duration":264,"type":"Video","slug":"vehicular-confusion"},
+  content: ""
+};
+
+export const _mdx_129_: MDXModule = {
+  frontmatter: {"title":"Zero Operational Awareness","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"crkZjNpM2jD4hLpRzdolLjkigyx94JWtXXF6006tNKF00","duration":58,"type":"Video","slug":"zero-operational-awareness"},
+  content: ""
+};
+
+export const _mdx_130_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Poached Eggs","date":"2023-02-05T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"qzvnp3z1zVjQb8Jne7dXgRaT8AFnrcEApPJgQlUkPWM","duration":225,"type":"Video","slug":"zsu-operation-poached-eggs"},
+  content: ""
+};
+
+export const _mdx_131_: MDXModule = {
+  frontmatter: {"title":"I should have been more concerned...","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UViut01neIcKcMxodpCNYifJXdW32kL74utoJRgeI3X00","duration":47,"type":"Video","slug":"i-should-have-been-more-concerned"},
+  content: ""
+};
+
+export const _mdx_132_: MDXModule = {
+  frontmatter: {"title":"Rampage 💀","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"LAxVJrz2Xml5TUgixqG3w5wgtCjygW9GKIidMAoH61w","duration":227,"type":"Video","slug":"rampage"},
+  content: ""
+};
+
+export const _mdx_133_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Bay of Goats","date":"2023-03-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"EApZnh02fN1ezC7vcUjqkK02ja4dh2BzjdD0202QQT2BFTM","duration":242,"type":"Video","slug":"zsu-operation-bay-of-goats"},
+  content: ""
+};
+
+export const _mdx_134_: MDXModule = {
+  frontmatter: {"title":"REPO Moments","date":"2025-08-01T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"K6Y7TT00z8c5vc02smKvb01Lrm6ymcKqR302UOHuZ02s23nA","duration":348,"type":"Video","slug":"repo-moments"},
+  content: ""
+};
+
+export const _mdx_135_: MDXModule = {
+  frontmatter: {"title":"TeamSpeak Shenanigans","date":"2023-06-06T13:03:53.402Z","tag":"ARMA","description":"","videoUrl":"WY253YwZYzrc00ZvwNOpkjIbZmuuAMkfNJHMf5VAP01Q00","duration":26,"type":"Video","slug":"teamspeak-shenanigans"},
+  content: ""
+};
+
+export const _mdx_136_: MDXModule = {
+  frontmatter: {"title":"FREEBALLIN' IT!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NACDkxdjM5HZZpovIYJHIhhVbXbo9ie3V01KXI02jJrLg","duration":31,"type":"Video","slug":"freeballing-it"},
+  content: ""
+};
+
+export const _mdx_137_: MDXModule = {
+  frontmatter: {"title":"ZSU - Operation Guiding Serpent","date":"2023-03-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"lGe1Z3O8JQV1JvF015RjIOC2001gIo9j028BqAdn52yP5w","duration":146,"type":"Video","slug":"zsu-operation-guiding-serpent"},
+  content: ""
+};
+
+export const _mdx_138_: MDXModule = {
+  frontmatter: {"title":"Amaru's Revenge","date":"2023-06-18T00:00:00.000Z","tag":"R6S","description":"","videoUrl":"OClHNSgCUAPLxvHI9SFmyjoxnquNeg2yP00NanaNOMR8","duration":43,"type":"Video","slug":"amarus-revenge"},
+  content: ""
+};
+
+export const _mdx_139_: MDXModule = {
+  frontmatter: {"title":"ZSU - OPERATION BAITED TRAPS","date":"2023-10-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"C72bMNBrEQdUBv9prcDA4M9pk6QDtE6xFq8Ww5ukAWY","duration":138,"type":"Video","slug":"zsu-operation-baited-traps"},
+  content: ""
+};
+
+export const _mdx_140_: MDXModule = {
+  frontmatter: {"title":"Spinbot 3000 🤖","date":"2022-10-31T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"BArO00G8BBk4UcUHGb3joGQrqVBMVh16i0092DxizBERo","duration":112,"type":"Video","slug":"spinbot-3000"},
+  content: ""
+};
+
+export const _mdx_141_: MDXModule = {
+  frontmatter: {"title":"brr brr","date":"2023-05-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"RBkvJmbSIigIVUV8YPWz19KYcx1pNyg6eJ6FtTCQgK8","duration":28,"type":"Video","slug":"brr-brr"},
   content: ""
 };

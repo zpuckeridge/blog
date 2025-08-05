@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "bun run ./scripts/generate-mdx-index.ts && next dev",
-		"build": "bun run ./scripts/generate-mdx-index.ts && next build",
+		"build": "next build",
 		"start": "next start",
 		"format": "biome format --write .",
 		"lint": "biome lint --write .",
