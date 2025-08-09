@@ -620,121 +620,126 @@ export const _mdx_117_: MDXModule = {
 };
 
 export const _mdx_118_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Overblown","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"bHYCW6bDUE8a011xxh8fc00YXu02gnlcXbkscaPl02EDhzg","duration":720,"type":"Video","slug":"zsu-operation-overblown"},
+  frontmatter: {"title":"White Brothers Unite","date":"2025-08-09T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"SAuJCMugp4wJ00gODmGCzSNpS02i02pF6K4uOChuXGNs8o","duration":220,"type":"Video","slug":"white-brothers-unite"},
   content: ""
 };
 
 export const _mdx_119_: MDXModule = {
-  frontmatter: {"title":"OFF TO WAR","date":"2023-02-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UWC7IvzTHPe026QEnUOUA5YUOsQcQ3R54VdW6iFscBTo","duration":16,"type":"Video","slug":"off-to-war"},
+  frontmatter: {"title":"ZSU - Operation Overblown","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"bHYCW6bDUE8a011xxh8fc00YXu02gnlcXbkscaPl02EDhzg","duration":720,"type":"Video","slug":"zsu-operation-overblown"},
   content: ""
 };
 
 export const _mdx_120_: MDXModule = {
-  frontmatter: {"title":"What plane is this? 🤔","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"GnYqOxTbKvw2r6o35P4fhwBPp102Rdkh4dxjVXXBo016U","duration":52,"type":"Video","slug":"what-plane-is-this"},
+  frontmatter: {"title":"OFF TO WAR","date":"2023-02-26T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UWC7IvzTHPe026QEnUOUA5YUOsQcQ3R54VdW6iFscBTo","duration":16,"type":"Video","slug":"off-to-war"},
   content: ""
 };
 
 export const _mdx_121_: MDXModule = {
-  frontmatter: {"title":"Kapow!","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc","duration":23,"type":"Video","slug":"leap-of-faith"},
+  frontmatter: {"title":"What plane is this? 🤔","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"GnYqOxTbKvw2r6o35P4fhwBPp102Rdkh4dxjVXXBo016U","duration":52,"type":"Video","slug":"what-plane-is-this"},
   content: ""
 };
 
 export const _mdx_122_: MDXModule = {
-  frontmatter: {"title":"Infinite Bullets Glitch","date":"2023-12-02T00:00:00.000Z","tag":"CS","description":"","videoUrl":"L2NszURWxdCqITUxpwmoNVru45ejUxwPV02glZfSSy00U","duration":37,"type":"Video","slug":"infinite-bullets-glitch"},
+  frontmatter: {"title":"Kapow!","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"YyGunrda6iixCxo59cpH5tCJhBgvhjdKpy8N80231qmc","duration":23,"type":"Video","slug":"leap-of-faith"},
   content: ""
 };
 
 export const _mdx_123_: MDXModule = {
-  frontmatter: {"title":"Toaster Bath is a good driver!","date":"2022-07-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"suRhinGJwEXafAh01Hp4buoqaleeQErhz6ruUFfmpY3c","duration":28,"type":"Video","slug":"toaster-bath-is-a-good-driver"},
+  frontmatter: {"title":"Infinite Bullets Glitch","date":"2023-12-02T00:00:00.000Z","tag":"CS","description":"","videoUrl":"L2NszURWxdCqITUxpwmoNVru45ejUxwPV02glZfSSy00U","duration":37,"type":"Video","slug":"infinite-bullets-glitch"},
   content: ""
 };
 
 export const _mdx_124_: MDXModule = {
-  frontmatter: {"title":"Hello! I've arrived!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"FW00sQd9Ql8xto386Ky01QAfT6Qjd62nnQZlywkNxS9nU","duration":23,"type":"Video","slug":"hello-ive-arrived"},
+  frontmatter: {"title":"Toaster Bath is a good driver!","date":"2022-07-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"suRhinGJwEXafAh01Hp4buoqaleeQErhz6ruUFfmpY3c","duration":28,"type":"Video","slug":"toaster-bath-is-a-good-driver"},
   content: ""
 };
 
 export const _mdx_125_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Peoples Highway","date":"2023-04-04T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"gN901vV7sry101zHLoVby2wqK500X7Abbov2bcsTIoOTlc","duration":537,"type":"Video","slug":"zsu-operation-peoples-highway"},
+  frontmatter: {"title":"Hello! I've arrived!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"FW00sQd9Ql8xto386Ky01QAfT6Qjd62nnQZlywkNxS9nU","duration":23,"type":"Video","slug":"hello-ive-arrived"},
   content: ""
 };
 
 export const _mdx_126_: MDXModule = {
-  frontmatter: {"title":"What a round 😯","date":"2022-11-17T00:00:00.000Z","tag":"CS","description":"","videoUrl":"JoEg5Svt7IWkuH8fwH7tl8S3wcNw9QKaBqUsviQaQQs","duration":119,"type":"Video","slug":"what-a-round"},
+  frontmatter: {"title":"ZSU - Operation Peoples Highway","date":"2023-04-04T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"gN901vV7sry101zHLoVby2wqK500X7Abbov2bcsTIoOTlc","duration":537,"type":"Video","slug":"zsu-operation-peoples-highway"},
   content: ""
 };
 
 export const _mdx_127_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION TEMPORAL HARVEST","date":"2023-12-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"2fU2iF8pbbfux4ZYJGQnCxCUx59iM7mQBHC6024sWF2g","duration":534,"type":"Video","slug":"zsu-operation-temporal-harvest"},
+  frontmatter: {"title":"What a round 😯","date":"2022-11-17T00:00:00.000Z","tag":"CS","description":"","videoUrl":"JoEg5Svt7IWkuH8fwH7tl8S3wcNw9QKaBqUsviQaQQs","duration":119,"type":"Video","slug":"what-a-round"},
   content: ""
 };
 
 export const _mdx_128_: MDXModule = {
-  frontmatter: {"title":"Vehicular Confusion","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"vNiXKX02FwAPS29I02zP8R3hRzv00ua3S01NN1QLopuDDN8","duration":264,"type":"Video","slug":"vehicular-confusion"},
+  frontmatter: {"title":"ZSU - OPERATION TEMPORAL HARVEST","date":"2023-12-06T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"2fU2iF8pbbfux4ZYJGQnCxCUx59iM7mQBHC6024sWF2g","duration":534,"type":"Video","slug":"zsu-operation-temporal-harvest"},
   content: ""
 };
 
 export const _mdx_129_: MDXModule = {
-  frontmatter: {"title":"Zero Operational Awareness","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"crkZjNpM2jD4hLpRzdolLjkigyx94JWtXXF6006tNKF00","duration":58,"type":"Video","slug":"zero-operational-awareness"},
+  frontmatter: {"title":"Vehicular Confusion","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"vNiXKX02FwAPS29I02zP8R3hRzv00ua3S01NN1QLopuDDN8","duration":264,"type":"Video","slug":"vehicular-confusion"},
   content: ""
 };
 
 export const _mdx_130_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Poached Eggs","date":"2023-02-05T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"qzvnp3z1zVjQb8Jne7dXgRaT8AFnrcEApPJgQlUkPWM","duration":225,"type":"Video","slug":"zsu-operation-poached-eggs"},
+  frontmatter: {"title":"Zero Operational Awareness","date":"2022-11-12T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"crkZjNpM2jD4hLpRzdolLjkigyx94JWtXXF6006tNKF00","duration":58,"type":"Video","slug":"zero-operational-awareness"},
   content: ""
 };
 
 export const _mdx_131_: MDXModule = {
-  frontmatter: {"title":"I should have been more concerned...","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UViut01neIcKcMxodpCNYifJXdW32kL74utoJRgeI3X00","duration":47,"type":"Video","slug":"i-should-have-been-more-concerned"},
+  frontmatter: {"title":"ZSU - Operation Poached Eggs","date":"2023-02-05T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"qzvnp3z1zVjQb8Jne7dXgRaT8AFnrcEApPJgQlUkPWM","duration":225,"type":"Video","slug":"zsu-operation-poached-eggs"},
   content: ""
 };
 
 export const _mdx_132_: MDXModule = {
-  frontmatter: {"title":"Rampage 💀","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"LAxVJrz2Xml5TUgixqG3w5wgtCjygW9GKIidMAoH61w","duration":227,"type":"Video","slug":"rampage"},
+  frontmatter: {"title":"I should have been more concerned...","date":"2022-11-11T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"UViut01neIcKcMxodpCNYifJXdW32kL74utoJRgeI3X00","duration":47,"type":"Video","slug":"i-should-have-been-more-concerned"},
   content: ""
 };
 
 export const _mdx_133_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Bay of Goats","date":"2023-03-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"EApZnh02fN1ezC7vcUjqkK02ja4dh2BzjdD0202QQT2BFTM","duration":242,"type":"Video","slug":"zsu-operation-bay-of-goats"},
+  frontmatter: {"title":"Rampage 💀","date":"1970-01-01T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"LAxVJrz2Xml5TUgixqG3w5wgtCjygW9GKIidMAoH61w","duration":227,"type":"Video","slug":"rampage"},
   content: ""
 };
 
 export const _mdx_134_: MDXModule = {
-  frontmatter: {"title":"REPO Moments","date":"2025-08-01T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"K6Y7TT00z8c5vc02smKvb01Lrm6ymcKqR302UOHuZ02s23nA","duration":348,"type":"Video","slug":"repo-moments"},
+  frontmatter: {"title":"ZSU - Operation Bay of Goats","date":"2023-03-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"EApZnh02fN1ezC7vcUjqkK02ja4dh2BzjdD0202QQT2BFTM","duration":242,"type":"Video","slug":"zsu-operation-bay-of-goats"},
   content: ""
 };
 
 export const _mdx_135_: MDXModule = {
-  frontmatter: {"title":"TeamSpeak Shenanigans","date":"2023-06-06T13:03:53.402Z","tag":"ARMA","description":"","videoUrl":"WY253YwZYzrc00ZvwNOpkjIbZmuuAMkfNJHMf5VAP01Q00","duration":26,"type":"Video","slug":"teamspeak-shenanigans"},
+  frontmatter: {"title":"REPO Moments","date":"2025-08-01T00:00:00.000Z","tag":"REPO","description":"","videoUrl":"K6Y7TT00z8c5vc02smKvb01Lrm6ymcKqR302UOHuZ02s23nA","duration":348,"type":"Video","slug":"repo-moments"},
   content: ""
 };
 
 export const _mdx_136_: MDXModule = {
-  frontmatter: {"title":"FREEBALLIN' IT!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NACDkxdjM5HZZpovIYJHIhhVbXbo9ie3V01KXI02jJrLg","duration":31,"type":"Video","slug":"freeballing-it"},
+  frontmatter: {"title":"TeamSpeak Shenanigans","date":"2023-06-06T13:03:53.402Z","tag":"ARMA","description":"","videoUrl":"WY253YwZYzrc00ZvwNOpkjIbZmuuAMkfNJHMf5VAP01Q00","duration":26,"type":"Video","slug":"teamspeak-shenanigans"},
   content: ""
 };
 
 export const _mdx_137_: MDXModule = {
-  frontmatter: {"title":"ZSU - Operation Guiding Serpent","date":"2023-03-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"lGe1Z3O8JQV1JvF015RjIOC2001gIo9j028BqAdn52yP5w","duration":146,"type":"Video","slug":"zsu-operation-guiding-serpent"},
+  frontmatter: {"title":"FREEBALLIN' IT!","date":"2022-07-13T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"NACDkxdjM5HZZpovIYJHIhhVbXbo9ie3V01KXI02jJrLg","duration":31,"type":"Video","slug":"freeballing-it"},
   content: ""
 };
 
 export const _mdx_138_: MDXModule = {
-  frontmatter: {"title":"Amaru's Revenge","date":"2023-06-18T00:00:00.000Z","tag":"R6S","description":"","videoUrl":"OClHNSgCUAPLxvHI9SFmyjoxnquNeg2yP00NanaNOMR8","duration":43,"type":"Video","slug":"amarus-revenge"},
+  frontmatter: {"title":"ZSU - Operation Guiding Serpent","date":"2023-03-21T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"lGe1Z3O8JQV1JvF015RjIOC2001gIo9j028BqAdn52yP5w","duration":146,"type":"Video","slug":"zsu-operation-guiding-serpent"},
   content: ""
 };
 
 export const _mdx_139_: MDXModule = {
-  frontmatter: {"title":"ZSU - OPERATION BAITED TRAPS","date":"2023-10-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"C72bMNBrEQdUBv9prcDA4M9pk6QDtE6xFq8Ww5ukAWY","duration":138,"type":"Video","slug":"zsu-operation-baited-traps"},
+  frontmatter: {"title":"Amaru's Revenge","date":"2023-06-18T00:00:00.000Z","tag":"R6S","description":"","videoUrl":"OClHNSgCUAPLxvHI9SFmyjoxnquNeg2yP00NanaNOMR8","duration":43,"type":"Video","slug":"amarus-revenge"},
   content: ""
 };
 
 export const _mdx_140_: MDXModule = {
-  frontmatter: {"title":"Spinbot 3000 🤖","date":"2022-10-31T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"BArO00G8BBk4UcUHGb3joGQrqVBMVh16i0092DxizBERo","duration":112,"type":"Video","slug":"spinbot-3000"},
+  frontmatter: {"title":"ZSU - OPERATION BAITED TRAPS","date":"2023-10-17T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"C72bMNBrEQdUBv9prcDA4M9pk6QDtE6xFq8Ww5ukAWY","duration":138,"type":"Video","slug":"zsu-operation-baited-traps"},
   content: ""
 };
 
 export const _mdx_141_: MDXModule = {
+  frontmatter: {"title":"Spinbot 3000 🤖","date":"2022-10-31T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"BArO00G8BBk4UcUHGb3joGQrqVBMVh16i0092DxizBERo","duration":112,"type":"Video","slug":"spinbot-3000"},
+  content: ""
+};
+
+export const _mdx_142_: MDXModule = {
   frontmatter: {"title":"brr brr","date":"2023-05-28T00:00:00.000Z","tag":"ARMA","description":"","videoUrl":"RBkvJmbSIigIVUV8YPWz19KYcx1pNyg6eJ6FtTCQgK8","duration":28,"type":"Video","slug":"brr-brr"},
   content: ""
 };
