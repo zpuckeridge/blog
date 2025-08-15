@@ -160,128 +160,128 @@ export const _mdx_25_: MDXModule = {
 };
 
 export const _mdx_26_: MDXModule = {
-  frontmatter: {"title":"Test movie 2","date":"2024-05-19T00:00:00.000Z","type":"Movie","setting":"Home","review":10,"with":[{"name":"Test Person"},{"name":"Test Person 2"}],"image":"/recommended-movies/test-movie.jpg","slug":"test-movie-2","description":""},
-  content: ""
-};
-
-export const _mdx_27_: MDXModule = {
-  frontmatter: {"title":"Test movie","date":"2025-05-19T00:00:00.000Z","type":"Movie","setting":"Home","review":10,"with":[{"name":"Test Person"},{"name":"Test Person 2"}],"image":"/recommended-movies/test-movie.jpg","slug":"test-movie","description":""},
-  content: ""
-};
-
-export const _mdx_28_: MDXModule = {
-  frontmatter: {"title":"Men without land, a home, a wife or a business are not worth listening to.","date":"2025-05-19T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"men-that-have-no-household","description":""},
-  content: "\nMen without land, a home, a wife or a business are not worth listening to.\n"
-};
-
-export const _mdx_29_: MDXModule = {
-  frontmatter: {"title":"Church is an ICU for sinners","date":"2024-09-06T00:00:00.000Z","type":"Note","tag":"Quote","slug":"church-is-an-icu-for-sinners","description":""},
-  content: "\n\"Church is an ICU for sinners.\" — Douglas Wilson\n"
-};
-
-export const _mdx_30_: MDXModule = {
-  frontmatter: {"title":"Becoming trans is the only way to reject white privilege","date":"2024-11-01T00:00:00.000Z","type":"Note","tag":"Quote","slug":"jd-vance-the-only-way-to-reject-white-privilege","description":""},
-  content: "\n\"[I wonder] if there is a dynamic going on where if you become trans, that is the way to reject your white privilege. That's the social signifier, the only one that's available in the hyper woke mindset is if you become gender non-binary.\" — JD Vance\n"
-};
-
-export const _mdx_31_: MDXModule = {
-  frontmatter: {"title":"Politicians are blatantly gaslighting us on housing","date":"2025-03-10T00:00:00.000Z","type":"Note","tag":"Politics","slug":"politicans-are-gaslighting-us","description":""},
-  content: "\nPoliticians say the number of homes being built is the problem. Not the mass unchecked immigration.\n\nThat importing more workers to build them faster is the solution.\n\nThey don't seem to realise that the more people you bring in, the more houses you need to build - exacerbating the problem even further. Not to mention the additional strain on other resources (i.e. hospitals, schools etc.)\n\nThe solution is simple.\n\nStop the mass unchecked immigration.\n"
-};
-
-export const _mdx_32_: MDXModule = {
-  frontmatter: {"title":"Either write something worth reading or do something worth writing","date":"2024-07-30T00:00:00.000Z","type":"Note","tag":"Quote","slug":"either-write-something-worth-reading-or-do-something-worth-writing","description":""},
-  content: "\n\"Either write something worth reading or do something worth writing.\" — Benjamin Franklin\n"
-};
-
-export const _mdx_33_: MDXModule = {
-  frontmatter: {"title":"AI-generated marketing is dumb","date":"2025-05-21T00:00:00.000Z","type":"Note","tag":"AI","slug":"ai-marketing-is-dumb","description":""},
-  content: "\nAI-generated marketing is like a toddler with a thesaurus and a Red Bull addiction trying to sell you a used car. It’s loud, it’s chaotic, it’s full of buzzwords it doesn’t understand, and you’re left wondering if it’s trying to scam you or just genuinely confused about what it’s selling.\n"
-};
-
-export const _mdx_34_: MDXModule = {
-  frontmatter: {"title":"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be","date":"2024-08-27T00:00:00.000Z","type":"Note","tag":"Quote","slug":"busyness-paradoxically-is-a-form-of-laziness-lazy-thinking-or-no-thinking-at-all-just-an-acceptance-that-busy-is-where-we-should-be","description":""},
-  content: "\n\"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be.\" — Carl Phillips\n"
-};
-
-export const _mdx_35_: MDXModule = {
-  frontmatter: {"title":"I'm a White Australian and I'm not sorry","date":"2025-05-26T00:00:00.000Z","type":"Note","tag":"Politics","slug":"not-sorry","description":""},
-  content: "\nI'm not sorry that Australia was colonised.\n\nI'm not sorry about the stolen generation.\n\nI'm not ashamed to be Australian, or of my English heritage.\n\nAnd I don't need to be welcomed to the country my people built.\n\nAustralia is for Australians.\n"
-};
-
-export const _mdx_36_: MDXModule = {
-  frontmatter: {"title":"Sexual deviants should not work with children","date":"2025-07-16T00:00:00.000Z","type":"Note","tag":"Politics","slug":"sexual-deviants","description":""},
-  content: "\nSexual deviants (homosexuals, transgenders etc.) should not work with children.\n\nMen should teach boys.\nWomen should teach girls.\n\nParents should be more involved with education."
-};
-
-export const _mdx_37_: MDXModule = {
-  frontmatter: {"title":"Phone calls vs text","date":"2025-03-13T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"phone-calls-vs-text","description":""},
-  content: "\nOne of the biggest things I’ve had to learn moving away from a purely technical role is that a quick phone call is 100x more efficient and reliable than text.\n\nNon-technical people do not read messages. At all.\n"
-};
-
-export const _mdx_38_: MDXModule = {
   frontmatter: {"title":"Confessions of a Food Catholic","date":"2023-05-19T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/confessions-of-a-food-catholic.avif","slug":"confessions-of-a-food-catholic","description":""},
   content: ""
 };
 
-export const _mdx_39_: MDXModule = {
+export const _mdx_27_: MDXModule = {
   frontmatter: {"title":"The Case for Christian Nationalism","date":"2023-04-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/the-case-for-christian-nationalism.avif","slug":"the-case-for-christian-nationalism","description":""},
   content: ""
 };
 
-export const _mdx_40_: MDXModule = {
+export const _mdx_28_: MDXModule = {
   frontmatter: {"title":"Mere Christianity","date":"2023-04-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/mere-christianity.avif","slug":"mere-christianity","description":""},
   content: ""
 };
 
-export const _mdx_41_: MDXModule = {
+export const _mdx_29_: MDXModule = {
   frontmatter: {"title":"What I Learned in Narnia","date":"2024-12-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/what-i-learned-in-narnia.avif","slug":"what-i-learned-in-narnia","description":""},
   content: ""
 };
 
-export const _mdx_42_: MDXModule = {
+export const _mdx_30_: MDXModule = {
   frontmatter: {"title":"Live Like a Narnian","date":"2025-01-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/live-like-a-narnian.avif","slug":"live-like-a-narnian","description":""},
   content: ""
 };
 
-export const _mdx_43_: MDXModule = {
+export const _mdx_31_: MDXModule = {
   frontmatter: {"title":"Future Men","date":"2023-02-01T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/future-men.avif","slug":"future-men","description":""},
   content: ""
 };
 
-export const _mdx_44_: MDXModule = {
+export const _mdx_32_: MDXModule = {
   frontmatter: {"title":"Fight by Flight","date":"2023-05-19T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/fight-by-flight.avif","slug":"fight-by-flight","description":""},
   content: ""
 };
 
-export const _mdx_45_: MDXModule = {
+export const _mdx_33_: MDXModule = {
   frontmatter: {"title":"The Chronicles of Narnia","date":"2024-11-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/the-chronicles-of-narnia.avif","slug":"the-chronicles-of-narnia","description":""},
   content: ""
 };
 
-export const _mdx_46_: MDXModule = {
+export const _mdx_34_: MDXModule = {
   frontmatter: {"title":"How to Read a Book","date":"2025-04-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/how-to-read-a-book.avif","slug":"how-to-read-a-book-advice-for-christian-readers","description":""},
   content: ""
 };
 
-export const _mdx_47_: MDXModule = {
+export const _mdx_35_: MDXModule = {
   frontmatter: {"title":"Mere Christendom","date":"2024-04-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/mere-christendom.avif","slug":"mere-christendom","description":""},
   content: ""
 };
 
-export const _mdx_48_: MDXModule = {
+export const _mdx_36_: MDXModule = {
   frontmatter: {"title":"The Screwtape Letters","date":"2024-04-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/the-screwtape-letters.avif","slug":"the-screwtape-letters","description":""},
   content: ""
 };
 
-export const _mdx_49_: MDXModule = {
+export const _mdx_37_: MDXModule = {
   frontmatter: {"title":"It's Good To Be A Man","date":"2023-04-20T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"image":"/recommended-books/its-good-to-be-a-man.avif","slug":"its-good-to-be-a-man","description":""},
   content: ""
 };
 
-export const _mdx_50_: MDXModule = {
+export const _mdx_38_: MDXModule = {
   frontmatter: {"title":"Christian Nationalism","date":"2023-05-19T00:00:00.000Z","type":"Book","review":10,"ISBN":1234567890,"published":"09-09-1999","author":"John Doe","image":"/recommended-books/christian-nationalism.avif","slug":"christian-nationalism","description":""},
   content: ""
+};
+
+export const _mdx_39_: MDXModule = {
+  frontmatter: {"title":"Test movie 2","date":"2024-05-19T00:00:00.000Z","type":"Movie","setting":"Home","review":10,"with":[{"name":"Test Person"},{"name":"Test Person 2"}],"image":"/recommended-movies/test-movie.jpg","slug":"test-movie-2","description":""},
+  content: ""
+};
+
+export const _mdx_40_: MDXModule = {
+  frontmatter: {"title":"Test movie","date":"2025-05-19T00:00:00.000Z","type":"Movie","setting":"Home","review":10,"with":[{"name":"Test Person"},{"name":"Test Person 2"}],"image":"/recommended-movies/test-movie.jpg","slug":"test-movie","description":""},
+  content: ""
+};
+
+export const _mdx_41_: MDXModule = {
+  frontmatter: {"title":"Men without land, a home, a wife or a business are not worth listening to.","date":"2025-05-19T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"men-that-have-no-household","description":""},
+  content: "\nMen without land, a home, a wife or a business are not worth listening to.\n"
+};
+
+export const _mdx_42_: MDXModule = {
+  frontmatter: {"title":"Church is an ICU for sinners","date":"2024-09-06T00:00:00.000Z","type":"Note","tag":"Quote","slug":"church-is-an-icu-for-sinners","description":""},
+  content: "\n\"Church is an ICU for sinners.\" — Douglas Wilson\n"
+};
+
+export const _mdx_43_: MDXModule = {
+  frontmatter: {"title":"Becoming trans is the only way to reject white privilege","date":"2024-11-01T00:00:00.000Z","type":"Note","tag":"Quote","slug":"jd-vance-the-only-way-to-reject-white-privilege","description":""},
+  content: "\n\"[I wonder] if there is a dynamic going on where if you become trans, that is the way to reject your white privilege. That's the social signifier, the only one that's available in the hyper woke mindset is if you become gender non-binary.\" — JD Vance\n"
+};
+
+export const _mdx_44_: MDXModule = {
+  frontmatter: {"title":"Politicians are blatantly gaslighting us on housing","date":"2025-03-10T00:00:00.000Z","type":"Note","tag":"Politics","slug":"politicans-are-gaslighting-us","description":""},
+  content: "\nPoliticians say the number of homes being built is the problem. Not the mass unchecked immigration.\n\nThat importing more workers to build them faster is the solution.\n\nThey don't seem to realise that the more people you bring in, the more houses you need to build - exacerbating the problem even further. Not to mention the additional strain on other resources (i.e. hospitals, schools etc.)\n\nThe solution is simple.\n\nStop the mass unchecked immigration.\n"
+};
+
+export const _mdx_45_: MDXModule = {
+  frontmatter: {"title":"Either write something worth reading or do something worth writing","date":"2024-07-30T00:00:00.000Z","type":"Note","tag":"Quote","slug":"either-write-something-worth-reading-or-do-something-worth-writing","description":""},
+  content: "\n\"Either write something worth reading or do something worth writing.\" — Benjamin Franklin\n"
+};
+
+export const _mdx_46_: MDXModule = {
+  frontmatter: {"title":"AI-generated marketing is dumb","date":"2025-05-21T00:00:00.000Z","type":"Note","tag":"AI","slug":"ai-marketing-is-dumb","description":""},
+  content: "\nAI-generated marketing is like a toddler with a thesaurus and a Red Bull addiction trying to sell you a used car. It’s loud, it’s chaotic, it’s full of buzzwords it doesn’t understand, and you’re left wondering if it’s trying to scam you or just genuinely confused about what it’s selling.\n"
+};
+
+export const _mdx_47_: MDXModule = {
+  frontmatter: {"title":"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be","date":"2024-08-27T00:00:00.000Z","type":"Note","tag":"Quote","slug":"busyness-paradoxically-is-a-form-of-laziness-lazy-thinking-or-no-thinking-at-all-just-an-acceptance-that-busy-is-where-we-should-be","description":""},
+  content: "\n\"Busyness, paradoxically, is a form of laziness. Lazy thinking, or no thinking at all. Just an acceptance that busy is where we should be.\" — Carl Phillips\n"
+};
+
+export const _mdx_48_: MDXModule = {
+  frontmatter: {"title":"I'm a White Australian and I'm not sorry","date":"2025-05-26T00:00:00.000Z","type":"Note","tag":"Politics","slug":"not-sorry","description":""},
+  content: "\nI'm not sorry that Australia was colonised.\n\nI'm not sorry about the stolen generation.\n\nI'm not ashamed to be Australian, or of my English heritage.\n\nAnd I don't need to be welcomed to the country my people built.\n\nAustralia is for Australians.\n"
+};
+
+export const _mdx_49_: MDXModule = {
+  frontmatter: {"title":"Sexual deviants should not work with children","date":"2025-07-16T00:00:00.000Z","type":"Note","tag":"Politics","slug":"sexual-deviants","description":""},
+  content: "\nSexual deviants (homosexuals, transgenders etc.) should not work with children.\n\nMen should teach boys.\nWomen should teach girls.\n\nParents should be more involved with education."
+};
+
+export const _mdx_50_: MDXModule = {
+  frontmatter: {"title":"Phone calls vs text","date":"2025-03-13T00:00:00.000Z","type":"Note","tag":"Lesson","slug":"phone-calls-vs-text","description":""},
+  content: "\nOne of the biggest things I’ve had to learn moving away from a purely technical role is that a quick phone call is 100x more efficient and reliable than text.\n\nNon-technical people do not read messages. At all.\n"
 };
 
 export const _mdx_51_: MDXModule = {
