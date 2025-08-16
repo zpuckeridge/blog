@@ -25,7 +25,7 @@ export default function TableOfContents() {
 
 				const id = element.id;
 				const text = element.textContent || "";
-				const level = parseInt(element.tagName.charAt(1));
+				const level = parseInt(element.tagName.charAt(1), 10);
 
 				if (id && text) {
 					newHeadings.push({ id, text, level });

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import MoviesAll from "@/src/components/movies-all";
-import { getAllMovies } from "@/src/lib/getAllContent";
+import { getMovies } from "@/src/lib/directus-content";
 
 export default async function MoviesPage() {
-	const movies = await getAllMovies();
+	const movies = await getMovies();
 
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 space-y-20 px-6">

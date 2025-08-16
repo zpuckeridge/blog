@@ -4,7 +4,7 @@ import Link from "next/link";
 import Lanyard from "@/src/components/lanyard";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import type { Post, Video } from "@/src/interfaces/content-item";
-import { getAllPosts, getAllVideos } from "@/src/lib/getAllContent";
+import { getPosts, getVideos } from "@/src/lib/directus-content";
 import AnimatedGradientText from "../components/animated-gradient-text";
 import GitHubContributions from "../components/contributions-graph";
 import { ToggleTheme } from "../components/toggle-theme";
@@ -26,10 +26,14 @@ const brisbaneDate = new Intl.DateTimeFormat("en-US", {
 }).format(now);
 
 export default async function Home() {
-	const [posts, videos] = await Promise.all([getAllPosts(), getAllVideos()]);
+	const [posts, videos] = await Promise.all([getPosts(), getVideos()]);
 
-	const sortedPosts = posts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
-	const sortedVideos = videos.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+	const sortedPosts = posts.sort((a, b) =>
+		compareDesc(new Date(a.date_created), new Date(b.date_created))
+	);
+	const sortedVideos = videos.sort((a, b) =>
+		compareDesc(new Date(a.date_created), new Date(b.date_created))
+	);
 
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
@@ -127,14 +131,14 @@ export default async function Home() {
 							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
 								{sortedPosts.map((post: Post) => (
 									<Link
-										key={post.url}
-										href={`/timeline${post.url}`}
+										key={post.slug}
+										href={`/timeline/${post.slug}`}
 										aria-label={post.title}
 										className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4"
 									>
 										<p className="line-clamp-1">{post.title}</p>
 										<p className="text-muted-foreground">
-											{new Date(post.date).toLocaleDateString(undefined, {
+											{new Date(post.date_created).toLocaleDateString(undefined, {
 												year: "numeric",
 												month: "2-digit",
 												day: "2-digit",
@@ -203,14 +207,14 @@ export default async function Home() {
 							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
 								{sortedVideos.map((video: Video) => (
 									<Link
-										key={video.url}
-										href={`/video${video.url}`}
+										key={video.slug}
+										href={`/video/${video.slug}`}
 										aria-label={video.title}
 										className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4"
 									>
 										<p className="line-clamp-1">{video.title}</p>
 										<p className="text-muted-foreground">
-											{new Date(video.date).toLocaleDateString(undefined, {
+											{new Date(video.date_created).toLocaleDateString(undefined, {
 												year: "numeric",
 												month: "2-digit",
 												day: "2-digit",

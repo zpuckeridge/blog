@@ -2,8 +2,8 @@ import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PostRendering from "@/src/components/posts";
-import type { ContentItem } from "@/src/interfaces/content-item";
-import { getAllContent } from "@/src/lib/getAllContent";
+import type { TimelineItem } from "@/src/interfaces/content-item";
+import { getNotes, getPosts } from "@/src/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "Timeline",
@@ -12,22 +12,38 @@ export const metadata: Metadata = {
 };
 
 export default async function Posts() {
-	const allContent = await getAllContent();
+	const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);
+
+	// Combine posts and notes into a single content array
+	const allContent: TimelineItem[] = [
+		...allPosts.map((post) => ({
+			...post,
+			id: post.slug || `${post.date_created}-${post.title}`,
+			type: "Post" as const,
+		})),
+		...allNotes.map((note) => ({
+			...note,
+			id: `note-${note.id}`,
+			title: note.content.substring(0, 100) + (note.content.length > 100 ? "..." : ""),
+			slug: `note-${note.id}`,
+			image: "",
+			image_alt: "",
+			description: note.content.substring(0, 200) + (note.content.length > 200 ? "..." : ""),
+			tags: note.tags || [],
+			content: note.content,
+			signature: false,
+			type: "Note" as const,
+		})),
+	];
 
 	const content = allContent
-		.filter((item) => item.type === "Note" || item.type === "Post")
-		.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
-		.reduce((acc: Record<number, ContentItem[]>, item: ContentItem) => {
-			const year = new Date(item.date).getFullYear();
-			const itemWithId = {
-				...item,
-				id: item.slug || `${item.date}-${item.title}`,
-				type: item.type.charAt(0).toUpperCase() + item.type.slice(1),
-			};
+		.sort((a, b) => compareDesc(new Date(a.date_created), new Date(b.date_created)))
+		.reduce((acc: Record<number, TimelineItem[]>, item) => {
+			const year = new Date(item.date_created).getFullYear();
 			if (!acc[year]) {
 				acc[year] = [];
 			}
-			acc[year].push(itemWithId as ContentItem);
+			acc[year].push(item);
 			return acc;
 		}, {});
 
@@ -43,7 +59,9 @@ export default async function Posts() {
 						happening in my life. Working on turning this into a feed for everything I do.
 					</p>
 
-					<p className="text-xs text-muted-foreground">Posts from September 2019 to present.</p>
+					<p className="text-xs text-muted-foreground">
+						Posts and notes from September 2019 to present.
+					</p>
 				</div>
 
 				<PostRendering postsByYear={content} />

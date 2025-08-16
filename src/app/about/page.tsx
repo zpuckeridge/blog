@@ -5,7 +5,7 @@ import BooksPreview from "@/src/components/books-preview";
 import ImageWithDetails from "@/src/components/image-with-details";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import MoviesPreview from "@/src/components/movies-preview";
-import { getAllBooks, getAllMovies } from "@/src/lib/getAllContent";
+import { getBooks, getMovies } from "@/src/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "About",
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-	const books = await getAllBooks();
-	const movies = await getAllMovies();
+	const books = await getBooks();
+	const movies = await getMovies();
 
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">

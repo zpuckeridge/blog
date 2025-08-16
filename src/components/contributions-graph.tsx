@@ -20,6 +20,7 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed
 		const fetchContributions = async () => {
 			try {
 				setLoading(true);

@@ -4,19 +4,11 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
 import { Switch } from "@/src/components/ui/switch";
+import type { TimelineItem } from "@/src/interfaces/content-item";
 import { Input } from "./ui/input";
 
-interface Post {
-	url: string;
-	title: string;
-	date: string;
-	tag: string;
-	type: string;
-	body: { raw: string };
-}
-
 interface PostsProps {
-	postsByYear: Record<number, Post[]>;
+	postsByYear: Record<number, TimelineItem[]>;
 }
 
 const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
@@ -30,24 +22,24 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 		new Set(
 			Object.values(postsByYear)
 				.flat()
-				.map((post) => post.tag)
+				.flatMap((item) => item.tags)
 				.filter(Boolean)
 		)
 	).sort();
 
 	// Filter posts based on search query, selected tags, and notes toggle
-	const filteredPostsByYear = Object.entries(postsByYear).reduce<Record<string, Post[]>>(
-		(acc, [year, posts]) => {
-			const filteredPosts = posts.filter((post) => {
-				const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
+	const filteredPostsByYear = Object.entries(postsByYear).reduce<Record<string, TimelineItem[]>>(
+		(acc, [year, items]) => {
+			const filteredItems = items.filter((item) => {
+				const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
 				const matchesTags =
-					selectedTag.length === 0 || selectedTag.every((tag) => post.tag === tag);
-				const matchesNotesToggle = showNotes || post.type !== "Note";
+					selectedTag.length === 0 || selectedTag.every((tag) => item.tags.includes(tag));
+				const matchesNotesToggle = showNotes || item.type !== "Note";
 				return matchesSearch && matchesTags && matchesNotesToggle;
 			});
 
-			if (filteredPosts.length > 0) {
-				acc[year] = filteredPosts;
+			if (filteredItems.length > 0) {
+				acc[year] = filteredItems;
 			}
 			return acc;
 		},
@@ -97,25 +89,25 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 				</div>
 
 				<div className="flex justify-end gap-2 items-center">
+					<p className="text-xs text-muted-foreground">Toggle Notes</p>
 					<Switch checked={showNotes} onCheckedChange={setShowNotes} />{" "}
-					<p className="text-xs text-muted-foreground">Notes</p>
 				</div>
 			</div>
 
 			{Object.entries(filteredPostsByYear)
 				.sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-				.map(([year, yearPosts]) => (
+				.map(([year, yearItems]) => (
 					<div key={`year-${year}`} className="border-t border-muted text-sm flex w-full">
 						<h2 className="text-muted-foreground w-[100px] py-3">{year}</h2>
 						<div className="flex flex-col w-full">
 							{/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */}
-							{yearPosts.map((post: Post, index: number) =>
-								post.type === "Note" ? (
+							{yearItems.map((item: TimelineItem, index: number) =>
+								item.type === "Note" ? (
 									<button
 										type="button"
-										key={`note-${post.url}-${post.date}`}
+										key={`note-${item.slug}-${item.date_created}`}
 										className={`flex justify-between w-full py-3 gap-8 ${
-											index === yearPosts.length - 1 ? "" : "border-b border-muted"
+											index === yearItems.length - 1 ? "" : "border-b border-muted"
 										} group/item`}
 										onMouseEnter={() => setIsAnyPostHovered(true)}
 										onMouseLeave={() => setIsAnyPostHovered(false)}
@@ -128,23 +120,23 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 											<div className="text-xs text-muted-foreground text-yellow-600 dark:text-yellow-500 flex justify-between">
 												<p>Note</p>
 												<p>
-													{new Date(post.date).toLocaleDateString("en-US", {
+													{new Date(item.date_created).toLocaleDateString("en-US", {
 														day: "2-digit",
 														month: "short",
 													})}
 												</p>
 											</div>
 											<p className="text-yellow-950 dark:text-yellow-100 text-left">
-												{post.body.raw}
+												{item.content}
 											</p>
 										</div>
 									</button>
 								) : (
 									<Link
-										key={`post-${post.url}-${post.date}`}
-										href={`/timeline${post.url}`}
+										key={`post-${item.slug}-${item.date_created}`}
+										href={`/timeline/${item.slug}`}
 										className={`flex justify-between w-full py-3 gap-8 ${
-											index === yearPosts.length - 1 ? "" : "border-b border-muted"
+											index === yearItems.length - 1 ? "" : "border-b border-muted"
 										} group/item`}
 										onMouseEnter={() => setIsAnyPostHovered(true)}
 										onMouseLeave={() => setIsAnyPostHovered(false)}
@@ -157,7 +149,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 														: "opacity-100"
 												} transition-opacity`}
 											>
-												{post.title}
+												{item.title}
 											</p>
 										</div>
 										<div className="text-muted-foreground whitespace-nowrap">
@@ -168,7 +160,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 														: "opacity-100"
 												} transition-opacity`}
 											>
-												{new Date(post.date).toLocaleDateString("en-US", {
+												{new Date(item.date_created).toLocaleDateString("en-US", {
 													day: "2-digit",
 													month: "short",
 												})}

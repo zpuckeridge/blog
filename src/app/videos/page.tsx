@@ -2,7 +2,7 @@ import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Videos from "@/src/components/videos";
-import { getAllContent } from "@/src/lib/getAllContent";
+import { getVideos } from "@/src/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "Videos",
@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Clips() {
-	const allContent = await getAllContent();
+	const videos = await getVideos();
 
-	const videos = allContent
-		.filter((a) => a.type === "Video")
-		.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+	const sortedVideos = videos.sort((a, b) =>
+		compareDesc(new Date(a.date_created), new Date(b.date_created))
+	);
 
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
@@ -28,7 +28,7 @@ export default async function Clips() {
 					</p>
 				</div>
 
-				<Videos videos={videos} itemsPerPage={6} />
+				<Videos videos={sortedVideos} itemsPerPage={6} />
 
 				<Link
 					href="/"

@@ -4,10 +4,12 @@ import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import type { Book } from "../interfaces/content-item";
+import type { Book } from "@/src/interfaces/content-item";
 
 export default function BooksPreview({ books }: { books: Book[] }) {
-	const sortedBooks = books.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+	const sortedBooks = books.sort((a, b) =>
+		compareDesc(new Date(a.date_created), new Date(b.date_created))
+	);
 	const [expandedBook, setExpandedBook] = useState<string | null>(null);
 
 	const toggleBook = (bookUrl: string) => {
@@ -29,19 +31,19 @@ export default function BooksPreview({ books }: { books: Book[] }) {
 				</div>
 				<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
 					{sortedBooks.map((book: Book) => {
-						const isExpanded = expandedBook === book.url;
+						const isExpanded = expandedBook === book.id.toString();
 						return (
-							<div key={book.url} className="space-y-1">
+							<div key={book.id} className="space-y-1">
 								<button
 									type="button"
-									onClick={() => toggleBook(book.url)}
+									onClick={() => toggleBook(book.id.toString())}
 									aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
 									className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
 								>
 									<p className="line-clamp-1">{book.title}</p>
 									<p className="text-muted-foreground">
 										{(() => {
-											const date = new Date(book.date);
+											const date = new Date(book.date_created);
 											const day = String(date.getDate()).padStart(2, "0");
 											const month = String(date.getMonth() + 1).padStart(2, "0");
 											const year = date.getFullYear();
@@ -67,20 +69,24 @@ export default function BooksPreview({ books }: { books: Book[] }) {
 										)}
 										<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 											<p className="text-[0.7rem] text-muted-foreground">Rating</p>
-											<p className="text-sm">{book.review}/10</p>
+											<p className="text-sm">{book.rating}/10</p>
 										</div>
 
-										{book.ISBN && (
+										{book.isbn && (
 											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 												<p className="text-[0.7rem] text-muted-foreground">ISBN</p>
-												<p className="text-sm">{book.ISBN}</p>
+												<p className="text-sm">{book.isbn}</p>
 											</div>
 										)}
 
 										{book.published && (
 											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 												<p className="text-[0.7rem] text-muted-foreground">Published</p>
-												<p className="text-sm">{book.published}</p>
+												<p className="text-sm">
+													{book.published instanceof Date
+														? book.published.toLocaleDateString()
+														: book.published}
+												</p>
 											</div>
 										)}
 										{book.author && (

@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed
 export async function GET(request: NextRequest) {
 	const { searchParams } = new URL(request.url);
 	const username = searchParams.get("username");
@@ -60,7 +61,7 @@ export async function GET(request: NextRequest) {
 				const rateLimitReset = response.headers.get("x-ratelimit-reset");
 
 				if (rateLimitRemaining === "0") {
-					const resetTime = rateLimitReset ? new Date(parseInt(rateLimitReset) * 1000) : null;
+					const resetTime = rateLimitReset ? new Date(parseInt(rateLimitReset, 10) * 1000) : null;
 					return NextResponse.json(
 						{
 							error: "GitHub API rate limit exceeded",

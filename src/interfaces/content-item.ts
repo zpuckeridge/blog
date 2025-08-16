@@ -1,57 +1,66 @@
-export interface BaseContentItem {
+export interface Post {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
 	title: string;
-	date: string;
-	description: string;
-	tag: string;
 	slug: string;
-	type: string;
-	url: string;
+	image: string;
+	image_alt: string;
+	description: string;
+	tags: string[];
 	content: string;
-	body: {
-		raw: string;
-	};
+	signature: boolean;
 }
 
-export interface Post extends BaseContentItem {
-	type: "Post";
-	image?: string;
-	imageAlt?: string;
-	signature?: boolean;
-	lastModified?: string;
+export interface Note {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
+	content: string;
+	tags: string[];
 }
 
-export interface Note extends BaseContentItem {
-	type: "Note";
-	image?: string;
-	imageAlt?: string;
-	signature?: boolean;
-	lastModified?: string;
+export interface TimelineItem extends Omit<Post, "id"> {
+	id: string;
+	type: "Post" | "Note";
 }
 
-export interface Video extends BaseContentItem {
-	type: "Video";
-	videoUrl: string;
+export interface Video {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
+	title: string;
+	slug: string;
+	description: string;
+	tags: string[];
 	duration: number;
+	playback_id: string;
 }
 
-export interface Book extends BaseContentItem {
-	type: "Book";
-	ISBN: number;
-	review: number;
-	image?: string;
-	published?: string;
-	author?: string;
+export interface Book {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
+	title: string;
+	isbn: number;
+	rating: number;
+	image: string;
+	published: Date;
+	author: string;
 }
 
-export interface Movie extends BaseContentItem {
-	type: "Movie";
-	review: number;
+export interface Movie {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
+	title: string;
+	rating: number;
 	setting: string;
-	image?: string;
-	with: {
-		name: string;
-	}[];
+	image: string;
+	with: string[];
 }
-
-// Union type for all content types
-export type ContentItem = Post | Note | Video | Book | Movie;

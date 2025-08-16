@@ -1,4 +1,5 @@
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyLink from "@/src/components/copy-link";
@@ -10,17 +11,15 @@ import {
 	TooltipTrigger,
 } from "@/src/components/ui/tooltip";
 import type { Video } from "@/src/interfaces/content-item";
+import { getVideoBySlug } from "@/src/lib/directus-content";
 
 export default async function Clip({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
 
-	let frontmatter: Video;
+	// Get content from Directus
+	const video = (await getVideoBySlug(slug)) as Video | null;
 
-	try {
-		// Dynamically import the MDX file for the slug
-		const video = await import(`@/_content/videos/${slug}.mdx`);
-		frontmatter = video.frontmatter;
-	} catch {
+	if (!video) {
 		return notFound();
 	}
 
@@ -29,11 +28,11 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="space-y-4">
 					<div>
-						<h1 className="font-serif text-2xl font-semibold italic">{frontmatter.title}</h1>
+						<h1 className="font-serif text-2xl font-semibold italic">{video.title}</h1>
 
 						<div className="flex gap-3 justify-between text-muted-foreground text-sm w-full">
 							<div className="w-full text-muted-foreground text-xs">
-								{new Date(frontmatter.date).toLocaleDateString("en-US", {
+								{new Date(video.date_created).toLocaleDateString("en-US", {
 									month: "long",
 									year: "numeric",
 								})}
@@ -51,13 +50,13 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 											side="bottom"
 											className="text-xs bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm text-black dark:text-muted-foreground"
 										>
-											{new Date(frontmatter.date).toLocaleDateString("en-US", {
+											{new Date(video.date_created).toLocaleDateString("en-US", {
 												weekday: "long",
 												day: "2-digit",
 												month: "long",
 												year: "numeric",
 											})}{" "}
-											· {frontmatter.tag}
+											· {video.tags.join(", ")}
 										</TooltipContent>
 									</Tooltip>
 								</TooltipProvider>
@@ -67,7 +66,7 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 					</div>
 
 					<div className="rounded-lg aspect-video overflow-hidden">
-						<Player src={frontmatter.videoUrl} />
+						<Player src={video.playback_id} />
 					</div>
 				</div>
 
@@ -82,22 +81,24 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 	);
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
 	const { slug } = await params;
 
-	let frontmatter: Video;
+	// Get content from Directus
+	const video = (await getVideoBySlug(slug)) as Video | null;
 
-	try {
-		const video = await import(`@/_content/videos/${slug}.mdx`);
-		frontmatter = video.frontmatter;
-	} catch {
+	if (!video) {
 		return notFound();
 	}
 
-	const title = `${frontmatter.title}`;
-	const description = `${frontmatter.description || ""}`;
-	const videoUrl = `https://stream.mux.com/${frontmatter.videoUrl}/capped-1080p.mp4`;
-	const thumbnailUrl = `https://image.mux.com/${frontmatter.videoUrl}/thumbnail.jpg`;
+	const title = `${video.title}`;
+	const description = `${video.description || ""}`;
+	const videoUrl = `https://stream.mux.com/${video.playback_id}/capped-1080p.mp4`;
+	const thumbnailUrl = `https://image.mux.com/${video.playback_id}/thumbnail.jpg`;
 
 	return {
 		title: title,

@@ -37,8 +37,8 @@ export default function Projects() {
 
 		// For non-Present years, sort numerically
 		if (a.year !== "Present" && b.year !== "Present") {
-			const yearA = parseInt(a.year.split("-")[0]);
-			const yearB = parseInt(b.year.split("-")[0]);
+			const yearA = parseInt(a.year.split("-")[0], 10);
+			const yearB = parseInt(b.year.split("-")[0], 10);
 			return yearB - yearA;
 		}
 

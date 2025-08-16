@@ -1,9 +1,9 @@
 import Link from "next/link";
 import BooksAll from "@/src/components/books-all";
-import { getAllBooks } from "@/src/lib/getAllContent";
+import { getBooks } from "@/src/lib/directus-content";
 
 export default async function BooksPage() {
-	const books = await getAllBooks();
+	const books = await getBooks();
 
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 space-y-20 px-6">

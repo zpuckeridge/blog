@@ -6,16 +6,16 @@ export const metadata: Metadata = {
 	description: "A collection of tools and hardware I use.",
 };
 
-export default function Uses() {
-	const UsesItem = ({ title, description }: { title: string; description: string }) => {
-		return (
-			<div>
-				<p>{title}</p>
-				<p className="text-xs text-muted-foreground">{description}</p>
-			</div>
-		);
-	};
+const UsesItem = ({ title, description }: { title: string; description: string }) => {
+	return (
+		<div>
+			<p>{title}</p>
+			<p className="text-xs text-muted-foreground">{description}</p>
+		</div>
+	);
+};
 
+export default function Uses() {
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">

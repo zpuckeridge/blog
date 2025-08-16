@@ -7,7 +7,9 @@ import { useState } from "react";
 import type { Movie } from "../interfaces/content-item";
 
 export default function MoviesPreview({ movies }: { movies: Movie[] }) {
-	const sortedMovies = movies.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+	const sortedMovies = movies.sort((a, b) =>
+		compareDesc(new Date(a.date_created), new Date(b.date_created))
+	);
 	const [expandedMovie, setExpandedMovie] = useState<string | null>(null);
 
 	const toggleMovie = (movieUrl: string) => {
@@ -29,19 +31,19 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
 				</div>
 				<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
 					{sortedMovies.map((movie: Movie) => {
-						const isExpanded = expandedMovie === movie.url;
+						const isExpanded = expandedMovie === movie.id.toString();
 						return (
-							<div key={movie.url} className="space-y-1">
+							<div key={movie.id} className="space-y-1">
 								<button
 									type="button"
-									onClick={() => toggleMovie(movie.url)}
+									onClick={() => toggleMovie(movie.id.toString())}
 									aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
 									className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
 								>
 									<p className="line-clamp-1">{movie.title}</p>
 									<p className="text-muted-foreground">
 										{(() => {
-											const date = new Date(movie.date);
+											const date = new Date(movie.date_created);
 											const day = String(date.getDate()).padStart(2, "0");
 											const month = String(date.getMonth() + 1).padStart(2, "0");
 											const year = date.getFullYear();
@@ -67,7 +69,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
 										)}
 										<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 											<p className="text-[0.7rem] text-muted-foreground">Rating</p>
-											<p className="text-sm">{movie.review}/10</p>
+											<p className="text-sm">{movie.rating}/10</p>
 										</div>
 
 										{movie.setting && (
@@ -81,7 +83,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
 											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
 												<p className="text-[0.7rem] text-muted-foreground">With</p>
 												<p className="text-sm">
-													{movie.with.map((person) => person.name).join(", ")}
+													{Array.isArray(movie.with) ? movie.with.join(", ") : movie.with}
 												</p>
 											</div>
 										)}
