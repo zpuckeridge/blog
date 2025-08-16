@@ -6,7 +6,9 @@ import { useState } from "react";
 import type { Book } from "../interfaces/content-item";
 
 export default function Books({ data, showAll = false }: { data: Book[]; showAll?: boolean }) {
-	const sortedBooks = data.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
+	const sortedBooks = data.sort((a, b) =>
+		compareDesc(new Date(a.published), new Date(b.published))
+	);
 	const [expandedBooks, setExpandedBooks] = useState<Set<string>>(new Set());
 
 	const toggleBook = (bookUrl: string) => {
@@ -40,18 +42,18 @@ export default function Books({ data, showAll = false }: { data: Book[]; showAll
 					className={`flex flex-col w-full gap-1 text-sm ${!showAll ? "h-30 overflow-y-hidden relative" : ""}`}
 				>
 					{sortedBooks.map((book: Book) => {
-						const isExpanded = expandedBooks.has(book.url);
+						const isExpanded = expandedBooks.has(book.id.toString());
 						return (
-							<div key={book.url} className="space-y-1">
+							<div key={book.id} className="space-y-1">
 								<button
 									type="button"
-									onClick={() => toggleBook(book.url)}
+									onClick={() => toggleBook(book.id.toString())}
 									aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
 									className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
 								>
 									<p className="line-clamp-1">{book.title}</p>
 									<p className="text-muted-foreground">
-										{new Date(book.date).toLocaleDateString(undefined, {
+										{new Date(book.published).toLocaleDateString(undefined, {
 											year: "numeric",
 											month: "2-digit",
 											day: "2-digit",
@@ -64,7 +66,7 @@ export default function Books({ data, showAll = false }: { data: Book[]; showAll
 									}`}
 								>
 									<div className="pl-4 border-l-2 border-muted-foreground/20 ml-2 pb-1">
-										<p className="text-xs text-muted-foreground">Rating: {book.review}/10</p>
+										<p className="text-xs text-muted-foreground">Rating: {book.rating}/10</p>
 									</div>
 								</div>
 							</div>
