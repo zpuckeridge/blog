@@ -3,8 +3,8 @@
 	"version": "6.2.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
+		"dev": "next dev --turbopack",
+		"build": "next build --turbopack",
 		"start": "next start",
 		"format": "biome format --write .",
 		"lint": "biome lint --write .",
@@ -56,7 +56,7 @@
 		"sonner": "^2.0.7",
 		"tailwind-merge": "^3.3.1",
 		"tailwindcss-animate": "^1.0.7",
-		"tw-animate-css": "^1.3.6",
+		"tw-animate-css": "^1.3.7",
 		"use-lanyard": "^1.7.0",
 		"uuid": "^11.1.0",
 		"vaul": "^1.1.2"

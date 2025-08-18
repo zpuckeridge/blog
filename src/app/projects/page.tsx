@@ -60,13 +60,13 @@ export default function Projects() {
 				</div>
 
 				<div className="w-full">
-					<Table>
+					<Table className="">
 						<TableBody>
 							{/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */}
 							{sortedProjects.map((project, _index) => (
 								<TableRow
 									key={project.name}
-									className={`group ${
+									className={`group hover:bg-neutral-950 border-b border-dotted border-muted-foreground ${
 										project.status === "Archived" ? "text-yellow-700 dark:text-yellow-600" : ""
 									}`}
 									onMouseEnter={() => setIsAnyProjectHovered(true)}
@@ -95,7 +95,9 @@ export default function Projects() {
 											<a
 												href={project.link}
 												target="_blank"
-												className="text-sm text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
+												className={`text-sm text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition ${
+													isAnyProjectHovered ? "opacity-50 group-hover:opacity-100" : "opacity-100"
+												}`}
 											>
 												Link
 											</a>
@@ -130,7 +132,7 @@ export default function Projects() {
 
 				<Link
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground"
+					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

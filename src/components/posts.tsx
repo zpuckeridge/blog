@@ -97,7 +97,10 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 			{Object.entries(filteredPostsByYear)
 				.sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
 				.map(([year, yearItems]) => (
-					<div key={`year-${year}`} className="border-t border-muted text-sm flex w-full">
+					<div
+						key={`year-${year}`}
+						className="border-t border-dotted border-muted-foreground text-sm flex w-full"
+					>
 						<h2 className="text-muted-foreground w-[100px] py-3">{year}</h2>
 						<div className="flex flex-col w-full">
 							{/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */}
@@ -107,7 +110,9 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 										type="button"
 										key={`note-${item.slug}-${item.date_created}`}
 										className={`flex justify-between w-full py-3 gap-8 ${
-											index === yearItems.length - 1 ? "" : "border-b border-muted"
+											index === yearItems.length - 1
+												? ""
+												: "border-b border-dotted border-muted-foreground"
 										} group/item`}
 										onMouseEnter={() => setIsAnyPostHovered(true)}
 										onMouseLeave={() => setIsAnyPostHovered(false)}
@@ -136,7 +141,9 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 										key={`post-${item.slug}-${item.date_created}`}
 										href={`/timeline/${item.slug}`}
 										className={`flex justify-between w-full py-3 gap-8 ${
-											index === yearItems.length - 1 ? "" : "border-b border-muted"
+											index === yearItems.length - 1
+												? ""
+												: "border-b border-dotted border-muted-foreground"
 										} group/item`}
 										onMouseEnter={() => setIsAnyPostHovered(true)}
 										onMouseLeave={() => setIsAnyPostHovered(false)}

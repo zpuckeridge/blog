@@ -13,7 +13,7 @@ export default async function MoviesPage() {
 
 			<Link
 				href="/about"
-				className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground"
+				className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 			>
 				../about
 			</Link>
