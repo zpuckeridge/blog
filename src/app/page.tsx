@@ -4,11 +4,10 @@ import Link from "next/link";
 import Lanyard from "@/src/components/lanyard";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import type { Post, Video } from "@/src/interfaces/content-item";
-import { getPosts, getVideos } from "@/src/lib/directus-content";
+import { getPosts, getProjects, getVideos } from "@/src/lib/directus-content";
 import AnimatedGradientText from "../components/animated-gradient-text";
 import GitHubContributions from "../components/contributions-graph";
 import { ToggleTheme } from "../components/toggle-theme";
-import { projects } from "../lib/projects";
 
 // Get current Brisbane time and date
 const now = new Date();
@@ -26,7 +25,7 @@ const brisbaneDate = new Intl.DateTimeFormat("en-US", {
 }).format(now);
 
 export default async function Home() {
-	const [posts, videos] = await Promise.all([getPosts(), getVideos()]);
+	const [posts, videos, projects] = await Promise.all([getPosts(), getVideos(), getProjects()]);
 
 	const sortedPosts = posts.sort((a, b) =>
 		compareDesc(new Date(a.date_created), new Date(b.date_created))
@@ -180,7 +179,7 @@ export default async function Home() {
 											<span className="line-clamp-1">{project.name}</span>
 										)}
 										<span className="text-muted-foreground">
-											{project.year !== "Present" && project.year}
+											{project.year_completed}
 											{project.status ? <AnimatedGradientText text={project.status} /> : null}
 										</span>
 									</div>

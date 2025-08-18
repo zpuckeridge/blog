@@ -72,7 +72,7 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 													{movie.image && (
 														<div className="w-7 relative">
 															<Image
-																src={movie.image}
+																src={`https://directus.obambulo.studio/assets/${movie.image}`}
 																alt={movie.title}
 																fill
 																className="rounded shadow w-full h-full"

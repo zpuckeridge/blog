@@ -64,32 +64,32 @@ export default function BooksAll({ books }: { books: Book[] }) {
 											</button>
 											<div
 												className={`overflow-hidden transition-all duration-200 ease-in-out ${
-													isExpanded ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
+													isExpanded ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
 												}`}
 											>
-												<div className="flex flex-row gap-1">
+												<div className="flex flex-row flex-wrap gap-1">
 													{book.image && (
 														<div className="w-7 relative">
 															<Image
-																src={book.image}
+																src={`https://directus.obambulo.studio/assets/${book.image}`}
 																alt={book.title}
 																fill
 																className="rounded shadow w-full h-full"
 															/>
 														</div>
 													)}
-													<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+													<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
 														<p className="text-[0.7rem] text-muted-foreground">Rating</p>
 														<p className="text-sm">{book.rating}/10</p>
 													</div>
 													{book.isbn && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
 															<p className="text-[0.7rem] text-muted-foreground">ISBN</p>
 															<p className="text-sm">{book.isbn}</p>
 														</div>
 													)}
 													{book.published && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
 															<p className="text-[0.7rem] text-muted-foreground">Published</p>
 															<p className="text-sm">
 																{book.published instanceof Date
@@ -99,7 +99,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
 														</div>
 													)}
 													{book.author && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
 															<p className="text-[0.7rem] text-muted-foreground">Author</p>
 															<p className="text-sm">{book.author}</p>
 														</div>

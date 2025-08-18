@@ -4,46 +4,46 @@ import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import type { Book } from "@/src/interfaces/content-item";
+import type { Credit } from "@/src/interfaces/content-item";
 
-export default function BooksPreview({ books }: { books: Book[] }) {
-	const sortedBooks = books.sort((a, b) =>
-		compareDesc(new Date(a.date_created), new Date(b.date_created))
+export default function CreditsPreview({ credits }: { credits: Credit[] }) {
+	const sortedCredits = credits.sort((a, b) =>
+		compareDesc(new Date(a.release_date), new Date(b.release_date))
 	);
-	const [expandedBook, setExpandedBook] = useState<string | null>(null);
+	const [expandedCredit, setExpandedCredit] = useState<string | null>(null);
 
-	const toggleBook = (bookUrl: string) => {
-		setExpandedBook((prev) => (prev === bookUrl ? null : bookUrl));
+	const toggleCredit = (creditUrl: string) => {
+		setExpandedCredit((prev) => (prev === creditUrl ? null : creditUrl));
 	};
 
 	return (
 		<div className="space-y-2">
 			<div className="flex flex-col w-full gap-4">
 				<div className="flex flex-row w-full gap-2 items-center">
-					<p className="text-muted-foreground text-xs">Books</p>
+					<p className="text-muted-foreground text-xs">Credits</p>
 					<hr className="w-full border-muted-foreground border-dotted" />
 					<Link
-						href="/about/books"
+						href="/about/credits"
 						className="text-muted-foreground text-xs hover:text-blue-400 dark:hover:text-blue-600 transition whitespace-nowrap"
 					>
-						See all {sortedBooks.length}
+						See all {sortedCredits.length}
 					</Link>
 				</div>
 				<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
-					{sortedBooks.map((book: Book) => {
-						const isExpanded = expandedBook === book.id.toString();
+					{sortedCredits.map((credit: Credit) => {
+						const isExpanded = expandedCredit === credit.id.toString();
 						return (
-							<div key={book.id} className="space-y-1">
+							<div key={credit.id} className="space-y-1">
 								<button
 									type="button"
-									onClick={() => toggleBook(book.id.toString())}
-									aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
+									onClick={() => toggleCredit(credit.id.toString())}
+									aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
 									className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
 								>
-									<p className="line-clamp-1">{book.title}</p>
+									<p className="line-clamp-1">{credit.title}</p>
 									<p className="text-muted-foreground">
 										{(() => {
-											const date = new Date(book.date_created);
+											const date = new Date(credit.release_date);
 											const day = String(date.getDate()).padStart(2, "0");
 											const month = String(date.getMonth() + 1).padStart(2, "0");
 											const year = date.getFullYear();
@@ -57,42 +57,50 @@ export default function BooksPreview({ books }: { books: Book[] }) {
 									}`}
 								>
 									<div className="flex flex-row flex-wrap gap-1">
-										{book.image && (
+										{credit.image && (
 											<div className="w-7 relative">
 												<Image
-													src={`https://directus.obambulo.studio/assets/${book.image}`}
-													alt={book.title}
+													src={`https://directus.obambulo.studio/assets/${credit.image}`}
+													alt={credit.title}
 													fill
-													className="rounded shadow w-full h-full "
+													className="rounded shadow w-full h-full"
 												/>
 											</div>
 										)}
-										<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
-											<p className="text-[0.7rem] text-muted-foreground">Rating</p>
-											<p className="text-sm">{book.rating}/10</p>
-										</div>
 
-										{book.isbn && (
+										{credit.director && (
 											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
-												<p className="text-[0.7rem] text-muted-foreground">ISBN</p>
-												<p className="text-sm">{book.isbn}</p>
+												<p className="text-[0.7rem] text-muted-foreground">Director</p>
+												<p className="text-sm">{credit.director}</p>
 											</div>
 										)}
 
-										{book.published && (
+										{credit.tags && (
 											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
-												<p className="text-[0.7rem] text-muted-foreground">Published</p>
-												<p className="text-sm">
-													{book.published instanceof Date
-														? book.published.toLocaleDateString()
-														: book.published}
+												<p className="text-[0.7rem] text-muted-foreground">
+													{credit.tags.length === 1 ? "Tag" : "Tags"}
 												</p>
+
+												{credit.tags.map((tag: string, idx: number) => (
+													<span key={tag}>
+														{tag}
+														{idx < credit.tags.length - 1 && ", "}
+													</span>
+												))}
 											</div>
 										)}
-										{book.author && (
+
+										{credit.link && (
 											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
-												<p className="text-[0.7rem] text-muted-foreground">Author</p>
-												<p className="text-sm">{book.author}</p>
+												<p className="text-[0.7rem] text-muted-foreground">Link</p>
+												<a
+													href={credit.link}
+													className="text-sm"
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													RSP
+												</a>
 											</div>
 										)}
 									</div>

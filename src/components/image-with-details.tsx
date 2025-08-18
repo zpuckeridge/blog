@@ -22,7 +22,7 @@ export default function ImageWithDetails({
 				width={1000}
 				height={1000}
 				alt={alt}
-				className="w-full aspect-square object-cover group-hover:blur rounded-xl transition-all"
+				className="w-full aspect-[2/3] object-cover group-hover:blur rounded-xl transition-all"
 			/>
 			<div className="absolute inset-0 bg-black text-white bg-black/0 group-hover:bg-black/50 opacity-0 group-hover:opacity-100 rounded-xl transition-all duration-200">
 				<div className="absolute z-10 bottom-4 left-4 right-4">

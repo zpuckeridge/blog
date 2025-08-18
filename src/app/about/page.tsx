@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Age from "@/src/components/age";
 import BooksPreview from "@/src/components/books-preview";
+import CreditsPreview from "@/src/components/credits-preview";
 import ImageWithDetails from "@/src/components/image-with-details";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import MoviesPreview from "@/src/components/movies-preview";
-import { getBooks, getMovies } from "@/src/lib/directus-content";
+import { getBooks, getCredits, getMovies } from "@/src/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "About",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default async function About() {
 	const books = await getBooks();
 	const movies = await getMovies();
+	const credits = await getCredits();
 
 	return (
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
@@ -104,6 +106,8 @@ export default async function About() {
 				<BooksPreview books={books} />
 
 				<MoviesPreview movies={movies} />
+
+				<CreditsPreview credits={credits} />
 			</div>
 
 			<Link

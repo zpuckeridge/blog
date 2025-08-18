@@ -64,3 +64,31 @@ export interface Movie {
 	image: string;
 	with: string[];
 }
+
+export interface Credit {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
+	title: string;
+	release_date: Date;
+	description: string;
+	image: string;
+	link: string;
+	director: string;
+	tags: string[];
+}
+
+export interface Project {
+	id: number;
+	status: string;
+	date_created: Date;
+	date_updated: Date;
+	name: string;
+	description: string;
+	image: string;
+	video: string;
+	link: string;
+	year_completed: number;
+	tags: string[];
+}

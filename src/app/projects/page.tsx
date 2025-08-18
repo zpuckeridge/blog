@@ -1,48 +1,39 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 import AnimatedGradientText from "@/src/components/animated-gradient-text";
 import { Table, TableBody, TableCell, TableRow } from "@/src/components/ui/table";
-import { projects } from "@/src/lib/projects";
+import { getProjects } from "@/src/lib/directus-content";
 
-export default function Projects() {
-	const [isAnyProjectHovered, setIsAnyProjectHovered] = useState(false);
+export default async function Projects() {
+	const projects = await getProjects();
 
-	/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */
 	const sortProjects = (a: (typeof projects)[0], b: (typeof projects)[0]) => {
-		// First sort by WIP status
-		if (a.status === "WIP" && b.status !== "WIP") {
+		// First sort by status (work_in_progress, then published, then archived)
+		if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
 			return -1;
 		}
-		if (a.status !== "WIP" && b.status === "WIP") {
+		if (a.status !== "work_in_progress" && b.status === "work_in_progress") {
+			return 1;
+		}
+		if (a.status === "archived" && b.status !== "archived") {
+			return 1;
+		}
+		if (a.status !== "archived" && b.status === "archived") {
+			return -1;
+		}
+
+		// Then sort by year completed (descending)
+		if (a.year_completed && b.year_completed) {
+			return b.year_completed - a.year_completed;
+		}
+		if (a.year_completed && !b.year_completed) {
+			return -1;
+		}
+		if (!a.year_completed && b.year_completed) {
 			return 1;
 		}
 
-		// Then sort by Archived status
-		if (a.status === "Archived" && b.status !== "Archived") {
-			return 1;
-		}
-		if (a.status !== "Archived" && b.status === "Archived") {
-			return -1;
-		}
-
-		// Then sort by year
-		if (a.year === "Present" && b.year !== "Present") {
-			return -1;
-		}
-		if (a.year !== "Present" && b.year === "Present") {
-			return 1;
-		}
-
-		// For non-Present years, sort numerically
-		if (a.year !== "Present" && b.year !== "Present") {
-			const yearA = parseInt(a.year.split("-")[0], 10);
-			const yearB = parseInt(b.year.split("-")[0], 10);
-			return yearB - yearA;
-		}
-
-		return 0;
+		// Finally sort by date created (descending)
+		return new Date(b.date_created).getTime() - new Date(a.date_created).getTime();
 	};
 
 	const sortedProjects = [...projects].sort(sortProjects);
@@ -60,74 +51,54 @@ export default function Projects() {
 				</div>
 
 				<div className="w-full">
-					<Table className="">
-						<TableBody>
-							{/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */}
-							{sortedProjects.map((project, _index) => (
-								<TableRow
-									key={project.name}
-									className={`group hover:bg-neutral-950 border-b border-dotted border-muted-foreground ${
-										project.status === "Archived" ? "text-yellow-700 dark:text-yellow-600" : ""
-									}`}
-									onMouseEnter={() => setIsAnyProjectHovered(true)}
-									onMouseLeave={() => setIsAnyProjectHovered(false)}
-								>
-									<TableCell>
-										<p
-											className={`text-sm transition-opacity whitespace-normal break-words ${
-												isAnyProjectHovered ? "opacity-50 group-hover:opacity-100" : "opacity-100"
-											}`}
-										>
-											{project.name}
-										</p>
-									</TableCell>
-									<TableCell className="text-right whitespace-nowrap">
-										<p
-											className={`text-sm text-muted-foreground transition-opacity ${
-												isAnyProjectHovered ? "opacity-50 group-hover:opacity-100" : "opacity-100"
-											}`}
-										>
-											{project.year}
-										</p>
-									</TableCell>
-									<TableCell className="text-right whitespace-nowrap">
-										{project.link && !project.status && (
-											<a
-												href={project.link}
-												target="_blank"
-												className={`text-sm text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition ${
-													isAnyProjectHovered ? "opacity-50 group-hover:opacity-100" : "opacity-100"
-												}`}
-											>
-												Link
-											</a>
-										)}
-										{project.status && (
-											<span
-												className={`text-sm text-muted-foreground gap-1 ${
-													isAnyProjectHovered ? "opacity-50 group-hover:opacity-100" : "opacity-100"
-												}`}
-											>
-												{project.status === "WIP" ? (
-													<AnimatedGradientText text="WIP" />
-												) : project.status === "Archived" && project.link ? (
-													<a
-														href={project.link}
-														target="_blank"
-														className="hover:text-blue-400 dark:hover:text-blue-600 transition"
-													>
-														Link
-													</a>
-												) : (
-													"Archived"
-												)}
-											</span>
-										)}
-									</TableCell>
-								</TableRow>
-							))}
-						</TableBody>
-					</Table>
+					{sortedProjects.length > 0 ? (
+						<Table className="">
+							<TableBody>
+								{/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */}
+								{sortedProjects.map((project) => (
+									<TableRow
+										key={project.id}
+										className={`group hover:bg-neutral-950 border-b border-dotted border-muted-foreground ${
+											project.status === "archived" ? "text-yellow-700 dark:text-yellow-600" : ""
+										}`}
+									>
+										<TableCell>
+											<p className="text-sm transition-opacity whitespace-normal break-words opacity-100 group-hover:opacity-100">
+												{project.name}
+											</p>
+										</TableCell>
+										<TableCell className="text-right whitespace-nowrap">
+											<p className="text-sm text-muted-foreground transition-opacity opacity-100 group-hover:opacity-100">
+												{project.status === "work_in_progress"
+													? "Present"
+													: project.year_completed || "Present"}
+											</p>
+										</TableCell>
+										<TableCell className="text-right whitespace-nowrap">
+											{project.status === "archived" ? (
+												<span className="text-sm text-muted-foreground">Archived</span>
+											) : project.status === "work_in_progress" ? (
+												<AnimatedGradientText text="WIP" />
+											) : project.link ? (
+												<a
+													href={project.link}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="text-sm text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition opacity-100 group-hover:opacity-100"
+												>
+													Link
+												</a>
+											) : null}
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					) : (
+						<div className="text-center py-8">
+							<p className="text-muted-foreground">No projects found.</p>
+						</div>
+					)}
 				</div>
 
 				<Link

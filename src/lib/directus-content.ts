@@ -1,5 +1,13 @@
 import { readItems } from "@directus/sdk";
-import type { Book, Movie, Note, Post, Video } from "@/src/interfaces/content-item";
+import type {
+	Book,
+	Credit,
+	Movie,
+	Note,
+	Post,
+	Project,
+	Video,
+} from "@/src/interfaces/content-item";
 import directus from "./directus";
 
 /**
@@ -246,12 +254,123 @@ export async function getMovies(): Promise<Movie[]> {
 }
 
 /**
+ * Retrieve all published credits from Directus
+ */
+export async function getCredits(): Promise<Credit[]> {
+	try {
+		const credits = await directus.request(
+			readItems("credits", {
+				filter: {
+					status: {
+						_eq: "published",
+					},
+				},
+				sort: ["-date_created"],
+				fields: [
+					"id",
+					"status",
+					"date_created",
+					"date_updated",
+					"title",
+					"description",
+					"image",
+					"link",
+					"director",
+					"tags",
+					"release_date",
+				],
+			})
+		);
+
+		return credits as Credit[];
+	} catch (error) {
+		console.error("Error fetching credits:", error);
+		return [];
+	}
+}
+
+/**
+ * Retrieve all published projects from Directus
+ */
+export async function getProjects(): Promise<Project[]> {
+	try {
+		const projects = await directus.request(
+			readItems("projects", {
+				filter: {
+					status: {
+						_in: ["published", "archived", "work_in_progress"],
+					},
+				},
+				sort: ["-year_completed", "-date_created"],
+				fields: [
+					"id",
+					"status",
+					"date_created",
+					"date_updated",
+					"name",
+					"description",
+					"image",
+					"video",
+					"link",
+					"year_completed",
+					"tags",
+				],
+			})
+		);
+
+		return projects as Project[];
+	} catch (error) {
+		console.error("Error fetching projects:", error);
+		return [];
+	}
+}
+
+/**
+ * Retrieve a single project by ID
+ */
+export async function getProjectById(id: number): Promise<Project | null> {
+	try {
+		const projects = await directus.request(
+			readItems("projects", {
+				filter: {
+					status: {
+						_in: ["published", "archived"],
+					},
+					id: {
+						_eq: id,
+					},
+				},
+				limit: 1,
+				fields: [
+					"id",
+					"status",
+					"date_created",
+					"date_updated",
+					"name",
+					"description",
+					"image",
+					"video",
+					"link",
+					"year_completed",
+					"tags",
+				],
+			})
+		);
+
+		return projects.length > 0 ? (projects[0] as Project) : null;
+	} catch (error) {
+		console.error(`Error fetching project with ID ${id}:`, error);
+		return null;
+	}
+}
+
+/**
  * Retrieve content by tags
  */
 export async function getContentByTags(
 	tags: string[],
-	contentType: "posts" | "videos" | "books" | "movies"
-): Promise<Post[] | Video[] | Book[] | Movie[]> {
+	contentType: "posts" | "videos" | "books" | "movies" | "projects"
+): Promise<Post[] | Video[] | Book[] | Movie[] | Project[]> {
 	try {
 		const content = await directus.request(
 			readItems(contentType, {
@@ -262,12 +381,17 @@ export async function getContentByTags(
 					tags: {
 						_in: tags,
 					},
+					...(contentType === "projects" && {
+						status: {
+							_in: ["published", "archived", "work_in_progress"],
+						},
+					}),
 				},
 				sort: ["-date_created"],
 			})
 		);
 
-		return content as Post[] | Video[] | Book[] | Movie[];
+		return content as Post[] | Video[] | Book[] | Movie[] | Project[];
 	} catch (error) {
 		console.error(`Error fetching ${contentType} by tags:`, error);
 		return [];
@@ -282,9 +406,11 @@ export async function searchContent(query: string): Promise<{
 	videos: Video[];
 	books: Book[];
 	movies: Movie[];
+	credits: Credit[];
+	projects: Project[];
 }> {
 	try {
-		const [posts, videos, books, movies] = await Promise.all([
+		const [posts, videos, books, movies, credits, projects] = await Promise.all([
 			directus.request(
 				readItems("posts", {
 					filter: {
@@ -325,6 +451,24 @@ export async function searchContent(query: string): Promise<{
 					sort: ["-date_created"],
 				})
 			),
+			directus.request(
+				readItems("credits", {
+					filter: {
+						status: { _eq: "published" },
+						_or: [{ title: { _icontains: query } }, { description: { _icontains: query } }],
+					},
+					sort: ["-date_created"],
+				})
+			),
+			directus.request(
+				readItems("projects", {
+					filter: {
+						status: { _in: ["published", "archived", "work_in_progress"] },
+						_or: [{ name: { _icontains: query } }, { description: { _icontains: query } }],
+					},
+					sort: ["-date_created"],
+				})
+			),
 		]);
 
 		return {
@@ -332,6 +476,8 @@ export async function searchContent(query: string): Promise<{
 			videos: videos as Video[],
 			books: books as Book[],
 			movies: movies as Movie[],
+			credits: credits as Credit[],
+			projects: projects as Project[],
 		};
 	} catch (error) {
 		console.error("Error searching content:", error);
@@ -340,6 +486,8 @@ export async function searchContent(query: string): Promise<{
 			videos: [],
 			books: [],
 			movies: [],
+			credits: [],
+			projects: [],
 		};
 	}
 }
