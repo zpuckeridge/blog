@@ -5,7 +5,6 @@ import Lanyard from "@/src/components/lanyard";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import type { Post, Video } from "@/src/interfaces/content-item";
 import { getPosts, getProjects, getVideos } from "@/src/lib/directus-content";
-import AnimatedGradientText from "../components/animated-gradient-text";
 import GitHubContributions from "../components/contributions-graph";
 import { ToggleTheme } from "../components/toggle-theme";
 
@@ -128,7 +127,7 @@ export default async function Home() {
 							</div>
 
 							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
-								{sortedPosts.map((post: Post) => (
+								{sortedPosts.slice(0, 6).map((post: Post) => (
 									<Link
 										key={post.slug}
 										href={`/timeline/${post.slug}`}
@@ -164,26 +163,26 @@ export default async function Home() {
 								<p className="text-muted-foreground text-xs">Projects</p>
 							</div>
 							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
-								{projects.slice(0, 6).map((project) => (
-									<div key={project.name} className="flex justify-between gap-4">
-										{project.link ? (
-											<a
-												href={project.link}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="hover:text-blue-400 dark:hover:text-blue-600 transition line-clamp-1"
-											>
-												{project.name}
-											</a>
-										) : (
-											<span className="line-clamp-1">{project.name}</span>
-										)}
-										<span className="text-muted-foreground">
-											{project.year_completed}
-											{project.status ? <AnimatedGradientText text={project.status} /> : null}
-										</span>
-									</div>
-								))}
+								{projects
+									.filter((project) => project.status !== "work_in_progress")
+									.slice(0, 6)
+									.map((project) => (
+										<div key={project.name} className="flex justify-between gap-4">
+											{project.link ? (
+												<a
+													href={project.link}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="hover:text-blue-400 dark:hover:text-blue-600 transition line-clamp-1"
+												>
+													{project.name}
+												</a>
+											) : (
+												<span className="line-clamp-1">{project.name}</span>
+											)}
+											<span className="text-muted-foreground">{project.year_completed}</span>
+										</div>
+									))}
 								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 z-40 bg-gradient-to-t from-white dark:from-background" />
 							</div>
 						</div>
@@ -204,7 +203,7 @@ export default async function Home() {
 							</div>
 
 							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
-								{sortedVideos.map((video: Video) => (
+								{sortedVideos.slice(0, 6).map((video: Video) => (
 									<Link
 										key={video.slug}
 										href={`/video/${video.slug}`}
