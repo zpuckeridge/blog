@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyLink from "@/src/components/copy-link";
-import Player from "@/src/components/player";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/src/components/ui/tooltip";
+import VidstackPlayer from "@/src/components/vidstack-player";
 import type { Video } from "@/src/interfaces/content-item";
 import { getVideoBySlug } from "@/src/lib/directus-content";
 
@@ -66,7 +66,10 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 					</div>
 
 					<div className="rounded-lg aspect-video overflow-hidden">
-						<Player src={video.playback_id} />
+						<VidstackPlayer
+							title={video.title}
+							src={`https://stream.mux.com/${video.playback_id}.m3u8`}
+						/>
 					</div>
 				</div>
 
@@ -97,7 +100,7 @@ export async function generateMetadata({
 
 	const title = `${video.title}`;
 	const description = `${video.description || ""}`;
-	const videoUrl = `https://stream.mux.com/${video.playback_id}/capped-1080p.mp4`;
+	const videoUrl = `https://stream.mux.com/${video.playback_id}/highest.mp4`;
 	const thumbnailUrl = `https://image.mux.com/${video.playback_id}/thumbnail.jpg`;
 
 	return {
