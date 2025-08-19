@@ -38,9 +38,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 	const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
-				<div className="space-y-4">
+		<div className="flex flex-col gap-4 pt-4 pb-20 overflow-x-hidden ">
+			<div className="text-sm flex flex-col gap-20 items-center justify-center ">
+				<div className="space-y-4 max-w-lg w-full px-6">
 					<div>
 						<h1 className="font-serif text-2xl font-semibold italic">{post.title}</h1>
 						<div className="flex gap-3 justify-between text-muted-foreground text-sm w-full">
@@ -96,22 +96,24 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 					<TableOfContents />
 				</div>
 
-				<div className="space-y-4 flex flex-col gap-4">
+				<div className="space-y-4 w-full flex flex-col items-center justify-center">
 					<article
 						className={`
-								w-full max-w-prose mx-auto 
-								prose
+								prose max-w-lg w-full px-4 sm:px-6
+
 								prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 prose-blockquote:pl-0 prose-blockquote:font-serif [&_blockquote_p]:text-2xl
 								prose-headings:text-xl prose-heading:font-semibold prose-headings:font-serif prose-headings:text-black dark:prose-headings:text-neutral-300
 								prose-a:font-normal prose-a:underline prose-a:underline-offset-2 prose-a:decoration-dotted prose-a:hover:decoration-solid prose-a:hover:underline-offset-4 dark:prose-a:text-neutral-300 prose-a:text-black
 								prose-p:text-sm prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed
 
-
-								prose-img:rounded-xl prose-img:mx-auto
+								prose-img:rounded-xl prose-img:mx-auto prose-img:aspect-video prose-img:w-full prose-img:object-cover
 								prose-ul:text-black dark:prose-ul:text-neutral-300
 								prose-ol:text-black dark:prose-ol:text-neutral-300 prose-ol:marker:text-black dark:prose-ol:marker:text-neutral-300
 								prose-li:text-black dark:prose-li:text-neutral-300 prose-li:text-sm prose-li:font-normal prose-li:marker:text-muted-foreground prose-li:marker:font-normal prose-li:marker:text-xs
 								prose-hr:border-muted-foreground prose-hr:border-dotted
+								prose-pre:overflow-x-auto prose-pre:max-w-full prose-pre:w-full
+								prose-code:break-words prose-code:whitespace-normal
+								prose-table:overflow-x-auto prose-table:max-w-full prose-table:w-full
 								dark:prose-invert
 							`}
 					>

@@ -6,8 +6,19 @@ import Definition from "@/src/components/definition";
 import FootnotesNavigation from "@/src/components/footnotes-navigation";
 import LinkWithIcon from "@/src/components/link-with-icon";
 import SideNote from "@/src/components/side-note";
+import VidstackPlayer from "@/src/components/vidstack-player";
 
 const components: MDXComponents = {
+	Overflow: ({ children }: { children: React.ReactNode }) => (
+		<div className="w-full ">
+			<div style={{ width: "800px" }}>
+				<div className="flex gap-2 pb-4 w-full">{children}</div>
+			</div>
+		</div>
+	),
+	Player: ({ title, src }: { title: string; src: string }) => (
+		<VidstackPlayer title={title} src={src} />
+	),
 	Tweet: ({ id }: { id: string }) => <Tweet id={id} />,
 	Definition: ({
 		word,

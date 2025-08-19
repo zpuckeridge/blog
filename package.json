@@ -34,6 +34,7 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/mdx": "^2.0.13",
 		"@types/uuid": "^10.0.0",
+		"@vidstack/react": "^1.12.13",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
