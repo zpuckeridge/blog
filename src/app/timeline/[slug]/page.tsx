@@ -96,10 +96,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 					<TableOfContents />
 				</div>
 
-				<div className="space-y-4 w-full flex flex-col items-center justify-center">
+				<div className="space-y-4 w-full flex flex-col gap-20 items-center justify-center">
 					<article
 						className={`
-								prose max-w-lg w-full px-4 sm:px-6
+								prose max-w-lg w-full px-6
 
 								prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 prose-blockquote:pl-0 prose-blockquote:font-serif [&_blockquote_p]:text-2xl
 								prose-headings:text-xl prose-heading:font-semibold prose-headings:font-serif prose-headings:text-black dark:prose-headings:text-neutral-300
@@ -123,7 +123,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 							options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
 						/>
 					</article>
-					<div className="space-y-10">
+
+					<div className="space-y-10 max-w-lg w-full px-6">
 						{post.signature && (
 							<div className="flex flex-col gap-2">
 								<AnimatedSignature />
@@ -182,7 +183,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
 				<Link
 					href="/timeline"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
+					className="max-w-lg w-full px-6 underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../timeline
 				</Link>
