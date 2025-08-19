@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 export default function TableOfContents() {
 	const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([]);
 	const [activeId, setActiveId] = useState<string | null>(null);
+	const [isExpanded, setIsExpanded] = useState(false);
+	const [isAnimating, setIsAnimating] = useState(false);
 
 	useEffect(() => {
 		// Extract headings from the DOM after the component mounts
@@ -85,41 +87,136 @@ export default function TableOfContents() {
 		}
 	};
 
+	const handleTocClick = () => {
+		if (isExpanded) {
+			// Start exit animation
+			setIsAnimating(true);
+			// Wait for animation to complete before hiding
+			// Account for staggered delays: base duration + max delay
+			const maxDelay = (headings.length - 1) * 0.05;
+			const totalDuration = 400 + maxDelay * 1000;
+			setTimeout(() => {
+				setIsExpanded(false);
+				setIsAnimating(false);
+			}, totalDuration);
+		} else {
+			setIsExpanded(true);
+		}
+	};
+
 	if (headings.length === 0) {
 		return null; // Don't render if no headings found
 	}
 
-	const renderTocItems = () => (
-		<ul className="space-y-2">
-			{headings.map((heading) => (
-				<li key={heading.id}>
-					<a
-						href={`#${heading.id}`}
-						onClick={(e) => handleHeadingClick(e, heading.id)}
-						className={`block hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-300 line-clamp-2 cursor-pointer ${
-							activeId === heading.id ? "text-blue-600 dark:text-blue-400 font-medium" : ""
-						}`}
-						style={{ paddingLeft: `${(heading.level - 1) * 12}px` }}
-					>
-						{heading.text}
-					</a>
-				</li>
-			))}
-		</ul>
-	);
-
 	return (
 		<>
-			{/* Mobile version - inline, not fixed */}
-			<div className="lg:hidden bg-neutral-50 dark:bg-neutral-900 text-black dark:text-neutral-300 text-sm border rounded-lg py-4 px-6 space-y-4">
-				<h2 className=" text-sm mb-3">Table of Contents</h2>
-				<div className="text-xs text-muted-foreground">{renderTocItems()}</div>
+			{/* Mobile version - always visible, standard TOC */}
+			<div className="lg:hidden bg-neutral-50 dark:bg-neutral-900 text-black dark:text-neutral-300 text-sm border border-neutral-200 dark:border-neutral-800 rounded-lg py-4 px-6 space-y-4 mb-6">
+				<h2 className="text-xs text-neutral-500 dark:text-neutral-400 mb-4">Contents</h2>
+				<nav className="text-[13px] font-normal">
+					<ul className="space-y-2">
+						{headings.map((heading) => (
+							<li key={heading.id}>
+								<a
+									href={`#${heading.id}`}
+									onClick={(e) => handleHeadingClick(e, heading.id)}
+									className={`block hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 line-clamp-2 cursor-pointer ${
+										activeId === heading.id
+											? "text-blue-600 dark:text-blue-400 font-medium"
+											: "text-neutral-700 dark:text-neutral-300"
+									}`}
+									style={{ paddingLeft: `${(heading.level - 1) * 12}px` }}
+								>
+									{heading.text}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
 			</div>
 
 			{/* Desktop version - fixed sidebar */}
-			<div className="hidden lg:block lg:fixed lg:top-20 lg:left-6 lg:w-64 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
-				<div className="text-xs text-muted-foreground">{renderTocItems()}</div>
+			<div className="hidden lg:block lg:fixed lg:left-6 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+				<button
+					type="button"
+					className="px-1.5 py-2.5 text-left cursor-pointer transition-all duration-300 hover:bg-neutral-900 dark:hover:bg-neutral-900 rounded"
+					onClick={handleTocClick}
+				>
+					<div className="relative flex flex-col gap-3 w-fit h-fit">
+						{headings.map((heading) => (
+							<div
+								key={heading.id}
+								className="w-3 h-px transition-all duration-300"
+								style={{
+									backgroundColor: activeId === heading.id ? "#ffffff" : "#a1a1a1",
+								}}
+							></div>
+						))}
+					</div>
+				</button>
 			</div>
+
+			{/* Expanded content with proper exit animation */}
+			{(isExpanded || isAnimating) && (
+				<div
+					className="hidden lg:block lg:fixed lg:left-14 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto"
+					style={{
+						animation: isAnimating
+							? "toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) forwards"
+							: "toc-fade-slide-in 0.4s cubic-bezier(0.4,0,0.2,1) forwards",
+					}}
+				>
+					<ul className="space-y-3">
+						{headings.map((heading, idx) => (
+							<li
+								key={heading.id}
+								style={{
+									animation: isAnimating
+										? `toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) both`
+										: `toc-fade-slide-in 0.4s cubic-bezier(0.4,0,0.2,1) both`,
+									animationDelay: isAnimating ? `${0.03 * idx}s` : `${0.05 * idx + 0.1}s`,
+								}}
+							>
+								<a
+									href={`#${heading.id}`}
+									onClick={(e) => handleHeadingClick(e, heading.id)}
+									className={`block hover:text-white dark:hover:text-white text-xs transition-all duration-300 line-clamp-2 cursor-pointer ${
+										activeId === heading.id
+											? "text-white dark:text-white"
+											: "text-neutral-400 dark:text-neutral-400"
+									}`}
+									style={{ paddingLeft: `${(heading.level - 1) * 12 + 8}px` }}
+								>
+									{heading.text}
+								</a>
+							</li>
+						))}
+					</ul>
+					<style jsx global>{`
+						@keyframes toc-fade-slide-in {
+							from {
+								opacity: 0;
+								transform: translateX(-24px);
+							}
+							to {
+								opacity: 1;
+								transform: translateX(0);
+							}
+						}
+
+						@keyframes toc-fade-slide-out {
+							from {
+								opacity: 1;
+								transform: translateX(0);
+							}
+							to {
+								opacity: 0;
+								transform: translateX(-24px);
+							}
+						}
+					`}</style>
+				</div>
+			)}
 		</>
 	);
 }
