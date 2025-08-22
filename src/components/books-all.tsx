@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Book } from "../interfaces/content-item";
+import { ImageZoom } from "./zoom-image";
 
 export default function BooksAll({ books }: { books: Book[] }) {
 	// Group books by year
@@ -70,12 +71,15 @@ export default function BooksAll({ books }: { books: Book[] }) {
 												<div className="flex flex-row flex-wrap gap-1">
 													{book.image && (
 														<div className="w-7 relative">
-															<Image
-																src={`https://directus.obambulo.studio/assets/${book.image}`}
-																alt={book.title}
-																fill
-																className="rounded shadow w-full h-full"
-															/>
+															<ImageZoom>
+																<Image
+																	src={`https://directus.obambulo.studio/assets/${book.image}`}
+																	alt={book.title}
+																	width={150}
+																	height={150}
+																	className="rounded shadow w-full h-full"
+																/>
+															</ImageZoom>
 														</div>
 													)}
 													<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">

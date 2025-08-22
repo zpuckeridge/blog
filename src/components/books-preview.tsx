@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Book } from "@/src/interfaces/content-item";
+import { ImageZoom } from "./zoom-image";
 
 export default function BooksPreview({ books }: { books: Book[] }) {
 	const sortedBooks = books.sort((a, b) =>
@@ -59,12 +60,15 @@ export default function BooksPreview({ books }: { books: Book[] }) {
 									<div className="flex flex-row flex-wrap gap-1">
 										{book.image && (
 											<div className="w-7 relative">
-												<Image
-													src={`https://directus.obambulo.studio/assets/${book.image}`}
-													alt={book.title}
-													fill
-													className="rounded shadow w-full h-full "
-												/>
+												<ImageZoom>
+													<Image
+														src={`https://directus.obambulo.studio/assets/${book.image}`}
+														alt={book.title}
+														width={150}
+														height={150}
+														className="rounded shadow w-full h-full "
+													/>
+												</ImageZoom>
 											</div>
 										)}
 										<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">

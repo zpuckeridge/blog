@@ -18,10 +18,10 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/src/components/ui/tooltip";
+import { ImageZoom } from "@/src/components/zoom-image";
 import { getPostBySlug } from "@/src/lib/directus-content";
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-	// Get MDX components first, before any conditional logic
 	const mdxComponents = useMDXComponents();
 
 	const { slug } = await params;
@@ -32,7 +32,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 		return notFound();
 	}
 
-	// Calculate reading time using the actual content
 	const wordCount = post.content ? post.content.split(/\s+/).length : 200;
 	const averageWordsPerMinute = 300;
 	const readingTime = Math.ceil(wordCount / averageWordsPerMinute);
@@ -80,15 +79,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
 					{post.image && (
 						<div className="flex flex-col gap-4 w=full h-full aspect-video">
-							<Image
-								src={`https://directus.obambulo.studio/assets/${post.image}`}
-								width={1200}
-								height={720}
-								priority
-								sizes="(max-width: 768px) 100vw, 800px"
-								alt={post.title}
-								className="object-cover w-full rounded-xl aspect-video"
-							/>
+							<ImageZoom>
+								<Image
+									src={`https://directus.obambulo.studio/assets/${post.image}`}
+									width={1200}
+									height={720}
+									priority
+									sizes="(max-width: 768px) 100vw, 800px"
+									alt={post.title}
+									className="object-cover w-full rounded-xl aspect-video"
+								/>
+							</ImageZoom>
 							<p className="text-center text-xs text-muted-foreground">{post.image_alt}</p>
 						</div>
 					)}

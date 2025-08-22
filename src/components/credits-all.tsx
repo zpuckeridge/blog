@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Credit } from "../interfaces/content-item";
+import { ImageZoom } from "./zoom-image";
 
 export default function CreditsAll({ credits }: { credits: Credit[] }) {
 	// Group credits by year
@@ -70,12 +71,15 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 												<div className="flex flex-row flex-wrap gap-1">
 													{credit.image && (
 														<div className="w-7 relative">
-															<Image
-																src={`https://directus.obambulo.studio/assets/${credit.image}`}
-																alt={credit.title}
-																fill
-																className="rounded shadow w-full h-full"
-															/>
+															<ImageZoom>
+																<Image
+																	src={`https://directus.obambulo.studio/assets/${credit.image}`}
+																	alt={credit.title}
+																	width={150}
+																	height={150}
+																	className="rounded shadow w-full h-full"
+																/>
+															</ImageZoom>
 														</div>
 													)}
 

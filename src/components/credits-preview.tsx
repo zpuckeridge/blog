@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { Credit } from "@/src/interfaces/content-item";
+import { ImageZoom } from "./zoom-image";
 
 export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 	const sortedCredits = credits.sort((a, b) =>
@@ -59,12 +60,15 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 									<div className="flex flex-row flex-wrap gap-1">
 										{credit.image && (
 											<div className="w-7 relative">
-												<Image
-													src={`https://directus.obambulo.studio/assets/${credit.image}`}
-													alt={credit.title}
-													fill
-													className="rounded shadow w-full h-full"
-												/>
+												<ImageZoom>
+													<Image
+														src={`https://directus.obambulo.studio/assets/${credit.image}`}
+														alt={credit.title}
+														width={150}
+														height={150}
+														className="rounded shadow w-full h-full"
+													/>
+												</ImageZoom>
 											</div>
 										)}
 
