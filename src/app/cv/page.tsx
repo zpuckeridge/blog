@@ -12,13 +12,13 @@ export default function CV() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="text-sm flex flex-col gap-2">
-					<p className="text-2xl font-semibold font-serif italic">Curriculum Vitae</p>
+					<p className="font-redaction text-xl text-white">Curriculum Vitae</p>
 
 					<p>An overview of my work experience and education.</p>
 				</div>
 
 				<div className="space-y-10">
-					<p className="font-serif text-lg font-semibold">Employment</p>
+					<p className="font-redaction text-lg text-white">Employment</p>
 
 					{employmentHistory.map((item: EmploymentItem) => (
 						<div key={item.title + item.startYear} className="flex flex-row gap-4">
@@ -58,7 +58,7 @@ export default function CV() {
 					<hr className="border-dotted border-muted-foreground" />
 
 					<div className="space-y-10">
-						<p className="font-serif text-lg font-semibold">Education</p>
+						<p className="font-redaction text-lg text-white">Education</p>
 						{educationHistory.map((item: EducationItem) => (
 							<div key={item.title + item.startDate} className="flex flex-row gap-4">
 								<div className="w-20">

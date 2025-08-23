@@ -23,7 +23,7 @@ export default async function About() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="text-sm flex flex-col gap-2">
-					<p className="text-2xl font-semibold font-serif italic">About</p>
+					<p className="font-redaction text-xl text-white">About</p>
 
 					<p>
 						I&apos;m a <Age /> year old{" "}

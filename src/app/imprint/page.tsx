@@ -5,7 +5,7 @@ export default function Imprint() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="flex flex-col space-y-8">
-					<p className="font-serif text-2xl font-semibold italic">Imprint</p>
+					<p className="font-redaction text-xl text-white">Imprint</p>
 
 					<div className="flex flex-col w-full gap-2">
 						<p className="text-muted-foreground text-xs">Contact Information</p>

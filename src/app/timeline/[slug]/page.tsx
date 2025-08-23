@@ -41,7 +41,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 			<div className="text-sm flex flex-col gap-20 items-center justify-center ">
 				<div className="space-y-4 max-w-lg w-full px-6">
 					<div>
-						<h1 className="font-serif text-2xl font-semibold italic">{post.title}</h1>
+						<h1 className="font-redaction text-xl text-white">{post.title}</h1>
 						<div className="flex gap-3 justify-between text-muted-foreground text-sm w-full">
 							<div className="w-full text-muted-foreground text-xs">
 								{new Date(post.date_created).toLocaleDateString("en-US", {
@@ -102,8 +102,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 						className={`
 								prose max-w-lg w-full px-6
 
-								prose-blockquote:not-italic prose-blockquote:border-none prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 prose-blockquote:pl-0 prose-blockquote:font-serif [&_blockquote_p]:text-2xl
-								prose-headings:text-xl prose-heading:font-semibold prose-headings:font-serif prose-headings:text-black dark:prose-headings:text-neutral-300
+								prose-blockquote:not-italic 
+								prose-blockquote:border-none prose-blockquote:text-black dark:prose-blockquote:text-neutral-300 prose-blockquote:font-redaction prose-blockquote:font-medium prose-blockquote:text-balance [&_blockquote_p]:text-2xl 
+								prose-headings:text-lg prose-headings:tracking-tight prose-headings:font-medium prose-headings:font-redaction prose-headings:text-black dark:prose-headings:text-white prose-headings:-mb-2 prose-headings:mt-6
 								prose-a:font-normal prose-a:underline prose-a:underline-offset-2 prose-a:decoration-dotted prose-a:hover:decoration-solid prose-a:hover:underline-offset-4 dark:prose-a:text-neutral-300 prose-a:text-black
 								prose-p:text-sm prose-p:text-black dark:prose-p:text-neutral-300 prose-p:leading-relaxed
 

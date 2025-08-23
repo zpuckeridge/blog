@@ -51,7 +51,7 @@ export default async function Posts() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="space-y-2">
-					<p className="text-2xl font-semibold font-serif italic">Timeline</p>
+					<p className="font-redaction text-xl text-white">Timeline</p>
 
 					<p>
 						Welcome to my personal corner of the internet. Here you&apos;ll find posts about my

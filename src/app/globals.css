@@ -46,6 +46,8 @@
 	--font-sans: var(--font-sans);
 	--font-serif: var(--font-serif);
 	--font-mono: var(--font-mono);
+	--font-redaction: var(--font-redaction);
+	--font-redaction-italic: var(--font-redaction-italic);
 }
 
 :root {

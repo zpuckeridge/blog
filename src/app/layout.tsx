@@ -13,6 +13,17 @@ const fontSans = localFont({
 	weight: "500",
 });
 
+const fontRedactionItalic = localFont({
+	src: "../../public/fonts/redaction-italic.woff2",
+	variable: "--font-redaction-italic",
+});
+
+const fontRedaction = localFont({
+	src: "../../public/fonts/redaction-regular.woff2",
+	variable: "--font-redaction",
+	weight: "100",
+});
+
 const fontMono = Geist_Mono({
 	subsets: ["latin"],
 	variable: "--font-mono",
@@ -96,7 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					`min-h-screen font-sans text-black dark:text-neutral-300 selection:bg-blue-400/50 selection:text-blue-600 dark:selection:bg-blue-950/50 dark:selection:text-blue-400 antialiased`,
 					fontSans.variable,
 					fontSerif.variable,
-					fontMono.variable
+					fontMono.variable,
+					fontRedaction.variable,
+					fontRedactionItalic.variable
 				)}
 			>
 				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>

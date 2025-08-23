@@ -7,7 +7,7 @@ export default function Colophon() {
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="space-y-10">
 					<div className="flex flex-col w-full gap-2">
-						<p className="text-2xl font-semibold font-serif italic">Colophon</p>
+						<p className="font-redaction text-xl text-white">Colophon</p>
 						<p className="text-muted-foreground text-xs">Typography</p>
 
 						<p>

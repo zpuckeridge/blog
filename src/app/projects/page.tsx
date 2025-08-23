@@ -42,7 +42,7 @@ export default async function Projects() {
 		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
 			<div className="text-sm flex flex-col space-y-20">
 				<div className="space-y-2">
-					<p className="text-2xl font-semibold font-serif italic">Projects</p>
+					<p className="font-redaction text-xl text-white">Projects</p>
 
 					<p>
 						Here you&apos;ll find a list of projects I&apos;ve worked on. I eventually plan on
