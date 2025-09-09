@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed
 export async function GET(request: NextRequest) {
 	const { searchParams } = new URL(request.url);
 	const username = searchParams.get("username");
@@ -11,7 +10,6 @@ export async function GET(request: NextRequest) {
 
 	// Check if GitHub token is configured
 	if (!process.env.GITHUB_TOKEN) {
-		console.error("GitHub token not configured");
 		return NextResponse.json({ error: "GitHub token not configured" }, { status: 500 });
 	}
 
@@ -48,7 +46,6 @@ export async function GET(request: NextRequest) {
 
 		if (!response.ok) {
 			const errorText = await response.text();
-			console.error(`GitHub API error: ${response.status} - ${errorText}`);
 
 			// Handle specific error cases
 			if (response.status === 401) {
@@ -61,7 +58,9 @@ export async function GET(request: NextRequest) {
 				const rateLimitReset = response.headers.get("x-ratelimit-reset");
 
 				if (rateLimitRemaining === "0") {
-					const resetTime = rateLimitReset ? new Date(parseInt(rateLimitReset, 10) * 1000) : null;
+					const resetTime = rateLimitReset
+						? new Date(Number.parseInt(rateLimitReset, 10) * 1000)
+						: null;
 					return NextResponse.json(
 						{
 							error: "GitHub API rate limit exceeded",
@@ -88,7 +87,6 @@ export async function GET(request: NextRequest) {
 
 		if (data.errors) {
 			const errorMessage = data.errors[0]?.message || "Unknown GraphQL error";
-			console.error("GitHub GraphQL errors:", data.errors);
 
 			// Handle specific GraphQL errors
 			if (errorMessage.includes("Could not resolve to a User")) {
@@ -114,30 +112,22 @@ export async function GET(request: NextRequest) {
 		const twelveMonthsAgo = new Date();
 		twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
 
-		weeks.forEach(
-			(week: {
-				contributionDays: Array<{ date: string; contributionCount: number; color: string }>;
-			}) => {
-				week.contributionDays.forEach(
-					(day: { date: string; contributionCount: number; color: string }) => {
-						const dayDate = new Date(day.date);
-						// Only include contributions from the last 12 months
-						if (dayDate >= twelveMonthsAgo) {
-							allContributions.push({
-								date: day.date,
-								contributionCount: day.contributionCount,
-								color: day.color,
-							});
-						}
-					}
-				);
+		for (const week of weeks) {
+			for (const day of week.contributionDays) {
+				const dayDate = new Date(day.date);
+				// Only include contributions from the last 12 months
+				if (dayDate >= twelveMonthsAgo) {
+					allContributions.push({
+						date: day.date,
+						contributionCount: day.contributionCount,
+						color: day.color,
+					});
+				}
 			}
-		);
+		}
 
 		return NextResponse.json({ contributions: allContributions });
 	} catch (error) {
-		console.error("GitHub contributions fetch error:", error);
-
 		// Return a more specific error message
 		if (error instanceof Error) {
 			return NextResponse.json({ error: error.message }, { status: 500 });

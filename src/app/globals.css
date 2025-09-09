@@ -168,7 +168,9 @@ html {
 	100% {
 		background-color: hsl(var(--background)); /* bg-background */
 		border-radius: var(--radius); /* rounded */
-		color: hsl(var(--muted-foreground)); /* text-muted-foreground dark:text-muted-foreground */
+		color: hsl(
+			var(--muted-foreground)
+		); /* text-muted-foreground dark:text-muted-foreground */
 	}
 }
 
@@ -555,7 +557,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-12 {
-	-webkit-animation: animate-svg-stroke-12 0.03s ease-in-out 0.32999999999999996s both;
+	-webkit-animation: animate-svg-stroke-12 0.03s ease-in-out
+		0.32999999999999996s both;
 	animation: animate-svg-stroke-12 0.03s ease-in-out 0.32999999999999996s both;
 }
 
@@ -671,7 +674,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-16 {
-	-webkit-animation: animate-svg-stroke-16 0.03s ease-in-out 0.44999999999999996s both;
+	-webkit-animation: animate-svg-stroke-16 0.03s ease-in-out
+		0.44999999999999996s both;
 	animation: animate-svg-stroke-16 0.03s ease-in-out 0.44999999999999996s both;
 }
 
@@ -874,7 +878,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-23 {
-	-webkit-animation: animate-svg-stroke-23 0.03s ease-in-out 0.6599999999999999s both;
+	-webkit-animation: animate-svg-stroke-23 0.03s ease-in-out 0.6599999999999999s
+		both;
 	animation: animate-svg-stroke-23 0.03s ease-in-out 0.6599999999999999s both;
 }
 
@@ -1019,7 +1024,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-28 {
-	-webkit-animation: animate-svg-stroke-28 0.03s ease-in-out 0.8099999999999999s both;
+	-webkit-animation: animate-svg-stroke-28 0.03s ease-in-out 0.8099999999999999s
+		both;
 	animation: animate-svg-stroke-28 0.03s ease-in-out 0.8099999999999999s both;
 }
 
@@ -1106,7 +1112,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-31 {
-	-webkit-animation: animate-svg-stroke-31 0.03s ease-in-out 0.8999999999999999s both;
+	-webkit-animation: animate-svg-stroke-31 0.03s ease-in-out 0.8999999999999999s
+		both;
 	animation: animate-svg-stroke-31 0.03s ease-in-out 0.8999999999999999s both;
 }
 
@@ -1135,7 +1142,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-32 {
-	-webkit-animation: animate-svg-stroke-32 0.03s ease-in-out 0.9299999999999999s both;
+	-webkit-animation: animate-svg-stroke-32 0.03s ease-in-out 0.9299999999999999s
+		both;
 	animation: animate-svg-stroke-32 0.03s ease-in-out 0.9299999999999999s both;
 }
 
@@ -1309,7 +1317,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-38 {
-	-webkit-animation: animate-svg-stroke-38 0.03s ease-in-out 1.1099999999999999s both;
+	-webkit-animation: animate-svg-stroke-38 0.03s ease-in-out 1.1099999999999999s
+		both;
 	animation: animate-svg-stroke-38 0.03s ease-in-out 1.1099999999999999s both;
 }
 
@@ -1512,7 +1521,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-45 {
-	-webkit-animation: animate-svg-stroke-45 0.03s ease-in-out 1.3199999999999998s both;
+	-webkit-animation: animate-svg-stroke-45 0.03s ease-in-out 1.3199999999999998s
+		both;
 	animation: animate-svg-stroke-45 0.03s ease-in-out 1.3199999999999998s both;
 }
 
@@ -1541,7 +1551,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-46 {
-	-webkit-animation: animate-svg-stroke-46 0.03s ease-in-out 1.3499999999999999s both;
+	-webkit-animation: animate-svg-stroke-46 0.03s ease-in-out 1.3499999999999999s
+		both;
 	animation: animate-svg-stroke-46 0.03s ease-in-out 1.3499999999999999s both;
 }
 
@@ -1773,7 +1784,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-54 {
-	-webkit-animation: animate-svg-stroke-54 0.03s ease-in-out 1.5899999999999999s both;
+	-webkit-animation: animate-svg-stroke-54 0.03s ease-in-out 1.5899999999999999s
+		both;
 	animation: animate-svg-stroke-54 0.03s ease-in-out 1.5899999999999999s both;
 }
 
@@ -1802,7 +1814,8 @@ h3:has(+ .footnotes) {
 }
 
 .svg-elem-55 {
-	-webkit-animation: animate-svg-stroke-55 0.03s ease-in-out 1.6199999999999999s both;
+	-webkit-animation: animate-svg-stroke-55 0.03s ease-in-out 1.6199999999999999s
+		both;
 	animation: animate-svg-stroke-55 0.03s ease-in-out 1.6199999999999999s both;
 }
 

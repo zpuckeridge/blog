@@ -19,7 +19,7 @@ export default function TableOfContents() {
 			const headingElements = article.querySelectorAll("h1, h2, h3, h4, h5, h6");
 			const newHeadings: { id: string; text: string; level: number }[] = [];
 
-			headingElements.forEach((element) => {
+			for (const element of Array.from(headingElements)) {
 				// Skip headings that are within footnotes sections
 				if (element.closest(".footnotes")) {
 					return;
@@ -27,12 +27,12 @@ export default function TableOfContents() {
 
 				const id = element.id;
 				const text = element.textContent || "";
-				const level = parseInt(element.tagName.charAt(1), 10);
+				const level = Number.parseInt(element.tagName.charAt(1), 10);
 
 				if (id && text) {
 					newHeadings.push({ id, text, level });
 				}
-			});
+			}
 
 			setHeadings(newHeadings);
 		};
@@ -111,20 +111,20 @@ export default function TableOfContents() {
 	return (
 		<>
 			{/* Mobile version - always visible, standard TOC */}
-			<div className="lg:hidden bg-neutral-50 dark:bg-neutral-900 text-black dark:text-neutral-300 text-sm border border-neutral-200 dark:border-neutral-800 rounded-lg py-4 px-6 space-y-4 mb-6">
-				<h2 className="text-xs text-neutral-500 dark:text-neutral-400 mb-4">Contents</h2>
-				<nav className="text-[13px] font-normal">
+			<div className="mb-6 space-y-4 rounded-lg border border-neutral-200 bg-neutral-50 px-6 py-4 text-black text-sm lg:hidden dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+				<h2 className="mb-4 text-neutral-500 text-xs dark:text-neutral-400">Contents</h2>
+				<nav className="font-normal text-[13px]">
 					<ul className="space-y-2">
 						{headings.map((heading) => (
 							<li key={heading.id}>
 								<a
-									href={`#${heading.id}`}
-									onClick={(e) => handleHeadingClick(e, heading.id)}
-									className={`block hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 line-clamp-2 cursor-pointer ${
+									className={`line-clamp-2 block cursor-pointer transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${
 										activeId === heading.id
-											? "text-blue-600 dark:text-blue-400 font-medium"
+											? "font-medium text-blue-600 dark:text-blue-400"
 											: "text-neutral-700 dark:text-neutral-300"
 									}`}
+									href={`#${heading.id}`}
+									onClick={(e) => handleHeadingClick(e, heading.id)}
 									style={{ paddingLeft: `${(heading.level - 1) * 12}px` }}
 								>
 									{heading.text}
@@ -136,21 +136,21 @@ export default function TableOfContents() {
 			</div>
 
 			{/* Desktop version - fixed sidebar */}
-			<div className="hidden lg:block lg:fixed lg:left-6 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+			<div className="lg:-translate-y-1/2 hidden lg:fixed lg:top-1/2 lg:left-6 lg:block lg:max-h-[calc(100vh-6rem)] lg:transform lg:overflow-y-auto">
 				<button
-					type="button"
-					className="px-1.5 py-2.5 text-left cursor-pointer transition-all duration-300 hover:bg-neutral-900 dark:hover:bg-neutral-900 rounded"
+					className="cursor-pointer rounded px-1.5 py-2.5 text-left transition-all duration-300 hover:bg-neutral-900 dark:hover:bg-neutral-900"
 					onClick={handleTocClick}
+					type="button"
 				>
-					<div className="relative flex flex-col gap-3 w-fit h-fit">
+					<div className="relative flex h-fit w-fit flex-col gap-3">
 						{headings.map((heading) => (
 							<div
+								className="h-px w-3 transition-all duration-300"
 								key={heading.id}
-								className="w-3 h-px transition-all duration-300"
 								style={{
 									backgroundColor: activeId === heading.id ? "#ffffff" : "#a1a1a1",
 								}}
-							></div>
+							/>
 						))}
 					</div>
 				</button>
@@ -159,7 +159,7 @@ export default function TableOfContents() {
 			{/* Expanded content with proper exit animation */}
 			{(isExpanded || isAnimating) && (
 				<div
-					className="hidden lg:block lg:fixed lg:left-14 lg:top-1/2 lg:transform lg:-translate-y-1/2 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto"
+					className="lg:-translate-y-1/2 hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:transform lg:overflow-y-auto"
 					style={{
 						animation: isAnimating
 							? "toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) forwards"
@@ -172,19 +172,19 @@ export default function TableOfContents() {
 								key={heading.id}
 								style={{
 									animation: isAnimating
-										? `toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) both`
-										: `toc-fade-slide-in 0.4s cubic-bezier(0.4,0,0.2,1) both`,
+										? "toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) both"
+										: "toc-fade-slide-in 0.4s cubic-bezier(0.4,0,0.2,1) both",
 									animationDelay: isAnimating ? `${0.03 * idx}s` : `${0.05 * idx + 0.1}s`,
 								}}
 							>
 								<a
-									href={`#${heading.id}`}
-									onClick={(e) => handleHeadingClick(e, heading.id)}
-									className={`block hover:text-white dark:hover:text-white text-xs transition-all duration-300 line-clamp-2 cursor-pointer ${
+									className={`line-clamp-2 block cursor-pointer text-xs transition-all duration-300 hover:text-white dark:hover:text-white ${
 										activeId === heading.id
 											? "text-white dark:text-white"
 											: "text-neutral-400 dark:text-neutral-400"
 									}`}
+									href={`#${heading.id}`}
+									onClick={(e) => handleHeadingClick(e, heading.id)}
 									style={{ paddingLeft: `${(heading.level - 1) * 12 + 8}px` }}
 								>
 									{heading.text}
@@ -192,7 +192,7 @@ export default function TableOfContents() {
 							</li>
 						))}
 					</ul>
-					<style jsx global>{`
+					<style global jsx>{`
 						@keyframes toc-fade-slide-in {
 							from {
 								opacity: 0;

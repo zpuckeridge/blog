@@ -19,8 +19,7 @@ export async function POST(req: Request) {
 		await loops.createContact(email);
 
 		return Response.json({ success: true });
-	} catch (error) {
-		console.error("Subscribe error:", error);
+	} catch (_error) {
 		return Response.json({ error: "Failed to subscribe" }, { status: 500 });
 	}
 }

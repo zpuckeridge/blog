@@ -29,17 +29,17 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 
 	return (
 		<div className="space-y-20">
-			<p className="font-redaction text-xl text-white">Movies</p>
+			<p className="font-redaction text-white text-xl">Movies</p>
 
-			<div className="flex flex-col w-full gap-4">
+			<div className="flex w-full flex-col gap-4">
 				{years.map((year) => (
 					<div key={year}>
-						<div className="flex flex-row w-full gap-2 items-center mb-2">
+						<div className="mb-2 flex w-full flex-row items-center gap-2">
 							<p className="text-muted-foreground text-xs">{moviesByYear[year].length}</p>
 							<hr className="w-full border-muted-foreground border-dotted" />
 							<p className="text-muted-foreground text-xs">{year}</p>
 						</div>
-						<div className="flex flex-col w-full gap-1 text-sm overflow-y-hidden relative">
+						<div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
 							{moviesByYear[year]
 								.sort(
 									(a, b) => new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
@@ -47,12 +47,12 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 								.map((movie: Movie) => {
 									const isExpanded = expandedMovie === movie.id.toString();
 									return (
-										<div key={movie.id} className="space-y-1">
+										<div className="space-y-1" key={movie.id}>
 											<button
-												type="button"
-												onClick={() => toggleMovie(movie.id.toString())}
 												aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-												className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
+												className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+												onClick={() => toggleMovie(movie.id.toString())}
+												type="button"
 											>
 												<p className="line-clamp-1">{movie.title}</p>
 												<p className="text-muted-foreground">
@@ -71,32 +71,32 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 											>
 												<div className="flex flex-row gap-1">
 													{movie.image && (
-														<div className="w-7 relative">
+														<div className="relative w-7">
 															<ImageZoom>
 																<Image
-																	src={`https://directus.obambulo.studio/assets/${movie.image}`}
 																	alt={movie.title}
-																	width={150}
+																	className="h-full w-full rounded shadow"
 																	height={150}
-																	className="rounded shadow w-full h-full"
+																	src={`https://directus.obambulo.studio/assets/${movie.image}`}
+																	width={150}
 																/>
 															</ImageZoom>
 														</div>
 													)}
-													<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+													<div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 														<p className="text-[0.7rem] text-muted-foreground">Rating</p>
 														<p className="text-sm">{movie.rating}/10</p>
 													</div>
 
 													{movie.setting && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+														<div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 															<p className="text-[0.7rem] text-muted-foreground">Setting</p>
 															<p className="text-sm">{movie.setting}</p>
 														</div>
 													)}
 
 													{movie.with && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded">
+														<div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 															<p className="text-[0.7rem] text-muted-foreground">With</p>
 															<p className="text-sm">
 																{Array.isArray(movie.with) ? movie.with.join(", ") : movie.with}

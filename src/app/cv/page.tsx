@@ -5,14 +5,14 @@ import {
 	type EmploymentItem,
 	educationHistory,
 	employmentHistory,
-} from "@/src/lib/cvItems";
+} from "@/src/lib/cv-items";
 
 export default function CV() {
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
-				<div className="text-sm flex flex-col gap-2">
-					<p className="font-redaction text-xl text-white">Curriculum Vitae</p>
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
+				<div className="flex flex-col gap-2 text-sm">
+					<p className="font-redaction text-white text-xl">Curriculum Vitae</p>
 
 					<p>An overview of my work experience and education.</p>
 				</div>
@@ -21,7 +21,7 @@ export default function CV() {
 					<p className="font-redaction text-lg text-white">Employment</p>
 
 					{employmentHistory.map((item: EmploymentItem) => (
-						<div key={item.title + item.startYear} className="flex flex-row gap-4">
+						<div className="flex flex-row gap-4" key={item.title + item.startYear}>
 							<div className="w-20">
 								<p className="text-muted-foreground text-xs">
 									{item.startYear} – {item.endYear === "Present" ? "Now" : item.endYear}
@@ -35,12 +35,12 @@ export default function CV() {
 									</p>
 									<p className="text-muted-foreground text-xs">
 										{item.location.includes("Australia") && (
-											<span role="img" aria-label="Australia Flag">
+											<span aria-label="Australia Flag" role="img">
 												🇦🇺{" "}
 											</span>
 										)}
 										{item.location.includes("United States") && (
-											<span role="img" aria-label="United States Flag">
+											<span aria-label="United States Flag" role="img">
 												🇺🇸{" "}
 											</span>
 										)}
@@ -49,18 +49,18 @@ export default function CV() {
 								</div>
 
 								<div>
-									<p className="text-sm mt-1">{item.description}</p>
+									<p className="mt-1 text-sm">{item.description}</p>
 								</div>
 							</div>
 						</div>
 					))}
 
-					<hr className="border-dotted border-muted-foreground" />
+					<hr className="border-muted-foreground border-dotted" />
 
 					<div className="space-y-10">
 						<p className="font-redaction text-lg text-white">Education</p>
 						{educationHistory.map((item: EducationItem) => (
-							<div key={item.title + item.startDate} className="flex flex-row gap-4">
+							<div className="flex flex-row gap-4" key={item.title + item.startDate}>
 								<div className="w-20">
 									<p className="text-muted-foreground text-xs">
 										{item.startDate.slice(0, 4)} – {item.endDate.slice(0, 4)}
@@ -85,7 +85,7 @@ export default function CV() {
 
 									{item.description && (
 										<div>
-											<p className="text-sm mt-1">{item.description}</p>
+											<p className="mt-1 text-sm">{item.description}</p>
 										</div>
 									)}
 								</div>
@@ -95,8 +95,8 @@ export default function CV() {
 				</div>
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

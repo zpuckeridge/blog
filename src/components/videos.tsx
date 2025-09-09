@@ -7,10 +7,10 @@ import { useMemo, useState } from "react";
 import { Input } from "@/src/components/ui/input";
 import type { Video } from "@/src/interfaces/content-item";
 
-interface VideosProps {
+type VideosProps = {
 	videos: Video[];
 	itemsPerPage: number;
-}
+};
 
 // Extract search component outside of Videos component
 const SearchBar = ({
@@ -22,8 +22,8 @@ const SearchBar = ({
 	setSearchTerm: (term: string) => void;
 	setCurrentPage: (page: number) => void;
 }) => (
-	<div className="flex group relative">
-		<div className="z-1 pointer-events-none has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)):-translate-y-1/2 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:text-xs has-[+input:not(:placeholder-shown)]:font-normal dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 has-[input:not(:placeholder-shown)]:text-black origin-start absolute top-1/2 block -translate-y-1/2 cursor-text px-1 text-sm text-muted-foreground transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:text-xs group-focus-within:font-normal group-focus-within:text-black dark:group-focus-within:text-neutral-300">
+	<div className="group relative flex">
+		<div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 -translate-y-1/2 group-focus-within:-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-xs has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-xs has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
 			{(() => {
 				const alternatives = [
 					"Search the ether",
@@ -36,24 +36,24 @@ const SearchBar = ({
 				];
 				const randomIndex = Math.floor(Math.random() * alternatives.length);
 				return (
-					<span className="inline-flex text-xs bg-background px-2 relative -top-[1px]">
+					<span className="-top-[1px] relative inline-flex bg-background px-2 text-xs">
 						{alternatives[randomIndex]}
 					</span>
 				);
 			})()}
 		</div>
 		<Input
-			type="text"
-			placeholder=""
-			value={searchTerm}
+			className="-me-px flex-1 rounded-lg text-black text-xs shadow-none dark:text-neutral-300"
 			onChange={(e) => {
 				setSearchTerm(e.target.value);
 				setCurrentPage(1);
 			}}
-			className="-me-px text-xs flex-1 shadow-none text-black dark:text-neutral-300 rounded-lg"
+			placeholder=""
+			type="text"
+			value={searchTerm}
 		/>
 
-		<div className="absolute text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 inset-y-px end-px flex h-full w-9 my-auto items-center justify-center rounded-e-lg disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50">
+		<div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
 			<MagnifyingGlassIcon />
 		</div>
 	</div>
@@ -82,7 +82,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 
 	// Moved the early return after all hooks
 	if (!videos?.length) {
-		return <div className="text-center py-8">No videos available</div>;
+		return <div className="py-8 text-center">No videos available</div>;
 	}
 
 	const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
@@ -111,14 +111,13 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 			<div className="space-y-1">
 				<SearchBar
 					searchTerm={searchTerm}
-					setSearchTerm={setSearchTerm}
 					setCurrentPage={setCurrentPage}
+					setSearchTerm={setSearchTerm}
 				/>
 				<div className="flex flex-wrap gap-1">
 					{uniqueTags.map((tag) => (
 						<button
-							type="button"
-							className={`px-2.5 py-0.5 rounded text-xs ${
+							className={`rounded px-2.5 py-0.5 text-xs ${
 								selectedTag === tag
 									? "bg-primary text-primary-foreground"
 									: "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -133,6 +132,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 									setCurrentPage(1);
 								}
 							}}
+							type="button"
 						>
 							{tag}
 						</button>
@@ -140,19 +140,19 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 				</div>
 			</div>
 
-			<div className="grid grid-cols-2 gap-4 mt-2">
+			<div className="mt-2 grid grid-cols-2 gap-4">
 				{currentVideos.map((video: Video) => (
 					<Link
+						className="group relative rounded transition-all duration-200 hover:grayscale"
 						href={`/video/${video.slug}`}
-						title={video.title}
 						key={video.slug}
-						className="relative rounded hover:grayscale transition-all duration-200 group "
+						title={video.title}
 					>
 						<div className="transform">
-							<div className="z-10 absolute top-2 left-2 bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm rounded px-2.5 py-0.5 text-xs transition-opacity duration-200 group-hover:opacity-0">
+							<div className="absolute top-2 left-2 z-10 rounded bg-muted/60 px-2.5 py-0.5 text-xs backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900/60">
 								{video.tags.join(", ")}
 							</div>
-							<div className="z-10 absolute top-2 right-2 bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm rounded px-2.5 py-0.5 text-xs transition-opacity duration-200 group-hover:opacity-0">
+							<div className="absolute top-2 right-2 z-10 rounded bg-muted/60 px-2.5 py-0.5 text-xs backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900/60">
 								{video.duration ? (
 									<span className="duration">{formatDuration(video.duration)}</span>
 								) : (
@@ -160,20 +160,20 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 								)}
 							</div>
 
-							<div className="aspect-video rounded-lg overflow-hidden group-hover:drop-shadow-2xl transition-all duration-200">
+							<div className="aspect-video overflow-hidden rounded-lg transition-all duration-200 group-hover:drop-shadow-2xl">
 								<Image
-									src={`https://image.mux.com/${video.playback_id}/thumbnail.png`}
 									alt={video.title}
-									width={600}
+									className="aspect-video rounded-lg transition-all duration-200 group-hover:scale-110"
 									height={600}
-									className="aspect-video rounded-lg group-hover:scale-110 transition-all duration-200"
 									priority={true}
+									src={`https://image.mux.com/${video.playback_id}/thumbnail.png`}
+									width={600}
 								/>
 							</div>
-							<div className="flex justify-between mt-1">
-								<div className="text-sm truncate ">{video.title}</div>
+							<div className="mt-1 flex justify-between">
+								<div className="truncate text-sm">{video.title}</div>
 							</div>
-							<div className="flex justify-between text-xs text-muted-foreground">
+							<div className="flex justify-between text-muted-foreground text-xs">
 								<p>
 									{new Date(video.date_created).toLocaleDateString("en-US", {
 										year: "numeric",
@@ -188,28 +188,28 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 			</div>
 
 			{totalPages > 1 && (
-				<nav aria-label="Pagination" className="flex justify-between mt-4">
+				<nav aria-label="Pagination" className="mt-4 flex justify-between">
 					<button
-						type="button"
-						onClick={handlePrevPage}
-						disabled={currentPage === 1}
-						className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
 						aria-label="Previous page"
+						className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
+						disabled={currentPage === 1}
+						onClick={handlePrevPage}
+						type="button"
 					>
 						<ArrowLeftIcon className="inline-flex" /> Prev Page
 					</button>
 					<button
-						type="button"
+						className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 						onClick={() => setCurrentPage(1)}
-						className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
+						type="button"
 					>
 						{currentPage} of {totalPages}
 					</button>
 					<button
-						type="button"
-						onClick={handleNextPage}
+						className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 						disabled={currentPage === totalPages}
-						className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
+						onClick={handleNextPage}
+						type="button"
 					>
 						Next Page <ArrowRightIcon className="inline-flex" />
 					</button>

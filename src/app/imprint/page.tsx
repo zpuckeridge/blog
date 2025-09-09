@@ -2,24 +2,24 @@ import Link from "next/link";
 
 export default function Imprint() {
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
 				<div className="flex flex-col space-y-8">
-					<p className="font-redaction text-xl text-white">Imprint</p>
+					<p className="font-redaction text-white text-xl">Imprint</p>
 
-					<div className="flex flex-col w-full gap-2">
+					<div className="flex w-full flex-col gap-2">
 						<p className="text-muted-foreground text-xs">Contact Information</p>
 						<p>
 							<Link
+								className="group inline-flex underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 								href="mailto:hi@zacchary.me"
-								className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out"
 							>
 								hi@zacchary.me
 							</Link>
 						</p>
 					</div>
 
-					<div className="flex flex-col w-full gap-2">
+					<div className="flex w-full flex-col gap-2">
 						<p className="text-muted-foreground text-xs">Copyright</p>
 						<p className="text-sm">
 							The content of this website is protected by Australian copyright law. Unauthorised
@@ -30,7 +30,7 @@ export default function Imprint() {
 						</p>
 					</div>
 
-					<div className="flex flex-col w-full gap-2">
+					<div className="flex w-full flex-col gap-2">
 						<p className="text-muted-foreground text-xs">Disclaimer</p>
 						<p className="text-sm">
 							While I strive to ensure the accuracy of information on this website, I make no
@@ -42,8 +42,8 @@ export default function Imprint() {
 				</div>
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

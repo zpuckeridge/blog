@@ -24,13 +24,13 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 	}
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
 				<div className="space-y-4">
 					<div>
-						<h1 className="font-redaction text-xl text-white">{video.title}</h1>
+						<h1 className="font-redaction text-white text-xl">{video.title}</h1>
 
-						<div className="flex gap-3 justify-between text-muted-foreground text-sm w-full">
+						<div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
 							<div className="w-full text-muted-foreground text-xs">
 								{new Date(video.date_created).toLocaleDateString("en-US", {
 									month: "long",
@@ -42,13 +42,13 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 									<Tooltip>
 										<TooltipTrigger
 											asChild
-											className="hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200"
+											className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600"
 										>
 											<DotsHorizontalIcon />
 										</TooltipTrigger>
 										<TooltipContent
+											className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
 											side="bottom"
-											className="text-xs bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm text-black dark:text-muted-foreground"
 										>
 											{new Date(video.date_created).toLocaleDateString("en-US", {
 												weekday: "long",
@@ -65,17 +65,17 @@ export default async function Clip({ params }: { params: Promise<{ slug: string 
 						</div>
 					</div>
 
-					<div className="rounded-lg aspect-video overflow-hidden">
+					<div className="aspect-video overflow-hidden rounded-lg">
 						<VidstackPlayer
-							title={video.title}
 							src={`https://stream.mux.com/${video.playback_id}.m3u8`}
+							title={video.title}
 						/>
 					</div>
 				</div>
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/videos"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../videos
 				</Link>
@@ -104,12 +104,12 @@ export async function generateMetadata({
 	const thumbnailUrl = `https://image.mux.com/${video.playback_id}/thumbnail.jpg`;
 
 	return {
-		title: title,
-		description: description,
+		title,
+		description,
 		openGraph: {
 			type: "video.other",
-			title: title,
-			description: description,
+			title,
+			description,
 			siteName: "zacchary.me",
 			images: [
 				{
@@ -131,8 +131,8 @@ export async function generateMetadata({
 		},
 		twitter: {
 			card: "player",
-			title: title,
-			description: description,
+			title,
+			description,
 			players: [
 				{
 					playerUrl: videoUrl,

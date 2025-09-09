@@ -10,105 +10,105 @@ const UsesItem = ({ title, description }: { title: string; description: string }
 	return (
 		<div>
 			<p>{title}</p>
-			<p className="text-xs text-muted-foreground">{description}</p>
+			<p className="text-muted-foreground text-xs">{description}</p>
 		</div>
 	);
 };
 
 export default function Uses() {
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
-				<p className="font-redaction text-xl text-white">Uses</p>
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
+				<p className="font-redaction text-white text-xl">Uses</p>
 				<p>A summary of the tools and hardware I use on a daily basis.</p>
 
 				<div className="flex flex-col gap-12">
 					<div className="space-y-4">
-						<div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
-							<div className="grid grid-cols-2 gap-2 w-full">
-								<UsesItem title="Custom Desktop PC" description="5800X CPU, 6600XT GPU, 64GB RAM" />
-								<UsesItem title="Focusrite Scarlett Solo" description="1st generation" />
+						<div className="flex w-full flex-col gap-6 rounded-xl border bg-neutral-50 p-6 dark:bg-neutral-900">
+							<div className="grid w-full grid-cols-2 gap-2">
+								<UsesItem description="5800X CPU, 6600XT GPU, 64GB RAM" title="Custom Desktop PC" />
+								<UsesItem description="1st generation" title="Focusrite Scarlett Solo" />
 								<UsesItem
-									title="Audio-Technica AT2020"
 									description="XLR cardioid condenser microphone"
+									title="Audio-Technica AT2020"
 								/>
-								<UsesItem title="Beyerdynamic DT 770" description="Wired studio headphones" />
-								<UsesItem title="Koss KPH30i" description="Portable wired headphones" />
-								<UsesItem title="Audio-Technica ATH-AD700X" description="Wired studio headphones" />
-								<UsesItem title="Logitech C920" description="Webcam" />
-								<UsesItem title="Glorius Mousepad" description="3XL extended" />
-								<UsesItem title="Elgato Wave Mic Arm LP" description="Low-profile mic arm" />
-								<UsesItem title="Keychron Q6 QMK" description="Gateron brown switches" />
+								<UsesItem description="Wired studio headphones" title="Beyerdynamic DT 770" />
+								<UsesItem description="Portable wired headphones" title="Koss KPH30i" />
+								<UsesItem description="Wired studio headphones" title="Audio-Technica ATH-AD700X" />
+								<UsesItem description="Webcam" title="Logitech C920" />
+								<UsesItem description="3XL extended" title="Glorius Mousepad" />
+								<UsesItem description="Low-profile mic arm" title="Elgato Wave Mic Arm LP" />
+								<UsesItem description="Gateron brown switches" title="Keychron Q6 QMK" />
 							</div>
 						</div>
-						<p className="text-center text-muted-foreground text-xs ">Office</p>
+						<p className="text-center text-muted-foreground text-xs">Office</p>
 					</div>
 					<div className="space-y-4">
-						<div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
-							<div className="grid grid-cols-2 gap-2 w-full">
-								<UsesItem title="Visual Studio Code" description="GitHub Dark theme" />
-								<UsesItem title="Vercel" description="Project deployment" />
-								<UsesItem title="GitHub" description="Version control" />
-								<UsesItem title="Oracle" description="Remote development" />
-								<UsesItem title="Lucide" description="Icons" />
-								<UsesItem title="Carbon" description="Code sharing" />
-								<UsesItem title="Neon" description="Database provider" />
-								<UsesItem title="Clerk" description="User Authentication" />
+						<div className="flex w-full flex-col gap-6 rounded-xl border bg-neutral-50 p-6 dark:bg-neutral-900">
+							<div className="grid w-full grid-cols-2 gap-2">
+								<UsesItem description="GitHub Dark theme" title="Visual Studio Code" />
+								<UsesItem description="Project deployment" title="Vercel" />
+								<UsesItem description="Version control" title="GitHub" />
+								<UsesItem description="Remote development" title="Oracle" />
+								<UsesItem description="Icons" title="Lucide" />
+								<UsesItem description="Code sharing" title="Carbon" />
+								<UsesItem description="Database provider" title="Neon" />
+								<UsesItem description="User Authentication" title="Clerk" />
 							</div>
 						</div>{" "}
-						<p className="text-center text-muted-foreground text-xs ">Programming</p>
+						<p className="text-center text-muted-foreground text-xs">Programming</p>
 					</div>
 					<div className="space-y-4">
-						<div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
-							<div className="grid grid-cols-2 gap-2 w-full">
-								<UsesItem title="Umami" description="Analytics" />
+						<div className="flex w-full flex-col gap-6 rounded-xl border bg-neutral-50 p-6 dark:bg-neutral-900">
+							<div className="grid w-full grid-cols-2 gap-2">
+								<UsesItem description="Analytics" title="Umami" />
 							</div>
 						</div>{" "}
-						<p className="text-center text-muted-foreground text-xs ">Self-Hosting</p>
+						<p className="text-center text-muted-foreground text-xs">Self-Hosting</p>
 					</div>
 					<div className="space-y-4">
-						<div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
-							<div className="grid grid-cols-2 gap-2 w-full">
-								<UsesItem title="Firefox" description="Web browser" />
-								<UsesItem title="Proton Pass" description="Password manager" />
-								<UsesItem title="Proton Mail" description="Email client" />
-								<UsesItem title="Proton Calendar" description="Calendar client" />
-								<UsesItem title="Proton VPN" description="VPN client" />
-								<UsesItem title="Proton Drive" description="File storage" />
-								<UsesItem title="Adobe Suite" description="Photo and video editing" />
-								<UsesItem title="Discord" description="Communication" />
-								<UsesItem title="Signal" description="Encrypted communication" />
-								<UsesItem title="Spotify" description="Audio and podcast streaming" />
-								<UsesItem title="OBS" description="Live-streaming and recording" />
-								<UsesItem title="PopOS" description="Operating system" />
-								<UsesItem title="Windows 11" description="Operating system" />
-								<UsesItem title="Microsoft PowerToys" description="Extra utilities" />
+						<div className="flex w-full flex-col gap-6 rounded-xl border bg-neutral-50 p-6 dark:bg-neutral-900">
+							<div className="grid w-full grid-cols-2 gap-2">
+								<UsesItem description="Web browser" title="Firefox" />
+								<UsesItem description="Password manager" title="Proton Pass" />
+								<UsesItem description="Email client" title="Proton Mail" />
+								<UsesItem description="Calendar client" title="Proton Calendar" />
+								<UsesItem description="VPN client" title="Proton VPN" />
+								<UsesItem description="File storage" title="Proton Drive" />
+								<UsesItem description="Photo and video editing" title="Adobe Suite" />
+								<UsesItem description="Communication" title="Discord" />
+								<UsesItem description="Encrypted communication" title="Signal" />
+								<UsesItem description="Audio and podcast streaming" title="Spotify" />
+								<UsesItem description="Live-streaming and recording" title="OBS" />
+								<UsesItem description="Operating system" title="PopOS" />
+								<UsesItem description="Operating system" title="Windows 11" />
+								<UsesItem description="Extra utilities" title="Microsoft PowerToys" />
 							</div>
 						</div>{" "}
-						<p className="text-center text-muted-foreground text-xs ">Tools</p>
+						<p className="text-center text-muted-foreground text-xs">Tools</p>
 					</div>
 					<div className="space-y-4">
-						<div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
-							<div className="grid grid-cols-2 gap-2 w-full">
-								<UsesItem title="Suzuki Grand Vitara Prestige" description="2009" />
-								<UsesItem title="Honda CB500X" description="2013" />
+						<div className="flex w-full flex-col gap-6 rounded-xl border bg-neutral-50 p-6 dark:bg-neutral-900">
+							<div className="grid w-full grid-cols-2 gap-2">
+								<UsesItem description="2009" title="Suzuki Grand Vitara Prestige" />
+								<UsesItem description="2013" title="Honda CB500X" />
 							</div>
 						</div>{" "}
-						<p className="text-center text-muted-foreground text-xs ">Vehicles</p>
+						<p className="text-center text-muted-foreground text-xs">Vehicles</p>
 					</div>
 					<div className="space-y-4">
-						<div className="flex flex-col gap-6 w-full bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6">
-							<div className="grid grid-cols-2 gap-2 w-full">
-								<UsesItem title="iPhone 14" description="Midnight" />
-								<UsesItem title="Macbook Air M3" description="Midnight" />
+						<div className="flex w-full flex-col gap-6 rounded-xl border bg-neutral-50 p-6 dark:bg-neutral-900">
+							<div className="grid w-full grid-cols-2 gap-2">
+								<UsesItem description="Midnight" title="iPhone 14" />
+								<UsesItem description="Midnight" title="Macbook Air M3" />
 							</div>
 						</div>{" "}
-						<p className="text-center text-muted-foreground text-xs ">Everyday Carry</p>
+						<p className="text-center text-muted-foreground text-xs">Everyday Carry</p>
 					</div>
 
 					<Link
+						className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 						href="/about"
-						className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 					>
 						../timeline
 					</Link>

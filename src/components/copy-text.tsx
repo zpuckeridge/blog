@@ -20,11 +20,11 @@ export default function CopyText({ text }: { text: string }) {
 
 	return (
 		<button
-			type="button"
+			className="flex w-auto cursor-pointer gap-2 text-muted-foreground transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600"
 			onClick={handleClick}
-			className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 flex gap-2 w-auto cursor-pointer"
+			type="button"
 		>
-			<CopyIcon className="w-4 h-4" /> {copied ? "Copied!" : "Copy Text"}
+			<CopyIcon className="h-4 w-4" /> {copied ? "Copied!" : "Copy Text"}
 		</button>
 	);
 }

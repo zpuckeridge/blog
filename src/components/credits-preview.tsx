@@ -19,27 +19,27 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 
 	return (
 		<div className="space-y-2">
-			<div className="flex flex-col w-full gap-4">
-				<div className="flex flex-row w-full gap-2 items-center">
+			<div className="flex w-full flex-col gap-4">
+				<div className="flex w-full flex-row items-center gap-2">
 					<p className="text-muted-foreground text-xs">Credits</p>
 					<hr className="w-full border-muted-foreground border-dotted" />
 					<Link
+						className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 						href="/about/credits"
-						className="text-muted-foreground text-xs hover:text-blue-400 dark:hover:text-blue-600 transition whitespace-nowrap"
 					>
 						See all {sortedCredits.length}
 					</Link>
 				</div>
-				<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
+				<div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
 					{sortedCredits.map((credit: Credit) => {
 						const isExpanded = expandedCredit === credit.id.toString();
 						return (
-							<div key={credit.id} className="space-y-1">
+							<div className="space-y-1" key={credit.id}>
 								<button
-									type="button"
-									onClick={() => toggleCredit(credit.id.toString())}
 									aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-									className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
+									className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+									onClick={() => toggleCredit(credit.id.toString())}
+									type="button"
 								>
 									<p className="line-clamp-1">{credit.title}</p>
 									<p className="text-muted-foreground">
@@ -59,28 +59,28 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 								>
 									<div className="flex flex-row flex-wrap gap-1">
 										{credit.image && (
-											<div className="w-7 relative">
+											<div className="relative w-7">
 												<ImageZoom>
 													<Image
-														src={`https://directus.obambulo.studio/assets/${credit.image}`}
 														alt={credit.title}
-														width={150}
+														className="h-full w-full rounded shadow"
 														height={150}
-														className="rounded shadow w-full h-full"
+														src={`https://directus.obambulo.studio/assets/${credit.image}`}
+														width={150}
 													/>
 												</ImageZoom>
 											</div>
 										)}
 
 										{credit.director && (
-											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
+											<div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 												<p className="text-[0.7rem] text-muted-foreground">Director</p>
 												<p className="text-sm">{credit.director}</p>
 											</div>
 										)}
 
 										{credit.tags && (
-											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
+											<div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 												<p className="text-[0.7rem] text-muted-foreground">
 													{credit.tags.length === 1 ? "Tag" : "Tags"}
 												</p>
@@ -95,13 +95,13 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 										)}
 
 										{credit.link && (
-											<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
+											<div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 												<p className="text-[0.7rem] text-muted-foreground">Link</p>
 												<a
-													href={credit.link}
 													className="text-sm"
-													target="_blank"
+													href={credit.link}
 													rel="noopener noreferrer"
+													target="_blank"
 												>
 													RSP
 												</a>
@@ -112,7 +112,7 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 							</div>
 						);
 					})}
-					<div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-gradient-to-t from-white dark:from-background" />
+					<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-gradient-to-t from-white dark:from-background" />
 				</div>
 			</div>
 		</div>

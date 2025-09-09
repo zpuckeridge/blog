@@ -39,10 +39,10 @@ export default async function Projects() {
 	const sortedProjects = [...projects].sort(sortProjects);
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
 				<div className="space-y-2">
-					<p className="font-redaction text-xl text-white">Projects</p>
+					<p className="font-redaction text-white text-xl">Projects</p>
 
 					<p>
 						Here you&apos;ll find a list of projects I&apos;ve worked on. I eventually plan on
@@ -54,56 +54,62 @@ export default async function Projects() {
 					{sortedProjects.length > 0 ? (
 						<Table className="">
 							<TableBody>
-								{/** biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed */}
 								{sortedProjects.map((project) => (
 									<TableRow
-										key={project.id}
-										className={`group hover:bg-neutral-950 border-b border-dotted border-muted-foreground ${
+										className={`group border-muted-foreground border-b border-dotted hover:bg-neutral-950 ${
 											project.status === "archived" ? "text-yellow-700 dark:text-yellow-600" : ""
 										}`}
+										key={project.id}
 									>
 										<TableCell>
-											<p className="text-sm transition-opacity whitespace-normal break-words opacity-100 group-hover:opacity-100">
+											<p className="whitespace-normal break-words text-sm opacity-100 transition-opacity group-hover:opacity-100">
 												{project.name}
 											</p>
 										</TableCell>
-										<TableCell className="text-right whitespace-nowrap">
-											<p className="text-sm text-muted-foreground transition-opacity opacity-100 group-hover:opacity-100">
+										<TableCell className="whitespace-nowrap text-right">
+											<p className="text-muted-foreground text-sm opacity-100 transition-opacity group-hover:opacity-100">
 												{project.status === "work_in_progress"
 													? "Present"
 													: project.year_completed || "Present"}
 											</p>
 										</TableCell>
-										<TableCell className="text-right whitespace-nowrap">
-											{project.status === "archived" ? (
-												<span className="text-sm text-muted-foreground">Archived</span>
-											) : project.status === "work_in_progress" ? (
-												<AnimatedGradientText text="WIP" />
-											) : project.link ? (
-												<a
-													href={project.link}
-													target="_blank"
-													rel="noopener noreferrer"
-													className="text-sm text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition opacity-100 group-hover:opacity-100"
-												>
-													Link
-												</a>
-											) : null}
+										<TableCell className="whitespace-nowrap text-right">
+											{(() => {
+												if (project.status === "archived") {
+													return <span className="text-muted-foreground text-sm">Archived</span>;
+												}
+												if (project.status === "work_in_progress") {
+													return <AnimatedGradientText text="WIP" />;
+												}
+												if (project.link) {
+													return (
+														<a
+															className="text-muted-foreground text-sm opacity-100 transition hover:text-blue-400 group-hover:opacity-100 dark:hover:text-blue-600"
+															href={project.link}
+															rel="noopener noreferrer"
+															target="_blank"
+														>
+															Link
+														</a>
+													);
+												}
+												return null;
+											})()}
 										</TableCell>
 									</TableRow>
 								))}
 							</TableBody>
 						</Table>
 					) : (
-						<div className="text-center py-8">
+						<div className="py-8 text-center">
 							<p className="text-muted-foreground">No projects found.</p>
 						</div>
 					)}
 				</div>
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

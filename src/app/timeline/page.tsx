@@ -48,10 +48,10 @@ export default async function Posts() {
 		}, {});
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
 				<div className="space-y-2">
-					<p className="font-redaction text-xl text-white">Timeline</p>
+					<p className="font-redaction text-white text-xl">Timeline</p>
 
 					<p>
 						Welcome to my personal corner of the internet. Here you&apos;ll find posts about my
@@ -59,7 +59,7 @@ export default async function Posts() {
 						happening in my life. Working on turning this into a feed for everything I do.
 					</p>
 
-					<p className="text-xs text-muted-foreground">
+					<p className="text-muted-foreground text-xs">
 						Posts and notes from September 2019 to present.
 					</p>
 				</div>
@@ -67,8 +67,8 @@ export default async function Posts() {
 				<PostRendering postsByYear={content} />
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

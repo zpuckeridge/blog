@@ -1,19 +1,19 @@
 import type { FC } from "react";
 
-interface AfterQuoteProps {
+type AfterQuoteProps = {
 	text: string;
 	subtext?: string;
 	link?: string;
-}
+};
 
 const AfterQuote: FC<AfterQuoteProps> = ({ text, subtext, link }) => {
 	return (
-		<div className="text-sm text-right w-full -mt-10">
-			<div className="inline-flex items-center gap-2 flex justify-end">
-				<hr className="w-16 border-muted-foreground border-dotted my-auto" />
+		<div className="-mt-10 w-full text-right text-sm">
+			<div className="flex inline-flex items-center justify-end gap-2">
+				<hr className="my-auto w-16 border-muted-foreground border-dotted" />
 				<div>
 					{link ? (
-						<a href={link} target="_blank" className="hover:underline">
+						<a className="hover:underline" href={link} target="_blank">
 							{text}
 						</a>
 					) : (

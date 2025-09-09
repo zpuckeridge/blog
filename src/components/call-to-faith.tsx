@@ -99,68 +99,68 @@ export default function CallToFaith() {
 	return (
 		<div className="w-full">
 			<div className="my-auto flex place-items-center">
-				<div className="flex flex-col gap-2 text-sm w-full">
-					<BlurFade key={currentSlideIndex} delay={0.25} inView>
-						<div className="h-[4rem] flex items-center">
+				<div className="flex w-full flex-col gap-2 text-sm">
+					<BlurFade delay={0.25} inView key={currentSlideIndex}>
+						<div className="flex h-[4rem] items-center">
 							<p className="text-sm">{currentSlide.text}</p>
 						</div>
 					</BlurFade>
 					<div className="flex justify-between gap-2">
 						<div className="flex gap-2">
-							<p className="text-xs text-muted-foreground">
+							<p className="text-muted-foreground text-xs">
 								{currentSlide.reference} — {currentSlide.index} / {slides.length}
 							</p>
 
 							<svg
 								aria-label="Timer"
-								role="timer"
-								width="14"
-								height="14"
-								viewBox="0 0 200 200"
 								className="my-auto"
+								height="14"
+								role="timer"
+								viewBox="0 0 200 200"
+								width="14"
 							>
 								<circle
+									className="dark:stroke-[#a3a3a3]"
 									cx="100"
 									cy="100"
-									r={radius}
 									fill="none"
+									r={radius}
 									stroke="#e2e8f0"
-									className="dark:stroke-[#a3a3a3]"
 									strokeWidth="20"
 								/>
 								<circle
+									className="dark:stroke-[#245fe0]"
 									cx="100"
 									cy="100"
-									r={radius}
 									fill="none"
+									r={radius}
 									stroke="#65a8ec"
-									className="dark:stroke-[#245fe0]"
-									strokeWidth="20"
 									strokeDasharray={circumference}
 									strokeDashoffset={strokeDashoffset}
 									strokeLinecap="round"
-									transform="rotate(-90 100 100)"
+									strokeWidth="20"
 									style={{ transition: "stroke-dashoffset 0.1s linear" }}
+									transform="rotate(-90 100 100)"
 								/>
 							</svg>
 						</div>
 
-						<div className="flex my-auto gap-4">
+						<div className="my-auto flex gap-4">
 							<button
-								type="button"
-								onClick={goToPreviousSlide}
-								className="hover:text-blue-400 dark:hover:text-blue-600 transition text-muted-foreground" // Added padding for larger touch target
 								aria-label="Previous slide"
+								className="text-muted-foreground transition hover:text-blue-400 dark:hover:text-blue-600"
+								onClick={goToPreviousSlide} // Added padding for larger touch target
+								type="button"
 							>
-								<ArrowLeftIcon className="w-4 h-4" />
+								<ArrowLeftIcon className="h-4 w-4" />
 							</button>
 							<button
-								type="button"
-								onClick={goToNextSlide}
-								className="hover:text-blue-400 dark:hover:text-blue-600 transition text-muted-foreground" // Added padding for larger touch target
 								aria-label="Next slide"
+								className="text-muted-foreground transition hover:text-blue-400 dark:hover:text-blue-600"
+								onClick={goToNextSlide} // Added padding for larger touch target
+								type="button"
 							>
-								<ArrowRightIcon className="w-4 h-4" />
+								<ArrowRightIcon className="h-4 w-4" />
 							</button>
 						</div>
 					</div>

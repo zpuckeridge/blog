@@ -4,27 +4,27 @@ import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 py-6 lg:py-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 py-6 lg:py-20">
+			<div className="flex flex-col space-y-20 text-sm">
 				<div>
 					<p>Error — 404</p>
 					<p className="text-muted-foreground text-xs">Page could not be found.</p>
 				</div>
 
 				<Image
-					src="/media/404.webp"
 					alt="Max Goof sighing and putting his head in his hands"
-					width={500}
-					quality={100}
-					priority
-					unoptimized
 					className="rounded-xl"
 					height={500}
+					priority
+					quality={100}
+					src="/media/404.webp"
+					unoptimized
+					width={500}
 				/>
 
 				<Link
+					className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 					href="/"
-					className="text-xs text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition"
 				>
 					<ArrowLeftIcon className="inline-flex" /> /
 				</Link>

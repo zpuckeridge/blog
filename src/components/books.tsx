@@ -25,31 +25,31 @@ export default function Books({ data, showAll = false }: { data: Book[]; showAll
 
 	return (
 		<div className="space-y-2">
-			<div className="flex flex-col w-full gap-4">
+			<div className="flex w-full flex-col gap-4">
 				{!showAll && (
-					<div className="flex flex-row w-full gap-2 items-center">
+					<div className="flex w-full flex-row items-center gap-2">
 						<p className="text-muted-foreground text-xs">Books</p>
 						<hr className="w-full border-muted-foreground border-dotted" />
 						<Link
+							className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 							href="/about/books"
-							className="text-muted-foreground text-xs hover:text-blue-400 dark:hover:text-blue-600 transition whitespace-nowrap"
 						>
 							See all {sortedBooks.length}
 						</Link>
 					</div>
 				)}
 				<div
-					className={`flex flex-col w-full gap-1 text-sm ${!showAll ? "h-30 overflow-y-hidden relative" : ""}`}
+					className={`flex w-full flex-col gap-1 text-sm ${showAll ? "" : "relative h-30 overflow-y-hidden"}`}
 				>
 					{sortedBooks.map((book: Book) => {
 						const isExpanded = expandedBooks.has(book.id.toString());
 						return (
-							<div key={book.id} className="space-y-1">
+							<div className="space-y-1" key={book.id}>
 								<button
-									type="button"
-									onClick={() => toggleBook(book.id.toString())}
 									aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-									className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
+									className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+									onClick={() => toggleBook(book.id.toString())}
+									type="button"
 								>
 									<p className="line-clamp-1">{book.title}</p>
 									<p className="text-muted-foreground">
@@ -65,15 +65,15 @@ export default function Books({ data, showAll = false }: { data: Book[]; showAll
 										isExpanded ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
 									}`}
 								>
-									<div className="pl-4 border-l-2 border-muted-foreground/20 ml-2 pb-1">
-										<p className="text-xs text-muted-foreground">Rating: {book.rating}/10</p>
+									<div className="ml-2 border-muted-foreground/20 border-l-2 pb-1 pl-4">
+										<p className="text-muted-foreground text-xs">Rating: {book.rating}/10</p>
 									</div>
 								</div>
 							</div>
 						);
 					})}
 					{!showAll && (
-						<div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-gradient-to-t from-white dark:from-background" />
+						<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-gradient-to-t from-white dark:from-background" />
 					)}
 				</div>
 			</div>

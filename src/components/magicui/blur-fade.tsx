@@ -54,24 +54,24 @@ export function BlurFade({
 		visible: {
 			[direction === "left" || direction === "right" ? "x" : "y"]: 0,
 			opacity: 1,
-			filter: `blur(0px)`,
+			filter: "blur(0px)",
 		},
 	};
 	const combinedVariants = variant || defaultVariants;
 	return (
 		<AnimatePresence>
 			<motion.div
-				ref={ref}
-				initial="hidden"
 				animate={isInView ? "visible" : "hidden"}
+				className={className}
 				exit="hidden"
-				variants={combinedVariants}
+				initial="hidden"
+				ref={ref}
 				transition={{
 					delay: 0.04 + delay,
 					duration,
 					ease: "easeOut",
 				}}
-				className={className}
+				variants={combinedVariants}
 				{...props}
 			>
 				{children}

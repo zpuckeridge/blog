@@ -20,26 +20,26 @@ export default function ReturnToIndex() {
 	};
 
 	return (
-		<div className="flex flex-col lg:w-1/3 max-w-sm lg:sticky top-0">
-			<div className="lg:sticky top-8 space-y-6">
+		<div className="top-0 flex max-w-sm flex-col lg:sticky lg:w-1/3">
+			<div className="top-8 space-y-6 lg:sticky">
 				<div className="space-y-2">
-					<div className="flex gap-2 justify-between text-sm whitespace-nowrap">
+					<div className="flex justify-between gap-2 whitespace-nowrap text-sm">
 						{pathname !== "/" ? ( // {{ edit_3 }}
 							<Link
+								className="group flex items-center gap-1 text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
 								href="/"
-								className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600  flex items-center gap-1 group transition-all duration-200 ease-in-out"
 							>
-								<div className="relative w-4 h-4">
-									<ChevronLeftIcon className="absolute inset-0 w-4 h-4 transition-opacity duration-200 opacity-100 group-hover:opacity-0 -translate-x-0.5 ease-in-out" />
-									<ArrowLeftIcon className="absolute inset-0 w-4 h-4 transition-all duration-200 opacity-0 group-hover:opacity-100 ease-in-out" />
+								<div className="relative h-4 w-4">
+									<ChevronLeftIcon className="-translate-x-0.5 absolute inset-0 h-4 w-4 opacity-100 transition-opacity duration-200 ease-in-out group-hover:opacity-0" />
+									<ArrowLeftIcon className="absolute inset-0 h-4 w-4 opacity-0 transition-all duration-200 ease-in-out group-hover:opacity-100" />
 								</div>
 								<span className="transition-all duration-200">Index</span>
 							</Link>
 						) : (
-							<div className="flex gap-6 items-center">
+							<div className="flex items-center gap-6">
 								<Link
+									className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
 									href="/"
-									className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out "
 								>
 									Zacchary Puckeridge
 								</Link>
@@ -47,14 +47,14 @@ export default function ReturnToIndex() {
 								<TooltipProvider>
 									<Tooltip>
 										<TooltipTrigger
-											onClick={toggleTheme}
 											aria-label="Toggle Theme"
-											className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out"
+											className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
+											onClick={toggleTheme}
 										>
 											{theme === "dark" ? (
-												<SunIcon className="w-4 h-4" />
+												<SunIcon className="h-4 w-4" />
 											) : (
-												<MoonIcon className="w-4 h-4" />
+												<MoonIcon className="h-4 w-4" />
 											)}
 										</TooltipTrigger>
 										<TooltipContent side="bottom">Toggle Theme</TooltipContent>

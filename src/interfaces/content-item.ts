@@ -1,4 +1,4 @@
-export interface Post {
+export type Post = {
 	id: number;
 	status: string;
 	date_created: Date;
@@ -11,23 +11,23 @@ export interface Post {
 	tags: string[];
 	content: string;
 	signature: boolean;
-}
+};
 
-export interface Note {
+export type Note = {
 	id: number;
 	status: string;
 	date_created: Date;
 	date_updated: Date;
 	content: string;
 	tags: string[];
-}
+};
 
 export interface TimelineItem extends Omit<Post, "id"> {
 	id: string;
 	type: "Post" | "Note";
 }
 
-export interface Video {
+export type Video = {
 	id: number;
 	status: string;
 	date_created: Date;
@@ -38,9 +38,9 @@ export interface Video {
 	tags: string[];
 	duration: number;
 	playback_id: string;
-}
+};
 
-export interface Book {
+export type Book = {
 	id: number;
 	status: string;
 	date_created: Date;
@@ -51,9 +51,9 @@ export interface Book {
 	image: string;
 	published: Date;
 	author: string;
-}
+};
 
-export interface Movie {
+export type Movie = {
 	id: number;
 	status: string;
 	date_created: Date;
@@ -63,9 +63,9 @@ export interface Movie {
 	setting: string;
 	image: string;
 	with: string[];
-}
+};
 
-export interface Credit {
+export type Credit = {
 	id: number;
 	status: string;
 	date_created: Date;
@@ -77,9 +77,9 @@ export interface Credit {
 	link: string;
 	director: string;
 	tags: string[];
-}
+};
 
-export interface Project {
+export type Project = {
 	id: number;
 	status: string;
 	date_created: Date;
@@ -91,4 +91,4 @@ export interface Project {
 	link: string;
 	year_completed: number;
 	tags: string[];
-}
+};

@@ -25,13 +25,13 @@ export function ToggleTheme() {
 				<Tooltip>
 					<TooltipTrigger
 						aria-label="Toggle Theme"
-						className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out"
+						className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
 					>
-						<MoonIcon className="w-3.5 h-3.5" />
+						<MoonIcon className="h-3.5 w-3.5" />
 					</TooltipTrigger>
 					<TooltipContent
+						className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
 						side="bottom"
-						className="text-xs bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm text-black dark:text-muted-foreground"
 					>
 						Toggle Theme
 					</TooltipContent>
@@ -44,19 +44,19 @@ export function ToggleTheme() {
 		<TooltipProvider>
 			<Tooltip>
 				<TooltipTrigger
-					onClick={toggleTheme}
 					aria-label="Toggle Theme"
-					className="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600 transition-all duration-200 ease-in-out"
+					className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
+					onClick={toggleTheme}
 				>
 					{theme === "dark" ? (
-						<SunIcon className="w-3.5 h-3.5" />
+						<SunIcon className="h-3.5 w-3.5" />
 					) : (
-						<MoonIcon className="w-3.5 h-3.5" />
+						<MoonIcon className="h-3.5 w-3.5" />
 					)}
 				</TooltipTrigger>
 				<TooltipContent
+					className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
 					side="bottom"
-					className="text-xs bg-muted/60 dark:bg-neutral-900/60 backdrop-blur-sm text-black dark:text-muted-foreground"
 				>
 					Toggle Theme
 				</TooltipContent>

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https://zacchary.me"),
 	alternates: {
 		types: {
-			"application/rss+xml": `https://zacchary.me/rss.xml`,
+			"application/rss+xml": "https://zacchary.me/rss.xml",
 		},
 	},
 	applicationName: "zacchary.me",
@@ -104,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					`min-h-screen font-sans text-black dark:text-neutral-300 selection:bg-blue-400/50 selection:text-blue-600 dark:selection:bg-blue-950/50 dark:selection:text-blue-400 antialiased`,
+					"min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400",
 					fontSans.variable,
 					fontSerif.variable,
 					fontMono.variable,
@@ -112,14 +112,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					fontRedactionItalic.variable
 				)}
 			>
-				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-					<div className="pointer-events-none fixed inset-x-0 bottom-0 h-20 bg-linear-to-t from-white dark:from-background z-10" />
+				<ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange enableSystem>
+					<div className="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-20 bg-linear-to-t from-white dark:from-background" />
 
 					<Navigation />
 
 					{children}
 
-					<Toaster richColors position="top-center" />
+					<Toaster position="top-center" richColors />
 				</ThemeProvider>
 			</body>
 		</html>

@@ -11,14 +11,14 @@ import { ImageZoom } from "./src/components/zoom-image";
 
 const components: MDXComponents = {
 	Overflow: ({ children }: { children: React.ReactNode }) => (
-		<div className="w-full ">
+		<div className="w-full">
 			<div style={{ width: "800px" }}>
-				<div className="flex gap-2 pb-4 w-full">{children}</div>
+				<div className="flex w-full gap-2 pb-4">{children}</div>
 			</div>
 		</div>
 	),
 	Player: ({ title, src }: { title: string; src: string }) => (
-		<VidstackPlayer title={title} src={src} />
+		<VidstackPlayer src={src} title={title} />
 	),
 	Tweet: ({ id }: { id: string }) => <Tweet id={id} />,
 	Definition: ({
@@ -29,9 +29,9 @@ const components: MDXComponents = {
 		word: string;
 		meaning: string;
 		type?: string | undefined;
-	}) => <Definition word={word} meaning={meaning} type={type} />,
+	}) => <Definition meaning={meaning} type={type} word={word} />,
 	AfterQuote: ({ text, subtext, link }: { text: string; subtext?: string; link?: string }) => (
-		<AfterQuote text={text} subtext={subtext} link={link} />
+		<AfterQuote link={link} subtext={subtext} text={text} />
 	),
 	SideNote: ({
 		children,
@@ -47,16 +47,24 @@ const components: MDXComponents = {
 		</SideNote>
 	),
 	// Map custom HTML tags to components
-	sideNote: ({ children, note, position }: any) => (
+	sideNote: ({
+		children,
+		note,
+		position,
+	}: {
+		children: React.ReactNode;
+		note: string;
+		position?: string;
+	}) => (
 		<SideNote note={note} position={position as "left" | "right"}>
 			{children}
 		</SideNote>
 	),
-	definition: ({ word, meaning, type }: any) => (
-		<Definition word={word} meaning={meaning} type={type} />
+	definition: ({ word, meaning, type }: { word: string; meaning: string; type?: string }) => (
+		<Definition meaning={meaning} type={type} word={word} />
 	),
-	afterQuote: ({ text, subtext, link }: any) => (
-		<AfterQuote text={text} subtext={subtext} link={link} />
+	afterQuote: ({ text, subtext, link }: { text: string; subtext?: string; link?: string }) => (
+		<AfterQuote link={link} subtext={subtext} text={text} />
 	),
 	// Custom component parser for HTML-like tags
 	div: ({ className, children, ...props }) => {
@@ -117,20 +125,20 @@ const components: MDXComponents = {
 	pre: ({ children, ...props }) => (
 		<pre
 			{...props}
-			className="overflow-auto bg-neutral-50 dark:bg-neutral-900 border rounded-xl p-6 font-mono text-black dark:text-neutral-300 text-sm"
+			className="overflow-auto rounded-xl border bg-neutral-50 p-6 font-mono text-black text-sm dark:bg-neutral-900 dark:text-neutral-300"
 		>
 			{children}
 		</pre>
 	),
 	// Allows customizing built-in components, e.g. to add styling.
-	img: (props) => (
+	img: (props: { src: string; alt: string; title?: string }) => (
 		<ImageZoom>
 			<Image
-				sizes="100vw"
-				width={1280}
 				height={720}
+				sizes="100vw"
 				style={{ width: "100%", height: "auto" }}
-				{...(props as any)}
+				width={1280}
+				{...props}
 			/>
 		</ImageZoom>
 	),

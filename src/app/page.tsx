@@ -34,19 +34,19 @@ export default async function Home() {
 	);
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
 			<div className="space-y-20">
 				<div className="space-y-4">
-					<div className="text-sm space-y-2">
-						<p className="font-redaction text-xl text-white">Zacchary Puckeridge</p>
+					<div className="space-y-2 text-sm">
+						<p className="font-redaction text-white text-xl">Zacchary Puckeridge</p>
 						<div>
 							<p>Self-taught Web Developer & Generalist</p>
 							<p>Based in Brisbane, Australia</p>
 						</div>
 					</div>
 
-					<div className="flex flex-col md:flex-row md:justify-between gap-4">
-						<div className="flex flex-row gap-4 text-xs text-muted-foreground">
+					<div className="flex flex-col gap-4 md:flex-row md:justify-between">
+						<div className="flex flex-row gap-4 text-muted-foreground text-xs">
 							<LinkWithIcon href="https://x.com/zpuckeridge/">X</LinkWithIcon>
 							<LinkWithIcon href="https://www.facebook.com/zpuckeridge/">Facebook</LinkWithIcon>
 							<LinkWithIcon href="https://www.instagram.com/zpuckeridge/">Instagram</LinkWithIcon>
@@ -55,7 +55,7 @@ export default async function Home() {
 						</div>
 
 						<div>
-							<p className="text-xs text-nowrap text-muted-foreground">
+							<p className="text-nowrap text-muted-foreground text-xs">
 								&copy; {new Date().getFullYear()} Zacchary Puckeridge
 							</p>
 						</div>
@@ -92,24 +92,24 @@ export default async function Home() {
 							<p className="text-sm">
 								Previously, I was working for{" "}
 								<LinkWithIcon href="https://www.rsp.com.au">Rising Sun Pictures</LinkWithIcon> (2022{" "}
-								<MoveRight className="w-4 h-4 inline-flex" /> 2024) as an IT Administrator to deploy
+								<MoveRight className="inline-flex h-4 w-4" /> 2024) as an IT Administrator to deploy
 								and maintain the remote Brisbane office infrastructure.
 							</p>
 
 							<p className="text-sm">
 								Prior to that, I worked for{" "}
 								<LinkWithIcon href="https://www.pixelzoo.com.au">Pixel Zoo</LinkWithIcon> (2021{" "}
-								<MoveRight className="w-4 h-4 inline-flex" /> 2022) as a Systems Administrator to
+								<MoveRight className="inline-flex h-4 w-4" /> 2022) as a Systems Administrator to
 								provide internal and remote support for ~200+ employees. Deployed various networking
 								and hardware upgrades across the studio and implemented new file storage
 								infrastructure.
 							</p>
 
-							<p className="text-xs text-muted-foreground">
+							<p className="text-muted-foreground text-xs">
 								You can find my full employment history{" "}
 								<Link
+									className="group inline-flex underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 									href="/cv"
-									className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out"
 								>
 									here
 								</Link>
@@ -118,21 +118,21 @@ export default async function Home() {
 						</div>
 					</div>
 
-					<hr className="border-dotted border-muted-foreground" />
+					<hr className="border-muted-foreground border-dotted" />
 
 					<div className="space-y-2">
-						<div className="flex flex-row w-full gap-4">
+						<div className="flex w-full flex-row gap-4">
 							<div className="w-20">
 								<p className="text-muted-foreground text-xs">Timeline</p>
 							</div>
 
-							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
+							<div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
 								{sortedPosts.slice(0, 6).map((post: Post) => (
 									<Link
-										key={post.slug}
-										href={`/timeline/${post.slug}`}
 										aria-label={post.title}
-										className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4"
+										className="flex justify-between gap-4 transition hover:text-blue-400 dark:hover:text-blue-600"
+										href={`/timeline/${post.slug}`}
+										key={post.slug}
 									>
 										<p className="line-clamp-1">{post.title}</p>
 										<p className="text-muted-foreground">
@@ -144,13 +144,13 @@ export default async function Home() {
 										</p>
 									</Link>
 								))}
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-linear-to-t from-white dark:from-background" />
+								<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-linear-to-t from-white dark:from-background" />
 							</div>
 						</div>
 						<div className="flex justify-end">
 							<Link
+								className="w-fit text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 								href="/timeline"
-								className="w-fit text-muted-foreground text-xs hover:text-blue-400 dark:hover:text-blue-600 transition"
 							>
 								See all {sortedPosts.length}
 							</Link>
@@ -158,22 +158,22 @@ export default async function Home() {
 					</div>
 
 					<div className="space-y-2">
-						<div className="flex flex-row w-full gap-4">
+						<div className="flex w-full flex-row gap-4">
 							<div className="w-20">
 								<p className="text-muted-foreground text-xs">Projects</p>
 							</div>
-							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
+							<div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
 								{projects
 									.filter((project) => project.status !== "work_in_progress")
 									.slice(0, 6)
 									.map((project) => (
-										<div key={project.name} className="flex justify-between gap-4">
+										<div className="flex justify-between gap-4" key={project.name}>
 											{project.link ? (
 												<a
+													className="line-clamp-1 transition hover:text-blue-400 dark:hover:text-blue-600"
 													href={project.link}
-													target="_blank"
 													rel="noopener noreferrer"
-													className="hover:text-blue-400 dark:hover:text-blue-600 transition line-clamp-1"
+													target="_blank"
 												>
 													{project.name}
 												</a>
@@ -183,13 +183,13 @@ export default async function Home() {
 											<span className="text-muted-foreground">{project.year_completed}</span>
 										</div>
 									))}
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 z-40 bg-gradient-to-t from-white dark:from-background" />
+								<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-10 bg-gradient-to-t from-white dark:from-background" />
 							</div>
 						</div>
 						<div className="flex justify-end">
 							<Link
+								className="w-fit text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 								href="/projects"
-								className="w-fit text-muted-foreground text-xs hover:text-blue-400 dark:hover:text-blue-600 transition"
 							>
 								See all {projects.length}
 							</Link>
@@ -197,18 +197,18 @@ export default async function Home() {
 					</div>
 
 					<div className="space-y-2">
-						<div className="flex flex-row w-full gap-4">
+						<div className="flex w-full flex-row gap-4">
 							<div className="w-20">
 								<p className="text-muted-foreground text-xs">Videos</p>
 							</div>
 
-							<div className="flex flex-col w-full gap-1 text-sm h-30 overflow-y-hidden relative">
+							<div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
 								{sortedVideos.slice(0, 6).map((video: Video) => (
 									<Link
-										key={video.slug}
-										href={`/video/${video.slug}`}
 										aria-label={video.title}
-										className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4"
+										className="flex justify-between gap-4 transition hover:text-blue-400 dark:hover:text-blue-600"
+										href={`/video/${video.slug}`}
+										key={video.slug}
 									>
 										<p className="line-clamp-1">{video.title}</p>
 										<p className="text-muted-foreground">
@@ -220,14 +220,14 @@ export default async function Home() {
 										</p>
 									</Link>
 								))}
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 z-40 bg-linear-to-t from-white dark:from-background" />
+								<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-linear-to-t from-white dark:from-background" />
 							</div>
 						</div>
 
 						<div className="flex justify-end">
 							<Link
+								className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
 								href="/videos"
-								className="text-muted-foreground text-xs hover:text-blue-400 dark:hover:text-blue-600 transition"
 							>
 								See all {sortedVideos.length}
 							</Link>
@@ -236,11 +236,11 @@ export default async function Home() {
 
 					<GitHubContributions username="zpuckeridge" />
 
-					<hr className="border-dotted border-muted-foreground" />
+					<hr className="border-muted-foreground border-dotted" />
 
 					<div className="space-y-2">
 						<div className="flex justify-between">
-							<div className="flex flex-row gap-2 text-xs text-muted-foreground">
+							<div className="flex flex-row gap-2 text-muted-foreground text-xs">
 								<p>{brisbaneTime}</p>
 								<p>•</p>
 								<p>{brisbaneDate}</p>
@@ -248,23 +248,23 @@ export default async function Home() {
 
 							<Lanyard />
 						</div>
-						<p className="text-xs text-muted-foreground max-w-xs">
+						<p className="max-w-xs text-muted-foreground text-xs">
 							Waging war on weak culture—building digital strongholds, sharpening minds, and
 							advancing the Kingdom of God.
 						</p>
 
 						<div className="flex justify-between gap-4">
-							<div className="flex flex-row gap-2 text-xs text-muted-foreground">
+							<div className="flex flex-row gap-2 text-muted-foreground text-xs">
 								<Link
+									className="group inline-flex underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 									href="/colophon"
-									className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out"
 								>
 									Colophon
 								</Link>{" "}
 								•{" "}
 								<Link
+									className="group inline-flex underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 									href="/imprint"
-									className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out"
 								>
 									Imprint
 								</Link>

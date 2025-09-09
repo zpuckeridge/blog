@@ -17,10 +17,10 @@ export default async function Clips() {
 	);
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
-				<div className="text-sm  flex flex-col gap-2">
-					<p className="font-redaction text-xl text-white">Videos</p>
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
+				<div className="flex flex-col gap-2 text-sm">
+					<p className="font-redaction text-white text-xl">Videos</p>
 
 					<p>
 						A compilation of humorous, thrilling, and memorable moments from my life and some of the
@@ -28,11 +28,11 @@ export default async function Clips() {
 					</p>
 				</div>
 
-				<Videos videos={sortedVideos} itemsPerPage={6} />
+				<Videos itemsPerPage={6} videos={sortedVideos} />
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

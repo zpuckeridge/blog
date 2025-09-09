@@ -29,34 +29,34 @@ export default function Lanyard() {
 
 	const getStatusTextAndColor = () => {
 		// Show offline status until fully loaded
-		if (!isFullyLoaded || !data || !data.discord_status) {
+		if (!(isFullyLoaded && data && data.discord_status)) {
 			return { statusText: "Offline", dotColor: "bg-gray-400" };
 		}
 
 		const discordStatus = data.discord_status;
-		let statusText: string;
-		let dotColor: string;
+		let text: string;
+		let color: string;
 
 		switch (discordStatus) {
 			case "idle":
-				statusText = "Idle";
-				dotColor = "bg-yellow-300";
+				text = "Idle";
+				color = "bg-yellow-300";
 				break;
 			case "online":
-				statusText = "Online";
-				dotColor = "bg-green-500";
+				text = "Online";
+				color = "bg-green-500";
 				break;
 			case "dnd":
-				statusText = "Do Not Disturb";
-				dotColor = "bg-red-500";
+				text = "Do Not Disturb";
+				color = "bg-red-500";
 				break;
 			default:
-				statusText = "Offline";
-				dotColor = "bg-gray-400";
+				text = "Offline";
+				color = "bg-gray-400";
 				break;
 		}
 
-		return { statusText, dotColor };
+		return { statusText: text, dotColor: color };
 	};
 
 	const { statusText, dotColor } = getStatusTextAndColor();
@@ -67,11 +67,11 @@ export default function Lanyard() {
 	}
 
 	return (
-		<div className="flex gap-2 animate-in fade-in duration-200">
+		<div className="fade-in flex animate-in gap-2 duration-200">
 			<div
-				className={`w-2 h-2 ${isFullyLoaded ? "animate-pulse" : ""} rounded-full my-auto ${dotColor}`}
+				className={`h-2 w-2 ${isFullyLoaded ? "animate-pulse" : ""} my-auto rounded-full ${dotColor}`}
 			/>
-			<p className="my-auto text-xs text-muted-foreground">{statusText}</p>
+			<p className="my-auto text-muted-foreground text-xs">{statusText}</p>
 		</div>
 	);
 }

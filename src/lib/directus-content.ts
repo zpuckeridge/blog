@@ -41,8 +41,7 @@ export async function getPosts(): Promise<Post[]> {
 		);
 
 		return posts as Post[];
-	} catch (error) {
-		console.error("Error fetching posts:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -81,8 +80,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 		);
 
 		return posts.length > 0 ? (posts[0] as Post) : null;
-	} catch (error) {
-		console.error(`Error fetching post with slug ${slug}:`, error);
+	} catch (_error) {
 		return null;
 	}
 }
@@ -105,8 +103,7 @@ export async function getNotes(): Promise<Note[]> {
 		);
 
 		return notes as Note[];
-	} catch (error) {
-		console.error("Error fetching notes:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -140,8 +137,7 @@ export async function getVideos(): Promise<Video[]> {
 		);
 
 		return videos as Video[];
-	} catch (error) {
-		console.error("Error fetching videos:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -178,8 +174,7 @@ export async function getVideoBySlug(slug: string): Promise<Video | null> {
 		);
 
 		return videos.length > 0 ? (videos[0] as Video) : null;
-	} catch (error) {
-		console.error(`Error fetching video with slug ${slug}:`, error);
+	} catch (_error) {
 		return null;
 	}
 }
@@ -213,8 +208,7 @@ export async function getBooks(): Promise<Book[]> {
 		);
 
 		return books as Book[];
-	} catch (error) {
-		console.error("Error fetching books:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -247,8 +241,7 @@ export async function getMovies(): Promise<Movie[]> {
 		);
 
 		return movies as Movie[];
-	} catch (error) {
-		console.error("Error fetching movies:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -283,8 +276,7 @@ export async function getCredits(): Promise<Credit[]> {
 		);
 
 		return credits as Credit[];
-	} catch (error) {
-		console.error("Error fetching credits:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -319,8 +311,7 @@ export async function getProjects(): Promise<Project[]> {
 		);
 
 		return projects as Project[];
-	} catch (error) {
-		console.error("Error fetching projects:", error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -358,8 +349,7 @@ export async function getProjectById(id: number): Promise<Project | null> {
 		);
 
 		return projects.length > 0 ? (projects[0] as Project) : null;
-	} catch (error) {
-		console.error(`Error fetching project with ID ${id}:`, error);
+	} catch (_error) {
 		return null;
 	}
 }
@@ -392,8 +382,7 @@ export async function getContentByTags(
 		);
 
 		return content as Post[] | Video[] | Book[] | Movie[] | Project[];
-	} catch (error) {
-		console.error(`Error fetching ${contentType} by tags:`, error);
+	} catch (_error) {
 		return [];
 	}
 }
@@ -479,8 +468,7 @@ export async function searchContent(query: string): Promise<{
 			credits: credits as Credit[],
 			projects: projects as Project[],
 		};
-	} catch (error) {
-		console.error("Error searching content:", error);
+	} catch (_error) {
 		return {
 			posts: [],
 			videos: [],

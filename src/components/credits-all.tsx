@@ -29,16 +29,16 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 
 	return (
 		<div className="space-y-20">
-			<p className="font-redaction text-xl text-white">Credits</p>
-			<div className="flex flex-col w-full gap-4">
+			<p className="font-redaction text-white text-xl">Credits</p>
+			<div className="flex w-full flex-col gap-4">
 				{years.map((year) => (
 					<div key={year}>
-						<div className="flex flex-row w-full gap-2 items-center mb-2">
-							<p className="text-muted-foreground text-xs ">{creditsByYear[year].length}</p>
+						<div className="mb-2 flex w-full flex-row items-center gap-2">
+							<p className="text-muted-foreground text-xs">{creditsByYear[year].length}</p>
 							<hr className="w-full border-muted-foreground border-dotted" />
-							<p className="text-muted-foreground text-xs ">{year}</p>
+							<p className="text-muted-foreground text-xs">{year}</p>
 						</div>
-						<div className="flex flex-col w-full gap-1 text-sm overflow-y-hidden relative">
+						<div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
 							{creditsByYear[year]
 								.sort(
 									(a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
@@ -46,12 +46,12 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 								.map((credit: Credit) => {
 									const isExpanded = expandedCredit === credit.id.toString();
 									return (
-										<div key={credit.id} className="space-y-1">
+										<div className="space-y-1" key={credit.id}>
 											<button
-												type="button"
-												onClick={() => toggleCredit(credit.id.toString())}
 												aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-												className="hover:text-blue-400 dark:hover:text-blue-600 transition flex justify-between gap-4 w-full text-left"
+												className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+												onClick={() => toggleCredit(credit.id.toString())}
+												type="button"
 											>
 												<p className="line-clamp-1">{credit.title}</p>
 												<p className="text-muted-foreground">
@@ -70,28 +70,28 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 											>
 												<div className="flex flex-row flex-wrap gap-1">
 													{credit.image && (
-														<div className="w-7 relative">
+														<div className="relative w-7">
 															<ImageZoom>
 																<Image
-																	src={`https://directus.obambulo.studio/assets/${credit.image}`}
 																	alt={credit.title}
-																	width={150}
+																	className="h-full w-full rounded shadow"
 																	height={150}
-																	className="rounded shadow w-full h-full"
+																	src={`https://directus.obambulo.studio/assets/${credit.image}`}
+																	width={150}
 																/>
 															</ImageZoom>
 														</div>
 													)}
 
 													{credit.director && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
+														<div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 															<p className="text-[0.7rem] text-muted-foreground">Director</p>
 															<p className="text-sm">{credit.director}</p>
 														</div>
 													)}
 
 													{credit.tags && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
+														<div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 															<p className="text-[0.7rem] text-muted-foreground">
 																{credit.tags.length === 1 ? "Tag" : "Tags"}
 															</p>
@@ -106,13 +106,13 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 													)}
 
 													{credit.link && (
-														<div className="py-1 px-3 min-w-20 dark:bg-neutral-900 bg-neutral-100 rounded whitespace-nowrap">
+														<div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 															<p className="text-[0.7rem] text-muted-foreground">Link</p>
 															<a
-																href={credit.link}
 																className="text-sm"
-																target="_blank"
+																href={credit.link}
 																rel="noopener noreferrer"
+																target="_blank"
 															>
 																RSP
 															</a>

@@ -2,15 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 
-interface ContributionDay {
+type ContributionDay = {
 	date: string;
 	contributionCount: number;
 	color: string;
-}
+};
 
-interface GitHubContributionsProps {
+type GitHubContributionsProps = {
 	username: string;
-}
+};
 
 export default function ContributionsGraph({ username }: GitHubContributionsProps) {
 	const [contributions, setContributions] = useState<ContributionDay[]>([]);
@@ -20,7 +20,6 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: to be reviewed
 		const fetchContributions = async () => {
 			try {
 				setLoading(true);
@@ -59,7 +58,6 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 				setContributions(data.contributions);
 			} catch (err) {
 				const errorMessage = err instanceof Error ? err.message : "Failed to load contributions";
-				console.error("GitHub contributions error:", errorMessage);
 				setError(errorMessage);
 			} finally {
 				setLoading(false);
@@ -73,7 +71,7 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 	const last365Days = contributions.slice(-365);
 
 	// Group by weeks (7 days each)
-	const weeks = [];
+	const weeks: ContributionDay[][] = [];
 	for (let i = 0; i < last365Days.length; i += 7) {
 		weeks.push(last365Days.slice(i, i + 7));
 	}
@@ -97,41 +95,41 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 	// Show error state
 	if (error) {
 		return (
-			<article className="w-full text-left border-0 p-0 bg-transparent h-[120px] flex items-center">
-				<div className="text-xs text-muted-foreground">
+			<div className="flex h-[120px] w-full items-center border-0 bg-transparent p-0 text-left">
+				<div className="text-muted-foreground text-xs">
 					<p>GitHub contributions unavailable</p>
 					<p className="text-red-500 dark:text-red-400">{error}</p>
 				</div>
-			</article>
+			</div>
 		);
 	}
 
 	return (
-		<article
-			className="w-full text-left border-0 p-0 bg-transparent transition-opacity duration-300 ease-in-out h-[120px]"
+		<div
+			className="h-[120px] w-full border-0 bg-transparent p-0 text-left transition-opacity duration-300 ease-in-out"
 			style={{ opacity: loading ? 0.5 : 1 }}
-			onMouseLeave={() => setHoveredDay(null)}
 		>
 			{!loading && (
 				<div className="space-y-2" ref={containerRef}>
-					<div className="flex gap-[4px] overflow-hidden flex justify-end">
+					<div className="flex justify-end gap-[4px] overflow-hidden">
 						{weeks.map((week, weekIndex) => {
 							const weekStartDate = week[0]?.date || `week-${weekIndex}`;
 							return (
-								<div key={weekStartDate} className="flex flex-col gap-[4px]">
+								<div className="flex flex-col gap-[4px]" key={weekStartDate}>
 									{week.map((day) => (
 										<button
+											className={`h-[9px] w-[9px] rounded-[2px] ${getContributionColor(day.contributionCount)}`}
 											key={day.date}
-											type="button"
-											className={`w-[9px] h-[9px] rounded-[2px] ${getContributionColor(day.contributionCount)}`}
 											onMouseEnter={() => setHoveredDay(day)}
+											onMouseLeave={() => setHoveredDay(null)}
+											type="button"
 										/>
 									))}
 								</div>
 							);
 						})}
 					</div>
-					<div className="flex justify-between text-xs text-muted-foreground">
+					<div className="flex justify-between text-muted-foreground text-xs">
 						{hoveredDay ? (
 							<div>
 								{`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${new Date(
@@ -150,6 +148,6 @@ export default function ContributionsGraph({ username }: GitHubContributionsProp
 					</div>
 				</div>
 			)}
-		</article>
+		</div>
 	);
 }

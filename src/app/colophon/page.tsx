@@ -3,11 +3,11 @@ import LinkWithIcon from "@/src/components/link-with-icon";
 
 export default function Colophon() {
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
 				<div className="space-y-10">
-					<div className="flex flex-col w-full gap-2">
-						<p className="font-redaction text-xl text-white">Colophon</p>
+					<div className="flex w-full flex-col gap-2">
+						<p className="font-redaction text-white text-xl">Colophon</p>
 						<p className="text-muted-foreground text-xs">Typography</p>
 
 						<p>
@@ -21,9 +21,9 @@ export default function Colophon() {
 						</p>
 					</div>
 
-					<hr className="border-dotted border-muted-foreground" />
+					<hr className="border-muted-foreground border-dotted" />
 
-					<div className="flex flex-col w-full gap-2">
+					<div className="flex w-full flex-col gap-2">
 						<p className="text-muted-foreground text-xs">Technical</p>
 
 						<p>
@@ -53,10 +53,10 @@ export default function Colophon() {
 						</p>
 					</div>
 
-					<hr className="border-dotted border-muted-foreground" />
+					<hr className="border-muted-foreground border-dotted" />
 
 					<div className="flex gap-4">
-						<div className="flex flex-col w-full gap-2">
+						<div className="flex w-full flex-col gap-2">
 							<p className="text-muted-foreground text-xs">Inspiration</p>
 							<div className="flex flex-col gap-2">
 								<LinkWithIcon href="https://linusrogge.com?ref=zacchary.me">
@@ -106,7 +106,7 @@ export default function Colophon() {
 							</div>
 						</div>
 
-						<div className="flex flex-col w-full gap-2">
+						<div className="flex w-full flex-col gap-2">
 							<p className="text-muted-foreground text-xs">Influences</p>
 
 							<div className="flex flex-col gap-2">
@@ -150,10 +150,10 @@ export default function Colophon() {
 						</div>
 					</div>
 
-					<hr className="border-dotted border-muted-foreground" />
+					<hr className="border-muted-foreground border-dotted" />
 
-					<div className="flex flex-col w-full gap-1">
-						<div className="flex w-full justify-between ">
+					<div className="flex w-full flex-col gap-1">
+						<div className="flex w-full justify-between">
 							<div className="text-muted-foreground text-xs">Version</div>
 
 							<div className="w-fit">6.1.0</div>
@@ -183,8 +183,8 @@ export default function Colophon() {
 				</div>
 
 				<Link
+					className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/"
-					className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 				>
 					../
 				</Link>

@@ -5,7 +5,7 @@ import { DefaultVideoLayout, defaultLayoutIcons } from "@vidstack/react/player/l
 
 export default function VidstackPlayer({ title, src }: { title: string; src: string }) {
 	return (
-		<MediaPlayer title={title} src={src}>
+		<MediaPlayer src={src} title={title}>
 			<MediaProvider />
 			<DefaultVideoLayout icons={defaultLayoutIcons} />
 		</MediaPlayer>

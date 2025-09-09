@@ -20,10 +20,10 @@ export default async function About() {
 	const credits = await getCredits();
 
 	return (
-		<div className="max-w-lg mx-auto flex flex-col gap-4 pt-4 pb-20 px-6">
-			<div className="text-sm flex flex-col space-y-20">
-				<div className="text-sm flex flex-col gap-2">
-					<p className="font-redaction text-xl text-white">About</p>
+		<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+			<div className="flex flex-col space-y-20 text-sm">
+				<div className="flex flex-col gap-2 text-sm">
+					<p className="font-redaction text-white text-xl">About</p>
 
 					<p>
 						I&apos;m a <Age /> year old{" "}
@@ -37,21 +37,21 @@ export default async function About() {
 						about 9 months studying a dual degree of Psychology and Criminology.
 					</p>
 
-					<div className="py-4 mx-auto flex gap-4">
+					<div className="mx-auto flex gap-4 py-4">
 						<ImageWithDetails
-							src="/roadtrip/P1011152_t1mdns.avif"
 							alt="Somewhere in the middle of the United States"
-							name="Somewhere in the middle of the United States"
-							location="Somewhere, USA"
 							author="Zacchary Puckeridge"
+							location="Somewhere, USA"
+							name="Somewhere in the middle of the United States"
+							src="/roadtrip/P1011152_t1mdns.avif"
 						/>
 
 						<ImageWithDetails
-							src="/roadtrip/P1011435_hgzmov.avif"
 							alt="Somewhere in the middle of the United States"
-							name="Grand Canyon Lookout"
-							location="Arizona, USA"
 							author="Zacchary Puckeridge"
+							location="Arizona, USA"
+							name="Grand Canyon Lookout"
+							src="/roadtrip/P1011435_hgzmov.avif"
 						/>
 					</div>
 
@@ -73,21 +73,21 @@ export default async function About() {
 						</LinkWithIcon>
 						.
 					</p>
-					<div className="py-4 mx-auto flex gap-4">
+					<div className="mx-auto flex gap-4 py-4">
 						<ImageWithDetails
-							src="/roadtrip/P1011186_qkrix9.avif"
 							alt="On the road in Colorado"
-							name="On the road in Colorado"
-							location="Colorado, USA"
 							author="Zacchary Puckeridge"
+							location="Colorado, USA"
+							name="On the road in Colorado"
+							src="/roadtrip/P1011186_qkrix9.avif"
 						/>
 
 						<ImageWithDetails
-							src="/roadtrip/P1011212_xh4oep.avif"
 							alt="Utah Lookout"
-							name="Utah Lookout"
-							location="Utah, USA"
 							author="Zacchary Puckeridge"
+							location="Utah, USA"
+							name="Utah Lookout"
+							src="/roadtrip/P1011212_xh4oep.avif"
 						/>
 					</div>
 					<p>
@@ -111,8 +111,8 @@ export default async function About() {
 			</div>
 
 			<Link
+				className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 				href="/"
-				className="underline underline-offset-2 decoration-dotted hover:decoration-solid hover:underline-offset-4 transition inline-flex group ease-in-out text-xs text-muted-foreground w-fit"
 			>
 				../
 			</Link>
