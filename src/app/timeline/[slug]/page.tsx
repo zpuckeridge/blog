@@ -170,7 +170,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 				</div>
 
 				<Link
-					className="group inline-flex w-fit w-full max-w-lg px-6 text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
+					className="group inline-flex w-fit max-w-lg px-6 text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
 					href="/timeline"
 				>
 					../timeline

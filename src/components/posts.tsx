@@ -121,7 +121,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 												isAnyPostHovered ? "opacity-50 group-hover/item:opacity-100" : "opacity-100"
 											} transition-opacity`}
 										>
-											<div className="flex justify-between text-muted-foreground text-xs text-yellow-600 dark:text-yellow-500">
+											<div className="flex justify-between text-xs text-yellow-600 dark:text-yellow-500">
 												<p>Note</p>
 												<p>
 													{new Date(item.date_created).toLocaleDateString("en-US", {

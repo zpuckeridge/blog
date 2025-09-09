@@ -9,7 +9,7 @@ type AfterQuoteProps = {
 const AfterQuote: FC<AfterQuoteProps> = ({ text, subtext, link }) => {
 	return (
 		<div className="-mt-10 w-full text-right text-sm">
-			<div className="flex inline-flex items-center justify-end gap-2">
+			<div className="flex items-center justify-end gap-2">
 				<hr className="my-auto w-16 border-muted-foreground border-dotted" />
 				<div>
 					{link ? (
