@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/src/components/theme-provider";
 import { Toaster } from "@/src/components/ui/sonner";
 import { cn } from "@/src/lib/utils";
 import "@/src/app/globals.css";
+import Script from "next/script";
 import Navigation from "@/src/components/navigation";
 
 const fontSans = localFont({
@@ -28,14 +29,6 @@ const fontMono = Geist_Mono({
 	subsets: ["latin"],
 	variable: "--font-mono",
 	weight: ["400"],
-});
-
-const fontSerif = Instrument_Serif({
-	variable: "--font-serif",
-	subsets: ["latin"],
-	display: "swap",
-	weight: "400",
-	style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -106,7 +99,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				className={cn(
 					"min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400",
 					fontSans.variable,
-					fontSerif.variable,
 					fontMono.variable,
 					fontRedaction.variable,
 					fontRedactionItalic.variable
@@ -122,6 +114,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<Toaster position="top-center" richColors />
 				</ThemeProvider>
 			</body>
+
+			<Script
+				data-session-replay="true"
+				data-site-id="1"
+				data-tracking-errors="true"
+				defer
+				src="https://rybbit-backend.obambulo.studio/api/script.js"
+			/>
 		</html>
 	);
 }
