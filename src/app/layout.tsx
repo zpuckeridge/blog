@@ -116,10 +116,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</body>
 
 			<Script
+				async
 				data-session-replay="true"
 				data-site-id="1"
-				data-tracking-errors="true"
-				defer
+				data-track-errors="true"
+				data-web-vitals="true"
 				src="https://rybbit-backend.obambulo.studio/api/script.js"
 			/>
 		</html>
