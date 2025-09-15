@@ -99,7 +99,44 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 														<div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
 															<p className="text-[0.7rem] text-muted-foreground">With</p>
 															<p className="text-sm">
-																{Array.isArray(movie.with) ? movie.with.join(", ") : movie.with}
+																{(() => {
+																	if (Array.isArray(movie.with)) {
+																		const processedItems = movie.with.map((item) => {
+																			// Handle both string and object cases
+																			if (typeof item === "string") {
+																				return item;
+																			}
+																			if (typeof item === "object" && item !== null) {
+																				// If it's an object, try to extract a name or title property
+																				const obj = item as Record<string, unknown>;
+																				return (
+																					(obj.name as string) ||
+																					(obj.title as string) ||
+																					(obj.value as string) ||
+																					String(item)
+																				);
+																			}
+																			return String(item);
+																		});
+
+																		// Use "&" for two items, commas for more
+																		if (processedItems.length === 2) {
+																			return processedItems.join(" & ");
+																		}
+																		return processedItems.join(", ");
+																	}
+																	// Handle non-array cases
+																	if (typeof movie.with === "object" && movie.with !== null) {
+																		const obj = movie.with as Record<string, unknown>;
+																		return (
+																			(obj.name as string) ||
+																			(obj.title as string) ||
+																			(obj.value as string) ||
+																			String(movie.with)
+																		);
+																	}
+																	return String(movie.with);
+																})()}
 															</p>
 														</div>
 													)}
