@@ -3,8 +3,8 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import Lanyard from "@/src/components/lanyard";
 import LinkWithIcon from "@/src/components/link-with-icon";
-import type { Post, Video } from "@/src/interfaces/content-item";
-import { getPosts, getProjects, getVideos } from "@/src/lib/directus-content";
+import type { Post } from "@/src/interfaces/content-item";
+import { getPosts, getProjects } from "@/src/lib/directus-content";
 import GitHubContributions from "../components/contributions-graph";
 import { ToggleTheme } from "../components/toggle-theme";
 
@@ -24,12 +24,9 @@ const brisbaneDate = new Intl.DateTimeFormat("en-US", {
 }).format(now);
 
 export default async function Home() {
-	const [posts, videos, projects] = await Promise.all([getPosts(), getVideos(), getProjects()]);
+	const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
 
 	const sortedPosts = posts.sort((a, b) =>
-		compareDesc(new Date(a.date_created), new Date(b.date_created))
-	);
-	const sortedVideos = videos.sort((a, b) =>
 		compareDesc(new Date(a.date_created), new Date(b.date_created))
 	);
 
@@ -192,44 +189,6 @@ export default async function Home() {
 								href="/projects"
 							>
 								See all {projects.length}
-							</Link>
-						</div>
-					</div>
-
-					<div className="space-y-2">
-						<div className="flex w-full flex-row gap-4">
-							<div className="w-20">
-								<p className="text-muted-foreground text-xs">Videos</p>
-							</div>
-
-							<div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
-								{sortedVideos.slice(0, 6).map((video: Video) => (
-									<Link
-										aria-label={video.title}
-										className="flex justify-between gap-4 transition hover:text-blue-400 dark:hover:text-blue-600"
-										href={`/video/${video.slug}`}
-										key={video.slug}
-									>
-										<p className="line-clamp-1">{video.title}</p>
-										<p className="text-muted-foreground">
-											{new Date(video.date_created).toLocaleDateString(undefined, {
-												year: "numeric",
-												month: "2-digit",
-												day: "2-digit",
-											})}
-										</p>
-									</Link>
-								))}
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-linear-to-t from-white dark:from-background" />
-							</div>
-						</div>
-
-						<div className="flex justify-end">
-							<Link
-								className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
-								href="/videos"
-							>
-								See all {sortedVideos.length}
 							</Link>
 						</div>
 					</div>
