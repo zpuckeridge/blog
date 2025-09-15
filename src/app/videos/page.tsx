@@ -20,7 +20,7 @@ export default async function Clips() {
 	return (
 		<PasswordProtection
 			description="A compilation of humorous, thrilling, and memorable moments from my life and some of the video games I regularly play."
-			password="videos2024"
+			password={process.env.VIDEO_PASSWORD ?? ""}
 			title="Videos"
 		>
 			<div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
