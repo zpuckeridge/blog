@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LinkWithIcon from "@/src/components/link-with-icon";
+import LinkWithIcon from "@/components/link-with-icon";
 
 export default function Colophon() {
 	return (

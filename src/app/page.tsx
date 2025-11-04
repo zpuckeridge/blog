@@ -1,10 +1,10 @@
 import { compareDesc } from "date-fns";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
-import Lanyard from "@/src/components/lanyard";
-import LinkWithIcon from "@/src/components/link-with-icon";
-import type { Post } from "@/src/interfaces/content-item";
-import { getPosts, getProjects } from "@/src/lib/directus-content";
+import Lanyard from "@/components/lanyard";
+import LinkWithIcon from "@/components/link-with-icon";
+import type { Post } from "@/interfaces/content-item";
+import { getPosts, getProjects } from "@/lib/directus-content";
 import GitHubContributions from "../components/contributions-graph";
 import { ToggleTheme } from "../components/toggle-theme";
 

@@ -4,7 +4,7 @@ import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import type { Book } from "@/src/interfaces/content-item";
+import type { Book } from "@/interfaces/content-item";
 import { ImageZoom } from "./zoom-image";
 
 export default function BooksPreview({ books }: { books: Book[] }) {

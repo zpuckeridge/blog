@@ -1,11 +1,11 @@
 import Link from "next/link";
-import LinkWithIcon from "@/src/components/link-with-icon";
+import LinkWithIcon from "@/components/link-with-icon";
 import {
 	type EducationItem,
 	type EmploymentItem,
 	educationHistory,
 	employmentHistory,
-} from "@/src/lib/cv-items";
+} from "@/lib/cv-items";
 
 export default function CV() {
 	return (

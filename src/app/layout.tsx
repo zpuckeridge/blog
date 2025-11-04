@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
-import { ThemeProvider } from "@/src/components/theme-provider";
-import { Toaster } from "@/src/components/ui/sonner";
-import { cn } from "@/src/lib/utils";
-import "@/src/app/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
+import "@/app/globals.css";
 import Script from "next/script";
-import Navigation from "@/src/components/navigation";
+import Navigation from "@/components/navigation";
 
 const fontSans = localFont({
 	src: "../../public/fonts/archivo.woff2",

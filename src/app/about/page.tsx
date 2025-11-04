@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Age from "@/src/components/age";
-import BooksPreview from "@/src/components/books-preview";
-import CreditsPreview from "@/src/components/credits-preview";
-import ImageWithDetails from "@/src/components/image-with-details";
-import LinkWithIcon from "@/src/components/link-with-icon";
-import MoviesPreview from "@/src/components/movies-preview";
-import { getBooks, getCredits, getMovies } from "@/src/lib/directus-content";
+import Age from "@/components/age";
+import BooksPreview from "@/components/books-preview";
+import CreditsPreview from "@/components/credits-preview";
+import ImageWithDetails from "@/components/image-with-details";
+import LinkWithIcon from "@/components/link-with-icon";
+import MoviesPreview from "@/components/movies-preview";
+import { getBooks, getCredits, getMovies } from "@/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "About",

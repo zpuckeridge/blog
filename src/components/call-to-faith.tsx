@@ -2,7 +2,7 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BlurFade } from "@/src/components/magicui/blur-fade";
+import { BlurFade } from "@/components/magicui/blur-fade";
 
 export default function CallToFaith() {
 	const slides = [

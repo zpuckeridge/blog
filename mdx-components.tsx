@@ -1,13 +1,13 @@
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import { Tweet } from "react-tweet";
-import AfterQuote from "@/src/components/after-quote";
-import Definition from "@/src/components/definition";
-import FootnotesNavigation from "@/src/components/footnotes-navigation";
-import LinkWithIcon from "@/src/components/link-with-icon";
-import SideNote from "@/src/components/side-note";
-import VidstackPlayer from "@/src/components/vidstack-player";
-import { ImageZoom } from "./src/components/zoom-image";
+import AfterQuote from "@/components/after-quote";
+import Definition from "@/components/definition";
+import FootnotesNavigation from "@/components/footnotes-navigation";
+import LinkWithIcon from "@/components/link-with-icon";
+import SideNote from "@/components/side-note";
+import VidstackPlayer from "@/components/vidstack-player";
+import { ImageZoom } from "@/components/zoom-image";
 
 const components: MDXComponents = {
 	Overflow: ({ children }: { children: React.ReactNode }) => (

@@ -6,20 +6,15 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 import remarkGfm from "remark-gfm";
-import { useMDXComponents } from "@/mdx-components";
-import AnimatedSignature from "@/src/components/animated-signature";
-import CopyLink from "@/src/components/copy-link";
-import CopyText from "@/src/components/copy-text";
-import Subscribe from "@/src/components/subscribe";
-import TableOfContents from "@/src/components/toc";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/src/components/ui/tooltip";
-import { ImageZoom } from "@/src/components/zoom-image";
-import { getPostBySlug } from "@/src/lib/directus-content";
+import { useMDXComponents } from "@/../mdx-components";
+import AnimatedSignature from "@/components/animated-signature";
+import CopyLink from "@/components/copy-link";
+import CopyText from "@/components/copy-text";
+import Subscribe from "@/components/subscribe";
+import TableOfContents from "@/components/toc";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { ImageZoom } from "@/components/zoom-image";
+import { getPostBySlug } from "@/lib/directus-content";
 
 const WORD_SPLIT_REGEX = /\s+/;
 

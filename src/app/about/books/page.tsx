@@ -1,6 +1,6 @@
 import Link from "next/link";
-import BooksAll from "@/src/components/books-all";
-import { getBooks } from "@/src/lib/directus-content";
+import BooksAll from "@/components/books-all";
+import { getBooks } from "@/lib/directus-content";
 
 export default async function BooksPage() {
 	const books = await getBooks();

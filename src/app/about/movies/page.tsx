@@ -1,6 +1,6 @@
 import Link from "next/link";
-import MoviesAll from "@/src/components/movies-all";
-import { getMovies } from "@/src/lib/directus-content";
+import MoviesAll from "@/components/movies-all";
+import { getMovies } from "@/lib/directus-content";
 
 export default async function MoviesPage() {
 	const movies = await getMovies();

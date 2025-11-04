@@ -1,7 +1,7 @@
 import Link from "next/link";
-import AnimatedGradientText from "@/src/components/animated-gradient-text";
-import { Table, TableBody, TableCell, TableRow } from "@/src/components/ui/table";
-import { getProjects } from "@/src/lib/directus-content";
+import AnimatedGradientText from "@/components/animated-gradient-text";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { getProjects } from "@/lib/directus-content";
 
 export default async function Projects() {
 	const projects = await getProjects();

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import CreditsAll from "@/src/components/credits-all";
-import { getCredits } from "@/src/lib/directus-content";
+import CreditsAll from "@/components/credits-all";
+import { getCredits } from "@/lib/directus-content";
 
 export default async function CreditsPage() {
 	const credits = await getCredits();

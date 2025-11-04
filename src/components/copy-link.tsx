@@ -3,12 +3,7 @@
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { toast } from "sonner";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/src/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function CopyLink() {
 	const [copied, setCopied] = useState(false);

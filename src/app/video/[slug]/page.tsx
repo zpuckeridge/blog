@@ -2,16 +2,11 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import CopyLink from "@/src/components/copy-link";
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/src/components/ui/tooltip";
-import VidstackPlayer from "@/src/components/vidstack-player";
-import type { Video } from "@/src/interfaces/content-item";
-import { getVideoBySlug } from "@/src/lib/directus-content";
+import CopyLink from "@/components/copy-link";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import VidstackPlayer from "@/components/vidstack-player";
+import type { Video } from "@/interfaces/content-item";
+import { getVideoBySlug } from "@/lib/directus-content";
 
 export default async function Clip({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;

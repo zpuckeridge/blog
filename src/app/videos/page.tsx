@@ -1,9 +1,9 @@
 import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
-import PasswordProtection from "@/src/components/password-protection";
-import Videos from "@/src/components/videos";
-import { getVideos } from "@/src/lib/directus-content";
+import PasswordProtection from "@/components/password-protection";
+import Videos from "@/components/videos";
+import { getVideos } from "@/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "Videos",

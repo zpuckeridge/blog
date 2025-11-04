@@ -1,13 +1,5 @@
 import { readItems } from "@directus/sdk";
-import type {
-	Book,
-	Credit,
-	Movie,
-	Note,
-	Post,
-	Project,
-	Video,
-} from "@/src/interfaces/content-item";
+import type { Book, Credit, Movie, Note, Post, Project, Video } from "@/interfaces/content-item";
 import directus from "./directus";
 
 /**

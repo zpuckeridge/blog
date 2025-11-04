@@ -4,8 +4,8 @@ import { ArrowLeftIcon, ArrowRightIcon, MagnifyingGlassIcon } from "@radix-ui/re
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Input } from "@/src/components/ui/input";
-import type { Video } from "@/src/interfaces/content-item";
+import { Input } from "@/components/ui/input";
+import type { Video } from "@/interfaces/content-item";
 
 type VideosProps = {
 	videos: Video[];

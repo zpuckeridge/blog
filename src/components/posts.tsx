@@ -3,8 +3,8 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
-import { Switch } from "@/src/components/ui/switch";
-import type { TimelineItem } from "@/src/interfaces/content-item";
+import { Switch } from "@/components/ui/switch";
+import type { TimelineItem } from "@/interfaces/content-item";
 import { Input } from "./ui/input";
 
 type PostsProps = {

@@ -4,12 +4,7 @@ import { ArrowLeftIcon, ChevronLeftIcon, MoonIcon, SunIcon } from "@radix-ui/rea
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // {{ edit_1 }}
 import { useTheme } from "next-themes"; // {{ edit_1 }}
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/src/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function ReturnToIndex() {
 	const pathname = usePathname(); // {{ edit_2 }}

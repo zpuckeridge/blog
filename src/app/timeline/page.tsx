@@ -1,9 +1,9 @@
 import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
-import PostRendering from "@/src/components/posts";
-import type { TimelineItem } from "@/src/interfaces/content-item";
-import { getNotes, getPosts } from "@/src/lib/directus-content";
+import PostRendering from "@/components/posts";
+import type { TimelineItem } from "@/interfaces/content-item";
+import { getNotes, getPosts } from "@/lib/directus-content";
 
 export const metadata: Metadata = {
 	title: "Timeline",
