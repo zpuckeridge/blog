@@ -1,18 +1,6 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.7/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  },
-  "files": {
-    "ignoreUnknown": false
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "tab",
-    "lineWidth": 100
-  },
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/core", "ultracite/react", "ultracite/next"],
   "linter": {
     "enabled": true,
     "rules": {
@@ -41,31 +29,5 @@
         "noNamespaceImport": "off"
       }
     }
-  },
-  "css": {
-    "linter": {
-      "enabled": false
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "double",
-      "semicolons": "always",
-      "trailingCommas": "es5"
-    }
-  },
-  "json": {
-    "formatter": {
-      "enabled": true
-    }
-  },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  },
-  "extends": ["ultracite"]
+  }
 }
