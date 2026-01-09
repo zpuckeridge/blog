@@ -1,7 +1,7 @@
-export type MenuItem = {
+export interface MenuItem {
   label: string;
   href: string;
-};
+}
 
 export const menuItems: MenuItem[] = [
   { label: "About", href: "/about" },

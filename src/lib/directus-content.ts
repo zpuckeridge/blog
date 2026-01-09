@@ -11,6 +11,41 @@ import type {
 import directus from "./directus";
 
 /**
+ * Helper function to extract error details from Directus SDK errors
+ */
+function extractDirectusError(error: unknown): {
+  message: string;
+  status?: number;
+  statusText?: string;
+  details?: unknown;
+} {
+  if (error instanceof Error) {
+    // Check if error has response-like properties
+    const errorAny = error as unknown as {
+      response?: { status?: number; statusText?: string };
+      status?: number;
+      statusText?: string;
+      errors?: unknown[];
+    };
+
+    const status = errorAny.response?.status ?? errorAny.status;
+    const statusText = errorAny.response?.statusText ?? errorAny.statusText;
+    const details = errorAny.errors ?? errorAny.response;
+
+    return {
+      message: error.message,
+      status,
+      statusText,
+      details,
+    };
+  }
+
+  return {
+    message: String(error),
+  };
+}
+
+/**
  * Retrieve all published posts from Directus
  */
 export async function getPosts(): Promise<Post[]> {
@@ -112,7 +147,14 @@ export async function getNotes(): Promise<Note[]> {
 
     return notes as Note[];
   } catch (error) {
-    console.error("Error fetching notes:", error);
+    const errorDetails = extractDirectusError(error);
+    console.error("Error fetching notes:", {
+      message: errorDetails.message,
+      status: errorDetails.status,
+      statusText: errorDetails.statusText,
+      details: errorDetails.details,
+      fullError: error,
+    });
     return [];
   }
 }

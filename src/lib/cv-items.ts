@@ -1,4 +1,4 @@
-export type EmploymentItem = {
+export interface EmploymentItem {
   title: string; // e.g. "Company Name"
   position: string; // e.g. "IT Administrator", "Systems Administrator", "Freelance"
   startYear: number; // e.g. 2021
@@ -6,7 +6,7 @@ export type EmploymentItem = {
   location: string; // e.g. "Brisbane, Australia"
   url: string; // e.g. "https://company.com"
   description: string; // e.g. "Worked on X, Y, Z..."
-};
+}
 
 export const employmentHistory: EmploymentItem[] = [
   {
@@ -80,7 +80,7 @@ export const employmentHistory: EmploymentItem[] = [
       "Developed strong time management skills and thrived in a fast-paced environment. Helped train new Crew Members in proper procedures.",
   },
 ];
-export type EducationItem = {
+export interface EducationItem {
   title: string;
   field: string;
   startDate: string;
@@ -89,7 +89,7 @@ export type EducationItem = {
   url?: string;
   description?: string;
   credential?: string;
-};
+}
 
 export const educationHistory: EducationItem[] = [
   {
