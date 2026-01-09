@@ -147,7 +147,7 @@ export default function TableOfContents() {
       </div>
 
       {/* Desktop version - fixed sidebar */}
-      <div className="lg:-translate-y-1/2 hidden lg:fixed lg:top-1/2 lg:left-6 lg:block lg:max-h-[calc(100vh-6rem)] lg:transform lg:overflow-y-auto">
+      <div className="hidden lg:fixed lg:top-1/2 lg:left-6 lg:block lg:max-h-[calc(100vh-6rem)] lg:-translate-y-1/2 lg:transform lg:overflow-y-auto">
         <button
           className="cursor-pointer rounded px-1.5 py-2.5 text-left transition-all duration-300 hover:bg-neutral-900 dark:hover:bg-neutral-900"
           onClick={handleTocClick}
@@ -171,7 +171,7 @@ export default function TableOfContents() {
       {/* Expanded content with proper exit animation */}
       {(isExpanded || isAnimating) && (
         <div
-          className="lg:-translate-y-1/2 hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:transform lg:overflow-y-auto"
+          className="hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:-translate-y-1/2 lg:transform lg:overflow-y-auto"
           style={{
             animation: isAnimating
               ? "toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) forwards"

@@ -41,7 +41,8 @@ export async function getPosts(): Promise<Post[]> {
     );
 
     return posts as Post[];
-  } catch (_error) {
+  } catch (error) {
+    console.error("Error fetching posts:", error);
     return [];
   }
 }
@@ -110,7 +111,8 @@ export async function getNotes(): Promise<Note[]> {
     );
 
     return notes as Note[];
-  } catch (_error) {
+  } catch (error) {
+    console.error("Error fetching notes:", error);
     return [];
   }
 }
@@ -215,7 +217,8 @@ export async function getBooks(): Promise<Book[]> {
     );
 
     return books as Book[];
-  } catch (_error) {
+  } catch (error) {
+    console.error("Error fetching books:", error);
     return [];
   }
 }
@@ -248,7 +251,8 @@ export async function getMovies(): Promise<Movie[]> {
     );
 
     return movies as Movie[];
-  } catch (_error) {
+  } catch (error) {
+    console.error("Error fetching movies:", error);
     return [];
   }
 }

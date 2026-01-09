@@ -35,7 +35,7 @@ export default function ReturnToIndex() {
                 href="/"
               >
                 <div className="relative h-4 w-4">
-                  <ChevronLeftIcon className="-translate-x-0.5 absolute inset-0 h-4 w-4 opacity-100 transition-opacity duration-200 ease-in-out group-hover:opacity-0" />
+                  <ChevronLeftIcon className="absolute inset-0 h-4 w-4 -translate-x-0.5 opacity-100 transition-opacity duration-200 ease-in-out group-hover:opacity-0" />
                   <ArrowLeftIcon className="absolute inset-0 h-4 w-4 opacity-0 transition-all duration-200 ease-in-out group-hover:opacity-100" />
                 </div>
                 <span className="transition-all duration-200">Index</span>
