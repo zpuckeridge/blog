@@ -57,7 +57,6 @@ export async function getPosts(): Promise<Post[]> {
             _eq: "published",
           },
         },
-        sort: ["-date_created"],
         fields: [
           "id",
           "status",
@@ -133,7 +132,6 @@ export async function getNotes(): Promise<Note[]> {
             _eq: "published",
           },
         },
-        sort: ["-date_created"],
         fields: [
           "id",
           "status",
@@ -171,7 +169,6 @@ export async function getVideos(): Promise<Video[]> {
             _eq: "published",
           },
         },
-        sort: ["-date_created"],
         fields: [
           "id",
           "status",
@@ -242,7 +239,6 @@ export async function getBooks(): Promise<Book[]> {
             _eq: "published",
           },
         },
-        sort: ["-date_created"],
         fields: [
           "id",
           "status",
@@ -277,7 +273,6 @@ export async function getMovies(): Promise<Movie[]> {
             _eq: "published",
           },
         },
-        sort: ["-date_created"],
         fields: [
           "id",
           "status",
@@ -311,7 +306,6 @@ export async function getCredits(): Promise<Credit[]> {
             _eq: "published",
           },
         },
-        sort: ["-date_created"],
         fields: [
           "id",
           "status",
@@ -346,7 +340,6 @@ export async function getProjects(): Promise<Project[]> {
             _in: ["published", "archived", "work_in_progress"],
           },
         },
-        sort: ["-year_completed", "-date_created"],
         fields: [
           "id",
           "status",
@@ -430,7 +423,6 @@ export async function getContentByTags(
             },
           }),
         },
-        sort: ["-date_created"],
       })
     );
 
@@ -464,7 +456,6 @@ export async function searchContent(query: string): Promise<{
                 { content: { _icontains: query } },
               ],
             },
-            sort: ["-date_created"],
           })
         ),
         directus.request(
@@ -476,7 +467,6 @@ export async function searchContent(query: string): Promise<{
                 { description: { _icontains: query } },
               ],
             },
-            sort: ["-date_created"],
           })
         ),
         directus.request(
@@ -488,7 +478,6 @@ export async function searchContent(query: string): Promise<{
                 { author: { _icontains: query } },
               ],
             },
-            sort: ["-date_created"],
           })
         ),
         directus.request(
@@ -500,7 +489,6 @@ export async function searchContent(query: string): Promise<{
                 { setting: { _icontains: query } },
               ],
             },
-            sort: ["-date_created"],
           })
         ),
         directus.request(
@@ -512,7 +500,6 @@ export async function searchContent(query: string): Promise<{
                 { description: { _icontains: query } },
               ],
             },
-            sort: ["-date_created"],
           })
         ),
         directus.request(
@@ -524,7 +511,6 @@ export async function searchContent(query: string): Promise<{
                 { description: { _icontains: query } },
               ],
             },
-            sort: ["-date_created"],
           })
         ),
       ]
