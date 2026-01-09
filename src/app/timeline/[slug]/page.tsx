@@ -220,7 +220,7 @@ export async function generateMetadata({
       siteName: "zacchary.me",
       images: [
         {
-          url: post.image || "/avatar.avif",
+          url: post.image || "/avatar-2026.avif",
           width: 1920,
           height: 1080,
           alt: title,
@@ -234,7 +234,7 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: post.image || "/avatar.avif",
+          url: post.image || "/avatar-2026.avif",
           width: 1920,
           height: 1080,
           alt: title,

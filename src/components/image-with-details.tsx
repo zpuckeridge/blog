@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { ImageZoom } from "./zoom-image";
 
-type ImageWithDetailsProps = {
+interface ImageWithDetailsProps {
   src: string;
   alt: string;
   name: string;
   location: string;
   author: string;
-};
+}
 
 export default function ImageWithDetails({
   src,

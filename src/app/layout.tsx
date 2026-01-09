@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   ],
   referrer: "origin-when-cross-origin",
   icons: {
-    icon: "/avatar.avif",
+    icon: "/avatar-2026.avif",
   },
   appleWebApp: {
     title: "zacchary.me",
@@ -76,13 +76,13 @@ export const metadata: Metadata = {
     title: "Zacchary Puckeridge",
     description:
       "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
-    images: "/avatar.avif",
+    images: "/avatar-2026.avif",
     siteName: "zpuckeridge",
   },
   twitter: {
     creator: "@zpuckeridge",
     card: "summary_large_image",
-    images: "/avatar.avif",
+    images: "/avatar-2026.avif",
     description:
       "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
     creatorId: "zpuckeridge",

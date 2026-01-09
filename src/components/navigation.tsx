@@ -13,9 +13,9 @@ export default function Navigation() {
       <Link href="/">
         <Image
           alt="Zacchary Puckeridge"
-          className="h-6 w-6 rounded"
+          className="aspect-square h-6 w-6 rounded object-cover"
           height={100}
-          src="/avatar.avif"
+          src="/avatar-2026.avif"
           width={100}
         />
       </Link>

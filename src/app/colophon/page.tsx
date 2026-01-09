@@ -163,6 +163,12 @@ export default function Colophon() {
                 <LinkWithIcon href="https://dougwils.com?ref=zacchary.me">
                   Douglas Wilson
                 </LinkWithIcon>
+                <LinkWithIcon href="https://www.cslewis.com/us?ref=zacchary.me">
+                  C.S. Lewis
+                </LinkWithIcon>
+                <LinkWithIcon href="https://youtu.be/2zcBO3EsZBY?ref=zacchary.me">
+                  Elisabeth Elliot
+                </LinkWithIcon>
                 <LinkWithIcon href="https://www.ligonier.org?ref=zacchary.me">
                   R.C. Sproul
                 </LinkWithIcon>
@@ -172,20 +178,11 @@ export default function Colophon() {
                 <LinkWithIcon href="https://x.com/thisisfoster?ref=zacchary.me">
                   Michael Foster
                 </LinkWithIcon>
+                <LinkWithIcon href="https://x.com/charliekirk11?ref=zacchary.me">
+                  Charlie Kirk
+                </LinkWithIcon>
                 <LinkWithIcon href="https://www.desiringgod.org?ref=zacchary.me">
                   John Piper
-                </LinkWithIcon>
-                <LinkWithIcon href="https://x.com/jaitaiwan?ref=zacchary.me">
-                  Daniel Holmes
-                </LinkWithIcon>
-                <LinkWithIcon href="https://www.facebook.com/jd.holmes.52?ref=zacchary.me">
-                  Jaydan Holmes
-                </LinkWithIcon>
-                <LinkWithIcon href="https://drevan.me?ref=zacchary.me">
-                  André van Tonder
-                </LinkWithIcon>
-                <LinkWithIcon href="https://www.facebook.com/declan.ballantine?ref=zacchary.me">
-                  Declan Ballantine
                 </LinkWithIcon>
               </div>
             </div>
