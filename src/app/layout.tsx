@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
-import Script from "next/script";
 import Navigation from "@/components/navigation";
 
 const fontSans = localFont({
@@ -123,15 +122,6 @@ export default function RootLayout({
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
-
-      <Script
-        async
-        data-session-replay="true"
-        data-site-id="1"
-        data-track-errors="true"
-        data-web-vitals="true"
-        src="https://rybbit-backend.obambulo.studio/api/script.js"
-      />
     </html>
   );
 }
