@@ -1,17 +1,18 @@
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
 /coverage
 
 # next.js
-/.next/
-/out/
+.next/
+.open-next/
+out/
 
 # production
-/build
+build
 
 # misc
 .DS_Store
@@ -28,6 +29,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+.turbo
 
 # typescript
 *.tsbuildinfo
@@ -36,6 +38,3 @@ next-env.d.ts
 # cloudflare
 wrangler.toml
 .wrangler
-
-# open-next
-/.open-next
