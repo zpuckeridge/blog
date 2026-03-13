@@ -30,7 +30,7 @@ export default function Lanyard() {
   const getStatusTextAndColor = () => {
     // Show offline status until fully loaded
     if (!(isFullyLoaded && data && data.discord_status)) {
-      return { statusText: "Offline", dotColor: "bg-gray-400" };
+      return { dotColor: "bg-gray-400", statusText: "Offline" };
     }
 
     const discordStatus = data.discord_status;
@@ -38,25 +38,29 @@ export default function Lanyard() {
     let color: string;
 
     switch (discordStatus) {
-      case "idle":
+      case "idle": {
         text = "Idle";
         color = "bg-yellow-300";
         break;
-      case "online":
+      }
+      case "online": {
         text = "Online";
         color = "bg-green-500";
         break;
-      case "dnd":
+      }
+      case "dnd": {
         text = "Do Not Disturb";
         color = "bg-red-500";
         break;
-      default:
+      }
+      default: {
         text = "Offline";
         color = "bg-gray-400";
         break;
+      }
     }
 
-    return { statusText: text, dotColor: color };
+    return { dotColor: color, statusText: text };
   };
 
   const { statusText, dotColor } = getStatusTextAndColor();

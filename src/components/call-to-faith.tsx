@@ -2,44 +2,45 @@
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
+
 import { BlurFade } from "@/components/magicui/blur-fade";
 
-export default function CallToFaith() {
+const CallToFaith = () => {
   const slides = [
     {
-      text: "For all have sinned and fall short of the glory of God.",
-      reference: "Romans 3:23",
       index: 1,
+      reference: "Romans 3:23",
+      text: "For all have sinned and fall short of the glory of God.",
     },
     {
-      text: "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.",
-      reference: "Romans 6:23",
       index: 2,
+      reference: "Romans 6:23",
+      text: "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.",
     },
     {
-      text: "God shows his love for us in that while we were still sinners, Christ died for us.",
-      reference: "Romans 5:8",
       index: 3,
+      reference: "Romans 5:8",
+      text: "God shows his love for us in that while we were still sinners, Christ died for us.",
     },
     {
-      text: "So, confess with your mouth that Jesus is Lord and believe in your heart that God raised Him from the dead.",
-      reference: "Romans 10:9",
       index: 4,
+      reference: "Romans 10:9",
+      text: "So, confess with your mouth that Jesus is Lord and believe in your heart that God raised Him from the dead.",
     },
     {
-      text: "For everyone who calls on the name of the Lord will be saved.",
-      reference: "Romans 10:13",
       index: 5,
+      reference: "Romans 10:13",
+      text: "For everyone who calls on the name of the Lord will be saved.",
     },
     {
-      text: "Therefore, since we have been justified by faith alone, we have peace with God through our Lord Jesus Christ.",
-      reference: "Romans 5:1",
       index: 6,
+      reference: "Romans 5:1",
+      text: "Therefore, since we have been justified by faith alone, we have peace with God through our Lord Jesus Christ.",
     },
     {
-      text: "There is therefore now no condemnation for those who are in Christ Jesus!",
-      reference: "Romans 8:1",
       index: 7,
+      reference: "Romans 8:1",
+      text: "There is therefore now no condemnation for those who are in Christ Jesus!",
     },
   ];
 
@@ -51,11 +52,11 @@ export default function CallToFaith() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   const currentSlide = slides[currentSlideIndex];
 
-  const [timeLeft, setTimeLeft] = useState(5); // 5 seconds
+  const [timeLeft, setTimeLeft] = useState(5);
   const requestRef = useRef<number | null>(null);
   const previousTimeRef = useRef<number | null>(null);
 
@@ -64,11 +65,11 @@ export default function CallToFaith() {
   const strokeDashoffset = circumference - (timeLeft / 5) * circumference;
 
   const animate = useCallback((time: number) => {
-    if (previousTimeRef.current != null) {
+    if (previousTimeRef.current !== null) {
       const deltaTime = time - previousTimeRef.current;
       setTimeLeft((prevTime) => {
         if (prevTime <= 0) {
-          return 5; // Reset to 5 when it reaches 0
+          return 5;
         }
         return Math.max(0, prevTime - deltaTime / 1000);
       });
@@ -86,17 +87,17 @@ export default function CallToFaith() {
     };
   }, [animate]);
 
-  const goToPreviousSlide = () => {
+  const goToPreviousSlide = useCallback(() => {
     setCurrentSlideIndex(
       (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
     );
-    setTimeLeft(5); // Reset timer
-  };
+    setTimeLeft(5);
+  }, [slides.length]);
 
-  const goToNextSlide = () => {
+  const goToNextSlide = useCallback(() => {
     setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    setTimeLeft(5); // Reset timer
-  };
+    setTimeLeft(5);
+  }, [slides.length]);
 
   return (
     <div className="w-full">
@@ -152,7 +153,7 @@ export default function CallToFaith() {
               <button
                 aria-label="Previous slide"
                 className="text-muted-foreground transition hover:text-blue-400 dark:hover:text-blue-600"
-                onClick={goToPreviousSlide} // Added padding for larger touch target
+                onClick={goToPreviousSlide}
                 type="button"
               >
                 <ArrowLeftIcon className="h-4 w-4" />
@@ -160,7 +161,7 @@ export default function CallToFaith() {
               <button
                 aria-label="Next slide"
                 className="text-muted-foreground transition hover:text-blue-400 dark:hover:text-blue-600"
-                onClick={goToNextSlide} // Added padding for larger touch target
+                onClick={goToNextSlide}
                 type="button"
               >
                 <ArrowRightIcon className="h-4 w-4" />
@@ -171,7 +172,6 @@ export default function CallToFaith() {
       </div>
     </div>
   );
-}
+};
 
-// TODO:
-// Need to make sure that the timer is reset when the user clicks on the previous or next button.
+export default CallToFaith;

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { menuItems } from "../lib/menu-items";
+
+import { menuItems } from "@/lib/menu-items";
 
 export default function Navigation() {
   const pathname = usePathname();

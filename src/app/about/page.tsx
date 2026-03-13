@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import Age from "@/components/age";
 import BooksPreview from "@/components/books-preview";
 import CreditsPreview from "@/components/credits-preview";
@@ -9,9 +10,9 @@ import MoviesPreview from "@/components/movies-preview";
 import { getBooks, getCredits, getMovies } from "@/lib/directus-content";
 
 export const metadata: Metadata = {
-  title: "About",
   description:
     "I'm a 25 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
+  title: "About",
 };
 
 export default async function About() {

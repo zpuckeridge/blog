@@ -1,10 +1,10 @@
 import type { FC } from "react";
 
-type SideNoteProps = {
+interface SideNoteProps {
   children: React.ReactNode;
   note: React.ReactNode;
   position?: "left" | "right";
-};
+}
 
 const SideNote: FC<SideNoteProps> = ({ children, note, position }) => (
   <div className="relative w-full">

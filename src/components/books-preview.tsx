@@ -3,19 +3,22 @@
 import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+
 import type { Book } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function BooksPreview({ books }: { books: Book[] }) {
-  const sortedBooks = books.sort((a, b) =>
+  const sortedBooks = books.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
   const [expandedBook, setExpandedBook] = useState<string | null>(null);
 
-  const toggleBook = (bookUrl: string) => {
-    setExpandedBook((prev) => (prev === bookUrl ? null : bookUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedBook((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-2">
@@ -38,7 +41,8 @@ export default function BooksPreview({ books }: { books: Book[] }) {
                 <button
                   aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                  onClick={() => toggleBook(book.id.toString())}
+                  data-id={book.id.toString()}
+                  onClick={handleToggle}
                   type="button"
                 >
                   <p className="line-clamp-1">{book.title}</p>

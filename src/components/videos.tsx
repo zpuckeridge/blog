@@ -7,24 +7,29 @@ import {
 } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+
 import { Input } from "@/components/ui/input";
 import type { Video } from "@/interfaces/content-item";
 
-type VideosProps = {
+const formatDuration = (duration: number) => {
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
+
+interface VideosProps {
   videos: Video[];
   itemsPerPage: number;
-};
+}
 
 // Extract search component outside of Videos component
 const SearchBar = ({
+  onSearchChange,
   searchTerm,
-  setSearchTerm,
-  setCurrentPage,
 }: {
+  onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  setCurrentPage: (page: number) => void;
 }) => (
   <div className="group relative flex">
     <div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-xs has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-xs has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
@@ -48,10 +53,7 @@ const SearchBar = ({
     </div>
     <Input
       className="-me-px flex-1 rounded-lg text-black text-xs shadow-none dark:text-neutral-300"
-      onChange={(e) => {
-        setSearchTerm(e.target.value);
-        setCurrentPage(1);
-      }}
+      onChange={onSearchChange}
       placeholder=""
       type="text"
       value={searchTerm}
@@ -85,43 +87,49 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
   }, [filteredVideos, currentPage, itemsPerPage]);
 
   const uniqueTags = useMemo(
-    () => Array.from(new Set(videos?.flatMap((video) => video.tags) || [])),
+    () => [...new Set(videos?.flatMap((video) => video.tags) || [])],
     [videos]
   );
 
-  // Moved the early return after all hooks
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
+
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value);
+      setCurrentPage(1);
+    },
+    []
+  );
+
+  const handlePrevPage = useCallback(() => {
+    setCurrentPage((p) => (p > 1 ? p - 1 : p));
+  }, []);
+
+  const handleNextPage = useCallback(() => {
+    setCurrentPage((p) => (p < totalPages ? p + 1 : p));
+  }, [totalPages]);
+
+  const handleResetPage = useCallback(() => setCurrentPage(1), []);
+
+  const handleTagClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const tag = e.currentTarget.dataset.tag ?? "";
+      setSelectedTag((prev) => (prev === tag ? "" : tag));
+      setCurrentPage(1);
+    },
+    []
+  );
+
   if (!videos?.length) {
     return <div className="py-8 text-center">No videos available</div>;
   }
-
-  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage);
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const formatDuration = (duration: number) => {
-    const minutes = Math.floor(duration / 60);
-    const seconds = duration % 60;
-
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
 
   return (
     <div className="space-y-6">
       <div className="space-y-1">
         <SearchBar
+          onSearchChange={handleSearchChange}
           searchTerm={searchTerm}
-          setCurrentPage={setCurrentPage}
-          setSearchTerm={setSearchTerm}
         />
         <div className="flex flex-wrap gap-1">
           {uniqueTags.map((tag) => (
@@ -132,15 +140,8 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
               key={tag}
-              onClick={() => {
-                if (selectedTag === tag) {
-                  setSelectedTag("");
-                  setCurrentPage(1);
-                } else {
-                  setSelectedTag(tag);
-                  setCurrentPage(1);
-                }
-              }}
+              data-tag={tag}
+              onClick={handleTagClick}
               type="button"
             >
               {tag}
@@ -187,9 +188,9 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
               <div className="flex justify-between text-muted-foreground text-xs">
                 <p>
                   {new Date(video.date_created).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
                     day: "numeric",
+                    month: "long",
+                    year: "numeric",
                   })}
                 </p>
               </div>
@@ -211,7 +212,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
           </button>
           <button
             className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
-            onClick={() => setCurrentPage(1)}
+            onClick={handleResetPage}
             type="button"
           >
             {currentPage} of {totalPages}

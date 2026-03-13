@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
+
+import Navigation from "@/components/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { cn } from "@/lib/utils";
+
 import "@/app/globals.css";
-import Navigation from "@/components/navigation";
+import { cn } from "@/lib/utils";
 
 const fontSans = localFont({
   src: "../../public/fonts/archivo.woff2",
@@ -31,17 +33,27 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zacchary.me"),
   alternates: {
     types: {
-      "application/rss+xml": "https://zacchary.me/rss.xml",
+      "application/rss+xml": "/rss.xml",
     },
+  },
+  appleWebApp: {
+    statusBarStyle: "default",
+    title: "zacchary.me",
   },
   applicationName: "zacchary.me",
   authors: { name: "zpuckeridge" },
   creator: "zpuckeridge",
-  publisher: "zpuckeridge",
+  description:
+    "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
+  formatDetection: {
+    telephone: false,
+  },
   generator: "Next.js",
+  icons: {
+    icon: "/avatar-2026.avif",
+  },
   keywords: [
     "zpuckeridge",
     "zaccharypuckeridge",
@@ -54,40 +66,30 @@ export const metadata: Metadata = {
     "zac",
     "zacchary.me",
   ],
+  metadataBase: new URL("https://zacchary.me"),
+  openGraph: {
+    description:
+      "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
+    images: "/avatar-2026.avif",
+    siteName: "zacchary.me",
+    title: "Zacchary Puckeridge",
+    url: "https://zacchary.me",
+  },
+  publisher: "zpuckeridge",
   referrer: "origin-when-cross-origin",
-  icons: {
-    icon: "/avatar-2026.avif",
-  },
-  appleWebApp: {
-    title: "zacchary.me",
-    statusBarStyle: "default",
-  },
-  formatDetection: {
-    telephone: false,
-  },
   title: {
     default: "Zacchary Puckeridge",
     template: "%s — Zacchary Puckeridge",
   },
-  description:
-    "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
-  openGraph: {
-    url: "https://zacchary.me",
-    title: "Zacchary Puckeridge",
-    description:
-      "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
-    images: "/avatar-2026.avif",
-    siteName: "zpuckeridge",
-  },
   twitter: {
-    creator: "@zpuckeridge",
     card: "summary_large_image",
-    images: "/avatar-2026.avif",
+    creator: "@zpuckeridge",
+    creatorId: "zpuckeridge",
     description:
       "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
-    creatorId: "zpuckeridge",
-    title: "Zacchary Puckeridge",
+    images: "/avatar-2026.avif",
     site: "@zpuckeridge",
+    title: "Zacchary Puckeridge",
   },
 };
 

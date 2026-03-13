@@ -3,19 +3,22 @@
 import { compareDesc } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import type { Movie } from "../interfaces/content-item";
+import { useCallback, useState } from "react";
+
+import type { Movie } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function MoviesPreview({ movies }: { movies: Movie[] }) {
-  const sortedMovies = movies.sort((a, b) =>
+  const sortedMovies = movies.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
   const [expandedMovie, setExpandedMovie] = useState<string | null>(null);
 
-  const toggleMovie = (movieUrl: string) => {
-    setExpandedMovie((prev) => (prev === movieUrl ? null : movieUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedMovie((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-2">
@@ -38,7 +41,8 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
                 <button
                   aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                  onClick={() => toggleMovie(movie.id.toString())}
+                  data-id={movie.id.toString()}
+                  onClick={handleToggle}
                   type="button"
                 >
                   <p className="line-clamp-1">{movie.title}</p>

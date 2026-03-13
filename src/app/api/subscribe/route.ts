@@ -8,7 +8,7 @@ if (!loopsApiKey) {
 
 const loops = new LoopsClient(loopsApiKey);
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   try {
     const { email } = await req.json();
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     await loops.createContact(email);
 
     return Response.json({ success: true });
-  } catch (_error) {
+  } catch {
     return Response.json({ error: "Failed to subscribe" }, { status: 500 });
   }
-}
+};

@@ -1,32 +1,33 @@
 import { compareDesc } from "date-fns";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
+
+import GitHubContributions from "@/components/contributions-graph";
 import Lanyard from "@/components/lanyard";
 import LinkWithIcon from "@/components/link-with-icon";
+import { ToggleTheme } from "@/components/toggle-theme";
 import type { Post } from "@/interfaces/content-item";
 import { getPosts, getProjects } from "@/lib/directus-content";
-import GitHubContributions from "../components/contributions-graph";
-import { ToggleTheme } from "../components/toggle-theme";
 
 // Get current Brisbane time and date
 const now = new Date();
 const brisbaneTime = new Intl.DateTimeFormat("en-US", {
-  timeZone: "Australia/Brisbane",
-  timeStyle: "short",
   hour12: true,
+  timeStyle: "short",
+  timeZone: "Australia/Brisbane",
 }).format(now);
 
 const brisbaneDate = new Intl.DateTimeFormat("en-US", {
-  timeZone: "Australia/Brisbane",
-  month: "short",
   day: "numeric",
+  month: "short",
+  timeZone: "Australia/Brisbane",
   year: "numeric",
 }).format(now);
 
 export default async function Home() {
   const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
 
-  const sortedPosts = posts.sort((a, b) =>
+  const sortedPosts = posts.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
 
@@ -159,9 +160,9 @@ export default async function Home() {
                       {new Date(post.date_created).toLocaleDateString(
                         undefined,
                         {
-                          year: "numeric",
-                          month: "2-digit",
                           day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
                         }
                       )}
                     </p>

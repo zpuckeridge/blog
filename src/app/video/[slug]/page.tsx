@@ -2,23 +2,21 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import CopyLink from "@/components/copy-link";
+import Player from "@/components/player";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import VidstackPlayer from "@/components/vidstack-player";
 import type { Video } from "@/interfaces/content-item";
 import { getVideoBySlug } from "@/lib/directus-content";
+import { getSiteUrl } from "@/lib/site-url";
 
-export default async function Clip({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+const Clip = async (props: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await props.params;
 
   // Get content from Directus
   const video = (await getVideoBySlug(slug)) as Video | null;
@@ -57,9 +55,9 @@ export default async function Clip({
                       {new Date(video.date_created).toLocaleDateString(
                         "en-US",
                         {
-                          weekday: "long",
                           day: "2-digit",
                           month: "long",
+                          weekday: "long",
                           year: "numeric",
                         }
                       )}{" "}
@@ -73,10 +71,7 @@ export default async function Clip({
           </div>
 
           <div className="aspect-video overflow-hidden rounded-lg">
-            <VidstackPlayer
-              src={`https://stream.mux.com/${video.playback_id}.m3u8`}
-              title={video.title}
-            />
+            <Player src={video.playback_id} />
           </div>
         </div>
 
@@ -89,14 +84,12 @@ export default async function Clip({
       </div>
     </div>
   );
-}
+};
 
-export async function generateMetadata({
-  params,
-}: {
+export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
+}): Promise<Metadata> => {
+  const { slug } = await props.params;
 
   // Get content from Directus
   const video = (await getVideoBySlug(slug)) as Video | null;
@@ -110,52 +103,56 @@ export async function generateMetadata({
   const videoUrl = `https://stream.mux.com/${video.playback_id}/highest.mp4`;
   const thumbnailUrl = `https://image.mux.com/${video.playback_id}/thumbnail.jpg`;
 
+  const pageUrl = `${getSiteUrl()}/video/${slug}`;
+
   return {
-    title,
     description,
     openGraph: {
-      type: "video.other",
-      title,
       description,
-      siteName: "zacchary.me",
       images: [
         {
+          alt: title,
+          height: 1080,
           url: thumbnailUrl,
           width: 1920,
-          height: 1080,
-          alt: title,
         },
       ],
+      siteName: "zacchary.me",
+      title,
+      type: "video.other",
+      url: pageUrl,
       videos: [
         {
-          url: videoUrl,
-          width: 1920,
           height: 1080,
           type: "video/mp4",
+          url: videoUrl,
+          width: 1920,
         },
       ],
-      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/video/${slug}`,
     },
+    title,
     twitter: {
       card: "player",
-      title,
       description,
+      images: [
+        {
+          alt: title,
+          height: 1080,
+          url: thumbnailUrl,
+          width: 1920,
+        },
+      ],
       players: [
         {
+          height: 1080,
           playerUrl: videoUrl,
           streamUrl: videoUrl,
           width: 1920,
-          height: 1080,
         },
       ],
-      images: [
-        {
-          url: thumbnailUrl,
-          width: 1920,
-          height: 1080,
-          alt: title,
-        },
-      ],
+      title,
     },
   };
-}
+};
+
+export default Clip;

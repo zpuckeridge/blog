@@ -1,19 +1,20 @@
 import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import PasswordProtection from "@/components/password-protection";
 import Videos from "@/components/videos";
 import { getVideos } from "@/lib/directus-content";
 
 export const metadata: Metadata = {
-  title: "Videos",
   description: "A collection of videos I've created.",
+  title: "Videos",
 };
 
 export default async function Clips() {
   const videos = await getVideos();
 
-  const sortedVideos = videos.sort((a, b) =>
+  const sortedVideos = videos.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
 

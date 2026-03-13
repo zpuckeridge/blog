@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
 import LinkWithIcon from "@/components/link-with-icon";
+
+export const metadata: Metadata = {
+  description:
+    "Typography, technical stack, and inspiration behind zacchary.me. Built with Next.js, Tailwind, and deployed on Cloudflare Workers.",
+  title: "Colophon",
+};
 
 export default function Colophon() {
   return (
@@ -49,8 +57,8 @@ export default function Colophon() {
                 shadcn
               </LinkWithIcon>
               ,{" "}
-              <LinkWithIcon href="https://biomejs.dev?ref=zacchary.me">
-                Biome
+              <LinkWithIcon href="https://oxc-project.github.io?ref=zacchary.me">
+                Oxc
               </LinkWithIcon>
               ,{" "}
               <LinkWithIcon href="https://lanyard.rest?ref=zacchary.me">

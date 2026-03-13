@@ -3,8 +3,9 @@
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Loader2 } from "lucide-react";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
+
 import { Input } from "./ui/input";
 
 const Subscribe: React.FC = () => {
@@ -16,34 +17,42 @@ const Subscribe: React.FC = () => {
     setIsMounted(true);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
 
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+      try {
+        const response = await fetch("/api/subscribe", {
+          body: JSON.stringify({ email }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+        });
 
-      if (response.ok) {
-        toast.success("Subscribed to new posts");
-        setEmail("");
-      } else {
-        toast.error("Failed to subscribe. Please try again.");
+        if (response.ok) {
+          toast.success("Subscribed to new posts");
+          setEmail("");
+        } else {
+          toast.error("Failed to subscribe. Please try again.");
+        }
+      } catch {
+        toast.error("An error occurred. Please try again later.");
+      } finally {
+        setIsLoading(false);
       }
-    } catch (_error) {
-      toast.error("An error occurred. Please try again later.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [email]
+  );
+
+  const handleEmailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
+    []
+  );
 
   if (!isMounted) {
-    return null; // or a loading placeholder
+    return null;
   }
 
   return (
@@ -56,7 +65,7 @@ const Subscribe: React.FC = () => {
         </div>
         <Input
           className="-me-px flex-1 text-black text-xs shadow-none dark:text-neutral-300"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           placeholder=""
           required
           type="email"

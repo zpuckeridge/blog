@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
 import BooksAll from "@/components/books-all";
 import { getBooks } from "@/lib/directus-content";
+
+export const metadata: Metadata = {
+  description:
+    "Books I've read and recommend. A curated list of reads across theology, technology, and personal development.",
+  title: "Books",
+};
 
 export default async function BooksPage() {
   const books = await getBooks();

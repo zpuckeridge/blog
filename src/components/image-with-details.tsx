@@ -1,12 +1,13 @@
 import Image from "next/image";
+
 import { ImageZoom } from "./zoom-image";
 
 interface ImageWithDetailsProps {
-  src: string;
   alt: string;
-  name: string;
-  location: string;
   author: string;
+  location: string;
+  name: string;
+  src: string;
 }
 
 export default function ImageWithDetails({

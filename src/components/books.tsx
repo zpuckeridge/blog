@@ -2,8 +2,9 @@
 
 import { compareDesc } from "date-fns";
 import Link from "next/link";
-import { useState } from "react";
-import type { Book } from "../interfaces/content-item";
+import { useCallback, useState } from "react";
+
+import type { Book } from "@/interfaces/content-item";
 
 export default function Books({
   data,
@@ -12,22 +13,23 @@ export default function Books({
   data: Book[];
   showAll?: boolean;
 }) {
-  const sortedBooks = data.sort((a, b) =>
+  const sortedBooks = data.toSorted((a, b) =>
     compareDesc(new Date(a.published), new Date(b.published))
   );
   const [expandedBooks, setExpandedBooks] = useState<Set<string>>(new Set());
 
-  const toggleBook = (bookUrl: string) => {
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
     setExpandedBooks((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(bookUrl)) {
-        newSet.delete(bookUrl);
+      if (newSet.has(id)) {
+        newSet.delete(id);
       } else {
-        newSet.add(bookUrl);
+        newSet.add(id);
       }
       return newSet;
     });
-  };
+  }, []);
 
   return (
     <div className="space-y-2">
@@ -54,15 +56,16 @@ export default function Books({
                 <button
                   aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                  onClick={() => toggleBook(book.id.toString())}
+                  data-id={book.id.toString()}
+                  onClick={handleToggle}
                   type="button"
                 >
                   <p className="line-clamp-1">{book.title}</p>
                   <p className="text-muted-foreground">
                     {new Date(book.published).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "2-digit",
                       day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
                     })}
                   </p>
                 </button>

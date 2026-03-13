@@ -1,34 +1,28 @@
 "use client";
 
-import {
-  AnimatePresence,
-  type MotionProps,
-  motion,
-  type UseInViewOptions,
-  useInView,
-  type Variants,
-} from "motion/react";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import type { MotionProps, UseInViewOptions, Variants } from "motion/react";
 import { useRef } from "react";
 
 type MarginType = UseInViewOptions["margin"];
 
 interface BlurFadeProps extends MotionProps {
+  blur?: string;
   children: React.ReactNode;
   className?: string;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right";
+  duration?: number;
+  inView?: boolean;
+  inViewMargin?: MarginType;
+  offset?: number;
   variant?: {
     hidden: { y: number };
     visible: { y: number };
   };
-  duration?: number;
-  delay?: number;
-  offset?: number;
-  direction?: "up" | "down" | "left" | "right";
-  inView?: boolean;
-  inViewMargin?: MarginType;
-  blur?: string;
 }
 
-export function BlurFade({
+export const BlurFade = ({
   children,
   className,
   variant,
@@ -40,21 +34,21 @@ export function BlurFade({
   inViewMargin = "-50px",
   blur = "6px",
   ...props
-}: BlurFadeProps) {
+}: BlurFadeProps) => {
   const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
+  const inViewResult = useInView(ref, { margin: inViewMargin, once: true });
   const isInView = !inView || inViewResult;
+  const axis = direction === "left" || direction === "right" ? "x" : "y";
   const defaultVariants: Variants = {
     hidden: {
-      [direction === "left" || direction === "right" ? "x" : "y"]:
-        direction === "right" || direction === "down" ? -offset : offset,
-      opacity: 0,
+      [axis]: direction === "right" || direction === "down" ? -offset : offset,
       filter: `blur(${blur})`,
+      opacity: 0,
     },
     visible: {
-      [direction === "left" || direction === "right" ? "x" : "y"]: 0,
-      opacity: 1,
+      [axis]: 0,
       filter: "blur(0px)",
+      opacity: 1,
     },
   };
   const combinedVariants = variant || defaultVariants;
@@ -78,4 +72,4 @@ export function BlurFade({
       </motion.div>
     </AnimatePresence>
   );
-}
+};

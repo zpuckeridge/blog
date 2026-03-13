@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 
-type Props = {
+interface Props {
   text: string;
   className?: string;
-};
+}
 
 export default function AnimatedGradientText({ text, className }: Props) {
   return (

@@ -2,7 +2,8 @@
 
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import {
   Tooltip,
   TooltipContent,
@@ -10,20 +11,17 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-export function ToggleTheme() {
+export const ToggleTheme = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Prevent hydration mismatch by only rendering after mount
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark");
-  };
-
-  // Dont render anything until mounted to prevent hydration mismatch
+  }, [theme, setTheme]);
   if (!mounted) {
     return (
       <TooltipProvider>
@@ -68,4 +66,4 @@ export function ToggleTheme() {
       </Tooltip>
     </TooltipProvider>
   );
-}
+};

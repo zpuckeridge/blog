@@ -1,8 +1,9 @@
 "use client";
 
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
+
 import {
   Tooltip,
   TooltipContent,
@@ -13,7 +14,7 @@ import {
 export default function CopyLink() {
   const [copied, setCopied] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
 
     toast.success("URL Copied!");
@@ -23,7 +24,7 @@ export default function CopyLink() {
     setTimeout(() => {
       setCopied(false);
     }, 2000);
-  };
+  }, []);
 
   return (
     <TooltipProvider>

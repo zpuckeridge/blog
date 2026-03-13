@@ -1,44 +1,52 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
 import AnimatedGradientText from "@/components/animated-gradient-text";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import type { Project } from "@/interfaces/content-item";
 import { getProjects } from "@/lib/directus-content";
 
-export default async function Projects() {
+export const metadata: Metadata = {
+  description:
+    "A list of projects I've worked on, including web design, development, and studio work.",
+  title: "Projects",
+};
+
+const sortProjects = (a: Project, b: Project): number => {
+  // First sort by status (work_in_progress, then published, then archived)
+  if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
+    return -1;
+  }
+  if (a.status !== "work_in_progress" && b.status === "work_in_progress") {
+    return 1;
+  }
+  if (a.status === "archived" && b.status !== "archived") {
+    return 1;
+  }
+  if (a.status !== "archived" && b.status === "archived") {
+    return -1;
+  }
+
+  // Then sort by year completed (descending)
+  if (a.year_completed && b.year_completed) {
+    return b.year_completed - a.year_completed;
+  }
+  if (a.year_completed && !b.year_completed) {
+    return -1;
+  }
+  if (!a.year_completed && b.year_completed) {
+    return 1;
+  }
+
+  // Finally sort by date created (descending)
+  return (
+    new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
+  );
+};
+
+const Projects = async () => {
   const projects = await getProjects();
-
-  const sortProjects = (a: (typeof projects)[0], b: (typeof projects)[0]) => {
-    // First sort by status (work_in_progress, then published, then archived)
-    if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
-      return -1;
-    }
-    if (a.status !== "work_in_progress" && b.status === "work_in_progress") {
-      return 1;
-    }
-    if (a.status === "archived" && b.status !== "archived") {
-      return 1;
-    }
-    if (a.status !== "archived" && b.status === "archived") {
-      return -1;
-    }
-
-    // Then sort by year completed (descending)
-    if (a.year_completed && b.year_completed) {
-      return b.year_completed - a.year_completed;
-    }
-    if (a.year_completed && !b.year_completed) {
-      return -1;
-    }
-    if (!a.year_completed && b.year_completed) {
-      return 1;
-    }
-
-    // Finally sort by date created (descending)
-    return (
-      new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
-    );
-  };
-
-  const sortedProjects = [...projects].sort(sortProjects);
+  const sortedProjects = [...projects].toSorted(sortProjects);
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
@@ -97,7 +105,7 @@ export default async function Projects() {
                               rel="noopener noreferrer"
                               target="_blank"
                             >
-                              Link
+                              View project
                             </a>
                           );
                         }
@@ -124,4 +132,6 @@ export default async function Projects() {
       </div>
     </div>
   );
-}
+};
+
+export default Projects;

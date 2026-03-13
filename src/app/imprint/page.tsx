@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  description:
+    "Contact information, copyright, and legal disclaimer for zacchary.me.",
+  title: "Imprint",
+};
 
 export default function Imprint() {
   return (
@@ -23,7 +30,7 @@ export default function Imprint() {
             <p className="text-muted-foreground text-xs">Copyright</p>
             <p className="text-sm">
               The content of this website is protected by Australian copyright
-              law. Unauthorised distrubution of content for commercial purposes
+              law. Unauthorised distribution of content for commercial purposes
               (ie. screenshots, articles, videos and photos) without express
               prior consent is strictly prohibited. Otherwise, content is more
               than welcome to be referenced externally, as long as it is linked

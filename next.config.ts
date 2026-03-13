@@ -1,43 +1,43 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
         hostname: "i.scdn.co",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "image.mux.com",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "media.discordapp.net",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "cdn.discordapp.com",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "x.com",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "pbs.twimg.com",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "abs.twimg.com",
+        protocol: "https",
       },
       {
-        protocol: "https",
         hostname: "directus.obambulo.studio",
+        protocol: "https",
       },
     ],
   },
+  reactStrictMode: true,
 };
 
 export default nextConfig;

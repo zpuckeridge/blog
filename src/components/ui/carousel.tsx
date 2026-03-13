@@ -1,10 +1,10 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
+import type { UseEmblaCarouselType } from "embla-carousel-react";
 import * as React from "react";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -13,12 +13,12 @@ type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
-type CarouselProps = {
+interface CarouselProps {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
-};
+}
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0];
@@ -31,7 +31,7 @@ type CarouselContextProps = {
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
-function useCarousel() {
+const useCarousel = () => {
   const context = React.useContext(CarouselContext);
 
   if (!context) {
@@ -39,7 +39,7 @@ function useCarousel() {
   }
 
   return context;
-}
+};
 
 const Carousel = ({
   orientation = "horizontal",
@@ -114,20 +114,32 @@ const Carousel = ({
     };
   }, [api, onSelect]);
 
+  const contextValue = React.useMemo(
+    () => ({
+      api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      orientation:
+        orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+      scrollNext,
+      scrollPrev,
+    }),
+    [
+      api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      orientation,
+      scrollNext,
+      scrollPrev,
+    ]
+  );
+
   return (
-    <CarouselContext.Provider
-      value={{
-        carouselRef,
-        api,
-        opts,
-        orientation:
-          orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
-        scrollPrev,
-        scrollNext,
-        canScrollPrev,
-        canScrollNext,
-      }}
-    >
+    <CarouselContext.Provider value={contextValue}>
       <section
         className={cn("relative", className)}
         onKeyDownCapture={handleKeyDown}

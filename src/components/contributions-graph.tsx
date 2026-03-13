@@ -1,23 +1,37 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-type ContributionDay = {
+interface ContributionDay {
   date: string;
   contributionCount: number;
   color: string;
-};
+}
 
-type GitHubContributionsProps = {
+interface GitHubContributionsProps {
   username: string;
+}
+
+const getContributionColor = (count: number): string => {
+  if (count === 0) {
+    return "bg-neutral-100 dark:bg-neutral-900";
+  }
+  if (count <= 3) {
+    return "bg-green-200 dark:bg-green-950";
+  }
+  if (count <= 6) {
+    return "bg-green-300 dark:bg-green-900";
+  }
+  if (count <= 9) {
+    return "bg-green-400 dark:bg-green-800";
+  }
+  return "bg-green-500 dark:bg-green-700";
 };
 
-export default function ContributionsGraph({
-  username,
-}: GitHubContributionsProps) {
+const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -25,9 +39,8 @@ export default function ContributionsGraph({
     const fetchContributions = async () => {
       try {
         setLoading(true);
-        setError(null);
+        setFetchError(null);
 
-        // Fetch GitHub contributions data from our API route
         const response = await fetch(
           `/api/github/contributions/graph?username=${encodeURIComponent(username)}`
         );
@@ -35,7 +48,6 @@ export default function ContributionsGraph({
         const data = await response.json();
 
         if (!response.ok) {
-          // Handle specific error cases
           if (response.status === 401) {
             throw new Error(
               "GitHub authentication failed - token may be expired"
@@ -67,10 +79,12 @@ export default function ContributionsGraph({
         }
 
         setContributions(data.contributions);
-      } catch (err) {
+      } catch (error) {
         const errorMessage =
-          err instanceof Error ? err.message : "Failed to load contributions";
-        setError(errorMessage);
+          error instanceof Error
+            ? error.message
+            : "Failed to load contributions";
+        setFetchError(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -79,38 +93,43 @@ export default function ContributionsGraph({
     fetchContributions();
   }, [username]);
 
-  // Get the last 365 days of contributions
   const last365Days = contributions.slice(-365);
 
-  // Group by weeks (7 days each)
   const weeks: ContributionDay[][] = [];
   for (let i = 0; i < last365Days.length; i += 7) {
     weeks.push(last365Days.slice(i, i + 7));
   }
 
-  const getContributionColor = (count: number) => {
-    if (count === 0) {
-      return "bg-neutral-100 dark:bg-neutral-900";
-    }
-    if (count <= 3) {
-      return "bg-green-200 dark:bg-green-950";
-    }
-    if (count <= 6) {
-      return "bg-green-300 dark:bg-green-900";
-    }
-    if (count <= 9) {
-      return "bg-green-400 dark:bg-green-800";
-    }
-    return "bg-green-500 dark:bg-green-700";
-  };
+  const handleDayHover = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const target = e.currentTarget;
+      const { date } = target.dataset;
+      const { count } = target.dataset;
+      const { color } = target.dataset;
+      if (date && typeof count === "string" && color) {
+        setHoveredDay({
+          color,
+          contributionCount: Number.parseInt(count, 10),
+          date,
+        });
+      }
+    },
+    []
+  );
 
+  const handleDayLeave = useCallback(() => setHoveredDay(null), []);
+
+  let totalContributions = 0;
+  for (const day of contributions) {
+    totalContributions += day.contributionCount;
+  }
   // Show error state
-  if (error) {
+  if (fetchError) {
     return (
       <div className="flex h-[120px] w-full items-center border-0 bg-transparent p-0 text-left">
         <div className="text-muted-foreground text-xs">
           <p>GitHub contributions unavailable</p>
-          <p className="text-red-500 dark:text-red-400">{error}</p>
+          <p className="text-red-500 dark:text-red-400">{fetchError}</p>
         </div>
       </div>
     );
@@ -131,9 +150,12 @@ export default function ContributionsGraph({
                   {week.map((day) => (
                     <button
                       className={`h-[9px] w-[9px] rounded-[2px] ${getContributionColor(day.contributionCount)}`}
+                      data-color={day.color}
+                      data-count={day.contributionCount}
+                      data-date={day.date}
                       key={day.date}
-                      onMouseEnter={() => setHoveredDay(day)}
-                      onMouseLeave={() => setHoveredDay(null)}
+                      onMouseEnter={handleDayHover}
+                      onMouseLeave={handleDayLeave}
                       type="button"
                     />
                   ))}
@@ -147,14 +169,14 @@ export default function ContributionsGraph({
                 {`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${new Date(
                   hoveredDay.date
                 ).toLocaleDateString("en-US", {
-                  month: "short",
                   day: "numeric",
+                  month: "short",
                   year: "numeric",
                 })}`}
               </div>
             ) : (
               <div>
-                {`${contributions.reduce((sum, day) => sum + day.contributionCount, 0)} contributions in the last 12 months`}
+                {`${totalContributions} contributions in the last 12 months`}
               </div>
             )}
           </div>
@@ -162,4 +184,6 @@ export default function ContributionsGraph({
       )}
     </div>
   );
-}
+};
+
+export default ContributionsGraph;

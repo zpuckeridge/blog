@@ -1,17 +1,18 @@
 import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
 import Link from "next/link";
+
 import PostRendering from "@/components/posts";
 import type { TimelineItem } from "@/interfaces/content-item";
 import { getNotes, getPosts } from "@/lib/directus-content";
 
 export const metadata: Metadata = {
-  title: "Timeline",
   description:
     "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
+  title: "Timeline",
 };
 
-export default async function Posts() {
+const Posts = async () => {
   const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);
 
   // Combine posts and notes into a single content array
@@ -23,35 +24,32 @@ export default async function Posts() {
     })),
     ...allNotes.map((note) => ({
       ...note,
+      content: note.content,
+      description:
+        note.content.slice(0, 200) + (note.content.length > 200 ? "..." : ""),
       id: `note-${note.id}`,
-      title:
-        note.content.substring(0, 100) +
-        (note.content.length > 100 ? "..." : ""),
-      slug: `note-${note.id}`,
       image: "",
       image_alt: "",
-      description:
-        note.content.substring(0, 200) +
-        (note.content.length > 200 ? "..." : ""),
-      tags: note.tags || [],
-      content: note.content,
       signature: false,
+      slug: `note-${note.id}`,
+      tags: note.tags || [],
+      title:
+        note.content.slice(0, 100) + (note.content.length > 100 ? "..." : ""),
       type: "Note" as const,
     })),
   ];
 
-  const content = allContent
-    .sort((a, b) =>
-      compareDesc(new Date(a.date_created), new Date(b.date_created))
-    )
-    .reduce((acc: Record<number, TimelineItem[]>, item) => {
-      const year = new Date(item.date_created).getFullYear();
-      if (!acc[year]) {
-        acc[year] = [];
-      }
-      acc[year].push(item);
-      return acc;
-    }, {});
+  const sortedContent = allContent.toSorted((a, b) =>
+    compareDesc(new Date(a.date_created), new Date(b.date_created))
+  );
+  const content: Record<number, TimelineItem[]> = {};
+  for (const item of sortedContent) {
+    const year = new Date(item.date_created).getFullYear();
+    if (!content[year]) {
+      content[year] = [];
+    }
+    content[year].push(item);
+  }
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
@@ -82,4 +80,6 @@ export default async function Posts() {
       </div>
     </div>
   );
-}
+};
+
+export default Posts;

@@ -1,27 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-type PasswordProtectionProps = {
+interface PasswordProtectionProps {
   children: React.ReactNode;
   password: string;
   title?: string;
   description?: string;
-};
+}
 
-export default function PasswordProtection({
+const PasswordProtection = ({
   children,
   password,
   title = "Protected Content",
   description = "Please enter the password to view this content.",
-}: PasswordProtectionProps) {
+}: PasswordProtectionProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [inputPassword, setInputPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Check for existing authentication on component mount
   useEffect(() => {
     const storedAuth = sessionStorage.getItem(`auth_${password}`);
     if (storedAuth === "true") {
@@ -29,21 +29,27 @@ export default function PasswordProtection({
     }
   }, [password]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputPassword === password) {
-      setIsAuthenticated(true);
-      setError("");
-      // Store authentication state in sessionStorage
-      sessionStorage.setItem(`auth_${password}`, "true");
-    } else {
-      setError("Incorrect password. Please try again.");
-      setInputPassword("");
-    }
-  };
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (inputPassword === password) {
+        setIsAuthenticated(true);
+        setError("");
+        sessionStorage.setItem(`auth_${password}`, "true");
+      } else {
+        setError("Incorrect password. Please try again.");
+        setInputPassword("");
+      }
+    },
+    [inputPassword, password]
+  );
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputPassword(e.target.value);
+  }, []);
 
   if (isAuthenticated) {
-    return <>{children}</>;
+    return children;
   }
 
   return (
@@ -60,7 +66,7 @@ export default function PasswordProtection({
             <Input
               className="bg-background"
               id="password"
-              onChange={(e) => setInputPassword(e.target.value)}
+              onChange={handleChange}
               placeholder="Enter password"
               required
               type="password"
@@ -79,4 +85,6 @@ export default function PasswordProtection({
       </div>
     </div>
   );
-}
+};
+
+export default PasswordProtection;

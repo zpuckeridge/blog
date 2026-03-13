@@ -1,12 +1,12 @@
 export interface MenuItem {
-  label: string;
   href: string;
+  label: string;
 }
 
 export const menuItems: MenuItem[] = [
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Timeline", href: "/timeline" },
-  { label: "Videos", href: "/videos" },
-  { label: "CV", href: "/cv" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/timeline", label: "Timeline" },
+  { href: "/videos", label: "Videos" },
+  { href: "/cv", label: "CV" },
 ];

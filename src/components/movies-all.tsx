@@ -1,31 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import type { Movie } from "../interfaces/content-item";
+import { useCallback, useState } from "react";
+
+import type { Movie } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function MoviesAll({ movies }: { movies: Movie[] }) {
   // Group movies by year
-  const moviesByYear = movies.reduce((acc: Record<number, Movie[]>, movie) => {
+  const moviesByYear: Record<number, Movie[]> = {};
+  for (const movie of movies) {
     const year = new Date(movie.date_created).getFullYear();
-    if (!acc[year]) {
-      acc[year] = [];
+    if (!moviesByYear[year]) {
+      moviesByYear[year] = [];
     }
-    acc[year].push(movie);
-    return acc;
-  }, {});
+    moviesByYear[year].push(movie);
+  }
 
   // Get years sorted descending
   const years = Object.keys(moviesByYear)
     .map(Number)
-    .sort((a, b) => b - a);
+    .toSorted((a, b) => b - a);
 
   const [expandedMovie, setExpandedMovie] = useState<string | null>(null);
 
-  const toggleMovie = (movieUrl: string) => {
-    setExpandedMovie((prev) => (prev === movieUrl ? null : movieUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedMovie((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-20">
@@ -43,7 +46,7 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {moviesByYear[year]
-                .sort(
+                .toSorted(
                   (a, b) =>
                     new Date(b.date_created).getTime() -
                     new Date(a.date_created).getTime()
@@ -55,7 +58,8 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
                       <button
                         aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                         className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                        onClick={() => toggleMovie(movie.id.toString())}
+                        data-id={movie.id.toString()}
+                        onClick={handleToggle}
                         type="button"
                       >
                         <p className="line-clamp-1">{movie.title}</p>

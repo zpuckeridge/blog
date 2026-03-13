@@ -157,8 +157,8 @@ html {
 }
 
 .footnotes :target {
-  background-color: #60a5fa; /* bg-blue-400 */
   color: #ffffff; /* text-white */
+  background-color: #60a5fa; /* bg-blue-400 */
   animation: resetColors 3s forwards; /* Add animation */
 }
 
@@ -189,11 +189,11 @@ html {
 }
 
 .footnotes a {
-  content: url("/arrow-top-right.svg");
   display: inline-block;
   width: 12px;
   height: 12px;
   vertical-align: top;
+  content: url("/arrow-top-right.svg");
   filter: invert(60%); /* Makes the SVG icon muted */
   @apply text-muted-foreground;
 }

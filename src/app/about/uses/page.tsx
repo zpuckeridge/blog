@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Uses",
   description: "A collection of tools and hardware I use.",
+  title: "Uses",
 };
 
 const UsesItem = ({
