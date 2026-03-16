@@ -1,5 +1,6 @@
 import { compareDesc } from "date-fns";
 import { MoveRight } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import GitHubContributions from "@/components/contributions-graph";
@@ -23,6 +24,12 @@ const brisbaneDate = new Intl.DateTimeFormat("en-US", {
   timeZone: "Australia/Brisbane",
   year: "numeric",
 }).format(now);
+
+export const metadata: Metadata = {
+  description:
+    "Zacchary Puckeridge — Self-taught Web Developer & Generalist based in Brisbane, Australia.",
+  title: "Home",
+};
 
 export default async function Home() {
   const [posts, projects] = await Promise.all([getPosts(), getProjects()]);

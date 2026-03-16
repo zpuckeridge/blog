@@ -8,7 +8,7 @@ import type {
 
 import { cn } from "@/lib/utils";
 
-export type ImageZoomProps = UncontrolledProps & {
+type ImageZoomProps = UncontrolledProps & {
   isZoomed?: ControlledProps["isZoomed"];
   onZoomChange?: ControlledProps["onZoomChange"];
   className?: string;

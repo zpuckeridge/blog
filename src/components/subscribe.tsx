@@ -3,19 +3,17 @@
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Loader2 } from "lucide-react";
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
+
+import { useMounted } from "@/hooks/use-mounted";
 
 import { Input } from "./ui/input";
 
 const Subscribe: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isMounted = useMounted();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -56,7 +54,7 @@ const Subscribe: React.FC = () => {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" suppressHydrationWarning>
       <form className="group relative flex" onSubmit={handleSubmit}>
         <div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-xs has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-xs has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
           <span className="relative -top-[1px] inline-flex bg-background px-2 text-xs">

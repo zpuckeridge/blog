@@ -16,9 +16,11 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const books = await getBooks();
-  const movies = await getMovies();
-  const credits = await getCredits();
+  const [books, movies, credits] = await Promise.all([
+    getBooks(),
+    getMovies(),
+    getCredits(),
+  ]);
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">

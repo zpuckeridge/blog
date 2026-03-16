@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import useSWR from "swr";
 
 interface ContributionDay {
   date: string;
@@ -28,70 +29,49 @@ const getContributionColor = (count: number): string => {
   return "bg-green-500 dark:bg-green-700";
 };
 
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+  const data = await response.json();
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error("GitHub authentication failed - token may be expired");
+    }
+    if (response.status === 403) {
+      throw new Error("GitHub access forbidden - check API permissions");
+    }
+    if (response.status === 404) {
+      throw new Error(`GitHub user not found`);
+    }
+    if (response.status === 429) {
+      const resetTime = data.resetTime
+        ? new Date(data.resetTime).toLocaleString()
+        : "soon";
+      throw new Error(`GitHub API rate limit exceeded. Resets at ${resetTime}`);
+    }
+    throw new Error(
+      data.error || `HTTP ${response.status}: Failed to fetch contributions`
+    );
+  }
+
+  if (data.error) {
+    throw new Error(data.error);
+  }
+
+  return data.contributions as ContributionDay[];
+};
+
 const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
-  const [contributions, setContributions] = useState<ContributionDay[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  const {
+    data: contributions = [],
+    error: fetchError,
+    isLoading,
+  } = useSWR<ContributionDay[]>(
+    `/api/github/contributions/graph?username=${encodeURIComponent(username)}`,
+    fetcher
+  );
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const fetchContributions = async () => {
-      try {
-        setLoading(true);
-        setFetchError(null);
-
-        const response = await fetch(
-          `/api/github/contributions/graph?username=${encodeURIComponent(username)}`
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            throw new Error(
-              "GitHub authentication failed - token may be expired"
-            );
-          }
-          if (response.status === 403) {
-            throw new Error("GitHub access forbidden - check API permissions");
-          }
-          if (response.status === 404) {
-            throw new Error(`GitHub user '${username}' not found`);
-          }
-          if (response.status === 429) {
-            const resetTime = data.resetTime
-              ? new Date(data.resetTime).toLocaleString()
-              : "soon";
-            throw new Error(
-              `GitHub API rate limit exceeded. Resets at ${resetTime}`
-            );
-          }
-
-          throw new Error(
-            data.error ||
-              `HTTP ${response.status}: Failed to fetch contributions`
-          );
-        }
-
-        if (data.error) {
-          throw new Error(data.error);
-        }
-
-        setContributions(data.contributions);
-      } catch (error) {
-        const errorMessage =
-          error instanceof Error
-            ? error.message
-            : "Failed to load contributions";
-        setFetchError(errorMessage);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContributions();
-  }, [username]);
 
   const last365Days = contributions.slice(-365);
 
@@ -129,7 +109,11 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
       <div className="flex h-[120px] w-full items-center border-0 bg-transparent p-0 text-left">
         <div className="text-muted-foreground text-xs">
           <p>GitHub contributions unavailable</p>
-          <p className="text-red-500 dark:text-red-400">{fetchError}</p>
+          <p className="text-red-500 dark:text-red-400">
+            {fetchError instanceof Error
+              ? fetchError.message
+              : "Failed to load contributions"}
+          </p>
         </div>
       </div>
     );
@@ -138,9 +122,9 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
   return (
     <div
       className="h-[120px] w-full border-0 bg-transparent p-0 text-left transition-opacity duration-300 ease-in-out"
-      style={{ opacity: loading ? 0.5 : 1 }}
+      style={{ opacity: isLoading ? 0.5 : 1 }}
     >
-      {!loading && (
+      {!isLoading && (
         <div className="space-y-2" ref={containerRef}>
           <div className="flex justify-end gap-[4px] overflow-hidden">
             {weeks.map((week, weekIndex) => {

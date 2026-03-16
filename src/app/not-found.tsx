@@ -1,6 +1,12 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  description: "Page could not be found.",
+  title: "404 — Not Found",
+};
 
 export default function NotFound() {
   return (

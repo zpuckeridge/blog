@@ -68,7 +68,7 @@ const TableOfContents = () => {
     };
 
     if (headings.length > 0) {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScroll, { passive: true });
       // Check initial position
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
@@ -211,29 +211,6 @@ const TableOfContents = () => {
               </li>
             ))}
           </ul>
-          <style global jsx>{`
-            @keyframes toc-fade-slide-in {
-              from {
-                opacity: 0;
-                transform: translateX(-24px);
-              }
-              to {
-                opacity: 1;
-                transform: translateX(0);
-              }
-            }
-
-            @keyframes toc-fade-slide-out {
-              from {
-                opacity: 1;
-                transform: translateX(0);
-              }
-              to {
-                opacity: 0;
-                transform: translateX(-24px);
-              }
-            }
-          `}</style>
         </div>
       )}
     </>
