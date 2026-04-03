@@ -4,10 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "opennextjs-cloudflare build",
+    "build": "next build",
     "start": "next start",
-    "check": "ultracite check",
-    "fix": "ultracite fix"
+    "typecheck": "tsc --noEmit",
+    "build:opennext": "NODE_ENV=production opennextjs-cloudflare build",
+    "preview": "bun run build:opennext && opennextjs-cloudflare preview",
+    "deploy": "bun run build:opennext && opennextjs-cloudflare deploy",
+    "upload": "bun run build:opennext && opennextjs-cloudflare upload",
+    "predeploy": "bun run check && bun run typecheck",
+    "fix": "ultracite fix",
+    "check": "ultracite check"
   },
   "dependencies": {
     "@directus/sdk": "^21.2.2",
