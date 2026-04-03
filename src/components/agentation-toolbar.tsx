@@ -14,5 +14,5 @@ export const AgentationToolbar = () => {
   const endpoint =
     process.env.NEXT_PUBLIC_AGENTATION_ENDPOINT ?? "http://localhost:4747";
 
-  return <Agentation className="z-[200]" endpoint={endpoint} />;
+  return <Agentation className="z-200" endpoint={endpoint} />;
 };

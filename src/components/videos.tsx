@@ -46,7 +46,7 @@ const SearchBar = ({
         ];
         const randomIndex = Math.floor(Math.random() * alternatives.length);
         return (
-          <span className="relative -top-[1px] inline-flex bg-background px-2 text-xs">
+          <span className="relative -top-px inline-flex bg-background px-2 text-xs">
             {alternatives[randomIndex]}
           </span>
         );
