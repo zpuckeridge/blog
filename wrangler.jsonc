@@ -15,13 +15,13 @@
   "r2_buckets": [
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "kirk-lms-next-cache",
+      "bucket_name": "personal-blog-next-cache",
     },
   ],
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "kirk-lms",
+      "service": "personal-blog",
     },
   ],
   "durable_objects": {
