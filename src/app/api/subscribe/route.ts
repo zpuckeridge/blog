@@ -1,14 +1,16 @@
 import { LoopsClient } from "loops";
 
-const loopsApiKey = process.env.LOOPS_API_KEY;
-
-if (!loopsApiKey) {
-  throw new Error("LOOPS_API_KEY environment variable is required");
-}
-
-const loops = new LoopsClient(loopsApiKey);
-
 export const POST = async (req: Request) => {
+  const loopsApiKey = process.env.LOOPS_API_KEY;
+  if (!loopsApiKey) {
+    return Response.json(
+      { error: "Subscribe is not configured" },
+      { status: 503 }
+    );
+  }
+
+  const loops = new LoopsClient(loopsApiKey);
+
   try {
     const { email } = await req.json();
 
