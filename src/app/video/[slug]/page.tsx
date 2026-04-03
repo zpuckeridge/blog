@@ -30,7 +30,9 @@ const Clip = async (props: { params: Promise<{ slug: string }> }) => {
       <div className="flex flex-col space-y-20 text-sm">
         <div className="space-y-4">
           <div>
-            <h1 className="font-redaction text-white text-xl">{video.title}</h1>
+            <h1 className="font-redaction text-black dark:text-white text-xl">
+              {video.title}
+            </h1>
 
             <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
               <div className="w-full text-muted-foreground text-xs">
