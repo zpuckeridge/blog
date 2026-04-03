@@ -1,9 +1,11 @@
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import CopyLink from "@/components/copy-link";
+import PasswordProtection from "@/components/password-protection";
 import Player from "@/components/player";
 import {
   Tooltip,
@@ -14,10 +16,37 @@ import {
 import type { Video } from "@/interfaces/content-item";
 import { getVideoBySlug } from "@/lib/directus-content";
 import { getSiteUrl } from "@/lib/site-url";
+import {
+  getVideoAccessErrorMessage,
+  getVideoAuthCookieName,
+  getVideoPassword,
+  isVideoAuthTokenValid,
+} from "@/lib/video-auth";
 import { resolveVideoMedia } from "@/lib/video-source";
 
-const Clip = async (props: { params: Promise<{ slug: string }> }) => {
+const Clip = async (props: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ error?: string }>;
+}) => {
   const { slug } = await props.params;
+  const searchParams = await props.searchParams;
+  const cookieStore = await cookies();
+  const videoPassword = getVideoPassword();
+  const isAuthenticated = await isVideoAuthTokenValid(
+    cookieStore.get(getVideoAuthCookieName())?.value
+  );
+
+  if (!isAuthenticated) {
+    return (
+      <PasswordProtection
+        description="Please enter the password to view this video."
+        error={getVideoAccessErrorMessage(searchParams.error)}
+        isConfigured={Boolean(videoPassword)}
+        redirectTo={`/video/${slug}`}
+        title="Videos"
+      />
+    );
+  }
 
   // Get content from Directus
   const video = (await getVideoBySlug(slug)) as Video | null;
@@ -91,6 +120,17 @@ export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> => {
   const { slug } = await props.params;
+  const cookieStore = await cookies();
+  const isAuthenticated = await isVideoAuthTokenValid(
+    cookieStore.get(getVideoAuthCookieName())?.value
+  );
+
+  if (!isAuthenticated) {
+    return {
+      description: "Protected video content.",
+      title: "Videos",
+    };
+  }
 
   // Get content from Directus
   const video = (await getVideoBySlug(slug)) as Video | null;
