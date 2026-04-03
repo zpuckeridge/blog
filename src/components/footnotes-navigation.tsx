@@ -2,14 +2,16 @@
 
 import { useCallback } from "react";
 
+type FootnotesNavigationProps = React.ComponentPropsWithoutRef<"a"> & {
+  href: string;
+  children: React.ReactNode;
+};
+
 const FootnotesNavigation = ({
   href,
   children,
   ...props
-}: {
-  href: string;
-  children: React.ReactNode;
-}) => {
+}: FootnotesNavigationProps) => {
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();

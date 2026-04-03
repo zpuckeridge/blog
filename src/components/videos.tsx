@@ -11,6 +11,7 @@ import { useCallback, useMemo, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import type { Video } from "@/interfaces/content-item";
+import { resolveVideoMedia } from "@/lib/video-source";
 
 const formatDuration = (duration: number) => {
   const minutes = Math.floor(duration / 60);
@@ -178,7 +179,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                   className="aspect-video rounded-lg transition-all duration-200 group-hover:scale-110"
                   height={600}
                   priority={true}
-                  src={`https://image.mux.com/${video.playback_id}/thumbnail.png`}
+                  src={resolveVideoMedia(video.playback_id).thumbnailUrl}
                   width={600}
                 />
               </div>

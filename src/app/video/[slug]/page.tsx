@@ -14,6 +14,7 @@ import {
 import type { Video } from "@/interfaces/content-item";
 import { getVideoBySlug } from "@/lib/directus-content";
 import { getSiteUrl } from "@/lib/site-url";
+import { resolveVideoMedia } from "@/lib/video-source";
 
 const Clip = async (props: { params: Promise<{ slug: string }> }) => {
   const { slug } = await props.params;
@@ -72,9 +73,7 @@ const Clip = async (props: { params: Promise<{ slug: string }> }) => {
             </div>
           </div>
 
-          <div className="aspect-video overflow-hidden rounded-lg">
-            <Player src={video.playback_id} />
-          </div>
+          <Player src={video.playback_id} />
         </div>
 
         <Link
@@ -102,8 +101,7 @@ export const generateMetadata = async (props: {
 
   const title = `${video.title}`;
   const description = `${video.description || ""}`;
-  const videoUrl = `https://stream.mux.com/${video.playback_id}/highest.mp4`;
-  const thumbnailUrl = `https://image.mux.com/${video.playback_id}/thumbnail.jpg`;
+  const { thumbnailUrl, videoUrl } = resolveVideoMedia(video.playback_id);
 
   const pageUrl = `${getSiteUrl()}/video/${slug}`;
 

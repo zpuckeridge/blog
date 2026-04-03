@@ -36,17 +36,24 @@ export const ImageZoom = ({
   className,
   backdropClassName,
   children,
+  wrapElement = "div",
   ...rest
 }: ImageZoomProps) => {
   const mounted = useMounted();
+  const Outer = wrapElement;
+  const outerClassName = cn(
+    wrapperClass(className),
+    wrapElement === "span" && "block"
+  );
 
   if (!mounted) {
-    return <div className={wrapperClass(className)}>{children}</div>;
+    return <Outer className={outerClassName}>{children}</Outer>;
   }
 
   return (
-    <div className={wrapperClass(className)}>
+    <Outer className={outerClassName}>
       <Zoom
+        wrapElement={wrapElement}
         classDialog={cn(
           "[&::backdrop]:hidden",
           "[&[open]]:fixed [&[open]]:m-0 [&[open]]:h-dvh [&[open]]:max-h-none [&[open]]:w-dvw [&[open]]:max-w-none [&[open]]:overflow-hidden [&[open]]:border-0 [&[open]]:bg-transparent [&[open]]:p-0",
@@ -62,6 +69,6 @@ export const ImageZoom = ({
       >
         {children}
       </Zoom>
-    </div>
+    </Outer>
   );
 };

@@ -126,7 +126,7 @@ const components: MDXComponents = {
     return <h3 id={id}>{children}</h3>;
   },
   img: (props: { src: string; alt: string; title?: string }) => (
-    <ImageZoom>
+    <ImageZoom wrapElement="span">
       <Image
         height={720}
         sizes="100vw"

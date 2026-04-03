@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
+import { AgentationToolbar } from "@/components/agentation-toolbar";
 import Navigation from "@/components/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
@@ -122,6 +123,8 @@ export default function RootLayout({
           {children}
 
           <Toaster position="top-center" richColors />
+
+          <AgentationToolbar />
         </ThemeProvider>
       </body>
     </html>
