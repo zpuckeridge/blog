@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import AnimatedGradientText from "@/components/animated-gradient-text";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import type { Project } from "@/interfaces/content-item";
 import { getProjects } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "A list of projects I've worked on, including web design, development, and studio work.",
+  path: "/projects",
   title: "Projects",
-};
+});
 
 const sortProjects = (a: Project, b: Project): number => {
   // First sort by status (work_in_progress, then published, then archived)

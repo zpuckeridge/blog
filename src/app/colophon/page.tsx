@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import LinkWithIcon from "@/components/link-with-icon";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "Typography, technical stack, and inspiration behind zacchary.me. Built with Next.js, Tailwind, and deployed on Cloudflare Workers.",
+  path: "/colophon",
   title: "Colophon",
-};
+});
 
 export default function Colophon() {
   return (

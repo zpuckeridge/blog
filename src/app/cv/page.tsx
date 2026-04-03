@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import LinkWithIcon from "@/components/link-with-icon";
 import { educationHistory, employmentHistory } from "@/lib/cv-items";
 import type { EducationItem, EmploymentItem } from "@/lib/cv-items";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "An overview of my work experience and education as a Web Developer and IT Administrator.",
+  path: "/cv",
   title: "CV",
-};
+});
 
 const CV = () => (
   <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">

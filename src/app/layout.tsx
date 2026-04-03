@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   authors: { name: "zpuckeridge" },
   creator: "zpuckeridge",
   description:
-    "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
+    "Self-taught Web Developer & Generalist. Based in Brisbane, Australia.",
   formatDetection: {
     telephone: false,
   },
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://zacchary.me"),
   openGraph: {
     description:
-      "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
+      "Self-taught Web Developer & Generalist. Based in Brisbane, Australia.",
     images: "/avatar-2026.avif",
     siteName: "zacchary.me",
     title: "Zacchary Puckeridge",
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     creator: "@zpuckeridge",
     creatorId: "zpuckeridge",
     description:
-      "Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.",
+      "Self-taught Web Developer & Generalist. Based in Brisbane, Australia.",
     images: "/avatar-2026.avif",
     site: "@zpuckeridge",
     title: "Zacchary Puckeridge",

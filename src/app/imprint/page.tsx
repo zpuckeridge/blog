@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
   description:
     "Contact information, copyright, and legal disclaimer for zacchary.me.",
+  path: "/imprint",
   title: "Imprint",
-};
+});
 
 export default function Imprint() {
   return (

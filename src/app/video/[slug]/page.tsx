@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import type { Video } from "@/interfaces/content-item";
 import { getVideoBySlug } from "@/lib/directus-content";
-import { getSiteUrl } from "@/lib/site-url";
+import { createPageMetadata } from "@/lib/metadata";
 import {
   getVideoAccessErrorMessage,
   getVideoAuthCookieName,
@@ -120,77 +120,48 @@ export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> => {
   const { slug } = await props.params;
-  const cookieStore = await cookies();
-  const isAuthenticated = await isVideoAuthTokenValid(
-    cookieStore.get(getVideoAuthCookieName())?.value
-  );
-
-  if (!isAuthenticated) {
-    return {
-      description: "Protected video content.",
-      title: "Videos",
-    };
-  }
-
-  // Get content from Directus
   const video = (await getVideoBySlug(slug)) as Video | null;
 
   if (!video) {
     return notFound();
   }
 
-  const title = `${video.title}`;
-  const description = `${video.description || ""}`;
-  const { thumbnailUrl, videoUrl } = resolveVideoMedia(video.playback_id);
-
-  const pageUrl = `${getSiteUrl()}/video/${slug}`;
+  const { title } = video;
+  const description = video.description || `Watch ${title} on zacchary.me.`;
+  const { thumbnailUrl, videoUrl, youtubeId } = resolveVideoMedia(
+    video.playback_id
+  );
+  const socialImage = {
+    alt: title,
+    height: 1080,
+    url: thumbnailUrl,
+    width: 1920,
+  };
+  const metadata = createPageMetadata({
+    description,
+    image: socialImage,
+    keywords: video.tags,
+    path: `/video/${slug}`,
+    title,
+  });
 
   return {
-    description,
+    ...metadata,
     openGraph: {
-      description,
-      images: [
-        {
-          alt: title,
-          height: 1080,
-          url: thumbnailUrl,
-          width: 1920,
-        },
-      ],
-      siteName: "zacchary.me",
-      title,
+      ...metadata.openGraph,
       type: "video.other",
-      url: pageUrl,
-      videos: [
-        {
-          height: 1080,
-          type: "video/mp4",
-          url: videoUrl,
-          width: 1920,
-        },
-      ],
-    },
-    title,
-    twitter: {
-      card: "player",
-      description,
-      images: [
-        {
-          alt: title,
-          height: 1080,
-          url: thumbnailUrl,
-          width: 1920,
-        },
-      ],
-      players: [
-        {
-          height: 1080,
-          playerUrl: videoUrl,
-          streamUrl: videoUrl,
-          width: 1920,
-        },
-      ],
-      title,
+      ...(youtubeId
+        ? {}
+        : {
+            videos: [
+              {
+                height: 1080,
+                type: "video/mp4",
+                url: videoUrl,
+                width: 1920,
+              },
+            ],
+          }),
     },
   };
 };

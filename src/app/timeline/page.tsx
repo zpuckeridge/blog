@@ -1,16 +1,17 @@
 import { compareDesc } from "date-fns";
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import PostRendering from "@/components/posts";
 import type { TimelineItem } from "@/interfaces/content-item";
 import { getNotes, getPosts } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
+  path: "/timeline",
   title: "Timeline",
-};
+});
 
 const Posts = async () => {
   const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);

@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import CreditsAll from "@/components/credits-all";
 import { getCredits } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "Film and video production credits. Projects I've contributed to in post-production and film.",
+  path: "/about/credits",
   title: "Credits",
-};
+});
 
 export default async function CreditsPage() {
   const credits = await getCredits();

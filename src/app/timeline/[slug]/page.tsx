@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/tooltip";
 import { ImageZoom } from "@/components/zoom-image";
 import { getPostBySlug } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 import { getSiteUrl } from "@/lib/site-url";
 
 const WORD_SPLIT_REGEX = /\s+/;
@@ -193,7 +194,7 @@ export const generateMetadata = async (props: {
   }
 
   const { title } = post;
-  const { description } = post;
+  const description = post.description || `Read ${title} on zacchary.me.`;
 
   const baseUrl = getSiteUrl();
   const directusUrl =
@@ -201,38 +202,28 @@ export const generateMetadata = async (props: {
   const imageUrl = post.image
     ? `${directusUrl}/assets/${post.image}`
     : `${baseUrl}/avatar-2026.avif`;
-  const pageUrl = `${baseUrl}/timeline/${slug}`;
+  const metadata = createPageMetadata({
+    description,
+    image: {
+      alt: post.image_alt || title,
+      height: 1080,
+      url: imageUrl,
+      width: 1920,
+    },
+    keywords: post.tags,
+    path: `/timeline/${slug}`,
+    title,
+  });
 
   return {
-    description,
+    ...metadata,
     openGraph: {
-      description,
-      images: [
-        {
-          alt: title,
-          height: 1080,
-          url: imageUrl,
-          width: 1920,
-        },
-      ],
-      siteName: "zacchary.me",
-      title,
+      ...metadata.openGraph,
+      authors: ["Zacchary Puckeridge"],
+      modifiedTime: new Date(post.date_updated).toISOString(),
+      publishedTime: new Date(post.date_created).toISOString(),
+      tags: post.tags,
       type: "article",
-      url: pageUrl,
-    },
-    title,
-    twitter: {
-      card: "summary_large_image",
-      description,
-      images: [
-        {
-          alt: title,
-          height: 1080,
-          url: imageUrl,
-          width: 1920,
-        },
-      ],
-      title,
     },
   };
 };

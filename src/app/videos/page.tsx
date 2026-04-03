@@ -1,11 +1,11 @@
 import { compareDesc } from "date-fns";
-import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
 import PasswordProtection from "@/components/password-protection";
 import Videos from "@/components/videos";
 import { getVideos } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 import {
   getVideoAccessErrorMessage,
   getVideoAuthCookieName,
@@ -13,10 +13,12 @@ import {
   isVideoAuthTokenValid,
 } from "@/lib/video-auth";
 
-export const metadata: Metadata = {
-  description: "A collection of videos I've created.",
+export const metadata = createPageMetadata({
+  description:
+    "A compilation of humorous, thrilling, and memorable moments from my life and some of the video games I regularly play.",
+  path: "/videos",
   title: "Videos",
-};
+});
 
 export default async function Clips(props: {
   searchParams: Promise<{ error?: string }>;

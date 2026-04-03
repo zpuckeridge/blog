@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  description: "A collection of tools and hardware I use.",
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  description: "A collection of tools, apps, and hardware I use every day.",
+  path: "/about/uses",
   title: "Uses",
-};
+});
 
 const UsesItem = ({
   title,

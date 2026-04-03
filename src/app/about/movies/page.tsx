@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import MoviesAll from "@/components/movies-all";
 import { getMovies } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "Movies I've watched and enjoyed. A collection of films across various genres.",
+  path: "/about/movies",
   title: "Movies",
-};
+});
 
 export default async function MoviesPage() {
   const movies = await getMovies();

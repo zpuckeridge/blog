@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import Age from "@/components/age";
@@ -8,12 +7,14 @@ import ImageWithDetails from "@/components/image-with-details";
 import LinkWithIcon from "@/components/link-with-icon";
 import MoviesPreview from "@/components/movies-preview";
 import { getBooks, getCredits, getMovies } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
     "I'm a 25 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
+  path: "/about",
   title: "About",
-};
+});
 
 export default async function About() {
   const [books, movies, credits] = await Promise.all([

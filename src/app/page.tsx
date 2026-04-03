@@ -1,6 +1,5 @@
 import { compareDesc } from "date-fns";
 import { MoveRight } from "lucide-react";
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import GitHubContributions from "@/components/contributions-graph";
@@ -9,6 +8,7 @@ import LinkWithIcon from "@/components/link-with-icon";
 import { ToggleTheme } from "@/components/toggle-theme";
 import type { Post } from "@/interfaces/content-item";
 import { getPosts, getProjects } from "@/lib/directus-content";
+import { createPageMetadata } from "@/lib/metadata";
 
 // Get current Brisbane time and date
 const now = new Date();
@@ -25,11 +25,12 @@ const brisbaneDate = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 }).format(now);
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   description:
-    "Zacchary Puckeridge — Self-taught Web Developer & Generalist based in Brisbane, Australia.",
+    "Self-taught Web Developer & Generalist. Based in Brisbane, Australia.",
+  path: "/",
   title: "Home",
-};
+});
 
 export default async function Home() {
   const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
