@@ -21,7 +21,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "personal-blog",
+      "service": "blog",
     },
   ],
   "durable_objects": {
