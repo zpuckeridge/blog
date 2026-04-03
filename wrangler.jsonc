@@ -1,0 +1,52 @@
+{
+  "main": ".open-next/worker.js",
+  "name": "blog",
+  "compatibility_date": "2026-03-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "preview_urls": true,
+  "workers_dev": true,
+
+  "routes": [{ "pattern": "zacchary.me", "custom_domain": true }],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "kirk-lms-next-cache",
+    },
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "kirk-lms",
+    },
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler",
+      },
+    ],
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler"],
+    },
+  ],
+  "placement": {
+    "mode": "smart",
+  },
+
+  "observability": {
+    "enabled": true,
+  },
+
+  "images": {
+    "binding": "IMAGES",
+  },
+}

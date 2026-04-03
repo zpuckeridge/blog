@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+import type openNextCloudflareConfig from "./open-next.config";
+
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -38,6 +40,8 @@ const nextConfig: NextConfig = {
     ],
   },
   reactStrictMode: true,
-};
+} satisfies NextConfig;
+
+export type OpenNextCloudflareConfigRef = typeof openNextCloudflareConfig;
 
 export default nextConfig;
