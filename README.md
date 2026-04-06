@@ -2,7 +2,7 @@
 
 [![React Doctor](https://www.react.doctor/share/badge?p=blog&s=100)](https://www.react.doctor/share?p=blog&s=100)
 
-Personal blog and portfolio built with Next.js, Directus, Tailwind, shadcn, Framer Motion, and Mux.
+Personal blog and portfolio built with Astro, Vite, React islands, Directus, Tailwind, shadcn, Framer Motion, and Mux.
 
 ## 🚀 Install
 
@@ -16,10 +16,10 @@ git clone https://github.com/zpuckeridge/blog
 cp .env.example .env.local
 
 # Install packages
-bun install
+npm install
 
 # Run the dev server
-bun run dev
+npm run dev
 ```
 
 ### Environment variables
@@ -28,9 +28,10 @@ Configure `.env.local` with:
 
 - **DIRECTUS_URL** – Directus instance URL (required for content)
 - **DIRECTUS_TOKEN** – Optional static token for private content
+- **PUBLIC_SITE_URL** – Canonical site URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata
 - **LOOPS_API_KEY** – Newsletter signup via Loops
-- **NEXT_PUBLIC_POSTHOG_KEY** – PostHog analytics
-- **NEXT_PUBLIC_POSTHOG_HOST** – PostHog host (optional)
+- **PUBLIC_POSTHOG_KEY** – PostHog analytics
+- **PUBLIC_POSTHOG_HOST** – PostHog host (optional)
 - **GITHUB_TOKEN** – GitHub contributions graph
 - **VIDEO_PASSWORD** – Password protection for videos
 - **SPOTIFY\_\*** – Spotify tracking (optional)
@@ -72,3 +73,14 @@ Configure `.env.local` with:
 - Improved syntax highlighting
 - Setup/resources section (uses, apps, typefaces via Directus)
 - Spotify Now Playing widget
+
+## Deploy (Cloudflare Workers)
+
+Production build outputs to `dist/`. Deploy with Wrangler:
+
+```bash
+npm run build
+npx wrangler deploy
+```
+
+Configure secrets and vars in the Cloudflare dashboard or via `wrangler secret put`.

@@ -1,7 +1,6 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RxMoon, RxSun } from "react-icons/rx";
 
 import { useMounted } from "@/hooks/use-mounted";
@@ -13,13 +12,49 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
+type ResolvedTheme = "dark" | "light";
+
+const STORAGE_KEY = "theme";
+
+const getPreferredTheme = (): ResolvedTheme => {
+  if (typeof window === "undefined") {
+    return "dark";
+  }
+
+  const storedTheme = window.localStorage.getItem(STORAGE_KEY);
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const applyTheme = (theme: ResolvedTheme) => {
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  document.documentElement.style.colorScheme = theme;
+  window.localStorage.setItem(STORAGE_KEY, theme);
+};
+
 export const ToggleTheme = () => {
-  const { theme, setTheme } = useTheme();
   const mounted = useMounted();
+  const [theme, setTheme] = useState<ResolvedTheme>("dark");
+
+  useEffect(() => {
+    if (!mounted) {
+      return;
+    }
+
+    setTheme(getPreferredTheme());
+  }, [mounted]);
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }, [theme, setTheme]);
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+    setTheme(nextTheme);
+  }, [theme]);
+
   if (!mounted) {
     return (
       <TooltipProvider>

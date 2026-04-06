@@ -1,0 +1,22 @@
+---
+import ImprintPage from "@/components/imprint-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+
+const pageMeta = createPageMetadata({
+  description:
+    "Contact information, copyright, and legal disclaimer for zacchary.me.",
+  path: "/imprint",
+  title: "Imprint",
+});
+
+const fullTitle = formatPageTitle("Imprint");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <ImprintPage />
+</Layout>

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useState } from "react";
 import { RxMagnifyingGlass } from "react-icons/rx";
 
@@ -156,7 +155,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                     </div>
                   </button>
                 ) : (
-                  <Link
+                  <a
                     className={`flex w-full justify-between gap-8 py-3 ${
                       index === yearItems.length - 1
                         ? ""
@@ -195,7 +194,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                         )}
                       </span>
                     </div>
-                  </Link>
+                  </a>
                 )
               )}
             </div>

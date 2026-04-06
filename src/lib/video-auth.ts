@@ -5,8 +5,12 @@ const encoder = new TextEncoder();
 const bytesToHex = (bytes: Uint8Array): string =>
   Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
 
-export const getVideoPassword = (): string | null => {
-  const password = process.env.VIDEO_PASSWORD;
+interface VideoEnv {
+  VIDEO_PASSWORD?: string;
+}
+
+export const getVideoPassword = (env?: VideoEnv): string | null => {
+  const password = env?.VIDEO_PASSWORD ?? process.env.VIDEO_PASSWORD;
 
   if (!password) {
     return null;
@@ -29,10 +33,9 @@ export const createVideoAuthToken = async (
 };
 
 export const isVideoAuthTokenValid = async (
-  cookieValue: string | undefined
+  cookieValue: string | undefined,
+  password: string | null
 ): Promise<boolean> => {
-  const password = getVideoPassword();
-
   if (!password || !cookieValue) {
     return false;
   }

@@ -1,0 +1,38 @@
+---
+import "@/styles/globals.css";
+
+import AppShell from "@/components/app-shell";
+import BaseHead from "@/components/seo/base-head.astro";
+import PostHogClient from "@/components/posthog-client";
+import type { PageMetadata } from "@/lib/metadata";
+
+interface Props {
+  canonicalUrl?: string;
+  fullTitle: string;
+  meta?: PageMetadata;
+  rootDefaults?: boolean;
+}
+
+const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
+---
+
+<!doctype html>
+<html class="dark" lang="en" suppressHydrationWarning>
+  <head>
+    <BaseHead
+      canonicalUrl={canonicalUrl}
+      fullTitle={fullTitle}
+      meta={meta}
+      rootDefaults={rootDefaults}
+    />
+    <link href="/avatar-2026.avif" rel="icon" type="image/avif" />
+  </head>
+  <body
+    class="min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400"
+  >
+    <AppShell client:load pathname={Astro.url.pathname}>
+      <slot />
+    </AppShell>
+    <PostHogClient client:load />
+  </body>
+</html>

@@ -1,0 +1,34 @@
+---
+import AboutPage from "@/components/about-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getBooks, getCredits, getMovies } from "@/lib/directus-content";
+
+const [books, movies, credits] = await Promise.all([
+  getBooks(),
+  getMovies(),
+  getCredits(),
+]);
+
+const pageMeta = createPageMetadata({
+  description:
+    "I'm a 25 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
+  path: "/about",
+  title: "About",
+});
+
+const fullTitle = formatPageTitle("About");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <AboutPage
+    books={books}
+    client:load
+    credits={credits}
+    movies={movies}
+  />
+</Layout>

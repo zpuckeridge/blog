@@ -1,0 +1,25 @@
+---
+import BooksPage from "@/components/books-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getBooks } from "@/lib/directus-content";
+
+const books = await getBooks();
+
+const pageMeta = createPageMetadata({
+  description:
+    "Books I've read and recommend. A curated list of reads across theology, technology, and personal development.",
+  path: "/about/books",
+  title: "Books",
+});
+
+const fullTitle = formatPageTitle("Books");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <BooksPage books={books} client:load />
+</Layout>

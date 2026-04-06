@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SiteImage from "@/components/site-image";
 
 import { ImageZoom } from "./zoom-image";
 
@@ -20,7 +20,7 @@ export default function ImageWithDetails({
   return (
     <div className="group relative w-full overflow-hidden rounded-xl">
       <ImageZoom>
-        <Image
+        <SiteImage
           alt={alt}
           className="aspect-[2/3] w-full rounded-xl object-cover transition-all group-hover:blur group-hover:brightness-70"
           height={1000}

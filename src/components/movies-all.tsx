@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useState } from "react";
 
+import SiteImage from "@/components/site-image";
 import type { Movie } from "@/interfaces/content-item";
 
 import { ImageZoom } from "./zoom-image";
@@ -88,7 +88,7 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
                           {movie.image && (
                             <div className="relative w-7">
                               <ImageZoom>
-                                <Image
+                                <SiteImage
                                   alt={movie.title}
                                   className="h-full w-full rounded shadow"
                                   height={150}

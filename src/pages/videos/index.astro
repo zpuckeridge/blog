@@ -1,0 +1,78 @@
+---
+import PasswordProtection from "@/components/password-protection";
+import Videos from "@/components/videos";
+import Layout from "@/layouts/layout.astro";
+import { compareDesc } from "date-fns";
+
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getVideos } from "@/lib/directus-content";
+import {
+  getVideoAccessErrorMessage,
+  getVideoAuthCookieName,
+  getVideoPassword,
+  isVideoAuthTokenValid,
+} from "@/lib/video-auth";
+
+const {searchParams} = Astro.url;
+const cookie = Astro.cookies.get(getVideoAuthCookieName())?.value;
+const videoPassword = getVideoPassword(Astro.locals.runtime?.env);
+const isAuthenticated = await isVideoAuthTokenValid(cookie, videoPassword);
+
+const pageMeta = createPageMetadata({
+  description:
+    "A compilation of humorous, thrilling, and memorable moments from my life and some of the video games I regularly play.",
+  path: "/videos",
+  title: "Videos",
+});
+
+const fullTitle = formatPageTitle("Videos");
+
+const videos = isAuthenticated ? await getVideos() : [];
+
+const sortedVideos = videos.toSorted((a, b) =>
+  compareDesc(new Date(a.date_created), new Date(b.date_created))
+);
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  {
+    !isAuthenticated ? (
+      <PasswordProtection
+        client:load
+        description="A compilation of humorous, thrilling, and memorable moments from my life and some of the video games I regularly play."
+        error={getVideoAccessErrorMessage(searchParams.get("error"))}
+        isConfigured={Boolean(videoPassword)}
+        redirectTo="/videos"
+        title="Videos"
+      />
+    ) : (
+      <div class="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+        <div class="flex flex-col space-y-20 text-sm">
+          <div class="flex flex-col gap-2 text-sm">
+            <p class="font-redaction text-black text-xl dark:text-white">
+              Videos
+            </p>
+
+            <p>
+              A compilation of humorous, thrilling, and memorable moments from
+              my life and some of the video games I regularly play.
+            </p>
+          </div>
+
+          <Videos client:load itemsPerPage={6} videos={sortedVideos} />
+
+          <a
+            class="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
+            href="/"
+          >
+            ../
+          </a>
+        </div>
+      </div>
+    )
+  }
+</Layout>

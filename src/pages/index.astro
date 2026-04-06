@@ -1,0 +1,29 @@
+---
+import HomePage from "@/components/home-page";
+import Layout from "@/layouts/layout.astro";
+import {
+  createPageMetadata,
+  formatPageTitle,
+} from "@/lib/metadata";
+import { getPosts, getProjects } from "@/lib/directus-content";
+
+const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
+
+const pageMeta = createPageMetadata({
+  description:
+    "Self-taught Web Developer & Generalist. Based in Brisbane, Australia.",
+  path: "/",
+  title: "Home",
+});
+
+const fullTitle = formatPageTitle("Home");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+  rootDefaults
+>
+  <HomePage client:load posts={posts} projects={projects} />
+</Layout>

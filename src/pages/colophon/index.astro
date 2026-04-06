@@ -1,0 +1,22 @@
+---
+import ColophonPage from "@/components/colophon-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+
+const pageMeta = createPageMetadata({
+  description:
+    "Typography, technical stack, and inspiration behind zacchary.me. Built with Astro, Tailwind, and deployed on Cloudflare Workers.",
+  path: "/colophon",
+  title: "Colophon",
+});
+
+const fullTitle = formatPageTitle("Colophon");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <ColophonPage />
+</Layout>

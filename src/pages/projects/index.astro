@@ -1,0 +1,25 @@
+---
+import ProjectsPage from "@/components/projects-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getProjects } from "@/lib/directus-content";
+
+const projects = await getProjects();
+
+const pageMeta = createPageMetadata({
+  description:
+    "A list of projects I've worked on, including web design, development, and studio work.",
+  path: "/projects",
+  title: "Projects",
+});
+
+const fullTitle = formatPageTitle("Projects");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <ProjectsPage client:load projects={projects} />
+</Layout>

@@ -2,9 +2,9 @@ import type { ComponentType } from "react";
 import { SafeMdxRenderer } from "safe-mdx";
 import { mdxParse } from "safe-mdx/parse";
 
-import { components as mdxComponents } from "@/../mdx-components";
 import { createSafeMdxGfmRenderNode } from "@/lib/safe-mdx-gfm-render-node";
 import type { MdastImgComponentProps } from "@/lib/safe-mdx-gfm-render-node";
+import { components as mdxComponents } from "@/mdx-components";
 
 /**
  * Renders CMS MDX without `new Function` / eval, so it works on Cloudflare Workers.

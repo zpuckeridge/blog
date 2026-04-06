@@ -1,0 +1,147 @@
+---
+import type { PageMetadata } from "@/lib/metadata";
+
+interface Props {
+  canonicalUrl?: string;
+  fullTitle: string;
+  meta?: PageMetadata;
+  rootDefaults?: boolean;
+}
+
+const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
+
+const og = meta?.openGraph;
+const tw = meta?.twitter;
+const robots = meta?.robots;
+
+const ogImageList = (() => {
+  if (!og?.images) {
+    return [];
+  }
+  return Array.isArray(og.images) ? og.images : [og.images];
+})();
+
+const twImageList = (() => {
+  if (!tw?.images) {
+    return [];
+  }
+  return Array.isArray(tw.images) ? tw.images : [tw.images];
+})();
+---
+
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link href="/favicon.ico" rel="icon" />
+
+<title>{fullTitle}</title>
+
+{meta?.description && (
+  <meta content={meta.description} name="description" />
+)}
+
+{meta?.keywords && meta.keywords.length > 0 && (
+  <meta content={meta.keywords.join(", ")} name="keywords" />
+)}
+
+{robots && (
+  <meta
+    content={`${robots.index ? "index" : "noindex"}, ${robots.follow ? "follow" : "nofollow"}`}
+    name="robots"
+  />
+)}
+
+{canonicalUrl && <link href={canonicalUrl} rel="canonical" />}
+
+{rootDefaults && (
+  <>
+    <meta content="Astro" name="generator" />
+    <meta content="zacchary.me" name="application-name" />
+    <meta content="zpuckeridge" name="author" />
+    <meta content="zpuckeridge" name="creator" />
+    <meta content="zpuckeridge" name="publisher" />
+    <meta content="origin-when-cross-origin" name="referrer" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="default" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="zacchary.me" name="apple-mobile-web-app-title" />
+    <link
+      href="/rss.xml"
+      rel="alternate"
+      title="RSS Feed"
+      type="application/rss+xml"
+    />
+  </>
+)}
+
+{og && (
+  <>
+    {og.title && <meta content={og.title} property="og:title" />}
+    {og.description && (
+      <meta content={og.description} property="og:description" />
+    )}
+    {og.siteName && <meta content={og.siteName} property="og:site_name" />}
+    {og.locale && <meta content={og.locale} property="og:locale" />}
+    {og.type && <meta content={og.type} property="og:type" />}
+    {og.url && <meta content={og.url} property="og:url" />}
+    {og.publishedTime && (
+      <meta content={og.publishedTime} property="article:published_time" />
+    )}
+    {og.modifiedTime && (
+      <meta content={og.modifiedTime} property="article:modified_time" />
+    )}
+    {og.tags &&
+      og.tags.map((tag: string) => <meta content={tag} property="article:tag" />)}
+    {og.authors &&
+      og.authors.map((author: string) => (
+        <meta content={author} property="article:author" />
+      ))}
+    {og.videos &&
+      og.videos.map((v: { url: string }) => (
+        <meta content={v.url} property="og:video" />
+      ))}
+  </>
+)}
+
+{
+  ogImageList.map(
+    (img: {
+      alt?: string;
+      height?: number;
+      url: string;
+      width?: number;
+    }) => (
+      <>
+        <meta content={img.url} property="og:image" />
+        {img.alt && <meta content={img.alt} property="og:image:alt" />}
+        {img.width && (
+          <meta content={String(img.width)} property="og:image:width" />
+        )}
+        {img.height && (
+          <meta content={String(img.height)} property="og:image:height" />
+        )}
+      </>
+    )
+  )
+}
+
+{tw && (
+  <>
+    {tw.card && <meta content={tw.card} name="twitter:card" />}
+    {tw.site && <meta content={tw.site} name="twitter:site" />}
+    {tw.creator && <meta content={tw.creator} name="twitter:creator" />}
+    {tw.title && <meta content={tw.title} name="twitter:title" />}
+    {tw.description && (
+      <meta content={tw.description} name="twitter:description" />
+    )}
+  </>
+)}
+
+{
+  twImageList.map(
+    (img: { alt?: string; url: string }) => (
+      <>
+        <meta content={img.url} name="twitter:image" />
+        {img.alt && <meta content={img.alt} name="twitter:image:alt" />}
+      </>
+    )
+  )
+}

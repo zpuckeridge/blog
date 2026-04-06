@@ -1,0 +1,25 @@
+---
+import CreditsPage from "@/components/credits-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getCredits } from "@/lib/directus-content";
+
+const credits = await getCredits();
+
+const pageMeta = createPageMetadata({
+  description:
+    "Film and video production credits. Projects I've contributed to in post-production and film.",
+  path: "/about/credits",
+  title: "Credits",
+});
+
+const fullTitle = formatPageTitle("Credits");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <CreditsPage client:load credits={credits} />
+</Layout>

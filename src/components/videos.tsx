@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { RxArrowLeft, RxArrowRight, RxMagnifyingGlass } from "react-icons/rx";
 
+import SiteImage from "@/components/site-image";
 import { Input } from "@/components/ui/input";
 import type { Video } from "@/interfaces/content-item";
 import { resolveVideoMedia } from "@/lib/video-source";
@@ -149,7 +148,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
 
       <div className="mt-2 grid grid-cols-2 gap-4">
         {currentVideos.map((video: Video) => (
-          <Link
+          <a
             className="group relative rounded transition-all duration-200 hover:grayscale"
             href={`/video/${video.slug}`}
             key={video.slug}
@@ -170,7 +169,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
               </div>
 
               <div className="aspect-video overflow-hidden rounded-lg transition-all duration-200 group-hover:drop-shadow-2xl">
-                <Image
+                <SiteImage
                   alt={video.title}
                   className="aspect-video rounded-lg transition-all duration-200 group-hover:scale-110"
                   height={600}
@@ -192,7 +191,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                 </p>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
 

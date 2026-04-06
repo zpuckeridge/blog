@@ -3,14 +3,11 @@
   "version": "6.2.2",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler dev",
+    "deploy": "astro build && wrangler deploy",
     "typecheck": "tsc --noEmit",
-    "build:opennext": "NODE_ENV=production opennextjs-cloudflare build",
-    "preview": "bun run build:opennext && opennextjs-cloudflare preview",
-    "deploy": "bun run build:opennext && opennextjs-cloudflare deploy",
-    "upload": "bun run build:opennext && opennextjs-cloudflare upload",
     "predeploy": "bun run check && bun run typecheck",
     "fix": "ultracite fix",
     "check": "ultracite check"
@@ -18,15 +15,14 @@
   "dependencies": {
     "@base-ui/react": "^1.3.0",
     "@directus/sdk": "^21.2.2",
+    "@fontsource/geist-mono": "^5.2.6",
     "@mux/mux-player-react": "^3.11.7",
-    "@opennextjs/cloudflare": "^1.18.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "loops": "^6.2.1",
-    "next": "16.2.2",
     "next-themes": "^0.4.6",
     "posthog-js": "^1.364.6",
     "react": "^19.2.4",
@@ -43,15 +39,19 @@
     "use-lanyard": "^1.7.0"
   },
   "devDependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/react": "^4.4.2",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.0",
     "oxfmt": "^0.43.0",
     "oxlint": "^1.58.0",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
-    "ultracite": "7.4.2"
+    "ultracite": "7.4.2",
+    "wrangler": "^4.54.0"
   }
 }

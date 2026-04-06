@@ -1,10 +1,9 @@
 "use client";
 
 import { compareDesc } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useState } from "react";
 
+import SiteImage from "@/components/site-image";
 import type { Book } from "@/interfaces/content-item";
 
 import { ImageZoom } from "./zoom-image";
@@ -26,12 +25,12 @@ export default function BooksPreview({ books }: { books: Book[] }) {
         <div className="flex w-full flex-row items-center gap-2">
           <p className="text-muted-foreground text-xs">Books</p>
           <hr className="w-full border-muted-foreground border-dotted" />
-          <Link
+          <a
             className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
             href="/about/books"
           >
             See all {sortedBooks.length}
-          </Link>
+          </a>
         </div>
         <div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
           {sortedBooks.map((book: Book) => {
@@ -68,7 +67,7 @@ export default function BooksPreview({ books }: { books: Book[] }) {
                     {book.image && (
                       <div className="relative w-7">
                         <ImageZoom>
-                          <Image
+                          <SiteImage
                             alt={book.title}
                             className="h-full w-full rounded shadow"
                             height={150}

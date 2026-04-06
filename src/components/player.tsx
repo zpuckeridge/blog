@@ -9,6 +9,8 @@ export default function Player({ src }: { src: string }) {
   if (youtubeId) {
     return (
       <div className={playerShell}>
+        {/* YouTube embed requires full embed capabilities; sandbox breaks playback */}
+        {/* oxlint-disable-next-line eslint-plugin-react/iframe-missing-sandbox */}
         <iframe
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen

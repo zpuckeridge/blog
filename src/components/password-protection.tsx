@@ -1,4 +1,3 @@
-import { authenticateVideoAccess } from "@/app/videos/actions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -28,8 +27,9 @@ const PasswordProtection = ({
 
       {isConfigured ? (
         <form
+          action="/api/video-auth"
           className="flex w-full flex-col gap-2"
-          action={authenticateVideoAccess}
+          method="post"
         >
           <input name="redirectTo" type="hidden" value={redirectTo} />
           <div className="flex flex-col gap-2">
