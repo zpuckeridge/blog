@@ -42,7 +42,6 @@ const sortedVideos = videos.toSorted((a, b) =>
   {
     !isAuthenticated ? (
       <PasswordProtection
-        client:load
         description="A compilation of humorous, thrilling, and memorable moments from my life and some of the video games I regularly play."
         error={getVideoAccessErrorMessage(searchParams.get("error"))}
         isConfigured={Boolean(videoPassword)}
@@ -63,7 +62,7 @@ const sortedVideos = videos.toSorted((a, b) =>
             </p>
           </div>
 
-          <Videos client:load itemsPerPage={6} videos={sortedVideos} />
+          <Videos client:idle itemsPerPage={6} videos={sortedVideos} />
 
           <a
             class="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"

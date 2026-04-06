@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 
 interface ContributionDay {
@@ -77,16 +77,48 @@ const fetcher = async (url: string) => {
 };
 
 const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
+  const [shouldFetch, setShouldFetch] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const {
     data: contributions = [],
     error: fetchError,
     isLoading,
   } = useSWR<ContributionDay[]>(
-    `/api/github/contributions/graph?username=${encodeURIComponent(username)}`,
-    fetcher
+    shouldFetch
+      ? `/api/github/contributions/graph?username=${encodeURIComponent(username)}`
+      : null,
+    fetcher,
+    {
+      dedupingInterval: 1000 * 60 * 30,
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+    }
   );
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element || shouldFetch) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) {
+          return;
+        }
+        setShouldFetch(true);
+        observer.disconnect();
+      },
+      {
+        rootMargin: "160px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [shouldFetch]);
 
   const last365Days = contributions.slice(-365);
   const maxContributionCount = Math.max(
@@ -125,7 +157,10 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
   // Show error state
   if (fetchError) {
     return (
-      <div className="flex h-[120px] w-full items-center border-0 bg-transparent p-0 text-left">
+      <div
+        className="flex h-[120px] w-full items-center border-0 bg-transparent p-0 text-left"
+        ref={containerRef}
+      >
         <div className="text-muted-foreground text-xs">
           <p>GitHub contributions unavailable</p>
           <p className="text-red-500 dark:text-red-400">
@@ -141,6 +176,7 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
   return (
     <div
       className="h-[120px] w-full border-0 bg-transparent p-0 text-left transition-opacity duration-300 ease-in-out"
+      ref={containerRef}
       style={{ opacity: isLoading ? 0.5 : 1 }}
     >
       {!isLoading && (

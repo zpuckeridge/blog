@@ -62,7 +62,6 @@ const fullTitle = video
       <NotFoundContent />
     ) : !isAuthenticated ? (
       <PasswordProtection
-        client:load
         description="Please enter the password to view this video."
         error={getVideoAccessErrorMessage(searchParams.get("error"))}
         isConfigured={Boolean(videoPassword)}
@@ -70,7 +69,7 @@ const fullTitle = video
         title="Videos"
       />
     ) : (
-      <VideoDetail client:load video={video} />
+      <VideoDetail client:idle video={video} />
     )
   }
 </Layout>

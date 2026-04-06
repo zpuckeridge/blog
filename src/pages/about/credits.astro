@@ -21,5 +21,5 @@ const fullTitle = formatPageTitle("Credits");
   fullTitle={fullTitle}
   meta={pageMeta}
 >
-  <CreditsPage client:load credits={credits} />
+  <CreditsPage client:idle credits={credits} />
 </Layout>

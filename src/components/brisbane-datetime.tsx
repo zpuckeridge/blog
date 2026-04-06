@@ -19,11 +19,25 @@ export const BrisbaneDateTime = () => {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
-    const id = setInterval(() => {
+    const updateClock = () => {
       setNow(new Date());
-    }, 1000);
+    };
+    let timeoutId = 0;
+
+    const scheduleNextUpdate = () => {
+      const currentTime = new Date();
+      const nextMinute = new Date(currentTime);
+      nextMinute.setSeconds(0, 0);
+      nextMinute.setMinutes(currentTime.getMinutes() + 1);
+      return window.setTimeout(() => {
+        updateClock();
+        timeoutId = scheduleNextUpdate();
+      }, nextMinute.getTime() - currentTime.getTime());
+    };
+
+    timeoutId = scheduleNextUpdate();
     return () => {
-      clearInterval(id);
+      clearTimeout(timeoutId);
     };
   }, []);
 

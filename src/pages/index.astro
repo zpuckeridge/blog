@@ -25,5 +25,5 @@ const fullTitle = formatPageTitle("Home");
   meta={pageMeta}
   rootDefaults
 >
-  <HomePage client:load posts={posts} projects={projects} />
+  <HomePage client:idle posts={posts} projects={projects} />
 </Layout>

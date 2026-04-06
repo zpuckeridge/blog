@@ -29,11 +29,14 @@ const Subscribe: React.FC = () => {
           method: "POST",
         });
 
+        const payload = (await response.json()) as { error?: string };
         if (response.ok) {
           toast.success("Subscribed to new posts");
           setEmail("");
         } else {
-          toast.error("Failed to subscribe. Please try again.");
+          toast.error(
+            payload.error || "Failed to subscribe. Please try again."
+          );
         }
       } catch {
         toast.error("An error occurred. Please try again later.");
@@ -63,6 +66,7 @@ const Subscribe: React.FC = () => {
         </div>
         <Input
           className="-me-px flex-1 text-black text-xs shadow-none dark:text-neutral-300"
+          maxLength={254}
           onChange={handleEmailChange}
           placeholder=""
           required

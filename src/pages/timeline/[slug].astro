@@ -44,5 +44,5 @@ const fullTitle = post
   fullTitle={fullTitle}
   meta={pageMeta}
 >
-  {post ? <TimelinePost client:load post={post} slug={slug} /> : <NotFoundContent />}
+  {post ? <TimelinePost client:idle post={post} slug={slug} /> : <NotFoundContent />}
 </Layout>

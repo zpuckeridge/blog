@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLanyardWS } from "use-lanyard";
 
-export default function Lanyard() {
+const LiveLanyard = () => {
   const DISCORD_ID = "181324210876973056";
   const data = useLanyardWS(DISCORD_ID);
   const [hasInitialized, setHasInitialized] = useState(false);
@@ -78,4 +78,33 @@ export default function Lanyard() {
       <p className="my-auto text-muted-foreground text-xs">{statusText}</p>
     </div>
   );
+};
+
+export default function Lanyard() {
+  const [shouldConnect, setShouldConnect] = useState(false);
+
+  useEffect(() => {
+    const enableConnection = () => setShouldConnect(true);
+    const idleCallbackId =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(enableConnection)
+        : window.setTimeout(enableConnection, 1500);
+
+    return () => {
+      if (
+        "cancelIdleCallback" in window &&
+        typeof idleCallbackId === "number"
+      ) {
+        window.cancelIdleCallback(idleCallbackId);
+        return;
+      }
+      window.clearTimeout(idleCallbackId);
+    };
+  }, []);
+
+  if (!shouldConnect) {
+    return null;
+  }
+
+  return <LiveLanyard />;
 }
