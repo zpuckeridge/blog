@@ -13,6 +13,17 @@
     "binding": "ASSETS",
   },
 
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler"],
+    },
+    {
+      "tag": "v2",
+      "deleted_classes": ["DOQueueHandler"],
+    },
+  ],
+
   "placement": {
     "mode": "smart",
   },
