@@ -1,7 +1,7 @@
 "use client";
 
-import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useCallback, useState } from "react";
+import { RxCheck, RxCopy } from "react-icons/rx";
 import { toast } from "sonner";
 
 import {
@@ -35,9 +35,9 @@ export default function CopyLink() {
           onClick={handleClick}
         >
           {copied ? (
-            <CheckIcon className="fade-in-0 zoom-in-95 my-auto animate-in text-green-500 duration-200" />
+            <RxCheck className="fade-in-0 zoom-in-95 my-auto animate-in text-green-500 duration-200" />
           ) : (
-            <CopyIcon className="fade-in-0 zoom-in-95 my-auto animate-in text-muted-foreground transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600" />
+            <RxCopy className="fade-in-0 zoom-in-95 my-auto animate-in text-muted-foreground transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600" />
           )}
         </TooltipTrigger>
         <TooltipContent

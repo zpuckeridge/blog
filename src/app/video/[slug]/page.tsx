@@ -1,8 +1,8 @@
-import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { RxDotsHorizontal } from "react-icons/rx";
 
 import CopyLink from "@/components/copy-link";
 import PasswordProtection from "@/components/password-protection";
@@ -74,11 +74,8 @@ const Clip = async (props: {
               <div className="flex items-center gap-3">
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger
-                      asChild
-                      className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-                    >
-                      <DotsHorizontalIcon />
+                    <TooltipTrigger className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600">
+                      <RxDotsHorizontal />
                     </TooltipTrigger>
                     <TooltipContent
                       className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"

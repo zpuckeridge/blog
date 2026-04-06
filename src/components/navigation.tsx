@@ -30,7 +30,7 @@ export default function Navigation() {
             <Link
               className={`group inline-flex underline transition ease-in-out ${
                 isActive
-                  ? "text-neutral-300 decoration-solid underline-offset-4"
+                  ? "text-foreground decoration-solid underline-offset-4"
                   : "decoration-dotted underline-offset-2 hover:decoration-solid hover:underline-offset-4"
               }`}
               href={item.href}

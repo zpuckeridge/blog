@@ -13,20 +13,35 @@ interface GitHubContributionsProps {
   username: string;
 }
 
-const getContributionColor = (count: number): string => {
+/** Intensity vs max in the last year (GitHub-style): more tiers and darker greens for heavier days. */
+const getContributionColor = (count: number, maxCount: number): string => {
   if (count === 0) {
     return "bg-neutral-100 dark:bg-neutral-900";
   }
-  if (count <= 3) {
-    return "bg-green-200 dark:bg-green-950";
+  const max = Math.max(maxCount, 1);
+  const t = count / max;
+  if (t <= 0.14) {
+    return "bg-green-100 dark:bg-green-950";
   }
-  if (count <= 6) {
-    return "bg-green-300 dark:bg-green-900";
+  if (t <= 0.29) {
+    return "bg-green-200 dark:bg-green-900";
   }
-  if (count <= 9) {
-    return "bg-green-400 dark:bg-green-800";
+  if (t <= 0.43) {
+    return "bg-green-300 dark:bg-green-800";
   }
-  return "bg-green-500 dark:bg-green-700";
+  if (t <= 0.57) {
+    return "bg-green-400 dark:bg-green-700";
+  }
+  if (t <= 0.71) {
+    return "bg-green-500 dark:bg-green-600";
+  }
+  if (t <= 0.86) {
+    return "bg-green-600 dark:bg-green-500";
+  }
+  if (t <= 0.95) {
+    return "bg-green-700 dark:bg-green-400";
+  }
+  return "bg-green-800 dark:bg-green-300";
 };
 
 const fetcher = async (url: string) => {
@@ -74,6 +89,10 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const last365Days = contributions.slice(-365);
+  const maxContributionCount = Math.max(
+    0,
+    ...last365Days.map((d) => d.contributionCount)
+  );
 
   const weeks: ContributionDay[][] = [];
   for (let i = 0; i < last365Days.length; i += 7) {
@@ -133,7 +152,7 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
                 <div className="flex flex-col gap-[4px]" key={weekStartDate}>
                   {week.map((day) => (
                     <button
-                      className={`h-[9px] w-[9px] rounded-[2px] ${getContributionColor(day.contributionCount)}`}
+                      className={`h-[9px] w-[9px] rounded-[2px] ${getContributionColor(day.contributionCount, maxContributionCount)}`}
                       data-color={day.color}
                       data-count={day.contributionCount}
                       data-date={day.date}

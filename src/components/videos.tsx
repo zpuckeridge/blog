@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  MagnifyingGlassIcon,
-} from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
+import { RxArrowLeft, RxArrowRight, RxMagnifyingGlass } from "react-icons/rx";
 
 import { Input } from "@/components/ui/input";
 import type { Video } from "@/interfaces/content-item";
@@ -61,7 +57,7 @@ const SearchBar = ({
     />
 
     <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
-      <MagnifyingGlassIcon />
+      <RxMagnifyingGlass />
     </div>
   </div>
 );
@@ -209,7 +205,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
             onClick={handlePrevPage}
             type="button"
           >
-            <ArrowLeftIcon className="inline-flex" /> Prev Page
+            <RxArrowLeft className="inline-flex" /> Prev Page
           </button>
           <button
             className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
@@ -224,7 +220,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
             onClick={handleNextPage}
             type="button"
           >
-            Next Page <ArrowRightIcon className="inline-flex" />
+            Next Page <RxArrowRight className="inline-flex" />
           </button>
         </nav>
       )}

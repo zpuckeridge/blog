@@ -1,13 +1,9 @@
-import {
-  CalendarIcon,
-  DotsHorizontalIcon,
-  EnvelopeClosedIcon,
-} from "@radix-ui/react-icons";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FaFacebook, FaXTwitter } from "react-icons/fa6";
+import { RxCalendar, RxDotsHorizontal, RxEnvelopeClosed } from "react-icons/rx";
 
 import AnimatedSignature from "@/components/animated-signature";
 import CopyLink from "@/components/copy-link";
@@ -52,7 +48,9 @@ export default async function PostPage({
       <div className="mx-auto flex w-full max-w-lg flex-col gap-20 px-6">
         <div className="space-y-4">
           <div>
-            <h1 className="font-redaction text-white text-xl">{post.title}</h1>
+            <h1 className="font-redaction text-black text-xl dark:text-white">
+              {post.title}
+            </h1>
             <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
               <div className="w-full text-muted-foreground text-xs">
                 {new Date(post.date_created).toLocaleDateString("en-US", {
@@ -63,11 +61,8 @@ export default async function PostPage({
               <div className="flex items-center gap-3">
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger
-                      asChild
-                      className="transition-all duration-300 hover:text-blue-400 dark:hover:text-blue-600"
-                    >
-                      <DotsHorizontalIcon />
+                    <TooltipTrigger className="transition-all duration-300 hover:text-blue-400 dark:hover:text-blue-600">
+                      <RxDotsHorizontal />
                     </TooltipTrigger>
                     <TooltipContent
                       className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
@@ -145,7 +140,7 @@ export default async function PostPage({
                 className="transition-all duration-300 hover:text-blue-400 dark:hover:text-blue-600"
                 href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
               >
-                <EnvelopeClosedIcon className="h-4 w-4" />
+                <RxEnvelopeClosed className="h-4 w-4" />
               </a>
               <CopyLink />
             </div>
@@ -156,7 +151,7 @@ export default async function PostPage({
               <CopyText text={post.content} />
               {post.date_updated && (
                 <div className="flex gap-2">
-                  <CalendarIcon className="my-auto h-4 w-4" />
+                  <RxCalendar className="my-auto h-4 w-4" />
                   <p className="my-auto text-muted-foreground text-xs">
                     Last modified on{" "}
                     {new Date(post.date_updated).toLocaleDateString("en-US", {

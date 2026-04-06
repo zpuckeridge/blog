@@ -16,7 +16,9 @@ export default function Colophon() {
       <div className="flex flex-col space-y-20 text-sm">
         <div className="space-y-10">
           <div className="flex w-full flex-col gap-2">
-            <p className="font-redaction text-white text-xl">Colophon</p>
+            <p className="font-redaction text-black text-xl dark:text-white">
+              Colophon
+            </p>
             <p className="text-muted-foreground text-xs">Typography</p>
 
             <p>

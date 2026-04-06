@@ -32,7 +32,9 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 
   return (
     <div className="space-y-20">
-      <p className="font-redaction text-white text-xl">Movies</p>
+      <p className="font-redaction text-black text-xl dark:text-white">
+        Movies
+      </p>
 
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (

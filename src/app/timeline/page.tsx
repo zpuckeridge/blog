@@ -56,7 +56,9 @@ const Posts = async () => {
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
       <div className="flex flex-col space-y-20 text-sm">
         <div className="space-y-2">
-          <p className="font-redaction text-white text-xl">Timeline</p>
+          <p className="font-redaction text-black text-xl dark:text-white">
+            Timeline
+          </p>
 
           <p>
             Welcome to my personal corner of the internet. Here you&apos;ll find

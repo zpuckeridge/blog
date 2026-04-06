@@ -32,7 +32,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
 
   return (
     <div className="space-y-20">
-      <p className="font-redaction text-white text-xl">Books</p>
+      <p className="font-redaction text-black text-xl dark:text-white">Books</p>
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (
           <div key={year}>

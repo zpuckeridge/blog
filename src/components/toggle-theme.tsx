@@ -1,8 +1,8 @@
 "use client";
 
-import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useCallback } from "react";
+import { RxMoon, RxSun } from "react-icons/rx";
 
 import { useMounted } from "@/hooks/use-mounted";
 
@@ -29,7 +29,7 @@ export const ToggleTheme = () => {
             className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
             suppressHydrationWarning
           >
-            <MoonIcon className="h-3.5 w-3.5" />
+            <RxMoon className="h-3.5 w-3.5" />
           </TooltipTrigger>
           <TooltipContent
             className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
@@ -52,9 +52,9 @@ export const ToggleTheme = () => {
           suppressHydrationWarning
         >
           {theme === "dark" ? (
-            <SunIcon className="h-3.5 w-3.5" />
+            <RxSun className="h-3.5 w-3.5" />
           ) : (
-            <MoonIcon className="h-3.5 w-3.5" />
+            <RxMoon className="h-3.5 w-3.5" />
           )}
         </TooltipTrigger>
         <TooltipContent

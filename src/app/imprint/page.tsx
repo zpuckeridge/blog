@@ -14,7 +14,9 @@ export default function Imprint() {
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
       <div className="flex flex-col space-y-20 text-sm">
         <div className="flex flex-col space-y-8">
-          <p className="font-redaction text-white text-xl">Imprint</p>
+          <p className="font-redaction text-black text-xl dark:text-white">
+            Imprint
+          </p>
 
           <div className="flex w-full flex-col gap-2">
             <p className="text-muted-foreground text-xs">Contact Information</p>

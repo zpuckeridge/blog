@@ -25,7 +25,9 @@ export default function Uses() {
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
       <div className="flex flex-col space-y-20 text-sm">
-        <p className="font-redaction text-white text-xl">Uses</p>
+        <p className="font-redaction text-black text-xl dark:text-white">
+          Uses
+        </p>
         <p>A summary of the tools and hardware I use on a daily basis.</p>
 
         <div className="flex flex-col gap-12">

@@ -1,9 +1,9 @@
 "use client";
 
-import { PaperPlaneIcon } from "@radix-ui/react-icons";
-import { Loader2 } from "lucide-react";
 import type React from "react";
 import { useCallback, useState } from "react";
+import { LuLoaderCircle } from "react-icons/lu";
+import { RxPaperPlane } from "react-icons/rx";
 import { toast } from "sonner";
 
 import { useMounted } from "@/hooks/use-mounted";
@@ -76,9 +76,9 @@ const Subscribe: React.FC = () => {
           type="submit"
         >
           {isLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <LuLoaderCircle className="h-4 w-4 animate-spin" />
           ) : (
-            <PaperPlaneIcon />
+            <RxPaperPlane />
           )}
         </button>
       </form>

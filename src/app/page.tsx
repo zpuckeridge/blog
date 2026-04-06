@@ -1,7 +1,8 @@
 import { compareDesc } from "date-fns";
-import { MoveRight } from "lucide-react";
 import Link from "next/link";
+import { LuMoveRight } from "react-icons/lu";
 
+import { BrisbaneDateTime } from "@/components/brisbane-datetime";
 import GitHubContributions from "@/components/contributions-graph";
 import Lanyard from "@/components/lanyard";
 import LinkWithIcon from "@/components/link-with-icon";
@@ -9,21 +10,6 @@ import { ToggleTheme } from "@/components/toggle-theme";
 import type { Post } from "@/interfaces/content-item";
 import { getPosts, getProjects } from "@/lib/directus-content";
 import { createPageMetadata } from "@/lib/metadata";
-
-// Get current Brisbane time and date
-const now = new Date();
-const brisbaneTime = new Intl.DateTimeFormat("en-US", {
-  hour12: true,
-  timeStyle: "short",
-  timeZone: "Australia/Brisbane",
-}).format(now);
-
-const brisbaneDate = new Intl.DateTimeFormat("en-US", {
-  day: "numeric",
-  month: "short",
-  timeZone: "Australia/Brisbane",
-  year: "numeric",
-}).format(now);
 
 export const metadata = createPageMetadata({
   description:
@@ -44,7 +30,7 @@ export default async function Home() {
       <div className="space-y-20">
         <div className="space-y-4">
           <div className="space-y-2 text-sm">
-            <p className="font-redaction text-white text-xl">
+            <p className="font-redaction text-black text-xl dark:text-white">
               Zacchary Puckeridge
             </p>
             <div>
@@ -117,8 +103,8 @@ export default async function Home() {
                 <LinkWithIcon href="https://www.rsp.com.au">
                   Rising Sun Pictures
                 </LinkWithIcon>{" "}
-                (2022 <MoveRight className="inline-flex h-4 w-4" /> 2024) as an
-                IT Administrator to deploy and maintain the remote Brisbane
+                (2022 <LuMoveRight className="inline-flex h-4 w-4" /> 2024) as
+                an IT Administrator to deploy and maintain the remote Brisbane
                 office infrastructure.
               </p>
 
@@ -127,7 +113,7 @@ export default async function Home() {
                 <LinkWithIcon href="https://www.pixelzoo.com.au">
                   Pixel Zoo
                 </LinkWithIcon>{" "}
-                (2021 <MoveRight className="inline-flex h-4 w-4" /> 2022) as a
+                (2021 <LuMoveRight className="inline-flex h-4 w-4" /> 2022) as a
                 Systems Administrator to provide internal and remote support for
                 ~200+ employees. Deployed various networking and hardware
                 upgrades across the studio and implemented new file storage
@@ -239,11 +225,7 @@ export default async function Home() {
 
           <div className="space-y-2">
             <div className="flex justify-between">
-              <div className="flex flex-row gap-2 text-muted-foreground text-xs">
-                <p>{brisbaneTime}</p>
-                <p>•</p>
-                <p>{brisbaneDate}</p>
-              </div>
+              <BrisbaneDateTime />
 
               <Lanyard />
             </div>

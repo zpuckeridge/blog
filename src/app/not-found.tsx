@@ -1,6 +1,6 @@
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
+import { RxArrowLeft } from "react-icons/rx";
 
 import { buildMetadataUrl, createPageMetadata } from "@/lib/metadata";
 
@@ -40,7 +40,7 @@ export default function NotFound() {
           className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
           href="/"
         >
-          <ArrowLeftIcon className="inline-flex" /> /
+          <RxArrowLeft className="inline-flex" /> /
         </Link>
       </div>
     </div>

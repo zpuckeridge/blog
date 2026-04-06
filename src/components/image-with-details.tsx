@@ -30,10 +30,10 @@ export default function ImageWithDetails({
       </ImageZoom>
 
       <div className="absolute right-4 bottom-4 left-4 opacity-0 transition-all duration-200 group-hover:opacity-100">
-        <div className="flex w-full flex-col gap-0.5">
-          <div className="w-full text-sm">{name}</div>
-          <div className="w-full text-neutral-400 text-xs">{location}</div>
-          <div className="w-full text-neutral-400 text-xs">{author}</div>
+        <div className="flex w-full flex-col gap-0.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]">
+          <div className="w-full text-sm text-white">{name}</div>
+          <div className="w-full text-white/80 text-xs">{location}</div>
+          <div className="w-full text-white/80 text-xs">{author}</div>
         </div>
       </div>
     </div>

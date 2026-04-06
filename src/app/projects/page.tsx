@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import type { Project } from "@/interfaces/content-item";
 import { getProjects } from "@/lib/directus-content";
 import { createPageMetadata } from "@/lib/metadata";
+import { cn } from "@/lib/utils";
 
 export const metadata = createPageMetadata({
   description:
@@ -53,7 +54,9 @@ const Projects = async () => {
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
       <div className="flex flex-col space-y-20 text-sm">
         <div className="space-y-2">
-          <p className="font-redaction text-white text-xl">Projects</p>
+          <p className="font-redaction text-black text-xl dark:text-white">
+            Projects
+          </p>
 
           <p>
             Here you&apos;ll find a list of projects I&apos;ve worked on. I
@@ -67,11 +70,11 @@ const Projects = async () => {
               <TableBody>
                 {sortedProjects.map((project) => (
                   <TableRow
-                    className={`group border-muted-foreground border-b border-dotted hover:bg-neutral-950 ${
-                      project.status === "archived"
-                        ? "text-yellow-700 dark:text-yellow-600"
-                        : ""
-                    }`}
+                    className={cn(
+                      "group border-muted-foreground border-b border-dotted hover:!bg-transparent dark:hover:!bg-transparent",
+                      project.status === "archived" &&
+                        "text-yellow-700 dark:text-yellow-600"
+                    )}
                     key={project.id}
                   >
                     <TableCell>

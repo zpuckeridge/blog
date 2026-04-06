@@ -1,8 +1,8 @@
 "use client";
 
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useCallback, useState } from "react";
+import { RxMagnifyingGlass } from "react-icons/rx";
 
 import { Switch } from "@/components/ui/switch";
 import type { TimelineItem } from "@/interfaces/content-item";
@@ -81,7 +81,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
           />
 
           <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
-            <MagnifyingGlassIcon />
+            <RxMagnifyingGlass />
           </div>
         </div>
 

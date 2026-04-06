@@ -32,7 +32,9 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 
   return (
     <div className="space-y-20">
-      <p className="font-redaction text-white text-xl">Credits</p>
+      <p className="font-redaction text-black text-xl dark:text-white">
+        Credits
+      </p>
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (
           <div key={year}>
