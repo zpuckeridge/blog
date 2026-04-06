@@ -18,9 +18,9 @@ interface CreatePageMetadataOptions {
   title: string;
 }
 
-export const siteName = "zacchary.me";
-export const siteHandle = "@zpuckeridge";
-export const siteTitle = "Zacchary Puckeridge";
+const siteName = "zacchary.me";
+const siteHandle = "@zpuckeridge";
+const siteTitle = "Zacchary Puckeridge";
 
 export const formatPageTitle = (pageTitle: string): string =>
   `${pageTitle} — ${siteTitle}`;
@@ -28,12 +28,12 @@ export const formatPageTitle = (pageTitle: string): string =>
 export const buildMetadataUrl = (path: string): string =>
   new URL(path, getSiteUrl()).toString();
 
-export const defaultSocialImage: SocialImage = {
+const defaultSocialImage: SocialImage = {
   alt: siteTitle,
   url: buildMetadataUrl("/avatar-2026.avif"),
 };
 
-/** Plain metadata shape consumed by `BaseHead.astro` (replaces Next.js `Metadata`). */
+/** Plain metadata shape consumed by `base-head.astro` (replaces Next.js `Metadata`). */
 export interface PageMetadata {
   alternates?: {
     canonical?: string;

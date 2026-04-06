@@ -1,6 +1,6 @@
 import type { CSSProperties, ImgHTMLAttributes } from "react";
 
-export type SiteImageProps = Omit<
+type SiteImageProps = Omit<
   ImgHTMLAttributes<HTMLImageElement>,
   "src" | "alt" | "width" | "height"
 > & {

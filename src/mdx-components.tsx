@@ -159,5 +159,4 @@ const components: MDXComponents = {
   ),
 } satisfies MDXComponents;
 
-export const useMDXComponents = (): MDXComponents => components;
 export { components };
