@@ -40,6 +40,7 @@ export default function SiteImage({
       alt={alt}
       className={className}
       decoding={decoding}
+      fetchPriority={priority ? "high" : undefined}
       height={height}
       loading={resolvedLoading}
       sizes={sizes}

@@ -1,5 +1,3 @@
-"use client";
-
 import SiteImage from "@/components/site-image";
 import { menuItems } from "@/lib/menu-items";
 

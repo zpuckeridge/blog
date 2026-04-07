@@ -1,6 +1,7 @@
 ---
 import NotFoundContent from "@/components/not-found-content";
 import TimelinePost from "@/components/timeline-post";
+import { Toaster } from "@/components/ui/sonner";
 import Layout from "@/layouts/layout.astro";
 import {
   buildMetadataUrl,
@@ -45,4 +46,5 @@ const fullTitle = post
   meta={pageMeta}
 >
   {post ? <TimelinePost client:idle post={post} slug={slug} /> : <NotFoundContent />}
+  <Toaster client:idle position="top-center" richColors />
 </Layout>

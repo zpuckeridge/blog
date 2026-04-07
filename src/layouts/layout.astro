@@ -1,8 +1,7 @@
 ---
 import "@/styles/globals.css";
-import { ClientRouter } from "astro:transitions";
 
-import AppShell from "@/components/app-shell";
+import Navigation from "@/components/navigation";
 import BaseHead from "@/components/seo/base-head.astro";
 import PostHogClient from "@/components/posthog-client";
 import type { PageMetadata } from "@/lib/metadata";
@@ -38,7 +37,6 @@ const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
         document.documentElement.style.colorScheme = preferredTheme;
       })();
     </script>
-    <ClientRouter />
     <BaseHead
       canonicalUrl={canonicalUrl}
       fullTitle={fullTitle}
@@ -50,9 +48,11 @@ const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
   <body
     class="min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400"
   >
-    <AppShell client:idle pathname={Astro.url.pathname}>
+    <div class="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-20 bg-linear-to-t from-white dark:from-background" />
+    <Navigation pathname={Astro.url.pathname} />
+    <div class="min-h-screen">
       <slot />
-    </AppShell>
+    </div>
     <PostHogClient client:idle />
   </body>
 </html>

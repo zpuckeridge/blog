@@ -3,6 +3,7 @@ import PasswordProtection from "@/components/password-protection";
 import VideoDetail from "@/components/video-detail";
 import Layout from "@/layouts/layout.astro";
 import NotFoundContent from "@/components/not-found-content";
+import { Toaster } from "@/components/ui/sonner";
 import {
   buildMetadataUrl,
   buildVideoPageMetadata,
@@ -72,4 +73,5 @@ const fullTitle = video
       <VideoDetail client:idle video={video} />
     )
   }
+  <Toaster client:idle position="top-center" richColors />
 </Layout>

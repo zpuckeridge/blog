@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource/geist-mono/400.css";
+@import "@fontsource/geist-mono/latin-400.css";
 
 @font-face {
   font-family: Archivo;
