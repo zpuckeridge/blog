@@ -1,5 +1,6 @@
 ---
 import "@/styles/globals.css";
+import { ClientRouter } from "astro:transitions";
 
 import AppShell from "@/components/app-shell";
 import BaseHead from "@/components/seo/base-head.astro";
@@ -17,8 +18,27 @@ const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
 ---
 
 <!doctype html>
-<html class="dark" lang="en" suppressHydrationWarning>
+<html lang="en" suppressHydrationWarning>
   <head>
+    <script data-astro-rerun is:inline>
+      (() => {
+        const storageKey = "theme";
+        const storedTheme = window.localStorage.getItem(storageKey);
+        let preferredTheme = "light";
+        if (storedTheme === "light" || storedTheme === "dark") {
+          preferredTheme = storedTheme;
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          preferredTheme = "dark";
+        }
+
+        document.documentElement.classList.toggle(
+          "dark",
+          preferredTheme === "dark"
+        );
+        document.documentElement.style.colorScheme = preferredTheme;
+      })();
+    </script>
+    <ClientRouter />
     <BaseHead
       canonicalUrl={canonicalUrl}
       fullTitle={fullTitle}

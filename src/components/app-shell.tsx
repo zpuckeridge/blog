@@ -16,7 +16,7 @@ export default function AppShell({ children, pathname }: AppShellProps) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="system"
       disableTransitionOnChange
       enableSystem
     >

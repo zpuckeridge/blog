@@ -1,8 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { useCallback } from "react";
 import { RxMoon, RxSun } from "react-icons/rx";
 
+import { ThemeProvider } from "@/components/theme-provider";
 import { useMounted } from "@/hooks/use-mounted";
 
 import {
@@ -12,48 +14,13 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-type ResolvedTheme = "dark" | "light";
-
-const STORAGE_KEY = "theme";
-
-const getPreferredTheme = (): ResolvedTheme => {
-  if (typeof window === "undefined") {
-    return "dark";
-  }
-
-  const storedTheme = window.localStorage.getItem(STORAGE_KEY);
-  if (storedTheme === "dark" || storedTheme === "light") {
-    return storedTheme;
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-};
-
-const applyTheme = (theme: ResolvedTheme) => {
-  document.documentElement.classList.toggle("dark", theme === "dark");
-  document.documentElement.style.colorScheme = theme;
-  window.localStorage.setItem(STORAGE_KEY, theme);
-};
-
-export const ToggleTheme = () => {
+const ToggleThemeButton = () => {
   const mounted = useMounted();
-  const [theme, setTheme] = useState<ResolvedTheme>("dark");
-
-  useEffect(() => {
-    if (!mounted) {
-      return;
-    }
-
-    setTheme(getPreferredTheme());
-  }, [mounted]);
+  const { resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = useCallback(() => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    applyTheme(nextTheme);
-    setTheme(nextTheme);
-  }, [theme]);
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
   if (!mounted) {
     return (
@@ -86,7 +53,7 @@ export const ToggleTheme = () => {
           onClick={toggleTheme}
           suppressHydrationWarning
         >
-          {theme === "dark" ? (
+          {resolvedTheme === "dark" ? (
             <RxSun className="h-3.5 w-3.5" />
           ) : (
             <RxMoon className="h-3.5 w-3.5" />
@@ -102,3 +69,14 @@ export const ToggleTheme = () => {
     </TooltipProvider>
   );
 };
+
+export const ToggleTheme = () => (
+  <ThemeProvider
+    attribute="class"
+    defaultTheme="system"
+    disableTransitionOnChange
+    enableSystem
+  >
+    <ToggleThemeButton />
+  </ThemeProvider>
+);
