@@ -1,0 +1,38 @@
+{
+  "name": "blog",
+  "main": "dist/_worker.js/index.js",
+  "compatibility_date": "2026-03-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "preview_urls": true,
+  "workers_dev": true,
+
+  "routes": [{ "pattern": "zacchary.me", "custom_domain": true }],
+
+  "assets": {
+    "directory": "dist",
+    "binding": "ASSETS",
+  },
+
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["DOQueueHandler"],
+    },
+    {
+      "tag": "v2",
+      "deleted_classes": ["DOQueueHandler"],
+    },
+  ],
+
+  "placement": {
+    "mode": "smart",
+  },
+
+  "observability": {
+    "enabled": true,
+  },
+
+  "images": {
+    "binding": "IMAGES",
+  },
+}

@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Ultracite Code Standards
 
-This project uses **Ultracite**, a zero-config Biome preset that enforces strict code quality standards through automated formatting and linting.
+This project uses **Ultracite** with **Oxlint** and **Oxfmt**, enforcing strict code quality standards through automated formatting and linting.
 
 ## Quick Reference
 
@@ -14,7 +14,7 @@ This project uses **Ultracite**, a zero-config Biome preset that enforces strict
 - **Check for issues**: `npx ultracite check`
 - **Diagnose setup**: `npx ultracite doctor`
 
-Biome (the underlying engine) provides extremely fast Rust-based linting and formatting. Most issues are automatically fixable.
+Oxlint and Oxfmt (part of the Oxc ecosystem) provide extremely fast Rust-based linting and formatting—50–100x faster than ESLint. Most issues are automatically fixable.
 
 ---
 
@@ -113,9 +113,9 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 - Don't use `.only` or `.skip` in committed code
 - Keep test suites reasonably flat - avoid excessive `describe` nesting
 
-## When Biome Can't Help
+## When Oxlint Can't Help
 
-Biome's linter will catch most issues automatically. Focus your attention on:
+Oxlint will catch most issues automatically. Focus your attention on:
 
 1. **Business logic correctness** - Biome can't validate your algorithms
 2. **Meaningful naming** - Use descriptive names for functions, variables, and types
@@ -126,4 +126,4 @@ Biome's linter will catch most issues automatically. Focus your attention on:
 
 ---
 
-Most formatting and common issues are automatically fixed by Biome. Run `npx ultracite fix` before committing to ensure compliance.
+Most formatting and common issues are automatically fixed by Oxfmt and Oxlint. Run `npx ultracite fix` before committing to ensure compliance.

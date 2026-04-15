@@ -1,0 +1,25 @@
+---
+import MoviesPage from "@/components/movies-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getMovies } from "@/lib/directus-content";
+
+const movies = await getMovies();
+
+const pageMeta = createPageMetadata({
+  description:
+    "Movies I've watched and enjoyed. A collection of films across various genres.",
+  path: "/about/movies",
+  title: "Movies",
+});
+
+const fullTitle = formatPageTitle("Movies");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <MoviesPage client:idle movies={movies} />
+</Layout>

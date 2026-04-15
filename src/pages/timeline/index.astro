@@ -1,0 +1,25 @@
+---
+import TimelinePage from "@/components/timeline-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { getNotes, getPosts } from "@/lib/directus-content";
+
+const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);
+
+const pageMeta = createPageMetadata({
+  description:
+    "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
+  path: "/timeline",
+  title: "Timeline",
+});
+
+const fullTitle = formatPageTitle("Timeline");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <TimelinePage allNotes={allNotes} allPosts={allPosts} client:idle />
+</Layout>

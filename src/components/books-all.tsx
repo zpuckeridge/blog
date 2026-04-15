@@ -1,35 +1,38 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
-import type { Book } from "../interfaces/content-item";
+import { useCallback, useState } from "react";
+
+import SiteImage from "@/components/site-image";
+import type { Book } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function BooksAll({ books }: { books: Book[] }) {
   // Group books by year
-  const booksByYear = books.reduce((acc: Record<number, Book[]>, book) => {
+  const booksByYear: Record<number, Book[]> = {};
+  for (const book of books) {
     const year = new Date(book.date_created).getFullYear();
-    if (!acc[year]) {
-      acc[year] = [];
+    if (!booksByYear[year]) {
+      booksByYear[year] = [];
     }
-    acc[year].push(book);
-    return acc;
-  }, {});
+    booksByYear[year].push(book);
+  }
 
   // Get years sorted descending
   const years = Object.keys(booksByYear)
     .map(Number)
-    .sort((a, b) => b - a);
+    .toSorted((a, b) => b - a);
 
   const [expandedBook, setExpandedBook] = useState<string | null>(null);
 
-  const toggleBook = (bookUrl: string) => {
-    setExpandedBook((prev) => (prev === bookUrl ? null : bookUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedBook((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-20">
-      <p className="font-redaction text-white text-xl">Books</p>
+      <p className="font-redaction text-black text-xl dark:text-white">Books</p>
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (
           <div key={year}>
@@ -42,7 +45,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {booksByYear[year]
-                .sort(
+                .toSorted(
                   (a, b) =>
                     new Date(b.date_created).getTime() -
                     new Date(a.date_created).getTime()
@@ -54,7 +57,8 @@ export default function BooksAll({ books }: { books: Book[] }) {
                       <button
                         aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                         className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                        onClick={() => toggleBook(book.id.toString())}
+                        data-id={book.id.toString()}
+                        onClick={handleToggle}
                         type="button"
                       >
                         <p className="line-clamp-1">{book.title}</p>
@@ -81,7 +85,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
                           {book.image && (
                             <div className="relative w-7">
                               <ImageZoom>
-                                <Image
+                                <SiteImage
                                   alt={book.title}
                                   className="h-full w-full rounded shadow"
                                   height={150}

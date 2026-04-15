@@ -1,0 +1,21 @@
+---
+import UsesPage from "@/components/uses-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+
+const pageMeta = createPageMetadata({
+  description: "A collection of tools, apps, and hardware I use every day.",
+  path: "/about/uses",
+  title: "Uses",
+});
+
+const fullTitle = formatPageTitle("Uses");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <UsesPage />
+</Layout>

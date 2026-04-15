@@ -1,0 +1,29 @@
+---
+import NotFoundContent from "@/components/not-found-content";
+import Layout from "@/layouts/layout.astro";
+import {
+  buildMetadataUrl,
+  createPageMetadata,
+  formatPageTitle,
+} from "@/lib/metadata";
+
+const pageMeta = createPageMetadata({
+  description: "Page could not be found.",
+  image: {
+    alt: "404 — Not Found",
+    url: buildMetadataUrl("/media/404.webp"),
+  },
+  noIndex: true,
+  title: "404 — Not Found",
+});
+
+const fullTitle = formatPageTitle("404 — Not Found");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <NotFoundContent />
+</Layout>

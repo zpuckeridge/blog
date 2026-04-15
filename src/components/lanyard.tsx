@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLanyardWS } from "use-lanyard";
 
-export default function Lanyard() {
+const LiveLanyard = () => {
   const DISCORD_ID = "181324210876973056";
   const data = useLanyardWS(DISCORD_ID);
   const [hasInitialized, setHasInitialized] = useState(false);
@@ -30,7 +30,7 @@ export default function Lanyard() {
   const getStatusTextAndColor = () => {
     // Show offline status until fully loaded
     if (!(isFullyLoaded && data && data.discord_status)) {
-      return { statusText: "Offline", dotColor: "bg-gray-400" };
+      return { dotColor: "bg-gray-400", statusText: "Offline" };
     }
 
     const discordStatus = data.discord_status;
@@ -38,25 +38,29 @@ export default function Lanyard() {
     let color: string;
 
     switch (discordStatus) {
-      case "idle":
+      case "idle": {
         text = "Idle";
         color = "bg-yellow-300";
         break;
-      case "online":
+      }
+      case "online": {
         text = "Online";
         color = "bg-green-500";
         break;
-      case "dnd":
+      }
+      case "dnd": {
         text = "Do Not Disturb";
         color = "bg-red-500";
         break;
-      default:
+      }
+      default: {
         text = "Offline";
         color = "bg-gray-400";
         break;
+      }
     }
 
-    return { statusText: text, dotColor: color };
+    return { dotColor: color, statusText: text };
   };
 
   const { statusText, dotColor } = getStatusTextAndColor();
@@ -74,4 +78,33 @@ export default function Lanyard() {
       <p className="my-auto text-muted-foreground text-xs">{statusText}</p>
     </div>
   );
+};
+
+export default function Lanyard() {
+  const [shouldConnect, setShouldConnect] = useState(false);
+
+  useEffect(() => {
+    const enableConnection = () => setShouldConnect(true);
+    const idleCallbackId =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(enableConnection)
+        : window.setTimeout(enableConnection, 1500);
+
+    return () => {
+      if (
+        "cancelIdleCallback" in window &&
+        typeof idleCallbackId === "number"
+      ) {
+        window.cancelIdleCallback(idleCallbackId);
+        return;
+      }
+      window.clearTimeout(idleCallbackId);
+    };
+  }, []);
+
+  if (!shouldConnect) {
+    return null;
+  }
+
+  return <LiveLanyard />;
 }

@@ -1,0 +1,18 @@
+.signature-path {
+  animation: draw-signature 0.03s ease-in-out both;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+@keyframes draw-signature {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

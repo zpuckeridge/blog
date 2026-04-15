@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-export default function TableOfContents() {
+const TableOfContents = () => {
   const [headings, setHeadings] = useState<
     { id: string; text: string; level: number }[]
   >([]);
@@ -23,18 +23,18 @@ export default function TableOfContents() {
       );
       const newHeadings: { id: string; text: string; level: number }[] = [];
 
-      for (const element of Array.from(headingElements)) {
+      for (const element of headingElements) {
         // Skip headings that are within footnotes sections
         if (element.closest(".footnotes")) {
           return;
         }
 
-        const id = element.id;
+        const { id } = element;
         const text = element.textContent || "";
         const level = Number.parseInt(element.tagName.charAt(1), 10);
 
         if (id && text) {
-          newHeadings.push({ id, text, level });
+          newHeadings.push({ id, level, text });
         }
       }
 
@@ -48,17 +48,19 @@ export default function TableOfContents() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Add offset for better detection
+      // Add offset for better detection
+      const scrollPosition = window.scrollY + 100;
 
       let currentHeading: { id: string; text: string; level: number } | null =
         null;
 
       for (const heading of headings) {
-        const element = document.getElementById(heading.id);
-        if (element && element.offsetTop <= scrollPosition) {
+        const element = document.querySelector(`#${CSS.escape(heading.id)}`);
+        if (element && (element as HTMLElement).offsetTop <= scrollPosition) {
           currentHeading = heading;
         } else {
-          break; // Stop at the first heading that's below the scroll position
+          // Stop at the first heading that's below the scroll position
+          break;
         }
       }
 
@@ -66,37 +68,40 @@ export default function TableOfContents() {
     };
 
     if (headings.length > 0) {
-      window.addEventListener("scroll", handleScroll);
-      handleScroll(); // Check initial position
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      // Check initial position
+      handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [headings]);
 
-  const handleHeadingClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    headingId: string
-  ) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(headingId);
+  const handleHeadingClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      const headingId = e.currentTarget.getAttribute("href")?.slice(1) ?? "";
+      const targetElement = document.querySelector(`#${CSS.escape(headingId)}`);
 
-    if (targetElement) {
-      // Calculate the target position with offset for the fixed header
-      const headerOffset = 80; // Adjust this value based on your header height
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
+      if (targetElement) {
+        // Calculate the target position with offset for the fixed header
+        // Adjust this value based on your header height
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+        window.scrollTo({
+          behavior: "smooth",
+          top: offsetPosition,
+        });
 
-      // Update the URL hash without triggering a jump
-      window.history.pushState(null, "", `#${headingId}`);
-    }
-  };
+        // Update the URL hash without triggering a jump
+        window.history.pushState(null, "", `#${headingId}`);
+      }
+    },
+    []
+  );
 
-  const handleTocClick = () => {
+  const handleTocClick = useCallback(() => {
     if (isExpanded) {
       // Start exit animation
       setIsAnimating(true);
@@ -111,10 +116,10 @@ export default function TableOfContents() {
     } else {
       setIsExpanded(true);
     }
-  };
+  }, [isExpanded, headings.length]);
 
   if (headings.length === 0) {
-    return null; // Don't render if no headings found
+    return null;
   }
 
   return (
@@ -135,7 +140,7 @@ export default function TableOfContents() {
                       : "text-neutral-700 dark:text-neutral-300"
                   }`}
                   href={`#${heading.id}`}
-                  onClick={(e) => handleHeadingClick(e, heading.id)}
+                  onClick={handleHeadingClick}
                   style={{ paddingLeft: `${(heading.level - 1) * 12}px` }}
                 >
                   {heading.text}
@@ -198,7 +203,7 @@ export default function TableOfContents() {
                       : "text-neutral-400 dark:text-neutral-400"
                   }`}
                   href={`#${heading.id}`}
-                  onClick={(e) => handleHeadingClick(e, heading.id)}
+                  onClick={handleHeadingClick}
                   style={{ paddingLeft: `${(heading.level - 1) * 12 + 8}px` }}
                 >
                   {heading.text}
@@ -206,31 +211,10 @@ export default function TableOfContents() {
               </li>
             ))}
           </ul>
-          <style global jsx>{`
-						@keyframes toc-fade-slide-in {
-							from {
-								opacity: 0;
-								transform: translateX(-24px);
-							}
-							to {
-								opacity: 1;
-								transform: translateX(0);
-							}
-						}
-
-						@keyframes toc-fade-slide-out {
-							from {
-								opacity: 1;
-								transform: translateX(0);
-							}
-							to {
-								opacity: 0;
-								transform: translateX(-24px);
-							}
-						}
-					`}</style>
         </div>
       )}
     </>
   );
-}
+};
+
+export default TableOfContents;

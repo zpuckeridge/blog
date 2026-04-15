@@ -1,38 +1,40 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
-import type { Credit } from "../interfaces/content-item";
+import { useCallback, useState } from "react";
+
+import SiteImage from "@/components/site-image";
+import type { Credit } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function CreditsAll({ credits }: { credits: Credit[] }) {
   // Group credits by year
-  const creditsByYear = credits.reduce(
-    (acc: Record<number, Credit[]>, credit) => {
-      const year = new Date(credit.release_date).getFullYear();
-      if (!acc[year]) {
-        acc[year] = [];
-      }
-      acc[year].push(credit);
-      return acc;
-    },
-    {}
-  );
+  const creditsByYear: Record<number, Credit[]> = {};
+  for (const credit of credits) {
+    const year = new Date(credit.release_date).getFullYear();
+    if (!creditsByYear[year]) {
+      creditsByYear[year] = [];
+    }
+    creditsByYear[year].push(credit);
+  }
 
   // Get years sorted descending
   const years = Object.keys(creditsByYear)
     .map(Number)
-    .sort((a, b) => b - a);
+    .toSorted((a, b) => b - a);
 
   const [expandedCredit, setExpandedCredit] = useState<string | null>(null);
 
-  const toggleCredit = (creditUrl: string) => {
-    setExpandedCredit((prev) => (prev === creditUrl ? null : creditUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedCredit((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-20">
-      <p className="font-redaction text-white text-xl">Credits</p>
+      <p className="font-redaction text-black text-xl dark:text-white">
+        Credits
+      </p>
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (
           <div key={year}>
@@ -45,7 +47,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {creditsByYear[year]
-                .sort(
+                .toSorted(
                   (a, b) =>
                     new Date(b.release_date).getTime() -
                     new Date(a.release_date).getTime()
@@ -57,7 +59,8 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                       <button
                         aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                         className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                        onClick={() => toggleCredit(credit.id.toString())}
+                        data-id={credit.id.toString()}
+                        onClick={handleToggle}
                         type="button"
                       >
                         <p className="line-clamp-1">{credit.title}</p>
@@ -84,7 +87,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                           {credit.image && (
                             <div className="relative w-7">
                               <ImageZoom>
-                                <Image
+                                <SiteImage
                                   alt={credit.title}
                                   className="h-full w-full rounded shadow"
                                   height={150}

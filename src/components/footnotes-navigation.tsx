@@ -1,31 +1,42 @@
 "use client";
 
-export default function FootnotesNavigation({
+import { useCallback } from "react";
+
+type FootnotesNavigationProps = React.ComponentPropsWithoutRef<"a"> & {
+  href: string;
+  children: React.ReactNode;
+};
+
+const FootnotesNavigation = ({
   href,
   children,
   ...props
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+}: FootnotesNavigationProps) => {
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      const targetId = href.replace("#", "");
+      const targetElement = document.querySelector(`#${targetId}`);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    },
+    [href]
+  );
+
   return (
     <a
       href={href}
       {...props}
       className="text-muted-foreground"
-      onClick={(e) => {
-        e.preventDefault();
-        const targetId = href.replace("#", "");
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }}
+      onClick={handleClick}
     >
       {children}
     </a>
   );
-}
+};
+
+export default FootnotesNavigation;

@@ -1,60 +1,63 @@
 "use client";
 
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import type * as React from "react";
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
 import { cn } from "@/lib/utils";
 
-function TooltipProvider({
-  delayDuration = 0,
+const TooltipProvider = ({
+  delay: delayDuration = 0,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
-  return (
-    <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
-      delayDuration={delayDuration}
-      {...props}
-    />
-  );
-}
+}: TooltipPrimitive.Provider.Props) => (
+  <TooltipPrimitive.Provider
+    data-slot="tooltip-provider"
+    delay={delayDuration}
+    {...props}
+  />
+);
 
-function Tooltip({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
-  return (
-    <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
-    </TooltipProvider>
-  );
-}
+const Tooltip = ({ ...props }: TooltipPrimitive.Root.Props) => (
+  <TooltipPrimitive.Root data-slot="tooltip" {...props} />
+);
 
-function TooltipTrigger({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
-}
+const TooltipTrigger = ({ ...props }: TooltipPrimitive.Trigger.Props) => (
+  <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
+);
 
-function TooltipContent({
+type TooltipContentProps = TooltipPrimitive.Popup.Props &
+  Pick<
+    TooltipPrimitive.Positioner.Props,
+    "align" | "alignOffset" | "side" | "sideOffset"
+  >;
+
+const TooltipContent = ({
   className,
+  side = "top",
   sideOffset = 0,
+  align = "center",
+  alignOffset = 0,
   children,
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
-  return (
-    <TooltipPrimitive.Portal>
-      <TooltipPrimitive.Content
+  ...popupProps
+}: TooltipContentProps) => (
+  <TooltipPrimitive.Portal>
+    <TooltipPrimitive.Positioner
+      align={align}
+      alignOffset={alignOffset}
+      className="isolate z-50"
+      side={side}
+      sideOffset={sideOffset}
+    >
+      <TooltipPrimitive.Popup
         className={cn(
-          "fade-in-0 zoom-in-95 data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) animate-in text-balance rounded-md bg-primary px-3 py-1.5 text-primary-foreground text-xs data-[state=closed]:animate-out",
+          "fade-in-0 zoom-in-95 data-closed:fade-out-0 data-closed:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--transform-origin) animate-in text-balance rounded-md bg-primary px-3 py-1.5 text-primary-foreground text-xs data-closed:animate-out",
           className
         )}
         data-slot="tooltip-content"
-        sideOffset={sideOffset}
-        {...props}
+        {...popupProps}
       >
         {children}
-      </TooltipPrimitive.Content>
-    </TooltipPrimitive.Portal>
-  );
-}
+      </TooltipPrimitive.Popup>
+    </TooltipPrimitive.Positioner>
+  </TooltipPrimitive.Portal>
+);
 
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };

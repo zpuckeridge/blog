@@ -1,70 +1,46 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-type PasswordProtectionProps = {
-  children: React.ReactNode;
-  password: string;
+interface PasswordProtectionProps {
+  error?: string | null;
+  isConfigured?: boolean;
+  redirectTo?: string;
   title?: string;
   description?: string;
-};
+}
 
-export default function PasswordProtection({
-  children,
-  password,
+const PasswordProtection = ({
+  error = null,
+  isConfigured = true,
+  redirectTo = "/videos",
   title = "Protected Content",
   description = "Please enter the password to view this content.",
-}: PasswordProtectionProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [inputPassword, setInputPassword] = useState("");
-  const [error, setError] = useState("");
+}: PasswordProtectionProps) => (
+  <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+    <div className="flex flex-col space-y-20 text-sm">
+      <div className="flex flex-col gap-2 text-sm">
+        <p className="font-redaction text-black text-xl dark:text-white">
+          {title}
+        </p>
+        <p>{description}</p>
+      </div>
 
-  // Check for existing authentication on component mount
-  useEffect(() => {
-    const storedAuth = sessionStorage.getItem(`auth_${password}`);
-    if (storedAuth === "true") {
-      setIsAuthenticated(true);
-    }
-  }, [password]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputPassword === password) {
-      setIsAuthenticated(true);
-      setError("");
-      // Store authentication state in sessionStorage
-      sessionStorage.setItem(`auth_${password}`, "true");
-    } else {
-      setError("Incorrect password. Please try again.");
-      setInputPassword("");
-    }
-  };
-
-  if (isAuthenticated) {
-    return <>{children}</>;
-  }
-
-  return (
-    <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
-      <div className="flex flex-col space-y-20 text-sm">
-        <div className="flex flex-col gap-2 text-sm">
-          <p className="font-redaction text-white text-xl">{title}</p>
-          <p>{description}</p>
-        </div>
-
-        <form className="flex w-full flex-col gap-2" onSubmit={handleSubmit}>
+      {isConfigured ? (
+        <form
+          action="/api/video-auth"
+          className="flex w-full flex-col gap-2"
+          method="post"
+        >
+          <input name="redirectTo" type="hidden" value={redirectTo} />
           <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input
               className="bg-background"
               id="password"
-              onChange={(e) => setInputPassword(e.target.value)}
+              name="password"
               placeholder="Enter password"
               required
               type="password"
-              value={inputPassword}
             />
             {error && <p className="text-destructive text-sm">{error}</p>}
           </div>
@@ -76,7 +52,13 @@ export default function PasswordProtection({
             Access Content
           </button>
         </form>
-      </div>
+      ) : (
+        <p className="text-destructive text-sm">
+          Video access is temporarily unavailable.
+        </p>
+      )}
     </div>
-  );
-}
+  </div>
+);
+
+export default PasswordProtection;

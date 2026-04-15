@@ -1,0 +1,58 @@
+---
+import "@/styles/globals.css";
+
+import Navigation from "@/components/navigation";
+import BaseHead from "@/components/seo/base-head.astro";
+import PostHogClient from "@/components/posthog-client";
+import type { PageMetadata } from "@/lib/metadata";
+
+interface Props {
+  canonicalUrl?: string;
+  fullTitle: string;
+  meta?: PageMetadata;
+  rootDefaults?: boolean;
+}
+
+const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" suppressHydrationWarning>
+  <head>
+    <script data-astro-rerun is:inline>
+      (() => {
+        const storageKey = "theme";
+        const storedTheme = window.localStorage.getItem(storageKey);
+        let preferredTheme = "light";
+        if (storedTheme === "light" || storedTheme === "dark") {
+          preferredTheme = storedTheme;
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          preferredTheme = "dark";
+        }
+
+        document.documentElement.classList.toggle(
+          "dark",
+          preferredTheme === "dark"
+        );
+        document.documentElement.style.colorScheme = preferredTheme;
+      })();
+    </script>
+    <BaseHead
+      canonicalUrl={canonicalUrl}
+      fullTitle={fullTitle}
+      meta={meta}
+      rootDefaults={rootDefaults}
+    />
+    <link href="/avatar-2026.avif" rel="icon" type="image/avif" />
+  </head>
+  <body
+    class="min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400"
+  >
+    <div class="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-20 bg-linear-to-t from-white dark:from-background" />
+    <Navigation pathname={Astro.url.pathname} />
+    <div class="min-h-screen">
+      <slot />
+    </div>
+    <PostHogClient client:idle />
+  </body>
+</html>

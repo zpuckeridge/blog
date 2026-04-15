@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "./node_modules/ultracite/config/oxlint/core/.oxlintrc.json",
+    "./node_modules/ultracite/config/oxlint/react/.oxlintrc.json",
+    "./node_modules/ultracite/config/oxlint/astro/.oxlintrc.json"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.astro"],
+      "rules": {
+        "unicorn/prefer-module": "off"
+      }
+    },
+    {
+      "files": ["src/lib/video-source.ts"],
+      "rules": {
+        "func-style": "off",
+        "unicorn/prefer-array-find": "off"
+      }
+    },
+    {
+      "files": ["src/components/home-page.tsx"],
+      "rules": {
+        "jsx-a11y/anchor-ambiguous-text": "off"
+      }
+    }
+  ]
+}

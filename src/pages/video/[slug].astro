@@ -1,0 +1,77 @@
+---
+import PasswordProtection from "@/components/password-protection";
+import VideoDetail from "@/components/video-detail";
+import Layout from "@/layouts/layout.astro";
+import NotFoundContent from "@/components/not-found-content";
+import { Toaster } from "@/components/ui/sonner";
+import {
+  buildMetadataUrl,
+  buildVideoPageMetadata,
+  createPageMetadata,
+  formatPageTitle,
+} from "@/lib/metadata";
+import { getVideoBySlug } from "@/lib/directus-content";
+import type { Video } from "@/interfaces/content-item";
+import {
+  getVideoAccessErrorMessage,
+  getVideoAuthCookieName,
+  getVideoPassword,
+  isVideoAuthTokenValid,
+} from "@/lib/video-auth";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+const video = (await getVideoBySlug(slug)) as Video | null;
+
+if (!video) {
+  Astro.response.status = 404;
+}
+
+const { searchParams } = Astro.url;
+const cookie = Astro.cookies.get(getVideoAuthCookieName())?.value;
+const videoPassword = getVideoPassword(Astro.locals.runtime?.env);
+const isAuthenticated = await isVideoAuthTokenValid(cookie, videoPassword);
+
+const pageMeta = video
+  ? buildVideoPageMetadata(video, slug)
+  : createPageMetadata({
+      description: "Page could not be found.",
+      image: {
+        alt: "404 — Not Found",
+        url: buildMetadataUrl("/media/404.webp"),
+      },
+      noIndex: true,
+      title: "404 — Not Found",
+    });
+
+const fullTitle = video
+  ? formatPageTitle(video.title)
+  : formatPageTitle("404 — Not Found");
+---
+
+<Layout
+  canonicalUrl={pageMeta?.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  {
+    !video ? (
+      <NotFoundContent />
+    ) : !isAuthenticated ? (
+      <PasswordProtection
+        description="Please enter the password to view this video."
+        error={getVideoAccessErrorMessage(searchParams.get("error"))}
+        isConfigured={Boolean(videoPassword)}
+        redirectTo={`/video/${slug}`}
+        title="Videos"
+      />
+    ) : (
+      <VideoDetail client:idle video={video} />
+    )
+  }
+  <Toaster client:idle position="top-center" richColors />
+</Layout>

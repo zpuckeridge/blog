@@ -1,15 +1,16 @@
 "use client";
 
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { RxMagnifyingGlass } from "react-icons/rx";
+
 import { Switch } from "@/components/ui/switch";
 import type { TimelineItem } from "@/interfaces/content-item";
+
 import { Input } from "./ui/input";
 
-type PostsProps = {
+interface PostsProps {
   postsByYear: Record<number, TimelineItem[]>;
-};
+}
 
 const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
   const [isAnyPostHovered, setIsAnyPostHovered] = useState(false);
@@ -17,36 +18,48 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
   const [showNotes, setShowNotes] = useState(true);
 
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value),
+    []
+  );
+
+  const handleTagClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      const tag = e.currentTarget.dataset.tag ?? "";
+      setSelectedTag((prev) => (prev.includes(tag) ? [] : [tag]));
+    },
+    []
+  );
+
+  const handleMouseEnter = useCallback(() => setIsAnyPostHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsAnyPostHovered(false), []);
+
   // Get unique tags from all posts
-  const allTags = Array.from(
-    new Set(
+  const allTags = [
+    ...new Set(
       Object.values(postsByYear)
         .flat()
         .flatMap((item) => item.tags)
         .filter(Boolean)
-    )
-  ).sort();
+    ),
+  ].toSorted();
 
   // Filter posts based on search query, selected tags, and notes toggle
-  const filteredPostsByYear = Object.entries(postsByYear).reduce<
-    Record<string, TimelineItem[]>
-  >((acc, [year, items]) => {
+  const filteredPostsByYear: Record<string, TimelineItem[]> = {};
+  for (const [year, items] of Object.entries(postsByYear)) {
     const filteredItems = items.filter((item) => {
       const matchesSearch = item.title
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
-      const matchesTags =
-        selectedTag.length === 0 ||
-        selectedTag.every((tag) => item.tags.includes(tag));
+      const matchesTags = selectedTag.every((tag) => item.tags.includes(tag));
       const matchesNotesToggle = showNotes || item.type !== "Note";
       return matchesSearch && matchesTags && matchesNotesToggle;
     });
 
     if (filteredItems.length > 0) {
-      acc[year] = filteredItems;
+      filteredPostsByYear[year] = filteredItems;
     }
-    return acc;
-  }, {});
+  }
 
   return (
     <div className="flex w-full flex-col">
@@ -60,14 +73,14 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
 
           <Input
             className="-me-px flex-1 rounded-lg text-black text-xs shadow-none dark:text-neutral-300"
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
             placeholder=""
             type="text"
             value={searchQuery}
           />
 
           <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
-            <MagnifyingGlassIcon />
+            <RxMagnifyingGlass />
           </div>
         </div>
 
@@ -80,9 +93,8 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
               key={`tag-${tag}`}
-              onClick={() => {
-                setSelectedTag(selectedTag.includes(tag) ? [] : [tag]);
-              }}
+              data-tag={tag}
+              onClick={handleTagClick}
               type="button"
             >
               {tag}
@@ -97,7 +109,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
       </div>
 
       {Object.entries(filteredPostsByYear)
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+        .toSorted(([yearA], [yearB]) => Number(yearB) - Number(yearA))
         .map(([year, yearItems]) => (
           <div
             className="flex w-full border-muted-foreground border-t border-dotted text-sm"
@@ -114,8 +126,8 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                         : "border-muted-foreground border-b border-dotted"
                     } group/item`}
                     key={`note-${item.slug}-${item.date_created}`}
-                    onMouseEnter={() => setIsAnyPostHovered(true)}
-                    onMouseLeave={() => setIsAnyPostHovered(false)}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                     type="button"
                   >
                     <div
@@ -143,7 +155,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                     </div>
                   </button>
                 ) : (
-                  <Link
+                  <a
                     className={`flex w-full justify-between gap-8 py-3 ${
                       index === yearItems.length - 1
                         ? ""
@@ -151,8 +163,8 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                     } group/item`}
                     href={`/timeline/${item.slug}`}
                     key={`post-${item.slug}-${item.date_created}`}
-                    onMouseEnter={() => setIsAnyPostHovered(true)}
-                    onMouseLeave={() => setIsAnyPostHovered(false)}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className="w-full">
                       <p
@@ -182,7 +194,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                         )}
                       </span>
                     </div>
-                  </Link>
+                  </a>
                 )
               )}
             </div>

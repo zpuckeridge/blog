@@ -1,0 +1,22 @@
+---
+import CvPage from "@/components/cv-page";
+import Layout from "@/layouts/layout.astro";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+
+const pageMeta = createPageMetadata({
+  description:
+    "An overview of my work experience and education as a Web Developer and IT Administrator.",
+  path: "/cv",
+  title: "CV",
+});
+
+const fullTitle = formatPageTitle("CV");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <CvPage />
+</Layout>

@@ -1,8 +1,12 @@
 "use client";
 
-import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useCallback } from "react";
+import { RxMoon, RxSun } from "react-icons/rx";
+
+import { ThemeProvider } from "@/components/theme-provider";
+import { useMounted } from "@/hooks/use-mounted";
+
 import {
   Tooltip,
   TooltipContent,
@@ -10,20 +14,14 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-export function ToggleTheme() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+const ToggleThemeButton = () => {
+  const mounted = useMounted();
+  const { resolvedTheme, setTheme } = useTheme();
 
-  // Prevent hydration mismatch by only rendering after mount
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const toggleTheme = useCallback(() => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  }, [resolvedTheme, setTheme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
-  // Dont render anything until mounted to prevent hydration mismatch
   if (!mounted) {
     return (
       <TooltipProvider>
@@ -31,8 +29,9 @@ export function ToggleTheme() {
           <TooltipTrigger
             aria-label="Toggle Theme"
             className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
+            suppressHydrationWarning
           >
-            <MoonIcon className="h-3.5 w-3.5" />
+            <RxMoon className="h-3.5 w-3.5" />
           </TooltipTrigger>
           <TooltipContent
             className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
@@ -52,11 +51,12 @@ export function ToggleTheme() {
           aria-label="Toggle Theme"
           className="text-muted-foreground transition-all duration-200 ease-in-out hover:text-blue-400 dark:hover:text-blue-600"
           onClick={toggleTheme}
+          suppressHydrationWarning
         >
-          {theme === "dark" ? (
-            <SunIcon className="h-3.5 w-3.5" />
+          {resolvedTheme === "dark" ? (
+            <RxSun className="h-3.5 w-3.5" />
           ) : (
-            <MoonIcon className="h-3.5 w-3.5" />
+            <RxMoon className="h-3.5 w-3.5" />
           )}
         </TooltipTrigger>
         <TooltipContent
@@ -68,4 +68,15 @@ export function ToggleTheme() {
       </Tooltip>
     </TooltipProvider>
   );
-}
+};
+
+export const ToggleTheme = () => (
+  <ThemeProvider
+    attribute="class"
+    defaultTheme="system"
+    disableTransitionOnChange
+    enableSystem
+  >
+    <ToggleThemeButton />
+  </ThemeProvider>
+);

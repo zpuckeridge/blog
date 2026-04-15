@@ -1,21 +1,23 @@
 "use client";
 
 import { compareDesc } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+
+import SiteImage from "@/components/site-image";
 import type { Credit } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function CreditsPreview({ credits }: { credits: Credit[] }) {
-  const sortedCredits = credits.sort((a, b) =>
+  const sortedCredits = credits.toSorted((a, b) =>
     compareDesc(new Date(a.release_date), new Date(b.release_date))
   );
   const [expandedCredit, setExpandedCredit] = useState<string | null>(null);
 
-  const toggleCredit = (creditUrl: string) => {
-    setExpandedCredit((prev) => (prev === creditUrl ? null : creditUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedCredit((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-2">
@@ -23,12 +25,12 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
         <div className="flex w-full flex-row items-center gap-2">
           <p className="text-muted-foreground text-xs">Credits</p>
           <hr className="w-full border-muted-foreground border-dotted" />
-          <Link
+          <a
             className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
             href="/about/credits"
           >
             See all {sortedCredits.length}
-          </Link>
+          </a>
         </div>
         <div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
           {sortedCredits.map((credit: Credit) => {
@@ -38,7 +40,8 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
                 <button
                   aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                  onClick={() => toggleCredit(credit.id.toString())}
+                  data-id={credit.id.toString()}
+                  onClick={handleToggle}
                   type="button"
                 >
                   <p className="line-clamp-1">{credit.title}</p>
@@ -64,7 +67,7 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
                     {credit.image && (
                       <div className="relative w-7">
                         <ImageZoom>
-                          <Image
+                          <SiteImage
                             alt={credit.title}
                             className="h-full w-full rounded shadow"
                             height={150}

@@ -1,21 +1,23 @@
 "use client";
 
 import { compareDesc } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import type { Movie } from "../interfaces/content-item";
+import { useCallback, useState } from "react";
+
+import SiteImage from "@/components/site-image";
+import type { Movie } from "@/interfaces/content-item";
+
 import { ImageZoom } from "./zoom-image";
 
 export default function MoviesPreview({ movies }: { movies: Movie[] }) {
-  const sortedMovies = movies.sort((a, b) =>
+  const sortedMovies = movies.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
   const [expandedMovie, setExpandedMovie] = useState<string | null>(null);
 
-  const toggleMovie = (movieUrl: string) => {
-    setExpandedMovie((prev) => (prev === movieUrl ? null : movieUrl));
-  };
+  const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id ?? "";
+    setExpandedMovie((prev) => (prev === id ? null : id));
+  }, []);
 
   return (
     <div className="space-y-2">
@@ -23,12 +25,12 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
         <div className="flex w-full flex-row items-center gap-2">
           <p className="text-muted-foreground text-xs">Movies</p>
           <hr className="w-full border-muted-foreground border-dotted" />
-          <Link
+          <a
             className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
             href="/about/movies"
           >
             See all {sortedMovies.length}
-          </Link>
+          </a>
         </div>
         <div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
           {sortedMovies.map((movie: Movie) => {
@@ -38,7 +40,8 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
                 <button
                   aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
-                  onClick={() => toggleMovie(movie.id.toString())}
+                  data-id={movie.id.toString()}
+                  onClick={handleToggle}
                   type="button"
                 >
                   <p className="line-clamp-1">{movie.title}</p>
@@ -64,7 +67,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
                     {movie.image && (
                       <div className="relative w-7">
                         <ImageZoom>
-                          <Image
+                          <SiteImage
                             alt={movie.title}
                             className="h-full w-full rounded shadow"
                             height={150}

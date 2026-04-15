@@ -1,10 +1,10 @@
 import type { FC } from "react";
 
-type AfterQuoteProps = {
+interface AfterQuoteProps {
   text: string;
   subtext?: string;
   link?: string;
-};
+}
 
 const AfterQuote: FC<AfterQuoteProps> = ({ text, subtext, link }) => (
   <div className="-mt-10 w-full text-right text-sm">
@@ -12,7 +12,12 @@ const AfterQuote: FC<AfterQuoteProps> = ({ text, subtext, link }) => (
       <hr className="my-auto w-16 border-muted-foreground border-dotted" />
       <div>
         {link ? (
-          <a className="hover:underline" href={link} target="_blank">
+          <a
+            className="hover:underline"
+            href={link}
+            rel="noreferrer"
+            target="_blank"
+          >
             {text}
           </a>
         ) : (

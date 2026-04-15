@@ -1,0 +1,50 @@
+---
+import NotFoundContent from "@/components/not-found-content";
+import TimelinePost from "@/components/timeline-post";
+import { Toaster } from "@/components/ui/sonner";
+import Layout from "@/layouts/layout.astro";
+import {
+  buildMetadataUrl,
+  buildTimelinePostMetadata,
+  createPageMetadata,
+  formatPageTitle,
+} from "@/lib/metadata";
+import { getPostBySlug } from "@/lib/directus-content";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+const post = await getPostBySlug(slug);
+
+if (!post) {
+  Astro.response.status = 404;
+}
+
+const pageMeta = post
+  ? buildTimelinePostMetadata(post, slug)
+  : createPageMetadata({
+      description: "Page could not be found.",
+      image: {
+        alt: "404 — Not Found",
+        url: buildMetadataUrl("/media/404.webp"),
+      },
+      noIndex: true,
+      title: "404 — Not Found",
+    });
+
+const fullTitle = post
+  ? formatPageTitle(post.title)
+  : formatPageTitle("404 — Not Found");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  {post ? <TimelinePost client:idle post={post} slug={slug} /> : <NotFoundContent />}
+  <Toaster client:idle position="top-center" richColors />
+</Layout>

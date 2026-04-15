@@ -26,6 +26,7 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.dev.vars
 
 # vercel
 .vercel
@@ -38,3 +39,6 @@ next-env.d.ts
 # cloudflare
 wrangler.toml
 .wrangler
+
+.astro
+dist
