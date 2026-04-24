@@ -58,7 +58,9 @@
     "wrangler": "^4.82.2"
   },
   "overrides": {
+    "dompurify": "^3.4.1",
+    "protobufjs": "^7.5.5",
     "undici": "^7.24.0",
-    "vite": "^6.4.2"
+    "vite": "^7.3.2"
   }
 }
