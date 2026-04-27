@@ -13,7 +13,7 @@ export default function Navigation({ pathname }: NavigationProps) {
           alt="Zacchary Puckeridge"
           className="aspect-square h-6 w-6 rounded object-cover"
           height={100}
-          src="/avatar-2026.avif"
+          src="/avatar-2026-small.avif"
           width={100}
         />
       </a>
