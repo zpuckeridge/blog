@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { env as cfEnv } from "cloudflare:workers";
 
 import {
   enforceRateLimit,
@@ -276,17 +277,22 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
     return usernameValidationError;
   }
 
+  const login = username as string;
+
   const rateLimitResponse = getRateLimitResponse(request, clientAddress);
   if (rateLimitResponse) {
     return rateLimitResponse;
   }
 
-  const cachedResponse = getCachedContributionResponse(username);
+  const cachedResponse = getCachedContributionResponse(login);
   if (cachedResponse) {
     return cachedResponse;
   }
 
-  const token = import.meta.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN;
+  const token =
+    cfEnv.GITHUB_TOKEN ??
+    import.meta.env.GITHUB_TOKEN ??
+    process.env.GITHUB_TOKEN;
   if (!token) {
     return jsonWithHeaders(
       { error: "GitHub token not configured" },
@@ -296,7 +302,7 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
   }
 
   try {
-    return await fetchGitHubContributions(token, username);
+    return await fetchGitHubContributions(token, login);
   } catch (error) {
     console.error("Failed to fetch GitHub contributions", error);
     return jsonWithHeaders(
