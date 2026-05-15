@@ -39,7 +39,7 @@
     "use-lanyard": "^1.7.0"
   },
   "devDependencies": {
-    "@astrojs/cloudflare": "^13.5.1",
+    "@astrojs/cloudflare": "^13.1.10",
     "@astrojs/react": "^5.0.5",
     "@cloudflare/workers-types": "^4.20260515.1",
     "@tailwindcss/postcss": "^4.3.0",
