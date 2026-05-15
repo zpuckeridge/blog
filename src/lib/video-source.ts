@@ -1,5 +1,11 @@
 /** Extract YouTube video id from common URL shapes or a bare 11-character id. */
-export function extractYoutubeVideoId(input: string): string | null {
+export function extractYoutubeVideoId(
+  input: string | null | undefined
+): string | null {
+  if (input == null || typeof input !== "string") {
+    return null;
+  }
+
   const trimmed = input.trim();
   if (!trimmed) {
     return null;
@@ -47,12 +53,23 @@ export function getMuxPlaybackId(src: string): string {
   return match ? match[1] : src;
 }
 
-export function resolveVideoMedia(src: string): {
+const missingPlaybackPlaceholder = "/avatar-2026.avif";
+
+export function resolveVideoMedia(src: string | null | undefined): {
   muxPlaybackId: string;
   thumbnailUrl: string;
   videoUrl: string;
   youtubeId: string | null;
 } {
+  if (src == null || String(src).trim() === "") {
+    return {
+      muxPlaybackId: "",
+      thumbnailUrl: missingPlaybackPlaceholder,
+      videoUrl: "",
+      youtubeId: null,
+    };
+  }
+
   const youtubeId = extractYoutubeVideoId(src);
   if (youtubeId) {
     return {

@@ -1,3 +1,5 @@
+import { env as cfEnv } from "cloudflare:workers";
+
 const VIDEO_AUTH_COOKIE = "video_auth";
 
 const encoder = new TextEncoder();
@@ -9,8 +11,13 @@ interface VideoEnv {
   VIDEO_PASSWORD?: string;
 }
 
+/**
+ * Resolves the video gate password from the Worker env (Wrangler secrets / vars).
+ * Astro v6 removed `Astro.locals.runtime.env`; use `cloudflare:workers` `env` instead.
+ */
 export const getVideoPassword = (env?: VideoEnv): string | null => {
-  const password = env?.VIDEO_PASSWORD ?? process.env.VIDEO_PASSWORD;
+  const password =
+    env?.VIDEO_PASSWORD ?? cfEnv.VIDEO_PASSWORD ?? process.env.VIDEO_PASSWORD;
 
   if (!password) {
     return null;

@@ -7,18 +7,13 @@ import {
   normalizeVideoRedirect,
 } from "@/lib/video-auth";
 
-export const POST: APIRoute = async ({
-  request,
-  cookies,
-  redirect,
-  locals,
-}) => {
+export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const formData = await request.formData();
   const redirectTo = normalizeVideoRedirect(
     formData.get("redirectTo")?.toString()
   );
   const submittedPassword = formData.get("password")?.toString();
-  const password = getVideoPassword(locals.runtime?.env);
+  const password = getVideoPassword();
 
   if (!password) {
     return redirect(`${redirectTo}?error=password-unavailable`);

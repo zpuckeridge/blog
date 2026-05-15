@@ -71,9 +71,11 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
     () =>
       videos
         .filter((video) =>
-          video.title.toLowerCase().includes(searchTerm.toLowerCase())
+          (video.title ?? "").toLowerCase().includes(searchTerm.toLowerCase())
         )
-        .filter((video) => !selectedTag || video.tags.includes(selectedTag)),
+        .filter(
+          (video) => !selectedTag || (video.tags ?? []).includes(selectedTag)
+        ),
     [videos, searchTerm, selectedTag]
   );
 
@@ -83,7 +85,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
   }, [filteredVideos, currentPage, itemsPerPage]);
 
   const uniqueTags = useMemo(
-    () => [...new Set(videos?.flatMap((video) => video.tags) || [])],
+    () => [...new Set(videos?.flatMap((video) => video.tags ?? []) || [])],
     [videos]
   );
 
@@ -156,7 +158,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
           >
             <div className="transform">
               <div className="absolute top-2 left-2 z-10 rounded bg-muted/60 px-2.5 py-0.5 text-xs backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900/60">
-                {video.tags.join(", ")}
+                {(video.tags ?? []).join(", ")}
               </div>
               <div className="absolute top-2 right-2 z-10 rounded bg-muted/60 px-2.5 py-0.5 text-xs backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900/60">
                 {video.duration ? (

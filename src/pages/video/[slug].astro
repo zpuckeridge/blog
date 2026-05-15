@@ -33,7 +33,7 @@ if (!video) {
 
 const { searchParams } = Astro.url;
 const cookie = Astro.cookies.get(getVideoAuthCookieName())?.value;
-const videoPassword = getVideoPassword(Astro.locals.runtime?.env);
+const videoPassword = getVideoPassword();
 const isAuthenticated = await isVideoAuthTokenValid(cookie, videoPassword);
 
 const pageMeta = video
