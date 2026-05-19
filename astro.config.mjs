@@ -1,11 +1,10 @@
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import { defineConfig } from "astro/config";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = import.meta.dirname;
 const reactNodeEnv = process.argv.includes("build")
   ? "production"
   : "development";
@@ -33,7 +32,6 @@ export default defineConfig({
         "@base-ui/react/tooltip",
         "clsx",
         "date-fns",
-        "next-themes",
         "posthog-js",
         "react-icons/lu",
         "react-icons/rx",

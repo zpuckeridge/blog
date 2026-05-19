@@ -9,6 +9,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import type { Video } from "@/interfaces/content-item";
+import {
+  formatPublishedFullWeekday,
+  formatPublishedMonthYear,
+} from "@/lib/format-in-brisbane";
 
 interface VideoDetailProps {
   video: Video;
@@ -17,7 +21,7 @@ interface VideoDetailProps {
 export default function VideoDetail({ video }: VideoDetailProps) {
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
-      <div className="flex flex-col space-y-20 text-sm">
+      <div className="flex flex-col gap-y-20 text-sm">
         <div className="space-y-4">
           <div>
             <h1 className="font-redaction text-black dark:text-white text-xl">
@@ -26,10 +30,7 @@ export default function VideoDetail({ video }: VideoDetailProps) {
 
             <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
               <div className="w-full text-muted-foreground text-xs">
-                {new Date(video.date_created).toLocaleDateString("en-US", {
-                  month: "long",
-                  year: "numeric",
-                })}
+                {formatPublishedMonthYear(video.date_created)}
               </div>
               <div className="flex items-center gap-3">
                 <TooltipProvider>
@@ -41,16 +42,8 @@ export default function VideoDetail({ video }: VideoDetailProps) {
                       className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
                       side="bottom"
                     >
-                      {new Date(video.date_created).toLocaleDateString(
-                        "en-US",
-                        {
-                          day: "2-digit",
-                          month: "long",
-                          weekday: "long",
-                          year: "numeric",
-                        }
-                      )}{" "}
-                      · {video.tags.join(", ")}
+                      {formatPublishedFullWeekday(video.date_created)} ·{" "}
+                      {video.tags.join(", ")}
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

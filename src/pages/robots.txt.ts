@@ -8,7 +8,7 @@ export const GET: APIRoute = () => {
   const body = `User-agent: *
 Allow: /
 
-Host: ${baseUrl.replace(/^https?:\/\//, "")}
+Host: ${baseUrl.replace(/^https?:\/\//u, "")}
 Sitemap: ${baseUrl}/sitemap.xml
 `;
 

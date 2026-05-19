@@ -16,8 +16,13 @@ import {
 } from "@/components/ui/tooltip";
 import { ImageZoom } from "@/components/zoom-image";
 import type { Post } from "@/interfaces/content-item";
+import {
+  formatPublishedFullWeekday,
+  formatPublishedLongDate,
+  formatPublishedMonthYear,
+} from "@/lib/format-in-brisbane";
 
-const WORD_SPLIT_REGEX = /\s+/;
+const WORD_SPLIT_REGEX = /\s+/u;
 
 interface TimelinePostProps {
   post: Post;
@@ -41,10 +46,7 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
             </h1>
             <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
               <div className="w-full text-muted-foreground text-xs">
-                {new Date(post.date_created).toLocaleDateString("en-US", {
-                  month: "long",
-                  year: "numeric",
-                })}
+                {formatPublishedMonthYear(post.date_created)}
               </div>
               <div className="flex items-center gap-3">
                 <TooltipProvider>
@@ -56,13 +58,8 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
                       className="bg-muted/60 text-black text-xs backdrop-blur-sm dark:bg-neutral-900/60 dark:text-muted-foreground"
                       side="bottom"
                     >
-                      {new Date(post.date_created).toLocaleDateString("en-US", {
-                        day: "2-digit",
-                        month: "long",
-                        weekday: "long",
-                        year: "numeric",
-                      })}{" "}
-                      · {post.tags.join(", ")} · {readingTime} minute read
+                      {formatPublishedFullWeekday(post.date_created)} ·{" "}
+                      {post.tags.join(", ")} · {readingTime} minute read
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -116,19 +113,19 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
                 className="transition-all duration-300 hover:text-blue-400 dark:hover:text-blue-600"
                 href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
               >
-                <FaXTwitter className="h-4 w-4" />
+                <FaXTwitter className="size-4" />
               </a>
               <a
                 className="transition-all duration-300 hover:text-blue-400 dark:hover:text-blue-600"
                 href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
               >
-                <FaFacebook className="h-4 w-4" />
+                <FaFacebook className="size-4" />
               </a>
               <a
                 className="transition-all duration-300 hover:text-blue-400 dark:hover:text-blue-600"
                 href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
               >
-                <RxEnvelopeClosed className="h-4 w-4" />
+                <RxEnvelopeClosed className="size-4" />
               </a>
               <CopyLink />
             </div>
@@ -139,14 +136,10 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
               <CopyText text={post.content} />
               {post.date_updated && (
                 <div className="flex gap-2">
-                  <RxCalendar className="my-auto h-4 w-4" />
+                  <RxCalendar className="my-auto size-4" />
                   <p className="my-auto text-muted-foreground text-xs">
                     Last modified on{" "}
-                    {new Date(post.date_updated).toLocaleDateString("en-US", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                    {formatPublishedLongDate(post.date_updated)}
                   </p>
                 </div>
               )}

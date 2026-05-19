@@ -1,7 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useSWR from "swr";
+
+import { formatPublishedLongDate } from "@/lib/format-in-brisbane";
 
 interface ContributionDay {
   date: string;
@@ -11,6 +13,12 @@ interface ContributionDay {
 
 interface GitHubContributionsProps {
   username: string;
+}
+
+interface ContributionsPayload {
+  contributions?: ContributionDay[];
+  error?: string;
+  resetTime?: number | string;
 }
 
 /** Intensity vs max in the last year (GitHub-style): more tiers and darker greens for heavier days. */
@@ -46,7 +54,7 @@ const getContributionColor = (count: number, maxCount: number): string => {
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
-  const data = await response.json();
+  const data = (await response.json()) as ContributionsPayload;
 
   if (!response.ok) {
     if (response.status === 401) {
@@ -73,7 +81,8 @@ const fetcher = async (url: string) => {
     throw new Error(data.error);
   }
 
-  return data.contributions as ContributionDay[];
+  const list = data.contributions ?? [];
+  return list as ContributionDay[];
 };
 
 const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
@@ -126,10 +135,13 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
     ...last365Days.map((d) => d.contributionCount)
   );
 
-  const weeks: ContributionDay[][] = [];
-  for (let i = 0; i < last365Days.length; i += 7) {
-    weeks.push(last365Days.slice(i, i + 7));
-  }
+  const weeks: ContributionDay[][] = useMemo(() => {
+    const w: ContributionDay[][] = [];
+    for (let i = 0; i < last365Days.length; i += 7) {
+      w.push(last365Days.slice(i, i + 7));
+    }
+    return w;
+  }, [last365Days]);
 
   const handleDayHover = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -180,7 +192,7 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
       style={{ opacity: isLoading ? 0.5 : 1 }}
     >
       {!isLoading && (
-        <div className="space-y-2" ref={containerRef}>
+        <div className="space-y-2">
           <div className="flex justify-end gap-[4px] overflow-hidden">
             {weeks.map((week, weekIndex) => {
               const weekStartDate = week[0]?.date || `week-${weekIndex}`;
@@ -188,6 +200,7 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
                 <div className="flex flex-col gap-[4px]" key={weekStartDate}>
                   {week.map((day) => (
                     <button
+                      aria-label={`${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`}
                       className={`h-[9px] w-[9px] rounded-[2px] ${getContributionColor(day.contributionCount, maxContributionCount)}`}
                       data-color={day.color}
                       data-count={day.contributionCount}
@@ -205,13 +218,7 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
           <div className="flex justify-between text-muted-foreground text-xs">
             {hoveredDay ? (
               <div>
-                {`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${new Date(
-                  hoveredDay.date
-                ).toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}`}
+                {`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(hoveredDay.date)}`}
               </div>
             ) : (
               <div>

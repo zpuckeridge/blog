@@ -6,7 +6,6 @@ export default function AnimatedSignature() {
     <svg
       aria-label="Signature"
       height="152"
-      role="img"
       viewBox="87.312 61.102 387.438 197.909"
       width="130"
       xmlns="http://www.w3.org/2000/svg"

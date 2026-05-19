@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 
 import SiteImage from "@/components/site-image";
 import type { Movie } from "@/interfaces/content-item";
+import { formatDdMmYy } from "@/lib/format-in-brisbane";
 
 import { ImageZoom } from "./zoom-image";
 
@@ -46,16 +47,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
                 >
                   <p className="line-clamp-1">{movie.title}</p>
                   <p className="text-muted-foreground">
-                    {(() => {
-                      const date = new Date(movie.date_created);
-                      const day = String(date.getDate()).padStart(2, "0");
-                      const month = String(date.getMonth() + 1).padStart(
-                        2,
-                        "0"
-                      );
-                      const year = date.getFullYear();
-                      return `${day}-${month}-${year}`;
-                    })()}
+                    {formatDdMmYy(movie.date_created)}
                   </p>
                 </button>
                 <div

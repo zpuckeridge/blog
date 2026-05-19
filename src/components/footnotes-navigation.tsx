@@ -12,7 +12,7 @@ const FootnotesNavigation = ({
   children,
   ...props
 }: FootnotesNavigationProps) => {
-  const handleClick = useCallback(
+  const scrollToFootnote = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
       const targetId = href.replace("#", "");
@@ -32,7 +32,7 @@ const FootnotesNavigation = ({
       href={href}
       {...props}
       className="text-muted-foreground"
-      onClick={handleClick}
+      onClick={scrollToFootnote}
     >
       {children}
     </a>

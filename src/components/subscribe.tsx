@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useTransition } from "react";
 import { LuLoaderCircle } from "react-icons/lu";
 import { RxPaperPlane } from "react-icons/rx";
 import { toast } from "sonner";
@@ -12,39 +12,39 @@ import { Input } from "./ui/input";
 
 const Subscribe: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const isMounted = useMounted();
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      setIsLoading(true);
+  const sendSubscribeRequest = useCallback(async () => {
+    try {
+      const response = await fetch("/api/subscribe", {
+        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
 
-      try {
-        const response = await fetch("/api/subscribe", {
-          body: JSON.stringify({ email }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "POST",
-        });
-
-        const payload = (await response.json()) as { error?: string };
-        if (response.ok) {
-          toast.success("Subscribed to new posts");
-          setEmail("");
-        } else {
-          toast.error(
-            payload.error || "Failed to subscribe. Please try again."
-          );
-        }
-      } catch {
-        toast.error("An error occurred. Please try again later.");
-      } finally {
-        setIsLoading(false);
+      const payload = (await response.json()) as { error?: string };
+      if (response.ok) {
+        toast.success("Subscribed to new posts");
+        setEmail("");
+      } else {
+        toast.error(payload.error || "Failed to subscribe. Please try again.");
       }
+    } catch {
+      toast.error("An error occurred. Please try again later.");
+    }
+  }, [email]);
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      startTransition(async () => {
+        await sendSubscribeRequest();
+      });
     },
-    [email]
+    [sendSubscribeRequest, startTransition]
   );
 
   const handleEmailChange = useCallback(
@@ -76,11 +76,11 @@ const Subscribe: React.FC = () => {
 
         <button
           className="absolute inset-y-px end-px my-auto flex h-full w-9 cursor-pointer items-center justify-center rounded-e-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600"
-          disabled={isLoading}
+          disabled={isPending}
           type="submit"
         >
-          {isLoading ? (
-            <LuLoaderCircle className="h-4 w-4 animate-spin" />
+          {isPending ? (
+            <LuLoaderCircle className="size-4 animate-spin" />
           ) : (
             <RxPaperPlane />
           )}

@@ -4,7 +4,7 @@ const linkClassName =
   "group inline-flex w-fit underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4";
 
 const hasExplicitScheme = (value: string): boolean =>
-  /^[A-Za-z][A-Za-z\d+.-]*:/.test(value);
+  /^[A-Za-z][A-Za-z\d+.-]*:/u.test(value);
 
 const resolveSafeHref = (
   href: string

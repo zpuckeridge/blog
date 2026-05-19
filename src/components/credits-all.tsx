@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import SiteImage from "@/components/site-image";
 import type { Credit } from "@/interfaces/content-item";
+import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
 
 import { ImageZoom } from "./zoom-image";
 
@@ -11,7 +12,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
   // Group credits by year
   const creditsByYear: Record<number, Credit[]> = {};
   for (const credit of credits) {
-    const year = new Date(credit.release_date).getFullYear();
+    const year = calendarYearInBrisbane(credit.release_date);
     if (!creditsByYear[year]) {
       creditsByYear[year] = [];
     }
@@ -47,11 +48,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {creditsByYear[year]
-                .toSorted(
-                  (a, b) =>
-                    new Date(b.release_date).getTime() -
-                    new Date(a.release_date).getTime()
-                )
+                .toSorted((a, b) => +b.release_date - +a.release_date)
                 .map((credit: Credit) => {
                   const isExpanded = expandedCredit === credit.id.toString();
                   return (
@@ -65,15 +62,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                       >
                         <p className="line-clamp-1">{credit.title}</p>
                         <p className="text-muted-foreground">
-                          {(() => {
-                            const date = new Date(credit.release_date);
-                            const month = String(date.getMonth() + 1).padStart(
-                              2,
-                              "0"
-                            );
-                            const day = String(date.getDate()).padStart(2, "0");
-                            return `${day}-${month}`;
-                          })()}
+                          {formatDdMm(credit.release_date)}
                         </p>
                       </button>
                       <div

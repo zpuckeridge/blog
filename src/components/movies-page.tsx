@@ -3,8 +3,8 @@ import type { Movie } from "@/interfaces/content-item";
 
 export default function MoviesPage({ movies }: { movies: Movie[] }) {
   return (
-    <div className="mx-auto flex max-w-lg flex-col gap-4 space-y-20 px-6 pt-4 pb-20">
-      <div className="flex flex-col space-y-20 text-sm">
+    <div className="mx-auto flex max-w-lg flex-col gap-y-20 px-6 pt-4 pb-20">
+      <div className="flex flex-col gap-y-20 text-sm">
         <MoviesAll movies={movies} />
       </div>
 

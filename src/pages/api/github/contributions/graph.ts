@@ -32,7 +32,7 @@ interface CachedContributionResponse {
   expiresAt: number;
 }
 
-const GITHUB_USERNAME_REGEX = /^[A-Za-z\d](?:[A-Za-z\d-]{0,37}[A-Za-z\d])?$/;
+const GITHUB_USERNAME_REGEX = /^[A-Za-z\d](?:[A-Za-z\d-]{0,37}[A-Za-z\d])?$/u;
 const GITHUB_CACHE_TTL_MS = 1000 * 60 * 30;
 const GITHUB_RESPONSE_HEADERS = {
   "Cache-Control":

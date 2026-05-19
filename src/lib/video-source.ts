@@ -1,8 +1,11 @@
+const isYoutubeVideoId = (value: string): boolean =>
+  /^[A-Za-z0-9_-]{11}$/u.test(value);
+
 /** Extract YouTube video id from common URL shapes or a bare 11-character id. */
-export function extractYoutubeVideoId(
+export const extractYoutubeVideoId = function extractYoutubeVideoId(
   input: string | null | undefined
 ): string | null {
-  if (input == null || typeof input !== "string") {
+  if (input === undefined || input === null || typeof input !== "string") {
     return null;
   }
 
@@ -12,13 +15,13 @@ export function extractYoutubeVideoId(
   }
 
   try {
-    if (/^https?:\/\//i.test(trimmed)) {
+    if (/^https?:\/\//iu.test(trimmed)) {
       const url = new URL(trimmed);
-      const host = url.hostname.replace(/^www\./, "");
+      const host = url.hostname.replace(/^www\./u, "");
 
       if (host === "youtu.be") {
-        const id = url.pathname.split("/").filter(Boolean)[0] ?? "";
-        return /^[\w-]{11}$/.test(id) ? id : null;
+        const id = url.pathname.split("/").find(Boolean) ?? "";
+        return isYoutubeVideoId(id) ? id : null;
       }
 
       if (
@@ -27,13 +30,14 @@ export function extractYoutubeVideoId(
         host === "youtube-nocookie.com"
       ) {
         const fromQuery = url.searchParams.get("v");
-        if (fromQuery && /^[\w-]{11}$/.test(fromQuery)) {
+        if (fromQuery && isYoutubeVideoId(fromQuery)) {
           return fromQuery;
         }
 
         const fromPath =
-          trimmed.match(/\/(?:embed|shorts|live)\/([\w-]{11})/)?.[1] ?? null;
-        if (fromPath && /^[\w-]{11}$/.test(fromPath)) {
+          trimmed.match(/\/(?:embed|shorts|live)\/([A-Za-z0-9_-]{11})/u)?.[1] ??
+          null;
+        if (fromPath && isYoutubeVideoId(fromPath)) {
           return fromPath;
         }
       }
@@ -45,23 +49,25 @@ export function extractYoutubeVideoId(
   } catch {
     return null;
   }
-}
+};
 
 /** Mux playback id from a stream URL, or the value unchanged if already an id. */
-export function getMuxPlaybackId(src: string): string {
-  const match = src.match(/stream\.mux\.com\/([^.?#/]+)/);
+export const getMuxPlaybackId = function getMuxPlaybackId(src: string): string {
+  const match = src.match(/stream\.mux\.com\/([^.?#/]+)/u);
   return match ? match[1] : src;
-}
+};
 
 const missingPlaybackPlaceholder = "/avatar-2026.avif";
 
-export function resolveVideoMedia(src: string | null | undefined): {
+export const resolveVideoMedia = function resolveVideoMedia(
+  src: string | null | undefined
+): {
   muxPlaybackId: string;
   thumbnailUrl: string;
   videoUrl: string;
   youtubeId: string | null;
 } {
-  if (src == null || String(src).trim() === "") {
+  if (src === undefined || src === null || String(src).trim() === "") {
     return {
       muxPlaybackId: "",
       thumbnailUrl: missingPlaybackPlaceholder,
@@ -87,4 +93,4 @@ export function resolveVideoMedia(src: string | null | undefined): {
     videoUrl: `https://stream.mux.com/${muxPlaybackId}/highest.mp4`,
     youtubeId: null,
   };
-}
+};

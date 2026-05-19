@@ -14,7 +14,7 @@ const UsesItem = ({
 export default function UsesPage() {
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
-      <div className="flex flex-col space-y-20 text-sm">
+      <div className="flex flex-col gap-y-20 text-sm">
         <p className="font-redaction text-black text-xl dark:text-white">
           Uses
         </p>

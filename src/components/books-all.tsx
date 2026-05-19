@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import SiteImage from "@/components/site-image";
 import type { Book } from "@/interfaces/content-item";
+import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
 
 import { ImageZoom } from "./zoom-image";
 
@@ -11,7 +12,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
   // Group books by year
   const booksByYear: Record<number, Book[]> = {};
   for (const book of books) {
-    const year = new Date(book.date_created).getFullYear();
+    const year = calendarYearInBrisbane(book.date_created);
     if (!booksByYear[year]) {
       booksByYear[year] = [];
     }
@@ -45,11 +46,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {booksByYear[year]
-                .toSorted(
-                  (a, b) =>
-                    new Date(b.date_created).getTime() -
-                    new Date(a.date_created).getTime()
-                )
+                .toSorted((a, b) => +b.date_created - +a.date_created)
                 .map((book: Book) => {
                   const isExpanded = expandedBook === book.id.toString();
                   return (
@@ -63,15 +60,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
                       >
                         <p className="line-clamp-1">{book.title}</p>
                         <p className="text-muted-foreground">
-                          {(() => {
-                            const date = new Date(book.date_created);
-                            const month = String(date.getMonth() + 1).padStart(
-                              2,
-                              "0"
-                            );
-                            const day = String(date.getDate()).padStart(2, "0");
-                            return `${day}-${month}`;
-                          })()}
+                          {formatDdMm(book.date_created)}
                         </p>
                       </button>
                       <div

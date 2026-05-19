@@ -21,3 +21,9 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module "bun:test" {
+  export function describe(title: string, fn: () => void): void;
+  export function test(title: string, fn: () => void): void;
+  export const expect: (actual: unknown) => { toBe(expected: unknown): void };
+}

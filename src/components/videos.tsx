@@ -6,6 +6,8 @@ import { RxArrowLeft, RxArrowRight, RxMagnifyingGlass } from "react-icons/rx";
 import SiteImage from "@/components/site-image";
 import { Input } from "@/components/ui/input";
 import type { Video } from "@/interfaces/content-item";
+import { formatPublishedLongDate } from "@/lib/format-in-brisbane";
+import { substringMatchInsensitive } from "@/lib/substring-match";
 import { resolveVideoMedia } from "@/lib/video-source";
 
 const formatDuration = (duration: number) => {
@@ -19,33 +21,31 @@ interface VideosProps {
   itemsPerPage: number;
 }
 
+const SEARCH_PROMPTS = [
+  "Search the ether",
+  "Find the funny bits",
+  "Scour the archives",
+  "Summon a video",
+  "Unleash the memes",
+  "Probe the pixels",
+  "Quest for content",
+] as const;
+
 // Extract search component outside of Videos component
 const SearchBar = ({
+  label,
   onSearchChange,
   searchTerm,
 }: {
+  label: string;
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchTerm: string;
 }) => (
   <div className="group relative flex">
     <div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-xs has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-xs has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
-      {(() => {
-        const alternatives = [
-          "Search the ether",
-          "Find the funny bits",
-          "Scour the archives",
-          "Summon a video",
-          "Unleash the memes",
-          "Probe the pixels",
-          "Quest for content",
-        ];
-        const randomIndex = Math.floor(Math.random() * alternatives.length);
-        return (
-          <span className="relative -top-px inline-flex bg-background px-2 text-xs">
-            {alternatives[randomIndex]}
-          </span>
-        );
-      })()}
+      <span className="relative -top-px inline-flex bg-background px-2 text-xs">
+        {label}
+      </span>
     </div>
     <Input
       className="-me-px flex-1 rounded-lg text-black text-xs shadow-none dark:text-neutral-300"
@@ -66,18 +66,34 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
   const [selectedTag, setSelectedTag] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const searchPromptLabel = useMemo(() => {
+    const basis = `${videos[0]?.slug ?? ""}:${videos.length}:${itemsPerPage}`;
+    let acc = 0;
+    for (const ch of basis) {
+      acc = (acc + (ch.codePointAt(0) ?? 0)) % 2_147_483_647;
+    }
+    return SEARCH_PROMPTS[acc % SEARCH_PROMPTS.length];
+  }, [videos, itemsPerPage]);
+
   // Moved useMemo hooks before the early return
-  const filteredVideos = useMemo(
-    () =>
-      videos
-        .filter((video) =>
-          (video.title ?? "").toLowerCase().includes(searchTerm.toLowerCase())
-        )
-        .filter(
-          (video) => !selectedTag || (video.tags ?? []).includes(selectedTag)
-        ),
-    [videos, searchTerm, selectedTag]
-  );
+  const filteredVideos = useMemo(() => {
+    const q = searchTerm.toLowerCase();
+    const results: Video[] = [];
+    for (const video of videos) {
+      if (!substringMatchInsensitive(video.title ?? "", q)) {
+        continue;
+      }
+      const tags = video.tags ?? [];
+      if (selectedTag) {
+        const tagSet = new Set(tags);
+        if (!tagSet.has(selectedTag)) {
+          continue;
+        }
+      }
+      results.push(video);
+    }
+    return results;
+  }, [videos, searchTerm, selectedTag]);
 
   const currentVideos = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -126,6 +142,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
     <div className="space-y-6">
       <div className="space-y-1">
         <SearchBar
+          label={searchPromptLabel}
           onSearchChange={handleSearchChange}
           searchTerm={searchTerm}
         />
@@ -151,6 +168,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
       <div className="mt-2 grid grid-cols-2 gap-4">
         {currentVideos.map((video: Video) => (
           <a
+            aria-label={video.title}
             className="group relative rounded transition-all duration-200 hover:grayscale"
             href={`/video/${video.slug}`}
             key={video.slug}
@@ -184,13 +202,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                 <div className="truncate text-sm">{video.title}</div>
               </div>
               <div className="flex justify-between text-muted-foreground text-xs">
-                <p>
-                  {new Date(video.date_created).toLocaleDateString("en-US", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
+                <p>{formatPublishedLongDate(video.date_created)}</p>
               </div>
             </div>
           </a>

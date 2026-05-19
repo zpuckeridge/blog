@@ -1,10 +1,15 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { RxMagnifyingGlass } from "react-icons/rx";
 
 import { Switch } from "@/components/ui/switch";
 import type { TimelineItem } from "@/interfaces/content-item";
+import {
+  formatPublishedNumericDMY,
+  formatPublishedShortDayMonth,
+} from "@/lib/format-in-brisbane";
+import { substringMatchInsensitive } from "@/lib/substring-match";
 
 import { Input } from "./ui/input";
 
@@ -26,32 +31,42 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
   const handleTagClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const tag = e.currentTarget.dataset.tag ?? "";
-      setSelectedTag((prev) => (prev.includes(tag) ? [] : [tag]));
+      setSelectedTag((prev) => (new Set(prev).has(tag) ? [] : [tag]));
     },
     []
   );
 
+  const selectedTagSet = useMemo(() => new Set(selectedTag), [selectedTag]);
+
   const handleMouseEnter = useCallback(() => setIsAnyPostHovered(true), []);
   const handleMouseLeave = useCallback(() => setIsAnyPostHovered(false), []);
 
-  // Get unique tags from all posts
-  const allTags = [
-    ...new Set(
-      Object.values(postsByYear)
-        .flat()
-        .flatMap((item) => item.tags)
-        .filter(Boolean)
-    ),
-  ].toSorted();
+  const allTags = useMemo(() => {
+    const seen = new Set<string>();
+    const ordered: string[] = [];
+    for (const items of Object.values(postsByYear)) {
+      for (const item of items) {
+        for (const tag of item.tags) {
+          if (tag && !seen.has(tag)) {
+            seen.add(tag);
+            ordered.push(tag);
+          }
+        }
+      }
+    }
+    return ordered.toSorted();
+  }, [postsByYear]);
 
   // Filter posts based on search query, selected tags, and notes toggle
   const filteredPostsByYear: Record<string, TimelineItem[]> = {};
+  const query = searchQuery.toLowerCase();
+  const [selectedTagSingleton] = selectedTag;
   for (const [year, items] of Object.entries(postsByYear)) {
     const filteredItems = items.filter((item) => {
-      const matchesSearch = item.title
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const matchesTags = selectedTag.every((tag) => item.tags.includes(tag));
+      const matchesSearch = substringMatchInsensitive(item.title, query);
+      const matchesTags =
+        selectedTagSingleton === undefined ||
+        new Set(item.tags).has(selectedTagSingleton);
       const matchesNotesToggle = showNotes || item.type !== "Note";
       return matchesSearch && matchesTags && matchesNotesToggle;
     });
@@ -88,7 +103,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
           {allTags.map((tag) => (
             <button
               className={`rounded px-2.5 py-0.5 text-xs ${
-                selectedTag.includes(tag)
+                selectedTagSet.has(tag)
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
@@ -120,6 +135,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
               {yearItems.map((item: TimelineItem, index: number) =>
                 item.type === "Note" ? (
                   <button
+                    aria-label={`Timeline note (${formatPublishedNumericDMY(item.date_created)})`}
                     className={`flex w-full justify-between gap-8 py-3 ${
                       index === yearItems.length - 1
                         ? ""
@@ -139,15 +155,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                     >
                       <div className="flex justify-between text-xs text-yellow-600 dark:text-yellow-500">
                         <p>Note</p>
-                        <p>
-                          {new Date(item.date_created).toLocaleDateString(
-                            "en-US",
-                            {
-                              day: "2-digit",
-                              month: "short",
-                            }
-                          )}
-                        </p>
+                        <p>{formatPublishedShortDayMonth(item.date_created)}</p>
                       </div>
                       <p className="text-left text-yellow-950 dark:text-yellow-100">
                         {item.content}
@@ -156,6 +164,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                   </button>
                 ) : (
                   <a
+                    aria-label={item.title}
                     className={`flex w-full justify-between gap-8 py-3 ${
                       index === yearItems.length - 1
                         ? ""
@@ -185,13 +194,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                             : "opacity-100"
                         } transition-opacity`}
                       >
-                        {new Date(item.date_created).toLocaleDateString(
-                          "en-US",
-                          {
-                            day: "2-digit",
-                            month: "short",
-                          }
-                        )}
+                        {formatPublishedShortDayMonth(item.date_created)}
                       </span>
                     </div>
                   </a>

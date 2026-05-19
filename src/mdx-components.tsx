@@ -100,8 +100,8 @@ const components: MDXComponents = {
       ? children
           .toString()
           .toLowerCase()
-          .replaceAll(/[^\w\s-]/g, "")
-          .replaceAll(/\s+/g, "-")
+          .replaceAll(/[^\w\s-]/gu, "")
+          .replaceAll(/\s+/gu, "-")
       : "";
     return <h1 id={id}>{children}</h1>;
   },
@@ -110,8 +110,8 @@ const components: MDXComponents = {
       ? children
           .toString()
           .toLowerCase()
-          .replaceAll(/[^\w\s-]/g, "")
-          .replaceAll(/\s+/g, "-")
+          .replaceAll(/[^\w\s-]/gu, "")
+          .replaceAll(/\s+/gu, "-")
       : "";
     return <h2 id={id}>{children}</h2>;
   },
@@ -120,8 +120,8 @@ const components: MDXComponents = {
       ? children
           .toString()
           .toLowerCase()
-          .replaceAll(/[^\w\s-]/g, "")
-          .replaceAll(/\s+/g, "-")
+          .replaceAll(/[^\w\s-]/gu, "")
+          .replaceAll(/\s+/gu, "-")
       : "";
     return <h3 id={id}>{children}</h3>;
   },

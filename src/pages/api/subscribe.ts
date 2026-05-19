@@ -7,7 +7,7 @@ import {
 } from "@/lib/request-rate-limit";
 
 const EMAIL_REGEX =
-  /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/;
+  /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/u;
 const JSON_HEADERS = { "Cache-Control": "no-store" };
 
 const jsonWithHeaders = (body: unknown, init?: ResponseInit): Response =>
@@ -70,7 +70,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
-    await loops.createContact(email);
+    await loops.createContact({ email });
 
     return jsonWithHeaders({ success: true }, { status: 200 });
   } catch (error) {

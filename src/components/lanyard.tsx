@@ -3,29 +3,18 @@
 import { useEffect, useState } from "react";
 import { useLanyardWS } from "use-lanyard";
 
+import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";
+
 const LiveLanyard = () => {
   const DISCORD_ID = "181324210876973056";
   const data = useLanyardWS(DISCORD_ID);
-  const [hasInitialized, setHasInitialized] = useState(false);
   const [isFullyLoaded, setIsFullyLoaded] = useState(false);
 
   useEffect(() => {
-    // Set initialized after a brief delay to prevent flash
-    const initTimer = setTimeout(() => setHasInitialized(true), 100);
-
-    return () => clearTimeout(initTimer);
-  }, []);
-
-  useEffect(() => {
-    if (!hasInitialized) {
-      return;
-    }
-
     if (data?.discord_status) {
-      // Data is available, mark as fully loaded
       setIsFullyLoaded(true);
     }
-  }, [data, hasInitialized]);
+  }, [data]);
 
   const getStatusTextAndColor = () => {
     // Show offline status until fully loaded
@@ -65,11 +54,6 @@ const LiveLanyard = () => {
 
   const { statusText, dotColor } = getStatusTextAndColor();
 
-  // Don't render anything initially or before initialization
-  if (!hasInitialized) {
-    return null;
-  }
-
   return (
     <div className="fade-in flex animate-in gap-2 duration-200">
       <div
@@ -81,30 +65,12 @@ const LiveLanyard = () => {
 };
 
 export default function Lanyard() {
-  const [shouldConnect, setShouldConnect] = useState(false);
+  const [deferPhase, setDeferPhase] = useState<0 | 1>(0);
 
   useEffect(() => {
-    const enableConnection = () => setShouldConnect(true);
-    const idleCallbackId =
-      "requestIdleCallback" in window
-        ? window.requestIdleCallback(enableConnection)
-        : window.setTimeout(enableConnection, 1500);
-
-    return () => {
-      if (
-        "cancelIdleCallback" in window &&
-        typeof idleCallbackId === "number"
-      ) {
-        window.cancelIdleCallback(idleCallbackId);
-        return;
-      }
-      window.clearTimeout(idleCallbackId);
-    };
+    const deferred = scheduleIdleOrFallback(() => setDeferPhase(1), 1500);
+    return () => deferred.cancel();
   }, []);
 
-  if (!shouldConnect) {
-    return null;
-  }
-
-  return <LiveLanyard />;
+  return deferPhase === 0 ? null : <LiveLanyard />;
 }

@@ -1,4 +1,5 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignoreDependencies": ["oxfmt"]
+  "ignoreDependencies": ["react-doctor", "cloudflare"],
+  "ignoreBinaries": ["knip"]
 }

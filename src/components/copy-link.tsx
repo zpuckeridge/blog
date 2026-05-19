@@ -14,7 +14,7 @@ import {
 export default function CopyLink() {
   const [copied, setCopied] = useState(false);
 
-  const handleClick = useCallback(() => {
+  const copyCurrentUrlToClipboard = useCallback(() => {
     navigator.clipboard.writeText(window.location.href);
 
     toast.success("URL Copied!");
@@ -32,7 +32,7 @@ export default function CopyLink() {
         <TooltipTrigger
           aria-label="Copy Link"
           className="cursor-pointer"
-          onClick={handleClick}
+          onClick={copyCurrentUrlToClipboard}
         >
           {copied ? (
             <RxCheck className="fade-in-0 zoom-in-95 my-auto animate-in text-green-500 duration-200" />
