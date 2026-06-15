@@ -1,0 +1,40 @@
+---
+import { resolveSafeHref } from "@/lib/safe-href";
+import { trimLinkSlotHtml } from "@/lib/trim-link-children";
+
+interface Props {
+  class?: string;
+  href: string;
+  variant?: "default" | "highlighted";
+}
+
+const linkClassNames = {
+  default:
+    "group inline px-1 text-sm text-muted-foreground leading-[inherit] hover:bg-muted",
+  highlighted: "group inline px-1 leading-[inherit] bg-muted hover:bg-muted/80",
+} as const;
+
+const { class: className, href, variant = "highlighted" } = Astro.props;
+const safeHref = resolveSafeHref(href);
+const linkClassName = [linkClassNames[variant], className]
+  .filter(Boolean)
+  .join(" ");
+const label = Astro.slots.has("default")
+  ? trimLinkSlotHtml(await Astro.slots.render("default"))
+  : "";
+---
+
+{
+  safeHref ? (
+    <a
+      class={linkClassName}
+      href={safeHref.href}
+      rel={safeHref.isExternal ? "noopener noreferrer" : undefined}
+      target={safeHref.isExternal ? "_blank" : undefined}
+    >
+      {label}
+    </a>
+  ) : (
+    <span class={linkClassName}>{label}</span>
+  )
+}
