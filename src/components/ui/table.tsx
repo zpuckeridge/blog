@@ -23,7 +23,7 @@ const TableBody = ({ className, ...props }: React.ComponentProps<"tbody">) => (
 const TableRow = ({ className, ...props }: React.ComponentProps<"tr">) => (
   <tr
     className={cn(
-      "border-b transition-colors data-[state=selected]:bg-muted",
+      "border-b transition-colors duration-200 data-[state=selected]:bg-muted",
       className
     )}
     data-slot="table-row"

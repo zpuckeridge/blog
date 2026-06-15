@@ -16,47 +16,49 @@ const PasswordProtection = ({
   title = "Protected Content",
   description = "Please enter the password to view this content.",
 }: PasswordProtectionProps) => (
-  <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+  <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">
     <div className="flex flex-col gap-y-20 text-sm">
-      <div className="flex flex-col gap-2 text-sm">
-        <p className="font-redaction text-black text-xl dark:text-white">
-          {title}
-        </p>
-        <p>{description}</p>
-      </div>
+      <div className="space-y-10">
+        <div className="space-y-2 text-sm">
+          <p className="font-redaction text-black text-xl dark:text-white">
+            {title}
+          </p>
+          <p>{description}</p>
+        </div>
 
-      {isConfigured ? (
-        <form
-          action="/api/video-auth"
-          className="flex w-full flex-col gap-2"
-          method="post"
-        >
-          <input name="redirectTo" type="hidden" value={redirectTo} />
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              className="bg-background"
-              id="password"
-              name="password"
-              placeholder="Enter password"
-              required
-              type="password"
-            />
-            {error && <p className="text-destructive text-sm">{error}</p>}
-          </div>
-
-          <button
-            className="group inline-flex w-fit cursor-pointer text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
-            type="submit"
+        {isConfigured ? (
+          <form
+            action="/api/video-auth"
+            className="flex w-full flex-col gap-2"
+            method="post"
           >
-            Access Content
-          </button>
-        </form>
-      ) : (
-        <p className="text-destructive text-sm">
-          Video access is temporarily unavailable.
-        </p>
-      )}
+            <input name="redirectTo" type="hidden" value={redirectTo} />
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                className="bg-background"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+                type="password"
+              />
+              {error && <p className="text-destructive text-sm">{error}</p>}
+            </div>
+
+            <button
+              className="group inline-flex w-fit cursor-pointer text-muted-foreground text-sm underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
+              type="submit"
+            >
+              Access Content
+            </button>
+          </form>
+        ) : (
+          <p className="text-destructive text-sm">
+            Video access is temporarily unavailable.
+          </p>
+        )}
+      </div>
     </div>
   </div>
 );

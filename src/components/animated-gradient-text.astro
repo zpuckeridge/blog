@@ -1,0 +1,17 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+---
+
+<span
+  class:list={[
+    "inline-flex animate-text-gradient bg-[200%_auto] bg-linear-to-r from-[#ACACAC] via-[#363636] to-[#ACACAC] bg-clip-text text-transparent",
+    className,
+  ]}
+>
+  {text}
+</span>

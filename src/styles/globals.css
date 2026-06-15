@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource/geist-mono/latin-400.css";
 
 @font-face {
   font-family: Archivo;
@@ -31,6 +30,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
+  --default-transition-duration: 200ms;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -62,10 +62,10 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
 
   /* Font Families */
   --font-sans:
@@ -82,7 +82,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -154,8 +154,16 @@
   * {
     @apply border-border outline-ring/50;
   }
+  *,
+  *::before,
+  *::after {
+    border-radius: 0;
+  }
   body {
     @apply bg-background text-foreground;
+  }
+  hr {
+    @apply border-0 border-t border-dotted border-border;
   }
 }
 
@@ -171,7 +179,7 @@
 }
 
 @theme {
-  --animate-text-gradient: text-gradient 1.3s linear infinite;
+  --animate-text-gradient: text-gradient 2s linear infinite;
 
   @keyframes text-gradient {
     to {
@@ -185,6 +193,20 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* rmiz sets body width when zoom opens; stable gutter already reserves space */
+html.image-zoom-open {
+  overflow: hidden;
+}
+
+/* Instant theme switching — suppress inherited transitions/animations */
+html.theme-transition-lock,
+html.theme-transition-lock *,
+html.theme-transition-lock *::before,
+html.theme-transition-lock *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
 /* Optionally hide scrollbar */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -196,13 +218,13 @@ html {
 }
 
 .footnotes {
-  @apply py-10 my-10 border-t border-b border-muted-foreground border-dotted;
+  @apply py-10 my-10 border-t border-b border-dotted border-border;
 }
 
 .footnotes :target {
   color: #ffffff; /* text-white */
   background-color: #60a5fa; /* bg-blue-400 */
-  animation: resetColors 3s forwards; /* Add animation */
+  animation: resetColors 200ms forwards;
 }
 
 /* TOC sidebar expand/collapse animations */
@@ -232,7 +254,6 @@ html {
 @keyframes resetColors {
   100% {
     background-color: hsl(var(--background)); /* bg-background */
-    border-radius: var(--radius); /* rounded */
     color: hsl(
       var(--muted-foreground)
     ); /* text-muted-foreground dark:text-muted-foreground */
@@ -240,17 +261,17 @@ html {
 }
 
 .footnotes ol {
-  @apply text-xs;
+  @apply text-sm;
   @apply text-muted-foreground dark:text-muted-foreground;
 }
 
 .footnotes li {
-  @apply text-xs;
+  @apply text-sm;
   @apply text-muted-foreground dark:text-muted-foreground;
 }
 
 .footnotes p {
-  @apply text-xs;
+  @apply text-sm;
   @apply text-muted-foreground dark:text-muted-foreground;
 }
 

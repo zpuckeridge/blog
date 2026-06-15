@@ -108,7 +108,7 @@ const TableOfContents = () => {
       // Wait for animation to complete before hiding
       // Account for staggered delays: base duration + max delay
       const maxDelay = (headings.length - 1) * 0.05;
-      const totalDuration = 400 + maxDelay * 1000;
+      const totalDuration = 200 + maxDelay * 1000;
       setTimeout(() => {
         setIsExpanded(false);
         setIsAnimating(false);
@@ -125,16 +125,16 @@ const TableOfContents = () => {
   return (
     <>
       {/* Mobile version - always visible, standard TOC */}
-      <div className="mb-6 space-y-4 rounded-lg border border-neutral-200 bg-neutral-50 px-6 py-4 text-black text-sm lg:hidden dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
-        <h2 className="mb-4 text-neutral-500 text-xs dark:text-neutral-400">
+      <div className="mb-6 space-y-4 border border-neutral-200 bg-neutral-50 px-6 py-4 text-black text-sm lg:hidden dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+        <h2 className="mb-4 text-neutral-500 text-sm dark:text-neutral-400">
           Contents
         </h2>
-        <nav className="font-normal text-[13px]">
+        <nav className="font-normal text-sm">
           <ul className="space-y-2">
             {headings.map((heading) => (
               <li key={heading.id}>
                 <a
-                  className={`line-clamp-2 block cursor-pointer transition-all duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${
+                  className={`line-clamp-2 block cursor-pointer transition-all duration-200 hover:text-blue-600 dark:hover:text-blue-400 ${
                     activeId === heading.id
                       ? "font-medium text-blue-600 dark:text-blue-400"
                       : "text-neutral-700 dark:text-neutral-300"
@@ -154,14 +154,14 @@ const TableOfContents = () => {
       {/* Desktop version - fixed sidebar */}
       <div className="hidden lg:fixed lg:top-1/2 lg:left-6 lg:block lg:max-h-[calc(100vh-6rem)] lg:-translate-y-1/2 lg:transform lg:overflow-y-auto">
         <button
-          className="cursor-pointer rounded px-1.5 py-2.5 text-left transition-all duration-300 hover:bg-neutral-900 dark:hover:bg-neutral-900"
+          className="cursor-pointer px-1.5 py-2.5 text-left transition-all duration-200 hover:bg-neutral-900 dark:hover:bg-neutral-900"
           onClick={handleTocClick}
           type="button"
         >
           <div className="relative flex h-fit w-fit flex-col gap-3">
             {headings.map((heading) => (
               <div
-                className="h-px w-3 transition-all duration-300"
+                className="h-px w-3 transition-all duration-200"
                 key={heading.id}
                 style={{
                   backgroundColor:
@@ -176,28 +176,28 @@ const TableOfContents = () => {
       {/* Expanded content with proper exit animation */}
       {(isExpanded || isAnimating) && (
         <div
-          className="hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:-translate-y-1/2 lg:transform lg:overflow-y-auto"
+          className="hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:max-w-56 lg:-translate-y-1/2 lg:transform lg:overflow-y-auto"
           style={{
             animation: isAnimating
-              ? "toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) forwards"
-              : "toc-fade-slide-in 0.4s cubic-bezier(0.4,0,0.2,1) forwards",
+              ? "toc-fade-slide-out 200ms cubic-bezier(0.4,0,0.2,1) forwards"
+              : "toc-fade-slide-in 200ms cubic-bezier(0.4,0,0.2,1) forwards",
           }}
         >
-          <ul className="space-y-3">
+          <ul className="max-w-56 space-y-3">
             {headings.map((heading, idx) => (
               <li
                 key={heading.id}
                 style={{
                   animation: isAnimating
-                    ? "toc-fade-slide-out 0.4s cubic-bezier(0.4,0,0.2,1) both"
-                    : "toc-fade-slide-in 0.4s cubic-bezier(0.4,0,0.2,1) both",
+                    ? "toc-fade-slide-out 200ms cubic-bezier(0.4,0,0.2,1) both"
+                    : "toc-fade-slide-in 200ms cubic-bezier(0.4,0,0.2,1) both",
                   animationDelay: isAnimating
                     ? `${0.03 * idx}s`
                     : `${0.05 * idx + 0.1}s`,
                 }}
               >
                 <a
-                  className={`line-clamp-2 block cursor-pointer text-xs transition-all duration-300 hover:text-white dark:hover:text-white ${
+                  className={`line-clamp-2 block cursor-pointer break-words text-sm transition-all duration-200 hover:text-white dark:hover:text-white ${
                     activeId === heading.id
                       ? "text-white dark:text-white"
                       : "text-neutral-400 dark:text-neutral-400"

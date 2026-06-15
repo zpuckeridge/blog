@@ -13,5 +13,12 @@ export default defineConfig({
         "unicorn/prefer-module": "off",
       },
     },
+    {
+      files: ["src/components/player.tsx"],
+      rules: {
+        // YouTube iframes need full embed capabilities; sandbox blocks playback.
+        "react-doctor/iframe-missing-sandbox": "off",
+      },
+    },
   ],
 });

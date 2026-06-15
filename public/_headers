@@ -1,0 +1,21 @@
+/*
+  Cache immutable static assets at the edge.
+  Astro hashed bundles live under /_astro/.
+*/
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/roadtrip/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/avatar-2026-small.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=31536000, immutable

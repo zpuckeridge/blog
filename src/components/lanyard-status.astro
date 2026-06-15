@@ -1,0 +1,92 @@
+<div
+  class="flex gap-2"
+  data-lanyard-status
+  data-lanyard-user="181324210876973056"
+>
+  <div class="my-auto h-2 w-2 bg-gray-400" data-lanyard-dot />
+  <p class="my-auto text-muted-foreground text-sm" data-lanyard-label>
+    Offline
+  </p>
+</div>
+
+<script>
+  const BOT_PATTERN =
+    /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/i;
+
+  const initLanyardStatus = () => {
+    for (const root of document.querySelectorAll("[data-lanyard-status]")) {
+      if (!(root instanceof HTMLElement) || root.dataset.lanyardReady === "true") {
+        continue;
+      }
+
+      const dot = root.querySelector("[data-lanyard-dot]");
+      const label = root.querySelector("[data-lanyard-label]");
+      const userId = root.dataset.lanyardUser;
+
+      if (
+        !(dot instanceof HTMLElement) ||
+        !(label instanceof HTMLElement) ||
+        !userId
+      ) {
+        continue;
+      }
+
+      root.dataset.lanyardReady = "true";
+
+      if (BOT_PATTERN.test(navigator.userAgent) || navigator.webdriver) {
+        continue;
+      }
+
+      const statusStyles: Record<string, { color: string; text: string }> = {
+        idle: { color: "bg-yellow-300", text: "Idle" },
+        online: { color: "bg-green-500", text: "Online" },
+        dnd: { color: "bg-red-500", text: "Do Not Disturb" },
+        offline: { color: "bg-gray-400", text: "Offline" },
+      };
+
+      const applyStatus = (discordStatus: string | undefined) => {
+        const style =
+          statusStyles[discordStatus ?? "offline"] ?? statusStyles.offline;
+        dot.className = `my-auto h-2 w-2 animate-pulse ${style.color}`;
+        label.textContent = style.text;
+      };
+
+      const fetchStatus = async () => {
+        try {
+          const response = await fetch(
+            `https://api.lanyard.rest/v1/users/${encodeURIComponent(userId)}`
+          );
+          if (!response.ok) {
+            return;
+          }
+          const payload = (await response.json()) as {
+            success?: boolean;
+            data?: { discord_status?: string };
+          };
+          if (payload.success && payload.data) {
+            applyStatus(payload.data.discord_status);
+          }
+        } catch {
+          // Keep offline fallback.
+        }
+      };
+
+      void fetchStatus();
+      window.setInterval(() => {
+        void fetchStatus();
+      }, 60_000);
+    }
+  };
+
+  const scheduleLanyardInit = () => {
+    const ric = Reflect.get(globalThis, "requestIdleCallback");
+    if (typeof ric === "function") {
+      ric(() => initLanyardStatus(), { timeout: 1500 });
+    } else {
+      window.setTimeout(initLanyardStatus, 1500);
+    }
+  };
+
+  scheduleLanyardInit();
+  document.addEventListener("astro:page-load", scheduleLanyardInit);
+</script>

@@ -1,5 +1,6 @@
 import { compareDesc } from "date-fns";
 
+import BackLink from "@/components/back-link";
 import PostRendering from "@/components/posts";
 import type { Note, Post, TimelineItem } from "@/interfaces/content-item";
 
@@ -48,33 +49,34 @@ export default function TimelinePage({
   }
 
   return (
-    <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+    <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">
       <div className="flex flex-col gap-y-20 text-sm">
-        <div className="space-y-2">
-          <p className="font-redaction text-black text-xl dark:text-white">
-            Timeline
-          </p>
+        <div className="space-y-10">
+          <div className="space-y-2">
+            <p className="font-redaction text-black text-xl dark:text-white">
+              Timeline
+            </p>
 
-          <p>
-            Welcome to my personal corner of the internet. Here you&apos;ll find
-            posts about my faith, technology I&apos;m interested in, random
-            notes, code snippets and other things happening in my life. Working
-            on turning this into a feed for everything I do.
-          </p>
+            <p>
+              Welcome to my personal corner of the internet. Here you&apos;ll
+              find posts about my faith, technology I&apos;m interested in,
+              random notes, code snippets and other things happening in my life.
+              Working on turning this into a feed for everything I do.
+            </p>
 
-          <p className="text-muted-foreground text-xs">
-            Posts and notes from September 2019 to present.
-          </p>
+            <p className="text-muted-foreground text-sm">
+              Posts and notes from September 2019 to present.
+            </p>
+          </div>
+
+          <div className="space-y-10">
+            <hr className="border-dotted border-border" />
+
+            <PostRendering postsByYear={content} />
+          </div>
         </div>
 
-        <PostRendering postsByYear={content} />
-
-        <a
-          className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
-          href="/"
-        >
-          ../
-        </a>
+        <BackLink href="/">../</BackLink>
       </div>
     </div>
   );

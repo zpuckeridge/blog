@@ -12,16 +12,18 @@ const labelVariants = cva(
 
 const Label = ({
   className,
+  htmlFor,
   ref,
   ...props
-}: React.ComponentProps<"label"> &
+}: Omit<React.ComponentProps<"label">, "htmlFor"> &
   VariantProps<typeof labelVariants> & {
+    htmlFor: string;
     ref?: React.RefObject<HTMLLabelElement | null>;
   }) => (
-  // eslint-disable-next-line jsx-a11y/label-has-associated-control -- reusable label primitive; consumers set htmlFor or wrap controls
   <label
     className={cn(labelVariants(), className)}
     data-slot="label"
+    htmlFor={htmlFor}
     ref={ref}
     {...props}
   />

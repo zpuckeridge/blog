@@ -1,15 +1,16 @@
+import BackLink from "@/components/back-link";
 import LinkWithIcon from "@/components/link-with-icon";
 
 export default function ColophonPage() {
   return (
-    <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pt-4 pb-20">
+    <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">
       <div className="flex flex-col gap-y-20 text-sm">
         <div className="space-y-10">
-          <div className="flex w-full flex-col gap-2">
+          <div className="space-y-2">
             <p className="font-redaction text-black text-xl dark:text-white">
               Colophon
             </p>
-            <p className="text-muted-foreground text-xs">Typography</p>
+            <p className="text-muted-foreground text-sm">Typography</p>
 
             <p>
               <LinkWithIcon href="https://fontshare.com/fonts/archivo">
@@ -27,10 +28,10 @@ export default function ColophonPage() {
             </p>
           </div>
 
-          <hr className="border-muted-foreground border-dotted" />
+          <hr className="border-dotted border-border" />
 
           <div className="flex w-full flex-col gap-2">
-            <p className="text-muted-foreground text-xs">Technical</p>
+            <p className="text-muted-foreground text-sm">Technical</p>
 
             <p>
               Built with{" "}
@@ -93,12 +94,12 @@ export default function ColophonPage() {
             </p>
           </div>
 
-          <hr className="border-muted-foreground border-dotted" />
+          <hr className="border-dotted border-border" />
 
           <div className="flex gap-4">
             <div className="flex w-full flex-col gap-2">
-              <p className="text-muted-foreground text-xs">Inspiration</p>
-              <div className="flex flex-col gap-2">
+              <p className="text-muted-foreground text-sm">Inspiration</p>
+              <div className="flex flex-col items-start gap-2">
                 <LinkWithIcon href="https://linusrogge.com?ref=zacchary.me">
                   linusrogge.com
                 </LinkWithIcon>
@@ -157,9 +158,9 @@ export default function ColophonPage() {
             </div>
 
             <div className="flex w-full flex-col gap-2">
-              <p className="text-muted-foreground text-xs">Influences</p>
+              <p className="text-muted-foreground text-sm">Influences</p>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col items-start gap-2">
                 <LinkWithIcon href="https://61oaksgroup.com.au?ref=zacchary.me">
                   Keith Sanga
                 </LinkWithIcon>
@@ -197,17 +198,17 @@ export default function ColophonPage() {
             </div>
           </div>
 
-          <hr className="border-muted-foreground border-dotted" />
+          <hr className="border-dotted border-border" />
 
           <div className="flex w-full flex-col gap-1">
             <div className="flex w-full justify-between">
-              <div className="text-muted-foreground text-xs">Version</div>
+              <div className="text-muted-foreground text-sm">Version</div>
 
               <div className="w-fit">6.2.2</div>
             </div>
 
             <div className="flex w-full justify-between">
-              <div className="text-muted-foreground text-xs">Source</div>
+              <div className="text-muted-foreground text-sm">Source</div>
 
               <div>
                 <LinkWithIcon href="https://github.com/zpuckeridge/blog?ref=zacchary.me">
@@ -217,24 +218,19 @@ export default function ColophonPage() {
             </div>
 
             <div className="flex w-full justify-between">
-              <div className="text-muted-foreground text-xs">Carbon</div>
+              <div className="text-muted-foreground text-sm">Carbon</div>
 
               <div className="text-sm">
                 <LinkWithIcon href="https://www.websitecarbon.com/website/zacchary-me?ref=zacchary.me">
                   0.18g of CO
-                  <span className="align-super text-xs">2</span>/view
+                  <span className="align-super text-sm">2</span>/view
                 </LinkWithIcon>
               </div>
             </div>
           </div>
         </div>
 
-        <a
-          className="group inline-flex w-fit text-muted-foreground text-xs underline decoration-dotted underline-offset-2 transition ease-in-out hover:decoration-solid hover:underline-offset-4"
-          href="/"
-        >
-          ../
-        </a>
+        <BackLink href="/">../</BackLink>
       </div>
     </div>
   );

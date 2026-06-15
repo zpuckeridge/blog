@@ -3,16 +3,16 @@
 import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
-import SiteImage from "@/components/site-image";
+import ContentThumbnail from "@/components/content-thumbnail";
 import type { Movie } from "@/interfaces/content-item";
+import { directusAssetUrl } from "@/lib/directus-asset";
 import { formatDdMmYy } from "@/lib/format-in-brisbane";
-
-import { ImageZoom } from "./zoom-image";
 
 export default function MoviesPreview({ movies }: { movies: Movie[] }) {
   const sortedMovies = movies.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
+  const previewMovies = sortedMovies.slice(0, 7);
   const [expandedMovie, setExpandedMovie] = useState<string | null>(null);
 
   const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,23 +24,23 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
     <div className="space-y-2">
       <div className="flex w-full flex-col gap-4">
         <div className="flex w-full flex-row items-center gap-2">
-          <p className="text-muted-foreground text-xs">Movies</p>
-          <hr className="w-full border-muted-foreground border-dotted" />
+          <p className="text-muted-foreground text-sm">Movies</p>
+          <hr className="w-full border-dotted border-border" />
           <a
-            className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
+            className="whitespace-nowrap px-1 text-sm text-muted-foreground hover:bg-muted"
             href="/about/movies"
           >
             See all {sortedMovies.length}
           </a>
         </div>
-        <div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
-          {sortedMovies.map((movie: Movie) => {
+        <div className="relative flex h-36 w-full flex-col gap-1 overflow-y-hidden text-sm">
+          {previewMovies.map((movie: Movie) => {
             const isExpanded = expandedMovie === movie.id.toString();
             return (
               <div className="space-y-1" key={movie.id}>
                 <button
                   aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                  className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+                  className="flex w-full justify-between gap-4 px-1 text-left hover:bg-muted"
                   data-id={movie.id.toString()}
                   onClick={handleToggle}
                   type="button"
@@ -57,39 +57,29 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
                 >
                   <div className="flex flex-row gap-1">
                     {movie.image && (
-                      <div className="relative w-7">
-                        <ImageZoom>
-                          <SiteImage
-                            alt={movie.title}
-                            className="h-full w-full rounded shadow"
-                            height={150}
-                            src={`https://directus.obambulo.studio/assets/${movie.image}`}
-                            width={150}
-                          />
-                        </ImageZoom>
-                      </div>
+                      <ContentThumbnail
+                        alt={movie.title}
+                        src={directusAssetUrl(movie.image, {
+                          width: 150,
+                          height: 225,
+                        })}
+                      />
                     )}
-                    <div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                      <p className="text-[0.7rem] text-muted-foreground">
-                        Rating
-                      </p>
+                    <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                      <p className="text-sm text-muted-foreground">Rating</p>
                       <p className="text-sm">{movie.rating}/10</p>
                     </div>
 
                     {movie.setting && (
-                      <div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                        <p className="text-[0.7rem] text-muted-foreground">
-                          Setting
-                        </p>
+                      <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">Setting</p>
                         <p className="text-sm">{movie.setting}</p>
                       </div>
                     )}
 
                     {movie.with && (
-                      <div className="min-w-20 rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                        <p className="text-[0.7rem] text-muted-foreground">
-                          With
-                        </p>
+                      <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">With</p>
                         <p className="text-sm">
                           {(() => {
                             if (Array.isArray(movie.with)) {

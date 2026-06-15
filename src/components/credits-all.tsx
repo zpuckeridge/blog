@@ -2,11 +2,11 @@
 
 import { useCallback, useState } from "react";
 
-import SiteImage from "@/components/site-image";
+import ContentThumbnail from "@/components/content-thumbnail";
+import LinkWithIcon from "@/components/link-with-icon";
 import type { Credit } from "@/interfaces/content-item";
+import { directusAssetUrl } from "@/lib/directus-asset";
 import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
-
-import { ImageZoom } from "./zoom-image";
 
 export default function CreditsAll({ credits }: { credits: Credit[] }) {
   // Group credits by year
@@ -32,7 +32,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
   }, []);
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-10">
       <p className="font-redaction text-black text-xl dark:text-white">
         Credits
       </p>
@@ -40,11 +40,11 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
         {years.map((year) => (
           <div key={year}>
             <div className="mb-2 flex w-full flex-row items-center gap-2">
-              <p className="text-muted-foreground text-xs">
+              <p className="text-muted-foreground text-sm">
                 {creditsByYear[year].length}
               </p>
-              <hr className="w-full border-muted-foreground border-dotted" />
-              <p className="text-muted-foreground text-xs">{year}</p>
+              <hr className="w-full border-dotted border-border" />
+              <p className="text-muted-foreground text-sm">{year}</p>
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {creditsByYear[year]
@@ -55,7 +55,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                     <div className="space-y-1" key={credit.id}>
                       <button
                         aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                        className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+                        className="flex w-full justify-between gap-4 px-1 text-left hover:bg-muted"
                         data-id={credit.id.toString()}
                         onClick={handleToggle}
                         type="button"
@@ -74,22 +74,18 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                       >
                         <div className="flex flex-row flex-wrap gap-1">
                           {credit.image && (
-                            <div className="relative w-7">
-                              <ImageZoom>
-                                <SiteImage
-                                  alt={credit.title}
-                                  className="h-full w-full rounded shadow"
-                                  height={150}
-                                  src={`https://directus.obambulo.studio/assets/${credit.image}`}
-                                  width={150}
-                                />
-                              </ImageZoom>
-                            </div>
+                            <ContentThumbnail
+                              alt={credit.title}
+                              src={directusAssetUrl(credit.image, {
+                                width: 150,
+                                height: 225,
+                              })}
+                            />
                           )}
 
                           {credit.director && (
-                            <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-[0.7rem] text-muted-foreground">
+                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                              <p className="text-sm text-muted-foreground">
                                 Director
                               </p>
                               <p className="text-sm">{credit.director}</p>
@@ -97,8 +93,8 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                           )}
 
                           {credit.tags && (
-                            <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-[0.7rem] text-muted-foreground">
+                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                              <p className="text-sm text-muted-foreground">
                                 {credit.tags.length === 1 ? "Tag" : "Tags"}
                               </p>
 
@@ -112,18 +108,16 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                           )}
 
                           {credit.link && (
-                            <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-[0.7rem] text-muted-foreground">
+                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                              <p className="text-sm text-muted-foreground">
                                 Link
                               </p>
-                              <a
-                                className="text-sm"
+                              <LinkWithIcon
                                 href={credit.link}
-                                rel="noopener noreferrer"
-                                target="_blank"
+                                variant="default"
                               >
                                 RSP
-                              </a>
+                              </LinkWithIcon>
                             </div>
                           )}
                         </div>

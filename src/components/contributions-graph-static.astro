@@ -1,0 +1,100 @@
+---
+import {
+  getContributionColor,
+  summarizeContributions,
+  type ContributionDay,
+} from "@/lib/contributions-graph";
+
+interface Props {
+  contributions: ContributionDay[];
+}
+
+const { contributions } = Astro.props;
+const {
+  formatDayLabel,
+  maxContributionCount,
+  todayIso,
+  totalContributions,
+  weekdayLabel,
+  weeks,
+} = summarizeContributions(contributions);
+---
+
+<div class="w-full border-0 bg-transparent p-0 text-left" data-contributions-graph>
+  <div class="space-y-2">
+    <div class="flex justify-end gap-[4px] overflow-hidden">
+      {
+        weeks.map((week, weekIndex) => {
+          const weekStartDate =
+            week.find((day) => day !== null)?.date ?? `week-${weekIndex}`;
+          return (
+            <div class="flex flex-col gap-[4px]">
+              {week.map((day, dayIndex) =>
+                day ? (
+                  <button
+                    aria-label={formatDayLabel(day)}
+                    class:list={[
+                      "h-[9px] w-[9px]",
+                      getContributionColor(
+                        day.contributionCount,
+                        maxContributionCount
+                      ),
+                      day.date === todayIso &&
+                        "ring-1 ring-inset ring-neutral-300 dark:ring-neutral-600",
+                    ]}
+                    data-contribution-day
+                    data-label={formatDayLabel(day)}
+                    type="button"
+                  />
+                ) : (
+                  <div aria-hidden class="h-[9px] w-[9px]" />
+                )
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+    <div class="flex justify-between text-muted-foreground text-sm">
+      <div data-contribution-summary>
+        {`${weekdayLabel} · ${totalContributions} contributions in the last 12 months`}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const initContributionGraphs = () => {
+    for (const graph of document.querySelectorAll("[data-contributions-graph]")) {
+      if (!(graph instanceof HTMLElement) || graph.dataset.graphReady === "true") {
+        continue;
+      }
+
+      graph.dataset.graphReady = "true";
+
+      const summary = graph.querySelector("[data-contribution-summary]");
+      const defaultSummary = summary?.textContent ?? "";
+
+      for (const button of graph.querySelectorAll("[data-contribution-day]")) {
+        if (!(button instanceof HTMLButtonElement)) {
+          continue;
+        }
+
+        button.addEventListener("mouseenter", () => {
+          if (summary) {
+            summary.textContent = button.dataset.label ?? defaultSummary;
+          }
+        });
+
+        button.addEventListener("mouseleave", () => {
+          if (summary) {
+            summary.textContent = defaultSummary;
+          }
+        });
+      }
+    }
+  };
+
+  initContributionGraphs();
+  document.addEventListener("astro:page-load", initContributionGraphs);
+</script>

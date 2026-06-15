@@ -3,16 +3,16 @@
 import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
-import SiteImage from "@/components/site-image";
+import ContentThumbnail from "@/components/content-thumbnail";
 import type { Book } from "@/interfaces/content-item";
+import { directusAssetUrl } from "@/lib/directus-asset";
 import { formatDdMmYy } from "@/lib/format-in-brisbane";
-
-import { ImageZoom } from "./zoom-image";
 
 export default function BooksPreview({ books }: { books: Book[] }) {
   const sortedBooks = books.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
+  const previewBooks = sortedBooks.slice(0, 7);
   const [expandedBook, setExpandedBook] = useState<string | null>(null);
 
   const handleToggle = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,23 +24,23 @@ export default function BooksPreview({ books }: { books: Book[] }) {
     <div className="space-y-2">
       <div className="flex w-full flex-col gap-4">
         <div className="flex w-full flex-row items-center gap-2">
-          <p className="text-muted-foreground text-xs">Books</p>
-          <hr className="w-full border-muted-foreground border-dotted" />
+          <p className="text-muted-foreground text-sm">Books</p>
+          <hr className="w-full border-dotted border-border" />
           <a
-            className="whitespace-nowrap text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
+            className="whitespace-nowrap px-1 text-sm text-muted-foreground hover:bg-muted"
             href="/about/books"
           >
             See all {sortedBooks.length}
           </a>
         </div>
-        <div className="relative flex h-30 w-full flex-col gap-1 overflow-y-hidden text-sm">
-          {sortedBooks.map((book: Book) => {
+        <div className="relative flex h-36 w-full flex-col gap-1 overflow-y-hidden text-sm">
+          {previewBooks.map((book: Book) => {
             const isExpanded = expandedBook === book.id.toString();
             return (
               <div className="space-y-1" key={book.id}>
                 <button
                   aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                  className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+                  className="flex w-full justify-between gap-4 px-1 text-left hover:bg-muted"
                   data-id={book.id.toString()}
                   onClick={handleToggle}
                   type="button"
@@ -57,37 +57,29 @@ export default function BooksPreview({ books }: { books: Book[] }) {
                 >
                   <div className="flex flex-row flex-wrap gap-1">
                     {book.image && (
-                      <div className="relative w-7">
-                        <ImageZoom>
-                          <SiteImage
-                            alt={book.title}
-                            className="h-full w-full rounded shadow"
-                            height={150}
-                            src={`https://directus.obambulo.studio/assets/${book.image}`}
-                            width={150}
-                          />
-                        </ImageZoom>
-                      </div>
+                      <ContentThumbnail
+                        alt={book.title}
+                        src={directusAssetUrl(book.image, {
+                          width: 150,
+                          height: 225,
+                        })}
+                      />
                     )}
-                    <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                      <p className="text-[0.7rem] text-muted-foreground">
-                        Rating
-                      </p>
+                    <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                      <p className="text-sm text-muted-foreground">Rating</p>
                       <p className="text-sm">{book.rating}/10</p>
                     </div>
 
                     {book.isbn && (
-                      <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                        <p className="text-[0.7rem] text-muted-foreground">
-                          ISBN
-                        </p>
+                      <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">ISBN</p>
                         <p className="text-sm">{book.isbn}</p>
                       </div>
                     )}
 
                     {book.published && (
-                      <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                        <p className="text-[0.7rem] text-muted-foreground">
+                      <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">
                           Published
                         </p>
                         <p className="text-sm">
@@ -98,10 +90,8 @@ export default function BooksPreview({ books }: { books: Book[] }) {
                       </div>
                     )}
                     {book.author && (
-                      <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                        <p className="text-[0.7rem] text-muted-foreground">
-                          Author
-                        </p>
+                      <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">Author</p>
                         <p className="text-sm">{book.author}</p>
                       </div>
                     )}

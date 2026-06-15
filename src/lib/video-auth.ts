@@ -1,4 +1,4 @@
-import { env as cfEnv } from "cloudflare:workers";
+import { workersEnv as cfEnv } from "@/lib/workers-env";
 
 const VIDEO_AUTH_COOKIE = "video_auth";
 

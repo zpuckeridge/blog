@@ -1,5 +1,5 @@
 .signature-path {
-  animation: draw-signature 0.03s ease-in-out both;
+  animation: draw-signature 30ms ease-in-out both;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
 }

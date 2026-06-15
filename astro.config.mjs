@@ -2,23 +2,28 @@ import path from "node:path";
 
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
-import { defineConfig } from "astro/config";
+import { defineConfig, sessionDrivers } from "astro/config";
 
 const __dirname = import.meta.dirname;
 const reactNodeEnv = process.argv.includes("build")
   ? "production"
   : "development";
+const isDevCommand = process.argv.includes("dev");
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare({
-    /** Build-time sharp optimization; avoids runtime sharp on Workers (adapter suppresses the sharp warning). */
-    imageService: "compile",
-  }),
+  // Adapter omitted during `astro dev` for fast startup (Cloudflare Vite plugin hangs under Bun).
+  // Production builds still use @astrojs/cloudflare — the "no adapter" warning in dev is expected.
+  adapter: isDevCommand
+    ? undefined
+    : cloudflare({
+        /** Build-time sharp optimization; avoids runtime sharp on Workers (adapter suppresses the sharp warning). */
+        imageService: "compile",
+      }),
   integrations: [react()],
   output: "server",
   session: {
-    driver: "memory",
+    driver: sessionDrivers.lruCache(),
   },
   site: "https://zacchary.me",
   vite: {
@@ -38,13 +43,20 @@ export default defineConfig({
         "sonner",
         "tailwind-merge",
         "swr",
-        "use-lanyard",
       ],
     },
     /** Let Vite handle react-tweet’s CSS modules during SSR (fixes Unknown file extension ".css"). */
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        ...(isDevCommand
+          ? {
+              "cloudflare:workers": path.resolve(
+                __dirname,
+                "./src/lib/cloudflare-workers-dev.ts"
+              ),
+            }
+          : {}),
       },
     },
     ssr: {

@@ -2,11 +2,10 @@
 
 import { useCallback, useState } from "react";
 
-import SiteImage from "@/components/site-image";
+import ContentThumbnail from "@/components/content-thumbnail";
 import type { Book } from "@/interfaces/content-item";
+import { directusAssetUrl } from "@/lib/directus-asset";
 import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
-
-import { ImageZoom } from "./zoom-image";
 
 export default function BooksAll({ books }: { books: Book[] }) {
   // Group books by year
@@ -32,17 +31,17 @@ export default function BooksAll({ books }: { books: Book[] }) {
   }, []);
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-10">
       <p className="font-redaction text-black text-xl dark:text-white">Books</p>
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (
           <div key={year}>
             <div className="mb-2 flex w-full flex-row items-center gap-2">
-              <p className="text-muted-foreground text-xs">
+              <p className="text-muted-foreground text-sm">
                 {booksByYear[year].length}
               </p>
-              <hr className="w-full border-muted-foreground border-dotted" />
-              <p className="text-muted-foreground text-xs">{year}</p>
+              <hr className="w-full border-dotted border-border" />
+              <p className="text-muted-foreground text-sm">{year}</p>
             </div>
             <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
               {booksByYear[year]
@@ -53,7 +52,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
                     <div className="space-y-1" key={book.id}>
                       <button
                         aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                        className="flex w-full justify-between gap-4 text-left transition hover:text-blue-400 dark:hover:text-blue-600"
+                        className="flex w-full justify-between gap-4 px-1 text-left hover:bg-muted"
                         data-id={book.id.toString()}
                         onClick={handleToggle}
                         type="button"
@@ -72,35 +71,31 @@ export default function BooksAll({ books }: { books: Book[] }) {
                       >
                         <div className="flex flex-row flex-wrap gap-1">
                           {book.image && (
-                            <div className="relative w-7">
-                              <ImageZoom>
-                                <SiteImage
-                                  alt={book.title}
-                                  className="h-full w-full rounded shadow"
-                                  height={150}
-                                  src={`https://directus.obambulo.studio/assets/${book.image}`}
-                                  width={150}
-                                />
-                              </ImageZoom>
-                            </div>
+                            <ContentThumbnail
+                              alt={book.title}
+                              src={directusAssetUrl(book.image, {
+                                width: 150,
+                                height: 225,
+                              })}
+                            />
                           )}
-                          <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                            <p className="text-[0.7rem] text-muted-foreground">
+                          <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                            <p className="text-sm text-muted-foreground">
                               Rating
                             </p>
                             <p className="text-sm">{book.rating}/10</p>
                           </div>
                           {book.isbn && (
-                            <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-[0.7rem] text-muted-foreground">
+                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                              <p className="text-sm text-muted-foreground">
                                 ISBN
                               </p>
                               <p className="text-sm">{book.isbn}</p>
                             </div>
                           )}
                           {book.published && (
-                            <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-[0.7rem] text-muted-foreground">
+                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                              <p className="text-sm text-muted-foreground">
                                 Published
                               </p>
                               <p className="text-sm">
@@ -111,8 +106,8 @@ export default function BooksAll({ books }: { books: Book[] }) {
                             </div>
                           )}
                           {book.author && (
-                            <div className="min-w-20 whitespace-nowrap rounded bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-[0.7rem] text-muted-foreground">
+                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                              <p className="text-sm text-muted-foreground">
                                 Author
                               </p>
                               <p className="text-sm">{book.author}</p>

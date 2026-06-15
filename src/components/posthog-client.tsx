@@ -3,21 +3,32 @@
 import { useEffect } from "react";
 
 import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";
+import { isLikelyBot } from "@/lib/is-likely-bot";
+
+const INTERACTION_EVENTS = [
+  "pointerdown",
+  "keydown",
+  "scroll",
+  "touchstart",
+] as const;
 
 export default function PostHogClient() {
   useEffect(() => {
     const key = import.meta.env.PUBLIC_POSTHOG_KEY ?? "";
-    if (!key) {
+    if (!key || isLikelyBot()) {
       return;
     }
 
     let disposed = false;
-    const start = async () => {
-      try {
-        if (disposed) {
-          return;
-        }
+    let started = false;
 
+    const start = async () => {
+      if (disposed || started) {
+        return;
+      }
+      started = true;
+
+      try {
         const { posthog } = await import("posthog-js");
         if (!disposed) {
           posthog.init(key, {
@@ -30,13 +41,30 @@ export default function PostHogClient() {
       }
     };
 
+    const onInteraction = () => {
+      for (const eventName of INTERACTION_EVENTS) {
+        window.removeEventListener(eventName, onInteraction);
+      }
+      void start();
+    };
+
+    for (const eventName of INTERACTION_EVENTS) {
+      window.addEventListener(eventName, onInteraction, {
+        once: true,
+        passive: true,
+      });
+    }
+
     const deferred = scheduleIdleOrFallback(() => {
       void start();
-    }, 1500);
+    }, 12000);
 
     return () => {
       disposed = true;
       deferred.cancel();
+      for (const eventName of INTERACTION_EVENTS) {
+        window.removeEventListener(eventName, onInteraction);
+      }
     };
   }, []);
 

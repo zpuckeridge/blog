@@ -42,20 +42,20 @@ const SearchBar = ({
   searchTerm: string;
 }) => (
   <div className="group relative flex">
-    <div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-xs has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-xs has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
-      <span className="relative -top-px inline-flex bg-background px-2 text-xs">
+    <div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-sm has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-sm has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
+      <span className="relative -top-px inline-flex bg-background px-2 text-sm">
         {label}
       </span>
     </div>
     <Input
-      className="-me-px flex-1 rounded-lg text-black text-xs shadow-none dark:text-neutral-300"
+      className="-me-px flex-1 text-black text-sm shadow-none dark:text-neutral-300"
       onChange={onSearchChange}
       placeholder=""
       type="text"
       value={searchTerm}
     />
 
-    <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
+    <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
       <RxMagnifyingGlass />
     </div>
   </div>
@@ -149,10 +149,10 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
         <div className="flex flex-wrap gap-1">
           {uniqueTags.map((tag) => (
             <button
-              className={`rounded px-2.5 py-0.5 text-xs ${
+              className={`inline-flex px-1 text-sm bg-muted hover:bg-muted/80 ${
                 selectedTag === tag
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  ? "text-foreground"
+                  : "text-muted-foreground"
               }`}
               key={tag}
               data-tag={tag}
@@ -166,19 +166,19 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
       </div>
 
       <div className="mt-2 grid grid-cols-2 gap-4">
-        {currentVideos.map((video: Video) => (
+        {currentVideos.map((video: Video, index: number) => (
           <a
             aria-label={video.title}
-            className="group relative rounded transition-all duration-200 hover:grayscale"
+            className="group relative transition-all duration-200 hover:grayscale"
             href={`/video/${video.slug}`}
             key={video.slug}
             title={video.title}
           >
             <div className="transform">
-              <div className="absolute top-2 left-2 z-10 rounded bg-muted/60 px-2.5 py-0.5 text-xs backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900/60">
+              <div className="absolute top-2 left-2 z-10 bg-muted px-2.5 py-0.5 text-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900">
                 {(video.tags ?? []).join(", ")}
               </div>
-              <div className="absolute top-2 right-2 z-10 rounded bg-muted/60 px-2.5 py-0.5 text-xs backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900/60">
+              <div className="absolute top-2 right-2 z-10 bg-muted px-2.5 py-0.5 text-sm transition-opacity duration-200 group-hover:opacity-0 dark:bg-neutral-900">
                 {video.duration ? (
                   <span className="duration">
                     {formatDuration(video.duration)}
@@ -188,12 +188,12 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                 )}
               </div>
 
-              <div className="aspect-video overflow-hidden rounded-lg transition-all duration-200 group-hover:drop-shadow-2xl">
+              <div className="aspect-video overflow-hidden transition-all duration-200 group-hover:drop-shadow-2xl">
                 <SiteImage
                   alt={video.title}
-                  className="aspect-video rounded-lg transition-all duration-200 group-hover:scale-110"
+                  className="aspect-video transition-all duration-200 group-hover:scale-110"
                   height={600}
-                  priority={true}
+                  priority={index === 0}
                   src={resolveVideoMedia(video.playback_id).thumbnailUrl}
                   width={600}
                 />
@@ -201,7 +201,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
               <div className="mt-1 flex justify-between">
                 <div className="truncate text-sm">{video.title}</div>
               </div>
-              <div className="flex justify-between text-muted-foreground text-xs">
+              <div className="flex justify-between text-muted-foreground text-sm">
                 <p>{formatPublishedLongDate(video.date_created)}</p>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
         <nav aria-label="Pagination" className="mt-4 flex justify-between">
           <button
             aria-label="Previous page"
-            className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
+            className="text-muted-foreground text-sm transition hover:text-blue-400 dark:hover:text-blue-600"
             disabled={currentPage === 1}
             onClick={handlePrevPage}
             type="button"
@@ -221,14 +221,14 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
             <RxArrowLeft className="inline-flex" /> Prev Page
           </button>
           <button
-            className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
+            className="text-muted-foreground text-sm transition hover:text-blue-400 dark:hover:text-blue-600"
             onClick={handleResetPage}
             type="button"
           >
             {currentPage} of {totalPages}
           </button>
           <button
-            className="text-muted-foreground text-xs transition hover:text-blue-400 dark:hover:text-blue-600"
+            className="text-muted-foreground text-sm transition hover:text-blue-400 dark:hover:text-blue-600"
             disabled={currentPage === totalPages}
             onClick={handleNextPage}
             type="button"

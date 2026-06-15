@@ -5,7 +5,7 @@
 export const scheduleIdleOrFallback = function scheduleIdleOrFallback(
   fn: () => void,
   fallbackMs: number
-): { cancel(): void } {
+): { cancel: () => void } {
   const ricUnknown = Reflect.get(globalThis, "requestIdleCallback");
   const cicUnknown = Reflect.get(globalThis, "cancelIdleCallback");
 

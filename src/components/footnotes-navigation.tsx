@@ -2,6 +2,8 @@
 
 import { useCallback } from "react";
 
+import { trimLinkChildren } from "@/lib/trim-link-children";
+
 type FootnotesNavigationProps = React.ComponentPropsWithoutRef<"a"> & {
   href: string;
   children: React.ReactNode;
@@ -34,7 +36,7 @@ const FootnotesNavigation = ({
       className="text-muted-foreground"
       onClick={scrollToFootnote}
     >
-      {children}
+      {trimLinkChildren(children)}
     </a>
   );
 };

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const Switch = ({ className, ...props }: SwitchPrimitive.Root.Props) => (
   <SwitchPrimitive.Root
     className={cn(
-      "peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded border border-transparent shadow-xs outline-none transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80",
+      "peer inline-flex h-[1.15rem] w-8 shrink-0 items-center border border-transparent shadow-xs outline-none transition-all duration-200 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80",
       className
     )}
     data-slot="switch"
@@ -15,7 +15,7 @@ const Switch = ({ className, ...props }: SwitchPrimitive.Root.Props) => (
   >
     <SwitchPrimitive.Thumb
       className={cn(
-        "pointer-events-none block size-4 rounded bg-background ring-0 transition-transform data-checked:translate-x-[calc(100%-2px)] data-unchecked:translate-x-0 dark:data-checked:bg-primary-foreground dark:data-unchecked:bg-foreground"
+        "pointer-events-none block size-4 bg-background ring-0 transition-transform duration-200 data-checked:translate-x-[calc(100%-2px)] data-unchecked:translate-x-0 dark:data-checked:bg-primary-foreground dark:data-unchecked:bg-foreground"
       )}
       data-slot="switch-thumb"
     />

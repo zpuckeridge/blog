@@ -70,6 +70,32 @@ const tzDayMonthYear = (
   };
 };
 
+const formatterWeekdayBrisbane = new Intl.DateTimeFormat("en-US", {
+  timeZone: BRISBANE_TIMEZONE,
+  weekday: "long",
+});
+
+const formatterIsoDateBrisbane = new Intl.DateTimeFormat("en-CA", {
+  day: "2-digit",
+  month: "2-digit",
+  timeZone: BRISBANE_TIMEZONE,
+  year: "numeric",
+});
+
+/** e.g. "Saturday" in Brisbane */
+export const formatWeekdayInBrisbane = function formatWeekdayInBrisbane(
+  at: DateInput = new Date()
+): string {
+  return formatterWeekdayBrisbane.format(coerceDate(at));
+};
+
+/** YYYY-MM-DD for the Brisbane calendar day (matches GitHub contribution `date` strings). */
+export const isoDateInBrisbane = function isoDateInBrisbane(
+  at: DateInput = new Date()
+): string {
+  return formatterIsoDateBrisbane.format(coerceDate(at));
+};
+
 /** e.g. "January 2024" */
 export const formatPublishedMonthYear = function formatPublishedMonthYear(
   isoDate: DateInput

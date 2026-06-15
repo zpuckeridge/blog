@@ -35,8 +35,8 @@ export const extractYoutubeVideoId = function extractYoutubeVideoId(
         }
 
         const fromPath =
-          trimmed.match(/\/(?:embed|shorts|live)\/([A-Za-z0-9_-]{11})/u)?.[1] ??
-          null;
+          trimmed.match(/\/(?:embed|shorts|live)\/(?<id>[A-Za-z0-9_-]{11})/u)
+            ?.groups?.id ?? null;
         if (fromPath && isYoutubeVideoId(fromPath)) {
           return fromPath;
         }
@@ -53,8 +53,8 @@ export const extractYoutubeVideoId = function extractYoutubeVideoId(
 
 /** Mux playback id from a stream URL, or the value unchanged if already an id. */
 export const getMuxPlaybackId = function getMuxPlaybackId(src: string): string {
-  const match = src.match(/stream\.mux\.com\/([^.?#/]+)/u);
-  return match ? match[1] : src;
+  const match = src.match(/stream\.mux\.com\/(?<playbackId>[^.?#/]+)/u);
+  return match?.groups?.playbackId ?? src;
 };
 
 const missingPlaybackPlaceholder = "/avatar-2026.avif";

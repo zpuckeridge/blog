@@ -1,32 +1,41 @@
 import MuxPlayer from "@mux/mux-player-react/lazy";
 
+import { cn } from "@/lib/utils";
 import { extractYoutubeVideoId, getMuxPlaybackId } from "@/lib/video-source";
 
-const playerShell = "aspect-video w-full overflow-hidden rounded-lg";
+const playerShell = "relative aspect-[16/9] w-full shrink-0 overflow-hidden";
 
-export default function Player({ src }: { src: string }) {
+export default function Player({
+  className,
+  src,
+  title = "YouTube video player",
+}: {
+  className?: string;
+  src: string;
+  title?: string;
+}) {
   const youtubeId = extractYoutubeVideoId(src);
   if (youtubeId) {
     return (
-      <div className={playerShell}>
+      <div className={cn(playerShell, className)}>
         {/* YouTube embed requires full embed capabilities; sandbox breaks playback */}
-        {/* oxlint-disable-next-line eslint-plugin-react/iframe-missing-sandbox */}
+        {/* oxlint-disable-next-line react-doctor/iframe-missing-sandbox */}
         <iframe
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          className="block h-full w-full border-0"
+          className="absolute inset-0 size-full border-0"
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
-          title="YouTube video player"
+          title={title}
         />
       </div>
     );
   }
 
   return (
-    <div className={playerShell}>
+    <div className={cn(playerShell, className)}>
       <MuxPlayer
         accentColor="#2563eb"
-        className="block h-full w-full"
+        className="absolute inset-0 size-full"
         playbackId={getMuxPlaybackId(src)}
       />
     </div>

@@ -1,17 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 
+import {
+  getContributionColor,
+  summarizeContributions,
+  type ContributionDay,
+} from "@/lib/contributions-graph";
 import { formatPublishedLongDate } from "@/lib/format-in-brisbane";
-
-interface ContributionDay {
-  date: string;
-  contributionCount: number;
-  color: string;
-}
+import { cn } from "@/lib/utils";
 
 interface GitHubContributionsProps {
+  initialContributions?: ContributionDay[];
   username: string;
 }
 
@@ -20,37 +21,6 @@ interface ContributionsPayload {
   error?: string;
   resetTime?: number | string;
 }
-
-/** Intensity vs max in the last year (GitHub-style): more tiers and darker greens for heavier days. */
-const getContributionColor = (count: number, maxCount: number): string => {
-  if (count === 0) {
-    return "bg-neutral-100 dark:bg-neutral-900";
-  }
-  const max = Math.max(maxCount, 1);
-  const t = count / max;
-  if (t <= 0.14) {
-    return "bg-green-100 dark:bg-green-950";
-  }
-  if (t <= 0.29) {
-    return "bg-green-200 dark:bg-green-900";
-  }
-  if (t <= 0.43) {
-    return "bg-green-300 dark:bg-green-800";
-  }
-  if (t <= 0.57) {
-    return "bg-green-400 dark:bg-green-700";
-  }
-  if (t <= 0.71) {
-    return "bg-green-500 dark:bg-green-600";
-  }
-  if (t <= 0.86) {
-    return "bg-green-600 dark:bg-green-500";
-  }
-  if (t <= 0.95) {
-    return "bg-green-700 dark:bg-green-400";
-  }
-  return "bg-green-800 dark:bg-green-300";
-};
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -85,63 +55,72 @@ const fetcher = async (url: string) => {
   return list as ContributionDay[];
 };
 
-const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
+const ContributionsGraph = ({
+  initialContributions,
+  username,
+}: GitHubContributionsProps) => {
+  const hasInitialContributions = Boolean(initialContributions);
   const [shouldFetch, setShouldFetch] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const containerRef = useCallback(
+    (element: HTMLDivElement | null) => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
+
+      if (!element || shouldFetch || hasInitialContributions) {
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting) {
+            return;
+          }
+          setShouldFetch(true);
+          observer.disconnect();
+        },
+        {
+          rootMargin: "160px",
+        }
+      );
+
+      observer.observe(element);
+      observerRef.current = observer;
+    },
+    [hasInitialContributions, shouldFetch]
+  );
   const {
-    data: contributions = [],
+    data: contributions = initialContributions ?? [],
     error: fetchError,
     isLoading,
   } = useSWR<ContributionDay[]>(
-    shouldFetch
+    shouldFetch && !hasInitialContributions
       ? `/api/github/contributions/graph?username=${encodeURIComponent(username)}`
       : null,
     fetcher,
     {
       dedupingInterval: 1000 * 60 * 30,
+      fallbackData: initialContributions,
       revalidateIfStale: false,
       revalidateOnFocus: false,
     }
   );
   const [hoveredDay, setHoveredDay] = useState<ContributionDay | null>(null);
+  const summary = summarizeContributions(contributions);
+  const {
+    maxContributionCount,
+    todayIso,
+    totalContributions,
+    weekdayLabel,
+    weeks,
+  } = summary;
 
-  useEffect(() => {
-    const element = containerRef.current;
-    if (!element || shouldFetch) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) {
-          return;
-        }
-        setShouldFetch(true);
-        observer.disconnect();
-      },
-      {
-        rootMargin: "160px",
-      }
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [shouldFetch]);
-
-  const last365Days = contributions.slice(-365);
-  const maxContributionCount = Math.max(
-    0,
-    ...last365Days.map((d) => d.contributionCount)
+  useEffect(
+    () => () => {
+      observerRef.current?.disconnect();
+    },
+    []
   );
-
-  const weeks: ContributionDay[][] = useMemo(() => {
-    const w: ContributionDay[][] = [];
-    for (let i = 0; i < last365Days.length; i += 7) {
-      w.push(last365Days.slice(i, i + 7));
-    }
-    return w;
-  }, [last365Days]);
 
   const handleDayHover = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -162,18 +141,14 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
 
   const handleDayLeave = useCallback(() => setHoveredDay(null), []);
 
-  let totalContributions = 0;
-  for (const day of contributions) {
-    totalContributions += day.contributionCount;
-  }
   // Show error state
   if (fetchError) {
     return (
       <div
-        className="flex h-[120px] w-full items-center border-0 bg-transparent p-0 text-left"
+        className="flex w-full items-center border-0 bg-transparent p-0 text-left"
         ref={containerRef}
       >
-        <div className="text-muted-foreground text-xs">
+        <div className="text-muted-foreground text-sm">
           <p>GitHub contributions unavailable</p>
           <p className="text-red-500 dark:text-red-400">
             {fetchError instanceof Error
@@ -187,7 +162,7 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
 
   return (
     <div
-      className="h-[120px] w-full border-0 bg-transparent p-0 text-left transition-opacity duration-300 ease-in-out"
+      className="w-full border-0 bg-transparent p-0 text-left transition-opacity duration-200 ease-in-out"
       ref={containerRef}
       style={{ opacity: isLoading ? 0.5 : 1 }}
     >
@@ -195,34 +170,51 @@ const ContributionsGraph = ({ username }: GitHubContributionsProps) => {
         <div className="space-y-2">
           <div className="flex justify-end gap-[4px] overflow-hidden">
             {weeks.map((week, weekIndex) => {
-              const weekStartDate = week[0]?.date || `week-${weekIndex}`;
+              const weekStartDate =
+                week.find((day) => day !== null)?.date ?? `week-${weekIndex}`;
               return (
                 <div className="flex flex-col gap-[4px]" key={weekStartDate}>
-                  {week.map((day) => (
-                    <button
-                      aria-label={`${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`}
-                      className={`h-[9px] w-[9px] rounded-[2px] ${getContributionColor(day.contributionCount, maxContributionCount)}`}
-                      data-color={day.color}
-                      data-count={day.contributionCount}
-                      data-date={day.date}
-                      key={day.date}
-                      onMouseEnter={handleDayHover}
-                      onMouseLeave={handleDayLeave}
-                      type="button"
-                    />
-                  ))}
+                  {week.map((day, dayIndex) =>
+                    day ? (
+                      <button
+                        aria-label={`${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`}
+                        className={cn(
+                          "h-[9px] w-[9px]",
+                          getContributionColor(
+                            day.contributionCount,
+                            maxContributionCount
+                          ),
+                          day.date === todayIso &&
+                            "ring-1 ring-inset ring-neutral-300 dark:ring-neutral-600"
+                        )}
+                        data-color={day.color}
+                        data-count={day.contributionCount}
+                        data-date={day.date}
+                        key={day.date}
+                        onMouseEnter={handleDayHover}
+                        onMouseLeave={handleDayLeave}
+                        type="button"
+                      />
+                    ) : (
+                      <div
+                        aria-hidden
+                        className="h-[9px] w-[9px]"
+                        key={`empty-${weekStartDate}-${dayIndex}`}
+                      />
+                    )
+                  )}
                 </div>
               );
             })}
           </div>
-          <div className="flex justify-between text-muted-foreground text-xs">
+          <div className="flex justify-between text-muted-foreground text-sm">
             {hoveredDay ? (
               <div>
                 {`${hoveredDay.contributionCount} contribution${hoveredDay.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(hoveredDay.date)}`}
               </div>
             ) : (
-              <div>
-                {`${totalContributions} contributions in the last 12 months`}
+              <div suppressHydrationWarning>
+                {`${weekdayLabel} · ${totalContributions} contributions in the last 12 months`}
               </div>
             )}
           </div>

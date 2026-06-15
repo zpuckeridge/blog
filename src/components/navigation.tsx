@@ -7,28 +7,26 @@ interface NavigationProps {
 
 export default function Navigation({ pathname }: NavigationProps) {
   return (
-    <div className="mx-auto flex max-w-lg items-center justify-between gap-4 px-6 pt-6 lg:pt-20">
+    <div className="mx-auto flex max-w-lg items-center justify-between gap-4 px-6 pt-6 pb-10 lg:pt-20">
       <a href="/">
         <SiteImage
           alt="Zacchary Puckeridge"
-          className="aspect-square size-6 rounded object-cover"
+          className="aspect-square size-6 object-cover"
           height={100}
           src="/avatar-2026-small.avif"
           width={100}
         />
       </a>
 
-      <div className="flex flex-row items-center justify-end gap-4 text-muted-foreground text-xs">
+      <div className="flex flex-row items-center justify-end gap-2 text-muted-foreground text-sm">
         {menuItems.map((item) => {
           const isActive =
             pathname === item.href || pathname.includes(item.href);
 
           return (
             <a
-              className={`group inline-flex underline transition ease-in-out ${
-                isActive
-                  ? "text-foreground decoration-solid underline-offset-4"
-                  : "decoration-dotted underline-offset-2 hover:decoration-solid hover:underline-offset-4"
+              className={`group inline-flex px-1 hover:bg-muted ${
+                isActive ? "bg-muted text-foreground hover:bg-muted/80" : ""
               }`}
               href={item.href}
               key={item.href}

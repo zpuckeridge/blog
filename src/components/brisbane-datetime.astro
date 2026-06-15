@@ -1,0 +1,81 @@
+---
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  hour12: true,
+  timeStyle: "short",
+  timeZone: "Australia/Brisbane",
+});
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  day: "numeric",
+  month: "short",
+  timeZone: "Australia/Brisbane",
+  year: "numeric",
+});
+
+const now = new Date();
+const initialTime = timeFormatter.format(now);
+const initialDate = dateFormatter.format(now);
+---
+
+<div
+  class="flex flex-row gap-2 text-muted-foreground text-sm"
+  data-brisbane-clock
+>
+  <p data-brisbane-time>{initialTime}</p>
+  <p>•</p>
+  <p data-brisbane-date>{initialDate}</p>
+</div>
+
+<script>
+  const initBrisbaneClocks = () => {
+    const timeFormatter = new Intl.DateTimeFormat("en-US", {
+      hour12: true,
+      timeStyle: "short",
+      timeZone: "Australia/Brisbane",
+    });
+
+    const dateFormatter = new Intl.DateTimeFormat("en-US", {
+      day: "numeric",
+      month: "short",
+      timeZone: "Australia/Brisbane",
+      year: "numeric",
+    });
+
+    for (const root of document.querySelectorAll("[data-brisbane-clock]")) {
+      if (!(root instanceof HTMLElement) || root.dataset.clockReady === "true") {
+        continue;
+      }
+
+      const timeEl = root.querySelector("[data-brisbane-time]");
+      const dateEl = root.querySelector("[data-brisbane-date]");
+      if (!(timeEl instanceof HTMLElement) || !(dateEl instanceof HTMLElement)) {
+        continue;
+      }
+
+      root.dataset.clockReady = "true";
+
+      const render = () => {
+        const current = new Date();
+        timeEl.textContent = timeFormatter.format(current);
+        dateEl.textContent = dateFormatter.format(current);
+      };
+
+      const scheduleNextUpdate = () => {
+        const currentTime = new Date();
+        const nextMinute = new Date(currentTime);
+        nextMinute.setSeconds(0, 0);
+        nextMinute.setMinutes(currentTime.getMinutes() + 1);
+        return window.setTimeout(() => {
+          render();
+          scheduleNextUpdate();
+        }, nextMinute.getTime() - currentTime.getTime());
+      };
+
+      render();
+      scheduleNextUpdate();
+    }
+  };
+
+  initBrisbaneClocks();
+  document.addEventListener("astro:page-load", initBrisbaneClocks);
+</script>
