@@ -16,15 +16,15 @@ export default function ColophonPage() {
               <LinkWithIcon href="https://fontshare.com/fonts/archivo">
                 Archivo
               </LinkWithIcon>{" "}
-              as body text,{" "}
+              for body text,{" "}
               <LinkWithIcon href="https://vercel.com/font">
                 Geist Mono
               </LinkWithIcon>{" "}
-              for code and{" "}
-              <LinkWithIcon href="https://fonts.google.com/specimen/Instrument+Serif">
-                Instrument Serif
+              for code, and{" "}
+              <LinkWithIcon href="https://www.mckltype.com/typefaces/redaction">
+                Redaction
               </LinkWithIcon>{" "}
-              for headings and flair.
+              for headings, blockquotes, and flair.
             </p>
           </div>
 
@@ -39,36 +39,36 @@ export default function ColophonPage() {
                 Astro
               </LinkWithIcon>
               ,{" "}
+              <LinkWithIcon href="https://react.dev?ref=zacchary.me">
+                React
+              </LinkWithIcon>
+              ,{" "}
               <LinkWithIcon href="https://vite.dev?ref=zacchary.me">
                 Vite
               </LinkWithIcon>
               ,{" "}
-              <LinkWithIcon href="https://pagescms.org?ref=zacchary.me">
-                PagesCMS
+              <LinkWithIcon href="https://directus.io?ref=zacchary.me">
+                Directus
               </LinkWithIcon>
               ,{" "}
               <LinkWithIcon href="https://tailwindcss.com?ref=zacchary.me">
                 Tailwind
               </LinkWithIcon>
               ,{" "}
-              <LinkWithIcon href="https://ui.shadcn.com?ref=zacchary.me">
-                shadcn
+              <LinkWithIcon href="https://base-ui.com?ref=zacchary.me">
+                Base UI
               </LinkWithIcon>
               ,{" "}
-              <LinkWithIcon href="https://oxc-project.github.io?ref=zacchary.me">
+              <LinkWithIcon href="https://github.com/hmans/safe-mdx?ref=zacchary.me">
+                safe-mdx
+              </LinkWithIcon>
+              ,{" "}
+              <LinkWithIcon href="https://oxc.rs?ref=zacchary.me">
                 Oxc
               </LinkWithIcon>
               ,{" "}
               <LinkWithIcon href="https://lanyard.rest?ref=zacchary.me">
                 Lanyard
-              </LinkWithIcon>
-              ,{" "}
-              <LinkWithIcon href="https://neon.tech?ref=zacchary.me">
-                Neon
-              </LinkWithIcon>
-              ,{" "}
-              <LinkWithIcon href="https://www.framer.com/motion?ref=zacchary.me">
-                Framer Motion
               </LinkWithIcon>{" "}
               and{" "}
               <LinkWithIcon href="https://www.mux.com?ref=zacchary.me">
@@ -81,14 +81,14 @@ export default function ColophonPage() {
               . Analytics provided by{" "}
               <LinkWithIcon href="https://cloudflare.com?ref=zacchary.me">
                 Cloudflare
-              </LinkWithIcon>
-              ,{" "}
-              <LinkWithIcon href="https://posthog.com?ref=zacchary.me">
-                PostHog
               </LinkWithIcon>{" "}
               and{" "}
-              <LinkWithIcon href="https://clarity.microsoft.com/projects?ref=zacchary.me">
-                Microsoft Clarity
+              <LinkWithIcon href="https://posthog.com?ref=zacchary.me">
+                PostHog
+              </LinkWithIcon>
+              . Newsletter signups handled by{" "}
+              <LinkWithIcon href="https://loops.so?ref=zacchary.me">
+                Loops
               </LinkWithIcon>
               .
             </p>
@@ -204,7 +204,7 @@ export default function ColophonPage() {
             <div className="flex w-full justify-between">
               <div className="text-muted-foreground text-sm">Version</div>
 
-              <div className="w-fit">6.2.2</div>
+              <div className="w-fit">7.0.0</div>
             </div>
 
             <div className="flex w-full justify-between">
@@ -217,14 +217,11 @@ export default function ColophonPage() {
               </div>
             </div>
 
-            <div className="flex w-full justify-between">
+            <div className="flex w-full items-center justify-between">
               <div className="text-muted-foreground text-sm">Carbon</div>
 
-              <div className="text-sm">
-                <LinkWithIcon href="https://www.websitecarbon.com/website/zacchary-me?ref=zacchary.me">
-                  0.18g of CO
-                  <span className="align-super text-sm">2</span>/view
-                </LinkWithIcon>
+              <div className="carbon-badge-mount">
+                <div className="carbonbadge" id="wcb" />
               </div>
             </div>
           </div>

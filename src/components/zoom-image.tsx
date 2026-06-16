@@ -35,6 +35,7 @@ interface FlyImage {
   objectPosition: string;
   rect: FlyRect;
   src: string;
+  zoomSrc?: string;
 }
 
 type ImageZoomProps = {
@@ -63,6 +64,10 @@ const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
   }
 
   const computed = window.getComputedStyle(img);
+  const displaySrc = img.currentSrc || img.src;
+  const zoomSrc = img.dataset.zoomSrc;
+  const hiResSrc =
+    zoomSrc && zoomSrc !== displaySrc ? zoomSrc : undefined;
 
   return {
     alt: img.alt,
@@ -74,7 +79,8 @@ const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
       top: rect.top,
       width: rect.width,
     },
-    src: img.currentSrc || img.src,
+    src: displaySrc,
+    zoomSrc: hiResSrc,
   };
 };
 
@@ -109,8 +115,10 @@ export const ImageZoom = ({
   const mounted = useMounted();
   const slotRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const zoomSessionRef = useRef(0);
   const [lockedBox, setLockedBox] = useState<LockedBox | null>(null);
   const [flyImage, setFlyImage] = useState<FlyImage | null>(null);
+  const [overlaySrc, setOverlaySrc] = useState<string | null>(null);
   const [isOverlayMounted, setIsOverlayMounted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -145,12 +153,30 @@ export const ImageZoom = ({
 
   const finishClose = useCallback(() => {
     clearCloseTimer();
+    zoomSessionRef.current += 1;
     setIsOverlayMounted(false);
     setIsExpanded(false);
     setFlyImage(null);
+    setOverlaySrc(null);
     unlockSlot();
     document.documentElement.classList.remove("image-zoom-open");
   }, [clearCloseTimer, unlockSlot]);
+
+  const loadHiResOverlay = useCallback((fly: FlyImage, session: number) => {
+    if (!fly.zoomSrc) {
+      return;
+    }
+
+    const hiRes = new Image();
+    hiRes.onload = () => {
+      if (zoomSessionRef.current !== session) {
+        return;
+      }
+
+      setOverlaySrc(fly.zoomSrc ?? fly.src);
+    };
+    hiRes.src = fly.zoomSrc;
+  }, []);
 
   const open = useCallback(() => {
     if (isDisabled || isOverlayMounted) {
@@ -169,10 +195,14 @@ export const ImageZoom = ({
 
     clearCloseTimer();
     lockSlot();
+    const session = zoomSessionRef.current + 1;
+    zoomSessionRef.current = session;
     setFlyImage(nextFlyImage);
+    setOverlaySrc(nextFlyImage.src);
     setIsOverlayMounted(true);
     setIsExpanded(reduceMotion);
     document.documentElement.classList.add("image-zoom-open");
+    loadHiResOverlay(nextFlyImage, session);
 
     onZoomChange?.(true);
 
@@ -186,6 +216,7 @@ export const ImageZoom = ({
     isDisabled,
     isOverlayMounted,
     lockSlot,
+    loadHiResOverlay,
     onZoomChange,
     reduceMotion,
   ]);
@@ -265,6 +296,22 @@ export const ImageZoom = ({
     },
     [isDisabled, open]
   );
+
+  const prefetchZoomSrc = useCallback(() => {
+    const img = slotRef.current?.querySelector("img");
+    if (!img) {
+      return;
+    }
+
+    const zoomSrc = img.dataset.zoomSrc;
+    if (!zoomSrc || img.dataset.zoomPrefetched === "true") {
+      return;
+    }
+
+    const preload = new Image();
+    preload.src = zoomSrc;
+    img.dataset.zoomPrefetched = "true";
+  }, []);
 
   useEffect(() => () => clearCloseTimer(), [clearCloseTimer]);
 
@@ -358,7 +405,7 @@ export const ImageZoom = ({
                 alt={flyImage.alt}
                 className={cn("pointer-events-none size-full select-none")}
                 draggable={false}
-                src={flyImage.src}
+                src={overlaySrc ?? flyImage.src}
                 style={{
                   objectFit: flyImage.objectFit as CSSProperties["objectFit"],
                   objectPosition: flyImage.objectPosition,
@@ -376,6 +423,8 @@ export const ImageZoom = ({
         className={slotClassName}
         onClick={handleSlotClick}
         onKeyDown={handleSlotKeyDown}
+        onMouseEnter={prefetchZoomSrc}
+        onFocus={prefetchZoomSrc}
         ref={slotRef}
         role="presentation"
         style={slotStyle}

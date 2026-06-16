@@ -1,0 +1,185 @@
+<style is:global>
+  .carbon-badge-mount #wcb.carbonbadge {
+    --b1: #0e11a8;
+    --b2: #00ffbc;
+    color: var(--b1);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    line-height: 1;
+    text-align: right;
+  }
+
+  .carbon-badge-mount #wcb.carbonbadge sub {
+    font-size: 0.7em;
+    position: relative;
+    top: 0.3em;
+    vertical-align: middle;
+  }
+
+  .carbon-badge-mount #wcb #wcb_2,
+  .carbon-badge-mount #wcb #wcb_a,
+  .carbon-badge-mount #wcb #wcb_g {
+    align-items: center;
+    display: inline-flex;
+    font-size: 1em;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .carbon-badge-mount #wcb #wcb_2 {
+    display: none;
+  }
+
+  .carbon-badge-mount #wcb #wcb_g,
+  .carbon-badge-mount #wcb #wcb_a {
+    border: 0.13em solid var(--b2);
+    padding: 0.15em 0.35em;
+  }
+
+  .carbon-badge-mount #wcb #wcb_g {
+    background: #fff;
+    border-radius: 0.3em 0 0 0.3em;
+    border-right: 0;
+    min-width: 5.75em;
+  }
+
+  .carbon-badge-mount #wcb #wcb_a {
+    background: var(--b1);
+    border-color: var(--b1);
+    border-left: 0;
+    border-radius: 0 0.3em 0.3em 0;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .carbon-badge-mount #wcb.wcb-d #wcb_a {
+    background: var(--b2);
+    border-color: var(--b2);
+    color: var(--b1);
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const siteUrl = "https://zacchary.me";
+    const profileUrl =
+      "https://www.websitecarbon.com/website/zacchary-me?ref=zacchary.me";
+    const cacheTtlMs = 86400000;
+
+    const getMeasuredUrl = () => {
+      if (/^(localhost|127\.0\.0\.1)$/u.test(location.hostname)) {
+        return siteUrl;
+      }
+
+      return location.href.split("#")[0];
+    };
+
+    const getCacheKey = (url) => "wcb_v2_" + url;
+
+    const getBadge = () => document.getElementById("wcb");
+
+    const renderResult = (result) => {
+      const grams = document.getElementById("wcb_g");
+      const cleaner = document.getElementById("wcb_2");
+
+      if (!grams) {
+        return;
+      }
+
+      grams.innerHTML = result.c + "g of CO<sub>2</sub>/view";
+
+      if (cleaner && result.p !== undefined) {
+        cleaner.textContent = "Cleaner than " + result.p + "% of pages tested";
+      }
+    };
+
+    const syncTheme = () => {
+      const badge = getBadge();
+      if (!badge) {
+        return;
+      }
+
+      badge.classList.toggle(
+        "wcb-d",
+        document.documentElement.classList.contains("dark")
+      );
+    };
+
+    const requestCarbon = async (url, render = true) => {
+      try {
+        const response = await fetch(
+          "/api/carbon?url=" + encodeURIComponent(url)
+        );
+
+        if (!response.ok) {
+          throw new Error("Carbon rating request failed");
+        }
+
+        const result = await response.json();
+
+        if (!result.c) {
+          throw new Error("Carbon rating payload invalid");
+        }
+
+        result.t = Date.now();
+        localStorage.setItem(getCacheKey(url), JSON.stringify(result));
+
+        if (render) {
+          renderResult(result);
+        }
+      } catch (error) {
+        console.warn("Website Carbon badge:", error);
+      }
+    };
+
+    const initCarbonBadge = () => {
+      const badge = getBadge();
+      if (!badge || badge.dataset.carbonReady === "true") {
+        syncTheme();
+        return;
+      }
+
+      const measuredUrl = getMeasuredUrl();
+      const cacheKey = getCacheKey(measuredUrl);
+
+      badge.dataset.carbonReady = "true";
+      badge.innerHTML =
+        '<div id="wcb_p"><span id="wcb_g">Measuring CO<sub>2</sub>&hellip;</span><a id="wcb_a" target="_blank" rel="noopener" href="' +
+        profileUrl +
+        '">Website Carbon</a></div><span id="wcb_2">&nbsp;</span>';
+
+      syncTheme();
+
+      const cached = localStorage.getItem(cacheKey);
+      const now = Date.now();
+
+      if (cached) {
+        try {
+          const result = JSON.parse(cached);
+          renderResult(result);
+
+          if (!result.t || now - result.t > cacheTtlMs) {
+            requestCarbon(measuredUrl, false);
+          }
+
+          return;
+        } catch {
+          localStorage.removeItem(cacheKey);
+        }
+      }
+
+      requestCarbon(measuredUrl);
+    };
+
+    initCarbonBadge();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, {
+      attributeFilter: ["class"],
+      attributes: true,
+    });
+  })();
+</script>

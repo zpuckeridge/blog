@@ -1,5 +1,7 @@
 import type { CSSProperties, ImgHTMLAttributes } from "react";
 
+import { resolveDirectusZoomSrc } from "@/lib/directus-asset";
+
 type SiteImageProps = Omit<
   ImgHTMLAttributes<HTMLImageElement>,
   "src" | "alt" | "width" | "height"
@@ -11,6 +13,8 @@ type SiteImageProps = Omit<
   src: string;
   unoptimized?: boolean;
   width?: number | string;
+  /** Higher-resolution source used by ImageZoom when present. */
+  zoomSrc?: string;
 };
 
 /**
@@ -29,9 +33,11 @@ export default function SiteImage({
   style,
   unoptimized: _unoptimized,
   width,
+  zoomSrc,
   ...rest
 }: SiteImageProps) {
   const resolvedSrc = src;
+  const resolvedZoomSrc = zoomSrc ?? resolveDirectusZoomSrc(resolvedSrc);
   const resolvedLoading = loading ?? (priority ? "eager" : "lazy");
 
   return (
@@ -39,6 +45,7 @@ export default function SiteImage({
       {...rest}
       alt={alt}
       className={className}
+      data-zoom-src={resolvedZoomSrc}
       decoding={decoding}
       fetchPriority={priority ? "high" : undefined}
       height={height}

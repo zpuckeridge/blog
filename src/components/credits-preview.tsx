@@ -6,7 +6,19 @@ import { useCallback, useState } from "react";
 import ContentThumbnail from "@/components/content-thumbnail";
 import LinkWithIcon from "@/components/link-with-icon";
 import type { Credit } from "@/interfaces/content-item";
-import { directusAssetUrl } from "@/lib/directus-asset";
+import {
+  expandableListDetailsClassName,
+  expandableListPreviewGridClassName,
+  expandableListItemClassName,
+  expandableListItemExpandedClassName,
+  expandableListItemsClassName,
+  expandableListMetaClassName,
+  expandableListSectionHeaderClassName,
+  expandableListSectionHeaderMainClassName,
+  expandableListSectionLinkClassName,
+  expandableListTitleClassName,
+  expandableListTriggerClassName,
+} from "@/lib/expandable-list";
 import { formatDdMmYy } from "@/lib/format-in-brisbane";
 
 export default function CreditsPreview({ credits }: { credits: Credit[] }) {
@@ -23,36 +35,45 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 
   return (
     <div className="space-y-2">
-      <div className="flex w-full flex-col gap-4">
-        <div className="flex w-full flex-row items-center gap-2">
-          <p className="text-muted-foreground text-sm">Credits</p>
-          <hr className="w-full border-dotted border-border" />
+      <div className={expandableListPreviewGridClassName}>
+        <div className={expandableListSectionHeaderClassName}>
+          <div className={expandableListSectionHeaderMainClassName}>
+            <p className="shrink-0 text-muted-foreground text-sm">Credits</p>
+            <hr className="min-w-0 flex-1 border-dotted border-border" />
+          </div>
           <a
-            className="whitespace-nowrap px-1 text-sm text-muted-foreground hover:bg-muted"
+            className={expandableListSectionLinkClassName}
             href="/about/credits"
           >
             See all {sortedCredits.length}
           </a>
         </div>
-        <div className="relative flex h-36 w-full flex-col gap-1 overflow-y-hidden text-sm">
+        <div
+          className={`${expandableListItemsClassName} relative h-36 overflow-hidden`}
+        >
           {previewCredits.map((credit: Credit) => {
             const isExpanded = expandedCredit === credit.id.toString();
             return (
-              <div className="space-y-1" key={credit.id}>
+              <div
+                className={`${expandableListItemClassName} ${isExpanded ? expandableListItemExpandedClassName : ""}`}
+                key={credit.id}
+              >
                 <button
                   aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                  className="flex w-full justify-between gap-4 px-1 text-left hover:bg-muted"
+                  className={expandableListTriggerClassName}
                   data-id={credit.id.toString()}
                   onClick={handleToggle}
                   type="button"
                 >
-                  <p className="line-clamp-1">{credit.title}</p>
-                  <p className="text-muted-foreground">
+                  <p className={expandableListTitleClassName}>{credit.title}</p>
+                  <p
+                    className={`${expandableListMetaClassName} text-muted-foreground`}
+                  >
                     {formatDdMmYy(credit.release_date)}
                   </p>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-200 ease-in-out ${
+                  className={`${expandableListDetailsClassName} overflow-hidden transition-all duration-200 ease-in-out ${
                     isExpanded ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
@@ -60,10 +81,7 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
                     {credit.image && (
                       <ContentThumbnail
                         alt={credit.title}
-                        src={directusAssetUrl(credit.image, {
-                          width: 150,
-                          height: 225,
-                        })}
+                        assetId={credit.image}
                       />
                     )}
 

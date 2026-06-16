@@ -4,7 +4,20 @@ import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
 import type { Movie } from "@/interfaces/content-item";
-import { directusAssetUrl } from "@/lib/directus-asset";
+import {
+  expandableListDetailsClassName,
+  expandableListGridClassName,
+  expandableListItemClassName,
+  expandableListItemExpandedClassName,
+  expandableListItemsClassName,
+  expandableListMetaClassName,
+  expandableListSectionHeaderMainClassName,
+  expandableListTitleClassName,
+  expandableListTriggerClassName,
+  expandableListYearGroupsClassName,
+  expandableListYearHeaderClassName,
+  expandableListYearPageClassName,
+} from "@/lib/expandable-list";
 import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
 
 export default function MoviesAll({ movies }: { movies: Movie[] }) {
@@ -31,42 +44,55 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
   }, []);
 
   return (
-    <div className="space-y-10">
+    <div className={expandableListYearPageClassName}>
       <p className="font-redaction text-black text-xl dark:text-white">
         Movies
       </p>
 
-      <div className="flex w-full flex-col gap-4">
+      <div className={expandableListYearGroupsClassName}>
         {years.map((year) => (
-          <div key={year}>
-            <div className="mb-2 flex w-full flex-row items-center gap-2">
-              <p className="text-muted-foreground text-sm">
-                {moviesByYear[year].length}
+          <div className={expandableListGridClassName} key={year}>
+            <div className={expandableListYearHeaderClassName}>
+              <div className={expandableListSectionHeaderMainClassName}>
+                <p className="shrink-0 text-muted-foreground text-sm">
+                  {moviesByYear[year].length}
+                </p>
+                <hr className="min-w-0 flex-1 border-dotted border-border" />
+              </div>
+              <p
+                className={`${expandableListMetaClassName} text-muted-foreground text-sm`}
+              >
+                {year}
               </p>
-              <hr className="w-full border-dotted border-border" />
-              <p className="text-muted-foreground text-sm">{year}</p>
             </div>
-            <div className="relative flex w-full flex-col gap-1 overflow-y-hidden text-sm">
+            <div className={expandableListItemsClassName}>
               {moviesByYear[year]
                 .toSorted((a, b) => +b.date_created - +a.date_created)
                 .map((movie: Movie) => {
                   const isExpanded = expandedMovie === movie.id.toString();
                   return (
-                    <div className="space-y-1" key={movie.id}>
+                    <div
+                      className={`${expandableListItemClassName} ${isExpanded ? expandableListItemExpandedClassName : ""}`}
+                      key={movie.id}
+                    >
                       <button
                         aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                        className="flex w-full justify-between gap-4 px-1 text-left hover:bg-muted"
+                        className={expandableListTriggerClassName}
                         data-id={movie.id.toString()}
                         onClick={handleToggle}
                         type="button"
                       >
-                        <p className="line-clamp-1">{movie.title}</p>
-                        <p className="text-muted-foreground">
+                        <p className={expandableListTitleClassName}>
+                          {movie.title}
+                        </p>
+                        <p
+                          className={`${expandableListMetaClassName} text-muted-foreground`}
+                        >
                           {formatDdMm(movie.date_created)}
                         </p>
                       </button>
                       <div
-                        className={`overflow-hidden transition-all duration-200 ease-in-out ${
+                        className={`${expandableListDetailsClassName} overflow-hidden transition-all duration-200 ease-in-out ${
                           isExpanded
                             ? "max-h-20 opacity-100"
                             : "max-h-0 opacity-0"
@@ -76,10 +102,7 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
                           {movie.image && (
                             <ContentThumbnail
                               alt={movie.title}
-                              src={directusAssetUrl(movie.image, {
-                                width: 150,
-                                height: 225,
-                              })}
+                              assetId={movie.image}
                             />
                           )}
                           <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">

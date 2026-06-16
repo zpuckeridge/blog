@@ -1,11 +1,12 @@
 ---
+import CarbonBadge from "@/components/carbon-badge.astro";
 import ColophonPage from "@/components/colophon-page";
 import Layout from "@/layouts/layout.astro";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 
 const pageMeta = createPageMetadata({
   description:
-    "Typography, technical stack, and inspiration behind zacchary.me. Built with Astro, Tailwind, and deployed on Cloudflare Workers.",
+    "Typography, technical stack, and inspiration behind zacchary.me. Built with Astro, React, Directus, and Tailwind, deployed on Cloudflare Workers.",
   path: "/colophon",
   title: "Colophon",
 });
@@ -19,4 +20,5 @@ const fullTitle = formatPageTitle("Colophon");
   meta={pageMeta}
 >
   <ColophonPage />
+  <CarbonBadge />
 </Layout>
