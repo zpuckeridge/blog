@@ -1,5 +1,3 @@
-import { workersEnv as cfEnv } from "@/lib/workers-env";
-
 export interface ContributionDay {
   color: string;
   contributionCount: number;
@@ -61,9 +59,7 @@ const contributionCache =
 ).__blogGitHubContributionCache = contributionCache;
 
 export const getGitHubToken = (): string | undefined =>
-  cfEnv.GITHUB_TOKEN ??
-  import.meta.env.GITHUB_TOKEN ??
-  process.env.GITHUB_TOKEN;
+  import.meta.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN;
 
 export const getCachedGitHubContributions = (
   username: string
