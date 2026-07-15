@@ -15,26 +15,12 @@ import { resolveSafeHref } from "@/lib/safe-href";
 import { cn } from "@/lib/utils";
 
 const ROW_CLASS = "flex min-h-9 min-w-0 items-center gap-2.5";
-const TEXT_CLASS = "min-w-0 leading-none";
-const LISTENING_LINKS_ROW_CLASS = "-mx-1 min-w-0 overflow-visible px-1";
-const LISTENING_LINE_CLASS = "-ml-1 pl-1";
-const LISTENING_LINK_CLASS = cn(
-  "relative z-0 inline-block rounded-sm px-0 leading-[inherit]",
-  "hover:bg-muted/80",
-  "before:pointer-events-none after:pointer-events-none",
-  "before:absolute after:absolute before:inset-y-0 after:inset-y-0",
-  "before:right-full before:w-1 after:left-full after:w-1",
-  "before:-z-10 after:-z-10",
-  "before:rounded-l-sm after:rounded-r-sm",
-  "before:content-[''] after:content-['']",
-  "before:bg-transparent after:bg-transparent",
-  "hover:before:bg-muted/80 hover:after:bg-muted/80"
-);
-const LISTENING_TRACKS_CLASS = cn(
-  LISTENING_LINE_CLASS,
-  "-mr-1 pr-1",
-  "min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-tight"
-);
+const TEXT_CLASS = "min-w-0 flex-1 leading-none";
+const LISTENING_LINKS_ROW_CLASS = "-mx-1 min-w-0 px-1";
+const LISTENING_LINK_CLASS =
+  "inline-block rounded-sm px-1 leading-[inherit] hover:bg-muted/80";
+const LISTENING_TRACKS_CLASS =
+  "flex min-w-0 items-baseline text-sm leading-tight";
 
 const ArtworkPlaceholder = () => (
   <div
@@ -62,10 +48,12 @@ const ListeningEmptyState = () => (
 
 const ListeningLink = ({
   className,
+  first = false,
   href,
   label,
 }: {
   className?: string;
+  first?: boolean;
   href: string | null;
   label: string;
 }) => {
@@ -74,7 +62,7 @@ const ListeningLink = ({
   if (safeHref) {
     return (
       <a
-        className={cn(LISTENING_LINK_CLASS, className)}
+        className={cn(LISTENING_LINK_CLASS, first && "-ml-1", className)}
         href={safeHref.href}
         rel={safeHref.isExternal ? "noopener noreferrer" : undefined}
         target={safeHref.isExternal ? "_blank" : undefined}
@@ -85,7 +73,13 @@ const ListeningLink = ({
   }
 
   return (
-    <span className={cn("inline px-0 leading-[inherit]", className)}>
+    <span
+      className={cn(
+        "inline-block px-1 leading-[inherit]",
+        first && "-ml-1",
+        className
+      )}
+    >
       {label}
     </span>
   );
@@ -117,31 +111,34 @@ const ListeningPlayingState = ({ listening }: { listening: NowListening }) => {
       )}
 
       <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
-        <p
-          className={cn(
-            LISTENING_LINE_CLASS,
-            "truncate text-sm leading-tight text-muted-foreground"
-          )}
-        >
+        <p className="truncate text-sm leading-tight text-muted-foreground">
           Listening to
         </p>
         <div
           className={LISTENING_TRACKS_CLASS}
           title={`${listening.track} · ${listening.artist}`}
         >
-          <ListeningLink
-            className="text-inherit"
-            href={listening.trackUrl}
-            label={listening.track}
-          />
-          <span aria-hidden="true" className="text-muted-foreground">
-            {" · "}
+          <span className="min-w-0 truncate">
+            <ListeningLink
+              className="text-inherit"
+              first
+              href={listening.trackUrl}
+              label={listening.track}
+            />
           </span>
-          <ListeningLink
-            className="text-muted-foreground"
-            href={listening.artistUrl}
-            label={listening.artist}
-          />
+          <span
+            aria-hidden="true"
+            className="shrink-0 px-0.5 text-muted-foreground select-none"
+          >
+            ·
+          </span>
+          <span className="shrink-0">
+            <ListeningLink
+              className="text-muted-foreground"
+              href={listening.artistUrl}
+              label={listening.artist}
+            />
+          </span>
         </div>
       </div>
     </div>
