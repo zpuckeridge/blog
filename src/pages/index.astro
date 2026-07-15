@@ -4,7 +4,9 @@ import BrisbaneDateTime from "@/components/brisbane-datetime.astro";
 import ContributionsGraphStatic from "@/components/contributions-graph-static.astro";
 import GitHubContributions from "@/components/contributions-graph";
 import Layout from "@/layouts/layout.astro";
+import LanyardListening from "@/components/lanyard-listening.astro";
 import LanyardStatus from "@/components/lanyard-status.astro";
+import LocationStatus from "@/components/location-status.astro";
 import LinkWithIcon from "@/components/link-with-icon.astro";
 import ToggleTheme from "@/components/toggle-theme.astro";
 import {
@@ -17,9 +19,14 @@ import {
   getCachedGitHubContributions,
   getGitHubToken,
 } from "@/lib/github-contributions";
+import { getServerLocationStatus } from "@/lib/location-status";
 import type { ContributionDay } from "@/lib/github-contributions";
 
-const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
+const [posts, projects, initialLocation] = await Promise.all([
+  getPosts(),
+  getProjects(),
+  getServerLocationStatus(),
+]);
 const sortedPosts = posts.toSorted(
   (a, b) =>
     new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
@@ -323,16 +330,15 @@ const fullTitle = formatPageTitle("Home");
 
         <hr class="border-dotted border-border" />
 
-        <div class="space-y-4">
-          <div class="flex justify-between">
+        <div class="flex flex-col gap-2">
+          <div class="flex flex-nowrap items-center justify-between gap-4">
             <BrisbaneDateTime />
-            <LanyardStatus />
+            <div class="flex min-w-0 shrink items-center justify-end gap-4">
+              <LocationStatus initial={initialLocation} />
+              <LanyardStatus />
+            </div>
           </div>
-          <p class="text-sm text-muted-foreground">
-            Waging war on weak culture, building digital strongholds, sharpening
-            minds, and advancing the Kingdom of God.
-          </p>
-
+          <LanyardListening />
           <div class="flex justify-between gap-4">
             <div class="-ml-1 flex flex-row gap-2 text-sm text-muted-foreground">
               <a class="inline-flex px-1 hover:bg-muted" href="/colophon">

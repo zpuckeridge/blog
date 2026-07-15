@@ -1,0 +1,178 @@
+---
+import {
+  formatLocationRelativeTime,
+  type LocationPublicResponse,
+} from "@/lib/location-status";
+
+interface Props {
+  initial?: LocationPublicResponse | null;
+}
+
+const { initial = null } = Astro.props;
+
+const categoryStyles: Record<string, string> = {
+  home: "bg-green-500",
+  work: "bg-blue-500",
+  transit: "bg-amber-500",
+  away: "bg-gray-400",
+  social: "bg-gray-400",
+};
+
+const showInitial = Boolean(initial?.status);
+const initialLabel = initial
+  ? initial.isStale
+    ? `${initial.status} · ${formatLocationRelativeTime(initial.updatedAt)}`
+    : initial.status
+  : "";
+const initialDotClass = initial
+  ? initial.isStale
+    ? "bg-gray-400"
+    : (categoryStyles[initial.category] ?? "bg-gray-400")
+  : "bg-gray-400";
+---
+
+<div
+  class:list={[
+    "group/location relative h-5 items-center gap-2",
+    showInitial ? "flex" : "hidden",
+    initial?.isStale && "opacity-60",
+  ]}
+  data-location-status
+>
+  <div
+    class:list={[
+      "my-auto h-2 w-2 shrink-0",
+      !initial?.isStale && showInitial && "animate-pulse",
+      initialDotClass,
+    ]}
+    data-location-dot
+  ></div>
+  <p
+    class="my-auto whitespace-nowrap text-muted-foreground text-sm"
+    data-location-label
+  >
+    {initialLabel}
+  </p>
+  <div
+    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-1/2 z-50 w-max max-w-[15rem] -translate-x-1/2 rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs opacity-0 shadow-md transition-opacity duration-150 group-hover/location:pointer-events-auto group-hover/location:opacity-100"
+    role="tooltip"
+  >
+    Provided by iOS Shortcuts
+  </div>
+</div>
+
+<script>
+  const BOT_PATTERN =
+    /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/i;
+
+  const formatRelativeTime = (updatedAt) => {
+    const seconds = Math.max(0, Math.floor((Date.now() - updatedAt) / 1000));
+
+    if (seconds < 60) {
+      return "just now";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) {
+      return `${minutes}m ago`;
+    }
+
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) {
+      return `${hours}h ago`;
+    }
+
+    const days = Math.floor(hours / 24);
+    return `${days}d ago`;
+  };
+
+  const initLocationStatus = () => {
+    for (const root of document.querySelectorAll("[data-location-status]")) {
+      if (
+        !(root instanceof HTMLElement) ||
+        root.dataset.locationReady === "true"
+      ) {
+        continue;
+      }
+
+      const dot = root.querySelector("[data-location-dot]");
+      const label = root.querySelector("[data-location-label]");
+
+      if (!(dot instanceof HTMLElement) || !(label instanceof HTMLElement)) {
+        continue;
+      }
+
+      root.dataset.locationReady = "true";
+
+      if (BOT_PATTERN.test(navigator.userAgent) || navigator.webdriver) {
+        continue;
+      }
+
+      const categoryStyles = {
+        home: "bg-green-500",
+        work: "bg-blue-500",
+        transit: "bg-amber-500",
+        away: "bg-gray-400",
+        social: "bg-gray-400",
+      };
+
+      const applyStatus = (payload) => {
+        const dotColor = payload.isStale
+          ? "bg-gray-400"
+          : (categoryStyles[payload.category] ?? "bg-gray-400");
+        dot.className = `my-auto h-2 w-2 shrink-0 ${payload.isStale ? "" : "animate-pulse"} ${dotColor}`;
+        root.classList.toggle("opacity-60", payload.isStale);
+
+        const relativeTime = formatRelativeTime(payload.updatedAt);
+        label.textContent = payload.isStale
+          ? `${payload.status} · ${relativeTime}`
+          : payload.status;
+      };
+
+      const fetchStatus = async () => {
+        try {
+          const response = await fetch("/api/location");
+          if (!response.ok) {
+            return;
+          }
+
+          const payload = await response.json();
+
+          if (!payload.status || payload.updatedAt === undefined) {
+            root.classList.add("hidden");
+            root.classList.remove("flex");
+            return;
+          }
+
+          applyStatus({
+            status: payload.status,
+            category: payload.category ?? "away",
+            updatedAt: payload.updatedAt,
+            isStale: payload.isStale ?? false,
+          });
+          root.classList.remove("hidden");
+          root.classList.add("flex");
+        } catch {
+          // Keep SSR state on transient failures.
+        }
+      };
+
+      void fetchStatus();
+      window.setInterval(() => {
+        void fetchStatus();
+      }, 60_000);
+    }
+  };
+
+  const scheduleLocationInit = () => {
+    const ric = Reflect.get(globalThis, "requestIdleCallback");
+    if (typeof ric === "function") {
+      ric(() => initLocationStatus(), { timeout: 1500 });
+    } else {
+      window.setTimeout(initLocationStatus, 1500);
+    }
+  };
+
+  scheduleLocationInit();
+  document.addEventListener("astro:page-load", scheduleLocationInit);
+</script>

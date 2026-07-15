@@ -35,4 +35,12 @@
   "images": {
     "binding": "IMAGES",
   },
+
+  "kv_namespaces": [
+    {
+      "binding": "LOCATION_KV",
+      "id": "c94fa5efd59d417c8f5ea2ecf2972730",
+      "preview_id": "c26add25eee24e32a68f067f4c19c81c",
+    },
+  ],
 }

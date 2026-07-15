@@ -1,0 +1,20 @@
+---
+import LanyardListeningView from "@/components/lanyard-listening-view";
+---
+
+<LanyardListeningView client:idle>
+  <div class="flex min-h-9 min-w-0 items-center gap-2.5" slot="fallback">
+    <div aria-hidden="true" class="h-8 w-8 shrink-0 rounded-sm bg-muted/50"></div>
+    <div class="min-w-0 leading-none">
+      <p class="truncate text-sm leading-tight text-muted-foreground">
+        Nothing playing
+      </p>
+      <p
+        aria-hidden="true"
+        class="truncate text-sm leading-tight text-transparent select-none"
+      >
+        —
+      </p>
+    </div>
+  </div>
+</LanyardListeningView>

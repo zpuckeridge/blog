@@ -11,6 +11,11 @@ interface WebsiteCarbonApiResult {
   p: number;
 }
 
+interface WebsiteCarbonDataApiResult {
+  gco2e: number;
+  cleanerThan: number;
+}
+
 interface CachedWebsiteCarbonRating {
   expiresAt: number;
   result: WebsiteCarbonApiResult;
@@ -29,8 +34,11 @@ export const WEBSITE_CARBON_RESPONSE_HEADERS = {
     "public, max-age=300, s-maxage=86400, stale-while-revalidate=604800",
 };
 
-const WEBSITE_CARBON_API_URL = "https://api.websitecarbon.com/b";
+const WEBSITE_CARBON_DATA_API_URL = "https://api.websitecarbon.com/data";
+const GREEN_WEB_CHECK_API_URL =
+  "https://api.thegreenwebfoundation.org/api/v3/greencheck";
 const WEBSITE_CARBON_CACHE_TTL_MS = 1000 * 60 * 60 * 24;
+const PAGE_FETCH_USER_AGENT = "ZaccharyBlogCarbonBot/1.0 (+https://zacchary.me)";
 
 const ratingCache =
   (
@@ -45,15 +53,18 @@ const ratingCache =
   }
 ).__blogWebsiteCarbonCache = ratingCache;
 
-const isWebsiteCarbonApiResult = (
+const isWebsiteCarbonDataApiResult = (
   value: unknown
-): value is WebsiteCarbonApiResult => {
+): value is WebsiteCarbonDataApiResult => {
   if (typeof value !== "object" || value === null) {
     return false;
   }
 
   const record = value as Record<string, unknown>;
-  return typeof record.c === "string" && typeof record.p === "number";
+  return (
+    typeof record.gco2e === "number" &&
+    typeof record.cleanerThan === "number"
+  );
 };
 
 export const normalizeWebsiteCarbonUrl = (url: string): string | null => {
@@ -70,6 +81,25 @@ export const normalizeWebsiteCarbonUrl = (url: string): string | null => {
     return null;
   }
 };
+
+const formatGrams = (grams: number): string => {
+  if (grams < 0.01) {
+    return grams.toFixed(3);
+  }
+
+  if (grams < 1) {
+    return grams.toFixed(2);
+  }
+
+  return grams.toFixed(1);
+};
+
+const mapDataApiResult = (
+  result: WebsiteCarbonDataApiResult
+): WebsiteCarbonApiResult => ({
+  c: formatGrams(result.gco2e),
+  p: Math.round(result.cleanerThan * 100),
+});
 
 const getCachedRating = (
   url: string
@@ -94,11 +124,57 @@ const setCachedRating = (
   });
 };
 
+const measurePageBytes = async (url: string): Promise<number> => {
+  const response = await fetch(url, {
+    headers: {
+      Accept: "text/html,application/xhtml+xml",
+      "User-Agent": PAGE_FETCH_USER_AGENT,
+    },
+    redirect: "follow",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Page fetch failed (${response.status})`);
+  }
+
+  const buffer = await response.arrayBuffer();
+  return buffer.byteLength;
+};
+
+const checkGreenHosting = async (url: string): Promise<0 | 1> => {
+  const hostname = new URL(url).hostname;
+
+  try {
+    const response = await fetch(
+      `${GREEN_WEB_CHECK_API_URL}/${encodeURIComponent(hostname)}`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      return 0;
+    }
+
+    const result = (await response.json()) as { green?: boolean };
+    return result.green ? 1 : 0;
+  } catch {
+    return 0;
+  }
+};
+
 const fetchWebsiteCarbonRating = async (
   url: string
 ): Promise<WebsiteCarbonApiResult> => {
+  const [bytes, green] = await Promise.all([
+    measurePageBytes(url),
+    checkGreenHosting(url),
+  ]);
+
   const response = await fetch(
-    `${WEBSITE_CARBON_API_URL}?url=${encodeURIComponent(url)}`
+    `${WEBSITE_CARBON_DATA_API_URL}?bytes=${bytes}&green=${green}`
   );
 
   if (!response.ok) {
@@ -116,11 +192,11 @@ const fetchWebsiteCarbonRating = async (
     throw new Error((result as { error: string }).error);
   }
 
-  if (!isWebsiteCarbonApiResult(result)) {
+  if (!isWebsiteCarbonDataApiResult(result)) {
     throw new Error("Website Carbon API returned an invalid payload");
   }
 
-  return result;
+  return mapDataApiResult(result);
 };
 
 export const getWebsiteCarbonRating = async (
@@ -165,7 +241,9 @@ export const getWebsiteCarbonRating = async (
       };
     }
 
-    console.warn("Website Carbon rating unavailable", error);
+    if (import.meta.env.DEV) {
+      console.warn("Website Carbon rating unavailable", error);
+    }
 
     return {
       ...WEBSITE_CARBON_FALLBACK,

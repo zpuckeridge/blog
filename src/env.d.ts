@@ -7,6 +7,10 @@ declare namespace Cloudflare {
     VIDEO_PASSWORD?: string;
     /** GitHub PAT with `read:user` for the contributions API. Same sources as `VIDEO_PASSWORD`. */
     GITHUB_TOKEN?: string;
+    /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
+    LOCATION_WEBHOOK_SECRET?: string;
+    /** KV namespace for coarse location status. */
+    LOCATION_KV?: KVNamespace;
   }
 }
 
@@ -16,6 +20,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_POSTHOG_HOST?: string;
   readonly PAGE_URL?: string;
   readonly GITHUB_TOKEN?: string;
+  readonly LOCATION_WEBHOOK_SECRET?: string;
 }
 
 interface ImportMeta {
