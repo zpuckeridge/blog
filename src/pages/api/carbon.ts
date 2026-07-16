@@ -11,10 +11,10 @@ import {
   getRequestClientKey,
 } from "@/lib/request-rate-limit";
 
-export const GET: APIRoute = async ({ request, clientAddress }) => {
+export const GET: APIRoute = async ({ request }) => {
   const rateLimit = enforceRateLimit({
     bucket: "website-carbon",
-    key: getRequestClientKey(request, clientAddress),
+    key: getRequestClientKey(request),
     limit: 60,
     windowMs: 1000 * 60 * 10,
   });

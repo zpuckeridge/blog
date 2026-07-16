@@ -19,7 +19,7 @@ const jsonWithHeaders = (body: unknown, init?: ResponseInit): Response =>
     },
   });
 
-export const POST: APIRoute = async ({ request, clientAddress }) => {
+export const POST: APIRoute = async ({ request }) => {
   const loopsApiKey =
     import.meta.env.LOOPS_API_KEY ?? process.env.LOOPS_API_KEY;
   if (!loopsApiKey) {
@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const rateLimit = enforceRateLimit({
     bucket: "subscribe",
-    key: getRequestClientKey(request, clientAddress),
+    key: getRequestClientKey(request),
     limit: 5,
     windowMs: 1000 * 60 * 10,
   });

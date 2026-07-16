@@ -26,8 +26,9 @@ const jsonWithHeaders = (body: unknown, init?: ResponseInit): Response =>
   });
 
 const getWebhookSecret = (): string | null =>
+  // Prefer the Worker secret binding. Avoid import.meta.env — Vite inlines it
+  // into the production bundle at build time.
   workersEnv.LOCATION_WEBHOOK_SECRET ??
-  import.meta.env.LOCATION_WEBHOOK_SECRET ??
   process.env.LOCATION_WEBHOOK_SECRET ??
   null;
 
@@ -57,7 +58,7 @@ export const GET: APIRoute = async () => {
   }
 };
 
-export const POST: APIRoute = async ({ request, clientAddress }) => {
+export const POST: APIRoute = async ({ request }) => {
   const secret = getWebhookSecret();
   const kv = workersEnv.LOCATION_KV;
 
@@ -75,7 +76,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const rateLimit = enforceRateLimit({
     bucket: "location",
-    key: getRequestClientKey(request, clientAddress),
+    key: getRequestClientKey(request),
     limit: 30,
     windowMs: 1000 * 60,
   });

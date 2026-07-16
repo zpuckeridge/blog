@@ -46,13 +46,10 @@ const validateUsername = (username?: string): Response | null => {
   return null;
 };
 
-const getRateLimitResponse = (
-  request: Request,
-  clientAddress: string | undefined
-): Response | null => {
+const getRateLimitResponse = (request: Request): Response | null => {
   const rateLimit = enforceRateLimit({
     bucket: "github-contributions",
-    key: getRequestClientKey(request, clientAddress),
+    key: getRequestClientKey(request),
     limit: 30,
     windowMs: 1000 * 60 * 10,
   });
@@ -86,7 +83,7 @@ const getCachedContributionResponse = (username: string): Response | null => {
   );
 };
 
-export const GET: APIRoute = async ({ request, clientAddress }) => {
+export const GET: APIRoute = async ({ request }) => {
   const { searchParams } = new URL(request.url);
   const username = searchParams.get("username")?.trim();
 
@@ -97,7 +94,7 @@ export const GET: APIRoute = async ({ request, clientAddress }) => {
 
   const login = username as string;
 
-  const rateLimitResponse = getRateLimitResponse(request, clientAddress);
+  const rateLimitResponse = getRateLimitResponse(request);
   if (rateLimitResponse) {
     return rateLimitResponse;
   }

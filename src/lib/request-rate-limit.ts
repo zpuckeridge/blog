@@ -23,10 +23,8 @@ const rateLimitStore =
   }
 ).__blogRateLimitStore = rateLimitStore;
 
-export const getRequestClientKey = (
-  request: Request,
-  clientAddress?: string
-): string => {
+/** Client key from request headers only — avoid Astro `clientAddress` (throws on CF). */
+export const getRequestClientKey = (request: Request): string => {
   const forwardedIp = request.headers.get("cf-connecting-ip");
   if (forwardedIp) {
     return forwardedIp;
@@ -37,7 +35,7 @@ export const getRequestClientKey = (
     return proxiedIp.split(",")[0]?.trim() || "anonymous";
   }
 
-  return clientAddress || "anonymous";
+  return "anonymous";
 };
 
 export const enforceRateLimit = ({
