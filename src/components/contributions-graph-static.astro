@@ -1,9 +1,6 @@
 ---
-import {
-  getContributionColor,
-  summarizeContributions,
-  type ContributionDay,
-} from "@/lib/contributions-graph";
+import { getContributionColor, summarizeContributions } from "@/lib/contributions-graph";
+import type { ContributionDay } from "@/lib/contributions-graph";
 
 interface Props {
   contributions: ContributionDay[];
@@ -11,54 +8,53 @@ interface Props {
 
 const { contributions } = Astro.props;
 const {
+  currentYear,
   formatDayLabel,
   maxContributionCount,
   todayIso,
-  totalContributions,
-  weekdayLabel,
   weeks,
+  yearTotalContributions,
 } = summarizeContributions(contributions);
 ---
 
-<div class="w-full border-0 bg-transparent p-0 text-left" data-contributions-graph>
+<div
+  class="w-full border-0 bg-transparent p-0 text-left"
+  data-contributions-graph
+>
   <div class="space-y-2">
-    <div class="flex justify-end gap-[4px] overflow-hidden">
+    <div
+      class="flex justify-end gap-[4px] overflow-hidden"
+      data-contribution-grid
+    >
       {
-        weeks.map((week, weekIndex) => {
-          const weekStartDate =
-            week.find((day) => day !== null)?.date ?? `week-${weekIndex}`;
-          return (
+        weeks.map((week) => (
             <div class="flex flex-col gap-[4px]">
-              {week.map((day, dayIndex) =>
+              {week.map((day) =>
                 day ? (
                   <button
                     aria-label={formatDayLabel(day)}
                     class:list={[
-                      "h-[9px] w-[9px]",
+                      "contribution-day h-[9px] w-[9px]",
                       getContributionColor(
                         day.contributionCount,
                         maxContributionCount
                       ),
-                      day.date === todayIso &&
-                        "ring-1 ring-inset ring-neutral-300 dark:ring-neutral-600",
+                      day.date === todayIso && "contribution-day-today",
                     ]}
                     data-contribution-day
                     data-label={formatDayLabel(day)}
                     type="button"
                   />
                 ) : (
-                  <div aria-hidden class="h-[9px] w-[9px]" />
+                  <div aria-hidden="true" class="h-[9px] w-[9px]" />
                 )
               )}
             </div>
-          );
-        })
+          ))
       }
     </div>
-    <div class="flex justify-between text-muted-foreground text-sm">
-      <div data-contribution-summary>
-        {`${weekdayLabel} · ${totalContributions} contributions in the last 12 months`}
-      </div>
+    <div class="text-muted-foreground text-sm" data-contribution-summary>
+      {`${yearTotalContributions} contribution${yearTotalContributions === 1 ? "" : "s"} in ${currentYear}`}
     </div>
   </div>
 </div>
@@ -72,24 +68,40 @@ const {
 
       graph.dataset.graphReady = "true";
 
-      const summary = graph.querySelector("[data-contribution-summary]");
-      const defaultSummary = summary?.textContent ?? "";
+      let tooltip = document.querySelector("[data-contribution-tooltip]");
+      if (!(tooltip instanceof HTMLElement)) {
+        tooltip = document.createElement("div");
+        tooltip.dataset.contributionTooltip = "";
+        tooltip.setAttribute("role", "tooltip");
+        tooltip.className =
+          "pointer-events-none fixed z-50 hidden w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md";
+        document.body.append(tooltip);
+      }
 
-      for (const button of graph.querySelectorAll("[data-contribution-day]")) {
+      const grid = graph.querySelector("[data-contribution-grid]");
+      if (!(grid instanceof HTMLElement)) {
+        continue;
+      }
+
+      const hideTooltip = () => {
+        tooltip.classList.add("hidden");
+      };
+
+      // Hide only when leaving the whole grid — not between day cells —
+      // so the popover can update without flashing.
+      grid.addEventListener("mouseleave", hideTooltip);
+
+      for (const button of grid.querySelectorAll("[data-contribution-day]")) {
         if (!(button instanceof HTMLButtonElement)) {
           continue;
         }
 
         button.addEventListener("mouseenter", () => {
-          if (summary) {
-            summary.textContent = button.dataset.label ?? defaultSummary;
-          }
-        });
-
-        button.addEventListener("mouseleave", () => {
-          if (summary) {
-            summary.textContent = defaultSummary;
-          }
+          const rect = button.getBoundingClientRect();
+          tooltip.textContent = button.dataset.label ?? "";
+          tooltip.style.left = `${rect.left + rect.width / 2}px`;
+          tooltip.style.top = `${rect.top - 6}px`;
+          tooltip.classList.remove("hidden");
         });
       }
     }
@@ -97,4 +109,7 @@ const {
 
   initContributionGraphs();
   document.addEventListener("astro:page-load", initContributionGraphs);
+  document.addEventListener("astro:before-preparation", () => {
+    document.querySelector("[data-contribution-tooltip]")?.remove();
+  });
 </script>

@@ -2,15 +2,7 @@
 
 import { useEffect } from "react";
 
-import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";
 import { isLikelyBot } from "@/lib/is-likely-bot";
-
-const INTERACTION_EVENTS = [
-  "pointerdown",
-  "keydown",
-  "scroll",
-  "touchstart",
-] as const;
 
 export default function PostHogClient() {
   useEffect(() => {
@@ -42,29 +34,41 @@ export default function PostHogClient() {
     };
 
     const onInteraction = () => {
-      for (const eventName of INTERACTION_EVENTS) {
-        window.removeEventListener(eventName, onInteraction);
-      }
+      window.removeEventListener("pointerdown", onInteraction);
+      window.removeEventListener("keydown", onInteraction);
+      window.removeEventListener("scroll", onInteraction);
+      window.removeEventListener("touchstart", onInteraction);
       void start();
     };
 
-    for (const eventName of INTERACTION_EVENTS) {
-      window.addEventListener(eventName, onInteraction, {
-        once: true,
-        passive: true,
-      });
-    }
+    window.addEventListener("pointerdown", onInteraction, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("keydown", onInteraction, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("scroll", onInteraction, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("touchstart", onInteraction, {
+      once: true,
+      passive: true,
+    });
 
-    const deferred = scheduleIdleOrFallback(() => {
+    const idleFallbackId = globalThis.setTimeout(() => {
       void start();
-    }, 12000);
+    }, 12_000);
 
     return () => {
       disposed = true;
-      deferred.cancel();
-      for (const eventName of INTERACTION_EVENTS) {
-        window.removeEventListener(eventName, onInteraction);
-      }
+      globalThis.clearTimeout(idleFallbackId);
+      window.removeEventListener("pointerdown", onInteraction);
+      window.removeEventListener("keydown", onInteraction);
+      window.removeEventListener("scroll", onInteraction);
+      window.removeEventListener("touchstart", onInteraction);
     };
   }, []);
 

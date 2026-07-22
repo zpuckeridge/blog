@@ -38,7 +38,8 @@ const WEBSITE_CARBON_DATA_API_URL = "https://api.websitecarbon.com/data";
 const GREEN_WEB_CHECK_API_URL =
   "https://api.thegreenwebfoundation.org/api/v3/greencheck";
 const WEBSITE_CARBON_CACHE_TTL_MS = 1000 * 60 * 60 * 24;
-const PAGE_FETCH_USER_AGENT = "ZaccharyBlogCarbonBot/1.0 (+https://zacchary.me)";
+const PAGE_FETCH_USER_AGENT =
+  "ZaccharyBlogCarbonBot/1.0 (+https://zacchary.me)";
 
 const ratingCache =
   (
@@ -62,8 +63,7 @@ const isWebsiteCarbonDataApiResult = (
 
   const record = value as Record<string, unknown>;
   return (
-    typeof record.gco2e === "number" &&
-    typeof record.cleanerThan === "number"
+    typeof record.gco2e === "number" && typeof record.cleanerThan === "number"
   );
 };
 
@@ -101,9 +101,7 @@ const mapDataApiResult = (
   p: Math.round(result.cleanerThan * 100),
 });
 
-const getCachedRating = (
-  url: string
-): CachedWebsiteCarbonRating | null => {
+const getCachedRating = (url: string): CachedWebsiteCarbonRating | null => {
   const cached = ratingCache.get(url);
   if (!cached) {
     return null;
@@ -112,10 +110,7 @@ const getCachedRating = (
   return cached;
 };
 
-const setCachedRating = (
-  url: string,
-  result: WebsiteCarbonApiResult
-): void => {
+const setCachedRating = (url: string, result: WebsiteCarbonApiResult): void => {
   const testedAt = Date.now();
   ratingCache.set(url, {
     expiresAt: testedAt + WEBSITE_CARBON_CACHE_TTL_MS,
@@ -142,7 +137,7 @@ const measurePageBytes = async (url: string): Promise<number> => {
 };
 
 const checkGreenHosting = async (url: string): Promise<0 | 1> => {
-  const hostname = new URL(url).hostname;
+  const { hostname } = new URL(url);
 
   try {
     const response = await fetch(

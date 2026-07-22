@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-  type TransitionEvent,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode, TransitionEvent } from "react";
 import { createPortal } from "react-dom";
 
 import { useMounted } from "@/hooks/use-mounted";
@@ -38,7 +31,7 @@ interface FlyImage {
   zoomSrc?: string;
 }
 
-type ImageZoomProps = {
+interface ImageZoomProps {
   aspectVideo?: boolean;
   backdropClassName?: string;
   children: ReactNode;
@@ -50,7 +43,7 @@ type ImageZoomProps = {
   ) => void;
   wrapElement?: "div" | "span";
   zoomMargin?: number;
-};
+}
 
 const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
   const img = slot.querySelector("img");
@@ -65,9 +58,8 @@ const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
 
   const computed = window.getComputedStyle(img);
   const displaySrc = img.currentSrc || img.src;
-  const zoomSrc = img.dataset.zoomSrc;
-  const hiResSrc =
-    zoomSrc && zoomSrc !== displaySrc ? zoomSrc : undefined;
+  const { zoomSrc } = img.dataset;
+  const hiResSrc = zoomSrc && zoomSrc !== displaySrc ? zoomSrc : undefined;
 
   return {
     alt: img.alt,
@@ -168,13 +160,14 @@ export const ImageZoom = ({
     }
 
     const hiRes = new Image();
-    hiRes.onload = () => {
+    const handleLoad = () => {
       if (zoomSessionRef.current !== session) {
         return;
       }
 
       setOverlaySrc(fly.zoomSrc ?? fly.src);
     };
+    hiRes.addEventListener("load", handleLoad, { once: true });
     hiRes.src = fly.zoomSrc;
   }, []);
 
@@ -303,7 +296,7 @@ export const ImageZoom = ({
       return;
     }
 
-    const zoomSrc = img.dataset.zoomSrc;
+    const { zoomSrc } = img.dataset;
     if (!zoomSrc || img.dataset.zoomPrefetched === "true") {
       return;
     }
@@ -317,7 +310,7 @@ export const ImageZoom = ({
 
   useEffect(() => {
     if (!isOverlayMounted) {
-      return undefined;
+      return;
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -337,9 +330,14 @@ export const ImageZoom = ({
     className
   );
 
+  let slotSizeClass: string | null = null;
+  if (!lockedBox) {
+    slotSizeClass = aspectVideo ? "aspect-video w-full" : "size-full";
+  }
+
   const slotClassName = cn(
     "relative shrink-0 overflow-hidden",
-    lockedBox ? null : aspectVideo ? "aspect-video w-full" : "size-full",
+    slotSizeClass,
     !isDisabled && "[&_img]:cursor-zoom-in"
   );
 

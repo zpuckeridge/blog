@@ -1,4 +1,4 @@
-import { Children, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /** Trim whitespace from plain link labels. */
 export const trimLinkLabel = (value: string): string => value.trim();
@@ -6,9 +6,25 @@ export const trimLinkLabel = (value: string): string => value.trim();
 const isPrimitiveChild = (child: ReactNode): child is string | number =>
   typeof child === "string" || typeof child === "number";
 
+const normalizeChildren = (children: ReactNode): ReactNode[] => {
+  if (
+    children === null ||
+    children === undefined ||
+    typeof children === "boolean"
+  ) {
+    return [];
+  }
+
+  if (Array.isArray(children)) {
+    return children;
+  }
+
+  return [children];
+};
+
 /** Strip leading/trailing whitespace from link text without affecting inner spaces. */
 export const trimLinkChildren = (children: ReactNode): ReactNode => {
-  const parts = Children.toArray(children);
+  const parts = normalizeChildren(children);
   if (parts.length === 0) {
     return children;
   }
@@ -43,4 +59,4 @@ export const trimLinkChildren = (children: ReactNode): ReactNode => {
 
 /** Trim rendered Astro slot HTML down to plain link text. */
 export const trimLinkSlotHtml = (html: string): string =>
-  trimLinkLabel(html.replace(/<[^>]*>/gu, ""));
+  trimLinkLabel(html.replaceAll(/<[^>]*>/gu, ""));

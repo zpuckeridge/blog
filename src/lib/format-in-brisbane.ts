@@ -146,7 +146,7 @@ export const formatDdMm = function formatDdMm(isoDate: DateInput): string {
  * formatting helpers).
  */
 export const calendarYearInBrisbane = function calendarYearInBrisbane(
-  at: DateInput
+  at: DateInput = new Date()
 ): number {
-  return Number.parseInt(yearNumericBrisbane.format(coerceDate(at)), 10);
+  return Math.trunc(Number(yearNumericBrisbane.format(coerceDate(at))));
 };

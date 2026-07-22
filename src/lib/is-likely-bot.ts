@@ -1,5 +1,5 @@
 const BOT_PATTERN =
-  /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/i;
+  /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/iu;
 
 /** Heuristic for audit crawlers and bots that should not load analytics widgets. */
 export const isLikelyBot = (): boolean => {

@@ -119,7 +119,7 @@ export const fetchGitHubContributions = async (
 
     if (rateLimitRemaining === "0") {
       const resetTime = rateLimitReset
-        ? new Date(Number.parseInt(rateLimitReset, 10) * 1000).toISOString()
+        ? new Date(Math.trunc(Number(rateLimitReset)) * 1000).toISOString()
         : undefined;
       throw new GitHubContributionsError(
         "GitHub API rate limit exceeded",

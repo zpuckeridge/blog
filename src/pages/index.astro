@@ -96,8 +96,8 @@ const fullTitle = formatPageTitle("Home");
   meta={pageMeta}
   rootDefaults
 >
-  <div class="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">
-    <div class="space-y-10">
+  <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-4 px-6 pb-20">
+    <div class="min-w-0 space-y-10">
       <div class="space-y-4">
         <div class="space-y-2 text-sm">
           <p class="font-redaction text-xl text-black dark:text-white">
@@ -110,7 +110,7 @@ const fullTitle = formatPageTitle("Home");
         </div>
 
         <div class="flex flex-col gap-4 md:flex-row md:justify-between">
-          <div class="-ml-1 flex flex-row gap-2 text-sm text-muted-foreground">
+          <div class="-ml-1 flex min-w-0 flex-row flex-wrap gap-2 text-sm text-muted-foreground">
             <LinkWithIcon href="https://x.com/zpuckeridge/" variant="default">
               X
             </LinkWithIcon>
@@ -148,88 +148,79 @@ const fullTitle = formatPageTitle("Home");
       <div class="space-y-10">
         <hr class="border-dotted border-border" />
 
-        <div class="flex flex-row items-baseline gap-4 text-sm leading-normal">
+        <div class="flex min-w-0 flex-row items-baseline gap-4 text-sm leading-normal">
           <div class="w-20 shrink-0">
             <p class="text-muted-foreground">Now</p>
           </div>
 
-          <div class="w-full space-y-2">
+          <div class="min-w-0 flex-1 space-y-2">
             <p>
-              IT Operations Lead for{" "}
+              IT Operations Lead at{" "}
               <LinkWithIcon href="https://www.starcompass.com.au">
                 Star Compass
-              </LinkWithIcon>
-              , a disability support service and{" "}
+              </LinkWithIcon>{" "}
+              and{" "}
               <LinkWithIcon href="https://www.haddoninstitute.org">
                 Haddon Institute
               </LinkWithIcon>
-              , a distinctly Reformed seminary.
-            </p>
-            <p>
-              I also run a web design studio known as{" "}
+              . I also run{" "}
               <LinkWithIcon href="https://obambulo.studio">
                 obambulo studio
               </LinkWithIcon>
-              . I have limited availability, but I am open to hearing about your
-              project!
+              .
             </p>
           </div>
         </div>
 
-        <div class="flex flex-row items-baseline gap-4 text-sm leading-normal">
+        <div class="flex min-w-0 flex-row items-baseline gap-4 text-sm leading-normal">
           <div class="w-20 shrink-0">
             <p class="text-muted-foreground">Prev</p>
           </div>
 
-          <div class="w-full space-y-2">
+          <div class="min-w-0 flex-1 space-y-2">
             <p>
-              Previously, I was working for{" "}
+              IT Administrator at{" "}
               <LinkWithIcon href="https://www.rsp.com.au">
                 Rising Sun Pictures
               </LinkWithIcon>{" "}
-              (2022 <span aria-hidden="true" class="inline-block align-[-0.125em]">→</span> 2024) as an
-              IT Administrator to deploy and maintain the remote Brisbane office
-              infrastructure.
-            </p>
-
-            <p>
-              Prior to that, I worked for{" "}
+              (<span class="inline-flex items-center gap-1">
+                2022 <span aria-hidden="true">→</span> 2024
+              </span>). Systems Administrator at{" "}
               <LinkWithIcon href="https://www.pixelzoo.com.au">
                 Pixel Zoo
               </LinkWithIcon>{" "}
-              (2021 <span aria-hidden="true" class="inline-block align-[-0.125em]">→</span> 2022) as a
-              Systems Administrator to provide internal and remote support for
-              ~200+ employees. Deployed various networking and hardware upgrades
-              across the studio and implemented new file storage infrastructure.
+              (<span class="inline-flex items-center gap-1">
+                2021 <span aria-hidden="true">→</span> 2022
+              </span>).
             </p>
 
             <p class="text-sm text-muted-foreground">
               You can find my full employment history{" "}
               <a
-                class="group inline bg-muted px-1 leading-[inherit] hover:bg-muted/80"
+                class="group inline-block max-w-full whitespace-nowrap bg-muted px-1 leading-[inherit] hover:bg-muted/80"
                 href="/cv"
               >here</a>.
             </p>
           </div>
         </div>
 
-        <div class="space-y-10 border-t border-dotted border-border pt-10">
-          <div class="space-y-2">
-            <div class="flex w-full flex-row items-baseline gap-4 text-sm leading-normal">
+        <div class="min-w-0 space-y-10 border-t border-dotted border-border pt-10">
+          <div class="min-w-0 space-y-2">
+            <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
               <div class="w-20 shrink-0">
                 <p class="text-muted-foreground">Timeline</p>
               </div>
 
               <div
-                class="relative flex h-36 w-full flex-col gap-1 overflow-y-hidden"
+                class="relative flex h-36 min-w-0 w-full flex-col gap-1 overflow-y-hidden"
               >
                 {sortedPosts.slice(0, 7).map((post) => (
                   <a
                     aria-label={post.title}
-                    class="flex justify-between gap-4 px-1 hover:bg-muted"
+                    class="flex min-w-0 justify-between gap-4 px-1 hover:bg-muted"
                     href={`/timeline/${post.slug}`}
                   >
-                    <p class="line-clamp-1">{post.title}</p>
+                    <p class="min-w-0 line-clamp-1">{post.title}</p>
                     <p class="text-muted-foreground">
                       {new Date(post.date_created).toLocaleDateString(
                         undefined,
@@ -257,13 +248,13 @@ const fullTitle = formatPageTitle("Home");
             </div>
           </div>
 
-          <div class="space-y-2">
-            <div class="flex w-full flex-row items-baseline gap-4 text-sm leading-normal">
+          <div class="min-w-0 space-y-2">
+            <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
               <div class="w-20 shrink-0">
                 <p class="text-muted-foreground">Projects</p>
               </div>
               <div
-                class="relative flex h-36 w-full flex-col gap-1 overflow-y-hidden"
+                class="relative flex h-36 min-w-0 w-full flex-col gap-1 overflow-y-hidden"
               >
                 {sortedProjects.slice(0, 7).map((project) => {
                   const yearLabel =
@@ -281,20 +272,20 @@ const fullTitle = formatPageTitle("Home");
                   if (project.link && project.status !== "work_in_progress") {
                     return (
                       <a
-                        class="flex justify-between gap-4 px-1 hover:bg-muted"
+                        class="flex min-w-0 justify-between gap-4 px-1 hover:bg-muted"
                         href={project.link}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        <span class="line-clamp-1">{project.name}</span>
+                        <span class="min-w-0 line-clamp-1">{project.name}</span>
                         {trailingLabel}
                       </a>
                     );
                   }
 
                   return (
-                    <div class="flex justify-between gap-4 px-1">
-                      <span class="line-clamp-1">{project.name}</span>
+                    <div class="flex min-w-0 justify-between gap-4 px-1">
+                      <span class="min-w-0 line-clamp-1">{project.name}</span>
                       {trailingLabel}
                     </div>
                   );
@@ -330,17 +321,17 @@ const fullTitle = formatPageTitle("Home");
 
         <hr class="border-dotted border-border" />
 
-        <div class="flex flex-col gap-2">
-          <div class="flex flex-nowrap items-center justify-between gap-4">
+        <div class="flex min-w-0 flex-col gap-2">
+          <div class="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <BrisbaneDateTime />
-            <div class="flex min-w-0 shrink items-center justify-end gap-4">
+            <div class="flex min-w-0 items-center justify-end gap-4">
               <LocationStatus initial={initialLocation} />
               <LanyardStatus />
             </div>
           </div>
           <LanyardListening />
-          <div class="flex justify-between gap-4">
-            <div class="-ml-1 flex flex-row gap-2 text-sm text-muted-foreground">
+          <div class="flex min-w-0 justify-between gap-4">
+            <div class="-ml-1 flex min-w-0 flex-row flex-wrap gap-2 text-sm text-muted-foreground">
               <a class="inline-flex px-1 hover:bg-muted" href="/colophon">
                 Colophon
               </a>

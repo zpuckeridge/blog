@@ -7,7 +7,11 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
   data-lanyard-status
   data-lanyard-user={LANYARD_USER_ID}
 >
-  <div class="my-auto h-2 w-2 shrink-0 bg-gray-400" data-lanyard-dot />
+  <div
+    class="my-auto h-2 w-2 shrink-0 bg-gray-400"
+    data-lanyard-dot
+    data-status-dot
+  />
   <p
     class="my-auto whitespace-nowrap text-muted-foreground text-sm"
     data-lanyard-label
@@ -38,6 +42,7 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
     watchLanyardPresence,
   } from "@/lib/lanyard-presence-hub";
   import { getDiscordStatusStyle } from "@/lib/lanyard-status";
+  import { syncStatusPulse } from "@/lib/sync-status-pulse";
 
   const activeSubscriptions = new Set<() => void>();
 
@@ -67,7 +72,9 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
 
       const applyStatus = (discordStatus: string | undefined) => {
         const style = getDiscordStatusStyle(discordStatus);
-        dot.className = `my-auto h-2 w-2 shrink-0 animate-pulse ${style.color}`;
+        const shouldPulse = discordStatus !== "offline";
+        dot.className = `my-auto h-2 w-2 shrink-0 ${style.color}`;
+        syncStatusPulse(dot, shouldPulse);
         label.textContent = style.text;
       };
 

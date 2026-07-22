@@ -7,7 +7,7 @@ import ContentThumbnail from "@/components/content-thumbnail";
 import type { Movie } from "@/interfaces/content-item";
 import {
   expandableListDetailsClassName,
-  expandableListPreviewGridClassName,
+  expandableListGridClassName,
   expandableListItemClassName,
   expandableListItemExpandedClassName,
   expandableListItemsClassName,
@@ -34,7 +34,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
 
   return (
     <div className="space-y-2">
-      <div className={expandableListPreviewGridClassName}>
+      <div className={expandableListGridClassName}>
         <div className={expandableListSectionHeaderClassName}>
           <div className={expandableListSectionHeaderMainClassName}>
             <p className="shrink-0 text-muted-foreground text-sm">Movies</p>

@@ -1,9 +1,4 @@
-export type LocationCategory =
-  | "home"
-  | "work"
-  | "transit"
-  | "away"
-  | "social";
+export type LocationCategory = "home" | "work" | "transit" | "away" | "social";
 
 export type LocationEvent = "enter" | "leave";
 
@@ -18,23 +13,23 @@ export interface ZoneConfig {
 
 export const ZONES: Record<string, ZoneConfig> = {
   home: {
-    label: "At home",
     category: "home",
     commuteRole: "home",
+    label: "At home",
   },
   work: {
-    label: "At work",
     category: "work",
     commuteRole: "work",
+    label: "At work",
   },
 };
 
 export const WORK_SCHEDULE = {
-  timezone: "Australia/Brisbane",
   /** Monday = 1 … Friday = 5 (JavaScript weekday index). */
   days: [1, 2, 3, 4, 5] as number[],
-  startHour: 7,
   endHour: 18,
+  startHour: 7,
+  timezone: "Australia/Brisbane",
 };
 
 export const LOCATION_KV_KEY = "location:status";
@@ -56,21 +51,21 @@ export interface LocationPublicResponse {
 }
 
 const BRISBANE_WEEKDAY: Record<string, number> = {
-  Sun: 0,
+  Fri: 5,
   Mon: 1,
+  Sat: 6,
+  Sun: 0,
+  Thu: 4,
   Tue: 2,
   Wed: 3,
-  Thu: 4,
-  Fri: 5,
-  Sat: 6,
 };
 
 export const isWithinWorkHours = (now: Date): boolean => {
   const parts = new Intl.DateTimeFormat("en-AU", {
-    timeZone: WORK_SCHEDULE.timezone,
-    weekday: "short",
     hour: "numeric",
     hour12: false,
+    timeZone: WORK_SCHEDULE.timezone,
+    weekday: "short",
   }).formatToParts(now);
 
   const weekday = parts.find((part) => part.type === "weekday")?.value ?? "";
@@ -95,26 +90,26 @@ export const deriveStatus = (
   }
 
   if (event === "enter") {
-    return { status: zoneConfig.label, category: zoneConfig.category };
+    return { category: zoneConfig.category, status: zoneConfig.label };
   }
 
   if (zoneConfig.commuteRole === "work") {
-    return { status: "Leaving work", category: "transit" };
+    return { category: "transit", status: "Leaving work" };
   }
 
   if (zoneConfig.commuteRole === "home") {
     if (isWithinWorkHours(now)) {
-      return { status: "Heading to work", category: "transit" };
+      return { category: "transit", status: "Heading to work" };
     }
 
-    return { status: "Out and about", category: "away" };
+    return { category: "away", status: "Out and about" };
   }
 
   const shortName = zoneConfig.shortName ?? zone;
 
   return {
-    status: `Leaving ${shortName}`,
     category: "away",
+    status: `Leaving ${shortName}`,
   };
 };
 
@@ -125,10 +120,10 @@ export const toPublicResponse = (
   record: LocationStatusRecord,
   now = Date.now()
 ): LocationPublicResponse => ({
-  status: record.status,
   category: record.category,
-  updatedAt: record.updatedAt,
   isStale: isStale(record.updatedAt, now),
+  status: record.status,
+  updatedAt: record.updatedAt,
 });
 
 export const formatLocationRelativeTime = (
@@ -155,22 +150,91 @@ export const formatLocationRelativeTime = (
   return `${days}d ago`;
 };
 
-export const getServerLocationStatus = async (): Promise<LocationPublicResponse | null> => {
-  const { workersEnv } = await import("./workers-env");
-  const kv = workersEnv.LOCATION_KV;
-  if (!kv) {
+const PRODUCTION_LOCATION_URL = "https://zacchary.me/api/location";
+
+const parseStoredRecord = (raw: string): LocationStatusRecord | null => {
+  try {
+    return JSON.parse(raw) as LocationStatusRecord;
+  } catch {
     return null;
   }
+};
 
-  const raw = await kv.get(LOCATION_KV_KEY);
-  if (!raw) {
+const isPublicLocationResponse = (
+  value: unknown
+): value is LocationPublicResponse => {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  const record = value as Partial<LocationPublicResponse>;
+  return (
+    typeof record.status === "string" &&
+    record.status.length > 0 &&
+    typeof record.category === "string" &&
+    typeof record.updatedAt === "number" &&
+    typeof record.isStale === "boolean"
+  );
+};
+
+/** Dev-only: empty in-memory KV has no webhook history — mirror production. */
+const seedLocationFromProduction = async (
+  kv: NonNullable<Cloudflare.Env["LOCATION_KV"]>
+): Promise<LocationPublicResponse | null> => {
+  if (!import.meta.env.DEV) {
     return null;
   }
 
   try {
-    const record = JSON.parse(raw) as LocationStatusRecord;
+    const response = await fetch(PRODUCTION_LOCATION_URL, {
+      headers: { Accept: "application/json" },
+    });
+    if (!response.ok) {
+      return null;
+    }
+
+    const payload: unknown = await response.json();
+    if (!isPublicLocationResponse(payload)) {
+      return null;
+    }
+
+    const zone =
+      payload.category === "work" || payload.category === "home"
+        ? payload.category
+        : "home";
+
+    const record: LocationStatusRecord = {
+      category: payload.category,
+      event: "enter",
+      status: payload.status,
+      updatedAt: payload.updatedAt,
+      zone,
+    };
+
+    await kv.put(LOCATION_KV_KEY, JSON.stringify(record));
     return toPublicResponse(record);
   } catch {
     return null;
   }
 };
+
+export const readLocationPublicStatus =
+  async (): Promise<LocationPublicResponse | null> => {
+    const { workersEnv } = await import("./workers-env");
+    const kv = workersEnv.LOCATION_KV;
+    if (!kv) {
+      return null;
+    }
+
+    const raw = await kv.get(LOCATION_KV_KEY);
+    if (raw) {
+      const record = parseStoredRecord(raw);
+      return record ? toPublicResponse(record) : null;
+    }
+
+    return seedLocationFromProduction(kv);
+  };
+
+export const getServerLocationStatus =
+  async (): Promise<LocationPublicResponse | null> =>
+    readLocationPublicStatus();

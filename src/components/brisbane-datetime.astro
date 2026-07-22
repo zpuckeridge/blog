@@ -1,45 +1,109 @@
 ---
-const timeFormatter = new Intl.DateTimeFormat("en-US", {
+const timeZone = "Australia/Brisbane";
+
+const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
+  dayPeriod: "short",
+  hour: "numeric",
   hour12: true,
-  timeStyle: "short",
-  timeZone: "Australia/Brisbane",
+  minute: "2-digit",
+  timeZone,
 });
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
   month: "short",
-  timeZone: "Australia/Brisbane",
+  timeZone,
   year: "numeric",
 });
 
+const getTimeParts = (date: Date) => {
+  const parts = timePartsFormatter.formatToParts(date);
+  const hour = parts.find((part) => part.type === "hour")?.value ?? "";
+  const minute = parts.find((part) => part.type === "minute")?.value ?? "";
+  const dayPeriod =
+    parts.find((part) => part.type === "dayPeriod")?.value ?? "";
+
+  return { dayPeriod, hour, minute };
+};
+
 const now = new Date();
-const initialTime = timeFormatter.format(now);
+const initialTime = getTimeParts(now);
 const initialDate = dateFormatter.format(now);
+const initialColonVisible = now.getSeconds() % 2 === 0;
 ---
 
 <div
-  class="flex shrink-0 flex-row gap-2 whitespace-nowrap text-muted-foreground text-sm"
+  class="group/brisbane-clock relative flex min-w-0 flex-row flex-wrap gap-x-2 gap-y-1 whitespace-nowrap text-muted-foreground text-sm"
   data-brisbane-clock
 >
-  <p data-brisbane-time>{initialTime}</p>
+  <p data-brisbane-time>
+    <span data-brisbane-hour>{initialTime.hour}</span><span
+      aria-hidden="true"
+      class:list={[!initialColonVisible && "opacity-0"]}
+      data-brisbane-colon>:</span
+    ><span data-brisbane-minute>{initialTime.minute}</span>{
+      initialTime.dayPeriod && (
+        <span data-brisbane-period> {initialTime.dayPeriod}</span>
+      )
+    }
+  </p>
   <p>•</p>
   <p data-brisbane-date>{initialDate}</p>
+  <div
+    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-0 z-50 w-max max-w-[16rem] rounded-md border border-border bg-popover px-3 py-2 text-left text-popover-foreground text-xs opacity-0 shadow-md transition-opacity duration-150 group-hover/brisbane-clock:pointer-events-auto group-hover/brisbane-clock:opacity-100"
+    data-brisbane-tooltip
+    role="tooltip"
+  >
+  </div>
 </div>
 
 <script>
   const initBrisbaneClocks = () => {
-    const timeFormatter = new Intl.DateTimeFormat("en-US", {
+    const timeZone = "Australia/Brisbane";
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
+      dayPeriod: "short",
+      hour: "numeric",
       hour12: true,
-      timeStyle: "short",
-      timeZone: "Australia/Brisbane",
+      minute: "2-digit",
+      timeZone,
     });
 
     const dateFormatter = new Intl.DateTimeFormat("en-US", {
       day: "numeric",
       month: "short",
-      timeZone: "Australia/Brisbane",
+      timeZone,
       year: "numeric",
     });
+
+    const absoluteFormatter = (zone, withZoneName = false) =>
+      new Intl.DateTimeFormat(undefined, {
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        month: "short",
+        timeZone: zone,
+        ...(withZoneName ? { timeZoneName: "short" } : {}),
+        year: "numeric",
+      });
+
+    const getTimeParts = (date) => {
+      const parts = timePartsFormatter.formatToParts(date);
+      const hour = parts.find((part) => part.type === "hour")?.value ?? "";
+      const minute = parts.find((part) => part.type === "minute")?.value ?? "";
+      const dayPeriod =
+        parts.find((part) => part.type === "dayPeriod")?.value ?? "";
+
+      return { dayPeriod, hour, minute };
+    };
+
+    const dateTimeFormat = Intl.DateTimeFormat;
+    const localTimeZone =
+      dateTimeFormat().resolvedOptions().timeZone || "UTC";
+    const isLocalAest = localTimeZone === timeZone;
 
     for (const root of document.querySelectorAll("[data-brisbane-clock]")) {
       if (!(root instanceof HTMLElement) || root.dataset.clockReady === "true") {
@@ -47,32 +111,96 @@ const initialDate = dateFormatter.format(now);
       }
 
       const timeEl = root.querySelector("[data-brisbane-time]");
+      const hourEl = root.querySelector("[data-brisbane-hour]");
+      const colonEl = root.querySelector("[data-brisbane-colon]");
+      const minuteEl = root.querySelector("[data-brisbane-minute]");
       const dateEl = root.querySelector("[data-brisbane-date]");
-      if (!(timeEl instanceof HTMLElement) || !(dateEl instanceof HTMLElement)) {
+      const tooltipEl = root.querySelector("[data-brisbane-tooltip]");
+
+      if (
+        !(timeEl instanceof HTMLElement) ||
+        !(hourEl instanceof HTMLElement) ||
+        !(colonEl instanceof HTMLElement) ||
+        !(minuteEl instanceof HTMLElement) ||
+        !(dateEl instanceof HTMLElement) ||
+        !(tooltipEl instanceof HTMLElement)
+      ) {
         continue;
       }
 
       root.dataset.clockReady = "true";
+      let timerId = 0;
+
+      const ensurePeriodEl = () => {
+        let periodEl = root.querySelector("[data-brisbane-period]");
+        if (periodEl instanceof HTMLElement) {
+          return periodEl;
+        }
+
+        periodEl = document.createElement("span");
+        periodEl.dataset.brisbanePeriod = "";
+        timeEl.append(periodEl);
+        return periodEl;
+      };
+
+      const renderTooltip = (current) => {
+        const aestTime = absoluteFormatter(timeZone).format(current);
+        const localTime = absoluteFormatter(localTimeZone, true).format(current);
+
+        tooltipEl.replaceChildren();
+
+        const aestLine = document.createElement("span");
+        aestLine.className = "block tabular-nums";
+        aestLine.textContent = `${aestTime} AEST`;
+        tooltipEl.append(aestLine);
+
+        if (!isLocalAest) {
+          const localLine = document.createElement("span");
+          localLine.className =
+            "mt-0.5 block text-muted-foreground tabular-nums";
+          localLine.textContent = `${localTime} your time`;
+          tooltipEl.append(localLine);
+        }
+      };
 
       const render = () => {
         const current = new Date();
-        timeEl.textContent = timeFormatter.format(current);
+        const { dayPeriod, hour, minute } = getTimeParts(current);
+
+        hourEl.textContent = hour;
+        minuteEl.textContent = minute;
         dateEl.textContent = dateFormatter.format(current);
+
+        const periodEl = ensurePeriodEl();
+        periodEl.textContent = dayPeriod ? ` ${dayPeriod}` : "";
+        renderTooltip(current);
+
+        if (reduceMotion) {
+          colonEl.classList.remove("opacity-0");
+        } else {
+          colonEl.classList.toggle("opacity-0", current.getSeconds() % 2 !== 0);
+        }
       };
 
-      const scheduleNextUpdate = () => {
-        const currentTime = new Date();
-        const nextMinute = new Date(currentTime);
-        nextMinute.setSeconds(0, 0);
-        nextMinute.setMinutes(currentTime.getMinutes() + 1);
-        return window.setTimeout(() => {
+      const scheduleNextTick = () => {
+        const current = new Date();
+        const delay = Math.max(1000 - current.getMilliseconds(), 16);
+        timerId = window.setTimeout(() => {
           render();
-          scheduleNextUpdate();
-        }, nextMinute.getTime() - currentTime.getTime());
+          scheduleNextTick();
+        }, delay);
       };
 
       render();
-      scheduleNextUpdate();
+      scheduleNextTick();
+
+      document.addEventListener(
+        "astro:before-preparation",
+        () => {
+          window.clearTimeout(timerId);
+        },
+        { once: true }
+      );
     }
   };
 

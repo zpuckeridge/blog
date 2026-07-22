@@ -63,37 +63,37 @@
 </style>
 
 <script is:inline>
+  const getCacheKey = (url) => `wcb_v2_${  url}`;
+
+  const getBadge = () => document.querySelector("#wcb");
+
+  const renderResult = (result) => {
+    const grams = document.querySelector("#wcb_g");
+    const cleaner = document.querySelector("#wcb_2");
+
+    if (!grams) {
+      return;
+    }
+
+    grams.innerHTML = `${result.c  }g of CO<sub>2</sub>/view`;
+
+    if (cleaner && result.p !== undefined) {
+      cleaner.textContent = `Cleaner than ${  result.p  }% of pages tested`;
+    }
+  };
+
   (() => {
     const siteUrl = "https://zacchary.me";
     const profileUrl =
       "https://www.websitecarbon.com/website/zacchary-me?ref=zacchary.me";
-    const cacheTtlMs = 86400000;
+    const cacheTtlMs = 86_400_000;
 
     const getMeasuredUrl = () => {
-      if (/^(localhost|127\.0\.0\.1)$/u.test(location.hostname)) {
+      if (/^(?:localhost|127\.0\.0\.1)$/u.test(location.hostname)) {
         return siteUrl;
       }
 
       return location.href.split("#")[0];
-    };
-
-    const getCacheKey = (url) => "wcb_v2_" + url;
-
-    const getBadge = () => document.getElementById("wcb");
-
-    const renderResult = (result) => {
-      const grams = document.getElementById("wcb_g");
-      const cleaner = document.getElementById("wcb_2");
-
-      if (!grams) {
-        return;
-      }
-
-      grams.innerHTML = result.c + "g of CO<sub>2</sub>/view";
-
-      if (cleaner && result.p !== undefined) {
-        cleaner.textContent = "Cleaner than " + result.p + "% of pages tested";
-      }
     };
 
     const syncTheme = () => {
@@ -111,7 +111,7 @@
     const requestCarbon = async (url, render = true) => {
       try {
         const response = await fetch(
-          "/api/carbon?url=" + encodeURIComponent(url)
+          `/api/carbon?url=${  encodeURIComponent(url)}`
         );
 
         if (!response.ok) {
@@ -147,9 +147,9 @@
 
       badge.dataset.carbonReady = "true";
       badge.innerHTML =
-        '<div id="wcb_p"><span id="wcb_g">Measuring CO<sub>2</sub>&hellip;</span><a id="wcb_a" target="_blank" rel="noopener" href="' +
-        profileUrl +
-        '">Website Carbon</a></div><span id="wcb_2">&nbsp;</span>';
+        `<div id="wcb_p"><span id="wcb_g">Measuring CO<sub>2</sub>&hellip;</span><a id="wcb_a" target="_blank" rel="noopener" href="${ 
+        profileUrl 
+        }">Website Carbon</a></div><span id="wcb_2">&nbsp;</span>`;
 
       syncTheme();
 

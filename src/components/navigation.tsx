@@ -1,4 +1,5 @@
 import SiteImage from "@/components/site-image";
+import { ImageZoom } from "@/components/zoom-image";
 import { menuItems } from "@/lib/menu-items";
 
 interface NavigationProps {
@@ -6,19 +7,31 @@ interface NavigationProps {
 }
 
 export default function Navigation({ pathname }: NavigationProps) {
-  return (
-    <div className="mx-auto flex max-w-lg items-center justify-between gap-4 px-6 pt-6 pb-10 lg:pt-20">
-      <a href="/">
-        <SiteImage
-          alt="Zacchary Puckeridge"
-          className="aspect-square size-6 object-cover"
-          height={100}
-          src="/avatar-2026-small.avif"
-          width={100}
-        />
-      </a>
+  const isHome = pathname === "/";
+  const avatar = (
+    <SiteImage
+      alt="Zacchary Puckeridge"
+      className="aspect-square size-6 object-cover"
+      height={100}
+      src="/avatar-2026-small.avif"
+      width={100}
+      zoomSrc="/avatar-2026.avif"
+    />
+  );
 
-      <div className="flex flex-row items-center justify-end gap-2 text-muted-foreground text-sm">
+  return (
+    <div className="mx-auto flex w-full min-w-0 max-w-lg items-center justify-between gap-3 px-6 pt-6 pb-10 sm:gap-4 lg:pt-20">
+      {isHome ? (
+        <div className="size-6 shrink-0">
+          <ImageZoom>{avatar}</ImageZoom>
+        </div>
+      ) : (
+        <a className="size-6 shrink-0" href="/">
+          {avatar}
+        </a>
+      )}
+
+      <div className="flex min-w-0 flex-wrap items-center justify-end gap-x-1 gap-y-1 text-muted-foreground text-sm sm:gap-x-2">
         {menuItems.map((item) => {
           const isActive =
             pathname === item.href || pathname.includes(item.href);

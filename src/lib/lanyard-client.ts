@@ -3,7 +3,7 @@ import type { LanyardPresence } from "@/lib/lanyard-status";
 const WS_URL = "wss://api.lanyard.rest/socket";
 const REST_URL = "https://api.lanyard.rest/v1/users";
 const MAX_RECONNECT_ATTEMPTS = 5;
-const RECONNECT_BASE_MS = 1_000;
+const RECONNECT_BASE_MS = 1000;
 const DEFAULT_HEARTBEAT_MS = 30_000;
 
 type PresenceHandler = (presence: LanyardPresence) => void;
@@ -21,9 +21,7 @@ export const fetchLanyardPresence = async (
   userId: string
 ): Promise<LanyardPresence | null> => {
   try {
-    const response = await fetch(
-      `${REST_URL}/${encodeURIComponent(userId)}`
-    );
+    const response = await fetch(`${REST_URL}/${encodeURIComponent(userId)}`);
 
     if (!response.ok) {
       return null;
@@ -70,95 +68,101 @@ export const subscribeLanyardPresence = (
     }
   };
 
-  const scheduleReconnect = () => {
-    if (disposed || reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
-      return;
-    }
-
-    const delay = RECONNECT_BASE_MS * 2 ** reconnectAttempts;
-    reconnectAttempts += 1;
-    reconnectTimer = setTimeout(() => {
-      reconnectTimer = null;
-      connect();
-    }, delay);
-  };
-
   const handlePresence = (presence: LanyardPresence) => {
     reconnectAttempts = 0;
     onPresence(presence);
   };
 
-  const connect = () => {
-    if (disposed) {
+  const handleMessage = (event: MessageEvent) => {
+    let message: LanyardSocketMessage;
+
+    try {
+      message = JSON.parse(String(event.data)) as LanyardSocketMessage;
+    } catch {
       return;
     }
 
-    clearHeartbeat();
-    clearReconnect();
+    if (message.op === 1) {
+      const interval = message.d?.heartbeat_interval ?? DEFAULT_HEARTBEAT_MS;
 
-    if (socket) {
-      socket.onopen = null;
-      socket.onmessage = null;
-      socket.onclose = null;
-      socket.onerror = null;
-      socket.close();
-      socket = null;
+      send({
+        d: { subscribe_to_id: userId },
+        op: 2,
+      });
+
+      clearHeartbeat();
+      heartbeatTimer = setInterval(() => {
+        send({ op: 3 });
+      }, interval);
+      return;
     }
 
-    socket = new WebSocket(WS_URL);
+    if (message.op !== 0 || !message.d) {
+      return;
+    }
 
-    socket.onmessage = (event) => {
-      let message: LanyardSocketMessage;
-
-      try {
-        message = JSON.parse(String(event.data)) as LanyardSocketMessage;
-      } catch {
-        return;
-      }
-
-      if (message.op === 1) {
-        const interval = message.d?.heartbeat_interval ?? DEFAULT_HEARTBEAT_MS;
-
-        send({
-          op: 2,
-          d: { subscribe_to_id: userId },
-        });
-
-        clearHeartbeat();
-        heartbeatTimer = setInterval(() => {
-          send({ op: 3 });
-        }, interval);
-        return;
-      }
-
-      if (message.op !== 0 || !message.d) {
-        return;
-      }
-
-      if (message.t === "INIT_STATE" || message.t === "PRESENCE_UPDATE") {
-        handlePresence(message.d);
-      }
-    };
-
-    socket.onclose = () => {
-      clearHeartbeat();
-      if (!disposed) {
-        scheduleReconnect();
-      }
-    };
-
-    socket.onerror = () => {
-      socket?.close();
-    };
+    if (message.t === "INIT_STATE" || message.t === "PRESENCE_UPDATE") {
+      handlePresence(message.d);
+    }
   };
 
-  void fetchLanyardPresence(userId).then((presence) => {
+  const handleError = () => {
+    socket?.close();
+  };
+
+  const socketActions = {
+    connect(): void {
+      if (disposed) {
+        return;
+      }
+
+      clearHeartbeat();
+      clearReconnect();
+
+      if (socket) {
+        socketActions.detachListeners(socket);
+        socket.close();
+        socket = null;
+      }
+
+      socket = new WebSocket(WS_URL);
+      socket.addEventListener("message", handleMessage);
+      socket.addEventListener("close", socketActions.handleClose);
+      socket.addEventListener("error", handleError);
+    },
+    detachListeners(target: WebSocket): void {
+      target.removeEventListener("message", handleMessage);
+      target.removeEventListener("close", socketActions.handleClose);
+      target.removeEventListener("error", handleError);
+    },
+    handleClose(): void {
+      clearHeartbeat();
+      if (!disposed) {
+        socketActions.scheduleReconnect();
+      }
+    },
+    scheduleReconnect(): void {
+      if (disposed || reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+        return;
+      }
+
+      const delay = RECONNECT_BASE_MS * 2 ** reconnectAttempts;
+      reconnectAttempts += 1;
+      reconnectTimer = setTimeout(() => {
+        reconnectTimer = null;
+        socketActions.connect();
+      }, delay);
+    },
+  };
+
+  void (async () => {
+    const presence = await fetchLanyardPresence(userId);
     if (presence && !disposed) {
       onPresence(presence);
     }
-  });
+  })();
 
-  connect();
+  socketActions.connect();
 
   return () => {
     disposed = true;
@@ -166,7 +170,7 @@ export const subscribeLanyardPresence = (
     clearReconnect();
 
     if (socket) {
-      socket.onclose = null;
+      socketActions.detachListeners(socket);
       socket.close();
       socket = null;
     }

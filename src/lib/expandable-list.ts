@@ -1,11 +1,7 @@
 const expandableListGridBaseClassName =
   "grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(5ch,max-content)] gap-x-4 overflow-hidden px-1";
 
-export const expandableListSectionGridClassName = `${expandableListGridBaseClassName} gap-y-4`;
-
-export const expandableListGridClassName = expandableListSectionGridClassName;
-
-export const expandableListPreviewGridClassName = expandableListSectionGridClassName;
+export const expandableListGridClassName = `${expandableListGridBaseClassName} gap-y-4`;
 
 export const expandableListYearHeaderClassName =
   "col-span-full -mx-1 grid grid-cols-subgrid items-center px-1";

@@ -1,6 +1,6 @@
 import {
+  calendarYearInBrisbane,
   formatPublishedLongDate,
-  formatWeekdayInBrisbane,
   isoDateInBrisbane,
 } from "@/lib/format-in-brisbane";
 
@@ -70,8 +70,8 @@ const buildContributionWeeks = (
     }
   }
 
-  return Array.from(weekMap.entries())
-    .sort(([a], [b]) => a.localeCompare(b))
+  return [...weekMap.entries()]
+    .toSorted(([a], [b]) => a.localeCompare(b))
     .map(([, days]) => days);
 };
 
@@ -81,19 +81,23 @@ export const summarizeContributions = (contributions: ContributionDay[]) => {
     0,
     ...last365Days.map((d) => d.contributionCount)
   );
-  let totalContributions = 0;
+  const currentYear = calendarYearInBrisbane();
+  let yearTotalContributions = 0;
+
   for (const day of contributions) {
-    totalContributions += day.contributionCount;
+    if (calendarYearInBrisbane(day.date) === currentYear) {
+      yearTotalContributions += day.contributionCount;
+    }
   }
 
   return {
+    currentYear,
+    formatDayLabel: (day: ContributionDay) =>
+      `${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`,
     last365Days,
     maxContributionCount,
     todayIso: isoDateInBrisbane(),
-    totalContributions,
-    weekdayLabel: formatWeekdayInBrisbane(),
     weeks: buildContributionWeeks(contributions),
-    formatDayLabel: (day: ContributionDay) =>
-      `${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`,
+    yearTotalContributions,
   };
 };

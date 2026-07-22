@@ -1,5 +1,9 @@
 /// <reference types="astro/client" />
-/// <reference types="@cloudflare/workers-types" />
+
+interface SiteKv {
+  get: (key: string) => Promise<string | null>;
+  put: (key: string, value: string) => Promise<void>;
+}
 
 declare namespace Cloudflare {
   interface Env {
@@ -9,9 +13,13 @@ declare namespace Cloudflare {
     GITHUB_TOKEN?: string;
     /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
     LOCATION_WEBHOOK_SECRET?: string;
-    /** KV namespace for coarse location status. */
-    LOCATION_KV?: KVNamespace;
+    /** KV namespace for location status and listening recents. */
+    LOCATION_KV?: SiteKv;
   }
+}
+
+declare module "cloudflare:workers" {
+  export const env: Cloudflare.Env;
 }
 
 interface ImportMetaEnv {

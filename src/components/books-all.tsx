@@ -79,7 +79,9 @@ export default function BooksAll({ books }: { books: Book[] }) {
                         onClick={handleToggle}
                         type="button"
                       >
-                        <p className={expandableListTitleClassName}>{book.title}</p>
+                        <p className={expandableListTitleClassName}>
+                          {book.title}
+                        </p>
                         <p
                           className={`${expandableListMetaClassName} text-muted-foreground`}
                         >

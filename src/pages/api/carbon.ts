@@ -1,15 +1,15 @@
 import type { APIRoute } from "astro";
 
 import {
+  enforceRateLimit,
+  getRequestClientKey,
+} from "@/lib/request-rate-limit";
+import {
   getWebsiteCarbonRating,
   normalizeWebsiteCarbonUrl,
   WEBSITE_CARBON_RESPONSE_HEADERS,
   WEBSITE_CARBON_SITE_URL,
 } from "@/lib/website-carbon";
-import {
-  enforceRateLimit,
-  getRequestClientKey,
-} from "@/lib/request-rate-limit";
 
 export const GET: APIRoute = async ({ request }) => {
   const rateLimit = enforceRateLimit({

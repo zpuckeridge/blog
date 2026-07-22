@@ -3,7 +3,6 @@
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
-import LinkWithIcon from "@/components/link-with-icon";
 import type { Credit } from "@/interfaces/content-item";
 import {
   expandableListDetailsClassName,
@@ -133,12 +132,14 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                               <p className="text-sm text-muted-foreground">
                                 Link
                               </p>
-                              <LinkWithIcon
+                              <a
+                                className="text-sm text-black hover:text-muted-foreground dark:text-white dark:hover:text-muted-foreground"
                                 href={credit.link}
-                                variant="default"
+                                rel="noopener noreferrer"
+                                target="_blank"
                               >
                                 RSP
-                              </LinkWithIcon>
+                              </a>
                             </div>
                           )}
                         </div>

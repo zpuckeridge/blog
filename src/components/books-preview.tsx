@@ -7,7 +7,7 @@ import ContentThumbnail from "@/components/content-thumbnail";
 import type { Book } from "@/interfaces/content-item";
 import {
   expandableListDetailsClassName,
-  expandableListPreviewGridClassName,
+  expandableListGridClassName,
   expandableListItemClassName,
   expandableListItemExpandedClassName,
   expandableListItemsClassName,
@@ -34,16 +34,13 @@ export default function BooksPreview({ books }: { books: Book[] }) {
 
   return (
     <div className="space-y-2">
-      <div className={expandableListPreviewGridClassName}>
+      <div className={expandableListGridClassName}>
         <div className={expandableListSectionHeaderClassName}>
           <div className={expandableListSectionHeaderMainClassName}>
             <p className="shrink-0 text-muted-foreground text-sm">Books</p>
             <hr className="min-w-0 flex-1 border-dotted border-border" />
           </div>
-          <a
-            className={expandableListSectionLinkClassName}
-            href="/about/books"
-          >
+          <a className={expandableListSectionLinkClassName} href="/about/books">
             See all {sortedBooks.length}
           </a>
         </div>
@@ -78,10 +75,7 @@ export default function BooksPreview({ books }: { books: Book[] }) {
                 >
                   <div className="flex flex-row flex-wrap gap-1">
                     {book.image && (
-                      <ContentThumbnail
-                        alt={book.title}
-                        assetId={book.image}
-                      />
+                      <ContentThumbnail alt={book.title} assetId={book.image} />
                     )}
                     <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
                       <p className="text-sm text-muted-foreground">Rating</p>

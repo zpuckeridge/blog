@@ -1,7 +1,7 @@
 const DIRECTUS_URL =
   import.meta.env.DIRECTUS_URL || "https://directus.obambulo.studio";
 
-const DIRECTUS_ASSET_ID_PATTERN = /\/assets\/([^/?#]+)/;
+const DIRECTUS_ASSET_ID_PATTERN = /\/assets\/(?<assetId>[^/?#]+)/u;
 
 interface DirectusAssetOptions {
   format?: "avif" | "jpeg" | "png" | "webp";
@@ -48,7 +48,7 @@ const getDirectusAssetId = (src: string): string | undefined => {
   try {
     const url = new URL(src, DIRECTUS_URL);
     const match = url.pathname.match(DIRECTUS_ASSET_ID_PATTERN);
-    return match?.[1];
+    return match?.groups?.assetId;
   } catch {
     return undefined;
   }

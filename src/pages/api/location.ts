@@ -3,10 +3,12 @@ import type { APIRoute } from "astro";
 import {
   deriveStatus,
   LOCATION_KV_KEY,
-  toPublicResponse,
+  readLocationPublicStatus,
   ZONES,
-  type LocationEvent,
-  type LocationStatusRecord,
+} from "@/lib/location-status";
+import type {
+  LocationEvent,
+  LocationStatusRecord,
 } from "@/lib/location-status";
 import {
   enforceRateLimit,
@@ -33,22 +35,20 @@ const getWebhookSecret = (): string | null =>
   null;
 
 export const GET: APIRoute = async () => {
-  const kv = workersEnv.LOCATION_KV;
-  if (!kv) {
+  if (!workersEnv.LOCATION_KV) {
     return jsonWithHeaders(
       { error: "Location status is not configured" },
       { status: 503 }
     );
   }
 
-  const raw = await kv.get(LOCATION_KV_KEY);
-  if (!raw) {
-    return jsonWithHeaders({ status: null }, { status: 200 });
-  }
-
   try {
-    const record = JSON.parse(raw) as LocationStatusRecord;
-    return jsonWithHeaders(toPublicResponse(record));
+    const status = await readLocationPublicStatus();
+    if (!status) {
+      return jsonWithHeaders({ status: null }, { status: 200 });
+    }
+
+    return jsonWithHeaders(status);
   } catch (error) {
     console.error("Failed to read location status", error);
     return jsonWithHeaders(
@@ -128,16 +128,16 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
     const record: LocationStatusRecord = {
-      status,
-      zone,
-      event: event as LocationEvent,
       category,
+      event: event as LocationEvent,
+      status,
       updatedAt: now.getTime(),
+      zone,
     };
 
     await kv.put(LOCATION_KV_KEY, JSON.stringify(record));
 
-    return jsonWithHeaders({ success: true, status: record.status });
+    return jsonWithHeaders({ status: record.status, success: true });
   } catch (error) {
     console.error("Failed to update location status", error);
     return jsonWithHeaders(

@@ -27,15 +27,16 @@ In the **Shortcuts** app → **Automation** → **+** → **Personal Automation*
     - `Content-Type: application/json`
   - Request Body: JSON
     ```json
-    {"zone":"home","event":"enter"}
+    { "zone": "home", "event": "enter" }
     ```
     (Use `"work"` for the work geofence.)
 
 ### Leave
 
 Same as above, but trigger **When I leave** and body:
+
 ```json
-{"zone":"home","event":"leave"}
+{ "zone": "home", "event": "leave" }
 ```
 
 Repeat both automations for each zone in the registry.
@@ -50,12 +51,12 @@ Repeat both automations for each zone in the registry.
 
 Only `home` and `work` use commute logic:
 
-| Event | Condition | Status |
-|-------|-----------|--------|
-| enter | any zone | zone label (e.g. “At work”) |
-| leave | work | “Leaving work” |
-| leave | home | work hours → “Heading to work”; else “Out and about” |
-| leave | other zone | “Leaving {short name}” |
+| Event | Condition  | Status                                               |
+| ----- | ---------- | ---------------------------------------------------- |
+| enter | any zone   | zone label (e.g. “At work”)                          |
+| leave | work       | “Leaving work”                                       |
+| leave | home       | work hours → “Heading to work”; else “Out and about” |
+| leave | other zone | “Leaving {short name}”                               |
 
 Work hours: Mon–Fri, 07:00–18:00 Australia/Brisbane (see `WORK_SCHEDULE` in code).
 

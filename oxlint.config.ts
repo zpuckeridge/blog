@@ -5,6 +5,9 @@ import react from "ultracite/oxlint/react";
 
 export default defineConfig({
   extends: [core, react, astro],
+  jsPlugins: [
+    { name: "react-doctor", specifier: "oxlint-plugin-react-doctor" },
+  ],
   overrides: [
     {
       files: ["**/*.astro"],

@@ -31,7 +31,7 @@ const TableOfContents = () => {
 
         const { id } = element;
         const text = element.textContent || "";
-        const level = Number.parseInt(element.tagName.charAt(1), 10);
+        const level = Math.trunc(Number(element.tagName.charAt(1)));
 
         if (id && text) {
           newHeadings.push({ id, level, text });

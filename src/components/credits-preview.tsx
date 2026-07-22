@@ -4,11 +4,10 @@ import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
-import LinkWithIcon from "@/components/link-with-icon";
 import type { Credit } from "@/interfaces/content-item";
 import {
   expandableListDetailsClassName,
-  expandableListPreviewGridClassName,
+  expandableListGridClassName,
   expandableListItemClassName,
   expandableListItemExpandedClassName,
   expandableListItemsClassName,
@@ -35,7 +34,7 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
 
   return (
     <div className="space-y-2">
-      <div className={expandableListPreviewGridClassName}>
+      <div className={expandableListGridClassName}>
         <div className={expandableListSectionHeaderClassName}>
           <div className={expandableListSectionHeaderMainClassName}>
             <p className="shrink-0 text-muted-foreground text-sm">Credits</p>
@@ -112,9 +111,14 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
                     {credit.link && (
                       <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
                         <p className="text-sm text-muted-foreground">Link</p>
-                        <LinkWithIcon href={credit.link} variant="default">
+                        <a
+                          className="text-sm text-black hover:text-muted-foreground dark:text-white dark:hover:text-muted-foreground"
+                          href={credit.link}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
                           RSP
-                        </LinkWithIcon>
+                        </a>
                       </div>
                     )}
                   </div>

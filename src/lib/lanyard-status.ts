@@ -41,14 +41,11 @@ export const DISCORD_STATUS_STYLES: Record<
   DiscordStatus,
   { color: string; text: string }
 > = {
-  idle: { color: "bg-yellow-300", text: "Idle" },
-  online: { color: "bg-green-500", text: "Online" },
   dnd: { color: "bg-red-500", text: "Do Not Disturb" },
+  idle: { color: "bg-yellow-300", text: "Idle" },
   offline: { color: "bg-gray-400", text: "Offline" },
+  online: { color: "bg-green-500", text: "Online" },
 };
-
-export const HIGHLIGHTED_LINK_CLASS =
-  "group inline px-1 leading-[inherit] bg-muted hover:bg-muted/80";
 
 const extractArtistFromState = (state: string | undefined): string => {
   if (!state?.trim()) {
@@ -88,12 +85,17 @@ export const resolveDiscordAssetImage = (
   return `https://cdn.discordapp.com/app-assets/${applicationId}/${asset}.png`;
 };
 
-export const resolveArtworkZoomUrl = (artworkUrl: string | null): string | null => {
+export const resolveArtworkZoomUrl = (
+  artworkUrl: string | null
+): string | null => {
   if (!artworkUrl) {
     return null;
   }
 
-  return artworkUrl.replace(/\/(\d+)x(\d+)bb(\.[a-z]+)$/i, "/1000x1000bb$3");
+  return artworkUrl.replace(
+    /\/(?<width>\d+)x(?<height>\d+)bb(?<ext>\.[a-z]+)$/iu,
+    "/1000x1000bb$<ext>"
+  );
 };
 
 export const parseAppleMusicActivity = (
@@ -117,15 +119,15 @@ export const parseAppleMusicActivity = (
   }
 
   return {
-    track,
-    artist,
     album:
       activity.assets?.large_text?.trim() ||
       extractAlbumFromState(activity.state) ||
       null,
-    artworkUrl: resolveDiscordAssetImage(activity.assets?.large_image),
-    trackUrl: activity.details_url ?? activity.assets?.large_url ?? null,
+    artist,
     artistUrl: activity.state_url ?? activity.assets?.small_url ?? null,
+    artworkUrl: resolveDiscordAssetImage(activity.assets?.large_image),
+    track,
+    trackUrl: activity.details_url ?? activity.assets?.large_url ?? null,
   };
 };
 

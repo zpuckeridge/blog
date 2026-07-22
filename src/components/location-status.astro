@@ -1,8 +1,6 @@
 ---
-import {
-  formatLocationRelativeTime,
-  type LocationPublicResponse,
-} from "@/lib/location-status";
+import { formatLocationRelativeTime } from '@/lib/location-status';
+import type { LocationPublicResponse } from '@/lib/location-status';
 
 interface Props {
   initial?: LocationPublicResponse | null;
@@ -11,24 +9,37 @@ interface Props {
 const { initial = null } = Astro.props;
 
 const categoryStyles: Record<string, string> = {
-  home: "bg-green-500",
-  work: "bg-blue-500",
-  transit: "bg-amber-500",
   away: "bg-gray-400",
+  home: "bg-green-500",
   social: "bg-gray-400",
+  transit: "bg-amber-500",
+  work: "bg-blue-500",
 };
 
 const showInitial = Boolean(initial?.status);
-const initialLabel = initial
-  ? initial.isStale
-    ? `${initial.status} · ${formatLocationRelativeTime(initial.updatedAt)}`
-    : initial.status
-  : "";
-const initialDotClass = initial
-  ? initial.isStale
-    ? "bg-gray-400"
-    : (categoryStyles[initial.category] ?? "bg-gray-400")
-  : "bg-gray-400";
+
+const getInitialLabel = (value: typeof initial): string => {
+  if (!value) {
+    return "";
+  }
+
+  if (value.isStale) {
+    return `${value.status} • ${formatLocationRelativeTime(value.updatedAt)}`;
+  }
+
+  return value.status;
+};
+
+const getInitialDotClass = (value: typeof initial): string => {
+  if (!value || value.isStale) {
+    return "bg-gray-400";
+  }
+
+  return categoryStyles[value.category] ?? "bg-gray-400";
+};
+
+const initialLabel = getInitialLabel(initial);
+const initialDotClass = getInitialDotClass(initial);
 ---
 
 <div
@@ -42,10 +53,11 @@ const initialDotClass = initial
   <div
     class:list={[
       "my-auto h-2 w-2 shrink-0",
-      !initial?.isStale && showInitial && "animate-pulse",
+      !initial?.isStale && showInitial && "status-pulse",
       initialDotClass,
     ]}
     data-location-dot
+    data-status-dot
   ></div>
   <p
     class="my-auto whitespace-nowrap text-muted-foreground text-sm"
@@ -62,8 +74,10 @@ const initialDotClass = initial
 </div>
 
 <script>
+  import { syncStatusPulse } from "@/lib/sync-status-pulse";
+
   const BOT_PATTERN =
-    /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/i;
+    /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/iu;
 
   const formatRelativeTime = (updatedAt) => {
     const seconds = Math.max(0, Math.floor((Date.now() - updatedAt) / 1000));
@@ -103,29 +117,32 @@ const initialDotClass = initial
       }
 
       root.dataset.locationReady = "true";
+      syncStatusPulse(dot, dot.classList.contains("status-pulse"));
 
       if (BOT_PATTERN.test(navigator.userAgent) || navigator.webdriver) {
         continue;
       }
 
       const categoryStyles = {
-        home: "bg-green-500",
-        work: "bg-blue-500",
-        transit: "bg-amber-500",
         away: "bg-gray-400",
+        home: "bg-green-500",
         social: "bg-gray-400",
+        transit: "bg-amber-500",
+        work: "bg-blue-500",
       };
 
       const applyStatus = (payload) => {
+        const shouldPulse = !payload.isStale;
         const dotColor = payload.isStale
           ? "bg-gray-400"
           : (categoryStyles[payload.category] ?? "bg-gray-400");
-        dot.className = `my-auto h-2 w-2 shrink-0 ${payload.isStale ? "" : "animate-pulse"} ${dotColor}`;
+        dot.className = `my-auto h-2 w-2 shrink-0 ${dotColor}`;
+        syncStatusPulse(dot, shouldPulse);
         root.classList.toggle("opacity-60", payload.isStale);
 
         const relativeTime = formatRelativeTime(payload.updatedAt);
         label.textContent = payload.isStale
-          ? `${payload.status} · ${relativeTime}`
+          ? `${payload.status} • ${relativeTime}`
           : payload.status;
       };
 
@@ -138,17 +155,17 @@ const initialDotClass = initial
 
           const payload = await response.json();
 
+          // Keep SSR markup if the API has nothing yet (common in local
+          // in-memory KV before a webhook or prod seed lands).
           if (!payload.status || payload.updatedAt === undefined) {
-            root.classList.add("hidden");
-            root.classList.remove("flex");
             return;
           }
 
           applyStatus({
-            status: payload.status,
             category: payload.category ?? "away",
-            updatedAt: payload.updatedAt,
             isStale: payload.isStale ?? false,
+            status: payload.status,
+            updatedAt: payload.updatedAt,
           });
           root.classList.remove("hidden");
           root.classList.add("flex");
