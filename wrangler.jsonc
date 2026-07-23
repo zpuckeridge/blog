@@ -1,10 +1,14 @@
 {
   "name": "blog",
-  "main": "@astrojs/cloudflare/entrypoints/server",
+  "main": "./src/worker.ts",
   "compatibility_date": "2026-03-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "preview_urls": true,
   "workers_dev": true,
+
+  "triggers": {
+    "crons": ["* * * * *"],
+  },
 
   "routes": [{ "pattern": "zacchary.me", "custom_domain": true }],
 

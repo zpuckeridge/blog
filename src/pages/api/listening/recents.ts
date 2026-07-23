@@ -1,13 +1,11 @@
 import type { APIRoute } from "astro";
 
-import { fetchLanyardPresence } from "@/lib/lanyard-client";
-import { LANYARD_USER_ID, parseAppleMusicActivity } from "@/lib/lanyard-status";
 import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
-  upsertRecentListen,
+  type RecentListen,
 } from "@/lib/listening-recents";
-import type { RecentListen } from "@/lib/listening-recents";
+import { recordListeningRecent } from "@/lib/record-listening-recent";
 import {
   enforceRateLimit,
   getRequestClientKey,
@@ -75,21 +73,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    const presence = await fetchLanyardPresence(LANYARD_USER_ID);
-    const listening = parseAppleMusicActivity(presence?.activities);
-
-    if (!listening) {
-      return jsonWithHeaders({
-        recents: await readRecents(),
-        recorded: false,
-      });
-    }
-
-    const existing = await readRecents();
-    const recents = upsertRecentListen(existing, listening);
-    await kv.put(LISTENING_RECENTS_KV_KEY, JSON.stringify(recents));
-
-    return jsonWithHeaders({ recents, recorded: true });
+    return jsonWithHeaders(await recordListeningRecent(kv));
   } catch (error) {
     console.error("Failed to record listening recent", error);
     return jsonWithHeaders(
