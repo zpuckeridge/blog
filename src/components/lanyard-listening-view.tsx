@@ -175,14 +175,14 @@ const ListeningTrackState = ({
     <ListeningArtwork listening={listening} />
 
     <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
-      <p className="truncate text-sm leading-tight text-muted-foreground">
-        {label}
+      <p className="flex min-w-0 items-baseline gap-2 text-sm leading-tight text-muted-foreground">
+        <span className="min-w-0 truncate">{label}</span>
         {listenedAt === undefined ? null : (
           <>
-            <span aria-hidden="true" className="select-none">
+            <span aria-hidden="true" className="shrink-0 select-none">
               •
             </span>
-            <span className="tabular-nums">
+            <span className="shrink-0 tabular-nums">
               {formatLocationRelativeTime(listenedAt, now)}
             </span>
           </>
@@ -205,7 +205,7 @@ const ListeningTrackState = ({
           •
         </span>
         <ListeningLink
-          className="max-w-[40%] text-muted-foreground"
+          className="text-muted-foreground"
           href={listening.artistUrl}
           label={listening.artist}
           truncate
