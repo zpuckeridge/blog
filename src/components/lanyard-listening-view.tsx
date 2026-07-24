@@ -356,11 +356,10 @@ export default function LanyardListeningView() {
   const mostRecent = recents[0] ?? null;
   const featured = listening ?? mostRecent;
   const featuredLabel = listening ? "Listening to" : "Recently listened to";
+  const featuredKey = featured ? listeningIdentity(featured) : null;
   const panelRecents = (
-    listening
-      ? recents.filter(
-          (listen) => listeningIdentity(listen) !== listeningIdentity(listening)
-        )
+    featuredKey
+      ? recents.filter((listen) => listeningIdentity(listen) !== featuredKey)
       : recents
   ).slice(0, 10);
 
