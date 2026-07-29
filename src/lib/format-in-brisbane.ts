@@ -20,6 +20,32 @@ const formatterFullWeekday = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
+const formatterArticleDateParts = new Intl.DateTimeFormat("en-GB", {
+  day: "numeric",
+  month: "long",
+  timeZone: BRISBANE_TIMEZONE,
+  weekday: "long",
+  year: "numeric",
+});
+
+const dayOrdinal = (day: number): string => {
+  const teen = day % 100;
+  if (teen >= 11 && teen <= 13) {
+    return `${day}th`;
+  }
+
+  switch (day % 10) {
+    case 1:
+      return `${day}st`;
+    case 2:
+      return `${day}nd`;
+    case 3:
+      return `${day}rd`;
+    default:
+      return `${day}th`;
+  }
+};
+
 const formatterNumericDMY = new Intl.DateTimeFormat("en-US", {
   day: "2-digit",
   month: "2-digit",
@@ -108,6 +134,30 @@ export const formatPublishedFullWeekday = function formatPublishedFullWeekday(
   isoDate: DateInput
 ): string {
   return formatterFullWeekday.format(coerceDate(isoDate));
+};
+
+/** e.g. "Wednesday 14th July 2026" */
+export const formatPublishedArticleDate = function formatPublishedArticleDate(
+  isoDate: DateInput
+): string {
+  const parts = formatterArticleDateParts.formatToParts(coerceDate(isoDate));
+  const map: Partial<Record<Intl.DateTimeFormatPartTypes, string>> = {};
+  for (const part of parts) {
+    if (part.type !== "literal") {
+      map[part.type] = part.value;
+    }
+  }
+
+  const day = Number(map.day);
+  const weekday = map.weekday ?? "";
+  const month = map.month ?? "";
+  const year = map.year ?? "";
+
+  if (!weekday || !Number.isFinite(day) || !month || !year) {
+    return formatterArticleDateParts.format(coerceDate(isoDate));
+  }
+
+  return `${weekday} ${dayOrdinal(day)} ${month} ${year}`;
 };
 
 /** e.g. "05 Jan" */

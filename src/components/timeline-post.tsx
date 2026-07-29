@@ -19,9 +19,8 @@ import { ImageZoom } from "@/components/zoom-image";
 import type { Post } from "@/interfaces/content-item";
 import { directusAssetUrl } from "@/lib/directus-asset";
 import {
-  formatPublishedFullWeekday,
+  formatPublishedArticleDate,
   formatPublishedLongDate,
-  formatPublishedMonthYear,
 } from "@/lib/format-in-brisbane";
 
 const WORD_SPLIT_REGEX = /\s+/u;
@@ -43,13 +42,13 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
       <div className="mx-auto flex max-w-lg flex-col gap-4 px-6">
         <div className="flex flex-col gap-y-20 text-sm">
           <div className="space-y-10">
-            <div className="space-y-2">
+            <div className="space-y-0.5">
               <h1 className="font-redaction text-black text-xl dark:text-white">
                 {post.title}
               </h1>
               <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
                 <div className="w-full text-muted-foreground text-sm">
-                  {formatPublishedMonthYear(post.date_created)}
+                  {formatPublishedArticleDate(post.date_created)}
                 </div>
                 <div className="flex items-center gap-3">
                   <TooltipProvider>
@@ -61,8 +60,11 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
                         className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
                         side="bottom"
                       >
-                        {formatPublishedFullWeekday(post.date_created)} ·{" "}
-                        {post.tags.join(", ")} · {readingTime} minute read
+                        <span className="inline-flex items-center gap-2">
+                          <span>{post.tags.join(", ")}</span>
+                          <span aria-hidden="true">•</span>
+                          <span>{readingTime} minute read</span>
+                        </span>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>

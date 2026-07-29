@@ -24,6 +24,7 @@ export default function Player({
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           className="absolute inset-0 size-full border-0"
+          referrerPolicy="strict-origin-when-cross-origin"
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
           title={title}
         />

@@ -65,7 +65,7 @@ const Subscribe: React.FC = () => {
           </span>
         </div>
         <Input
-          className="-me-px flex-1 text-black text-sm shadow-none dark:text-neutral-300"
+          className="-me-px flex-1 pe-10 text-black text-sm shadow-none dark:text-neutral-300"
           maxLength={254}
           onChange={handleEmailChange}
           placeholder=""
@@ -75,14 +75,15 @@ const Subscribe: React.FC = () => {
         />
 
         <button
-          className="absolute inset-y-px end-px my-auto flex h-full w-9 cursor-pointer items-center justify-center-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600"
+          aria-label="Subscribe"
+          className="absolute inset-y-0 end-0 flex w-9 cursor-pointer items-center justify-center text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600"
           disabled={isPending}
           type="submit"
         >
           {isPending ? (
             <LuLoaderCircle className="size-4 animate-spin" />
           ) : (
-            <RxPaperPlane />
+            <RxPaperPlane className="size-4" />
           )}
         </button>
       </form>
