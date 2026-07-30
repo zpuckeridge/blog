@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import type { ReactNode } from "react";
 import { Tweet } from "react-tweet";
 
 import "@/styles/code-fonts.css";
@@ -12,6 +13,24 @@ import MdxPlayer from "@/components/player";
 import SideNote from "@/components/side-note";
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
+
+const headingIdFromChildren = (children: ReactNode): string =>
+  children
+    ? children
+        .toString()
+        .toLowerCase()
+        .replaceAll(/[^\w\s-]/gu, "")
+        .replaceAll(/\s+/gu, "-")
+    : "";
+
+const mdxHeading = (Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") => {
+  const Heading = ({ children }: { children?: ReactNode }) => {
+    const id = headingIdFromChildren(children);
+    return <Tag id={id}>{children}</Tag>;
+  };
+  Heading.displayName = Tag;
+  return Heading;
+};
 
 const components: MDXComponents = {
   AfterQuote,
@@ -48,36 +67,12 @@ const components: MDXComponents = {
       </div>
     );
   },
-  h1: ({ children }) => {
-    const id = children
-      ? children
-          .toString()
-          .toLowerCase()
-          .replaceAll(/[^\w\s-]/gu, "")
-          .replaceAll(/\s+/gu, "-")
-      : "";
-    return <h1 id={id}>{children}</h1>;
-  },
-  h2: ({ children }) => {
-    const id = children
-      ? children
-          .toString()
-          .toLowerCase()
-          .replaceAll(/[^\w\s-]/gu, "")
-          .replaceAll(/\s+/gu, "-")
-      : "";
-    return <h2 id={id}>{children}</h2>;
-  },
-  h3: ({ children }) => {
-    const id = children
-      ? children
-          .toString()
-          .toLowerCase()
-          .replaceAll(/[^\w\s-]/gu, "")
-          .replaceAll(/\s+/gu, "-")
-      : "";
-    return <h3 id={id}>{children}</h3>;
-  },
+  h1: mdxHeading("h1"),
+  h2: mdxHeading("h2"),
+  h3: mdxHeading("h3"),
+  h4: mdxHeading("h4"),
+  h5: mdxHeading("h5"),
+  h6: mdxHeading("h6"),
   img: (props: { src: string; alt: string; title?: string }) => (
     <ImageZoom wrapElement="span">
       <SiteImage

@@ -236,5 +236,4 @@ export const readLocationPublicStatus =
   };
 
 export const getServerLocationStatus =
-  async (): Promise<LocationPublicResponse | null> =>
-    readLocationPublicStatus();
+  (): Promise<LocationPublicResponse | null> => readLocationPublicStatus();

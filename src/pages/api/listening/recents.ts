@@ -3,8 +3,8 @@ import type { APIRoute } from "astro";
 import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
-  type RecentListen,
 } from "@/lib/listening-recents";
+import type { RecentListen } from "@/lib/listening-recents";
 import { recordListeningRecent } from "@/lib/record-listening-recent";
 import {
   enforceRateLimit,

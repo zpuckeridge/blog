@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { SyntheticEvent } from "react";
 import { RxChevronDown } from "react-icons/rx";
 
 import { ImageZoom } from "@/components/zoom-image";
@@ -110,13 +111,14 @@ const ListeningArtwork = ({
   const artworkAlt = `${listening.track} by ${listening.artist}`;
 
   return (
-    <div
+    <button
       className={cn(
-        "relative shrink-0 overflow-hidden rounded-sm bg-muted",
+        "relative shrink-0 overflow-hidden rounded-sm border-0 bg-muted p-0",
         sizeClass
       )}
       data-listening-interactive=""
       onClick={stopRowToggle}
+      type="button"
     >
       <ImageZoom className="size-full">
         <img
@@ -131,7 +133,7 @@ const ListeningArtwork = ({
           width={32}
         />
       </ImageZoom>
-    </div>
+    </button>
   );
 };
 
@@ -150,27 +152,18 @@ const ListeningTrackState = ({
   now: number;
   onToggle: () => void;
 }) => (
-  <div
+  <button
     aria-controls="listening-recents"
     aria-expanded={expanded}
     aria-label={
-      expanded
-        ? "Hide recently played tracks"
-        : "Show recently played tracks"
+      expanded ? "Hide recently played tracks" : "Show recently played tracks"
     }
     className={cn(
       ROW_CLASS,
-      "w-full cursor-pointer text-left hover:bg-muted has-[a:hover]:bg-transparent has-[[data-listening-interactive]:hover]:bg-transparent"
+      "w-full cursor-pointer border-0 bg-transparent p-0 text-left hover:bg-muted has-[a:hover]:bg-transparent has-[[data-listening-interactive]:hover]:bg-transparent"
     )}
     onClick={onToggle}
-    onKeyDown={(event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        onToggle();
-      }
-    }}
-    role="button"
-    tabIndex={0}
+    type="button"
   >
     <ListeningArtwork listening={listening} />
 
@@ -220,7 +213,7 @@ const ListeningTrackState = ({
         expanded && "rotate-180"
       )}
     />
-  </div>
+  </button>
 );
 
 const RecentListenRow = ({
@@ -234,8 +227,8 @@ const RecentListenRow = ({
     <ListeningArtwork listening={listen} />
     <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
       <p className="truncate text-sm leading-tight text-muted-foreground tabular-nums">
-          {formatLocationRelativeTime(listen.listenedAt, now)}
-        </p>
+        {formatLocationRelativeTime(listen.listenedAt, now)}
+      </p>
       <div
         className={LISTENING_TRACKS_CLASS}
         title={`${listen.track} • ${listen.artist}`}

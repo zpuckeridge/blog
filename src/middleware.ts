@@ -5,8 +5,7 @@ import { defineMiddleware } from "astro:middleware";
  * cross-origin iframe loads and breaks YouTube embeds (Error 153). Override so
  * embeds and outbound links send the origin.
  */
-export const onRequest = defineMiddleware(async (_context, next) => {
-  const response = await next();
+const applyReferrerPolicy = (response: Response): Response => {
   const headers = new Headers(response.headers);
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
@@ -15,4 +14,10 @@ export const onRequest = defineMiddleware(async (_context, next) => {
     status: response.status,
     statusText: response.statusText,
   });
+};
+
+export const onRequest = defineMiddleware(async (_context, next) => {
+  // oxlint-disable-next-line node/callback-return -- async Astro middleware must await next()
+  const response = await next();
+  return applyReferrerPolicy(response);
 });

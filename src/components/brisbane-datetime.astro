@@ -58,6 +58,17 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 </div>
 
 <script>
+  const absoluteFormatter = (zone, withZoneName = false) =>
+    new Intl.DateTimeFormat(undefined, {
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      month: "short",
+      timeZone: zone,
+      ...(withZoneName ? { timeZoneName: "short" } : {}),
+      year: "numeric",
+    });
+
   const initBrisbaneClocks = () => {
     const timeZone = "Australia/Brisbane";
     const reduceMotion = window.matchMedia(
@@ -78,17 +89,6 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
       timeZone,
       year: "numeric",
     });
-
-    const absoluteFormatter = (zone, withZoneName = false) =>
-      new Intl.DateTimeFormat(undefined, {
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        month: "short",
-        timeZone: zone,
-        ...(withZoneName ? { timeZoneName: "short" } : {}),
-        year: "numeric",
-      });
 
     const getTimeParts = (date) => {
       const parts = timePartsFormatter.formatToParts(date);

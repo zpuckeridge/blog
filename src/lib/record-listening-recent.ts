@@ -4,8 +4,8 @@ import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
   upsertRecentListen,
-  type RecentListen,
 } from "@/lib/listening-recents";
+import type { RecentListen } from "@/lib/listening-recents";
 
 interface ListeningKv {
   get: (key: string) => Promise<string | null>;

@@ -2,64 +2,86 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+const HEADING_SELECTOR = "h1, h2, h3, h4, h5, h6";
+
+interface TocHeading {
+  id: string;
+  text: string;
+  level: number;
+}
+
+const extractHeadingsFromArticle = (): TocHeading[] => {
+  const article = document.querySelector("article");
+  if (!article) {
+    return [];
+  }
+
+  const newHeadings: TocHeading[] = [];
+
+  for (const element of article.querySelectorAll(HEADING_SELECTOR)) {
+    if (element.closest(".footnotes, .gfm-footnotes")) {
+      continue;
+    }
+
+    const { id } = element;
+    const text = element.textContent?.trim() ?? "";
+    const level = Math.trunc(Number(element.tagName.charAt(1)));
+
+    if (id && text) {
+      newHeadings.push({ id, level, text });
+    }
+  }
+
+  return newHeadings;
+};
+
 const TableOfContents = () => {
-  const [headings, setHeadings] = useState<
-    { id: string; text: string; level: number }[]
-  >([]);
+  const [headings, setHeadings] = useState<TocHeading[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    // Extract headings from the DOM after the component mounts
-    const extractHeadings = () => {
-      const article = document.querySelector("article");
-      if (!article) {
-        return;
-      }
-
-      const headingElements = article.querySelectorAll(
-        "h1, h2, h3, h4, h5, h6"
+    const syncHeadings = () => {
+      const next = extractHeadingsFromArticle();
+      setHeadings((current) =>
+        current.length === next.length &&
+        current.every(
+          (heading, index) =>
+            heading.id === next[index]?.id &&
+            heading.text === next[index]?.text &&
+            heading.level === next[index]?.level
+        )
+          ? current
+          : next
       );
-      const newHeadings: { id: string; text: string; level: number }[] = [];
-
-      for (const element of headingElements) {
-        // Skip headings that are within footnotes sections
-        if (element.closest(".footnotes")) {
-          return;
-        }
-
-        const { id } = element;
-        const text = element.textContent || "";
-        const level = Math.trunc(Number(element.tagName.charAt(1)));
-
-        if (id && text) {
-          newHeadings.push({ id, level, text });
-        }
-      }
-
-      setHeadings(newHeadings);
     };
 
-    // Wait for the content to be rendered
-    const timer = setTimeout(extractHeadings, 100);
-    return () => clearTimeout(timer);
+    syncHeadings();
+
+    const article = document.querySelector("article");
+    if (!article) {
+      const timer = window.setTimeout(syncHeadings, 100);
+      return () => window.clearTimeout(timer);
+    }
+
+    const observer = new MutationObserver(syncHeadings);
+    observer.observe(article, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Add offset for better detection
       const scrollPosition = window.scrollY + 100;
 
-      let currentHeading: { id: string; text: string; level: number } | null =
-        null;
+      let currentHeading: TocHeading | null = null;
 
       for (const heading of headings) {
         const element = document.querySelector(`#${CSS.escape(heading.id)}`);
         if (element && (element as HTMLElement).offsetTop <= scrollPosition) {
           currentHeading = heading;
         } else {
-          // Stop at the first heading that's below the scroll position
           break;
         }
       }
@@ -69,7 +91,6 @@ const TableOfContents = () => {
 
     if (headings.length > 0) {
       window.addEventListener("scroll", handleScroll, { passive: true });
-      // Check initial position
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
@@ -82,8 +103,6 @@ const TableOfContents = () => {
       const targetElement = document.querySelector(`#${CSS.escape(headingId)}`);
 
       if (targetElement) {
-        // Calculate the target position with offset for the fixed header
-        // Adjust this value based on your header height
         const headerOffset = 80;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition =
@@ -94,7 +113,6 @@ const TableOfContents = () => {
           top: offsetPosition,
         });
 
-        // Update the URL hash without triggering a jump
         window.history.pushState(null, "", `#${headingId}`);
       }
     },
@@ -103,13 +121,10 @@ const TableOfContents = () => {
 
   const handleTocClick = useCallback(() => {
     if (isExpanded) {
-      // Start exit animation
       setIsAnimating(true);
-      // Wait for animation to complete before hiding
-      // Account for staggered delays: base duration + max delay
       const maxDelay = (headings.length - 1) * 0.05;
       const totalDuration = 200 + maxDelay * 1000;
-      setTimeout(() => {
+      window.setTimeout(() => {
         setIsExpanded(false);
         setIsAnimating(false);
       }, totalDuration);
@@ -134,7 +149,7 @@ const TableOfContents = () => {
             {headings.map((heading) => (
               <li key={heading.id}>
                 <a
-                  className={`line-clamp-2 block cursor-pointer transition-all duration-200 hover:text-blue-600 dark:hover:text-blue-400 ${
+                  className={`line-clamp-2 block cursor-pointer transition-opacity duration-200 hover:text-blue-600 dark:hover:text-blue-400 ${
                     activeId === heading.id
                       ? "font-medium text-blue-600 dark:text-blue-400"
                       : "text-neutral-700 dark:text-neutral-300"
@@ -152,16 +167,22 @@ const TableOfContents = () => {
       </div>
 
       {/* Desktop version - fixed sidebar */}
-      <div className="hidden lg:fixed lg:top-1/2 lg:left-6 lg:block lg:max-h-[calc(100vh-6rem)] lg:-translate-y-1/2 lg:transform lg:overflow-y-auto">
+      <div className="hidden lg:fixed lg:top-1/2 lg:left-6 lg:block lg:max-h-[calc(100vh-6rem)] lg:-translate-y-1/2 lg:overflow-y-auto">
         <button
-          className="cursor-pointer px-1.5 py-2.5 text-left transition-all duration-200 hover:bg-neutral-900 dark:hover:bg-neutral-900"
+          aria-expanded={isExpanded}
+          aria-label={
+            isExpanded
+              ? "Collapse table of contents"
+              : "Expand table of contents"
+          }
+          className="cursor-pointer px-1.5 py-2.5 text-left transition-colors duration-200 hover:bg-neutral-900 dark:hover:bg-neutral-900"
           onClick={handleTocClick}
           type="button"
         >
           <div className="relative flex h-fit w-fit flex-col gap-3">
             {headings.map((heading) => (
               <div
-                className="h-px w-3 transition-all duration-200"
+                className="h-px w-3 transition-colors duration-200"
                 key={heading.id}
                 style={{
                   backgroundColor:
@@ -173,10 +194,9 @@ const TableOfContents = () => {
         </button>
       </div>
 
-      {/* Expanded content with proper exit animation */}
       {(isExpanded || isAnimating) && (
         <div
-          className="hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:max-w-56 lg:-translate-y-1/2 lg:transform lg:overflow-y-auto"
+          className="scrollbar-hide hidden lg:fixed lg:top-1/2 lg:left-14 lg:block lg:max-h-[calc(100vh-6rem)] lg:max-w-56 lg:-translate-y-1/2 lg:overflow-y-auto"
           style={{
             animation: isAnimating
               ? "toc-fade-slide-out 200ms cubic-bezier(0.4,0,0.2,1) forwards"
@@ -197,7 +217,7 @@ const TableOfContents = () => {
                 }}
               >
                 <a
-                  className={`line-clamp-2 block cursor-pointer break-words text-sm transition-all duration-200 hover:text-white dark:hover:text-white ${
+                  className={`line-clamp-2 block cursor-pointer break-words text-sm transition-colors duration-200 hover:text-white dark:hover:text-white ${
                     activeId === heading.id
                       ? "text-white dark:text-white"
                       : "text-neutral-400 dark:text-neutral-400"
