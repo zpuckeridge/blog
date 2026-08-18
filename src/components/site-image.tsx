@@ -20,7 +20,7 @@ type SiteImageProps = Omit<
 /**
  * Drop-in replacement for `next/image` static & remote URLs used in this project.
  */
-export default function SiteImage({
+const SiteImage = ({
   alt,
   className,
   decoding = "async",
@@ -35,7 +35,7 @@ export default function SiteImage({
   width,
   zoomSrc,
   ...rest
-}: SiteImageProps) {
+}: SiteImageProps) => {
   const resolvedSrc = src;
   const resolvedZoomSrc = zoomSrc ?? resolveDirectusZoomSrc(resolvedSrc);
   const resolvedLoading = loading ?? (priority ? "eager" : "lazy");
@@ -56,4 +56,6 @@ export default function SiteImage({
       width={width}
     />
   );
-}
+};
+
+export default SiteImage;

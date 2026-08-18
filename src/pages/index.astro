@@ -9,10 +9,7 @@ import LanyardStatus from "@/components/lanyard-status.astro";
 import LocationStatus from "@/components/location-status.astro";
 import LinkWithIcon from "@/components/link-with-icon.astro";
 import ToggleTheme from "@/components/toggle-theme.astro";
-import {
-  createPageMetadata,
-  formatPageTitle,
-} from "@/lib/metadata";
+import { createPageMetadata } from "@/lib/metadata";
 import { getPosts, getProjects } from "@/lib/directus-content";
 import {
   fetchGitHubContributions,
@@ -80,14 +77,18 @@ const githubContributions = await (async (): Promise<
 })();
 const currentYear = new Date().getFullYear();
 
+const homepageTitle =
+  "Zacchary Puckeridge — Web developer and writer, Brisbane";
+const homepageDescription =
+  "Web developer and writer in Brisbane. IT Operations Lead at Star Compass and Haddon Institute; also runs obambulo studio. Read the latest on the timeline.";
+
 const pageMeta = createPageMetadata({
-  description:
-    "Self-taught Web Developer & Generalist. Based in Brisbane, Australia.",
+  description: homepageDescription,
   path: "/",
-  title: "Home",
+  title: homepageTitle,
 });
 
-const fullTitle = formatPageTitle("Home");
+const fullTitle = homepageTitle;
 ---
 
 <Layout
@@ -100,9 +101,9 @@ const fullTitle = formatPageTitle("Home");
     <div class="min-w-0 space-y-10">
       <div class="space-y-4">
         <div class="space-y-2 text-sm">
-          <p class="font-redaction text-xl text-black dark:text-white">
+          <h1 class="font-redaction text-xl text-black dark:text-white">
             Zacchary Puckeridge
-          </p>
+          </h1>
           <div>
             <p>Self-taught Web Developer & Generalist</p>
             <p>Based in Brisbane, Australia</p>
@@ -195,11 +196,11 @@ const fullTitle = formatPageTitle("Home");
             </p>
 
             <p class="text-sm text-muted-foreground">
-              You can find my full employment history{" "}
+              You can find my{" "}
               <a
                 class="group inline-block max-w-full whitespace-nowrap bg-muted px-1 leading-[inherit] hover:bg-muted/80"
                 href="/cv"
-              >here</a>.
+              >full employment history on my CV</a>.
             </p>
           </div>
         </div>
@@ -208,13 +209,11 @@ const fullTitle = formatPageTitle("Home");
           <div class="min-w-0 space-y-2">
             <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
               <div class="w-20 shrink-0">
-                <p class="text-muted-foreground">Timeline</p>
+                <h2 class="text-muted-foreground text-sm font-normal">Timeline</h2>
               </div>
 
-              <div
-                class="relative flex h-36 min-w-0 w-full flex-col gap-1 overflow-y-hidden"
-              >
-                {sortedPosts.slice(0, 7).map((post) => (
+              <div class="flex min-w-0 w-full flex-col gap-1">
+                {sortedPosts.slice(0, 4).map((post) => (
                   <a
                     aria-label={post.title}
                     class="flex min-w-0 justify-between gap-4 px-1 hover:bg-muted"
@@ -233,9 +232,6 @@ const fullTitle = formatPageTitle("Home");
                     </p>
                   </a>
                 ))}
-                <div
-                  class="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-linear-to-t from-white dark:from-background"
-                />
               </div>
             </div>
             <div class="flex justify-end">
@@ -243,7 +239,7 @@ const fullTitle = formatPageTitle("Home");
                 class="text-sm text-muted-foreground px-1 hover:bg-muted"
                 href="/timeline"
               >
-                See all {sortedPosts.length}
+                See all {sortedPosts.length} timeline posts
               </a>
             </div>
           </div>
@@ -251,12 +247,10 @@ const fullTitle = formatPageTitle("Home");
           <div class="min-w-0 space-y-2">
             <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
               <div class="w-20 shrink-0">
-                <p class="text-muted-foreground">Projects</p>
+                <h2 class="text-muted-foreground text-sm font-normal">Projects</h2>
               </div>
-              <div
-                class="relative flex h-36 min-w-0 w-full flex-col gap-1 overflow-y-hidden"
-              >
-                {sortedProjects.slice(0, 7).map((project) => {
+              <div class="flex min-w-0 w-full flex-col gap-1">
+                {sortedProjects.slice(0, 4).map((project) => {
                   const yearLabel =
                     project.status === "work_in_progress"
                       ? null
@@ -290,9 +284,6 @@ const fullTitle = formatPageTitle("Home");
                     </div>
                   );
                 })}
-                <div
-                  class="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 bg-linear-to-t from-white dark:from-background"
-                />
               </div>
             </div>
             <div class="flex justify-end">
@@ -300,7 +291,7 @@ const fullTitle = formatPageTitle("Home");
                 class="text-sm text-muted-foreground px-1 hover:bg-muted"
                 href="/projects"
               >
-                See all {projects.length}
+                See all {projects.length} projects
               </a>
             </div>
           </div>

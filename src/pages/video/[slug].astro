@@ -37,7 +37,13 @@ const videoPassword = getVideoPassword();
 const isAuthenticated = await isVideoAuthTokenValid(cookie, videoPassword);
 
 const pageMeta = video
-  ? buildVideoPageMetadata(video, slug)
+  ? {
+      ...buildVideoPageMetadata(video, slug),
+      robots: {
+        follow: false,
+        index: false,
+      },
+    }
   : createPageMetadata({
       description: "Page could not be found.",
       image: {

@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
@@ -20,7 +18,7 @@ import {
 } from "@/lib/expandable-list";
 import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
 
-export default function BooksAll({ books }: { books: Book[] }) {
+const BooksAll = ({ books }: { books: Book[] }) => {
   // Group books by year
   const booksByYear: Record<number, Book[]> = {};
   for (const book of books) {
@@ -45,7 +43,9 @@ export default function BooksAll({ books }: { books: Book[] }) {
 
   return (
     <div className={expandableListYearPageClassName}>
-      <p className="font-redaction text-black text-xl dark:text-white">Books</p>
+      <h1 className="font-redaction text-black text-xl dark:text-white">
+        Books
+      </h1>
       <div className={expandableListYearGroupsClassName}>
         {years.map((year) => (
           <div className={expandableListGridClassName} key={year}>
@@ -73,6 +73,7 @@ export default function BooksAll({ books }: { books: Book[] }) {
                       key={book.id}
                     >
                       <button
+                        aria-expanded={isExpanded}
                         aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                         className={expandableListTriggerClassName}
                         data-id={book.id.toString()}
@@ -147,4 +148,6 @@ export default function BooksAll({ books }: { books: Book[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default BooksAll;

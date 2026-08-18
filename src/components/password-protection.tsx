@@ -20,9 +20,9 @@ const PasswordProtection = ({
     <div className="flex flex-col gap-y-20 text-sm">
       <div className="space-y-10">
         <div className="space-y-2 text-sm">
-          <p className="font-redaction text-black text-xl dark:text-white">
+          <h1 className="font-redaction text-black text-xl dark:text-white">
             {title}
-          </p>
+          </h1>
           <p>{description}</p>
         </div>
 
@@ -36,6 +36,8 @@ const PasswordProtection = ({
             <div className="flex flex-col gap-2">
               <Label htmlFor="password">Password</Label>
               <Input
+                aria-describedby={error ? "password-error" : undefined}
+                aria-invalid={Boolean(error)}
                 className="bg-background"
                 id="password"
                 name="password"
@@ -43,7 +45,15 @@ const PasswordProtection = ({
                 required
                 type="password"
               />
-              {error && <p className="text-destructive text-sm">{error}</p>}
+              {error ? (
+                <p
+                  className="text-destructive text-sm"
+                  id="password-error"
+                  role="alert"
+                >
+                  {error}
+                </p>
+              ) : null}
             </div>
 
             <button

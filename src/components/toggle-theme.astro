@@ -1,8 +1,8 @@
 <button
-  aria-label="Toggle Theme"
+  aria-label="Switch to dark theme"
   class="text-muted-foreground hover:text-blue-400 dark:hover:text-blue-600"
   data-theme-toggle
-  title="Toggle Theme"
+  title="Switch to dark theme"
   type="button"
 >
   <svg
@@ -53,6 +53,13 @@
     readThemeFromStorage() ??
     (window.matchMedia(DARK_MODE_QUERY).matches ? "dark" : "light");
 
+  const syncThemeToggle = (button: HTMLButtonElement, theme: "dark" | "light") => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    button.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+    button.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+    button.setAttribute("title", `Switch to ${nextTheme} theme`);
+  };
+
   const applyTheme = (theme: "dark" | "light") => {
     const root = document.documentElement;
     root.classList.add(THEME_TRANSITION_LOCK_CLASS);
@@ -60,6 +67,12 @@
     root.style.colorScheme = theme;
     void root.offsetHeight;
     root.classList.remove(THEME_TRANSITION_LOCK_CLASS);
+
+    for (const button of document.querySelectorAll("[data-theme-toggle]")) {
+      if (button instanceof HTMLButtonElement) {
+        syncThemeToggle(button, theme);
+      }
+    }
   };
 
   const initThemeToggles = () => {

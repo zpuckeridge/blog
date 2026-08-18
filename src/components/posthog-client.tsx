@@ -1,10 +1,16 @@
-"use client";
-
 import { useEffect } from "react";
 
+import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";
 import { isLikelyBot } from "@/lib/is-likely-bot";
 
-export default function PostHogClient() {
+/** Idle fallback so first-page views still fire if the browser stays busy. */
+const IDLE_FALLBACK_MS = 1500;
+
+/**
+ * Production must set PUBLIC_POSTHOG_KEY and PUBLIC_POSTHOG_HOST
+ * (see .env.example). Never log those values.
+ */
+const PostHogClient = () => {
   useEffect(() => {
     const key = import.meta.env.PUBLIC_POSTHOG_KEY ?? "";
     if (!key || isLikelyBot()) {
@@ -33,44 +39,17 @@ export default function PostHogClient() {
       }
     };
 
-    const onInteraction = () => {
-      window.removeEventListener("pointerdown", onInteraction);
-      window.removeEventListener("keydown", onInteraction);
-      window.removeEventListener("scroll", onInteraction);
-      window.removeEventListener("touchstart", onInteraction);
+    const idle = scheduleIdleOrFallback(() => {
       void start();
-    };
-
-    window.addEventListener("pointerdown", onInteraction, {
-      once: true,
-      passive: true,
-    });
-    window.addEventListener("keydown", onInteraction, {
-      once: true,
-      passive: true,
-    });
-    window.addEventListener("scroll", onInteraction, {
-      once: true,
-      passive: true,
-    });
-    window.addEventListener("touchstart", onInteraction, {
-      once: true,
-      passive: true,
-    });
-
-    const idleFallbackId = globalThis.setTimeout(() => {
-      void start();
-    }, 12_000);
+    }, IDLE_FALLBACK_MS);
 
     return () => {
       disposed = true;
-      globalThis.clearTimeout(idleFallbackId);
-      window.removeEventListener("pointerdown", onInteraction);
-      window.removeEventListener("keydown", onInteraction);
-      window.removeEventListener("scroll", onInteraction);
-      window.removeEventListener("touchstart", onInteraction);
+      idle.cancel();
     };
   }, []);
 
   return null;
-}
+};
+
+export default PostHogClient;

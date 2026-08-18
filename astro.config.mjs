@@ -33,7 +33,6 @@ export default defineConfig({
     },
     optimizeDeps: {
       include: [
-        "@base-ui/react/switch",
         "@base-ui/react/tooltip",
         "clsx",
         "date-fns",

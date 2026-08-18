@@ -60,13 +60,15 @@ const BRISBANE_WEEKDAY: Record<string, number> = {
   Wed: 3,
 };
 
+const workHoursFormatter = new Intl.DateTimeFormat("en-AU", {
+  hour: "numeric",
+  hour12: false,
+  timeZone: WORK_SCHEDULE.timezone,
+  weekday: "short",
+});
+
 export const isWithinWorkHours = (now: Date): boolean => {
-  const parts = new Intl.DateTimeFormat("en-AU", {
-    hour: "numeric",
-    hour12: false,
-    timeZone: WORK_SCHEDULE.timezone,
-    weekday: "short",
-  }).formatToParts(now);
+  const parts = workHoursFormatter.formatToParts(now);
 
   const weekday = parts.find((part) => part.type === "weekday")?.value ?? "";
   const hour = Number(parts.find((part) => part.type === "hour")?.value);

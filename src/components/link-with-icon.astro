@@ -3,6 +3,7 @@ import { resolveSafeHref } from "@/lib/safe-href";
 import { trimLinkSlotHtml } from "@/lib/trim-link-children";
 
 interface Props {
+  "aria-label"?: string;
   class?: string;
   href: string;
   variant?: "default" | "highlighted";
@@ -15,7 +16,12 @@ const linkClassNames = {
     "group inline-block max-w-full whitespace-nowrap px-1 leading-[inherit] bg-muted hover:bg-muted/80",
 } as const;
 
-const { class: className, href, variant = "highlighted" } = Astro.props;
+const {
+  "aria-label": ariaLabel,
+  class: className,
+  href,
+  variant = "highlighted",
+} = Astro.props;
 const safeHref = resolveSafeHref(href);
 const linkClassName = [linkClassNames[variant], className]
   .filter(Boolean)
@@ -28,12 +34,15 @@ const label = Astro.slots.has("default")
 {
   safeHref ? (
     <a
+      aria-label={ariaLabel}
       class={linkClassName}
       href={safeHref.href}
       rel={safeHref.isExternal ? "noopener noreferrer" : undefined}
       target={safeHref.isExternal ? "_blank" : undefined}
     >
-      {label}
+      {label}{safeHref.isExternal ? (
+        <span class="sr-only"> (opens in a new tab)</span>
+      ) : null}
     </a>
   ) : (
     <span class={linkClassName}>{label}</span>

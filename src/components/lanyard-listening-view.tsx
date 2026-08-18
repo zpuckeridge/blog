@@ -1,8 +1,7 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { SyntheticEvent } from "react";
 import { RxChevronDown } from "react-icons/rx";
+import useSWR from "swr";
 
 import { ImageZoom } from "@/components/zoom-image";
 import { isLikelyBot } from "@/lib/is-likely-bot";
@@ -12,7 +11,7 @@ import {
   parseAppleMusicActivity,
   resolveArtworkZoomUrl,
 } from "@/lib/lanyard-status";
-import type { NowListening } from "@/lib/lanyard-status";
+import type { LanyardPresence, NowListening } from "@/lib/lanyard-status";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
 import { formatLocationRelativeTime } from "@/lib/location-status";
@@ -111,14 +110,12 @@ const ListeningArtwork = ({
   const artworkAlt = `${listening.track} by ${listening.artist}`;
 
   return (
-    <button
+    <div
       className={cn(
-        "relative shrink-0 overflow-hidden rounded-sm border-0 bg-muted p-0",
+        "relative shrink-0 overflow-hidden rounded-sm bg-muted",
         sizeClass
       )}
       data-listening-interactive=""
-      onClick={stopRowToggle}
-      type="button"
     >
       <ImageZoom className="size-full">
         <img
@@ -133,7 +130,7 @@ const ListeningArtwork = ({
           width={32}
         />
       </ImageZoom>
-    </button>
+    </div>
   );
 };
 
@@ -152,68 +149,72 @@ const ListeningTrackState = ({
   now: number;
   onToggle: () => void;
 }) => (
-  <button
-    aria-controls="listening-recents"
-    aria-expanded={expanded}
-    aria-label={
-      expanded ? "Hide recently played tracks" : "Show recently played tracks"
-    }
+  <div
     className={cn(
       ROW_CLASS,
-      "w-full cursor-pointer border-0 bg-transparent p-0 text-left hover:bg-muted has-[a:hover]:bg-transparent has-[[data-listening-interactive]:hover]:bg-transparent"
+      "hover:bg-muted has-[a:hover]:bg-transparent has-[[data-listening-interactive]:hover]:bg-transparent"
     )}
-    onClick={onToggle}
-    type="button"
   >
     <ListeningArtwork listening={listening} />
 
-    <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
-      <p className="flex min-w-0 items-baseline gap-2 text-sm leading-tight text-muted-foreground">
-        <span className="min-w-0 truncate">{label}</span>
-        {listenedAt === undefined ? null : (
-          <>
-            <span aria-hidden="true" className="shrink-0 select-none">
-              •
-            </span>
-            <span className="shrink-0 tabular-nums">
-              {formatLocationRelativeTime(listenedAt, now)}
-            </span>
-          </>
-        )}
-      </p>
-      <div
-        className={LISTENING_TRACKS_CLASS}
-        title={`${listening.track} • ${listening.artist}`}
-      >
-        <ListeningLink
-          className="text-inherit"
-          href={listening.trackUrl}
-          label={listening.track}
-          truncate
-        />
-        <span
-          aria-hidden="true"
-          className="shrink-0 text-muted-foreground select-none"
+    <button
+      aria-controls="listening-recents"
+      aria-expanded={expanded}
+      aria-label={
+        expanded ? "Hide recently played tracks" : "Show recently played tracks"
+      }
+      className="flex min-h-9 min-w-0 flex-1 cursor-pointer items-center gap-2.5 border-0 bg-transparent p-0 text-left"
+      onClick={onToggle}
+      type="button"
+    >
+      <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
+        <p className="flex min-w-0 items-baseline gap-2 text-sm leading-tight text-muted-foreground">
+          <span className="min-w-0 truncate">{label}</span>
+          {listenedAt === undefined ? null : (
+            <>
+              <span aria-hidden="true" className="shrink-0 select-none">
+                •
+              </span>
+              <span className="shrink-0 tabular-nums">
+                {formatLocationRelativeTime(listenedAt, now)}
+              </span>
+            </>
+          )}
+        </p>
+        <div
+          className={LISTENING_TRACKS_CLASS}
+          title={`${listening.track} • ${listening.artist}`}
         >
-          •
-        </span>
-        <ListeningLink
-          className="text-muted-foreground"
-          href={listening.artistUrl}
-          label={listening.artist}
-          truncate
-        />
+          <ListeningLink
+            className="text-inherit"
+            href={listening.trackUrl}
+            label={listening.track}
+            truncate
+          />
+          <span
+            aria-hidden="true"
+            className="shrink-0 text-muted-foreground select-none"
+          >
+            •
+          </span>
+          <ListeningLink
+            className="text-muted-foreground"
+            href={listening.artistUrl}
+            label={listening.artist}
+            truncate
+          />
+        </div>
       </div>
-    </div>
 
-    <RxChevronDown
-      aria-hidden="true"
-      className={cn(
-        "size-3.5 shrink-0 self-end text-muted-foreground transition-transform duration-200 motion-reduce:transition-none",
-        expanded && "rotate-180"
-      )}
-    />
-  </button>
+      <RxChevronDown
+        aria-hidden="true"
+        className={cn(
+          "size-3.5 shrink-0 self-end text-muted-foreground transition-transform duration-200 motion-reduce:transition-none",
+          expanded && "rotate-180"
+        )}
+      />
+    </button>
+  </div>
 );
 
 const RecentListenRow = ({
@@ -284,67 +285,62 @@ const recordRecent = async (): Promise<RecentListen[] | null> => {
   }
 };
 
-export default function LanyardListeningView() {
+const RECENTS_KEY = "/api/listening/recents";
+
+const LanyardListeningView = () => {
   const [listening, setListening] = useState<NowListening | null>(null);
-  const [recents, setRecents] = useState<RecentListen[]>([]);
   const [showRecents, setShowRecents] = useState(false);
   const [now, setNow] = useState(() => Date.now());
   const lastRecordedKeyRef = useRef<string | null>(null);
+  const skipNetwork = isLikelyBot();
+
+  const { data: recents = [], mutate } = useSWR(
+    skipNetwork ? null : RECENTS_KEY,
+    fetchRecents,
+    { revalidateOnFocus: false }
+  );
+
+  const onPresence = useCallback(
+    (presence: LanyardPresence) => {
+      const next = parseAppleMusicActivity(presence.activities);
+      setListening(next);
+      if (!next) {
+        return;
+      }
+
+      const key = listeningIdentity(next);
+      if (lastRecordedKeyRef.current === key) {
+        return;
+      }
+
+      lastRecordedKeyRef.current = key;
+
+      void (async () => {
+        const recorded = await recordRecent();
+        if (recorded) {
+          await mutate(recorded, false);
+        }
+      })();
+    },
+    [mutate]
+  );
 
   useEffect(() => {
-    if (isLikelyBot()) {
+    if (skipNetwork) {
       return;
     }
 
-    let cancelled = false;
-
-    void (async () => {
-      const nextRecents = await fetchRecents();
-      if (!cancelled) {
-        setRecents(nextRecents);
-      }
-    })();
-
-    const unsubscribe = watchLanyardPresence(LANYARD_USER_ID, (presence) => {
-      setListening(parseAppleMusicActivity(presence.activities));
-    });
+    const unsubscribe = watchLanyardPresence(LANYARD_USER_ID, onPresence);
 
     const nowTimer = window.setInterval(() => {
       setNow(Date.now());
     }, 60_000);
 
     return () => {
-      cancelled = true;
       unsubscribe();
       window.clearInterval(nowTimer);
     };
-  }, []);
-
-  useEffect(() => {
-    if (isLikelyBot() || !listening) {
-      return;
-    }
-
-    const key = listeningIdentity(listening);
-    if (lastRecordedKeyRef.current === key) {
-      return;
-    }
-
-    lastRecordedKeyRef.current = key;
-
-    let cancelled = false;
-
-    void (async () => {
-      const next = await recordRecent();
-      if (!cancelled && next) {
-        setRecents(next);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [listening]);
+  }, [onPresence, skipNetwork]);
 
   const mostRecent = recents[0] ?? null;
   const featured = listening ?? mostRecent;
@@ -400,4 +396,6 @@ export default function LanyardListeningView() {
       </div>
     </div>
   );
-}
+};
+
+export default LanyardListeningView;

@@ -38,7 +38,7 @@ interface ProjectsPageProps {
   projects: Project[];
 }
 
-export default function ProjectsPage({ projects }: ProjectsPageProps) {
+const ProjectsPage = ({ projects }: ProjectsPageProps) => {
   const sortedProjects = [...projects].toSorted(sortProjects);
 
   return (
@@ -46,9 +46,9 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
       <div className="flex flex-col gap-y-20 text-sm">
         <div className="space-y-10">
           <div className="space-y-2">
-            <p className="font-redaction text-black text-xl dark:text-white">
+            <h1 className="font-redaction text-black text-xl dark:text-white">
               Projects
-            </p>
+            </h1>
 
             <p>
               Here you&apos;ll find a list of projects I&apos;ve worked on. I
@@ -127,4 +127,6 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
       </div>
     </div>
   );
-}
+};
+
+export default ProjectsPage;

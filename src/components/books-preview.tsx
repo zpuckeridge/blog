@@ -1,5 +1,3 @@
-"use client";
-
 import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
@@ -20,7 +18,7 @@ import {
 } from "@/lib/expandable-list";
 import { formatDdMmYy } from "@/lib/format-in-brisbane";
 
-export default function BooksPreview({ books }: { books: Book[] }) {
+const BooksPreview = ({ books }: { books: Book[] }) => {
   const sortedBooks = books.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
@@ -55,6 +53,7 @@ export default function BooksPreview({ books }: { books: Book[] }) {
                 key={book.id}
               >
                 <button
+                  aria-expanded={isExpanded}
                   aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className={expandableListTriggerClassName}
                   data-id={book.id.toString()}
@@ -117,4 +116,6 @@ export default function BooksPreview({ books }: { books: Book[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default BooksPreview;

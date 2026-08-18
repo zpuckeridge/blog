@@ -15,6 +15,8 @@ const {
   weeks,
   yearTotalContributions,
 } = summarizeContributions(contributions);
+const firstDayDate = weeks.flat().find((day) => day !== null)?.date ?? null;
+const initialTabDate = todayIso || firstDayDate;
 ---
 
 <div
@@ -43,6 +45,7 @@ const {
                     ]}
                     data-contribution-day
                     data-label={formatDayLabel(day)}
+                    tabindex={day.date === initialTabDate ? 0 : -1}
                     type="button"
                   />
                 ) : (
@@ -83,25 +86,131 @@ const {
         continue;
       }
 
+      let hoveredDay = null;
+
       const hideTooltip = () => {
         tooltip.classList.add("hidden");
       };
 
-      // Hide only when leaving the whole grid — not between day cells —
-      // so the popover can update without flashing.
-      grid.addEventListener("mouseleave", hideTooltip);
+      const showTooltip = (button) => {
+        const rect = button.getBoundingClientRect();
+        tooltip.textContent = button.dataset.label ?? "";
+        tooltip.style.left = `${rect.left + rect.width / 2}px`;
+        tooltip.style.top = `${rect.top - 6}px`;
+        tooltip.classList.remove("hidden");
+      };
 
-      for (const button of grid.querySelectorAll("[data-contribution-day]")) {
-        if (!(button instanceof HTMLButtonElement)) {
-          continue;
+      const setHoveredDay = (button) => {
+        if (hoveredDay && hoveredDay !== button) {
+          delete hoveredDay.dataset.hovered;
+        }
+        hoveredDay = button;
+        button.dataset.hovered = "";
+        showTooltip(button);
+      };
+
+      const clearHover = () => {
+        if (hoveredDay) {
+          delete hoveredDay.dataset.hovered;
+          hoveredDay = null;
+        }
+        hideTooltip();
+      };
+
+      const days = [...grid.querySelectorAll("[data-contribution-day]")].filter(
+        (button) => button instanceof HTMLButtonElement
+      );
+
+      const columns = [...grid.children].filter(
+        (child) => child instanceof HTMLElement
+      );
+
+      const locateDay = (button) => {
+        for (const [weekIndex, column] of columns.entries()) {
+          const cells = [...column.children];
+          const dayIndex = cells.indexOf(button);
+          if (dayIndex !== -1) {
+            return { dayIndex, weekIndex };
+          }
+        }
+        return null;
+      };
+
+      const focusDay = (weekIndex, dayIndex, deltaWeek, deltaDay) => {
+        let nextWeek = weekIndex + deltaWeek;
+        let nextDay = dayIndex + deltaDay;
+        while (
+          nextWeek >= 0 &&
+          nextWeek < columns.length &&
+          nextDay >= 0 &&
+          nextDay < 7
+        ) {
+          const cell = columns[nextWeek]?.children[nextDay];
+          if (cell instanceof HTMLButtonElement) {
+            for (const day of days) {
+              day.tabIndex = -1;
+            }
+            cell.tabIndex = 0;
+            cell.focus();
+            return;
+          }
+          nextWeek += deltaWeek;
+          nextDay += deltaDay;
+        }
+      };
+
+      // Clear hover only when leaving the whole grid — not between cells
+      // or across the 4px column gap — so highlight and tooltip stay put.
+      grid.addEventListener("mouseleave", clearHover);
+      grid.addEventListener("focusout", (event) => {
+        if (!grid.contains(event.relatedTarget)) {
+          clearHover();
+        }
+      });
+
+      grid.addEventListener("keydown", (event) => {
+        if (!(event.target instanceof HTMLButtonElement)) {
+          return;
         }
 
+        const location = locateDay(event.target);
+        if (!location) {
+          return;
+        }
+
+        switch (event.key) {
+          case "ArrowDown": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, 0, 1);
+            break;
+          }
+          case "ArrowUp": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, 0, -1);
+            break;
+          }
+          case "ArrowRight": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, 1, 0);
+            break;
+          }
+          case "ArrowLeft": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, -1, 0);
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      });
+
+      for (const button of days) {
         button.addEventListener("mouseenter", () => {
-          const rect = button.getBoundingClientRect();
-          tooltip.textContent = button.dataset.label ?? "";
-          tooltip.style.left = `${rect.left + rect.width / 2}px`;
-          tooltip.style.top = `${rect.top - 6}px`;
-          tooltip.classList.remove("hidden");
+          setHoveredDay(button);
+        });
+        button.addEventListener("focus", () => {
+          setHoveredDay(button);
         });
       }
     }

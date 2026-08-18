@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 
 import Navigation from "@/components/navigation";
 import BaseHead from "@/components/seo/base-head.astro";
+import JsonLd from "@/components/seo/json-ld.astro";
 import PostHogClient from "@/components/posthog-client";
 import type { PageMetadata } from "@/lib/metadata";
 
@@ -43,14 +44,22 @@ const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
       meta={meta}
       rootDefaults={rootDefaults}
     />
+    <JsonLd meta={meta} pathname={Astro.url.pathname} />
   </head>
   <body
     class="min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400"
   >
-    <div class="pointer-events-none fixed inset-x-0 bottom-0 z-10 h-20 bg-linear-to-t from-white dark:from-background" />
+    <a
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-background focus:px-3 focus:py-2 focus:text-foreground focus:text-sm"
+      href="#main"
+    >
+      Skip to main content
+    </a>
     <div class="min-h-screen overflow-x-clip">
       <Navigation client:idle pathname={Astro.url.pathname} />
-      <slot />
+      <main id="main" tabindex="-1">
+        <slot />
+      </main>
     </div>
     <PostHogClient client:idle />
   </body>

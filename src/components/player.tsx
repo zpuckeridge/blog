@@ -5,7 +5,7 @@ import { extractYoutubeVideoId, getMuxPlaybackId } from "@/lib/video-source";
 
 const playerShell = "relative aspect-[16/9] w-full shrink-0 overflow-hidden";
 
-export default function Player({
+const Player = ({
   className,
   src,
   title = "YouTube video player",
@@ -13,7 +13,7 @@ export default function Player({
   className?: string;
   src: string;
   title?: string;
-}) {
+}) => {
   const youtubeId = extractYoutubeVideoId(src);
   if (youtubeId) {
     return (
@@ -36,9 +36,13 @@ export default function Player({
     <div className={cn(playerShell, className)}>
       <MuxPlayer
         accentColor="#2563eb"
+        aria-label={title}
         className="absolute inset-0 size-full"
         playbackId={getMuxPlaybackId(src)}
+        title={title}
       />
     </div>
   );
-}
+};
+
+export default Player;

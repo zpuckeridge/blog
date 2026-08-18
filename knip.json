@@ -1,7 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignore": ["src/components/ui/switch.tsx"],
-  "ignoreDependencies": ["cloudflare", "react-medium-image-zoom"],
+  "ignoreDependencies": ["cloudflare"],
   "ignoreBinaries": ["knip"],
   "ignoreExportsUsedInFile": true
 }

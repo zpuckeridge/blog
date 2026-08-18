@@ -30,7 +30,7 @@ interface TimelinePostProps {
   slug: string;
 }
 
-export default function TimelinePost({ post, slug }: TimelinePostProps) {
+const TimelinePost = ({ post, slug }: TimelinePostProps) => {
   const wordCount = post.content
     ? post.content.split(WORD_SPLIT_REGEX).length
     : 200;
@@ -53,7 +53,11 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
                 <div className="flex items-center gap-3">
                   <TooltipProvider>
                     <Tooltip>
-                      <TooltipTrigger className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600">
+                      <TooltipTrigger
+                        aria-describedby="post-details-desc"
+                        aria-label="Post details"
+                        className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                      >
                         <RxDotsHorizontal />
                       </TooltipTrigger>
                       <TooltipContent
@@ -68,6 +72,9 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
+                  <span className="sr-only" id="post-details-desc">
+                    {post.tags.join(", ")}. {readingTime} minute read.
+                  </span>
                   <CopyLink />
                 </div>
               </div>
@@ -117,19 +124,22 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
                 <h2 className="text-sm">Share Article</h2>
                 <div className="flex gap-3 text-muted-foreground">
                   <a
-                    className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                    aria-label="Share on X"
+                    className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
                     href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
                   >
                     <FaXTwitter className="size-4" />
                   </a>
                   <a
-                    className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                    aria-label="Share on Facebook"
+                    className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
                     href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
                   >
                     <FaFacebook className="size-4" />
                   </a>
                   <a
-                    className="transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                    aria-label="Share by email"
+                    className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
                     href={`mailto:?subject=${post.title}&body=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
                   >
                     <RxEnvelopeClosed className="size-4" />
@@ -161,4 +171,6 @@ export default function TimelinePost({ post, slug }: TimelinePostProps) {
       </div>
     </div>
   );
-}
+};
+
+export default TimelinePost;

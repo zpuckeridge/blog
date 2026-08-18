@@ -1,6 +1,4 @@
-"use client";
-
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import useSWR from "swr";
 
@@ -70,6 +68,7 @@ const ContributionsGraph = ({
   const [shouldFetch, setShouldFetch] = useState(false);
   const containerElementRef = useRef<HTMLDivElement | null>(null);
   const [hover, setHover] = useState<HoverState | null>(null);
+  const [focusedDate, setFocusedDate] = useState<string | null>(null);
 
   useEffect(() => {
     const element = containerElementRef.current;
@@ -122,19 +121,80 @@ const ContributionsGraph = ({
     yearTotalContributions,
   } = summary;
 
-  const handleDayHover = useCallback(
-    (day: ContributionDay, event: React.MouseEvent<HTMLButtonElement>) => {
-      const rect = event.currentTarget.getBoundingClientRect();
-      setHover({
-        day,
-        left: rect.left + rect.width / 2,
-        top: rect.top - 6,
-      });
-    },
-    []
-  );
+  const showDayTip = (day: ContributionDay, element: HTMLElement) => {
+    const rect = element.getBoundingClientRect();
+    setHover({
+      day,
+      left: rect.left + rect.width / 2,
+      top: rect.top - 6,
+    });
+  };
 
-  const handleGridLeave = useCallback(() => setHover(null), []);
+  const handleGridLeave = () => setHover(null);
+
+  const moveFocus = (
+    weekIndex: number,
+    dayIndex: number,
+    deltaWeek: number,
+    deltaDay: number
+  ) => {
+    let nextWeek = weekIndex + deltaWeek;
+    let nextDay = dayIndex + deltaDay;
+    while (
+      nextWeek >= 0 &&
+      nextWeek < weeks.length &&
+      nextDay >= 0 &&
+      nextDay < 7
+    ) {
+      const cell = weeks[nextWeek]?.[nextDay];
+      if (cell) {
+        setFocusedDate(cell.date);
+        const button =
+          containerElementRef.current?.querySelector<HTMLButtonElement>(
+            `[data-date="${cell.date}"]`
+          );
+        button?.focus();
+        return;
+      }
+      nextWeek += deltaWeek;
+      nextDay += deltaDay;
+    }
+  };
+
+  const handleDayKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    weekIndex: number,
+    dayIndex: number
+  ) => {
+    switch (event.key) {
+      case "ArrowDown": {
+        event.preventDefault();
+        moveFocus(weekIndex, dayIndex, 0, 1);
+        break;
+      }
+      case "ArrowUp": {
+        event.preventDefault();
+        moveFocus(weekIndex, dayIndex, 0, -1);
+        break;
+      }
+      case "ArrowRight": {
+        event.preventDefault();
+        moveFocus(weekIndex, dayIndex, 1, 0);
+        break;
+      }
+      case "ArrowLeft": {
+        event.preventDefault();
+        moveFocus(weekIndex, dayIndex, -1, 0);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  };
+
+  const firstDayDate = weeks.flat().find((day) => day !== null)?.date ?? null;
+  const activeDate = focusedDate ?? todayIso ?? firstDayDate;
 
   if (fetchError) {
     return (
@@ -164,6 +224,16 @@ const ContributionsGraph = ({
         <div className="space-y-2">
           <div
             className="flex justify-end gap-[4px] overflow-hidden"
+            data-contribution-grid
+            onBlur={(event) => {
+              if (
+                !event.currentTarget.contains(
+                  event.relatedTarget as Node | null
+                )
+              ) {
+                handleGridLeave();
+              }
+            }}
             onMouseLeave={handleGridLeave}
           >
             {weeks.map((week, weekIndex) => {
@@ -186,8 +256,21 @@ const ContributionsGraph = ({
                         data-color={day.color}
                         data-count={day.contributionCount}
                         data-date={day.date}
+                        data-hovered={
+                          hover?.day.date === day.date ? "" : undefined
+                        }
                         key={day.date}
-                        onMouseEnter={(event) => handleDayHover(day, event)}
+                        onFocus={(event) => {
+                          setFocusedDate(day.date);
+                          showDayTip(day, event.currentTarget);
+                        }}
+                        onKeyDown={(event) =>
+                          handleDayKeyDown(event, weekIndex, dayIndex)
+                        }
+                        onMouseEnter={(event) =>
+                          showDayTip(day, event.currentTarget)
+                        }
+                        tabIndex={day.date === activeDate ? 0 : -1}
                         type="button"
                       />
                     ) : (

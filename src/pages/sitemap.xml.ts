@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-import { getPosts, getVideos } from "@/lib/directus-content";
+import { getPosts } from "@/lib/directus-content";
 import { getSiteUrl } from "@/lib/site-url";
 
 const STATIC_ROUTES = [
@@ -12,10 +12,10 @@ const STATIC_ROUTES = [
   "/about/credits",
   "/projects",
   "/timeline",
-  "/videos",
   "/cv",
   "/colophon",
   "/imprint",
+  "/llms.txt",
 ];
 
 const escapeXml = (s: string): string =>
@@ -28,20 +28,18 @@ const escapeXml = (s: string): string =>
 
 export const GET: APIRoute = async () => {
   const baseUrl = getSiteUrl();
-  const now = new Date().toISOString();
 
   const staticEntries = STATIC_ROUTES.map(
     (route) => `
   <url>
     <loc>${escapeXml(`${baseUrl}${route}`)}</loc>
-    <lastmod>${escapeXml(now)}</lastmod>
   </url>`
   );
 
   let dynamicEntries = "";
 
   try {
-    const [posts, videos] = await Promise.all([getPosts(), getVideos()]);
+    const posts = await getPosts();
 
     for (const post of posts) {
       const lastMod = post.date_updated
@@ -50,17 +48,6 @@ export const GET: APIRoute = async () => {
       dynamicEntries += `
   <url>
     <loc>${escapeXml(`${baseUrl}/timeline/${post.slug}`)}</loc>
-    <lastmod>${escapeXml(lastMod)}</lastmod>
-  </url>`;
-    }
-
-    for (const video of videos) {
-      const lastMod = video.date_updated
-        ? new Date(video.date_updated).toISOString()
-        : new Date(video.date_created).toISOString();
-      dynamicEntries += `
-  <url>
-    <loc>${escapeXml(`${baseUrl}/video/${video.slug}`)}</loc>
     <lastmod>${escapeXml(lastMod)}</lastmod>
   </url>`;
     }

@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useMemo, useState } from "react";
 import { RxArrowLeft, RxArrowRight, RxMagnifyingGlass } from "react-icons/rx";
 
@@ -42,26 +40,31 @@ const SearchBar = ({
   searchTerm: string;
 }) => (
   <div className="group relative flex">
-    <div className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-sm has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-sm has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300">
+    <label
+      className="has-[+input:not(:placeholder-shown)):-translate-y-1/2 pointer-events-none absolute top-1/2 z-1 block origin-start -translate-y-1/2 cursor-text px-1 text-muted-foreground text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:-translate-y-1/2 group-focus-within:cursor-default group-focus-within:font-normal group-focus-within:text-black group-focus-within:text-sm has-[+input:not(:placeholder-shown)]:pointer-events-none has-[+input:not(:placeholder-shown)]:top-0 has-[+input:not(:placeholder-shown)]:cursor-default has-[+input:not(:placeholder-shown)]:font-normal has-[+input:not(:placeholder-shown)]:text-sm has-[input:not(:placeholder-shown)]:text-black dark:has-[+input:not(:placeholder-shown)]:text-neutral-300 dark:group-focus-within:text-neutral-300"
+      htmlFor="videos-search"
+    >
       <span className="relative -top-px inline-flex bg-background px-2 text-sm">
         {label}
       </span>
-    </div>
+    </label>
     <Input
       className="-me-px flex-1 text-black text-sm shadow-none dark:text-neutral-300"
+      id="videos-search"
+      name="q"
       onChange={onSearchChange}
       placeholder=""
-      type="text"
+      type="search"
       value={searchTerm}
     />
 
-    <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center-lg text-muted-foreground transition-all duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
+    <div className="absolute inset-y-px end-px my-auto flex h-full w-9 items-center justify-center-lg text-muted-foreground transition-colors duration-200 hover:text-blue-400 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-blue-600">
       <RxMagnifyingGlass />
     </div>
   </div>
 );
 
-export default function Videos({ videos, itemsPerPage }: VideosProps) {
+const Videos = ({ videos, itemsPerPage }: VideosProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -149,6 +152,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
         <div className="flex flex-wrap gap-1">
           {uniqueTags.map((tag) => (
             <button
+              aria-pressed={selectedTag === tag}
               className={`inline-flex px-1 text-sm bg-muted hover:bg-muted/80 ${
                 selectedTag === tag
                   ? "text-foreground"
@@ -163,13 +167,18 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
             </button>
           ))}
         </div>
+        <output className="sr-only">
+          {filteredVideos.length === 0
+            ? "No matching videos"
+            : `${filteredVideos.length} matching ${filteredVideos.length === 1 ? "video" : "videos"}`}
+        </output>
       </div>
 
       <div className="mt-2 grid grid-cols-2 gap-4">
         {currentVideos.map((video: Video, index: number) => (
           <a
             aria-label={video.title}
-            className="group relative transition-all duration-200 hover:grayscale"
+            className="group relative transition-[filter] duration-200 hover:grayscale"
             href={`/video/${video.slug}`}
             key={video.slug}
             title={video.title}
@@ -188,10 +197,10 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
                 )}
               </div>
 
-              <div className="aspect-video overflow-hidden transition-all duration-200 group-hover:drop-shadow-2xl">
+              <div className="aspect-video overflow-hidden transition-[filter] duration-200 group-hover:drop-shadow-2xl">
                 <SiteImage
                   alt={video.title}
-                  className="aspect-video transition-all duration-200 group-hover:scale-110"
+                  className="aspect-video transition-transform duration-200 group-hover:scale-110"
                   height={600}
                   priority={index === 0}
                   src={resolveVideoMedia(video.playback_id).thumbnailUrl}
@@ -221,6 +230,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
             <RxArrowLeft className="inline-flex" /> Prev Page
           </button>
           <button
+            aria-label="Go to first page"
             className="text-muted-foreground text-sm transition hover:text-blue-400 dark:hover:text-blue-600"
             onClick={handleResetPage}
             type="button"
@@ -228,6 +238,7 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
             {currentPage} of {totalPages}
           </button>
           <button
+            aria-label="Next page"
             className="text-muted-foreground text-sm transition hover:text-blue-400 dark:hover:text-blue-600"
             disabled={currentPage === totalPages}
             onClick={handleNextPage}
@@ -239,4 +250,6 @@ export default function Videos({ videos, itemsPerPage }: VideosProps) {
       )}
     </div>
   );
-}
+};
+
+export default Videos;

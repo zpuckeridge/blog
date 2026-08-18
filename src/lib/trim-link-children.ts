@@ -33,22 +33,26 @@ export const trimLinkChildren = (children: ReactNode): ReactNode => {
     return trimLinkLabel(parts.map(String).join(""));
   }
 
-  const trimmed = parts
-    .map((part, index) => {
-      if (typeof part !== "string") {
-        return part;
-      }
+  const trimmed: ReactNode[] = [];
+  const lastIndex = parts.length - 1;
 
-      let value = part;
-      if (index === 0) {
-        value = value.replace(/^\s+/u, "");
-      }
-      if (index === parts.length - 1) {
-        value = value.replace(/\s+$/u, "");
-      }
-      return value;
-    })
-    .filter((part) => typeof part !== "string" || part.length > 0);
+  for (const [index, part] of parts.entries()) {
+    if (typeof part !== "string") {
+      trimmed.push(part);
+      continue;
+    }
+
+    let value = part;
+    if (index === 0) {
+      value = value.replace(/^\s+/u, "");
+    }
+    if (index === lastIndex) {
+      value = value.replace(/\s+$/u, "");
+    }
+    if (value.length > 0) {
+      trimmed.push(value);
+    }
+  }
 
   if (trimmed.length === 1) {
     return trimmed[0];

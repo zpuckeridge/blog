@@ -14,11 +14,13 @@ const linkClassNames = {
 type LinkVariant = keyof typeof linkClassNames;
 
 const LinkWithIcon = ({
+  "aria-label": ariaLabel,
   className,
   href,
   children,
   variant = "highlighted",
 }: {
+  "aria-label"?: string;
   className?: string;
   href: string;
   children: ReactNode;
@@ -33,12 +35,16 @@ const LinkWithIcon = ({
 
   return (
     <a
+      aria-label={ariaLabel}
       className={linkClassName}
       href={safeHref.href}
       rel={safeHref.isExternal ? "noopener noreferrer" : undefined}
       target={safeHref.isExternal ? "_blank" : undefined}
     >
       {content}
+      {safeHref.isExternal ? (
+        <span className="sr-only"> (opens in a new tab)</span>
+      ) : null}
     </a>
   );
 };

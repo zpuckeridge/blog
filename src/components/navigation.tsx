@@ -6,7 +6,7 @@ interface NavigationProps {
   pathname: string;
 }
 
-export default function Navigation({ pathname }: NavigationProps) {
+const Navigation = ({ pathname }: NavigationProps) => {
   const isHome = pathname === "/";
   const avatar = (
     <SiteImage
@@ -31,7 +31,10 @@ export default function Navigation({ pathname }: NavigationProps) {
         </a>
       )}
 
-      <div className="flex min-w-0 flex-wrap items-center justify-end gap-x-1 gap-y-1 text-muted-foreground text-sm sm:gap-x-2">
+      <nav
+        aria-label="Site"
+        className="flex min-w-0 flex-wrap items-center justify-end gap-x-1 gap-y-1 text-muted-foreground text-sm sm:gap-x-2"
+      >
         {menuItems.map((item) => {
           const isActive =
             pathname === item.href || pathname.includes(item.href);
@@ -48,7 +51,9 @@ export default function Navigation({ pathname }: NavigationProps) {
             </a>
           );
         })}
-      </div>
+      </nav>
     </div>
   );
-}
+};
+
+export default Navigation;
