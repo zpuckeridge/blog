@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
@@ -20,7 +18,7 @@ import {
 } from "@/lib/expandable-list";
 import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
 
-export default function MoviesAll({ movies }: { movies: Movie[] }) {
+const MoviesAll = ({ movies }: { movies: Movie[] }) => {
   // Group movies by year
   const moviesByYear: Record<number, Movie[]> = {};
   for (const movie of movies) {
@@ -45,9 +43,9 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
 
   return (
     <div className={expandableListYearPageClassName}>
-      <p className="font-redaction text-black text-xl dark:text-white">
+      <h1 className="font-redaction text-black text-xl dark:text-white">
         Movies
-      </p>
+      </h1>
 
       <div className={expandableListYearGroupsClassName}>
         {years.map((year) => (
@@ -76,6 +74,7 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
                       key={movie.id}
                     >
                       <button
+                        aria-expanded={isExpanded}
                         aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                         className={expandableListTriggerClassName}
                         data-id={movie.id.toString()}
@@ -193,4 +192,6 @@ export default function MoviesAll({ movies }: { movies: Movie[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default MoviesAll;

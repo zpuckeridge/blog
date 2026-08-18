@@ -1,10 +1,9 @@
-const Age = () => {
-  // September 25, 1999
-  const birthday = new Date(1999, 8, 25);
+const birthday = new Date(1999, 8, 25);
+
+export const getAge = (): number => {
   const currentDate = new Date();
   let age = currentDate.getFullYear() - birthday.getFullYear();
 
-  // If the current date is before the birthday, subtract 1 from the age
   if (
     currentDate.getMonth() < birthday.getMonth() ||
     (currentDate.getMonth() === birthday.getMonth() &&
@@ -13,7 +12,9 @@ const Age = () => {
     age -= 1;
   }
 
-  return <span>{age}</span>;
+  return age;
 };
+
+const Age = () => <span>{getAge()}</span>;
 
 export default Age;

@@ -1,5 +1,3 @@
-"use client";
-
 import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
@@ -20,7 +18,7 @@ import {
 } from "@/lib/expandable-list";
 import { formatDdMmYy } from "@/lib/format-in-brisbane";
 
-export default function CreditsPreview({ credits }: { credits: Credit[] }) {
+const CreditsPreview = ({ credits }: { credits: Credit[] }) => {
   const sortedCredits = credits.toSorted((a, b) =>
     compareDesc(new Date(a.release_date), new Date(b.release_date))
   );
@@ -58,6 +56,7 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
                 key={credit.id}
               >
                 <button
+                  aria-expanded={isExpanded}
                   aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className={expandableListTriggerClassName}
                   data-id={credit.id.toString()}
@@ -131,4 +130,6 @@ export default function CreditsPreview({ credits }: { credits: Credit[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default CreditsPreview;

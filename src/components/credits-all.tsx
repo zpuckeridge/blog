@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
@@ -18,7 +16,7 @@ import {
 } from "@/lib/expandable-list";
 import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
 
-export default function CreditsAll({ credits }: { credits: Credit[] }) {
+const CreditsAll = ({ credits }: { credits: Credit[] }) => {
   // Group credits by year
   const creditsByYear: Record<number, Credit[]> = {};
   for (const credit of credits) {
@@ -43,9 +41,9 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
 
   return (
     <div className="space-y-10">
-      <p className="font-redaction text-black text-xl dark:text-white">
+      <h1 className="font-redaction text-black text-xl dark:text-white">
         Credits
-      </p>
+      </h1>
       <div className="flex w-full flex-col gap-4">
         {years.map((year) => (
           <div className={expandableListGridClassName} key={year}>
@@ -73,6 +71,7 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
                       key={credit.id}
                     >
                       <button
+                        aria-expanded={isExpanded}
                         aria-label={`${credit.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                         className={expandableListTriggerClassName}
                         data-id={credit.id.toString()}
@@ -153,4 +152,6 @@ export default function CreditsAll({ credits }: { credits: Credit[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default CreditsAll;

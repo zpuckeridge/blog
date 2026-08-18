@@ -33,8 +33,10 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 ---
 
 <div
+  aria-label="Brisbane date and time"
   class="group/brisbane-clock relative flex min-w-0 flex-row flex-wrap gap-x-2 gap-y-1 whitespace-nowrap text-muted-foreground text-sm"
   data-brisbane-clock
+  tabindex="0"
 >
   <p data-brisbane-time>
     <span data-brisbane-hour>{initialTime.hour}</span><span
@@ -50,7 +52,7 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
   <p>•</p>
   <p data-brisbane-date>{initialDate}</p>
   <div
-    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-0 z-50 w-max max-w-[16rem] rounded-md border border-border bg-popover px-3 py-2 text-left text-popover-foreground text-xs opacity-0 shadow-md transition-opacity duration-150 group-hover/brisbane-clock:pointer-events-auto group-hover/brisbane-clock:opacity-100"
+    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-0 z-50 w-max max-w-[16rem] rounded-md border border-border bg-popover px-3 py-2 text-left text-popover-foreground text-xs opacity-0 shadow-md transition-opacity duration-150 group-focus-within/brisbane-clock:pointer-events-auto group-focus-within/brisbane-clock:opacity-100 group-hover/brisbane-clock:pointer-events-auto group-hover/brisbane-clock:opacity-100"
     data-brisbane-tooltip
     role="tooltip"
   >
@@ -58,6 +60,23 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 </div>
 
 <script>
+  const timeZone = "Australia/Brisbane";
+
+  const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
+    dayPeriod: "short",
+    hour: "numeric",
+    hour12: true,
+    minute: "2-digit",
+    timeZone,
+  });
+
+  const dateFormatter = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    timeZone,
+    year: "numeric",
+  });
+
   const absoluteFormatter = (zone, withZoneName = false) =>
     new Intl.DateTimeFormat(undefined, {
       day: "numeric",
@@ -70,25 +89,9 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
     });
 
   const initBrisbaneClocks = () => {
-    const timeZone = "Australia/Brisbane";
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-
-    const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
-      dayPeriod: "short",
-      hour: "numeric",
-      hour12: true,
-      minute: "2-digit",
-      timeZone,
-    });
-
-    const dateFormatter = new Intl.DateTimeFormat("en-US", {
-      day: "numeric",
-      month: "short",
-      timeZone,
-      year: "numeric",
-    });
 
     const getTimeParts = (date) => {
       const parts = timePartsFormatter.formatToParts(date);
@@ -130,6 +133,21 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 
       root.dataset.clockReady = "true";
       let timerId = 0;
+
+      root.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          root.dataset.tooltipDismissed = "true";
+          if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+          }
+        }
+      });
+      root.addEventListener("mouseenter", () => {
+        delete root.dataset.tooltipDismissed;
+      });
+      root.addEventListener("focusin", () => {
+        delete root.dataset.tooltipDismissed;
+      });
 
       const ensurePeriodEl = () => {
         let periodEl = root.querySelector("[data-brisbane-period]");

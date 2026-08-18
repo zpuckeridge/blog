@@ -1,5 +1,3 @@
-"use client";
-
 import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
@@ -20,7 +18,7 @@ import {
 } from "@/lib/expandable-list";
 import { formatDdMmYy } from "@/lib/format-in-brisbane";
 
-export default function MoviesPreview({ movies }: { movies: Movie[] }) {
+const MoviesPreview = ({ movies }: { movies: Movie[] }) => {
   const sortedMovies = movies.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
@@ -58,6 +56,7 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
                 key={movie.id}
               >
                 <button
+                  aria-expanded={isExpanded}
                   aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
                   className={expandableListTriggerClassName}
                   data-id={movie.id.toString()}
@@ -153,4 +152,6 @@ export default function MoviesPreview({ movies }: { movies: Movie[] }) {
       </div>
     </div>
   );
-}
+};
+
+export default MoviesPreview;

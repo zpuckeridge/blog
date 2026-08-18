@@ -21,9 +21,21 @@ interface CreatePageMetadataOptions {
 const siteName = "zacchary.me";
 const siteHandle = "@zpuckeridge";
 const siteTitle = "Zacchary Puckeridge";
+const titleSuffix = ` — ${siteTitle}`;
+const pageTitleMaxLength = 60;
 
-export const formatPageTitle = (pageTitle: string): string =>
-  `${pageTitle} — ${siteTitle}`;
+export const formatPageTitle = (pageTitle: string): string => {
+  if (pageTitle === siteTitle || pageTitle.includes(titleSuffix)) {
+    return pageTitle;
+  }
+
+  const withSuffix = `${pageTitle}${titleSuffix}`;
+  if (withSuffix.length > pageTitleMaxLength) {
+    return pageTitle;
+  }
+
+  return withSuffix;
+};
 
 export const buildMetadataUrl = (path: string): string =>
   new URL(path, getSiteUrl()).toString();
@@ -196,6 +208,7 @@ export const buildVideoPageMetadata = (
     description,
     image: socialImage,
     keywords: video.tags,
+    noIndex: true,
     path: `/video/${slug}`,
     title,
   });

@@ -41,7 +41,7 @@ export const GET: APIRoute = async () => {
   <channel>
     <title>Zacchary Puckeridge</title>
     <link>${baseUrl}</link>
-    <description>Christian IT Administrator working for Rising Sun Pictures. Building better artist experiences by day, Web Developer by night.</description>
+    <description>IT Operations Lead at Star Compass and Haddon Institute. Also runs obambulo studio.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />

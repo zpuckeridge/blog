@@ -1,5 +1,6 @@
 ---
 import AboutPage from "@/components/about-page";
+import { getAge } from "@/components/age";
 import Layout from "@/layouts/layout.astro";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import { getBooks, getCredits, getMovies } from "@/lib/directus-content";
@@ -11,8 +12,7 @@ const [books, movies, credits] = await Promise.all([
 ]);
 
 const pageMeta = createPageMetadata({
-  description:
-    "I'm a 25 year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.",
+  description: `I'm a ${getAge()} year old Reformed Baptist born and raised in Australia. Since childhood, I've had a natural affinity for computers, diving deep into video games, tinkering and taking apart old computers.`,
   path: "/about",
   title: "About",
 });

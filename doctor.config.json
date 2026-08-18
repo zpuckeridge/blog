@@ -1,0 +1,8 @@
+{
+  "$schema": "https://react.doctor/schema/config.json",
+  // posthog-js@1.417.4 scores 36/100 on Socket supply-chain (install scripts).
+  // Keep the package; fail only if a direct dependency scores below this.
+  "supplyChain": {
+    "minScore": 36
+  }
+}

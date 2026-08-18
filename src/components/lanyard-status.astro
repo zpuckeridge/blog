@@ -3,9 +3,11 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
 ---
 
 <div
+  aria-label="Discord status"
   class="group/lanyard relative flex h-5 shrink-0 items-center gap-2"
   data-lanyard-status
   data-lanyard-user={LANYARD_USER_ID}
+  tabindex="0"
 >
   <div
     class="my-auto h-2 w-2 shrink-0 bg-gray-400"
@@ -19,7 +21,7 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
     Offline
   </p>
   <div
-    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-1/2 z-50 w-max max-w-[15rem] -translate-x-1/2 rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs opacity-0 shadow-md transition-opacity duration-150 group-hover/lanyard:pointer-events-auto group-hover/lanyard:opacity-100"
+    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-1/2 z-50 w-max max-w-[15rem] -translate-x-1/2 rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs opacity-0 shadow-md transition-opacity duration-150 group-focus-within/lanyard:pointer-events-auto group-focus-within/lanyard:opacity-100 group-hover/lanyard:pointer-events-auto group-hover/lanyard:opacity-100"
     role="tooltip"
   >
     Discord presence via&nbsp;
@@ -65,6 +67,21 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
       }
 
       root.dataset.lanyardReady = "true";
+
+      root.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          root.dataset.tooltipDismissed = "true";
+          if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+          }
+        }
+      });
+      root.addEventListener("mouseenter", () => {
+        delete root.dataset.tooltipDismissed;
+      });
+      root.addEventListener("focusin", () => {
+        delete root.dataset.tooltipDismissed;
+      });
 
       if (isLikelyBot()) {
         continue;

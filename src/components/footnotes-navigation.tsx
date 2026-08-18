@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback } from "react";
 
 import { trimLinkChildren } from "@/lib/trim-link-children";

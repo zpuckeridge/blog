@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useState } from "react";
 import { RxCheck, RxCopy } from "react-icons/rx";
 import { toast } from "sonner";
@@ -11,7 +9,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export default function CopyLink() {
+const CopyLink = () => {
   const [copied, setCopied] = useState(false);
 
   const copyCurrentUrlToClipboard = useCallback(() => {
@@ -35,9 +33,9 @@ export default function CopyLink() {
           onClick={copyCurrentUrlToClipboard}
         >
           {copied ? (
-            <RxCheck className="fade-in-0 zoom-in-95 my-auto animate-in text-green-500 duration-200" />
+            <RxCheck className="fade-in-0 zoom-in-95 my-auto animate-in text-green-500 transition-[opacity,transform] duration-200" />
           ) : (
-            <RxCopy className="fade-in-0 zoom-in-95 my-auto animate-in text-muted-foreground transition-all duration-200 hover:text-blue-400 dark:hover:text-blue-600" />
+            <RxCopy className="fade-in-0 zoom-in-95 my-auto animate-in text-muted-foreground transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600" />
           )}
         </TooltipTrigger>
         <TooltipContent
@@ -49,4 +47,6 @@ export default function CopyLink() {
       </Tooltip>
     </TooltipProvider>
   );
-}
+};
+
+export default CopyLink;

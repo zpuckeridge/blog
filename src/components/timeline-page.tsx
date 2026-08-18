@@ -9,10 +9,7 @@ interface TimelinePageProps {
   allNotes: Note[];
 }
 
-export default function TimelinePage({
-  allPosts,
-  allNotes,
-}: TimelinePageProps) {
+const TimelinePage = ({ allPosts, allNotes }: TimelinePageProps) => {
   const allContent: TimelineItem[] = [
     ...allPosts.map((post) => ({
       ...post,
@@ -53,9 +50,9 @@ export default function TimelinePage({
       <div className="flex flex-col gap-y-20 text-sm">
         <div className="space-y-10">
           <div className="space-y-2">
-            <p className="font-redaction text-black text-xl dark:text-white">
+            <h1 className="font-redaction text-black text-xl dark:text-white">
               Timeline
-            </p>
+            </h1>
 
             <p>
               Welcome to my personal corner of the internet. Here you&apos;ll
@@ -80,4 +77,6 @@ export default function TimelinePage({
       </div>
     </div>
   );
-}
+};
+
+export default TimelinePage;

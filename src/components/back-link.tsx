@@ -13,10 +13,20 @@ const BackLink = ({
 }: {
   href: string;
   children: ReactNode;
-}) => (
-  <LinkWithIcon className="w-fit self-start" href={href} variant="default">
-    {children}
-  </LinkWithIcon>
-);
+}) => {
+  const destination =
+    href === "/" ? "home" : href.replace(/^\//u, "").replaceAll("/", " ");
+
+  return (
+    <LinkWithIcon
+      aria-label={`Back to ${destination}`}
+      className="w-fit self-start"
+      href={href}
+      variant="default"
+    >
+      {children}
+    </LinkWithIcon>
+  );
+};
 
 export default BackLink;

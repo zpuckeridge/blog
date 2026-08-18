@@ -1,35 +1,13 @@
-"use client";
-
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode, TransitionEvent } from "react";
 import { createPortal } from "react-dom";
 
+import { useImageZoom } from "@/hooks/use-image-zoom";
+import type { FlyImage, FlyRect } from "@/hooks/use-image-zoom";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
-const ZOOM_TRANSITION_MS = 200;
 const ZOOM_EASING = "cubic-bezier(0.4, 0, 0.2, 1)";
-
-interface LockedBox {
-  height: number;
-  width: number;
-}
-
-interface FlyRect {
-  height: number;
-  left: number;
-  top: number;
-  width: number;
-}
-
-interface FlyImage {
-  alt: string;
-  objectFit: string;
-  objectPosition: string;
-  rect: FlyRect;
-  src: string;
-  zoomSrc?: string;
-}
 
 interface ImageZoomProps {
   aspectVideo?: boolean;
@@ -45,37 +23,6 @@ interface ImageZoomProps {
   zoomMargin?: number;
 }
 
-const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
-  const img = slot.querySelector("img");
-  if (!img) {
-    return null;
-  }
-
-  const rect = img.getBoundingClientRect();
-  if (rect.width <= 0 || rect.height <= 0) {
-    return null;
-  }
-
-  const computed = window.getComputedStyle(img);
-  const displaySrc = img.currentSrc || img.src;
-  const { zoomSrc } = img.dataset;
-  const hiResSrc = zoomSrc && zoomSrc !== displaySrc ? zoomSrc : undefined;
-
-  return {
-    alt: img.alt,
-    objectFit: computed.objectFit || "cover",
-    objectPosition: computed.objectPosition || "center",
-    rect: {
-      height: rect.height,
-      left: rect.left,
-      top: rect.top,
-      width: rect.width,
-    },
-    src: displaySrc,
-    zoomSrc: hiResSrc,
-  };
-};
-
 const getZoomTransform = (rect: FlyRect, margin: number): string => {
   const viewportW = window.innerWidth;
   const viewportH = window.innerHeight;
@@ -90,9 +37,232 @@ const getZoomTransform = (rect: FlyRect, margin: number): string => {
   return `translate(${centerX - originX}px, ${centerY - originY}px) scale(${scale})`;
 };
 
-const prefersReducedMotion = (): boolean =>
-  typeof window !== "undefined" &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ImageZoomSlot = ({
+  aspectVideo,
+  children,
+  className,
+  handleSlotClick,
+  imageAlt,
+  isDisabled,
+  lockedBox,
+  prefetchZoomSrc,
+  slotRef,
+  wrapElement,
+}: {
+  aspectVideo: boolean;
+  children: ReactNode;
+  className?: string;
+  handleSlotClick: (event: React.MouseEvent<HTMLElement>) => void;
+  imageAlt: string;
+  isDisabled: boolean;
+  lockedBox: { height: number; width: number } | null;
+  prefetchZoomSrc: () => void;
+  slotRef: React.RefObject<HTMLElement | null>;
+  wrapElement: "div" | "span";
+}) => {
+  const Inner = wrapElement;
+  let slotSizeClass: string | null = null;
+  if (!lockedBox) {
+    slotSizeClass = aspectVideo ? "aspect-video w-full" : "size-full";
+  }
+
+  const slotClassName = cn(
+    "relative shrink-0 overflow-hidden border-0 bg-transparent p-0 text-left",
+    slotSizeClass,
+    !isDisabled && "[&_img]:cursor-zoom-in"
+  );
+  const slotStyle = lockedBox
+    ? {
+        height: lockedBox.height,
+        maxHeight: lockedBox.height,
+        maxWidth: lockedBox.width,
+        minHeight: lockedBox.height,
+        minWidth: lockedBox.width,
+        width: lockedBox.width,
+      }
+    : undefined;
+
+  const inner = (
+    <Inner
+      className={cn(
+        "block size-full min-h-0 [&_img]:cursor-zoom-in",
+        className
+      )}
+    >
+      {children}
+    </Inner>
+  );
+  const setSlotRef = (node: HTMLElement | null) => {
+    slotRef.current = node;
+  };
+
+  if (isDisabled) {
+    return (
+      <div className={slotClassName} ref={setSlotRef} style={slotStyle}>
+        {inner}
+      </div>
+    );
+  }
+
+  return (
+    <button
+      aria-haspopup="dialog"
+      aria-label={imageAlt}
+      className={slotClassName}
+      onClick={handleSlotClick}
+      onFocus={prefetchZoomSrc}
+      onMouseEnter={prefetchZoomSrc}
+      ref={setSlotRef}
+      style={slotStyle}
+      type="button"
+    >
+      {inner}
+    </button>
+  );
+};
+
+const ImageZoomOverlay = ({
+  backdropClassName,
+  close,
+  flyImage,
+  handleFlyTransitionEnd,
+  isExpanded,
+  overlaySrc,
+  transitionMs,
+  zoomMargin,
+}: {
+  backdropClassName?: string;
+  close: () => void;
+  flyImage: FlyImage;
+  handleFlyTransitionEnd: (event: TransitionEvent<HTMLButtonElement>) => void;
+  isExpanded: boolean;
+  overlaySrc: string | null;
+  transitionMs: number;
+  zoomMargin: number;
+}) => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const flyStyle: CSSProperties = {
+    cursor: "zoom-out",
+    height: flyImage.rect.height,
+    left: flyImage.rect.left,
+    overflow: "hidden",
+    position: "fixed",
+    top: flyImage.rect.top,
+    transform: isExpanded
+      ? getZoomTransform(flyImage.rect, zoomMargin)
+      : "translate(0, 0) scale(1)",
+    transformOrigin: "center center",
+    transition:
+      transitionMs > 0
+        ? `transform ${transitionMs}ms ${ZOOM_EASING}`
+        : undefined,
+    width: flyImage.rect.width,
+    zIndex: 51,
+  };
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) {
+      return;
+    }
+
+    if (!dialog.open) {
+      dialog.showModal();
+    }
+    closeButtonRef.current?.focus();
+
+    const getFocusable = () =>
+      [
+        ...dialog.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        ),
+      ].filter((element) => !element.hasAttribute("disabled"));
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusable = getFocusable();
+      const [first] = focusable;
+      const last = focusable.at(-1);
+      if (!first || !last) {
+        return;
+      }
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+        return;
+      }
+
+      if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    const onCancel = (event: Event) => {
+      event.preventDefault();
+      close();
+    };
+
+    dialog.addEventListener("keydown", onKeyDown);
+    dialog.addEventListener("cancel", onCancel);
+    return () => {
+      dialog.removeEventListener("keydown", onKeyDown);
+      dialog.removeEventListener("cancel", onCancel);
+      if (dialog.open) {
+        dialog.close();
+      }
+    };
+  }, [close]);
+
+  return createPortal(
+    <dialog
+      aria-label={flyImage.alt || "Zoomed image"}
+      className="fixed inset-0 z-50 m-0 h-full max-h-none w-full max-w-none border-0 bg-transparent p-0 backdrop:bg-transparent"
+      ref={dialogRef}
+    >
+      <button
+        aria-label="Close image zoom"
+        className={cn(
+          "fixed inset-0 z-50 border-0 bg-background/80 p-0 backdrop-blur-md transition-opacity",
+          isExpanded ? "opacity-100" : "opacity-0",
+          backdropClassName
+        )}
+        onClick={close}
+        ref={closeButtonRef}
+        style={{
+          cursor: "zoom-out",
+          transitionDuration: `${transitionMs}ms`,
+        }}
+        type="button"
+      />
+      <button
+        aria-label="Close image zoom"
+        className="fixed z-[51] border-0 bg-transparent p-0"
+        onClick={close}
+        onTransitionEnd={handleFlyTransitionEnd}
+        style={flyStyle}
+        type="button"
+      >
+        <img
+          alt={flyImage.alt}
+          className={cn("pointer-events-none size-full select-none")}
+          draggable={false}
+          src={overlaySrc ?? flyImage.src}
+          style={{
+            objectFit: flyImage.objectFit as CSSProperties["objectFit"],
+            objectPosition: flyImage.objectPosition,
+          }}
+        />
+      </button>
+    </dialog>,
+    document.body
+  );
+};
 
 export const ImageZoom = ({
   aspectVideo = false,
@@ -105,331 +275,53 @@ export const ImageZoom = ({
   zoomMargin = 24,
 }: ImageZoomProps) => {
   const mounted = useMounted();
-  const slotRef = useRef<HTMLDivElement>(null);
-  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const zoomSessionRef = useRef(0);
-  const [lockedBox, setLockedBox] = useState<LockedBox | null>(null);
-  const [flyImage, setFlyImage] = useState<FlyImage | null>(null);
-  const [overlaySrc, setOverlaySrc] = useState<string | null>(null);
-  const [isOverlayMounted, setIsOverlayMounted] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const reduceMotion = prefersReducedMotion();
-  const transitionMs = reduceMotion ? 0 : ZOOM_TRANSITION_MS;
-
-  const clearCloseTimer = useCallback(() => {
-    if (closeTimerRef.current !== null) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  }, []);
-
-  const lockSlot = useCallback(() => {
-    const slot = slotRef.current;
-    if (!slot) {
-      return;
-    }
-
-    const { width, height } = slot.getBoundingClientRect();
-    if (width > 0 && height > 0) {
-      setLockedBox({
-        height: Math.round(height),
-        width: Math.round(width),
-      });
-    }
-  }, []);
-
-  const unlockSlot = useCallback(() => {
-    setLockedBox(null);
-  }, []);
-
-  const finishClose = useCallback(() => {
-    clearCloseTimer();
-    zoomSessionRef.current += 1;
-    setIsOverlayMounted(false);
-    setIsExpanded(false);
-    setFlyImage(null);
-    setOverlaySrc(null);
-    unlockSlot();
-    document.documentElement.classList.remove("image-zoom-open");
-  }, [clearCloseTimer, unlockSlot]);
-
-  const loadHiResOverlay = useCallback((fly: FlyImage, session: number) => {
-    if (!fly.zoomSrc) {
-      return;
-    }
-
-    const hiRes = new Image();
-    const handleLoad = () => {
-      if (zoomSessionRef.current !== session) {
-        return;
-      }
-
-      setOverlaySrc(fly.zoomSrc ?? fly.src);
-    };
-    hiRes.addEventListener("load", handleLoad, { once: true });
-    hiRes.src = fly.zoomSrc;
-  }, []);
-
-  const open = useCallback(() => {
-    if (isDisabled || isOverlayMounted) {
-      return;
-    }
-
-    const slot = slotRef.current;
-    if (!slot) {
-      return;
-    }
-
-    const nextFlyImage = measureFlyImage(slot);
-    if (!nextFlyImage) {
-      return;
-    }
-
-    clearCloseTimer();
-    lockSlot();
-    const session = zoomSessionRef.current + 1;
-    zoomSessionRef.current = session;
-    setFlyImage(nextFlyImage);
-    setOverlaySrc(nextFlyImage.src);
-    setIsOverlayMounted(true);
-    setIsExpanded(reduceMotion);
-    document.documentElement.classList.add("image-zoom-open");
-    loadHiResOverlay(nextFlyImage, session);
-
-    onZoomChange?.(true);
-
-    if (!reduceMotion) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setIsExpanded(true));
-      });
-    }
-  }, [
-    clearCloseTimer,
-    isDisabled,
+  const {
+    close,
+    flyImage,
+    handleFlyTransitionEnd,
+    handleSlotClick,
+    isExpanded,
     isOverlayMounted,
-    lockSlot,
-    loadHiResOverlay,
-    onZoomChange,
-    reduceMotion,
-  ]);
-
-  const close = useCallback(() => {
-    if (!isOverlayMounted) {
-      return;
-    }
-
-    const slot = slotRef.current;
-    if (slot) {
-      const nextFlyImage = measureFlyImage(slot);
-      if (nextFlyImage) {
-        setFlyImage(nextFlyImage);
-      }
-    }
-
-    onZoomChange?.(false);
-
-    if (reduceMotion) {
-      finishClose();
-      return;
-    }
-
-    setIsExpanded(false);
-    clearCloseTimer();
-    closeTimerRef.current = setTimeout(finishClose, transitionMs + 50);
-  }, [
-    clearCloseTimer,
-    finishClose,
-    isOverlayMounted,
-    onZoomChange,
-    reduceMotion,
+    lockedBox,
+    overlaySrc,
+    prefetchZoomSrc,
+    slotRef,
     transitionMs,
-  ]);
-
-  const handleFlyTransitionEnd = useCallback(
-    (event: TransitionEvent<HTMLButtonElement>) => {
-      if (
-        event.propertyName !== "transform" ||
-        isExpanded ||
-        !isOverlayMounted
-      ) {
-        return;
-      }
-
-      clearCloseTimer();
-      finishClose();
-    },
-    [clearCloseTimer, finishClose, isExpanded, isOverlayMounted]
-  );
-
-  const handleSlotClick = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
-      if (isDisabled) {
-        return;
-      }
-
-      if ((event.target as HTMLElement).closest("img")) {
-        event.preventDefault();
-        open();
-      }
-    },
-    [isDisabled, open]
-  );
-
-  const handleSlotKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (isDisabled) {
-        return;
-      }
-
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        open();
-      }
-    },
-    [isDisabled, open]
-  );
-
-  const prefetchZoomSrc = useCallback(() => {
-    const img = slotRef.current?.querySelector("img");
-    if (!img) {
-      return;
-    }
-
-    const { zoomSrc } = img.dataset;
-    if (!zoomSrc || img.dataset.zoomPrefetched === "true") {
-      return;
-    }
-
-    const preload = new Image();
-    preload.src = zoomSrc;
-    img.dataset.zoomPrefetched = "true";
-  }, []);
-
-  useEffect(() => () => clearCloseTimer(), [clearCloseTimer]);
+  } = useImageZoom({ isDisabled, onZoomChange });
+  const [imageAlt, setImageAlt] = useState("Zoom image");
 
   useEffect(() => {
-    if (!isOverlayMounted) {
-      return;
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        close();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown, true);
-    return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [close, isOverlayMounted]);
-
-  const Inner = wrapElement;
-  const innerClassName = cn(
-    "block size-full min-h-0 [&_img]:cursor-zoom-in",
-    className
-  );
-
-  let slotSizeClass: string | null = null;
-  if (!lockedBox) {
-    slotSizeClass = aspectVideo ? "aspect-video w-full" : "size-full";
-  }
-
-  const slotClassName = cn(
-    "relative shrink-0 overflow-hidden",
-    slotSizeClass,
-    !isDisabled && "[&_img]:cursor-zoom-in"
-  );
-
-  const slotStyle = lockedBox
-    ? {
-        height: lockedBox.height,
-        maxHeight: lockedBox.height,
-        maxWidth: lockedBox.width,
-        minHeight: lockedBox.height,
-        minWidth: lockedBox.width,
-        width: lockedBox.width,
-      }
-    : undefined;
-
-  const flyStyle: CSSProperties | undefined = flyImage
-    ? {
-        cursor: "zoom-out",
-        height: flyImage.rect.height,
-        left: flyImage.rect.left,
-        overflow: "hidden",
-        position: "fixed",
-        top: flyImage.rect.top,
-        transform: isExpanded
-          ? getZoomTransform(flyImage.rect, zoomMargin)
-          : "translate(0, 0) scale(1)",
-        transformOrigin: "center center",
-        transition:
-          transitionMs > 0
-            ? `transform ${transitionMs}ms ${ZOOM_EASING}`
-            : undefined,
-        width: flyImage.rect.width,
-        zIndex: 51,
-      }
-    : undefined;
-
-  const overlay =
-    mounted && isOverlayMounted && flyImage
-      ? createPortal(
-          <>
-            <button
-              aria-label="Close image zoom"
-              className={cn(
-                "fixed inset-0 z-50 border-0 bg-background/80 p-0 backdrop-blur-md transition-opacity",
-                isExpanded ? "opacity-100" : "opacity-0",
-                backdropClassName
-              )}
-              onClick={close}
-              style={{
-                cursor: "zoom-out",
-                transitionDuration: `${transitionMs}ms`,
-              }}
-              type="button"
-            />
-            <button
-              aria-label="Close image zoom"
-              className="fixed z-[51] border-0 bg-transparent p-0"
-              onClick={close}
-              onTransitionEnd={handleFlyTransitionEnd}
-              style={flyStyle}
-              type="button"
-            >
-              <img
-                alt={flyImage.alt}
-                className={cn("pointer-events-none size-full select-none")}
-                draggable={false}
-                src={overlaySrc ?? flyImage.src}
-                style={{
-                  objectFit: flyImage.objectFit as CSSProperties["objectFit"],
-                  objectPosition: flyImage.objectPosition,
-                }}
-              />
-            </button>
-          </>,
-          document.body
-        )
-      : null;
+    const img = slotRef.current?.querySelector("img");
+    setImageAlt(img?.alt ? `Zoom ${img.alt}` : "Zoom image");
+  }, [children, slotRef]);
 
   return (
     <>
-      <div
-        className={slotClassName}
-        onClick={handleSlotClick}
-        onKeyDown={handleSlotKeyDown}
-        onMouseEnter={prefetchZoomSrc}
-        onFocus={prefetchZoomSrc}
-        ref={slotRef}
-        role="presentation"
-        style={slotStyle}
+      <ImageZoomSlot
+        aspectVideo={aspectVideo}
+        className={className}
+        handleSlotClick={handleSlotClick}
+        imageAlt={imageAlt}
+        isDisabled={isDisabled}
+        lockedBox={lockedBox}
+        prefetchZoomSrc={prefetchZoomSrc}
+        slotRef={slotRef}
+        wrapElement={wrapElement}
       >
-        <Inner className={innerClassName}>{children}</Inner>
-      </div>
-      {overlay}
+        {children}
+      </ImageZoomSlot>
+      {mounted && isOverlayMounted && flyImage ? (
+        <ImageZoomOverlay
+          backdropClassName={backdropClassName}
+          close={close}
+          flyImage={flyImage}
+          handleFlyTransitionEnd={handleFlyTransitionEnd}
+          isExpanded={isExpanded}
+          overlaySrc={overlaySrc}
+          transitionMs={transitionMs}
+          zoomMargin={zoomMargin}
+        />
+      ) : null}
     </>
   );
 };

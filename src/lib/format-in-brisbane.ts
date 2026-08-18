@@ -50,13 +50,6 @@ const dayOrdinal = (day: number): string => {
   }
 };
 
-const formatterNumericDMY = new Intl.DateTimeFormat("en-US", {
-  day: "2-digit",
-  month: "2-digit",
-  timeZone: BRISBANE_TIMEZONE,
-  year: "numeric",
-});
-
 const formatterShortMonthDay = new Intl.DateTimeFormat("en-US", {
   day: "2-digit",
   month: "short",
@@ -157,13 +150,6 @@ export const formatPublishedShortDayMonth =
   function formatPublishedShortDayMonth(isoDate: DateInput): string {
     return formatterShortMonthDay.format(coerceDate(isoDate));
   };
-
-/** e.g. 4/05/2025 in en-US locales (digits + slashes); used where site previously relied on numeric short style */
-export const formatPublishedNumericDMY = function formatPublishedNumericDMY(
-  isoDate: DateInput
-): string {
-  return formatterNumericDMY.format(coerceDate(isoDate));
-};
 
 /** e.g. "6 January 2025" */
 export const formatPublishedLongDate = function formatPublishedLongDate(
