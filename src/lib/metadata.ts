@@ -195,16 +195,15 @@ export const buildVideoPageMetadata = (
 ): PageMetadata => {
   const { title } = video;
   const description = video.description || `Watch ${title} on zacchary.me.`;
-  const { thumbnailUrl, videoUrl, youtubeId } = resolveVideoMedia(
-    video.playback_id
-  );
+  const { thumbnailUrl } = resolveVideoMedia(video.playback_id);
   const socialImage = {
     alt: title,
     height: 1080,
     url: thumbnailUrl,
     width: 1920,
   };
-  const metadata = createPageMetadata({
+
+  return createPageMetadata({
     description,
     image: socialImage,
     keywords: video.tags,
@@ -212,24 +211,4 @@ export const buildVideoPageMetadata = (
     path: `/video/${slug}`,
     title,
   });
-
-  return {
-    ...metadata,
-    openGraph: {
-      ...metadata.openGraph,
-      type: "video.other",
-      ...(youtubeId
-        ? {}
-        : {
-            videos: [
-              {
-                height: 1080,
-                type: "video/mp4",
-                url: videoUrl,
-                width: 1920,
-              },
-            ],
-          }),
-    },
-  };
 };
