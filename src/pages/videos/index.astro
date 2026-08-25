@@ -1,13 +1,9 @@
 ---
-export const prerender = false;
-
 import PasswordProtection from "@/components/password-protection";
 import Videos from "@/components/videos";
 import Layout from "@/layouts/layout.astro";
 import { compareDesc } from "date-fns";
-
 import { backLinkClassName } from "@/components/back-link";
-
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import { getVideos } from "@/lib/directus-content";
 import {
@@ -16,6 +12,8 @@ import {
   getVideoPassword,
   isVideoAuthTokenValid,
 } from "@/lib/video-auth";
+
+export const prerender = false;
 
 const {searchParams} = Astro.url;
 const cookie = Astro.cookies.get(getVideoAuthCookieName())?.value;

@@ -3,6 +3,7 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 
 import type { TimelineItem } from "@/interfaces/content-item";
 import { formatPublishedShortDayMonth } from "@/lib/format-in-brisbane";
+import { isNewPost, NEW_POST_TAG } from "@/lib/is-new-post";
 import { substringMatchInsensitive } from "@/lib/substring-match";
 
 import { Input } from "./ui/input";
@@ -34,17 +35,22 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
   const allTags = useMemo(() => {
     const seen = new Set<string>();
     const ordered: string[] = [];
+    let hasNewPost = false;
     for (const items of Object.values(postsByYear)) {
       for (const item of items) {
+        if (item.type === "Post" && isNewPost(item.date_created)) {
+          hasNewPost = true;
+        }
         for (const tag of item.tags) {
-          if (tag && !seen.has(tag)) {
+          if (tag && tag !== NEW_POST_TAG && !seen.has(tag)) {
             seen.add(tag);
             ordered.push(tag);
           }
         }
       }
     }
-    return ordered.toSorted();
+    const sorted = ordered.toSorted();
+    return hasNewPost ? [NEW_POST_TAG, ...sorted] : sorted;
   }, [postsByYear]);
 
   // Filter posts based on search query, selected tags, and notes toggle
@@ -56,7 +62,9 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
       const matchesSearch = substringMatchInsensitive(item.title, query);
       const matchesTags =
         selectedTagSingleton === undefined ||
-        new Set(item.tags).has(selectedTagSingleton);
+        (selectedTagSingleton === NEW_POST_TAG
+          ? item.type === "Post" && isNewPost(item.date_created)
+          : new Set(item.tags).has(selectedTagSingleton));
       const matchesNotesToggle = showNotes || item.type !== "Note";
       return matchesSearch && matchesTags && matchesNotesToggle;
     });
@@ -146,41 +154,55 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
             >
               <h2 className="w-[100px] py-3 text-muted-foreground">{year}</h2>
               <div className="flex w-full flex-col">
-                {yearItems.map((item: TimelineItem, index: number) =>
-                  item.type === "Note" ? (
-                    <article
-                      className={`flex w-full justify-between gap-8 py-3 transition-opacity duration-200 group-has-[a:hover]/list:opacity-50 group-has-[article:hover]/list:opacity-50 hover:!opacity-100 ${
-                        index === yearItems.length - 1
-                          ? ""
-                          : "border-b border-dotted border-border"
-                      }`}
-                      key={`note-${item.slug}-${item.date_created}`}
-                    >
-                      <div className="w-full space-y-2 bg-yellow-100 p-3 selection:bg-yellow-200 selection:text-yellow-600 dark:bg-yellow-900">
-                        <div className="flex justify-between text-sm text-yellow-600 dark:text-yellow-500">
-                          <p>Note</p>
-                          <p>
-                            {formatPublishedShortDayMonth(item.date_created)}
+                {yearItems.map((item: TimelineItem, index: number) => {
+                  const rowClassName = `flex w-full justify-between gap-8 py-3 transition-opacity duration-200 group-has-[a:hover]/list:opacity-50 group-has-[article:hover]/list:opacity-50 hover:!opacity-100 ${
+                    index === yearItems.length - 1
+                      ? ""
+                      : "border-b border-dotted border-border"
+                  }`;
+
+                  if (item.type === "Note") {
+                    return (
+                      <article
+                        className={rowClassName}
+                        key={`note-${item.slug}-${item.date_created}`}
+                      >
+                        <div className="w-full space-y-2 bg-yellow-100 p-3 selection:bg-yellow-200 selection:text-yellow-600 dark:bg-yellow-900">
+                          <div className="flex justify-between text-sm text-yellow-600 dark:text-yellow-500">
+                            <p>Note</p>
+                            <p>
+                              {formatPublishedShortDayMonth(item.date_created)}
+                            </p>
+                          </div>
+                          <p className="text-left text-yellow-950 dark:text-yellow-100">
+                            {item.content}
                           </p>
                         </div>
-                        <p className="text-left text-yellow-950 dark:text-yellow-100">
-                          {item.content}
-                        </p>
-                      </div>
-                    </article>
-                  ) : (
+                      </article>
+                    );
+                  }
+
+                  const isRecent = isNewPost(item.date_created);
+
+                  return (
                     <a
-                      aria-label={item.title}
-                      className={`flex w-full justify-between gap-8 py-3 transition-opacity duration-200 group-has-[a:hover]/list:opacity-50 group-has-[article:hover]/list:opacity-50 hover:!opacity-100 ${
-                        index === yearItems.length - 1
-                          ? ""
-                          : "border-b border-dotted border-border"
-                      }`}
+                      aria-label={
+                        isRecent ? `${NEW_POST_TAG}: ${item.title}` : item.title
+                      }
+                      className={rowClassName}
                       href={`/timeline/${item.slug}`}
                       key={`post-${item.slug}-${item.date_created}`}
                     >
-                      <div className="w-full">
-                        <p>{item.title}</p>
+                      <div className="flex min-w-0 w-full items-baseline gap-1">
+                        {isRecent && (
+                          <span
+                            aria-hidden="true"
+                            className="inline-flex shrink-0 bg-muted px-1 text-muted-foreground"
+                          >
+                            {NEW_POST_TAG}
+                          </span>
+                        )}
+                        <p className="min-w-0">{item.title}</p>
                       </div>
                       <div className="whitespace-nowrap text-muted-foreground">
                         <span>
@@ -188,8 +210,8 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                         </span>
                       </div>
                     </a>
-                  )
-                )}
+                  );
+                })}
               </div>
             </div>
           ))}
