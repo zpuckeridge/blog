@@ -1,7 +1,7 @@
 ---
 const timeZone = "Australia/Brisbane";
 
-const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
+const timePartsFormatter = new Intl.DateTimeFormat("en-AU", {
   dayPeriod: "short",
   hour: "numeric",
   hour12: true,
@@ -9,12 +9,20 @@ const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
   timeZone,
 });
 
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  day: "numeric",
-  month: "short",
+const dateFormatter = new Intl.DateTimeFormat("en-AU", {
+  day: "2-digit",
+  month: "2-digit",
   timeZone,
   year: "numeric",
 });
+
+const formatNumericDate = (date: Date) => {
+  const parts = dateFormatter.formatToParts(date);
+  const day = parts.find((part) => part.type === "day")?.value ?? "";
+  const month = parts.find((part) => part.type === "month")?.value ?? "";
+  const year = parts.find((part) => part.type === "year")?.value ?? "";
+  return `${day}/${month}/${year}`;
+};
 
 const getTimeParts = (date: Date) => {
   const parts = timePartsFormatter.formatToParts(date);
@@ -28,7 +36,7 @@ const getTimeParts = (date: Date) => {
 
 const now = new Date();
 const initialTime = getTimeParts(now);
-const initialDate = dateFormatter.format(now);
+const initialDate = formatNumericDate(now);
 const initialColonVisible = now.getSeconds() % 2 === 0;
 ---
 
@@ -62,7 +70,7 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 <script>
   const timeZone = "Australia/Brisbane";
 
-  const timePartsFormatter = new Intl.DateTimeFormat("en-US", {
+  const timePartsFormatter = new Intl.DateTimeFormat("en-AU", {
     dayPeriod: "short",
     hour: "numeric",
     hour12: true,
@@ -70,19 +78,27 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
     timeZone,
   });
 
-  const dateFormatter = new Intl.DateTimeFormat("en-US", {
-    day: "numeric",
-    month: "short",
+  const dateFormatter = new Intl.DateTimeFormat("en-AU", {
+    day: "2-digit",
+    month: "2-digit",
     timeZone,
     year: "numeric",
   });
 
+  const formatNumericDate = (date) => {
+    const parts = dateFormatter.formatToParts(date);
+    const day = parts.find((part) => part.type === "day")?.value ?? "";
+    const month = parts.find((part) => part.type === "month")?.value ?? "";
+    const year = parts.find((part) => part.type === "year")?.value ?? "";
+    return `${day}/${month}/${year}`;
+  };
+
   const absoluteFormatter = (zone, withZoneName = false) =>
-    new Intl.DateTimeFormat(undefined, {
-      day: "numeric",
+    new Intl.DateTimeFormat("en-AU", {
+      day: "2-digit",
       hour: "numeric",
       minute: "2-digit",
-      month: "short",
+      month: "2-digit",
       timeZone: zone,
       ...(withZoneName ? { timeZoneName: "short" } : {}),
       year: "numeric",
@@ -187,7 +203,7 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 
         hourEl.textContent = hour;
         minuteEl.textContent = minute;
-        dateEl.textContent = dateFormatter.format(current);
+        dateEl.textContent = formatNumericDate(current);
 
         const periodEl = ensurePeriodEl();
         periodEl.textContent = dayPeriod ? ` ${dayPeriod}` : "";

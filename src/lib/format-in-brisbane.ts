@@ -1,18 +1,19 @@
 /** Canonical timezone for authored dates so SSR and browser produce identical formatted strings. */
 const BRISBANE_TIMEZONE = "Australia/Brisbane";
+const AU_LOCALE = "en-AU";
 
 export type DateInput = string | Date | number;
 
 const coerceDate = (value: DateInput): Date =>
   value instanceof Date ? value : new Date(value);
 
-const formatterMonthYear = new Intl.DateTimeFormat("en-US", {
+const formatterMonthYear = new Intl.DateTimeFormat(AU_LOCALE, {
   month: "long",
   timeZone: BRISBANE_TIMEZONE,
   year: "numeric",
 });
 
-const formatterFullWeekday = new Intl.DateTimeFormat("en-US", {
+const formatterFullWeekday = new Intl.DateTimeFormat(AU_LOCALE, {
   day: "2-digit",
   month: "long",
   timeZone: BRISBANE_TIMEZONE,
@@ -20,7 +21,7 @@ const formatterFullWeekday = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
-const formatterArticleDateParts = new Intl.DateTimeFormat("en-GB", {
+const formatterArticleDateParts = new Intl.DateTimeFormat(AU_LOCALE, {
   day: "numeric",
   month: "long",
   timeZone: BRISBANE_TIMEZONE,
@@ -50,42 +51,48 @@ const dayOrdinal = (day: number): string => {
   }
 };
 
-const formatterShortMonthDay = new Intl.DateTimeFormat("en-US", {
+const formatterShortMonthDay = new Intl.DateTimeFormat(AU_LOCALE, {
   day: "2-digit",
   month: "short",
   timeZone: BRISBANE_TIMEZONE,
 });
 
-const formatterLongFull = new Intl.DateTimeFormat("en-US", {
+const formatterLongFull = new Intl.DateTimeFormat(AU_LOCALE, {
   day: "numeric",
   month: "long",
   timeZone: BRISBANE_TIMEZONE,
   year: "numeric",
 });
 
-const formatterDdMmYyParts = new Intl.DateTimeFormat("en-US", {
+const formatterDdMmYyParts = new Intl.DateTimeFormat(AU_LOCALE, {
   day: "2-digit",
   month: "2-digit",
   timeZone: BRISBANE_TIMEZONE,
   year: "numeric",
 });
 
-const yearNumericBrisbane = new Intl.DateTimeFormat("en-US", {
+const yearNumericBrisbane = new Intl.DateTimeFormat(AU_LOCALE, {
   timeZone: BRISBANE_TIMEZONE,
   year: "numeric",
 });
 
+const formatParts = (
+  formatter: Intl.DateTimeFormat,
+  isoDate: DateInput
+): Partial<Record<Intl.DateTimeFormatPartTypes, string>> => {
+  const map: Partial<Record<Intl.DateTimeFormatPartTypes, string>> = {};
+  for (const part of formatter.formatToParts(coerceDate(isoDate))) {
+    if (part.type !== "literal") {
+      map[part.type] = part.value;
+    }
+  }
+  return map;
+};
+
 const tzDayMonthYear = (
   isoDate: DateInput
 ): { day: string; month: string; year: string } => {
-  const date = coerceDate(isoDate);
-  const parts = formatterDdMmYyParts.formatToParts(date);
-  const map: Partial<Record<Intl.DateTimeFormatPartTypes, string>> = {};
-  for (const p of parts) {
-    if (p.type !== "literal") {
-      map[p.type] = p.value;
-    }
-  }
+  const map = formatParts(formatterDdMmYyParts, isoDate);
   return {
     day: map.day ?? "01",
     month: map.month ?? "01",
@@ -114,25 +121,28 @@ export const formatPublishedMonthYear = function formatPublishedMonthYear(
   return formatterMonthYear.format(coerceDate(isoDate));
 };
 
-/** e.g. "Monday, October 06, 2025" style from en-US weekday + parts */
+/** e.g. "Monday, 06 October 2025" */
 export const formatPublishedFullWeekday = function formatPublishedFullWeekday(
   isoDate: DateInput
 ): string {
-  return formatterFullWeekday.format(coerceDate(isoDate));
+  const map = formatParts(formatterFullWeekday, isoDate);
+  const weekday = map.weekday ?? "";
+  const day = map.day ?? "";
+  const month = map.month ?? "";
+  const year = map.year ?? "";
+
+  if (!weekday || !day || !month || !year) {
+    return formatterFullWeekday.format(coerceDate(isoDate));
+  }
+
+  return `${weekday}, ${day} ${month} ${year}`;
 };
 
 /** e.g. "Wednesday 14th July 2026" */
 export const formatPublishedArticleDate = function formatPublishedArticleDate(
   isoDate: DateInput
 ): string {
-  const parts = formatterArticleDateParts.formatToParts(coerceDate(isoDate));
-  const map: Partial<Record<Intl.DateTimeFormatPartTypes, string>> = {};
-  for (const part of parts) {
-    if (part.type !== "literal") {
-      map[part.type] = part.value;
-    }
-  }
-
+  const map = formatParts(formatterArticleDateParts, isoDate);
   const day = Number(map.day);
   const weekday = map.weekday ?? "";
   const month = map.month ?? "";
@@ -148,25 +158,32 @@ export const formatPublishedArticleDate = function formatPublishedArticleDate(
 /** e.g. "05 Jan" */
 export const formatPublishedShortDayMonth =
   function formatPublishedShortDayMonth(isoDate: DateInput): string {
-    return formatterShortMonthDay.format(coerceDate(isoDate));
+    const map = formatParts(formatterShortMonthDay, isoDate);
+    const day = map.day ?? "";
+    const month = map.month ?? "";
+    return `${day} ${month}`.trim();
   };
 
 /** e.g. "6 January 2025" */
 export const formatPublishedLongDate = function formatPublishedLongDate(
   isoDate: DateInput
 ): string {
-  return formatterLongFull.format(coerceDate(isoDate));
+  const map = formatParts(formatterLongFull, isoDate);
+  const day = map.day ?? "";
+  const month = map.month ?? "";
+  const year = map.year ?? "";
+  return `${day} ${month} ${year}`.trim();
 };
 
-/** Brisbane calendar day/month/year digits with dashes — stable across runtimes */
+/** Brisbane calendar day/month/year as DD/MM/YYYY — stable across runtimes */
 export const formatDdMmYy = function formatDdMmYy(isoDate: DateInput): string {
   const { day, month, year } = tzDayMonthYear(isoDate);
-  return `${day}-${month}-${year}`;
+  return `${day}/${month}/${year}`;
 };
 
 export const formatDdMm = function formatDdMm(isoDate: DateInput): string {
   const { day, month } = tzDayMonthYear(isoDate);
-  return `${day}-${month}`;
+  return `${day}/${month}`;
 };
 
 /**

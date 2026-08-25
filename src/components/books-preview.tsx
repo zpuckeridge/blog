@@ -94,9 +94,7 @@ const BooksPreview = ({ books }: { books: Book[] }) => {
                           Published
                         </p>
                         <p className="text-sm">
-                          {book.published instanceof Date
-                            ? book.published.toLocaleDateString()
-                            : book.published}
+                          {formatDdMmYy(book.published)}
                         </p>
                       </div>
                     )}

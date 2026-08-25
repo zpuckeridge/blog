@@ -43,7 +43,7 @@ const fetcher = async (url: string) => {
     }
     if (response.status === 429) {
       const resetTime = data.resetTime
-        ? new Date(data.resetTime).toLocaleString()
+        ? new Date(data.resetTime).toLocaleString("en-AU")
         : "soon";
       throw new Error(`GitHub API rate limit exceeded. Resets at ${resetTime}`);
     }

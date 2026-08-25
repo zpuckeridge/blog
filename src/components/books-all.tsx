@@ -16,7 +16,11 @@ import {
   expandableListYearHeaderClassName,
   expandableListYearPageClassName,
 } from "@/lib/expandable-list";
-import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
+import {
+  calendarYearInBrisbane,
+  formatDdMm,
+  formatDdMmYy,
+} from "@/lib/format-in-brisbane";
 
 const BooksAll = ({ books }: { books: Book[] }) => {
   // Group books by year
@@ -123,9 +127,7 @@ const BooksAll = ({ books }: { books: Book[] }) => {
                                 Published
                               </p>
                               <p className="text-sm">
-                                {book.published instanceof Date
-                                  ? book.published.toLocaleDateString()
-                                  : book.published}
+                                {formatDdMmYy(book.published)}
                               </p>
                             </div>
                           )}

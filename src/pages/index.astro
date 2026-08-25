@@ -9,6 +9,7 @@ import LanyardStatus from "@/components/lanyard-status.astro";
 import LocationStatus from "@/components/location-status.astro";
 import LinkWithIcon from "@/components/link-with-icon.astro";
 import ToggleTheme from "@/components/toggle-theme.astro";
+import { formatDdMmYy } from "@/lib/format-in-brisbane";
 import { isNewPost, NEW_POST_TAG } from "@/lib/is-new-post";
 import { createPageMetadata } from "@/lib/metadata";
 import { getPosts, getProjects } from "@/lib/directus-content";
@@ -238,14 +239,7 @@ const fullTitle = homepageTitle;
                         <p class="min-w-0 line-clamp-1">{post.title}</p>
                       </div>
                       <p class="text-muted-foreground">
-                        {new Date(post.date_created).toLocaleDateString(
-                          undefined,
-                          {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                          }
-                        )}
+                        {formatDdMmYy(post.date_created)}
                       </p>
                     </a>
                   );
