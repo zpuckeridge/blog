@@ -6,14 +6,19 @@ import { isLikelyBot } from "@/lib/is-likely-bot";
 /** Idle fallback so first-page views still fire if the browser stays busy. */
 const IDLE_FALLBACK_MS = 1500;
 
+interface PostHogClientProps {
+  apiHost: string;
+  apiKey: string;
+}
+
 /**
- * Production must set PUBLIC_POSTHOG_KEY and PUBLIC_POSTHOG_HOST
- * (see .env.example). Never log those values.
+ * Key and host must be passed as props. Reading an empty
+ * `import.meta.env.PUBLIC_POSTHOG_KEY` at build time lets Vite dead-code
+ * eliminate `posthog.init`.
  */
-const PostHogClient = () => {
+const PostHogClient = ({ apiHost, apiKey }: PostHogClientProps) => {
   useEffect(() => {
-    const key = import.meta.env.PUBLIC_POSTHOG_KEY ?? "";
-    if (!key || isLikelyBot()) {
+    if (!apiKey || isLikelyBot()) {
       return;
     }
 
@@ -29,9 +34,9 @@ const PostHogClient = () => {
       try {
         const { posthog } = await import("posthog-js");
         if (!disposed) {
-          posthog.init(key, {
-            api_host: import.meta.env.PUBLIC_POSTHOG_HOST,
-            defaults: "2025-11-30",
+          posthog.init(apiKey, {
+            api_host: apiHost,
+            defaults: "2026-01-30",
           });
         }
       } catch (error) {
@@ -47,7 +52,7 @@ const PostHogClient = () => {
       disposed = true;
       idle.cancel();
     };
-  }, []);
+  }, [apiHost, apiKey]);
 
   return null;
 };

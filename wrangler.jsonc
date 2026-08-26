@@ -28,6 +28,11 @@
     },
   ],
 
+  "vars": {
+    "PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com",
+    "PUBLIC_POSTHOG_KEY": "phc_rGomIwYYw8WCXt3qHwnevbXKMtSXtM78xxbMfOdCXdy",
+  },
+
   "placement": {
     "mode": "smart",
   },

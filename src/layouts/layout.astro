@@ -2,10 +2,12 @@
 import "@/styles/globals.css";
 
 import Navigation from "@/components/navigation";
+import PostHogClient from "@/components/posthog-client";
 import BaseHead from "@/components/seo/base-head.astro";
 import JsonLd from "@/components/seo/json-ld.astro";
-import PostHogClient from "@/components/posthog-client";
 import type { PageMetadata } from "@/lib/metadata";
+import { resolvePosthogClientConfig } from "@/lib/posthog-config";
+import { workersEnv } from "@/lib/workers-env";
 
 interface Props {
   canonicalUrl?: string;
@@ -15,6 +17,19 @@ interface Props {
 }
 
 const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
+
+const posthog = resolvePosthogClientConfig({
+  NEXT_PUBLIC_POSTHOG_HOST:
+    import.meta.env.NEXT_PUBLIC_POSTHOG_HOST ??
+    workersEnv.NEXT_PUBLIC_POSTHOG_HOST,
+  NEXT_PUBLIC_POSTHOG_KEY:
+    import.meta.env.NEXT_PUBLIC_POSTHOG_KEY ??
+    workersEnv.NEXT_PUBLIC_POSTHOG_KEY,
+  PUBLIC_POSTHOG_HOST:
+    import.meta.env.PUBLIC_POSTHOG_HOST ?? workersEnv.PUBLIC_POSTHOG_HOST,
+  PUBLIC_POSTHOG_KEY:
+    import.meta.env.PUBLIC_POSTHOG_KEY ?? workersEnv.PUBLIC_POSTHOG_KEY,
+});
 ---
 
 <!doctype html>
@@ -61,6 +76,12 @@ const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
         <slot />
       </main>
     </div>
-    <PostHogClient client:idle />
+    {posthog ? (
+      <PostHogClient
+        apiHost={posthog.apiHost}
+        apiKey={posthog.apiKey}
+        client:idle
+      />
+    ) : null}
   </body>
 </html>

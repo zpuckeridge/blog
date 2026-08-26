@@ -88,3 +88,5 @@ npx wrangler deploy
 ```
 
 Set secrets and vars in the Cloudflare dashboard. You can also use `wrangler secret put`.
+
+`PUBLIC_POSTHOG_KEY` is a public project token. It must be available as a Worker var (see `wrangler.jsonc`) so the SSR layout can pass it into the client island. An empty build-time key used to tree-shake PostHog out of the bundle.
