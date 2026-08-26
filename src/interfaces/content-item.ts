@@ -11,6 +11,8 @@ export interface Post {
   tags: string[];
   content: string;
   signature: boolean;
+  /** Missing or undefined when Directus has not added the field yet. */
+  work_in_progress?: boolean;
 }
 
 export interface Note {
