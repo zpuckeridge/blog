@@ -43,40 +43,58 @@ const TimelinePost = ({ post, slug }: TimelinePostProps) => {
       <div className="mx-auto flex max-w-lg flex-col gap-4 px-6">
         <div className="flex flex-col gap-y-20 text-sm">
           <div className="space-y-10">
-            <div className="space-y-0.5">
-              <h1 className="font-redaction text-black text-xl dark:text-white">
-                {post.title}
-              </h1>
-              <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
-                <div className="w-full text-muted-foreground text-sm">
-                  {formatPublishedArticleDate(post.date_created)}
+            <div className="space-y-4">
+              {(isOldPost(post.date_created) ||
+                post.work_in_progress === true) && (
+                <div className="space-y-2 border border-dotted border-border px-3 py-2">
+                  {isOldPost(post.date_created) && (
+                    <p className="text-muted-foreground text-sm">
+                      This article is old. Some of my views may have changed.
+                    </p>
+                  )}
+                  {post.work_in_progress === true && (
+                    <p className="text-muted-foreground text-sm">
+                      This article is a work in progress. I have not fully
+                      worked these ideas through yet.
+                    </p>
+                  )}
                 </div>
-                <div className="flex items-center gap-3">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger
-                        aria-describedby="post-details-desc"
-                        aria-label="Post details"
-                        className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-                      >
-                        <RxDotsHorizontal />
-                      </TooltipTrigger>
-                      <TooltipContent
-                        className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
-                        side="bottom"
-                      >
-                        <span className="inline-flex items-center gap-2">
-                          <span>{post.tags.join(", ")}</span>
-                          <span aria-hidden="true">•</span>
-                          <span>{readingTime} minute read</span>
-                        </span>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                  <span className="sr-only" id="post-details-desc">
-                    {post.tags.join(", ")}. {readingTime} minute read.
-                  </span>
-                  <CopyLink />
+              )}
+              <div className="space-y-0.5">
+                <h1 className="font-redaction text-black text-xl dark:text-white">
+                  {post.title}
+                </h1>
+                <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
+                  <div className="w-full text-muted-foreground text-sm">
+                    {formatPublishedArticleDate(post.date_created)}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger
+                          aria-describedby="post-details-desc"
+                          aria-label="Post details"
+                          className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                        >
+                          <RxDotsHorizontal />
+                        </TooltipTrigger>
+                        <TooltipContent
+                          className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
+                          side="bottom"
+                        >
+                          <span className="inline-flex items-center gap-2">
+                            <span>{post.tags.join(", ")}</span>
+                            <span aria-hidden="true">•</span>
+                            <span>{readingTime} minute read</span>
+                          </span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <span className="sr-only" id="post-details-desc">
+                      {post.tags.join(", ")}. {readingTime} minute read.
+                    </span>
+                    <CopyLink />
+                  </div>
                 </div>
               </div>
             </div>
@@ -105,23 +123,9 @@ const TimelinePost = ({ post, slug }: TimelinePostProps) => {
 
             <TableOfContents />
 
-            <div className="space-y-4">
-              {isOldPost(post.date_created) && (
-                <p className="text-muted-foreground text-sm">
-                  I wrote this more than two years ago. Some of these views may
-                  have changed.
-                </p>
-              )}
-              {post.work_in_progress === true && (
-                <p className="text-muted-foreground text-sm">
-                  This article is a work in progress. I have not fully worked
-                  these ideas through yet.
-                </p>
-              )}
-              <article className="prose dark:prose-invert prose-img:mx-auto prose-headings:mt-6 prose-headings:-mb-2 prose-img:aspect-video prose-img:w-full prose-pre:w-full prose-table:w-full w-full max-w-none prose-pre:max-w-full prose-table:max-w-full prose-pre:overflow-x-auto prose-table:overflow-x-auto prose-code:whitespace-normal prose-blockquote:text-balance prose-code:wrap-break-word prose-img: prose-hr:border-border prose-hr:border-dotted prose-blockquote:border-none prose-img:object-cover prose-a:font-normal prose-blockquote:font-medium prose-blockquote:font-redaction prose-headings:font-medium prose-headings:font-redaction prose-li:font-normal prose-a:text-black prose-a:no-underline prose-blockquote:text-black prose-headings:text-black prose-headings:text-lg prose-li:text-black prose-li:text-sm prose-ol:text-black prose-p:text-black prose-p:text-sm prose-ul:text-black prose-blockquote:not-italic prose-p:leading-relaxed prose-headings:tracking-tight prose-li:marker:font-normal prose-li:marker:text-muted-foreground prose-li:marker:text-sm prose-ol:marker:text-black dark:prose-a:text-neutral-300 dark:prose-blockquote:text-neutral-300 dark:prose-headings:text-white dark:prose-li:text-neutral-300 dark:prose-ol:text-neutral-300 dark:prose-p:text-neutral-300 dark:prose-ul:text-neutral-300 dark:prose-ol:marker:text-neutral-300 [&_blockquote_p]:text-2xl">
-                <MdxContent source={post.content} />
-              </article>
-            </div>
+            <article className="prose dark:prose-invert prose-img:mx-auto prose-headings:mt-6 prose-headings:-mb-2 prose-img:aspect-video prose-img:w-full prose-pre:w-full prose-table:w-full w-full max-w-none prose-pre:max-w-full prose-table:max-w-full prose-pre:overflow-x-auto prose-table:overflow-x-auto prose-code:whitespace-normal prose-blockquote:text-balance prose-code:wrap-break-word prose-img: prose-hr:border-border prose-hr:border-dotted prose-blockquote:border-none prose-img:object-cover prose-a:font-normal prose-blockquote:font-medium prose-blockquote:font-redaction prose-headings:font-medium prose-headings:font-redaction prose-li:font-normal prose-a:text-black prose-a:no-underline prose-blockquote:text-black prose-headings:text-black prose-headings:text-lg prose-li:text-black prose-li:text-sm prose-ol:text-black prose-p:text-black prose-p:text-sm prose-ul:text-black prose-blockquote:not-italic prose-p:leading-relaxed prose-headings:tracking-tight prose-li:marker:font-normal prose-li:marker:text-muted-foreground prose-li:marker:text-sm prose-ol:marker:text-black dark:prose-a:text-neutral-300 dark:prose-blockquote:text-neutral-300 dark:prose-headings:text-white dark:prose-li:text-neutral-300 dark:prose-ol:text-neutral-300 dark:prose-p:text-neutral-300 dark:prose-ul:text-neutral-300 dark:prose-ol:marker:text-neutral-300 [&_blockquote_p]:text-2xl">
+              <MdxContent source={post.content} />
+            </article>
 
             <div className="space-y-10">
               {post.signature && (
