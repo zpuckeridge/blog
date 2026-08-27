@@ -7,17 +7,17 @@ interface DefinitionProps {
 }
 
 const Definition: FC<DefinitionProps> = ({ word, meaning, type }) => (
-  <dl className="space-y-4 border bg-neutral-50 p-3 text-black text-sm dark:bg-neutral-900 dark:text-neutral-300">
-    <div className="flex items-center gap-1">
-      <dt className="text-sm">{word}</dt>
+  <dl className="not-prose border bg-neutral-50 p-3 text-black text-sm dark:bg-neutral-900 dark:text-neutral-300">
+    <dt className="font-medium">
+      {word}
       {type ? (
-        <dd className="m-0 text-muted-foreground text-sm italic">
+        <span className="font-normal text-muted-foreground italic">
           <span aria-hidden="true"> · </span>
           {type}
-        </dd>
+        </span>
       ) : null}
-    </div>
-    <dd className="m-0 text-sm">{meaning}</dd>
+    </dt>
+    <dd className="mt-3">{meaning}</dd>
   </dl>
 );
 

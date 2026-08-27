@@ -12,6 +12,13 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const coerceTime = (value: DateInput): number =>
   value instanceof Date ? value.getTime() : new Date(value).getTime();
 
+const OLD_POST_DISCLAIMER_EXEMPT_TAGS = new Set(["ai", "technical"]);
+
+const hasExemptTag = (tags: string[] | undefined): boolean =>
+  (tags ?? []).some((tag) =>
+    OLD_POST_DISCLAIMER_EXEMPT_TAGS.has(tag.toLowerCase())
+  );
+
 /**
  * True when `dateCreated` is at least `OLD_POST_MIN_AGE_DAYS` in the past.
  * Pass `now` in tests so the window stays deterministic.
@@ -30,3 +37,9 @@ export const isOldPost = function isOldPost(
   const ageMs = nowMs - published;
   return ageMs >= OLD_POST_MIN_AGE_DAYS * MS_PER_DAY;
 };
+
+/** Old-post disclaimer is skipped for AI and Technical articles. */
+export const shouldShowOldPostDisclaimer = (post: {
+  date_created: DateInput;
+  tags?: string[];
+}): boolean => isOldPost(post.date_created) && !hasExemptTag(post.tags);

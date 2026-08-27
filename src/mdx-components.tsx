@@ -87,7 +87,7 @@ const components: MDXComponents = {
   pre: ({ children, ...props }) => (
     <pre
       {...props}
-      className="overflow-auto border bg-neutral-50 p-6 font-mono text-black text-sm dark:bg-neutral-900 dark:text-neutral-300"
+      className="overflow-x-auto whitespace-pre border bg-neutral-50 p-6 font-mono text-black text-sm dark:bg-neutral-900 dark:text-neutral-300 [&_code]:whitespace-pre [&_code]:break-normal [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit"
     >
       {children}
     </pre>
