@@ -22,6 +22,7 @@ import {
   formatPublishedArticleDate,
   formatPublishedLongDate,
 } from "@/lib/format-in-brisbane";
+import { isOldPost } from "@/lib/is-old-post";
 
 const WORD_SPLIT_REGEX = /\s+/u;
 
@@ -42,40 +43,58 @@ const TimelinePost = ({ post, slug }: TimelinePostProps) => {
       <div className="mx-auto flex max-w-lg flex-col gap-4 px-6">
         <div className="flex flex-col gap-y-20 text-sm">
           <div className="space-y-10">
-            <div className="space-y-0.5">
-              <h1 className="font-redaction text-black text-xl dark:text-white">
-                {post.title}
-              </h1>
-              <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
-                <div className="w-full text-muted-foreground text-sm">
-                  {formatPublishedArticleDate(post.date_created)}
+            <div className="space-y-4">
+              {(isOldPost(post.date_created) ||
+                post.work_in_progress === true) && (
+                <div className="space-y-2 border border-dotted border-border px-3 py-2">
+                  {isOldPost(post.date_created) && (
+                    <p className="text-muted-foreground text-sm">
+                      This article is old. Some of my views may have changed.
+                    </p>
+                  )}
+                  {post.work_in_progress === true && (
+                    <p className="text-muted-foreground text-sm">
+                      This article is a work in progress. I have not fully
+                      worked these ideas through yet.
+                    </p>
+                  )}
                 </div>
-                <div className="flex items-center gap-3">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger
-                        aria-describedby="post-details-desc"
-                        aria-label="Post details"
-                        className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-                      >
-                        <RxDotsHorizontal />
-                      </TooltipTrigger>
-                      <TooltipContent
-                        className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
-                        side="bottom"
-                      >
-                        <span className="inline-flex items-center gap-2">
-                          <span>{post.tags.join(", ")}</span>
-                          <span aria-hidden="true">•</span>
-                          <span>{readingTime} minute read</span>
-                        </span>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                  <span className="sr-only" id="post-details-desc">
-                    {post.tags.join(", ")}. {readingTime} minute read.
-                  </span>
-                  <CopyLink />
+              )}
+              <div className="space-y-0.5">
+                <h1 className="font-redaction text-black text-xl dark:text-white">
+                  {post.title}
+                </h1>
+                <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
+                  <div className="w-full text-muted-foreground text-sm">
+                    {formatPublishedArticleDate(post.date_created)}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger
+                          aria-describedby="post-details-desc"
+                          aria-label="Post details"
+                          className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                        >
+                          <RxDotsHorizontal />
+                        </TooltipTrigger>
+                        <TooltipContent
+                          className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
+                          side="bottom"
+                        >
+                          <span className="inline-flex items-center gap-2">
+                            <span>{post.tags.join(", ")}</span>
+                            <span aria-hidden="true">•</span>
+                            <span>{readingTime} minute read</span>
+                          </span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <span className="sr-only" id="post-details-desc">
+                      {post.tags.join(", ")}. {readingTime} minute read.
+                    </span>
+                    <CopyLink />
+                  </div>
                 </div>
               </div>
             </div>

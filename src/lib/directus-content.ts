@@ -17,6 +17,26 @@ interface CacheEntry<T> {
   value: Promise<T>;
 }
 
+const POST_FIELDS = [
+  "id",
+  "status",
+  "date_created",
+  "date_updated",
+  "title",
+  "slug",
+  "image",
+  "image_alt",
+  "description",
+  "tags",
+  "content",
+  "signature",
+  "work_in_progress",
+] as const;
+
+const POST_FIELDS_WITHOUT_WIP = POST_FIELDS.filter(
+  (field) => field !== "work_in_progress"
+);
+
 const CONTENT_CACHE_TTL_MS = 1000 * 60 * 5;
 const contentCache =
   (
@@ -93,37 +113,62 @@ const extractDirectusError = (
   };
 };
 
+const isUnknownWorkInProgressFieldError = (error: unknown): boolean => {
+  const extracted = extractDirectusError(error);
+  const text =
+    `${extracted.message} ${JSON.stringify(extracted.details ?? "")}`.toLowerCase();
+
+  return (
+    text.includes("work_in_progress") ||
+    text.includes("does not exist") ||
+    text.includes("invalid field") ||
+    text.includes("unknown field") ||
+    text.includes("don't have permission to access field")
+  );
+};
+
+const requestPublishedPosts = async (query: {
+  filter: {
+    slug?: { _eq: string };
+    status: { _eq: "published" };
+  };
+  limit?: number;
+}): Promise<Post[]> => {
+  try {
+    return (await directus.request(
+      readItems("posts", {
+        fields: [...POST_FIELDS],
+        ...query,
+      })
+    )) as Post[];
+  } catch (error) {
+    if (!isUnknownWorkInProgressFieldError(error)) {
+      throw error;
+    }
+
+    // Directus rejects unknown fields. Retry without the toggle until it exists.
+    return (await directus.request(
+      readItems("posts", {
+        fields: [...POST_FIELDS_WITHOUT_WIP],
+        ...query,
+      })
+    )) as Post[];
+  }
+};
+
 /**
  * Retrieve all published posts from Directus
  */
 export const getPosts = (): Promise<Post[]> =>
   withContentCache("posts", async () => {
     try {
-      const posts = await directus.request(
-        readItems("posts", {
-          fields: [
-            "id",
-            "status",
-            "date_created",
-            "date_updated",
-            "title",
-            "slug",
-            "image",
-            "image_alt",
-            "description",
-            "tags",
-            "content",
-            "signature",
-          ],
-          filter: {
-            status: {
-              _eq: "published",
-            },
+      return await requestPublishedPosts({
+        filter: {
+          status: {
+            _eq: "published",
           },
-        })
-      );
-
-      return posts as Post[];
+        },
+      });
     } catch (error) {
       console.error("Error fetching posts:", error);
       return [];
@@ -136,33 +181,17 @@ export const getPosts = (): Promise<Post[]> =>
 export const getPostBySlug = (slug: string): Promise<Post | null> =>
   withContentCache(`post:${slug}`, async () => {
     try {
-      const posts = await directus.request(
-        readItems("posts", {
-          fields: [
-            "id",
-            "status",
-            "date_created",
-            "date_updated",
-            "title",
-            "slug",
-            "image",
-            "image_alt",
-            "description",
-            "tags",
-            "content",
-            "signature",
-          ],
-          filter: {
-            slug: {
-              _eq: slug,
-            },
-            status: {
-              _eq: "published",
-            },
+      const posts = await requestPublishedPosts({
+        filter: {
+          slug: {
+            _eq: slug,
           },
-          limit: 1,
-        })
-      );
+          status: {
+            _eq: "published",
+          },
+        },
+        limit: 1,
+      });
 
       return posts.length > 0 ? (posts[0] as Post) : null;
     } catch {
