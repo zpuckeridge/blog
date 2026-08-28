@@ -37,6 +37,21 @@ const POST_FIELDS_WITHOUT_WIP = POST_FIELDS.filter(
   (field) => field !== "work_in_progress"
 );
 
+const NOTE_FIELDS = [
+  "id",
+  "status",
+  "date_created",
+  "date_updated",
+  "content",
+  "tags",
+  "is_x",
+  "x_url",
+] as const;
+
+const NOTE_FIELDS_WITHOUT_X = NOTE_FIELDS.filter(
+  (field) => field !== "is_x" && field !== "x_url"
+);
+
 const CONTENT_CACHE_TTL_MS = 1000 * 60 * 5;
 const contentCache =
   (
@@ -113,13 +128,16 @@ const extractDirectusError = (
   };
 };
 
-const isUnknownWorkInProgressFieldError = (error: unknown): boolean => {
+const isUnknownDirectusFieldError = (
+  error: unknown,
+  fieldNames: readonly string[]
+): boolean => {
   const extracted = extractDirectusError(error);
   const text =
     `${extracted.message} ${JSON.stringify(extracted.details ?? "")}`.toLowerCase();
 
   return (
-    text.includes("work_in_progress") ||
+    fieldNames.some((field) => text.includes(field.toLowerCase())) ||
     text.includes("does not exist") ||
     text.includes("invalid field") ||
     text.includes("unknown field") ||
@@ -142,7 +160,7 @@ const requestPublishedPosts = async (query: {
       })
     )) as Post[];
   } catch (error) {
-    if (!isUnknownWorkInProgressFieldError(error)) {
+    if (!isUnknownDirectusFieldError(error, ["work_in_progress"])) {
       throw error;
     }
 
@@ -199,31 +217,44 @@ export const getPostBySlug = (slug: string): Promise<Post | null> =>
     }
   });
 
+const requestPublishedNotes = async (): Promise<Note[]> => {
+  try {
+    return (await directus.request(
+      readItems("notes", {
+        fields: [...NOTE_FIELDS],
+        filter: {
+          status: {
+            _eq: "published",
+          },
+        },
+      })
+    )) as Note[];
+  } catch (error) {
+    if (!isUnknownDirectusFieldError(error, ["is_x", "x_url"])) {
+      throw error;
+    }
+
+    // Directus rejects unknown fields. Retry without X fields until they exist.
+    return (await directus.request(
+      readItems("notes", {
+        fields: [...NOTE_FIELDS_WITHOUT_X],
+        filter: {
+          status: {
+            _eq: "published",
+          },
+        },
+      })
+    )) as Note[];
+  }
+};
+
 /**
  * Retrieve all published notes from Directus
  */
 export const getNotes = (): Promise<Note[]> =>
   withContentCache("notes", async () => {
     try {
-      const notes = await directus.request(
-        readItems("notes", {
-          fields: [
-            "id",
-            "status",
-            "date_created",
-            "date_updated",
-            "content",
-            "tags",
-          ],
-          filter: {
-            status: {
-              _eq: "published",
-            },
-          },
-        })
-      );
-
-      return notes as Note[];
+      return await requestPublishedNotes();
     } catch (error) {
       const errorDetails = extractDirectusError(error);
       console.error("Error fetching notes:", {

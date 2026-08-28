@@ -4,6 +4,7 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 import type { TimelineItem } from "@/interfaces/content-item";
 import { formatPublishedShortDayMonth } from "@/lib/format-in-brisbane";
 import { isNewPost, NEW_POST_TAG } from "@/lib/is-new-post";
+import { resolveSafeHref } from "@/lib/safe-href";
 import { substringMatchInsensitive } from "@/lib/substring-match";
 
 import { Input } from "./ui/input";
@@ -16,6 +17,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string[]>([]);
   const [showNotes, setShowNotes] = useState(true);
+  const [showX, setShowX] = useState(true);
 
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value),
@@ -53,20 +55,25 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
     return hasNewPost ? [NEW_POST_TAG, ...sorted] : sorted;
   }, [postsByYear]);
 
-  // Filter posts based on search query, selected tags, and notes toggle
+  // Filter posts based on search query, selected tags, and notes/X toggles
   const filteredPostsByYear: Record<string, TimelineItem[]> = {};
   const query = searchQuery.toLowerCase();
   const [selectedTagSingleton] = selectedTag;
   for (const [year, items] of Object.entries(postsByYear)) {
     const filteredItems = items.filter((item) => {
-      const matchesSearch = substringMatchInsensitive(item.title, query);
+      const matchesSearch =
+        substringMatchInsensitive(item.title, query) ||
+        (item.type === "X" && substringMatchInsensitive(item.content, query));
       const matchesTags =
         selectedTagSingleton === undefined ||
         (selectedTagSingleton === NEW_POST_TAG
           ? item.type === "Post" && isNewPost(item.date_created)
           : new Set(item.tags).has(selectedTagSingleton));
       const matchesNotesToggle = showNotes || item.type !== "Note";
-      return matchesSearch && matchesTags && matchesNotesToggle;
+      const matchesXToggle = showX || item.type !== "X";
+      return (
+        matchesSearch && matchesTags && matchesNotesToggle && matchesXToggle
+      );
     });
 
     if (filteredItems.length > 0) {
@@ -93,7 +100,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
           </label>
 
           <Input
-            className="-me-px flex-1 pe-32 text-black text-sm shadow-none dark:text-neutral-300"
+            className="-me-px flex-1 pe-48 text-black text-sm shadow-none dark:text-neutral-300"
             id="timeline-search"
             name="q"
             onChange={handleSearchChange}
@@ -112,6 +119,16 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
               type="button"
             >
               Toggle Notes
+            </button>
+            <button
+              aria-pressed={showX}
+              className={`inline-flex px-1 text-sm bg-muted hover:bg-muted/80 ${
+                showX ? "text-muted-foreground" : "text-foreground"
+              }`}
+              onClick={() => setShowX((prev) => !prev)}
+              type="button"
+            >
+              Toggle X
             </button>
             <div className="flex h-full w-9 items-center justify-center text-muted-foreground">
               <RxMagnifyingGlass />
@@ -160,6 +177,56 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                       ? ""
                       : "border-b border-dotted border-border"
                   }`;
+
+                  if (item.type === "X") {
+                    const safeXHref = item.x_url
+                      ? resolveSafeHref(item.x_url)
+                      : null;
+                    const xRow = (
+                      <>
+                        <div className="flex min-w-0 w-full items-baseline gap-1">
+                          <span
+                            aria-hidden="true"
+                            className="inline-flex shrink-0 bg-muted px-1 text-muted-foreground"
+                          >
+                            X
+                          </span>
+                          <p className="min-w-0 line-clamp-3 whitespace-pre-wrap">
+                            {item.content}
+                          </p>
+                        </div>
+                        <div className="whitespace-nowrap text-muted-foreground">
+                          <span>
+                            {formatPublishedShortDayMonth(item.date_created)}
+                          </span>
+                        </div>
+                      </>
+                    );
+
+                    if (safeXHref) {
+                      return (
+                        <a
+                          aria-label={`X post (opens in a new tab): ${item.title}`}
+                          className={rowClassName}
+                          href={safeXHref.href}
+                          key={`x-${item.slug}-${item.date_created}`}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          {xRow}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <article
+                        className={rowClassName}
+                        key={`x-${item.slug}-${item.date_created}`}
+                      >
+                        {xRow}
+                      </article>
+                    );
+                  }
 
                   if (item.type === "Note") {
                     return (

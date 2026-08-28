@@ -16,21 +16,25 @@ const TimelinePage = ({ allPosts, allNotes }: TimelinePageProps) => {
       id: post.slug || `${post.date_created}-${post.title}`,
       type: "Post" as const,
     })),
-    ...allNotes.map((note) => ({
-      ...note,
-      content: note.content,
-      description:
-        note.content.slice(0, 200) + (note.content.length > 200 ? "..." : ""),
-      id: `note-${note.id}`,
-      image: "",
-      image_alt: "",
-      signature: false,
-      slug: `note-${note.id}`,
-      tags: note.tags || [],
-      title:
-        note.content.slice(0, 100) + (note.content.length > 100 ? "..." : ""),
-      type: "Note" as const,
-    })),
+    ...allNotes.map((note) => {
+      const isX = note.is_x === true;
+      return {
+        ...note,
+        content: note.content,
+        description:
+          note.content.slice(0, 200) + (note.content.length > 200 ? "..." : ""),
+        id: `note-${note.id}`,
+        image: "",
+        image_alt: "",
+        signature: false,
+        slug: `note-${note.id}`,
+        tags: note.tags || [],
+        title:
+          note.content.slice(0, 100) + (note.content.length > 100 ? "..." : ""),
+        type: isX ? ("X" as const) : ("Note" as const),
+        x_url: isX ? (note.x_url ?? null) : undefined,
+      };
+    }),
   ];
 
   const sortedContent = allContent.toSorted((a, b) =>

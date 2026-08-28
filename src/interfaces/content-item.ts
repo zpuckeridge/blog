@@ -22,11 +22,16 @@ export interface Note {
   date_updated: Date;
   content: string;
   tags: string[];
+  /** Missing or undefined when Directus has not added the field yet. */
+  is_x?: boolean;
+  /** Canonical https://x.com/... URL. Null or missing when not an X post. */
+  x_url?: string | null;
 }
 
 export interface TimelineItem extends Omit<Post, "id"> {
   id: string;
-  type: "Post" | "Note";
+  type: "Post" | "Note" | "X";
+  x_url?: string | null;
 }
 
 export interface Video {
