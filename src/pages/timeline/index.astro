@@ -1,19 +1,36 @@
 ---
+import PasswordProtection from "@/components/password-protection";
 import TimelinePage from "@/components/timeline-page";
 import Layout from "@/layouts/layout.astro";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import { getNotes, getPosts } from "@/lib/directus-content";
+import {
+  getVideoAccessErrorMessage,
+  getVideoAuthCookieName,
+  getVideoPassword,
+  isVideoAuthTokenValid,
+} from "@/lib/video-auth";
 
-const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);
+export const prerender = false;
+
+const { searchParams } = Astro.url;
+const cookie = Astro.cookies.get(getVideoAuthCookieName())?.value;
+const videoPassword = getVideoPassword();
+const isAuthenticated = await isVideoAuthTokenValid(cookie, videoPassword);
 
 const pageMeta = createPageMetadata({
   description:
     "Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life.",
+  noIndex: true,
   path: "/timeline",
   title: "Timeline",
 });
 
 const fullTitle = formatPageTitle("Timeline");
+
+const [allPosts, allNotes] = isAuthenticated
+  ? await Promise.all([getPosts(), getNotes()])
+  : [[], []];
 ---
 
 <Layout
@@ -21,5 +38,17 @@ const fullTitle = formatPageTitle("Timeline");
   fullTitle={fullTitle}
   meta={pageMeta}
 >
-  <TimelinePage allNotes={allNotes} allPosts={allPosts} client:idle />
+  {
+    !isAuthenticated ? (
+      <PasswordProtection
+        description="Welcome to my personal corner of the internet. Here you'll find posts about my faith, technology I'm interested in, random notes, code snippets and other things happening in my life."
+        error={getVideoAccessErrorMessage(searchParams.get("error"))}
+        isConfigured={Boolean(videoPassword)}
+        redirectTo="/timeline"
+        title="Timeline"
+      />
+    ) : (
+      <TimelinePage allNotes={allNotes} allPosts={allPosts} client:idle />
+    )
+  }
 </Layout>

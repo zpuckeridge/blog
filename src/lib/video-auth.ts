@@ -57,7 +57,12 @@ export const normalizeVideoRedirect = (redirectTo?: string | null): string => {
     return "/videos";
   }
 
-  if (redirectTo === "/videos" || redirectTo.startsWith("/video/")) {
+  if (
+    redirectTo === "/videos" ||
+    redirectTo.startsWith("/video/") ||
+    redirectTo === "/timeline" ||
+    redirectTo.startsWith("/timeline/")
+  ) {
     return redirectTo;
   }
 

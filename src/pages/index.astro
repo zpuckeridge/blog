@@ -9,10 +9,8 @@ import LanyardStatus from "@/components/lanyard-status.astro";
 import LocationStatus from "@/components/location-status.astro";
 import LinkWithIcon from "@/components/link-with-icon.astro";
 import ToggleTheme from "@/components/toggle-theme.astro";
-import { formatDdMmYy } from "@/lib/format-in-brisbane";
-import { isNewPost, NEW_POST_TAG } from "@/lib/is-new-post";
 import { createPageMetadata } from "@/lib/metadata";
-import { getPosts, getProjects } from "@/lib/directus-content";
+import { getProjects } from "@/lib/directus-content";
 import {
   fetchGitHubContributions,
   getCachedGitHubContributions,
@@ -21,15 +19,10 @@ import {
 import { getServerLocationStatus } from "@/lib/location-status";
 import type { ContributionDay } from "@/lib/github-contributions";
 
-const [posts, projects, initialLocation] = await Promise.all([
-  getPosts(),
+const [projects, initialLocation] = await Promise.all([
   getProjects(),
   getServerLocationStatus(),
 ]);
-const sortedPosts = posts.toSorted(
-  (a, b) =>
-    new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
-);
 const sortedProjects = projects.toSorted((a, b) => {
   if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
     return -1;
@@ -82,7 +75,7 @@ const currentYear = new Date().getFullYear();
 const homepageTitle =
   "Zacchary Puckeridge — Web developer and writer, Brisbane";
 const homepageDescription =
-  "Web developer and writer in Brisbane. IT Operations Lead at Star Compass and Haddon Institute; also runs obambulo studio. Read the latest on the timeline.";
+  "Web developer and writer in Brisbane. IT Operations Lead at Star Compass and Haddon Institute; also runs obambulo studio.";
 
 const pageMeta = createPageMetadata({
   description: homepageDescription,
@@ -208,54 +201,6 @@ const fullTitle = homepageTitle;
         </div>
 
         <div class="min-w-0 space-y-10 border-t border-dotted border-border pt-10">
-          <div class="min-w-0 space-y-2">
-            <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
-              <div class="w-20 shrink-0">
-                <h2 class="text-muted-foreground text-sm font-normal">Timeline</h2>
-              </div>
-
-              <div class="flex min-w-0 w-full flex-col gap-1">
-                {sortedPosts.slice(0, 4).map((post) => {
-                  const isRecent = isNewPost(post.date_created);
-                  return (
-                    <a
-                      aria-label={
-                        isRecent
-                          ? `${NEW_POST_TAG}: ${post.title}`
-                          : post.title
-                      }
-                      class="flex min-w-0 justify-between gap-4 px-1 hover:bg-muted"
-                      href={`/timeline/${post.slug}`}
-                    >
-                      <div class="flex min-w-0 items-baseline gap-1">
-                        {isRecent && (
-                          <span
-                            aria-hidden="true"
-                            class="inline-flex shrink-0 bg-muted px-1 text-muted-foreground"
-                          >
-                            {NEW_POST_TAG}
-                          </span>
-                        )}
-                        <p class="min-w-0 line-clamp-1">{post.title}</p>
-                      </div>
-                      <p class="text-muted-foreground">
-                        {formatDdMmYy(post.date_created)}
-                      </p>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-            <div class="flex justify-end">
-              <a
-                class="text-sm text-muted-foreground px-1 hover:bg-muted"
-                href="/timeline"
-              >
-                See all {sortedPosts.length} timeline posts
-              </a>
-            </div>
-          </div>
-
           <div class="min-w-0 space-y-2">
             <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
               <div class="w-20 shrink-0">

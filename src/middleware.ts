@@ -1,8 +1,10 @@
 import { defineMiddleware } from "astro:middleware";
 
-const isVideoPath = (pathname: string): boolean =>
+const isProtectedPath = (pathname: string): boolean =>
   pathname === "/videos" ||
   pathname.startsWith("/video/") ||
+  pathname === "/timeline" ||
+  pathname.startsWith("/timeline/") ||
   pathname === "/api/video-auth";
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -16,7 +18,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
    */
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
 
-  if (isVideoPath(context.url.pathname)) {
+  if (isProtectedPath(context.url.pathname)) {
     headers.set("Cache-Control", "private, no-store");
     headers.set("Vary", "Cookie");
   }
