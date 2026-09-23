@@ -94,3 +94,25 @@ export interface Project {
   year_completed: number;
   tags: string[];
 }
+
+export type UseCategory =
+  | "communication"
+  | "office"
+  | "programming"
+  | "tools"
+  | "vehicles"
+  | "everyday_carry";
+
+export interface UseItem {
+  id: number;
+  status: string;
+  date_created: Date;
+  date_updated: Date;
+  category: UseCategory;
+  /** Missing or undefined when Directus has not added the field yet. */
+  category_sort?: number;
+  /** Missing or undefined when Directus has not added the field yet. */
+  sort?: number;
+  title: string;
+  description: string;
+}

@@ -42,7 +42,7 @@ Set these values in `.env.local`:
 
 ## 🚩 Features
 
-- **Directus CMS** - Posts, notes, videos, projects, books, movies, credits
+- **Directus CMS** - Posts, notes, videos, projects, books, movies, credits, uses
 - **MDX content** - Side notes, inline definitions, footnotes, Tweet embeds
 - **PostHog analytics**
 - **Live activity feed** - Anonymous, city-level pageview stream retained for 24 hours
@@ -80,7 +80,8 @@ After deploy, a Cloudflare cron job samples Discord presence (Lanyard REST) and 
 - `/video/[slug]` - Individual video (Mux)
 - `/projects` - Project list
 
-- `/about` - About, uses, books, movies, credits
+- `/about` - About, books, movies, credits
+- `/uses` - Tools, hardware, and services (Directus)
 - `/cv` - Resume
 - `/colophon` - Tech stack and credits
 - `/imprint` - Legal
@@ -95,7 +96,7 @@ user agents, referrers, or query strings.
 - Article search
 - Public statistics (for example Page Speed Insights)
 - Improved syntax highlighting
-- Setup/resources section (uses, apps, typefaces via Directus)
+- Setup/resources section (apps, typefaces via Directus)
 - Spotify Now Playing widget
 
 ## Deploy (Cloudflare Workers)

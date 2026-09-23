@@ -7,6 +7,7 @@ import type {
   Note,
   Post,
   Project,
+  UseItem,
   Video,
 } from "@/interfaces/content-item";
 
@@ -53,12 +54,24 @@ const contentCache =
 
 const withContentCache = <T>(
   key: string,
-  fetcher: () => Promise<T>
+  fetcher: () => Promise<T>,
+  options?: { shouldCache?: (value: T) => boolean }
 ): Promise<T> => {
   const now = Date.now();
   const cached = contentCache.get(key);
   if (cached && cached.expiresAt > now) {
-    return cached.value as Promise<T>;
+    const cachedValue = cached.value as Promise<T>;
+    if (!options?.shouldCache) {
+      return cachedValue;
+    }
+
+    return cachedValue.then((result) => {
+      if (options.shouldCache!(result)) {
+        return result;
+      }
+      contentCache.delete(key);
+      return withContentCache(key, fetcher, options);
+    });
   }
 
   const value = (async () => {
@@ -69,6 +82,19 @@ const withContentCache = <T>(
       throw error;
     }
   })();
+
+  if (options?.shouldCache) {
+    return value.then((result) => {
+      if (options.shouldCache!(result)) {
+        contentCache.set(key, {
+          expiresAt: Date.now() + CONTENT_CACHE_TTL_MS,
+          value: Promise.resolve(result),
+        });
+      }
+      return result;
+    });
+  }
+
   contentCache.set(key, {
     expiresAt: now + CONTENT_CACHE_TTL_MS,
     value,
@@ -412,6 +438,89 @@ export const getCredits = (): Promise<Credit[]> =>
       return [];
     }
   });
+
+/**
+ * Retrieve all published projects from Directus
+ */
+const USE_FIELDS = [
+  "id",
+  "status",
+  "date_created",
+  "date_updated",
+  "category",
+  "category_sort",
+  "sort",
+  "title",
+  "description",
+] as const;
+
+const USE_FIELDS_WITHOUT_SORT = USE_FIELDS.filter(
+  (field) => field !== "category_sort" && field !== "sort"
+);
+
+const isUnknownUsesSortFieldError = (error: unknown): boolean => {
+  const extracted = extractDirectusError(error);
+  const text =
+    `${extracted.message} ${JSON.stringify(extracted.details ?? "")}`.toLowerCase();
+
+  return (
+    text.includes("category_sort") ||
+    text.includes("sort") ||
+    text.includes("does not exist") ||
+    text.includes("invalid field") ||
+    text.includes("unknown field") ||
+    text.includes("don't have permission to access field")
+  );
+};
+
+/**
+ * Retrieve all published uses items from Directus
+ */
+export const getUses = (): Promise<UseItem[]> =>
+  withContentCache(
+    "uses",
+    async () => {
+      try {
+        const uses = await directus.request(
+          readItems("uses", {
+            fields: [...USE_FIELDS],
+            filter: {
+              status: {
+                _eq: "published",
+              },
+            },
+            sort: ["category_sort", "sort"],
+          })
+        );
+
+        return uses as UseItem[];
+      } catch (error) {
+        if (!isUnknownUsesSortFieldError(error)) {
+          console.error("Error fetching uses:", error);
+          return [];
+        }
+
+        try {
+          const uses = await directus.request(
+            readItems("uses", {
+              fields: [...USE_FIELDS_WITHOUT_SORT],
+              filter: {
+                status: {
+                  _eq: "published",
+                },
+              },
+            })
+          );
+
+          return uses as UseItem[];
+        } catch (retryError) {
+          console.error("Error fetching uses:", retryError);
+          return [];
+        }
+      }
+    },
+    { shouldCache: (items) => items.length > 0 }
+  );
 
 /**
  * Retrieve all published projects from Directus

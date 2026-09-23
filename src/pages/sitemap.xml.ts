@@ -6,7 +6,7 @@ import { getSiteUrl } from "@/lib/site-url";
 const STATIC_ROUTES = [
   "",
   "/about",
-  "/about/uses",
+  "/uses",
   "/about/books",
   "/about/movies",
   "/about/credits",

@@ -22,7 +22,6 @@
     "@tailwindcss/typography": "^0.5.20",
     "@types/mdx": "^2.0.14",
     "clsx": "^2.1.1",
-    "cobe": "^2.0.1",
     "date-fns": "^4.4.0",
     "loops": "^7.3.0",
     "posthog-js": "^1.434.9",

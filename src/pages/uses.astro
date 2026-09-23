@@ -1,7 +1,12 @@
 ---
 import UsesPage from "@/components/uses-page";
 import Layout from "@/layouts/layout.astro";
+import { getUses } from "@/lib/directus-content";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { buildUsesSections } from "@/lib/uses-sections";
+
+const uses = await getUses();
+const sections = buildUsesSections(uses);
 
 const pageMeta = createPageMetadata({
   description: "A collection of tools, apps, and hardware I use every day.",
@@ -17,5 +22,5 @@ const fullTitle = formatPageTitle("Uses");
   fullTitle={fullTitle}
   meta={pageMeta}
 >
-  <UsesPage />
+  <UsesPage client:idle sections={sections} />
 </Layout>

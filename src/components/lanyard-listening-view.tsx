@@ -385,7 +385,7 @@ const LanyardListeningView = () => {
   ).slice(0, 10);
 
   return (
-    <div className="my-1 flex min-w-0 flex-col">
+    <div className="flex min-w-0 flex-col">
       {featured ? (
         <ListeningTrackState
           expanded={showRecents}

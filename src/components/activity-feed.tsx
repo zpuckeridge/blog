@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import useSWR from "swr";
 
-import ActivityGlobe from "@/components/activity-globe";
 import {
   clusterActivityEvents,
   formatActivityLocation,
@@ -268,10 +267,6 @@ const ActivityFeed = ({ initialEvents }: ActivityFeedProps) => {
 
         {feedContent}
       </section>
-
-      <aside>
-        <ActivityGlobe events={events} />
-      </aside>
     </div>
   );
 };
