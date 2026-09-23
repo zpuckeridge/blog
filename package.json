@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "portless run astro dev",
     "build": "astro build",
     "preview": "astro build && wrangler dev",
     "deploy": "astro build && wrangler deploy",
@@ -12,7 +12,7 @@
     "predeploy": "bun run check && bun run typecheck",
     "fix": "ultracite fix",
     "check": "bunx ultracite check && CI=1 bunx react-doctor --yes --verbose --lint --scope full && tsc --noEmit && knip",
-    "test": "bun test src/lib/status-history.test.ts"
+    "test": "bun test src/lib/status-history.test.ts src/lib/activity-feed.test.ts src/lib/activity-request.test.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -21,8 +21,8 @@
     "@mux/mux-player-react": "^3.13.4",
     "@tailwindcss/typography": "^0.5.20",
     "@types/mdx": "^2.0.14",
-    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cobe": "^2.0.1",
     "date-fns": "^4.4.0",
     "loops": "^7.3.0",
     "posthog-js": "^1.434.9",
@@ -49,6 +49,7 @@
     "oxfmt": "^0.70.0",
     "oxlint": "^1.85.0",
     "oxlint-plugin-react-doctor": "0.9.14",
+    "portless": "^0.15.6",
     "postcss": "^8.5.28",
     "react-doctor": "0.9.14",
     "tailwindcss": "^4.3.3",

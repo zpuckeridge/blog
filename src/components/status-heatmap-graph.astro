@@ -59,10 +59,28 @@ const hasAnyData = days.some((day) => day.hasData);
           </div>
         </>
       ) : (
-        <p class="text-muted-foreground text-sm">
-          No {metricLabel} history yet. Samples are recorded every five minutes
-          after deploy.
-        </p>
+        <div
+          class="relative overflow-hidden rounded-md border border-border border-dashed bg-muted/20 p-3"
+          role="status"
+        >
+          <div
+            aria-hidden="true"
+            class="flex justify-end gap-[4px] opacity-45"
+          >
+            {
+              Array.from({ length: 52 }, () => (
+                <div class="flex flex-col gap-[4px]">
+                  {Array.from({ length: 7 }, () => (
+                    <span class="h-[9px] w-[9px] bg-neutral-100 dark:bg-neutral-900" />
+                  ))}
+                </div>
+              ))
+            }
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center bg-popover/55">
+            <p class="text-sm">No {metricLabel} history yet</p>
+          </div>
+        </div>
       )
     }
   </div>

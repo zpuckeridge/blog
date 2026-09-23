@@ -9,8 +9,9 @@ import LanyardStatus from "@/components/lanyard-status.astro";
 import LocationStatus from "@/components/location-status.astro";
 import LinkWithIcon from "@/components/link-with-icon.astro";
 import ToggleTheme from "@/components/toggle-theme.astro";
+import { formatPublishedShortDayMonth } from "@/lib/format-in-brisbane";
 import { createPageMetadata } from "@/lib/metadata";
-import { getProjects } from "@/lib/directus-content";
+import { getPosts, getProjects } from "@/lib/directus-content";
 import {
   fetchGitHubContributions,
   getCachedGitHubContributions,
@@ -21,11 +22,18 @@ import { getServerStatusHistory } from "@/lib/status-history";
 import StatusHistoryGraphs from "@/components/status-history-graphs.astro";
 import type { ContributionDay } from "@/lib/github-contributions";
 
-const [projects, initialLocation, statusHistory] = await Promise.all([
+const [projects, posts, initialLocation, statusHistory] = await Promise.all([
   getProjects(),
+  getPosts(),
   getServerLocationStatus(),
   getServerStatusHistory(),
 ]);
+const sortedPosts = posts
+  .toSorted(
+    (a, b) =>
+      new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
+  )
+  .slice(0, 4);
 const sortedProjects = projects.toSorted((a, b) => {
   if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
     return -1;
@@ -254,6 +262,35 @@ const fullTitle = homepageTitle;
                 See all {projects.length} projects
               </a>
             </div>
+          </div>
+        </div>
+
+        <div class="min-w-0 space-y-2">
+          <div class="flex min-w-0 w-full flex-row items-baseline gap-4 text-sm leading-normal">
+            <div class="w-20 shrink-0">
+              <h2 class="text-muted-foreground text-sm font-normal">Articles</h2>
+            </div>
+            <div class="flex min-w-0 w-full flex-col gap-1">
+              {sortedPosts.map((post) => (
+                <a
+                  class="flex min-w-0 justify-between gap-4 px-1 hover:bg-muted"
+                  href={`/timeline/${post.slug}`}
+                >
+                  <span class="min-w-0 line-clamp-1">{post.title}</span>
+                  <span class="shrink-0 text-muted-foreground">
+                    {formatPublishedShortDayMonth(post.date_created)}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div class="flex justify-end">
+            <a
+              class="px-1 text-sm text-muted-foreground hover:bg-muted"
+              href="/timeline"
+            >
+              See all {posts.length} articles
+            </a>
           </div>
         </div>
 

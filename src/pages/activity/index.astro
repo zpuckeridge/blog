@@ -1,0 +1,33 @@
+---
+import ActivityFeed from "@/components/activity-feed";
+import Layout from "@/layouts/layout.astro";
+import { workersEnv } from "@/lib/workers-env";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import type { ActivityEvent } from "@/lib/activity-feed";
+
+export const prerender = false;
+
+const pageMeta = createPageMetadata({
+  description:
+    "A live, anonymous view of recent visits to Zacchary Puckeridge's website.",
+  noIndex: true,
+  path: "/activity",
+  title: "Activity",
+});
+
+const fullTitle = formatPageTitle("Activity");
+const activityStore = workersEnv.ACTIVITY_FEED_STORE;
+const initialEvents: ActivityEvent[] = activityStore
+  ? await activityStore.getByName("public").list()
+  : [];
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-4 px-6 pb-20">
+    <ActivityFeed client:load initialEvents={initialEvents} />
+  </div>
+</Layout>

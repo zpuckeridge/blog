@@ -107,7 +107,7 @@ const AboutPage = ({ books, movies, credits }: AboutPageProps) => (
             applications. Nowadays, I&apos;m all about web development, that
             software being - JavaScript, Astro, and TailwindCSS. A running list
             of the tools and hardware I use is on my{" "}
-            <LinkWithIcon href="/about/uses">Uses</LinkWithIcon> page.
+            <LinkWithIcon href="/uses">Uses</LinkWithIcon> page.
           </p>
         </div>
 

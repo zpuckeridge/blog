@@ -1,6 +1,7 @@
 ---
 import "@/styles/globals.css";
 
+import ActivityCapture from "@/components/activity-capture";
 import Navigation from "@/components/navigation";
 import PostHogClient from "@/components/posthog-client";
 import BaseHead from "@/components/seo/base-head.astro";
@@ -83,5 +84,6 @@ const posthog = resolvePosthogClientConfig({
         client:idle
       />
     ) : null}
+    <ActivityCapture client:idle />
   </body>
 </html>

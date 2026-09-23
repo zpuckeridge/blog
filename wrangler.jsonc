@@ -26,7 +26,20 @@
       "tag": "v2",
       "deleted_classes": ["DOQueueHandler"],
     },
+    {
+      "tag": "v3",
+      "new_sqlite_classes": ["ActivityFeedStore"],
+    },
   ],
+
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "ActivityFeedStore",
+        "name": "ACTIVITY_FEED_STORE",
+      },
+    ],
+  },
 
   "vars": {
     "PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com",

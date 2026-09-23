@@ -3,6 +3,8 @@ import { handle } from "@astrojs/cloudflare/handler";
 import { recordListeningRecent } from "@/lib/record-listening-recent";
 import { recordStatusSample } from "@/lib/status-history";
 
+export { ActivityFeedStore } from "@/lib/activity-feed-store";
+
 export default {
   fetch: handle,
 

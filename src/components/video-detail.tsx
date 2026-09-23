@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { RxDotsHorizontal } from "react-icons/rx";
 
 import BackLink from "@/components/back-link";
@@ -10,6 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import type { Video } from "@/interfaces/content-item";
+import { getActivityVisitorId } from "@/lib/activity-visitor";
 import {
   formatPublishedFullWeekday,
   formatPublishedMonthYear,
@@ -19,53 +21,80 @@ interface VideoDetailProps {
   video: Video;
 }
 
-const VideoDetail = ({ video }: VideoDetailProps) => (
-  <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">
-    <div className="flex flex-col gap-y-20 text-sm">
-      <div className="space-y-10">
-        <div className="space-y-2">
-          <h1 className="font-redaction text-black text-xl dark:text-white">
-            {video.title}
-          </h1>
+const VideoDetail = ({ video }: VideoDetailProps) => {
+  const hasTrackedWatch = useRef(false);
+  const trackWatch = () => {
+    if (hasTrackedWatch.current) {
+      return;
+    }
+    hasTrackedWatch.current = true;
 
-          <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
-            <div className="w-full text-muted-foreground text-sm">
-              {formatPublishedMonthYear(video.date_created)}
-            </div>
-            <div className="flex items-center gap-3">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger
-                    aria-describedby="video-details-desc"
-                    aria-label="Video details"
-                    className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-                  >
-                    <RxDotsHorizontal />
-                  </TooltipTrigger>
-                  <TooltipContent
-                    className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
-                    side="bottom"
-                  >
-                    {formatPublishedFullWeekday(video.date_created)} ·{" "}
-                    {video.tags.join(", ")}
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-              <span className="sr-only" id="video-details-desc">
-                {formatPublishedFullWeekday(video.date_created)}.{" "}
-                {video.tags.join(", ")}.
-              </span>
-              <CopyLink />
+    navigator.sendBeacon(
+      "/api/activity/watch",
+      new Blob(
+        [
+          JSON.stringify({
+            title: video.title,
+            visitorId: getActivityVisitorId(),
+          }),
+        ],
+        { type: "application/json" }
+      )
+    );
+  };
+
+  return (
+    <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">
+      <div className="flex flex-col gap-y-20 text-sm">
+        <div className="space-y-10">
+          <div className="space-y-2">
+            <h1 className="font-redaction text-black text-xl dark:text-white">
+              {video.title}
+            </h1>
+
+            <div className="flex w-full justify-between gap-3 text-muted-foreground text-sm">
+              <div className="w-full text-muted-foreground text-sm">
+                {formatPublishedMonthYear(video.date_created)}
+              </div>
+              <div className="flex items-center gap-3">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger
+                      aria-describedby="video-details-desc"
+                      aria-label="Video details"
+                      className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                    >
+                      <RxDotsHorizontal />
+                    </TooltipTrigger>
+                    <TooltipContent
+                      className="bg-muted text-foreground dark:bg-neutral-900 dark:text-muted-foreground"
+                      side="bottom"
+                    >
+                      {formatPublishedFullWeekday(video.date_created)} ·{" "}
+                      {video.tags.join(", ")}
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <span className="sr-only" id="video-details-desc">
+                  {formatPublishedFullWeekday(video.date_created)}.{" "}
+                  {video.tags.join(", ")}.
+                </span>
+                <CopyLink />
+              </div>
             </div>
           </div>
+
+          <Player
+            onPlay={trackWatch}
+            src={video.playback_id}
+            title={video.title}
+          />
         </div>
 
-        <Player src={video.playback_id} title={video.title} />
+        <BackLink href="/videos">../videos</BackLink>
       </div>
-
-      <BackLink href="/videos">../videos</BackLink>
     </div>
-  </div>
-);
+  );
+};
 
 export default VideoDetail;

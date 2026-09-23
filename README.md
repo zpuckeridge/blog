@@ -22,6 +22,9 @@ npm install
 npm run dev
 ```
 
+The development server is available at `https://blog.localhost` through
+Portless. To run Astro directly on its normal port, use `PORTLESS=0 npm run dev`.
+
 ### Environment variables
 
 Set these values in `.env.local`:
@@ -42,6 +45,7 @@ Set these values in `.env.local`:
 - **Directus CMS** - Posts, notes, videos, projects, books, movies, credits
 - **MDX content** - Side notes, inline definitions, footnotes, Tweet embeds
 - **PostHog analytics**
+- **Live activity feed** - Anonymous, city-level pageview stream retained for 24 hours
 - **Discord status** - Lanyard integration
 - **Status history heatmaps** - Work, home, and Discord online time (365-day graphs)
 - **Newsletter** - Loops integration
@@ -70,6 +74,7 @@ After deploy, a Cloudflare cron job samples Discord presence (Lanyard REST) and 
 
 - `/` - Home (timeline preview, projects, Discord status)
 - `/timeline` - All posts and notes
+- `/activity` - Live anonymous visitor activity
 - `/timeline/[slug]` - Individual post (MDX)
 - `/videos` - Video index
 - `/video/[slug]` - Individual video (Mux)
@@ -79,6 +84,10 @@ After deploy, a Cloudflare cron job samples Discord presence (Lanyard REST) and 
 - `/cv` - Resume
 - `/colophon` - Tech stack and credits
 - `/imprint` - Legal
+
+The activity feed stores only a sanitised page path, title, approximate city-level
+location, and timestamp. It does not store IP addresses, visitor identifiers,
+user agents, referrers, or query strings.
 
 ## 👀 Coming soon
 

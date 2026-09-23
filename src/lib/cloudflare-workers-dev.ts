@@ -1,3 +1,10 @@
+import { createActivityEvent, pruneActivityEvents } from "@/lib/activity-feed";
+import type { ActivityCaptureInput, ActivityEvent } from "@/lib/activity-feed";
+import type {
+  ActivityFeedStoreNamespace,
+  ActivityFeedStoreRpc,
+} from "@/lib/activity-feed-store";
+
 const devKvStore = new Map<string, string>();
 
 const createDevKv = (): NonNullable<Cloudflare.Env["LOCATION_KV"]> => ({
@@ -8,7 +15,45 @@ const createDevKv = (): NonNullable<Cloudflare.Env["LOCATION_KV"]> => ({
   },
 });
 
+const devActivityEvents: ActivityEvent[] = [];
+
+const devActivityStore: ActivityFeedStoreRpc = {
+  append: (
+    input: ActivityCaptureInput,
+    id: string,
+    visitorId?: string | null
+  ) => {
+    const event = createActivityEvent(input, id);
+    if (!event) {
+      return Promise.resolve(null);
+    }
+    if (!(visitorId ?? input.visitorId)) {
+      return Promise.resolve(null);
+    }
+    const existing = devActivityEvents.findIndex(
+      (existingEvent) => existingEvent.id === id
+    );
+    if (existing === -1) {
+      devActivityEvents.unshift(event);
+    } else {
+      devActivityEvents[existing] = event;
+    }
+    devActivityEvents.splice(
+      0,
+      devActivityEvents.length,
+      ...pruneActivityEvents(devActivityEvents)
+    );
+    return Promise.resolve(event);
+  },
+  list: () => Promise.resolve(pruneActivityEvents(devActivityEvents)),
+};
+
+const devActivityStoreNamespace: ActivityFeedStoreNamespace = {
+  getByName: (_name: string) => devActivityStore,
+};
+
 export const env: Cloudflare.Env = {
+  ACTIVITY_FEED_STORE: devActivityStoreNamespace,
   GITHUB_TOKEN: import.meta.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN,
   LOCATION_KV: createDevKv(),
   LOCATION_WEBHOOK_SECRET:

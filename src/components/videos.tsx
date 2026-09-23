@@ -200,7 +200,7 @@ const Videos = ({ videos, itemsPerPage }: VideosProps) => {
               <div className="aspect-video overflow-hidden transition-[filter] duration-200 group-hover:drop-shadow-2xl">
                 <SiteImage
                   alt={video.title}
-                  className="aspect-video transition-transform duration-200 group-hover:scale-110"
+                  className="aspect-video"
                   height={600}
                   priority={index === 0}
                   src={resolveVideoMedia(video.playback_id).thumbnailUrl}

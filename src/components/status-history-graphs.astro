@@ -9,28 +9,196 @@ interface Props {
 const { history } = Astro.props;
 ---
 
-<div class="flex min-w-0 flex-col gap-6">
-  <StatusHeatmapGraph
-    days={history.work}
-    metricLabel="at work"
-    title="At work"
-    yearSummaryLabel="at work"
-  />
-  <StatusHeatmapGraph
-    days={history.home}
-    metricLabel="at home"
-    title="At home"
-    yearSummaryLabel="at home"
-  />
-  <StatusHeatmapGraph
-    days={history.discord}
-    metricLabel="Discord online"
-    title="Discord online"
-    yearSummaryLabel="Discord online"
-  />
+<div class="flex min-w-0 flex-col gap-5">
+  <div
+    aria-hidden="true"
+    class="fixed z-50 w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 space-y-8 rounded-md border border-border bg-popover p-3 text-popover-foreground opacity-0 pointer-events-none transition-opacity duration-150 ease-out"
+    data-status-history-source="location"
+    hidden
+  >
+    <StatusHeatmapGraph
+      days={history.work}
+      metricLabel="at work"
+      title="At work"
+      yearSummaryLabel="at work"
+    />
+    <StatusHeatmapGraph
+      days={history.home}
+      metricLabel="at home"
+      title="At home"
+      yearSummaryLabel="at home"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    class="fixed z-50 w-[min(32rem,calc(100vw-2rem))] -translate-x-1/2 rounded-md border border-border bg-popover p-3 text-popover-foreground opacity-0 pointer-events-none transition-opacity duration-150 ease-out"
+    data-status-history-source="discord"
+    hidden
+  >
+    <StatusHeatmapGraph
+      days={history.discord}
+      metricLabel="Discord online"
+      title="Discord online"
+      yearSummaryLabel="Discord online"
+    />
+  </div>
 </div>
 
 <script>
+  const hideDelays = new Map();
+  const activeSources = new Map();
+  const sourceTriggers = new Map();
+
+  const positionSource = (source) => {
+    const target = document.querySelector(
+      `[data-status-history-source="${source}"]`
+    );
+    const trigger = sourceTriggers.get(source);
+    if (!(target instanceof HTMLElement) || !(trigger instanceof HTMLElement)) {
+      return;
+    }
+
+    const triggerRect = trigger.getBoundingClientRect();
+    target.style.left = `${triggerRect.left + triggerRect.width / 2}px`;
+    target.style.bottom = `${window.innerHeight - triggerRect.top + 8}px`;
+    target.style.top = "auto";
+  };
+
+  const setSourceVisibility = (source, visible) => {
+    const target = document.querySelector(
+      `[data-status-history-source="${source}"]`
+    );
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    target.hidden = false;
+    target.setAttribute("aria-hidden", String(!visible));
+    if (visible) {
+      target.classList.add("opacity-0", "pointer-events-auto");
+      target.classList.remove("opacity-100", "pointer-events-none");
+      requestAnimationFrame(() => {
+        if (activeSources.get(source)) {
+          target.classList.add("opacity-100");
+          target.classList.remove("opacity-0");
+        }
+      });
+    } else {
+      target.classList.add("opacity-0", "pointer-events-none");
+      target.classList.remove("opacity-100", "pointer-events-auto");
+    }
+  };
+
+  const cancelHide = (source) => {
+    const timeout = hideDelays.get(source);
+    if (timeout !== undefined) {
+      window.clearTimeout(timeout);
+      hideDelays.delete(source);
+    }
+  };
+
+  const showSource = (source) => {
+    cancelHide(source);
+    activeSources.set(source, true);
+    positionSource(source);
+    setSourceVisibility(source, true);
+  };
+
+  const scheduleHide = (source) => {
+    cancelHide(source);
+    hideDelays.set(
+      source,
+      window.setTimeout(() => {
+        hideDelays.delete(source);
+        if (!activeSources.get(source)) {
+          setSourceVisibility(source, false);
+        }
+      }, 120)
+    );
+  };
+
+  const setSourceActive = (source, active, trigger) => {
+    if (trigger instanceof HTMLElement) {
+      sourceTriggers.set(source, trigger);
+    }
+    activeSources.set(source, active);
+    if (active) {
+      showSource(source);
+    } else {
+      scheduleHide(source);
+    }
+  };
+
+  const bindSourceTrigger = (selector, source) => {
+    for (const trigger of document.querySelectorAll(selector)) {
+      if (
+        !(trigger instanceof HTMLElement) ||
+        trigger.dataset.statusHistoryTriggerReady === "true"
+      ) {
+        continue;
+      }
+
+      trigger.dataset.statusHistoryTriggerReady = "true";
+      trigger.addEventListener("pointerenter", () => {
+        setSourceActive(source, true, trigger);
+      });
+      trigger.addEventListener("pointerleave", () => {
+        setSourceActive(source, false);
+      });
+      trigger.addEventListener("focusin", () => {
+        setSourceActive(source, true, trigger);
+      });
+      trigger.addEventListener("focusout", (event) => {
+        if (!trigger.contains(event.relatedTarget)) {
+          setSourceActive(source, false);
+        }
+      });
+    }
+  };
+
+  const bindSourceGraph = (source) => {
+    const graph = document.querySelector(
+      `[data-status-history-source="${source}"]`
+    );
+    if (
+      !(graph instanceof HTMLElement) ||
+      graph.dataset.statusHistoryGraphReady === "true"
+    ) {
+      return;
+    }
+
+    graph.dataset.statusHistoryGraphReady = "true";
+    graph.addEventListener("pointerenter", () => {
+      setSourceActive(source, true);
+    });
+    graph.addEventListener("pointerleave", () => {
+      setSourceActive(source, false);
+    });
+    graph.addEventListener("focusin", () => {
+      setSourceActive(source, true);
+    });
+    graph.addEventListener("focusout", (event) => {
+      if (!graph.contains(event.relatedTarget)) {
+        setSourceActive(source, false);
+      }
+    });
+  };
+
+  const initStatusHistoryReveal = () => {
+    bindSourceTrigger("[data-location-status]", "location");
+    bindSourceTrigger("[data-lanyard-status]", "discord");
+    bindSourceGraph("location");
+    bindSourceGraph("discord");
+  };
+
+  const repositionVisibleSources = () => {
+    for (const source of activeSources.keys()) {
+      if (activeSources.get(source)) {
+        positionSource(source);
+      }
+    }
+  };
+
   const initStatusHeatmaps = () => {
     for (const graph of document.querySelectorAll("[data-status-heatmap]")) {
       if (!(graph instanceof HTMLElement) || graph.dataset.heatmapReady === "true") {
@@ -182,8 +350,14 @@ const { history } = Astro.props;
     }
   };
 
+  initStatusHistoryReveal();
   initStatusHeatmaps();
-  document.addEventListener("astro:page-load", initStatusHeatmaps);
+  window.addEventListener("resize", repositionVisibleSources);
+  window.addEventListener("scroll", repositionVisibleSources, { passive: true });
+  document.addEventListener("astro:page-load", () => {
+    initStatusHistoryReveal();
+    initStatusHeatmaps();
+  });
   document.addEventListener("astro:before-preparation", () => {
     document.querySelector("[data-status-heatmap-tooltip]")?.remove();
   });

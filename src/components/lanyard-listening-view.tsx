@@ -4,6 +4,7 @@ import { RxChevronDown } from "react-icons/rx";
 import useSWR from "swr";
 
 import { ImageZoom } from "@/components/zoom-image";
+import { getActivityVisitorId } from "@/lib/activity-visitor";
 import { isLikelyBot } from "@/lib/is-likely-bot";
 import { watchLanyardPresence } from "@/lib/lanyard-presence-hub";
 import {
@@ -60,11 +61,13 @@ const ListeningLink = ({
   className,
   href,
   label,
+  onClick,
   truncate = false,
 }: {
   className?: string;
   href: string | null;
   label: string;
+  onClick?: () => void;
   truncate?: boolean;
 }) => {
   const safeHref = href ? resolveSafeHref(href) : null;
@@ -80,7 +83,10 @@ const ListeningLink = ({
       <a
         className={linkClassName}
         href={safeHref.href}
-        onClick={stopRowToggle}
+        onClick={(event) => {
+          stopRowToggle(event);
+          onClick?.();
+        }}
         rel={safeHref.isExternal ? "noopener noreferrer" : undefined}
         target={safeHref.isExternal ? "_blank" : undefined}
       >
@@ -140,6 +146,7 @@ const ListeningTrackState = ({
   listenedAt,
   listening,
   now,
+  onTrackClick,
   onToggle,
 }: {
   expanded: boolean;
@@ -147,6 +154,7 @@ const ListeningTrackState = ({
   listenedAt?: number;
   listening: NowListening;
   now: number;
+  onTrackClick: () => void;
   onToggle: () => void;
 }) => (
   <div
@@ -189,6 +197,7 @@ const ListeningTrackState = ({
             className="text-inherit"
             href={listening.trackUrl}
             label={listening.track}
+            onClick={onTrackClick}
             truncate
           />
           <span
@@ -220,9 +229,11 @@ const ListeningTrackState = ({
 const RecentListenRow = ({
   listen,
   now,
+  onTrackClick,
 }: {
   listen: RecentListen;
   now: number;
+  onTrackClick: () => void;
 }) => (
   <li className={ROW_CLASS}>
     <ListeningArtwork listening={listen} />
@@ -238,6 +249,7 @@ const RecentListenRow = ({
           className="text-inherit"
           href={listen.trackUrl}
           label={listen.track}
+          onClick={onTrackClick}
           truncate
         />
         <span
@@ -286,6 +298,26 @@ const recordRecent = async (): Promise<RecentListen[] | null> => {
 };
 
 const RECENTS_KEY = "/api/listening/recents";
+
+const recordMusicClick = (
+  listen: Pick<NowListening, "artist" | "artistUrl" | "track" | "trackUrl">
+) => {
+  navigator.sendBeacon(
+    "/api/activity/listen",
+    new Blob(
+      [
+        JSON.stringify({
+          artist: listen.artist,
+          artistUrl: listen.artistUrl,
+          track: listen.track,
+          trackUrl: listen.trackUrl,
+          visitorId: getActivityVisitorId(),
+        }),
+      ],
+      { type: "application/json" }
+    )
+  );
+};
 
 const LanyardListeningView = () => {
   const [listening, setListening] = useState<NowListening | null>(null);
@@ -353,7 +385,7 @@ const LanyardListeningView = () => {
   ).slice(0, 10);
 
   return (
-    <div className="flex min-w-0 flex-col">
+    <div className="my-1 flex min-w-0 flex-col">
       {featured ? (
         <ListeningTrackState
           expanded={showRecents}
@@ -361,6 +393,7 @@ const LanyardListeningView = () => {
           listenedAt={listening ? undefined : mostRecent?.listenedAt}
           listening={featured}
           now={now}
+          onTrackClick={() => recordMusicClick(featured)}
           onToggle={() => setShowRecents((open) => !open)}
         />
       ) : (
@@ -386,6 +419,7 @@ const LanyardListeningView = () => {
                   key={`${listeningIdentity(listen)}-${listen.listenedAt}`}
                   listen={listen}
                   now={now}
+                  onTrackClick={() => recordMusicClick(listen)}
                 />
               ))}
             </ul>

@@ -207,7 +207,6 @@ export const buildVideoPageMetadata = (
     description,
     image: socialImage,
     keywords: video.tags,
-    noIndex: true,
     path: `/video/${slug}`,
     title,
   });
