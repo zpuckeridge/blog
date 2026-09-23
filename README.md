@@ -43,6 +43,7 @@ Set these values in `.env.local`:
 - **MDX content** - Side notes, inline definitions, footnotes, Tweet embeds
 - **PostHog analytics**
 - **Discord status** - Lanyard integration
+- **Status history heatmaps** - Work, home, and Discord online time (365-day graphs)
 - **Newsletter** - Loops integration
 - **Videos** - Mux player with optional password protection
 
@@ -54,6 +55,16 @@ Set these values in `.env.local`:
 - **Theme toggle** - Light/dark mode
 
 - **GitHub contributions** - Homepage graph
+
+### Status history heatmaps
+
+After deploy, a Cloudflare cron job samples Discord presence (Lanyard REST) and location (KV geofence snapshot) every **five minutes**. Data is stored in `LOCATION_KV` under `status:history:v1` and shown as three GitHub-style graphs on the homepage (at work, at home, Discord online).
+
+- **Discord online** counts `online`, `idle`, and `dnd`; `offline` is not counted.
+- **Work / home** minutes use the current geofence category when location is fresh (not stale). `transit` and `away` contribute to observed location time but not work or home totals.
+- **Day boundaries** use `Australia/Brisbane`, matching the rest of the site.
+- **Retention** is 365 days. Long gaps between samples are capped at 15 minutes so outages do not inflate history.
+- **No backfill** — history begins when this feature is deployed; earlier time cannot be reconstructed.
 
 ## 📁 Structure
 

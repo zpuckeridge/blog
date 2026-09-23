@@ -1,0 +1,69 @@
+---
+import { formatHeatmapMinutesLabel, getHoursHeatmapColor, summarizeHeatmap } from '@/lib/calendar-heatmap';
+import type { HeatmapDay } from '@/lib/calendar-heatmap';
+
+interface Props {
+  days: HeatmapDay[];
+  metricLabel: string;
+  title: string;
+  yearSummaryLabel: string;
+}
+
+const { days, metricLabel, title, yearSummaryLabel } = Astro.props;
+const { currentYear, formatDayLabel, todayIso, weeks, yearTotalMinutes } =
+  summarizeHeatmap(days, metricLabel);
+const firstDayDate = weeks.flat().find((day) => day !== null)?.date ?? null;
+const initialTabDate = todayIso || firstDayDate;
+const hasAnyData = days.some((day) => day.hasData);
+---
+
+<section
+  aria-label={`${title} history`}
+  class="w-full border-0 bg-transparent p-0 text-left"
+  data-status-heatmap
+>
+  <div class="space-y-2">
+    <h3 class="text-muted-foreground text-sm font-normal">{title}</h3>
+    {
+      hasAnyData ? (
+        <>
+          <div
+            class="flex justify-end gap-[4px] overflow-hidden"
+            data-status-heatmap-grid
+          >
+            {weeks.map((week) => (
+              <div class="flex flex-col gap-[4px]">
+                {week.map((day) =>
+                  day ? (
+                    <button
+                      aria-label={formatDayLabel(day)}
+                      class:list={[
+                        "contribution-day h-[9px] w-[9px]",
+                        getHoursHeatmapColor(day.value, day.hasData),
+                        day.date === todayIso && day.hasData && "contribution-day-today",
+                      ]}
+                      data-label={formatDayLabel(day)}
+                      data-status-heatmap-day
+                      tabindex={day.date === initialTabDate ? 0 : -1}
+                      type="button"
+                    />
+                  ) : (
+                    <div aria-hidden="true" class="h-[9px] w-[9px]" />
+                  )
+                )}
+              </div>
+            ))}
+          </div>
+          <div class="text-muted-foreground text-sm" data-status-heatmap-summary>
+            {`${formatHeatmapMinutesLabel(yearTotalMinutes)} ${yearSummaryLabel} in ${currentYear}`}
+          </div>
+        </>
+      ) : (
+        <p class="text-muted-foreground text-sm">
+          No {metricLabel} history yet. Samples are recorded every five minutes
+          after deploy.
+        </p>
+      )
+    }
+  </div>
+</section>

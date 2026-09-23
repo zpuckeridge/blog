@@ -1,0 +1,190 @@
+---
+import StatusHeatmapGraph from "@/components/status-heatmap-graph.astro";
+import type { StatusHistoryPublic } from "@/lib/status-history";
+
+interface Props {
+  history: StatusHistoryPublic;
+}
+
+const { history } = Astro.props;
+---
+
+<div class="flex min-w-0 flex-col gap-6">
+  <StatusHeatmapGraph
+    days={history.work}
+    metricLabel="at work"
+    title="At work"
+    yearSummaryLabel="at work"
+  />
+  <StatusHeatmapGraph
+    days={history.home}
+    metricLabel="at home"
+    title="At home"
+    yearSummaryLabel="at home"
+  />
+  <StatusHeatmapGraph
+    days={history.discord}
+    metricLabel="Discord online"
+    title="Discord online"
+    yearSummaryLabel="Discord online"
+  />
+</div>
+
+<script>
+  const initStatusHeatmaps = () => {
+    for (const graph of document.querySelectorAll("[data-status-heatmap]")) {
+      if (!(graph instanceof HTMLElement) || graph.dataset.heatmapReady === "true") {
+        continue;
+      }
+
+      graph.dataset.heatmapReady = "true";
+
+      let tooltip = document.querySelector("[data-status-heatmap-tooltip]");
+      if (!(tooltip instanceof HTMLElement)) {
+        tooltip = document.createElement("div");
+        tooltip.dataset.statusHeatmapTooltip = "";
+        tooltip.setAttribute("role", "tooltip");
+        tooltip.className =
+          "pointer-events-none fixed z-50 hidden w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md";
+        document.body.append(tooltip);
+      }
+
+      const grid = graph.querySelector("[data-status-heatmap-grid]");
+      if (!(grid instanceof HTMLElement)) {
+        continue;
+      }
+
+      let hoveredDay = null;
+
+      const hideTooltip = () => {
+        tooltip.classList.add("hidden");
+      };
+
+      const showTooltip = (button) => {
+        const rect = button.getBoundingClientRect();
+        tooltip.textContent = button.dataset.label ?? "";
+        tooltip.style.left = `${rect.left + rect.width / 2}px`;
+        tooltip.style.top = `${rect.top - 6}px`;
+        tooltip.classList.remove("hidden");
+      };
+
+      const setHoveredDay = (button) => {
+        if (hoveredDay && hoveredDay !== button) {
+          delete hoveredDay.dataset.hovered;
+        }
+        hoveredDay = button;
+        button.dataset.hovered = "";
+        showTooltip(button);
+      };
+
+      const clearHover = () => {
+        if (hoveredDay) {
+          delete hoveredDay.dataset.hovered;
+          hoveredDay = null;
+        }
+        hideTooltip();
+      };
+
+      const days = [...grid.querySelectorAll("[data-status-heatmap-day]")].filter(
+        (button) => button instanceof HTMLButtonElement
+      );
+
+      const columns = [...grid.children].filter(
+        (child) => child instanceof HTMLElement
+      );
+
+      const locateDay = (button) => {
+        for (const [weekIndex, column] of columns.entries()) {
+          const cells = [...column.children];
+          const dayIndex = cells.indexOf(button);
+          if (dayIndex !== -1) {
+            return { dayIndex, weekIndex };
+          }
+        }
+        return null;
+      };
+
+      const focusDay = (weekIndex, dayIndex, deltaWeek, deltaDay) => {
+        let nextWeek = weekIndex + deltaWeek;
+        let nextDay = dayIndex + deltaDay;
+        while (
+          nextWeek >= 0 &&
+          nextWeek < columns.length &&
+          nextDay >= 0 &&
+          nextDay < 7
+        ) {
+          const cell = columns[nextWeek]?.children[nextDay];
+          if (cell instanceof HTMLButtonElement) {
+            for (const day of days) {
+              day.tabIndex = -1;
+            }
+            cell.tabIndex = 0;
+            cell.focus();
+            return;
+          }
+          nextWeek += deltaWeek;
+          nextDay += deltaDay;
+        }
+      };
+
+      grid.addEventListener("mouseleave", clearHover);
+      grid.addEventListener("focusout", (event) => {
+        if (!grid.contains(event.relatedTarget)) {
+          clearHover();
+        }
+      });
+
+      grid.addEventListener("keydown", (event) => {
+        if (!(event.target instanceof HTMLButtonElement)) {
+          return;
+        }
+
+        const location = locateDay(event.target);
+        if (!location) {
+          return;
+        }
+
+        switch (event.key) {
+          case "ArrowDown": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, 0, 1);
+            break;
+          }
+          case "ArrowUp": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, 0, -1);
+            break;
+          }
+          case "ArrowRight": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, 1, 0);
+            break;
+          }
+          case "ArrowLeft": {
+            event.preventDefault();
+            focusDay(location.weekIndex, location.dayIndex, -1, 0);
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      });
+
+      for (const button of days) {
+        button.addEventListener("mouseenter", () => {
+          setHoveredDay(button);
+        });
+        button.addEventListener("focus", () => {
+          setHoveredDay(button);
+        });
+      }
+    }
+  };
+
+  initStatusHeatmaps();
+  document.addEventListener("astro:page-load", initStatusHeatmaps);
+  document.addEventListener("astro:before-preparation", () => {
+    document.querySelector("[data-status-heatmap-tooltip]")?.remove();
+  });
+</script>

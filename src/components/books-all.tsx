@@ -1,17 +1,13 @@
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
+import ExpandableListItem from "@/components/expandable-list-item";
 import type { Book } from "@/interfaces/content-item";
 import {
-  expandableListDetailsClassName,
   expandableListGridClassName,
-  expandableListItemClassName,
-  expandableListItemExpandedClassName,
   expandableListItemsClassName,
   expandableListMetaClassName,
   expandableListSectionHeaderMainClassName,
-  expandableListTitleClassName,
-  expandableListTriggerClassName,
   expandableListYearGroupsClassName,
   expandableListYearHeaderClassName,
   expandableListYearPageClassName,
@@ -72,76 +68,51 @@ const BooksAll = ({ books }: { books: Book[] }) => {
                 .map((book: Book) => {
                   const isExpanded = expandedBook === book.id.toString();
                   return (
-                    <div
-                      className={`${expandableListItemClassName} ${isExpanded ? expandableListItemExpandedClassName : ""}`}
+                    <ExpandableListItem
+                      contentClassName="flex flex-row flex-wrap gap-1"
+                      date={formatDdMm(book.date_created)}
+                      expandedDetailsClassName="max-h-40 opacity-100"
+                      id={book.id.toString()}
+                      isExpanded={isExpanded}
                       key={book.id}
+                      onToggle={handleToggle}
+                      title={book.title}
                     >
-                      <button
-                        aria-expanded={isExpanded}
-                        aria-label={`${book.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                        className={expandableListTriggerClassName}
-                        data-id={book.id.toString()}
-                        onClick={handleToggle}
-                        type="button"
-                      >
-                        <p className={expandableListTitleClassName}>
-                          {book.title}
-                        </p>
-                        <p
-                          className={`${expandableListMetaClassName} text-muted-foreground`}
-                        >
-                          {formatDdMm(book.date_created)}
-                        </p>
-                      </button>
-                      <div
-                        className={`${expandableListDetailsClassName} overflow-hidden transition-all duration-200 ease-in-out ${
-                          isExpanded
-                            ? "max-h-40 opacity-100"
-                            : "max-h-0 opacity-0"
-                        }`}
-                      >
-                        <div className="flex flex-row flex-wrap gap-1">
-                          {book.image && (
-                            <ContentThumbnail
-                              alt={book.title}
-                              assetId={book.image}
-                            />
-                          )}
-                          <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                            <p className="text-sm text-muted-foreground">
-                              Rating
-                            </p>
-                            <p className="text-sm">{book.rating}/10</p>
-                          </div>
-                          {book.isbn && (
-                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-sm text-muted-foreground">
-                                ISBN
-                              </p>
-                              <p className="text-sm">{book.isbn}</p>
-                            </div>
-                          )}
-                          {book.published && (
-                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-sm text-muted-foreground">
-                                Published
-                              </p>
-                              <p className="text-sm">
-                                {formatDdMmYy(book.published)}
-                              </p>
-                            </div>
-                          )}
-                          {book.author && (
-                            <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-sm text-muted-foreground">
-                                Author
-                              </p>
-                              <p className="text-sm">{book.author}</p>
-                            </div>
-                          )}
-                        </div>
+                      {book.image && (
+                        <ContentThumbnail
+                          alt={book.title}
+                          assetId={book.image}
+                        />
+                      )}
+                      <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">Rating</p>
+                        <p className="text-sm">{book.rating}/10</p>
                       </div>
-                    </div>
+                      {book.isbn && (
+                        <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                          <p className="text-sm text-muted-foreground">ISBN</p>
+                          <p className="text-sm">{book.isbn}</p>
+                        </div>
+                      )}
+                      {book.published && (
+                        <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                          <p className="text-sm text-muted-foreground">
+                            Published
+                          </p>
+                          <p className="text-sm">
+                            {formatDdMmYy(book.published)}
+                          </p>
+                        </div>
+                      )}
+                      {book.author && (
+                        <div className="min-w-20 whitespace-nowrap bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                          <p className="text-sm text-muted-foreground">
+                            Author
+                          </p>
+                          <p className="text-sm">{book.author}</p>
+                        </div>
+                      )}
+                    </ExpandableListItem>
                   );
                 })}
             </div>

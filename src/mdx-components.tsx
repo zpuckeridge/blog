@@ -23,14 +23,37 @@ const headingIdFromChildren = (children: ReactNode): string =>
         .replaceAll(/\s+/gu, "-")
     : "";
 
-const mdxHeading = (Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") => {
-  const Heading = ({ children }: { children?: ReactNode }) => {
-    const id = headingIdFromChildren(children);
-    return <Tag id={id}>{children}</Tag>;
-  };
-  Heading.displayName = Tag;
-  return Heading;
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+const Heading = ({
+  children,
+  tag: Tag,
+}: {
+  children?: ReactNode;
+  tag: HeadingTag;
+}) => {
+  const id = headingIdFromChildren(children);
+  return <Tag id={id}>{children}</Tag>;
 };
+
+const H1 = ({ children }: { children?: ReactNode }) => (
+  <Heading tag="h1">{children}</Heading>
+);
+const H2 = ({ children }: { children?: ReactNode }) => (
+  <Heading tag="h2">{children}</Heading>
+);
+const H3 = ({ children }: { children?: ReactNode }) => (
+  <Heading tag="h3">{children}</Heading>
+);
+const H4 = ({ children }: { children?: ReactNode }) => (
+  <Heading tag="h4">{children}</Heading>
+);
+const H5 = ({ children }: { children?: ReactNode }) => (
+  <Heading tag="h5">{children}</Heading>
+);
+const H6 = ({ children }: { children?: ReactNode }) => (
+  <Heading tag="h6">{children}</Heading>
+);
 
 const components: MDXComponents = {
   AfterQuote,
@@ -67,12 +90,12 @@ const components: MDXComponents = {
       </div>
     );
   },
-  h1: mdxHeading("h1"),
-  h2: mdxHeading("h2"),
-  h3: mdxHeading("h3"),
-  h4: mdxHeading("h4"),
-  h5: mdxHeading("h5"),
-  h6: mdxHeading("h6"),
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
   img: (props: { src: string; alt: string; title?: string }) => (
     <ImageZoom wrapElement="span">
       <SiteImage

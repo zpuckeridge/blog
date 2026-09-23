@@ -27,6 +27,8 @@ interface HoverState {
   top: number;
 }
 
+type ContributionWeek = (ContributionDay | null)[];
+
 const fetcher = async (url: string) => {
   const response = await fetch(url);
   const data = (await response.json()) as ContributionsPayload;
@@ -60,15 +62,11 @@ const fetcher = async (url: string) => {
   return list as ContributionDay[];
 };
 
-const ContributionsGraph = ({
-  initialContributions,
-  username,
-}: GitHubContributionsProps) => {
-  const hasInitialContributions = Boolean(initialContributions);
+const useContributionLazyLoading = (
+  containerElementRef: React.RefObject<HTMLDivElement | null>,
+  hasInitialContributions: boolean
+) => {
   const [shouldFetch, setShouldFetch] = useState(false);
-  const containerElementRef = useRef<HTMLDivElement | null>(null);
-  const [hover, setHover] = useState<HoverState | null>(null);
-  const [focusedDate, setFocusedDate] = useState<string | null>(null);
 
   useEffect(() => {
     const element = containerElementRef.current;
@@ -93,44 +91,16 @@ const ContributionsGraph = ({
     return () => {
       observer.disconnect();
     };
-  }, [hasInitialContributions, shouldFetch]);
+  }, [containerElementRef, hasInitialContributions, shouldFetch]);
 
-  const {
-    data: contributions = initialContributions ?? [],
-    error: fetchError,
-    isLoading,
-  } = useSWR<ContributionDay[]>(
-    shouldFetch && !hasInitialContributions
-      ? `/api/github/contributions/graph?username=${encodeURIComponent(username)}`
-      : null,
-    fetcher,
-    {
-      dedupingInterval: 1000 * 60 * 30,
-      fallbackData: initialContributions,
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-    }
-  );
+  return shouldFetch;
+};
 
-  const summary = summarizeContributions(contributions);
-  const {
-    currentYear,
-    maxContributionCount,
-    todayIso,
-    weeks,
-    yearTotalContributions,
-  } = summary;
-
-  const showDayTip = (day: ContributionDay, element: HTMLElement) => {
-    const rect = element.getBoundingClientRect();
-    setHover({
-      day,
-      left: rect.left + rect.width / 2,
-      top: rect.top - 6,
-    });
-  };
-
-  const handleGridLeave = () => setHover(null);
+const useContributionKeyboardNavigation = (
+  weeks: ContributionWeek[],
+  containerElementRef: React.RefObject<HTMLDivElement | null>
+) => {
+  const [focusedDate, setFocusedDate] = useState<string | null>(null);
 
   const moveFocus = (
     weekIndex: number,
@@ -193,24 +163,185 @@ const ContributionsGraph = ({
     }
   };
 
+  return { focusedDate, handleDayKeyDown, setFocusedDate };
+};
+
+interface ContributionsGridProps {
+  activeDate: string | null;
+  hover: HoverState | null;
+  maxContributionCount: number;
+  onDayFocus: (day: ContributionDay, element: HTMLButtonElement) => void;
+  onDayMouseEnter: (day: ContributionDay, element: HTMLButtonElement) => void;
+  onGridLeave: () => void;
+  onKeyDown: (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    weekIndex: number,
+    dayIndex: number
+  ) => void;
+  todayIso: string;
+  weeks: ContributionWeek[];
+}
+
+const ContributionsGrid = ({
+  activeDate,
+  hover,
+  maxContributionCount,
+  onDayFocus,
+  onDayMouseEnter,
+  onGridLeave,
+  onKeyDown,
+  todayIso,
+  weeks,
+}: ContributionsGridProps) => (
+  <div
+    className="flex justify-end gap-[4px] overflow-hidden"
+    data-contribution-grid
+    onBlur={(event) => {
+      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+        onGridLeave();
+      }
+    }}
+    onMouseLeave={onGridLeave}
+  >
+    {weeks.map((week, weekIndex) => {
+      const weekStartDate =
+        week.find((day) => day !== null)?.date ?? `week-${weekIndex}`;
+      return (
+        <div className="flex flex-col gap-[4px]" key={weekStartDate}>
+          {week.map((day, dayIndex) =>
+            day ? (
+              <button
+                aria-label={`${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`}
+                className={cn(
+                  "contribution-day h-[9px] w-[9px]",
+                  getContributionColor(
+                    day.contributionCount,
+                    maxContributionCount
+                  ),
+                  day.date === todayIso && "contribution-day-today"
+                )}
+                data-color={day.color}
+                data-count={day.contributionCount}
+                data-date={day.date}
+                data-hovered={hover?.day.date === day.date ? "" : undefined}
+                key={day.date}
+                onFocus={(event) => onDayFocus(day, event.currentTarget)}
+                onKeyDown={(event) => onKeyDown(event, weekIndex, dayIndex)}
+                onMouseEnter={(event) =>
+                  onDayMouseEnter(day, event.currentTarget)
+                }
+                tabIndex={day.date === activeDate ? 0 : -1}
+                type="button"
+              />
+            ) : (
+              <div
+                aria-hidden="true"
+                className="h-[9px] w-[9px]"
+                key={`empty-${weekStartDate}-${dayIndex}`}
+              />
+            )
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
+
+const ContributionsError = ({
+  containerElementRef,
+  fetchError,
+}: {
+  containerElementRef: React.RefObject<HTMLDivElement | null>;
+  fetchError: unknown;
+}) => (
+  <div
+    className="flex w-full items-center border-0 bg-transparent p-0 text-left"
+    ref={containerElementRef}
+  >
+    <div className="text-muted-foreground text-sm">
+      <p>GitHub contributions unavailable</p>
+      <p className="text-red-500 dark:text-red-400">
+        {fetchError instanceof Error
+          ? fetchError.message
+          : "Failed to load contributions"}
+      </p>
+    </div>
+  </div>
+);
+
+const ContributionsTooltip = ({ hover }: { hover: HoverState | null }) =>
+  hover
+    ? createPortal(
+        <div
+          className="pointer-events-none fixed z-50 w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md"
+          role="tooltip"
+          style={{ left: hover.left, top: hover.top }}
+        >
+          {`${hover.day.contributionCount} contribution${hover.day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(hover.day.date)}`}
+        </div>,
+        document.body
+      )
+    : null;
+
+const ContributionsGraph = ({
+  initialContributions,
+  username,
+}: GitHubContributionsProps) => {
+  const hasInitialContributions = Boolean(initialContributions);
+  const containerElementRef = useRef<HTMLDivElement | null>(null);
+  const [hover, setHover] = useState<HoverState | null>(null);
+  const shouldFetch = useContributionLazyLoading(
+    containerElementRef,
+    hasInitialContributions
+  );
+
+  const {
+    data: contributions = initialContributions ?? [],
+    error: fetchError,
+    isLoading,
+  } = useSWR<ContributionDay[]>(
+    shouldFetch && !hasInitialContributions
+      ? `/api/github/contributions/graph?username=${encodeURIComponent(username)}`
+      : null,
+    fetcher,
+    {
+      dedupingInterval: 1000 * 60 * 30,
+      fallbackData: initialContributions,
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+    }
+  );
+
+  const summary = summarizeContributions(contributions);
+  const {
+    currentYear,
+    maxContributionCount,
+    todayIso,
+    weeks,
+    yearTotalContributions,
+  } = summary;
+
+  const showDayTip = (day: ContributionDay, element: HTMLElement) => {
+    const rect = element.getBoundingClientRect();
+    setHover({
+      day,
+      left: rect.left + rect.width / 2,
+      top: rect.top - 6,
+    });
+  };
+
+  const { focusedDate, handleDayKeyDown, setFocusedDate } =
+    useContributionKeyboardNavigation(weeks, containerElementRef);
+
   const firstDayDate = weeks.flat().find((day) => day !== null)?.date ?? null;
   const activeDate = focusedDate ?? todayIso ?? firstDayDate;
 
   if (fetchError) {
     return (
-      <div
-        className="flex w-full items-center border-0 bg-transparent p-0 text-left"
-        ref={containerElementRef}
-      >
-        <div className="text-muted-foreground text-sm">
-          <p>GitHub contributions unavailable</p>
-          <p className="text-red-500 dark:text-red-400">
-            {fetchError instanceof Error
-              ? fetchError.message
-              : "Failed to load contributions"}
-          </p>
-        </div>
-      </div>
+      <ContributionsError
+        containerElementRef={containerElementRef}
+        fetchError={fetchError}
+      />
     );
   }
 
@@ -222,87 +353,27 @@ const ContributionsGraph = ({
     >
       {isLoading ? null : (
         <div className="space-y-2">
-          <div
-            className="flex justify-end gap-[4px] overflow-hidden"
-            data-contribution-grid
-            onBlur={(event) => {
-              if (
-                !event.currentTarget.contains(
-                  event.relatedTarget as Node | null
-                )
-              ) {
-                handleGridLeave();
-              }
+          <ContributionsGrid
+            activeDate={activeDate}
+            hover={hover}
+            maxContributionCount={maxContributionCount}
+            onDayFocus={(day, element) => {
+              setFocusedDate(day.date);
+              showDayTip(day, element);
             }}
-            onMouseLeave={handleGridLeave}
-          >
-            {weeks.map((week, weekIndex) => {
-              const weekStartDate =
-                week.find((day) => day !== null)?.date ?? `week-${weekIndex}`;
-              return (
-                <div className="flex flex-col gap-[4px]" key={weekStartDate}>
-                  {week.map((day, dayIndex) =>
-                    day ? (
-                      <button
-                        aria-label={`${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(day.date)}`}
-                        className={cn(
-                          "contribution-day h-[9px] w-[9px]",
-                          getContributionColor(
-                            day.contributionCount,
-                            maxContributionCount
-                          ),
-                          day.date === todayIso && "contribution-day-today"
-                        )}
-                        data-color={day.color}
-                        data-count={day.contributionCount}
-                        data-date={day.date}
-                        data-hovered={
-                          hover?.day.date === day.date ? "" : undefined
-                        }
-                        key={day.date}
-                        onFocus={(event) => {
-                          setFocusedDate(day.date);
-                          showDayTip(day, event.currentTarget);
-                        }}
-                        onKeyDown={(event) =>
-                          handleDayKeyDown(event, weekIndex, dayIndex)
-                        }
-                        onMouseEnter={(event) =>
-                          showDayTip(day, event.currentTarget)
-                        }
-                        tabIndex={day.date === activeDate ? 0 : -1}
-                        type="button"
-                      />
-                    ) : (
-                      <div
-                        aria-hidden="true"
-                        className="h-[9px] w-[9px]"
-                        key={`empty-${weekStartDate}-${dayIndex}`}
-                      />
-                    )
-                  )}
-                </div>
-              );
-            })}
-          </div>
+            onDayMouseEnter={showDayTip}
+            onGridLeave={() => setHover(null)}
+            onKeyDown={handleDayKeyDown}
+            todayIso={todayIso}
+            weeks={weeks}
+          />
           <div
             className="text-muted-foreground text-sm"
             suppressHydrationWarning
           >
             {`${yearTotalContributions} contribution${yearTotalContributions === 1 ? "" : "s"} in ${currentYear}`}
           </div>
-          {hover
-            ? createPortal(
-                <div
-                  className="pointer-events-none fixed z-50 w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md"
-                  role="tooltip"
-                  style={{ left: hover.left, top: hover.top }}
-                >
-                  {`${hover.day.contributionCount} contribution${hover.day.contributionCount === 1 ? "" : "s"} on ${formatPublishedLongDate(hover.day.date)}`}
-                </div>,
-                document.body
-              )
-            : null}
+          <ContributionsTooltip hover={hover} />
         </div>
       )}
     </div>

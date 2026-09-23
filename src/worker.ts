@@ -1,6 +1,7 @@
 import { handle } from "@astrojs/cloudflare/handler";
 
 import { recordListeningRecent } from "@/lib/record-listening-recent";
+import { recordStatusSample } from "@/lib/status-history";
 
 export default {
   fetch: handle,
@@ -16,17 +17,25 @@ export default {
     }
 
     try {
-      const result = await recordListeningRecent(kv);
-      if (result.recorded) {
+      const [listeningResult, statusResult] = await Promise.all([
+        recordListeningRecent(kv),
+        recordStatusSample(kv, _controller.scheduledTime),
+      ]);
+
+      if (listeningResult.recorded) {
         console.log(
           "Recorded listening recent:",
-          result.recents[0]?.track,
+          listeningResult.recents[0]?.track,
           "—",
-          result.recents[0]?.artist
+          listeningResult.recents[0]?.artist
         );
       }
+
+      if (statusResult.recorded) {
+        console.log("Recorded status history sample");
+      }
     } catch (error) {
-      console.error("Scheduled listening poll failed", error);
+      console.error("Scheduled worker poll failed", error);
       throw error;
     }
   },

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { CSSProperties, ReactNode, TransitionEvent } from "react";
 import { createPortal } from "react-dom";
 
@@ -46,7 +46,7 @@ const ImageZoomSlot = ({
   isDisabled,
   lockedBox,
   prefetchZoomSrc,
-  slotRef,
+  setSlotRef,
   wrapElement,
 }: {
   aspectVideo: boolean;
@@ -57,7 +57,7 @@ const ImageZoomSlot = ({
   isDisabled: boolean;
   lockedBox: { height: number; width: number } | null;
   prefetchZoomSrc: () => void;
-  slotRef: React.RefObject<HTMLElement | null>;
+  setSlotRef: React.RefCallback<HTMLElement>;
   wrapElement: "div" | "span";
 }) => {
   const Inner = wrapElement;
@@ -92,10 +92,6 @@ const ImageZoomSlot = ({
       {children}
     </Inner>
   );
-  const setSlotRef = (node: HTMLElement | null) => {
-    slotRef.current = node;
-  };
-
   if (isDisabled) {
     return (
       <div className={slotClassName} ref={setSlotRef} style={slotStyle}>
@@ -285,15 +281,12 @@ export const ImageZoom = ({
     lockedBox,
     overlaySrc,
     prefetchZoomSrc,
-    slotRef,
+    setSlotRef,
+    slotElement,
     transitionMs,
   } = useImageZoom({ isDisabled, onZoomChange });
-  const [imageAlt, setImageAlt] = useState("Zoom image");
-
-  useEffect(() => {
-    const img = slotRef.current?.querySelector("img");
-    setImageAlt(img?.alt ? `Zoom ${img.alt}` : "Zoom image");
-  }, [children, slotRef]);
+  const image = slotElement?.querySelector("img");
+  const imageAlt = image?.alt ? `Zoom ${image.alt}` : "Zoom image";
 
   return (
     <>
@@ -305,7 +298,7 @@ export const ImageZoom = ({
         isDisabled={isDisabled}
         lockedBox={lockedBox}
         prefetchZoomSrc={prefetchZoomSrc}
-        slotRef={slotRef}
+        setSlotRef={setSlotRef}
         wrapElement={wrapElement}
       >
         {children}

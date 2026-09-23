@@ -1,17 +1,13 @@
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
+import ExpandableListItem from "@/components/expandable-list-item";
 import type { Movie } from "@/interfaces/content-item";
 import {
-  expandableListDetailsClassName,
   expandableListGridClassName,
-  expandableListItemClassName,
-  expandableListItemExpandedClassName,
   expandableListItemsClassName,
   expandableListMetaClassName,
   expandableListSectionHeaderMainClassName,
-  expandableListTitleClassName,
-  expandableListTriggerClassName,
   expandableListYearGroupsClassName,
   expandableListYearHeaderClassName,
   expandableListYearPageClassName,
@@ -69,121 +65,96 @@ const MoviesAll = ({ movies }: { movies: Movie[] }) => {
                 .map((movie: Movie) => {
                   const isExpanded = expandedMovie === movie.id.toString();
                   return (
-                    <div
-                      className={`${expandableListItemClassName} ${isExpanded ? expandableListItemExpandedClassName : ""}`}
+                    <ExpandableListItem
+                      contentClassName="flex flex-row gap-1"
+                      date={formatDdMm(movie.date_created)}
+                      expandedDetailsClassName="max-h-20 opacity-100"
+                      id={movie.id.toString()}
+                      isExpanded={isExpanded}
                       key={movie.id}
+                      onToggle={handleToggle}
+                      title={movie.title}
                     >
-                      <button
-                        aria-expanded={isExpanded}
-                        aria-label={`${movie.title} - Click to ${isExpanded ? "hide" : "show"} details`}
-                        className={expandableListTriggerClassName}
-                        data-id={movie.id.toString()}
-                        onClick={handleToggle}
-                        type="button"
-                      >
-                        <p className={expandableListTitleClassName}>
-                          {movie.title}
-                        </p>
-                        <p
-                          className={`${expandableListMetaClassName} text-muted-foreground`}
-                        >
-                          {formatDdMm(movie.date_created)}
-                        </p>
-                      </button>
-                      <div
-                        className={`${expandableListDetailsClassName} overflow-hidden transition-all duration-200 ease-in-out ${
-                          isExpanded
-                            ? "max-h-20 opacity-100"
-                            : "max-h-0 opacity-0"
-                        }`}
-                      >
-                        <div className="flex flex-row gap-1">
-                          {movie.image && (
-                            <ContentThumbnail
-                              alt={movie.title}
-                              assetId={movie.image}
-                            />
-                          )}
-                          <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                            <p className="text-sm text-muted-foreground">
-                              Rating
-                            </p>
-                            <p className="text-sm">{movie.rating}/10</p>
-                          </div>
-
-                          {movie.setting && (
-                            <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-sm text-muted-foreground">
-                                Setting
-                              </p>
-                              <p className="text-sm">{movie.setting}</p>
-                            </div>
-                          )}
-
-                          {movie.with && (
-                            <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
-                              <p className="text-sm text-muted-foreground">
-                                With
-                              </p>
-                              <p className="text-sm">
-                                {(() => {
-                                  if (Array.isArray(movie.with)) {
-                                    const processedItems = movie.with.map(
-                                      (item) => {
-                                        // Handle both string and object cases
-                                        if (typeof item === "string") {
-                                          return item;
-                                        }
-                                        if (
-                                          typeof item === "object" &&
-                                          item !== null
-                                        ) {
-                                          // If it's an object, try to extract a name or title property
-                                          const obj = item as Record<
-                                            string,
-                                            unknown
-                                          >;
-                                          return (
-                                            (obj.name as string) ||
-                                            (obj.title as string) ||
-                                            (obj.value as string) ||
-                                            String(item)
-                                          );
-                                        }
-                                        return String(item);
-                                      }
-                                    );
-
-                                    // Use "&" for two items, commas for more
-                                    if (processedItems.length === 2) {
-                                      return processedItems.join(" & ");
-                                    }
-                                    return processedItems.join(", ");
-                                  }
-                                  // Handle non-array cases
-                                  if (
-                                    typeof movie.with === "object" &&
-                                    movie.with !== null
-                                  ) {
-                                    const obj = movie.with as Record<
-                                      string,
-                                      unknown
-                                    >;
-                                    return (
-                                      (obj.name as string) ||
-                                      (obj.title as string) ||
-                                      (obj.value as string) ||
-                                      String(movie.with)
-                                    );
-                                  }
-                                  return String(movie.with);
-                                })()}
-                              </p>
-                            </div>
-                          )}
-                        </div>
+                      {movie.image && (
+                        <ContentThumbnail
+                          alt={movie.title}
+                          assetId={movie.image}
+                        />
+                      )}
+                      <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                        <p className="text-sm text-muted-foreground">Rating</p>
+                        <p className="text-sm">{movie.rating}/10</p>
                       </div>
-                    </div>
+
+                      {movie.setting && (
+                        <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                          <p className="text-sm text-muted-foreground">
+                            Setting
+                          </p>
+                          <p className="text-sm">{movie.setting}</p>
+                        </div>
+                      )}
+
+                      {movie.with && (
+                        <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
+                          <p className="text-sm text-muted-foreground">With</p>
+                          <p className="text-sm">
+                            {(() => {
+                              if (Array.isArray(movie.with)) {
+                                const processedItems = movie.with.map(
+                                  (item) => {
+                                    // Handle both string and object cases
+                                    if (typeof item === "string") {
+                                      return item;
+                                    }
+                                    if (
+                                      typeof item === "object" &&
+                                      item !== null
+                                    ) {
+                                      // If it's an object, try to extract a name or title property
+                                      const obj = item as Record<
+                                        string,
+                                        unknown
+                                      >;
+                                      return (
+                                        (obj.name as string) ||
+                                        (obj.title as string) ||
+                                        (obj.value as string) ||
+                                        String(item)
+                                      );
+                                    }
+                                    return String(item);
+                                  }
+                                );
+
+                                // Use "&" for two items, commas for more
+                                if (processedItems.length === 2) {
+                                  return processedItems.join(" & ");
+                                }
+                                return processedItems.join(", ");
+                              }
+                              // Handle non-array cases
+                              if (
+                                typeof movie.with === "object" &&
+                                movie.with !== null
+                              ) {
+                                const obj = movie.with as Record<
+                                  string,
+                                  unknown
+                                >;
+                                return (
+                                  (obj.name as string) ||
+                                  (obj.title as string) ||
+                                  (obj.value as string) ||
+                                  String(movie.with)
+                                );
+                              }
+                              return String(movie.with);
+                            })()}
+                          </p>
+                        </div>
+                      )}
+                    </ExpandableListItem>
                   );
                 })}
             </div>

@@ -76,6 +76,7 @@ export const useImageZoom = ({
   ) => void;
 }) => {
   const slotRef = useRef<HTMLElement>(null);
+  const [slotElement, setSlotElement] = useState<HTMLElement | null>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const zoomSessionRef = useRef(0);
@@ -84,6 +85,11 @@ export const useImageZoom = ({
   const [overlaySrc, setOverlaySrc] = useState<string | null>(null);
   const [isOverlayMounted, setIsOverlayMounted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const setSlotRef = useCallback((slot: HTMLElement | null) => {
+    slotRef.current = slot;
+    setSlotElement(slot);
+  }, []);
 
   const reduceMotion = prefersReducedMotion();
   const transitionMs = reduceMotion ? 0 : ZOOM_TRANSITION_MS;
@@ -300,7 +306,8 @@ export const useImageZoom = ({
     lockedBox,
     overlaySrc,
     prefetchZoomSrc,
-    slotRef,
+    setSlotRef,
+    slotElement,
     transitionMs,
   };
 };

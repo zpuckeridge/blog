@@ -104,20 +104,20 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
       year: "numeric",
     });
 
+  const getTimeParts = (date) => {
+    const parts = timePartsFormatter.formatToParts(date);
+    const hour = parts.find((part) => part.type === "hour")?.value ?? "";
+    const minute = parts.find((part) => part.type === "minute")?.value ?? "";
+    const dayPeriod =
+      parts.find((part) => part.type === "dayPeriod")?.value ?? "";
+
+    return { dayPeriod, hour, minute };
+  };
+
   const initBrisbaneClocks = () => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-
-    const getTimeParts = (date) => {
-      const parts = timePartsFormatter.formatToParts(date);
-      const hour = parts.find((part) => part.type === "hour")?.value ?? "";
-      const minute = parts.find((part) => part.type === "minute")?.value ?? "";
-      const dayPeriod =
-        parts.find((part) => part.type === "dayPeriod")?.value ?? "";
-
-      return { dayPeriod, hour, minute };
-    };
 
     const dateTimeFormat = Intl.DateTimeFormat;
     const localTimeZone =

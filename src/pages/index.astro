@@ -17,11 +17,14 @@ import {
   getGitHubToken,
 } from "@/lib/github-contributions";
 import { getServerLocationStatus } from "@/lib/location-status";
+import { getServerStatusHistory } from "@/lib/status-history";
+import StatusHistoryGraphs from "@/components/status-history-graphs.astro";
 import type { ContributionDay } from "@/lib/github-contributions";
 
-const [projects, initialLocation] = await Promise.all([
+const [projects, initialLocation, statusHistory] = await Promise.all([
   getProjects(),
   getServerLocationStatus(),
+  getServerStatusHistory(),
 ]);
 const sortedProjects = projects.toSorted((a, b) => {
   if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
@@ -277,6 +280,7 @@ const fullTitle = homepageTitle;
               <LanyardStatus />
             </div>
           </div>
+          {statusHistory ? <StatusHistoryGraphs history={statusHistory} /> : null}
           <LanyardListening />
           <div class="flex min-w-0 justify-between gap-4">
             <div class="-ml-1 flex min-w-0 flex-row flex-wrap gap-2 text-sm text-muted-foreground">

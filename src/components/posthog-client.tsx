@@ -1,3 +1,4 @@
+import { posthog } from "posthog-js";
 import { useEffect } from "react";
 
 import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";
@@ -25,14 +26,13 @@ const PostHogClient = ({ apiHost, apiKey }: PostHogClientProps) => {
     let disposed = false;
     let started = false;
 
-    const start = async () => {
+    const start = () => {
       if (disposed || started) {
         return;
       }
       started = true;
 
       try {
-        const { posthog } = await import("posthog-js");
         if (!disposed) {
           posthog.init(apiKey, {
             api_host: apiHost,
@@ -45,7 +45,7 @@ const PostHogClient = ({ apiHost, apiKey }: PostHogClientProps) => {
     };
 
     const idle = scheduleIdleOrFallback(() => {
-      void start();
+      start();
     }, IDLE_FALLBACK_MS);
 
     return () => {

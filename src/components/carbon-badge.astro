@@ -82,6 +82,45 @@
     }
   };
 
+  const syncTheme = () => {
+    const badge = getBadge();
+    if (!badge) {
+      return;
+    }
+
+    badge.classList.toggle(
+      "wcb-d",
+      document.documentElement.classList.contains("dark")
+    );
+  };
+
+  const requestCarbon = async (url, render = true) => {
+    try {
+      const response = await fetch(
+        `/api/carbon?url=${  encodeURIComponent(url)}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Carbon rating request failed");
+      }
+
+      const result = await response.json();
+
+      if (!result.c) {
+        throw new Error("Carbon rating payload invalid");
+      }
+
+      result.t = Date.now();
+      localStorage.setItem(getCacheKey(url), JSON.stringify(result));
+
+      if (render) {
+        renderResult(result);
+      }
+    } catch (error) {
+      console.warn("Website Carbon badge:", error);
+    }
+  };
+
   (() => {
     const siteUrl = "https://zacchary.me";
     const profileUrl =
@@ -94,45 +133,6 @@
       }
 
       return location.href.split("#")[0];
-    };
-
-    const syncTheme = () => {
-      const badge = getBadge();
-      if (!badge) {
-        return;
-      }
-
-      badge.classList.toggle(
-        "wcb-d",
-        document.documentElement.classList.contains("dark")
-      );
-    };
-
-    const requestCarbon = async (url, render = true) => {
-      try {
-        const response = await fetch(
-          `/api/carbon?url=${  encodeURIComponent(url)}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Carbon rating request failed");
-        }
-
-        const result = await response.json();
-
-        if (!result.c) {
-          throw new Error("Carbon rating payload invalid");
-        }
-
-        result.t = Date.now();
-        localStorage.setItem(getCacheKey(url), JSON.stringify(result));
-
-        if (render) {
-          renderResult(result);
-        }
-      } catch (error) {
-        console.warn("Website Carbon badge:", error);
-      }
     };
 
     const initCarbonBadge = () => {
