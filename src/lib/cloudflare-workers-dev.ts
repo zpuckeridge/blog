@@ -1,5 +1,10 @@
+import {
+  formatActivityClientLabel,
+  hashActivityVisitorKey,
+} from "@/lib/activity-client";
 import { createActivityEvent, pruneActivityEvents } from "@/lib/activity-feed";
 import type { ActivityCaptureInput, ActivityEvent } from "@/lib/activity-feed";
+import { createDevActivitySeedEvents } from "@/lib/activity-feed-dev-seed";
 import type {
   ActivityFeedStoreNamespace,
   ActivityFeedStoreRpc,
@@ -15,37 +20,52 @@ const createDevKv = (): NonNullable<Cloudflare.Env["LOCATION_KV"]> => ({
   },
 });
 
-const devActivityEvents: ActivityEvent[] = [];
+const devActivityEvents: ActivityEvent[] = createDevActivitySeedEvents();
 
 const devActivityStore: ActivityFeedStoreRpc = {
-  append: (
+  append: async (
     input: ActivityCaptureInput,
     id: string,
-    visitorId?: string | null
+    visitorId?: string | null,
+    userAgent?: string | null
   ) => {
     const event = createActivityEvent(input, id);
     if (!event) {
-      return Promise.resolve(null);
+      return null;
     }
-    if (!(visitorId ?? input.visitorId)) {
-      return Promise.resolve(null);
+    const visitorKey = await hashActivityVisitorKey(
+      visitorId ?? input.visitorId,
+      userAgent
+    );
+    if (!visitorKey) {
+      return null;
     }
+    const storedEvent: ActivityEvent = {
+      ...event,
+      clientLabel: formatActivityClientLabel(userAgent),
+      visitorKey,
+    };
     const existing = devActivityEvents.findIndex(
       (existingEvent) => existingEvent.id === id
     );
     if (existing === -1) {
-      devActivityEvents.unshift(event);
+      devActivityEvents.unshift(storedEvent);
     } else {
-      devActivityEvents[existing] = event;
+      devActivityEvents[existing] = storedEvent;
     }
     devActivityEvents.splice(
       0,
       devActivityEvents.length,
       ...pruneActivityEvents(devActivityEvents)
     );
-    return Promise.resolve(event);
+    return storedEvent;
   },
-  list: () => Promise.resolve(pruneActivityEvents(devActivityEvents)),
+  list: () => {
+    if (devActivityEvents.length === 0) {
+      devActivityEvents.push(...createDevActivitySeedEvents());
+    }
+    return Promise.resolve(pruneActivityEvents(devActivityEvents));
+  },
 };
 
 const devActivityStoreNamespace: ActivityFeedStoreNamespace = {

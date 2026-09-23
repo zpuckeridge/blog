@@ -5,7 +5,10 @@ import {
   cleanActivityTitle,
   isPublicActivityPath,
 } from "@/lib/activity-feed";
-import { getSameOriginActivityReferer } from "@/lib/activity-request";
+import {
+  getActivityRequestUserAgent,
+  getSameOriginActivityReferer,
+} from "@/lib/activity-request";
 import {
   enforceRateLimit,
   getRequestClientKey,
@@ -108,7 +111,8 @@ export const POST: APIRoute = async ({ request }) => {
       trackUrl: stringOrNull(body.trackUrl),
     },
     crypto.randomUUID(),
-    typeof body.visitorId === "string" ? body.visitorId : null
+    typeof body.visitorId === "string" ? body.visitorId : null,
+    getActivityRequestUserAgent(request)
   );
 
   return json({ accepted: Boolean(event) });

@@ -1,7 +1,10 @@
 import type { APIRoute } from "astro";
 
 import { cleanActivityTitle } from "@/lib/activity-feed";
-import { getSameOriginActivityReferer } from "@/lib/activity-request";
+import {
+  getActivityRequestUserAgent,
+  getSameOriginActivityReferer,
+} from "@/lib/activity-request";
 import {
   enforceRateLimit,
   getRequestClientKey,
@@ -93,7 +96,8 @@ export const POST: APIRoute = async ({ request }) => {
           : referer.pathname,
     },
     crypto.randomUUID(),
-    typeof body.visitorId === "string" ? body.visitorId : null
+    typeof body.visitorId === "string" ? body.visitorId : null,
+    getActivityRequestUserAgent(request)
   );
 
   return json({ accepted: Boolean(event) });

@@ -14,6 +14,7 @@ export interface ActivityEvent {
   artist: string | null;
   artistUrl: string | null;
   city: string | null;
+  clientLabel: string | null;
   country: string | null;
   countryCode: string | null;
   id: string;
@@ -24,6 +25,7 @@ export interface ActivityEvent {
   trackUrl: string | null;
   title: string;
   occurredAt: string;
+  visitorKey: string;
 }
 
 export interface ActivityCaptureInput {
@@ -140,6 +142,13 @@ export const getActivityLocationKey = (
     event.countryCode?.toLowerCase() ?? "",
   ].join(":");
 
+export const getActivityClusterKey = (
+  event: Pick<
+    ActivityEvent,
+    "city" | "clientLabel" | "countryCode" | "region" | "visitorKey"
+  >
+): string => [getActivityLocationKey(event), event.visitorKey].join("|");
+
 export const formatActivityLocation = (
   event: Pick<ActivityEvent, "city" | "region" | "country">
 ): string => {
@@ -147,6 +156,16 @@ export const formatActivityLocation = (
     (part): part is string => Boolean(part)
   );
   return parts.length > 0 ? parts.join(", ") : "an unknown location";
+};
+
+export const formatActivityVisitorLine = (
+  event: Pick<ActivityEvent, "city" | "clientLabel" | "country" | "region">
+): string => {
+  const location = formatActivityLocation(event);
+  if (event.clientLabel) {
+    return `Someone from ${location} · ${event.clientLabel}`;
+  }
+  return `Someone from ${location}`;
 };
 
 export const createActivityEvent = (
@@ -169,6 +188,7 @@ export const createActivityEvent = (
     artist: cleanText(input.artist, 120),
     artistUrl: cleanActivityExternalUrl(input.artistUrl),
     city: cleanText(input.city, 80),
+    clientLabel: null,
     country: cleanText(input.country, 80),
     countryCode: cleanCountryCode(input.countryCode) || null,
     id,
@@ -179,6 +199,7 @@ export const createActivityEvent = (
     region: cleanText(input.region, 80),
     title: cleanActivityTitle(input.title),
     trackUrl: cleanActivityExternalUrl(input.trackUrl),
+    visitorKey: "",
   };
 };
 
@@ -204,7 +225,7 @@ export const clusterActivityEvents = (
   const clusters: ActivityCluster[] = [];
 
   for (const event of events) {
-    const locationKey = getActivityLocationKey(event);
+    const locationKey = getActivityClusterKey(event);
     const previous = clusters.at(-1);
     if (previous?.locationKey === locationKey) {
       previous.events.push(event);

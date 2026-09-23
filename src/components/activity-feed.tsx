@@ -4,8 +4,8 @@ import useSWR from "swr";
 
 import {
   clusterActivityEvents,
-  formatActivityLocation,
   formatActivityTitle,
+  formatActivityVisitorLine,
   groupActivityEvents,
 } from "@/lib/activity-feed";
 import type { ActivityCluster, ActivityEvent } from "@/lib/activity-feed";
@@ -153,7 +153,7 @@ const ActivityClusterRow = ({
     return null;
   }
 
-  const location = formatActivityLocation(latest);
+  const visitorLine = formatActivityVisitorLine(latest);
   const isGrouped = cluster.events.length > 1;
   const actionGroups = groupActivityEvents(cluster.events);
 
@@ -167,7 +167,7 @@ const ActivityClusterRow = ({
         className="absolute -left-6 top-5 size-2 rounded-full bg-orange-500/80"
       />
       <div className="text-sm leading-6">
-        <span className="text-foreground">Someone from {location}</span>
+        <span className="text-foreground">{visitorLine}</span>
         {isGrouped ? (
           <div className="relative mt-1">
             <span

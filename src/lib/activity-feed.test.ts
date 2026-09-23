@@ -7,6 +7,7 @@ import {
   cleanActivityTitle,
   formatActivityLocation,
   formatActivityTitle,
+  formatActivityVisitorLine,
   groupActivityEvents,
   isPublicActivityPath,
   pruneActivityEvents,
@@ -14,8 +15,14 @@ import {
 
 const now = Date.parse("2026-09-23T03:00:00.000Z");
 
-const createEvent = (id: string, occurredAt: string, path = "/about") =>
-  createActivityEvent(
+const createEvent = (
+  id: string,
+  occurredAt: string,
+  path = "/about",
+  visitorKey = "visitor-a",
+  clientLabel: string | null = "Safari on macOS"
+) => {
+  const event = createActivityEvent(
     {
       city: "Brisbane",
       country: "AU",
@@ -29,6 +36,13 @@ const createEvent = (id: string, occurredAt: string, path = "/about") =>
     id,
     new Date(occurredAt)
   );
+
+  if (!event) {
+    return null;
+  }
+
+  return { ...event, clientLabel, visitorKey };
+};
 
 describe("activity path validation", () => {
   it("excludes private, API, and activity routes", () => {
@@ -103,18 +117,23 @@ describe("activity clusters", () => {
     const events = [
       createEvent("one", "2026-09-23T02:59:00.000Z", "/one"),
       createEvent("two", "2026-09-23T02:58:00.000Z", "/two"),
-      createActivityEvent(
-        {
-          city: "Sydney",
-          country: "AU",
-          countryCode: "AU",
-          path: "/three",
-          region: "New South Wales",
-          title: "Three",
-        },
-        "three",
-        new Date("2026-09-23T02:57:00.000Z")
-      ),
+      (() => {
+        const event = createActivityEvent(
+          {
+            city: "Sydney",
+            country: "AU",
+            countryCode: "AU",
+            path: "/three",
+            region: "New South Wales",
+            title: "Three",
+          },
+          "three",
+          new Date("2026-09-23T02:57:00.000Z")
+        );
+        return event
+          ? { ...event, clientLabel: null, visitorKey: "visitor-sydney" }
+          : null;
+      })(),
     ].filter((event) => event !== null);
 
     const clusters = clusterActivityEvents(events);
@@ -122,11 +141,34 @@ describe("activity clusters", () => {
       clusters.map((cluster) => cluster.events.map((event) => event.id)),
       [["one", "two"], ["three"]]
     );
+  });
+
+  it("splits visitors at the same location when user agents differ", () => {
+    const events = [
+      createEvent("one", "2026-09-23T02:59:00.000Z", "/one", "visitor-a"),
+      createEvent(
+        "two",
+        "2026-09-23T02:58:00.000Z",
+        "/two",
+        "visitor-b",
+        "Chrome on Windows"
+      ),
+    ].filter((event) => event !== null);
+
+    const clusters = clusterActivityEvents(events);
+    assert.deepEqual(
+      clusters.map((cluster) => cluster.events.map((event) => event.id)),
+      [["one"], ["two"]]
+    );
     const [firstEvent] = events;
     assert.ok(firstEvent);
     assert.equal(
       formatActivityLocation(firstEvent),
       "Brisbane, Queensland, AU"
+    );
+    assert.equal(
+      formatActivityVisitorLine(firstEvent),
+      "Someone from Brisbane, Queensland, AU · Safari on macOS"
     );
   });
 });

@@ -33,3 +33,6 @@ export const getSameOriginActivityReferer = (request: Request): URL | null => {
     return null;
   }
 };
+
+export const getActivityRequestUserAgent = (request: Request): string | null =>
+  request.headers.get("User-Agent");

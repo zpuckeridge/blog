@@ -87,8 +87,9 @@ After deploy, a Cloudflare cron job samples Discord presence (Lanyard REST) and 
 - `/imprint` - Legal
 
 The activity feed stores only a sanitised page path, title, approximate city-level
-location, and timestamp. It does not store IP addresses, visitor identifiers,
-user agents, referrers, or query strings.
+location, timestamp, and a coarse browser/OS label derived from the User-Agent.
+Visitor rows are separated by a hashed browser cookie id plus User-Agent. It does
+not store IP addresses, raw user agents, referrers, or query strings.
 
 ## 👀 Coming soon
 
