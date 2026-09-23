@@ -127,6 +127,12 @@ const StandardActivityAction = ({
   );
 };
 
+/** Dot and grouped connector share x = centre of pl-6 timeline gutter (12px). */
+const ACTIVITY_TIMELINE_DOT_CLASS =
+  "absolute left-2 top-5 size-2 rounded-full bg-orange-500/80";
+const ACTIVITY_TIMELINE_CONNECTOR_CLASS =
+  "pointer-events-none absolute -left-[13px] top-[1.375rem] bottom-[calc((1lh+0.25rem)/2-3px)] w-2 rounded-bl-lg border-border border-b-2 border-l-2";
+
 const ActivityAction = ({
   count = 1,
   event,
@@ -159,22 +165,19 @@ const ActivityClusterRow = ({
 
   return (
     <article
-      className="group relative py-3 transition-colors duration-150 ease-out"
+      className="group relative py-3 pl-6 transition-colors duration-150 ease-out"
       data-new={newEventIds.has(latest.id) ? "true" : undefined}
     >
-      <span
-        aria-hidden="true"
-        className="absolute -left-6 top-5 size-2 rounded-full bg-orange-500/80"
-      />
+      <span aria-hidden="true" className={ACTIVITY_TIMELINE_DOT_CLASS} />
       <div className="text-sm leading-6">
-        <span className="text-foreground">{visitorLine}</span>
         {isGrouped ? (
-          <div className="relative mt-1">
+          <div className="relative">
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute -top-1 bottom-[calc((1lh+0.25rem)/2-3px)] -left-5 w-3 rounded-bl-lg border-border border-b-2 border-l-2"
+              className={ACTIVITY_TIMELINE_CONNECTOR_CLASS}
             />
-            <ul className="flex flex-col gap-0">
+            <span className="relative z-10 text-foreground">{visitorLine}</span>
+            <ul className="relative z-10 mt-1 flex flex-col gap-0 pl-[3px]">
               {actionGroups.map(({ count, event }) => (
                 <li
                   className="relative flex items-baseline gap-1.5 py-0.5"
@@ -186,7 +189,10 @@ const ActivityClusterRow = ({
             </ul>
           </div>
         ) : (
-          <ActivityAction event={latest} />
+          <>
+            <span className="text-foreground">{visitorLine}</span>
+            <ActivityAction event={latest} />
+          </>
         )}
       </div>
     </article>

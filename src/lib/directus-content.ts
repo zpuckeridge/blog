@@ -65,8 +65,9 @@ const withContentCache = <T>(
       return cachedValue;
     }
 
+    const { shouldCache } = options;
     return cachedValue.then((result) => {
-      if (options.shouldCache!(result)) {
+      if (shouldCache(result)) {
         return result;
       }
       contentCache.delete(key);
@@ -83,9 +84,10 @@ const withContentCache = <T>(
     }
   })();
 
-  if (options?.shouldCache) {
+  const shouldCache = options?.shouldCache;
+  if (shouldCache) {
     return value.then((result) => {
-      if (options.shouldCache!(result)) {
+      if (shouldCache(result)) {
         contentCache.set(key, {
           expiresAt: Date.now() + CONTENT_CACHE_TTL_MS,
           value: Promise.resolve(result),

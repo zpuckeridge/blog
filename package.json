@@ -12,7 +12,7 @@
     "predeploy": "bun run check && bun run typecheck",
     "fix": "ultracite fix",
     "check": "bunx ultracite check && CI=1 bunx react-doctor --yes --verbose --lint --scope full && tsc --noEmit && knip",
-    "test": "bun test src/lib/status-history.test.ts src/lib/activity-feed.test.ts src/lib/activity-request.test.ts src/lib/activity-client.test.ts"
+    "test": "bun test src/lib/status-history.test.ts src/lib/activity-feed.test.ts src/lib/activity-request.test.ts src/lib/activity-client.test.ts src/lib/uses-sections.test.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
