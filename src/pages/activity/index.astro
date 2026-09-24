@@ -1,6 +1,8 @@
 ---
 import ActivityFeed from "@/components/activity-feed";
+import ActivityStatusGraphs from "@/components/activity-status-graphs.astro";
 import Layout from "@/layouts/layout.astro";
+import { getServerStatusHistory } from "@/lib/status-history";
 import { workersEnv } from "@/lib/workers-env";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import type { ActivityEvent } from "@/lib/activity-feed";
@@ -9,7 +11,7 @@ export const prerender = false;
 
 const pageMeta = createPageMetadata({
   description:
-    "A live, anonymous view of recent visits to Zacchary Puckeridge's website.",
+    "What I've been up to — where I've worked, time at home, and Discord presence — plus a live, anonymous view of recent visits.",
   noIndex: true,
   path: "/activity",
   title: "Activity",
@@ -17,9 +19,11 @@ const pageMeta = createPageMetadata({
 
 const fullTitle = formatPageTitle("Activity");
 const activityStore = workersEnv.ACTIVITY_FEED_STORE;
-const initialEvents: ActivityEvent[] = activityStore
-  ? await activityStore.getByName("public").list()
-  : [];
+const [initialEvents, statusHistory] = await Promise.all([
+  activityStore ? activityStore.getByName("public").list() : [],
+  getServerStatusHistory(),
+]);
+const initialTypedEvents = initialEvents as ActivityEvent[];
 ---
 
 <Layout
@@ -27,7 +31,23 @@ const initialEvents: ActivityEvent[] = activityStore
   fullTitle={fullTitle}
   meta={pageMeta}
 >
-  <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-4 px-6 pb-20">
-    <ActivityFeed client:load initialEvents={initialEvents} />
+  <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-10 px-6 pb-20">
+    {
+      statusHistory ? (
+        <section aria-label="My recent time" class="min-w-0 space-y-4">
+          <div class="space-y-1">
+            <p class="text-sm text-muted-foreground">Personal</p>
+            <h2 class="font-redaction text-xl">Where I've been</h2>
+            <p class="text-sm text-muted-foreground">
+              My time at work, at home, and online on Discord over the last
+              year.
+            </p>
+          </div>
+          <ActivityStatusGraphs history={statusHistory} />
+          <hr class="border-dotted border-border" />
+        </section>
+      ) : null
+    }
+    <ActivityFeed client:load initialEvents={initialTypedEvents} />
   </div>
 </Layout>

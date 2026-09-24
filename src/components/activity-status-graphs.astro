@@ -1,87 +1,55 @@
 ---
-import { getContributionColor, summarizeContributions } from "@/lib/contributions-graph";
-import type { ContributionDay } from "@/lib/contributions-graph";
+import StatusHeatmapGraph from "@/components/status-heatmap-graph.astro";
+import type { StatusHistoryPublic } from "@/lib/status-history";
 
 interface Props {
-  contributions: ContributionDay[];
+  history: StatusHistoryPublic;
 }
 
-const { contributions } = Astro.props;
-const {
-  currentYear,
-  formatDayLabel,
-  maxContributionCount,
-  todayIso,
-  weeks,
-  yearTotalContributions,
-} = summarizeContributions(contributions);
-const firstDayDate = weeks.flat().find((day) => day !== null)?.date ?? null;
-const initialTabDate = todayIso || firstDayDate;
+const { history } = Astro.props;
 ---
 
-<div
-  class="w-full border-0 bg-transparent p-0 text-left"
-  data-contributions-graph
->
-  <div class="space-y-2">
-    <div
-      class="flex justify-end gap-[4px] overflow-hidden"
-      data-contribution-grid
-    >
-      {
-        weeks.map((week) => (
-            <div class="flex flex-col gap-[4px]">
-              {week.map((day) =>
-                day ? (
-                  <button
-                    aria-label={formatDayLabel(day)}
-                    class:list={[
-                      "contribution-day h-[9px] w-[9px]",
-                      getContributionColor(
-                        day.contributionCount,
-                        maxContributionCount
-                      ),
-                      day.date === todayIso && "contribution-day-today",
-                    ]}
-                    data-contribution-day
-                    data-label={formatDayLabel(day)}
-                    tabindex={day.date === initialTabDate ? 0 : -1}
-                    type="button"
-                  />
-                ) : (
-                  <div aria-hidden="true" class="h-[9px] w-[9px]" />
-                )
-              )}
-            </div>
-          ))
-      }
-    </div>
-    <div class="text-muted-foreground text-sm" data-contribution-summary>
-      {`${yearTotalContributions} contribution${yearTotalContributions === 1 ? "" : "s"} in ${currentYear}`}
-    </div>
-  </div>
+<div class="flex min-w-0 flex-col gap-8">
+  <StatusHeatmapGraph
+    days={history.work}
+    metricLabel="at work"
+    title="At work"
+    yearSummaryLabel="at work"
+  />
+  <StatusHeatmapGraph
+    days={history.home}
+    metricLabel="at home"
+    title="At home"
+    yearSummaryLabel="at home"
+  />
+  <StatusHeatmapGraph
+    days={history.discord}
+    metricLabel="Discord online"
+    title="Discord online"
+    yearSummaryLabel="Discord online"
+  />
 </div>
 
 <script>
-  const initContributionGraphs = () => {
-    for (const graph of document.querySelectorAll("[data-contributions-graph]")) {
-      if (!(graph instanceof HTMLElement) || graph.dataset.graphReady === "true") {
+  const initActivityStatusHeatmaps = () => {
+    for (const graph of document.querySelectorAll("[data-status-heatmap]")) {
+      if (!(graph instanceof HTMLElement) || graph.dataset.heatmapReady === "true") {
         continue;
       }
 
-      graph.dataset.graphReady = "true";
+      graph.dataset.heatmapReady = "true";
 
-      let tooltip = document.querySelector("[data-contribution-tooltip]");
+      let tooltip = document.querySelector("[data-status-heatmap-tooltip]");
       if (!(tooltip instanceof HTMLElement)) {
         tooltip = document.createElement("div");
-        tooltip.dataset.contributionTooltip = "";
+        tooltip.dataset.statusHeatmapTooltip = "";
         tooltip.setAttribute("role", "tooltip");
         tooltip.className =
           "pointer-events-none fixed z-50 hidden w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md";
         document.body.append(tooltip);
       }
 
-      const grid = graph.querySelector("[data-contribution-grid]");
+      const grid = graph.querySelector("[data-status-heatmap-grid]");
       if (!(grid instanceof HTMLElement)) {
         continue;
       }
@@ -124,7 +92,7 @@ const initialTabDate = todayIso || firstDayDate;
         hideTooltip();
       };
 
-      const days = [...grid.querySelectorAll("[data-contribution-day]")].filter(
+      const days = [...grid.querySelectorAll("[data-status-heatmap-day]")].filter(
         (button) => button instanceof HTMLButtonElement
       );
 
@@ -166,8 +134,6 @@ const initialTabDate = todayIso || firstDayDate;
         }
       };
 
-      // Clear hover only when leaving the whole grid — not between cells
-      // or across the 4px column gap — so highlight and tooltip stay put.
       grid.addEventListener("mouseleave", clearHover);
       grid.addEventListener("focusout", (event) => {
         if (!grid.contains(event.relatedTarget)) {
@@ -223,9 +189,9 @@ const initialTabDate = todayIso || firstDayDate;
     }
   };
 
-  initContributionGraphs();
-  document.addEventListener("astro:page-load", initContributionGraphs);
+  initActivityStatusHeatmaps();
+  document.addEventListener("astro:page-load", initActivityStatusHeatmaps);
   document.addEventListener("astro:before-preparation", () => {
-    document.querySelector("[data-contribution-tooltip]")?.remove();
+    document.querySelector("[data-status-heatmap-tooltip]")?.remove();
   });
 </script>

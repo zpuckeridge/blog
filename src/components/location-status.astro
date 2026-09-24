@@ -42,15 +42,15 @@ const initialLabel = getInitialLabel(initial);
 const initialDotClass = getInitialDotClass(initial);
 ---
 
-<div
-  aria-label="Location status"
+<a
+  aria-label="Location status — see my activity"
   class:list={[
-    "group/location relative h-5 items-center gap-2",
+    "group/location relative h-5 items-center gap-2 px-1 hover:bg-muted",
     showInitial ? "flex" : "hidden",
     initial?.isStale && "opacity-60",
   ]}
   data-location-status
-  tabindex="0"
+  href="/activity"
 >
   <div
     class:list={[
@@ -67,7 +67,7 @@ const initialDotClass = getInitialDotClass(initial);
   >
     {initialLabel}
   </p>
-</div>
+</a>
 
 <script>
   import { syncStatusPulse } from "@/lib/sync-status-pulse";

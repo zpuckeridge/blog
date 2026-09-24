@@ -2,12 +2,12 @@
 import { LANYARD_USER_ID } from "@/lib/lanyard-status";
 ---
 
-<div
-  aria-label="Discord status"
-  class="group/lanyard relative flex h-5 shrink-0 items-center gap-2"
+<a
+  aria-label="Discord status — see my activity"
+  class="group/lanyard relative flex h-5 shrink-0 items-center gap-2 px-1 hover:bg-muted"
   data-lanyard-status
   data-lanyard-user={LANYARD_USER_ID}
-  tabindex="0"
+  href="/activity"
 >
   <div
     class="my-auto h-2 w-2 shrink-0 bg-gray-400"
@@ -20,7 +20,7 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
   >
     Offline
   </p>
-</div>
+</a>
 
 <script>
   import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";

@@ -18,15 +18,12 @@ import {
   getGitHubToken,
 } from "@/lib/github-contributions";
 import { getServerLocationStatus } from "@/lib/location-status";
-import { getServerStatusHistory } from "@/lib/status-history";
-import StatusHistoryGraphs from "@/components/status-history-graphs.astro";
 import type { ContributionDay } from "@/lib/github-contributions";
 
-const [projects, posts, initialLocation, statusHistory] = await Promise.all([
+const [projects, posts, initialLocation] = await Promise.all([
   getProjects(),
   getPosts(),
   getServerLocationStatus(),
-  getServerStatusHistory(),
 ]);
 const sortedPosts = posts
   .toSorted(
@@ -309,7 +306,6 @@ const fullTitle = homepageTitle;
 
         <hr class="border-dotted border-border" />
 
-        {statusHistory ? <StatusHistoryGraphs history={statusHistory} /> : null}
         <div class="flex min-w-0 flex-col gap-2">
           <div class="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <BrisbaneDateTime />

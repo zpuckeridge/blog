@@ -323,9 +323,12 @@ const ContributionsGraph = ({
 
   const showDayTip = (day: ContributionDay, element: HTMLElement) => {
     const rect = element.getBoundingClientRect();
+    const desired = rect.left + rect.width / 2;
+    const half = 136;
+    const clamped = Math.min(Math.max(desired, half), window.innerWidth - half);
     setHover({
       day,
-      left: rect.left + rect.width / 2,
+      left: clamped,
       top: rect.top - 6,
     });
   };
