@@ -160,7 +160,6 @@ const ActivityClusterRow = ({
   }
 
   const visitorLine = formatActivityVisitorLine(latest);
-  const isGrouped = cluster.events.length > 1;
   const actionGroups = groupActivityEvents(cluster.events);
 
   return (
@@ -170,30 +169,23 @@ const ActivityClusterRow = ({
     >
       <span aria-hidden="true" className={ACTIVITY_TIMELINE_DOT_CLASS} />
       <div className="text-sm leading-6">
-        {isGrouped ? (
-          <div className="relative">
-            <span
-              aria-hidden="true"
-              className={ACTIVITY_TIMELINE_CONNECTOR_CLASS}
-            />
-            <span className="relative z-10 text-foreground">{visitorLine}</span>
-            <ul className="relative z-10 mt-1 flex flex-col gap-0 pl-[3px]">
-              {actionGroups.map(({ count, event }) => (
-                <li
-                  className="relative flex items-baseline gap-1.5 py-0.5"
-                  key={event.id}
-                >
-                  <ActivityAction count={count} event={event} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : (
-          <>
-            <span className="text-foreground">{visitorLine}</span>
-            <ActivityAction event={latest} />
-          </>
-        )}
+        <div className="relative">
+          <span
+            aria-hidden="true"
+            className={ACTIVITY_TIMELINE_CONNECTOR_CLASS}
+          />
+          <span className="relative z-10 text-foreground">{visitorLine}</span>
+          <ul className="relative z-10 mt-1 flex flex-col gap-0 pl-[3px]">
+            {actionGroups.map(({ count, event }) => (
+              <li
+                className="relative flex items-baseline gap-1.5 py-0.5"
+                key={event.id}
+              >
+                <ActivityAction count={count} event={event} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </article>
   );

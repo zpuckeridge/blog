@@ -16,93 +16,89 @@ const CvPage = () => (
         </div>
 
         <div className="space-y-10">
-          <hr className="border-dotted border-border" />
+          <h2 className="font-redaction text-lg text-black dark:text-white">
+            Employment
+          </h2>
+
+          {employmentHistory.map((item: EmploymentItem) => (
+            <div
+              className="flex flex-row items-baseline gap-4 text-sm leading-normal"
+              key={item.title + item.startYear}
+            >
+              <div className="w-20 shrink-0">
+                <p className="text-muted-foreground text-sm">
+                  {item.startYear} –{" "}
+                  {item.endYear === "Present" ? "Now" : item.endYear}
+                </p>
+              </div>
+
+              <div className="w-full space-y-2">
+                <div>
+                  <p>
+                    {item.position} at{" "}
+                    <LinkWithIcon href={item.url}>{item.title}</LinkWithIcon>
+                  </p>
+                  <p className="text-muted-foreground text-sm">
+                    {item.location.includes("Australia") && (
+                      <span aria-hidden="true">🇦🇺 </span>
+                    )}
+                    {item.location.includes("United States") && (
+                      <span aria-hidden="true">🇺🇸 </span>
+                    )}
+                    {item.location}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="mt-1 text-sm">{item.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <hr />
 
           <div className="space-y-10">
             <h2 className="font-redaction text-lg text-black dark:text-white">
-              Employment
+              Education
             </h2>
-
-            {employmentHistory.map((item: EmploymentItem) => (
+            {educationHistory.map((item: EducationItem) => (
               <div
                 className="flex flex-row items-baseline gap-4 text-sm leading-normal"
-                key={item.title + item.startYear}
+                key={item.title + item.startDate}
               >
                 <div className="w-20 shrink-0">
                   <p className="text-muted-foreground text-sm">
-                    {item.startYear} –{" "}
-                    {item.endYear === "Present" ? "Now" : item.endYear}
+                    {item.startDate.slice(0, 4)} – {item.endDate.slice(0, 4)}
                   </p>
                 </div>
 
                 <div className="w-full space-y-2">
                   <div>
                     <p>
-                      {item.position} at{" "}
-                      <LinkWithIcon href={item.url}>{item.title}</LinkWithIcon>
+                      {item.url ? (
+                        <LinkWithIcon href={item.url}>
+                          {item.title}
+                        </LinkWithIcon>
+                      ) : (
+                        item.title
+                      )}
                     </p>
                     <p className="text-muted-foreground text-sm">
-                      {item.location.includes("Australia") && (
-                        <span aria-hidden="true">🇦🇺 </span>
-                      )}
-                      {item.location.includes("United States") && (
-                        <span aria-hidden="true">🇺🇸 </span>
-                      )}
-                      {item.location}
+                      {item.field}
+                      {item.credential ? ` (${item.credential})` : ""}
+                      {item.location && ` • ${item.location}`}
                     </p>
                   </div>
 
-                  <div>
-                    <p className="mt-1 text-sm">{item.description}</p>
-                  </div>
+                  {item.description && (
+                    <div>
+                      <p className="mt-1 text-sm">{item.description}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
-
-            <hr />
-
-            <div className="space-y-10">
-              <h2 className="font-redaction text-lg text-black dark:text-white">
-                Education
-              </h2>
-              {educationHistory.map((item: EducationItem) => (
-                <div
-                  className="flex flex-row items-baseline gap-4 text-sm leading-normal"
-                  key={item.title + item.startDate}
-                >
-                  <div className="w-20 shrink-0">
-                    <p className="text-muted-foreground text-sm">
-                      {item.startDate.slice(0, 4)} – {item.endDate.slice(0, 4)}
-                    </p>
-                  </div>
-
-                  <div className="w-full space-y-2">
-                    <div>
-                      <p>
-                        {item.url ? (
-                          <LinkWithIcon href={item.url}>
-                            {item.title}
-                          </LinkWithIcon>
-                        ) : (
-                          item.title
-                        )}
-                      </p>
-                      <p className="text-muted-foreground text-sm">
-                        {item.field}
-                        {item.credential ? ` (${item.credential})` : ""}
-                        {item.location && ` • ${item.location}`}
-                      </p>
-                    </div>
-
-                    {item.description && (
-                      <div>
-                        <p className="mt-1 text-sm">{item.description}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

@@ -34,17 +34,20 @@ const initialTypedEvents = initialEvents as ActivityEvent[];
   <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-10 px-6 pb-20">
     {
       statusHistory ? (
-        <section aria-label="My recent time" class="min-w-0 space-y-4">
-          <div class="space-y-1">
-            <p class="text-sm text-muted-foreground">Personal</p>
-            <h2 class="font-redaction text-xl">Where I've been</h2>
-            <p class="text-sm text-muted-foreground">
+        <section aria-label="My recent time" class="min-w-0 space-y-10">
+          <div class="space-y-2">
+            <h2 class="font-redaction text-black text-xl dark:text-white">
+              Where I've been
+            </h2>
+            <p class="text-black text-sm dark:text-white">
               My time at work, at home, and online on Discord over the last
               year.
             </p>
           </div>
-          <ActivityStatusGraphs history={statusHistory} />
-          <hr class="border-dotted border-border" />
+          <div class="space-y-4">
+            <ActivityStatusGraphs history={statusHistory} />
+            <hr class="border-dotted border-border" />
+          </div>
         </section>
       ) : null
     }

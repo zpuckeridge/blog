@@ -66,11 +66,7 @@ const TimelinePage = ({ allPosts, allNotes }: TimelinePageProps) => {
             </p>
           </div>
 
-          <div className="space-y-10">
-            <hr className="border-dotted border-border" />
-
-            <PostRendering postsByYear={content} />
-          </div>
+          <PostRendering postsByYear={content} />
         </div>
 
         <BackLink href="/">../</BackLink>

@@ -6,9 +6,41 @@ import Navigation from "@/components/navigation";
 import PostHogClient from "@/components/posthog-client";
 import BaseHead from "@/components/seo/base-head.astro";
 import JsonLd from "@/components/seo/json-ld.astro";
+import { menuItems } from "@/lib/menu-items";
 import type { PageMetadata } from "@/lib/metadata";
 import { resolvePosthogClientConfig } from "@/lib/posthog-config";
 import { workersEnv } from "@/lib/workers-env";
+
+const internalLink = {
+  and: [
+    { href_matches: "/*" },
+    { not: { href_matches: "/api/*" } },
+    { not: { selector_matches: "a[target=_blank]" } },
+    { not: { selector_matches: "a[download]" } },
+  ],
+};
+
+const speculationRules = JSON.stringify({
+  prefetch: [
+    {
+      eagerness: "moderate",
+      source: "document",
+      where: internalLink,
+    },
+  ],
+  prerender: [
+    {
+      eagerness: "immediate",
+      source: "list",
+      urls: ["/", ...menuItems.map((item) => item.href)],
+    },
+    {
+      eagerness: "moderate",
+      source: "document",
+      where: internalLink,
+    },
+  ],
+});
 
 interface Props {
   canonicalUrl?: string;
@@ -54,6 +86,7 @@ const posthog = resolvePosthogClientConfig({
         document.documentElement.style.colorScheme = preferredTheme;
       })();
     </script>
+    <script is:inline set:html={speculationRules} type="speculationrules" />
     <BaseHead
       canonicalUrl={canonicalUrl}
       fullTitle={fullTitle}

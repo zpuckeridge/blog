@@ -44,11 +44,7 @@ const sortedVideos = videos.toSorted((a, b) =>
               </p>
             </div>
 
-            <div class="space-y-10">
-              <hr class="border-dotted border-border" />
-
-              <Videos client:idle itemsPerPage={6} videos={sortedVideos} />
-            </div>
+            <Videos client:idle itemsPerPage={6} videos={sortedVideos} />
           </div>
 
           <a aria-label="Back to home" class={backLinkClassName} href="/">

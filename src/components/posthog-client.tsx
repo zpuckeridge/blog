@@ -25,6 +25,7 @@ const PostHogClient = ({ apiHost, apiKey }: PostHogClientProps) => {
 
     let disposed = false;
     let started = false;
+    let idle: { cancel: () => void } | null = null;
 
     const start = () => {
       if (disposed || started) {
@@ -44,13 +45,34 @@ const PostHogClient = ({ apiHost, apiKey }: PostHogClientProps) => {
       }
     };
 
-    const idle = scheduleIdleOrFallback(() => {
-      start();
-    }, IDLE_FALLBACK_MS);
+    const schedule = () => {
+      idle = scheduleIdleOrFallback(() => {
+        start();
+      }, IDLE_FALLBACK_MS);
+    };
+
+    if (document.prerendering) {
+      const onActivate = () => {
+        if (!disposed) {
+          schedule();
+        }
+      };
+      document.addEventListener("prerenderingchange", onActivate, {
+        once: true,
+      });
+
+      return () => {
+        disposed = true;
+        document.removeEventListener("prerenderingchange", onActivate);
+        idle?.cancel();
+      };
+    }
+
+    schedule();
 
     return () => {
       disposed = true;
-      idle.cancel();
+      idle?.cancel();
     };
   }, [apiHost, apiKey]);
 

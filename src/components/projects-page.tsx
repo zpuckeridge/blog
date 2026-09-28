@@ -56,70 +56,66 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
             </p>
           </div>
 
-          <div className="space-y-10">
-            <hr className="border-dotted border-border" />
-
-            <div className="w-full">
-              {sortedProjects.length > 0 ? (
-                <Table className="">
-                  <TableBody>
-                    {sortedProjects.map((project) => (
-                      <TableRow
-                        className={cn(
-                          "group border-b border-dotted border-border hover:!bg-transparent dark:hover:!bg-transparent",
-                          project.status === "archived" &&
-                            "text-yellow-700 dark:text-yellow-600"
-                        )}
-                        key={project.id}
-                      >
-                        <TableCell>
-                          <p className="whitespace-normal break-words text-sm opacity-100 transition-opacity group-hover:opacity-100">
-                            {project.name}
-                          </p>
-                        </TableCell>
-                        <TableCell className="whitespace-nowrap text-right">
-                          <p className="text-muted-foreground text-sm opacity-100 transition-opacity group-hover:opacity-100">
-                            {project.status === "work_in_progress"
-                              ? "Present"
-                              : project.year_completed || "Present"}
-                          </p>
-                        </TableCell>
-                        <TableCell className="whitespace-nowrap text-right">
-                          {(() => {
-                            if (project.status === "archived") {
-                              return (
-                                <span className="text-muted-foreground text-sm">
-                                  Archived
-                                </span>
-                              );
-                            }
-                            if (project.status === "work_in_progress") {
-                              return <AnimatedGradientText text="WIP" />;
-                            }
-                            if (project.link) {
-                              return (
-                                <LinkWithIcon
-                                  className="text-muted-foreground"
-                                  href={project.link}
-                                  variant="default"
-                                >
-                                  View
-                                </LinkWithIcon>
-                              );
-                            }
-                            return null;
-                          })()}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              ) : (
-                <div className="py-8 text-center">
-                  <p className="text-muted-foreground">No projects found.</p>
-                </div>
-              )}
-            </div>
+          <div className="w-full">
+            {sortedProjects.length > 0 ? (
+              <Table className="">
+                <TableBody>
+                  {sortedProjects.map((project) => (
+                    <TableRow
+                      className={cn(
+                        "group border-b border-dotted border-border hover:!bg-transparent dark:hover:!bg-transparent",
+                        project.status === "archived" &&
+                          "text-yellow-700 dark:text-yellow-600"
+                      )}
+                      key={project.id}
+                    >
+                      <TableCell>
+                        <p className="whitespace-normal break-words text-sm opacity-100 transition-opacity group-hover:opacity-100">
+                          {project.name}
+                        </p>
+                      </TableCell>
+                      <TableCell className="whitespace-nowrap text-right">
+                        <p className="text-muted-foreground text-sm opacity-100 transition-opacity group-hover:opacity-100">
+                          {project.status === "work_in_progress"
+                            ? "Present"
+                            : project.year_completed || "Present"}
+                        </p>
+                      </TableCell>
+                      <TableCell className="whitespace-nowrap text-right">
+                        {(() => {
+                          if (project.status === "archived") {
+                            return (
+                              <span className="text-muted-foreground text-sm">
+                                Archived
+                              </span>
+                            );
+                          }
+                          if (project.status === "work_in_progress") {
+                            return <AnimatedGradientText text="WIP" />;
+                          }
+                          if (project.link) {
+                            return (
+                              <LinkWithIcon
+                                className="text-muted-foreground"
+                                href={project.link}
+                                variant="default"
+                              >
+                                View
+                              </LinkWithIcon>
+                            );
+                          }
+                          return null;
+                        })()}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <div className="py-8 text-center">
+                <p className="text-muted-foreground">No projects found.</p>
+              </div>
+            )}
           </div>
         </div>
 

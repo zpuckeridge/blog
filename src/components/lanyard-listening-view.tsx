@@ -340,6 +340,10 @@ const LanyardListeningView = () => {
         return;
       }
 
+      if (document.prerendering) {
+        return;
+      }
+
       const key = listeningIdentity(next);
       if (lastRecordedKeyRef.current === key) {
         return;
@@ -356,6 +360,41 @@ const LanyardListeningView = () => {
     },
     [mutate]
   );
+
+  useEffect(() => {
+    if (skipNetwork || !listening || !document.prerendering) {
+      return;
+    }
+
+    let cancelled = false;
+
+    const onActivate = () => {
+      if (
+        cancelled ||
+        lastRecordedKeyRef.current === listeningIdentity(listening)
+      ) {
+        return;
+      }
+
+      lastRecordedKeyRef.current = listeningIdentity(listening);
+
+      void (async () => {
+        const recorded = await recordRecent();
+        if (recorded) {
+          await mutate(recorded, false);
+        }
+      })();
+    };
+
+    document.addEventListener("prerenderingchange", onActivate, {
+      once: true,
+    });
+
+    return () => {
+      cancelled = true;
+      document.removeEventListener("prerenderingchange", onActivate);
+    };
+  }, [listening, mutate, skipNetwork]);
 
   useEffect(() => {
     if (skipNetwork) {

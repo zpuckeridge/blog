@@ -5,10 +5,10 @@ interface MenuItem {
 
 export const menuItems: MenuItem[] = [
   { href: "/about", label: "About" },
-  { href: "/uses", label: "Uses" },
   { href: "/projects", label: "Projects" },
   { href: "/timeline", label: "Timeline" },
-  { href: "/activity", label: "Activity" },
-  { href: "/videos", label: "Videos" },
   { href: "/cv", label: "CV" },
+  { href: "/activity", label: "Activity" },
+  { href: "/uses", label: "Uses" },
+  { href: "/videos", label: "Videos" },
 ];
