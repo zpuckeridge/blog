@@ -1,0 +1,24 @@
+---
+import WisdomGraph from "@/components/wisdom-graph";
+import Layout from "@/layouts/layout.astro";
+import { getQuoteAuthors } from "@/lib/directus-content";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+
+const authors = await getQuoteAuthors();
+
+const pageMeta = createPageMetadata({
+  description: "People I quote, and the lines I've saved from them.",
+  path: "/wisdom",
+  title: "Wisdom",
+});
+
+const fullTitle = formatPageTitle("Wisdom");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <WisdomGraph authors={authors} client:load />
+</Layout>

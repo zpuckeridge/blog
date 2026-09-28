@@ -12,6 +12,7 @@ const STATIC_ROUTES = [
   "/about/credits",
   "/projects",
   "/timeline",
+  "/wisdom",
   "/cv",
   "/colophon",
   "/imprint",

@@ -103,6 +103,19 @@ export type UseCategory =
   | "vehicles"
   | "everyday_carry";
 
+export interface Quote {
+  id: string;
+  text: string;
+  title: string;
+}
+
+export interface QuoteAuthor {
+  id: string;
+  name: string;
+  quotes: Quote[];
+  sort: number | null;
+}
+
 export interface UseItem {
   id: number;
   status: string;

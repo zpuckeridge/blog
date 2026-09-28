@@ -7,6 +7,7 @@ import type {
   Note,
   Post,
   Project,
+  QuoteAuthor,
   UseItem,
   Video,
 } from "@/interfaces/content-item";
@@ -558,3 +559,93 @@ export const getProjects = (): Promise<Project[]> =>
       return [];
     }
   });
+
+interface QuoteAuthorRecord {
+  id: string;
+  name: string;
+  quotes:
+    | {
+        id: string;
+        sort?: number | null;
+        status?: string;
+        text: string;
+        title?: string | null;
+      }[]
+    | null;
+  sort: number | null;
+  status: string;
+}
+
+const toQuoteAuthor = (record: QuoteAuthorRecord): QuoteAuthor => {
+  const quotes = (record.quotes ?? [])
+    .filter((quote) => quote.status === "published" && quote.text.length > 0)
+    .toSorted((a, b) => (a.sort ?? 0) - (b.sort ?? 0))
+    .map((quote) => ({
+      id: quote.id,
+      text: quote.text,
+      title: quote.title?.trim() || quote.text,
+    }));
+
+  return {
+    id: record.id,
+    name: record.name,
+    quotes,
+    sort: record.sort,
+  };
+};
+
+/**
+ * Retrieve published quote authors and their published quotes.
+ */
+export const getQuoteAuthors = (): Promise<QuoteAuthor[]> =>
+  withContentCache(
+    "quote-authors-with-titles",
+    async () => {
+      try {
+        const authors = (await directus.request(
+          readItems("quote_authors", {
+            deep: {
+              quotes: {
+                _filter: {
+                  status: {
+                    _eq: "published",
+                  },
+                },
+                _sort: ["sort"],
+              },
+            },
+            fields: [
+              "id",
+              "status",
+              "name",
+              "sort",
+              "quotes.id",
+              "quotes.status",
+              "quotes.text",
+              "quotes.title",
+              "quotes.sort",
+            ],
+            filter: {
+              status: {
+                _eq: "published",
+              },
+            },
+            sort: ["sort", "name"],
+          })
+        )) as QuoteAuthorRecord[];
+
+        return authors
+          .filter((author) => author.status === "published")
+          .map(toQuoteAuthor);
+      } catch (error) {
+        const errorDetails = extractDirectusError(error);
+        console.error("Error fetching quote authors:", {
+          details: errorDetails.details,
+          message: errorDetails.message,
+          status: errorDetails.status,
+        });
+        return [];
+      }
+    },
+    { shouldCache: (authors) => authors.length > 0 }
+  );

@@ -8,6 +8,7 @@ export const menuItems: MenuItem[] = [
   { href: "/uses", label: "Uses" },
   { href: "/projects", label: "Projects" },
   { href: "/timeline", label: "Timeline" },
+  { href: "/wisdom", label: "Wisdom" },
   { href: "/activity", label: "Activity" },
   { href: "/videos", label: "Videos" },
   { href: "/cv", label: "CV" },

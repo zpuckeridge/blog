@@ -14,6 +14,7 @@ ${baseUrl} is the personal site of Zacchary Puckeridge, a web developer and writ
 - Home: ${baseUrl}/
 - About: ${baseUrl}/about
 - Timeline: ${baseUrl}/timeline
+- Wisdom: ${baseUrl}/wisdom
 - Projects: ${baseUrl}/projects
 - CV: ${baseUrl}/cv
 - Uses: ${baseUrl}/uses
