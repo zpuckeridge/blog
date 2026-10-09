@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "main": "./src/worker.ts",
-  "compatibility_date": "2026-03-01",
+  "compatibility_date": "2026-10-09",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "preview_urls": true,
   "workers_dev": true,
@@ -53,6 +53,9 @@
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1,
+    "issues": {
+      "enabled": true,
+    },
     "logs": {
       "enabled": true,
       "head_sampling_rate": 1,
