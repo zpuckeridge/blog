@@ -1,4 +1,14 @@
+/** Legacy Apple Music rich presence app id (still seen on some clients). */
 export const APPLE_MUSIC_APPLICATION_ID = "1239490006054207550";
+
+/** Current Discord desktop Apple Music integration app id. */
+export const APPLE_MUSIC_DESKTOP_APPLICATION_ID = "773825528921849856";
+
+const APPLE_MUSIC_APPLICATION_IDS = new Set([
+  APPLE_MUSIC_APPLICATION_ID,
+  APPLE_MUSIC_DESKTOP_APPLICATION_ID,
+]);
+
 export const LANYARD_USER_ID = "181324210876973056";
 
 export interface LanyardActivityAssets {
@@ -98,12 +108,21 @@ export const resolveArtworkZoomUrl = (
   );
 };
 
+const isAppleMusicActivity = (activity: LanyardActivity): boolean => {
+  if (
+    activity.application_id &&
+    APPLE_MUSIC_APPLICATION_IDS.has(activity.application_id)
+  ) {
+    return true;
+  }
+
+  return activity.name === "Apple Music" && activity.type === 2;
+};
+
 export const parseAppleMusicActivity = (
   activities: LanyardActivity[] | undefined
 ): NowListening | null => {
-  const activity = activities?.find(
-    (item) => item.application_id === APPLE_MUSIC_APPLICATION_ID
-  );
+  const activity = activities?.find(isAppleMusicActivity);
 
   if (!activity?.details?.trim()) {
     return null;
@@ -118,6 +137,9 @@ export const parseAppleMusicActivity = (
     return null;
   }
 
+  const applicationId =
+    activity.application_id ?? APPLE_MUSIC_DESKTOP_APPLICATION_ID;
+
   return {
     album:
       activity.assets?.large_text?.trim() ||
@@ -125,7 +147,10 @@ export const parseAppleMusicActivity = (
       null,
     artist,
     artistUrl: activity.state_url ?? activity.assets?.small_url ?? null,
-    artworkUrl: resolveDiscordAssetImage(activity.assets?.large_image),
+    artworkUrl: resolveDiscordAssetImage(
+      activity.assets?.large_image,
+      applicationId
+    ),
     track,
     trackUrl: activity.details_url ?? activity.assets?.large_url ?? null,
   };
