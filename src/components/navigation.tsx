@@ -1,7 +1,7 @@
 import { Drawer } from "@base-ui/react/drawer";
 import { Menu } from "@base-ui/react/menu";
 import { useEffect, useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu, RxLockClosed } from "react-icons/rx";
 
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
@@ -146,6 +146,15 @@ const Navigation = ({ pathname }: NavigationProps) => {
                         {index + 1}
                       </span>
                       {item.label}
+                      {item.locked ? (
+                        <>
+                          <RxLockClosed
+                            aria-hidden="true"
+                            className="ml-auto size-3 shrink-0 self-center"
+                          />
+                          <span className="sr-only">(password protected)</span>
+                        </>
+                      ) : null}
                     </Menu.LinkItem>
                   );
                 })}
@@ -207,6 +216,15 @@ const Navigation = ({ pathname }: NavigationProps) => {
                       key={item.href}
                     >
                       {item.label}
+                      {item.locked ? (
+                        <>
+                          <RxLockClosed
+                            aria-hidden="true"
+                            className="ml-auto size-3 shrink-0 self-center"
+                          />
+                          <span className="sr-only">(password protected)</span>
+                        </>
+                      ) : null}
                     </a>
                   );
                 })}
