@@ -3,6 +3,7 @@ import { Menu } from "@base-ui/react/menu";
 import { useEffect, useState } from "react";
 import { RxHamburgerMenu, RxLockClosed } from "react-icons/rx";
 
+import MenuThemeToggle from "@/components/menu-theme-toggle";
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
 import { menuItems } from "@/lib/menu-items";
@@ -158,6 +159,10 @@ const Navigation = ({ pathname }: NavigationProps) => {
                     </Menu.LinkItem>
                   );
                 })}
+                <div className="mt-1 flex items-center justify-between gap-3 border-border border-t px-3 pt-2 pb-1">
+                  <span className="text-muted-foreground">Theme</span>
+                  <MenuThemeToggle />
+                </div>
               </Menu.Popup>
             </Menu.Positioner>
           </Menu.Portal>
@@ -232,6 +237,7 @@ const Navigation = ({ pathname }: NavigationProps) => {
                   Email
                 </a>
               </nav>
+              <MenuThemeToggle className="mx-auto mt-4 w-fit border border-border! p-1!" />
             </Drawer.Popup>
           </Drawer.Viewport>
         </Drawer.Portal>
