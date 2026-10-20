@@ -10,7 +10,6 @@ import type {
   UseItem,
   Video,
 } from "@/interfaces/content-item";
-import { isHiddenPostSlug } from "@/lib/hidden-posts";
 
 import directus from "./directus";
 
@@ -191,15 +190,13 @@ const requestPublishedPosts = async (query: {
 export const getPosts = (): Promise<Post[]> =>
   withContentCache("posts", async () => {
     try {
-      const posts = await requestPublishedPosts({
+      return await requestPublishedPosts({
         filter: {
           status: {
             _eq: "published",
           },
         },
       });
-
-      return posts.filter((post) => !isHiddenPostSlug(post.slug));
     } catch (error) {
       console.error("Error fetching posts:", error);
       return [];
@@ -211,10 +208,6 @@ export const getPosts = (): Promise<Post[]> =>
  */
 export const getPostBySlug = (slug: string): Promise<Post | null> =>
   withContentCache(`post:${slug}`, async () => {
-    if (isHiddenPostSlug(slug)) {
-      return null;
-    }
-
     try {
       const posts = await requestPublishedPosts({
         filter: {
