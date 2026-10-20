@@ -257,7 +257,7 @@ const Navigation = ({ pathname }: NavigationProps) => {
                 </a>
               </nav>
               <MenuThemeToggle
-                className="mx-auto mt-4 w-fit border border-border! p-1!"
+                className="mx-auto mt-4 size-10 border border-border"
                 shortcutActive={drawerOpen}
               />
             </Drawer.Popup>

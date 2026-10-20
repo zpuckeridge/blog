@@ -1,39 +1,21 @@
 import { useEffect, useState } from "react";
-import type { IconType } from "react-icons";
-import { RxDesktop, RxMoon, RxSun } from "react-icons/rx";
+import { RxMoon, RxSun } from "react-icons/rx";
 
 import { cn } from "@/lib/utils";
 
-type ThemeChoice = "dark" | "light" | "system";
+type Theme = "dark" | "light";
 
 const STORAGE_KEY = "theme";
 const DARK_MODE_QUERY = "(prefers-color-scheme: dark)";
 
-const options: { icon: IconType; label: string; value: ThemeChoice }[] = [
-  { icon: RxSun, label: "Light", value: "light" },
-  { icon: RxMoon, label: "Dark", value: "dark" },
-  { icon: RxDesktop, label: "System", value: "system" },
-];
-
-const readChoice = (): ThemeChoice => {
-  if (typeof window === "undefined") {
-    return "system";
+const getAppliedTheme = (): Theme => {
+  if (typeof document === "undefined") {
+    return "light";
   }
-  try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "light" || stored === "dark") {
-      return stored;
-    }
-  } catch {
-    // Storage unavailable (e.g. privacy mode)
-  }
-  return "system";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 };
 
-const applyChoice = (choice: ThemeChoice) => {
-  const prefersDark = window.matchMedia(DARK_MODE_QUERY).matches;
-  const systemTheme = prefersDark ? "dark" : "light";
-  const theme = choice === "system" ? systemTheme : choice;
+const applyTheme = (theme: Theme) => {
   const root = document.documentElement;
   root.classList.add("theme-transition-lock");
   root.classList.toggle("dark", theme === "dark");
@@ -49,26 +31,18 @@ const isEditableTarget = (target: EventTarget | null) =>
     target.tagName === "TEXTAREA" ||
     target.tagName === "SELECT");
 
-const CHOICE_EVENT = "theme-choice-change";
+const THEME_EVENT = "theme-change";
 
-const persistChoice = (next: ThemeChoice) => {
+/** Switch to the opposite of the applied theme and save it. */
+export const toggleResolvedTheme = () => {
+  const next: Theme = getAppliedTheme() === "dark" ? "light" : "dark";
   try {
-    if (next === "system") {
-      window.localStorage.removeItem(STORAGE_KEY);
-    } else {
-      window.localStorage.setItem(STORAGE_KEY, next);
-    }
+    window.localStorage.setItem(STORAGE_KEY, next);
   } catch {
     // Storage unavailable
   }
-  applyChoice(next);
-  window.dispatchEvent(new Event(CHOICE_EVENT));
-};
-
-/** Flip to the opposite of the currently applied theme (System resolves first). */
-export const toggleResolvedTheme = () => {
-  const isDark = document.documentElement.classList.contains("dark");
-  persistChoice(isDark ? "light" : "dark");
+  applyTheme(next);
+  window.dispatchEvent(new Event(THEME_EVENT));
 };
 
 export const isThemeShortcut = (event: {
@@ -97,29 +71,29 @@ const MenuThemeToggle = ({
   className,
   shortcutActive = false,
 }: MenuThemeToggleProps) => {
-  const [choice, setChoice] = useState<ThemeChoice>(readChoice);
+  const [theme, setTheme] = useState<Theme>(getAppliedTheme);
 
   useEffect(() => {
+    const sync = () => setTheme(getAppliedTheme());
     const media = window.matchMedia(DARK_MODE_QUERY);
-    const onChange = () => {
-      if (readChoice() === "system") {
-        applyChoice("system");
+    const onSystemChange = () => {
+      try {
+        if (window.localStorage.getItem(STORAGE_KEY)) {
+          return;
+        }
+      } catch {
+        // Storage unavailable
       }
+      applyTheme(media.matches ? "dark" : "light");
+      sync();
     };
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
+    window.addEventListener(THEME_EVENT, sync);
+    media.addEventListener("change", onSystemChange);
+    return () => {
+      window.removeEventListener(THEME_EVENT, sync);
+      media.removeEventListener("change", onSystemChange);
+    };
   }, []);
-
-  useEffect(() => {
-    const sync = () => setChoice(readChoice());
-    window.addEventListener(CHOICE_EVENT, sync);
-    return () => window.removeEventListener(CHOICE_EVENT, sync);
-  }, []);
-
-  const select = (next: ThemeChoice) => {
-    persistChoice(next);
-    setChoice(next);
-  };
 
   useEffect(() => {
     if (!shortcutActive) {
@@ -137,32 +111,23 @@ const MenuThemeToggle = ({
     return () => window.removeEventListener("keydown", onKeyDown, true);
   }, [shortcutActive]);
 
+  const nextTheme = theme === "dark" ? "light" : "dark";
+  const Icon = theme === "dark" ? RxMoon : RxSun;
+
   return (
-    <fieldset
+    <button
       aria-keyshortcuts="t"
+      aria-label={`Switch to ${nextTheme} theme`}
       className={cn(
-        "m-0 flex min-w-0 items-center gap-1 border-0 p-0",
+        "inline-flex size-6 items-center justify-center text-muted-foreground outline-hidden transition-colors hover:text-foreground focus-visible:text-foreground",
         className
       )}
+      onClick={toggleResolvedTheme}
+      title={`Switch to ${nextTheme} theme`}
+      type="button"
     >
-      <legend className="sr-only">Theme</legend>
-      {options.map(({ icon: Icon, label, value }) => (
-        <button
-          aria-pressed={choice === value}
-          aria-label={label}
-          className={cn(
-            "inline-flex size-6 items-center justify-center text-muted-foreground outline-hidden transition-colors hover:text-foreground focus-visible:text-foreground",
-            choice === value && "bg-background text-foreground"
-          )}
-          key={value}
-          onClick={() => select(value)}
-          title={`${label} theme`}
-          type="button"
-        >
-          <Icon aria-hidden="true" className="size-3.5" />
-        </button>
-      ))}
-    </fieldset>
+      <Icon aria-hidden="true" className="size-3.5" />
+    </button>
   );
 };
 
