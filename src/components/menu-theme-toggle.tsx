@@ -42,12 +42,61 @@ const applyChoice = (choice: ThemeChoice) => {
   root.classList.remove("theme-transition-lock");
 };
 
+const isEditableTarget = (target: EventTarget | null) =>
+  target instanceof HTMLElement &&
+  (target.isContentEditable ||
+    target.tagName === "INPUT" ||
+    target.tagName === "TEXTAREA" ||
+    target.tagName === "SELECT");
+
+const CHOICE_EVENT = "theme-choice-change";
+
+const persistChoice = (next: ThemeChoice) => {
+  try {
+    if (next === "system") {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } else {
+      window.localStorage.setItem(STORAGE_KEY, next);
+    }
+  } catch {
+    // Storage unavailable
+  }
+  applyChoice(next);
+  window.dispatchEvent(new Event(CHOICE_EVENT));
+};
+
+/** Flip to the opposite of the currently applied theme (System resolves first). */
+export const toggleResolvedTheme = () => {
+  const isDark = document.documentElement.classList.contains("dark");
+  persistChoice(isDark ? "light" : "dark");
+};
+
+export const isThemeShortcut = (event: {
+  altKey: boolean;
+  ctrlKey: boolean;
+  key: string;
+  metaKey: boolean;
+  repeat: boolean;
+  target: EventTarget | null;
+}) =>
+  !event.repeat &&
+  !event.altKey &&
+  !event.ctrlKey &&
+  !event.metaKey &&
+  event.key.toLowerCase() === "t" &&
+  !isEditableTarget(event.target);
+
 interface MenuThemeToggleProps {
   className?: string;
+  /** Listen for T globally (mobile drawer, which has no key handler). Pass true only while open. */
+  shortcutActive?: boolean;
 }
 
 /** Light / dark / system switch shared by the menu dropdown and mobile drawer. */
-const MenuThemeToggle = ({ className }: MenuThemeToggleProps) => {
+const MenuThemeToggle = ({
+  className,
+  shortcutActive = false,
+}: MenuThemeToggleProps) => {
   const [choice, setChoice] = useState<ThemeChoice>(readChoice);
 
   useEffect(() => {
@@ -61,22 +110,36 @@ const MenuThemeToggle = ({ className }: MenuThemeToggleProps) => {
     return () => media.removeEventListener("change", onChange);
   }, []);
 
+  useEffect(() => {
+    const sync = () => setChoice(readChoice());
+    window.addEventListener(CHOICE_EVENT, sync);
+    return () => window.removeEventListener(CHOICE_EVENT, sync);
+  }, []);
+
   const select = (next: ThemeChoice) => {
-    try {
-      if (next === "system") {
-        window.localStorage.removeItem(STORAGE_KEY);
-      } else {
-        window.localStorage.setItem(STORAGE_KEY, next);
-      }
-    } catch {
-      // Storage unavailable
-    }
-    applyChoice(next);
+    persistChoice(next);
     setChoice(next);
   };
 
+  useEffect(() => {
+    if (!shortcutActive) {
+      return;
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!isThemeShortcut(event)) {
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      toggleResolvedTheme();
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, [shortcutActive]);
+
   return (
     <fieldset
+      aria-keyshortcuts="t"
       className={cn(
         "m-0 flex min-w-0 items-center gap-1 border-0 p-0",
         className
