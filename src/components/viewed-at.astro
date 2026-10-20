@@ -1,0 +1,39 @@
+---
+/**
+ * "Viewed <time>" stamp, filled in on the client in the visitor's own time
+ * zone so cached HTML never shows a stale server time. Plain DOM script, no
+ * hydration, so there is nothing to mismatch.
+ */
+---
+
+<p class="text-muted-foreground text-sm" data-viewed-at hidden>
+  Viewed <time></time>
+</p>
+
+<script>
+  const fillViewedAt = () => {
+    const now = new Date();
+    const time = new Intl.DateTimeFormat(undefined, {
+      hour: "numeric",
+      minute: "2-digit",
+    }).format(now);
+    const date = new Intl.DateTimeFormat("en-AU", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(now);
+
+    for (const element of document.querySelectorAll<HTMLElement>("[data-viewed-at]")) {
+      const timeElement = element.querySelector("time");
+      if (!timeElement) {
+        continue;
+      }
+      timeElement.dateTime = now.toISOString();
+      timeElement.textContent = `${time}, ${date}`;
+      element.hidden = false;
+    }
+  };
+
+  fillViewedAt();
+  document.addEventListener("astro:page-load", fillViewedAt);
+</script>

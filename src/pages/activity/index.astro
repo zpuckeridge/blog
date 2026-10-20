@@ -1,6 +1,7 @@
 ---
 import ActivityFeed from "@/components/activity-feed";
 import ActivityStatusGraphs from "@/components/activity-status-graphs.astro";
+import ViewedAt from "@/components/viewed-at.astro";
 import Layout from "@/layouts/layout.astro";
 import { getServerStatusHistory } from "@/lib/status-history";
 import { workersEnv } from "@/lib/workers-env";
@@ -52,5 +53,6 @@ const initialTypedEvents = initialEvents as ActivityEvent[];
       ) : null
     }
     <ActivityFeed client:load initialEvents={initialTypedEvents} />
+    <ViewedAt />
   </div>
 </Layout>
