@@ -1,8 +1,12 @@
 import { Drawer } from "@base-ui/react/drawer";
 import { Menu } from "@base-ui/react/menu";
 import { useEffect, useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu, RxLockClosed } from "react-icons/rx";
 
+import MenuThemeToggle, {
+  isThemeShortcut,
+  toggleResolvedTheme,
+} from "@/components/menu-theme-toggle";
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
 import { menuItems } from "@/lib/menu-items";
@@ -112,6 +116,14 @@ const Navigation = ({ pathname }: NavigationProps) => {
                   menuEase
                 )}
                 onKeyDown={(event) => {
+                  if (isThemeShortcut(event)) {
+                    // Also stops the menu's typeahead jumping to "Timeline".
+                    event.preventDefault();
+                    event.preventBaseUIHandler();
+                    toggleResolvedTheme();
+                    return;
+                  }
+
                   if (event.altKey || event.ctrlKey || event.metaKey) {
                     return;
                   }
@@ -146,9 +158,30 @@ const Navigation = ({ pathname }: NavigationProps) => {
                         {index + 1}
                       </span>
                       {item.label}
+                      {item.locked ? (
+                        <>
+                          <RxLockClosed
+                            aria-hidden="true"
+                            className="ml-auto size-3 shrink-0 self-center"
+                          />
+                          <span className="sr-only">(password protected)</span>
+                        </>
+                      ) : null}
                     </Menu.LinkItem>
                   );
                 })}
+                <div className="mt-1 flex items-center justify-between gap-3 border-border border-t px-3 pt-2 pb-1">
+                  <span className="flex items-baseline gap-2 text-muted-foreground">
+                    <kbd
+                      aria-hidden="true"
+                      className="w-3 shrink-0 font-sans tabular-nums text-muted-foreground"
+                    >
+                      T
+                    </kbd>
+                    Theme
+                  </span>
+                  <MenuThemeToggle />
+                </div>
               </Menu.Popup>
             </Menu.Positioner>
           </Menu.Portal>
@@ -207,6 +240,15 @@ const Navigation = ({ pathname }: NavigationProps) => {
                       key={item.href}
                     >
                       {item.label}
+                      {item.locked ? (
+                        <>
+                          <RxLockClosed
+                            aria-hidden="true"
+                            className="ml-auto size-3 shrink-0 self-center"
+                          />
+                          <span className="sr-only">(password protected)</span>
+                        </>
+                      ) : null}
                     </a>
                   );
                 })}
@@ -214,6 +256,10 @@ const Navigation = ({ pathname }: NavigationProps) => {
                   Email
                 </a>
               </nav>
+              <MenuThemeToggle
+                className="mx-auto mt-4 size-10 border border-border"
+                shortcutActive={drawerOpen}
+              />
             </Drawer.Popup>
           </Drawer.Viewport>
         </Drawer.Portal>

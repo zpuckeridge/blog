@@ -1,6 +1,8 @@
 interface MenuItem {
   href: string;
   label: string;
+  /** Shows a lock icon; the page is password protected. */
+  locked?: boolean;
 }
 
 export const menuItems: MenuItem[] = [
@@ -10,5 +12,5 @@ export const menuItems: MenuItem[] = [
   { href: "/cv", label: "CV" },
   { href: "/activity", label: "Activity" },
   { href: "/uses", label: "Uses" },
-  { href: "/videos", label: "Videos" },
+  { href: "/videos", label: "Videos", locked: true },
 ];
