@@ -1,3 +1,4 @@
+import { directusAssetAbsoluteUrl } from "@/lib/directus-asset";
 import type { Post, Video } from "@/interfaces/content-item";
 import { getSiteUrl } from "@/lib/site-url";
 import { resolveVideoMedia } from "@/lib/video-source";
@@ -158,10 +159,8 @@ export const buildTimelinePostMetadata = (
   const description = post.description || `Read ${title} on zacchary.me.`;
 
   const baseUrl = getSiteUrl();
-  const directusUrl =
-    process.env.DIRECTUS_URL || "https://directus.obambulo.studio";
   const imageUrl = post.image
-    ? `${directusUrl}/assets/${post.image}`
+    ? directusAssetAbsoluteUrl(post.image)
     : `${baseUrl}/avatar-2026.avif`;
   const base = createPageMetadata({
     description,

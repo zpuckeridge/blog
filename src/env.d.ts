@@ -29,6 +29,8 @@ declare global {
     interface Env {
       /** Set via Wrangler secret, `vars`, or `.dev.vars` for local dev. */
       VIDEO_PASSWORD?: string;
+      /** Read-only Directus token. Used server-side by the /img proxy; never sent to browsers. */
+      DIRECTUS_TOKEN?: string;
       /** GitHub PAT with `read:user` for the contributions API. Same sources as `VIDEO_PASSWORD`. */
       GITHUB_TOKEN?: string;
       /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
