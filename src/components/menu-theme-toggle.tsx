@@ -119,14 +119,14 @@ const MenuThemeToggle = ({
       aria-keyshortcuts="t"
       aria-label={`Switch to ${nextTheme} theme`}
       className={cn(
-        "inline-flex size-6 items-center justify-center text-muted-foreground outline-hidden transition-colors hover:text-foreground focus-visible:text-foreground",
+        "inline-flex size-6 items-center justify-center outline-hidden",
         className
       )}
       onClick={toggleResolvedTheme}
       title={`Switch to ${nextTheme} theme`}
       type="button"
     >
-      <Icon aria-hidden="true" className="size-3.5" />
+      <Icon aria-hidden="true" className="size-3 shrink-0 self-center" />
     </button>
   );
 };
