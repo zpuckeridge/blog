@@ -1,7 +1,7 @@
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { RxMoon, RxSun } from "react-icons/rx";
 
-import { cn } from "@/lib/utils";
 
 type Theme = "dark" | "light";
 
@@ -61,14 +61,18 @@ export const isThemeShortcut = (event: {
   !isEditableTarget(event.target);
 
 interface MenuThemeToggleProps {
+  children?: ReactNode;
   className?: string;
+  iconClassName?: string;
   /** Listen for T globally (mobile drawer, which has no key handler). Pass true only while open. */
   shortcutActive?: boolean;
 }
 
 /** Light / dark / system switch shared by the menu dropdown and mobile drawer. */
 const MenuThemeToggle = ({
+  children,
   className,
+  iconClassName,
   shortcutActive = false,
 }: MenuThemeToggleProps) => {
   const [theme, setTheme] = useState<Theme>(getAppliedTheme);
@@ -117,16 +121,19 @@ const MenuThemeToggle = ({
   return (
     <button
       aria-keyshortcuts="t"
-      aria-label={`Switch to ${nextTheme} theme`}
-      className={cn(
-        "inline-flex size-6 items-center justify-center text-muted-foreground outline-hidden transition-colors hover:text-foreground focus-visible:text-foreground",
-        className
-      )}
+      aria-label={children ? undefined : `Switch to ${nextTheme} theme`}
+      className={
+        className ?? "inline-flex size-6 items-center justify-center outline-hidden"
+      }
       onClick={toggleResolvedTheme}
       title={`Switch to ${nextTheme} theme`}
       type="button"
     >
-      <Icon aria-hidden="true" className="size-3.5" />
+      {children}
+      <Icon
+        aria-hidden="true"
+        className={iconClassName ?? "size-3 shrink-0 self-center"}
+      />
     </button>
   );
 };

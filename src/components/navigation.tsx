@@ -170,17 +170,19 @@ const Navigation = ({ pathname }: NavigationProps) => {
                     </Menu.LinkItem>
                   );
                 })}
-                <div className="mt-1 flex items-center justify-between gap-3 border-border border-t px-3 pt-2 pb-1">
-                  <span className="flex items-baseline gap-2 text-muted-foreground">
-                    <kbd
+                <div className="mt-1 border-border border-t pt-1">
+                  <MenuThemeToggle
+                    className="flex w-full items-baseline gap-2 px-3 py-1 text-left outline-hidden select-none [&:hover]:bg-background [&:hover]:text-foreground"
+                    iconClassName="ml-auto size-3 shrink-0 self-center"
+                  >
+                    <span
                       aria-hidden="true"
-                      className="w-3 shrink-0 font-sans tabular-nums text-muted-foreground"
+                      className="w-3 shrink-0 tabular-nums text-muted-foreground"
                     >
                       T
-                    </kbd>
+                    </span>
                     Theme
-                  </span>
-                  <MenuThemeToggle />
+                  </MenuThemeToggle>
                 </div>
               </Menu.Popup>
             </Menu.Positioner>
@@ -257,7 +259,7 @@ const Navigation = ({ pathname }: NavigationProps) => {
                 </a>
               </nav>
               <MenuThemeToggle
-                className="mx-auto mt-4 size-10 border border-border"
+                className="mx-auto mt-4 inline-flex size-10 items-center justify-center border border-border outline-hidden"
                 shortcutActive={drawerOpen}
               />
             </Drawer.Popup>
