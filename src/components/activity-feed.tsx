@@ -127,6 +127,47 @@ const StandardActivityAction = ({
   );
 };
 
+const ACTIVITY_TIME_FORMAT: Intl.DateTimeFormatOptions = {
+  day: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+  month: "short",
+  year: "numeric",
+};
+
+const formatActivityTime = (iso: string) => {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+  const time = date.toLocaleTimeString("en-AU", {
+    hour: ACTIVITY_TIME_FORMAT.hour,
+    minute: ACTIVITY_TIME_FORMAT.minute,
+  });
+  const day = date.toLocaleDateString("en-AU", {
+    day: ACTIVITY_TIME_FORMAT.day,
+    month: ACTIVITY_TIME_FORMAT.month,
+    year: ACTIVITY_TIME_FORMAT.year,
+  });
+  return `${time.toUpperCase()}, ${day}`;
+};
+
+/** Formatted in the visitor's browser so it uses their time zone. */
+const ActivityTime = ({ iso }: { iso: string }) => {
+  const [label, setLabel] = useState<string | null>(null);
+  useEffect(() => setLabel(formatActivityTime(iso)), [iso]);
+
+  return (
+    <time
+      className="relative z-10 ml-auto shrink-0 whitespace-nowrap pl-2 text-xs tabular-nums text-muted-foreground/70"
+      dateTime={iso}
+      suppressHydrationWarning
+    >
+      {label ?? "\u00a0"}
+    </time>
+  );
+};
+
 /** Dot and grouped connector share x = centre of pl-6 timeline gutter (12px). */
 const ACTIVITY_TIMELINE_DOT_CLASS =
   "absolute left-2 top-5 size-2 rounded-full bg-orange-500/80";
@@ -182,6 +223,7 @@ const ActivityClusterRow = ({
                 key={event.id}
               >
                 <ActivityAction count={count} event={event} />
+                <ActivityTime iso={event.occurredAt} />
               </li>
             ))}
           </ul>
