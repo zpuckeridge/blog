@@ -8,7 +8,9 @@ export const getSiteUrl = (): string => {
     (typeof process !== "undefined" && process.env.PUBLIC_SITE_URL);
 
   if (!envUrl) {
-    return "http://localhost:4321";
+    // Fall back to Astro's `site` config so production never emits localhost.
+    const site = import.meta.env?.SITE;
+    return (site || "https://zacchary.me").replace(/\/$/u, "");
   }
 
   if (envUrl.startsWith("http://") || envUrl.startsWith("https://")) {
