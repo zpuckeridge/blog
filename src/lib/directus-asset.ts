@@ -1,84 +1,124 @@
-const DIRECTUS_URL =
-  import.meta.env.DIRECTUS_URL || "https://directus.obambulo.studio";
+import { getSiteUrl } from "@/lib/site-url";
 
-const DIRECTUS_ASSET_ID_PATTERN = /\/assets\/(?<assetId>[^/?#]+)/u;
+/**
+ * Directus images are served through this site's `/img/<id>` Worker route,
+ * which fetches them from Directus with a private token. Browsers never talk
+ * to Directus directly.
+ */
+export const DIRECTUS_ORIGIN = "https://directus.obambulo.studio";
+export const IMAGE_PROXY_PATH = "/img";
+
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/iu;
+const ASSET_PATH_PATTERN = /^\/(?:assets|img)\/(?<assetId>[^/?#]+)/u;
+
+export const IMAGE_FORMATS = ["avif", "jpeg", "png", "webp"] as const;
+export const IMAGE_FITS = ["contain", "cover", "inside", "outside"] as const;
+type ImageFormat = (typeof IMAGE_FORMATS)[number];
 
 interface DirectusAssetOptions {
-  format?: "avif" | "jpeg" | "png" | "webp";
+  format?: ImageFormat;
   height?: number;
   quality?: number;
   width?: number;
 }
 
-/** Directus asset URL with optional transform params for smaller transfers. */
+export const isDirectusAssetId = (value: string): boolean =>
+  UUID_PATTERN.test(value);
+
+/** Site-relative proxied path for a Directus file id. */
+export const directusAssetPath = (assetId: string): string =>
+  `${IMAGE_PROXY_PATH}/${assetId}`;
+
+/** Absolute proxied URL (for OG tags, RSS and other off-site consumers). */
+export const directusAssetAbsoluteUrl = (assetId: string): string =>
+  `${getSiteUrl()}${directusAssetPath(assetId)}`;
+
+const withParams = (
+  assetId: string,
+  params: Record<string, string | number | undefined>
+): string => {
+  const search = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined) {
+      search.set(key, String(value));
+    }
+  }
+  const query = search.toString();
+  return `${directusAssetPath(assetId)}${query ? `?${query}` : ""}`;
+};
+
+/** Proxied Directus image URL with transform params for smaller transfers. */
 export const directusAssetUrl = (
   assetId: string,
   options: DirectusAssetOptions = {}
 ): string => {
-  const url = new URL(`${DIRECTUS_URL}/assets/${assetId}`);
   const { format = "webp", height, quality = 80, width = 300 } = options;
-
-  url.searchParams.set("width", String(width));
-  url.searchParams.set("quality", String(quality));
-  url.searchParams.set("format", format);
-
-  if (height) {
-    url.searchParams.set("height", String(height));
-  }
-
-  return url.toString();
+  return withParams(assetId, { format, height, quality, width });
 };
 
-/** Higher-resolution Directus asset for image zoom overlays. */
+/** Higher-resolution proxied image for image zoom overlays. */
 export const directusAssetZoomUrl = (
   assetId: string,
   options: Pick<DirectusAssetOptions, "format" | "quality"> = {}
 ): string => {
-  const url = new URL(`${DIRECTUS_URL}/assets/${assetId}`);
   const { format = "webp", quality = 90 } = options;
-
-  url.searchParams.set("width", "2560");
-  url.searchParams.set("quality", String(quality));
-  url.searchParams.set("format", format);
-
-  return url.toString();
+  return withParams(assetId, { format, quality, width: 2560 });
 };
 
-const getDirectusAssetId = (src: string): string | undefined => {
+const parseAssetUrl = (src: string): URL | undefined => {
   try {
-    const url = new URL(src, DIRECTUS_URL);
-    const match = url.pathname.match(DIRECTUS_ASSET_ID_PATTERN);
-    return match?.groups?.assetId;
+    const url = new URL(src, getSiteUrl());
+    const isDirectus = url.origin === DIRECTUS_ORIGIN;
+    const isProxy = url.pathname.startsWith(`${IMAGE_PROXY_PATH}/`);
+    return isDirectus || isProxy ? url : undefined;
   } catch {
     return undefined;
   }
+};
+
+const getDirectusAssetId = (url: URL): string | undefined => {
+  const assetId = url.pathname.match(ASSET_PATH_PATTERN)?.groups?.assetId;
+  return assetId && isDirectusAssetId(assetId) ? assetId : undefined;
+};
+
+/**
+ * Rewrite a raw Directus `/assets/<id>` URL (e.g. inside post Markdown)
+ * to the proxied `/img/<id>` path. Other URLs are returned unchanged.
+ */
+export const toProxiedAssetSrc = (src: string): string => {
+  const url = parseAssetUrl(src);
+  if (!url || url.origin !== DIRECTUS_ORIGIN) {
+    return src;
+  }
+  const assetId = getDirectusAssetId(url);
+  if (!assetId) {
+    return src;
+  }
+  return `${directusAssetPath(assetId)}${url.search}`;
 };
 
 /** Upgrade a transformed Directus thumbnail URL to a zoom-sized variant. */
 export const resolveDirectusZoomSrc = (src: string): string | undefined => {
-  const assetId = getDirectusAssetId(src);
-  if (!assetId) {
+  const url = parseAssetUrl(src);
+  const assetId = url ? getDirectusAssetId(url) : undefined;
+  if (!url || !assetId) {
     return undefined;
   }
 
-  try {
-    const url = new URL(src, DIRECTUS_URL);
-    const currentWidth = Number(url.searchParams.get("width"));
-    if (Number.isFinite(currentWidth) && currentWidth >= 2000) {
-      return undefined;
-    }
-
-    const format = url.searchParams.get("format");
-    return directusAssetZoomUrl(assetId, {
-      format:
-        format === "avif" ||
-        format === "jpeg" ||
-        format === "png" ||
-        format === "webp"
-          ? format
-          : undefined,
-    });
-  } catch {
-    return directusAssetZoomUrl(assetId);
+  const currentWidth = Number(url.searchParams.get("width"));
+  if (Number.isFinite(currentWidth) && currentWidth >= 2000) {
+    return undefined;
   }
+
+  const format = url.searchParams.get("format");
+  return directusAssetZoomUrl(assetId, {
+    format:
+      format === "avif" ||
+      format === "jpeg" ||
+      format === "png" ||
+      format === "webp"
+        ? format
+        : undefined,
+  });
 };

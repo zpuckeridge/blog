@@ -1,3 +1,4 @@
+import { directusAssetAbsoluteUrl } from "@/lib/directus-asset";
 import type { APIRoute } from "astro";
 import { compareDesc } from "date-fns";
 
@@ -14,8 +15,6 @@ const escapeXml = (unsafe: string): string =>
 
 export const GET: APIRoute = async () => {
   const baseUrl = getSiteUrl();
-  const directusUrl =
-    process.env.DIRECTUS_URL || "https://directus.obambulo.studio";
 
   const posts = await getPosts();
   const sortedPosts = posts.toSorted((a, b) =>
@@ -31,7 +30,7 @@ export const GET: APIRoute = async () => {
       <guid isPermaLink="true">${baseUrl}/timeline/${post.slug}</guid>
       <description>${escapeXml(post.description || "")}</description>
       <pubDate>${new Date(post.date_created).toUTCString()}</pubDate>
-      ${post.image ? `<enclosure url="${directusUrl}/assets/${post.image}" type="image/jpeg" />` : ""}
+      ${post.image ? `<enclosure url="${directusAssetAbsoluteUrl(post.image)}" type="image/jpeg" />` : ""}
     </item>`
     )
     .join("");

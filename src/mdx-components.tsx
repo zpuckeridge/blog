@@ -1,3 +1,4 @@
+import { toProxiedAssetSrc } from "@/lib/directus-asset";
 import type { MDXComponents } from "mdx/types";
 import type { ReactNode } from "react";
 import { Tweet } from "react-tweet";
@@ -104,6 +105,7 @@ const components: MDXComponents = {
         style={{ height: "auto", width: "100%" }}
         width={1280}
         {...props}
+        src={toProxiedAssetSrc(props.src)}
       />
     </ImageZoom>
   ),
