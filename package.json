@@ -12,7 +12,11 @@
     "predeploy": "bun run check && bun run typecheck",
     "fix": "ultracite fix",
     "check": "bunx ultracite check && CI=1 bunx react-doctor --yes --verbose --lint --scope full && tsc --noEmit && knip",
-    "test": "bun test src/lib/status-history.test.ts src/lib/activity-feed.test.ts src/lib/activity-request.test.ts src/lib/activity-client.test.ts src/lib/uses-sections.test.ts src/lib/lanyard-status.test.ts src/lib/mdx-source.test.ts"
+    "test": "bun test src/lib/status-history.test.ts src/lib/activity-feed.test.ts src/lib/activity-request.test.ts src/lib/activity-client.test.ts src/lib/uses-sections.test.ts src/lib/lanyard-status.test.ts src/lib/mdx-source.test.ts",
+    "build:cf": "CI=1 bunx react-doctor --yes --verbose --lint --scope full && bun run test && astro build",
+    "build:cf:production": "bun run build:cf",
+    "deploy:cf": "npx wrangler deploy",
+    "version:cf": "npx wrangler versions upload"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
