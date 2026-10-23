@@ -4,7 +4,7 @@ import { LuLoaderCircle } from "react-icons/lu";
 import { RxPaperPlane } from "react-icons/rx";
 import { toast } from "sonner";
 
-import { useMounted } from "@/hooks/use-mounted";
+import { Toaster } from "@/components/ui/sonner";
 
 import { Input } from "./ui/input";
 
@@ -13,7 +13,6 @@ const Subscribe: React.FC = () => {
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [statusTone, setStatusTone] = useState<"ok" | "error" | null>(null);
   const [isPending, startTransition] = useTransition();
-  const isMounted = useMounted();
 
   const sendSubscribeRequest = useCallback(async () => {
     try {
@@ -61,10 +60,6 @@ const Subscribe: React.FC = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
     []
   );
-
-  if (!isMounted) {
-    return null;
-  }
 
   let statusClassName = "sr-only";
   if (statusMessage && statusTone === "error") {
@@ -116,6 +111,7 @@ const Subscribe: React.FC = () => {
       >
         {statusMessage}
       </output>
+      <Toaster position="top-center" richColors />
     </div>
   );
 };

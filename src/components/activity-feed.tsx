@@ -163,7 +163,7 @@ const ActivityTime = ({ iso }: { iso: string }) => {
       dateTime={iso}
       suppressHydrationWarning
     >
-      {label ?? "\u00a0"}
+      {label ?? "\u00A0"}
     </time>
   );
 };
@@ -302,7 +302,7 @@ const ActivityFeed = ({ initialEvents }: ActivityFeedProps) => {
     <div className="grid min-w-0 gap-10">
       <section aria-label="Recent visitor activity" className="min-w-0">
         <div className="mb-3 flex items-baseline justify-between gap-4">
-          <h1 className="font-redaction text-xl">Activity</h1>
+          <h2 className="font-redaction text-xl">Recent visits</h2>
         </div>
 
         {feedContent}

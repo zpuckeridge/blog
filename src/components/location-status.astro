@@ -43,7 +43,6 @@ const initialDotClass = getInitialDotClass(initial);
 ---
 
 <a
-  aria-label="Location status — see my activity"
   class:list={[
     "group/location relative h-5 items-center gap-2 px-1 hover:bg-muted",
     showInitial ? "flex" : "hidden",
@@ -67,6 +66,7 @@ const initialDotClass = getInitialDotClass(initial);
   >
     {initialLabel}
   </p>
+  <span class="sr-only">. See my activity.</span>
 </a>
 
 <script>

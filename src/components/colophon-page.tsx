@@ -58,7 +58,7 @@ const ColophonPage = () => (
               Base UI
             </LinkWithIcon>
             ,{" "}
-            <LinkWithIcon href="https://github.com/hmans/safe-mdx?ref=zacchary.me">
+            <LinkWithIcon href="https://github.com/remorses/safe-mdx?ref=zacchary.me">
               safe-mdx
             </LinkWithIcon>
             ,{" "}
@@ -66,7 +66,7 @@ const ColophonPage = () => (
               Oxc
             </LinkWithIcon>
             ,{" "}
-            <LinkWithIcon href="https://lanyard.rest?ref=zacchary.me">
+            <LinkWithIcon href="https://github.com/Phineas/lanyard?ref=zacchary.me">
               Lanyard
             </LinkWithIcon>{" "}
             and{" "}
@@ -166,7 +166,7 @@ const ColophonPage = () => (
               <LinkWithIcon href="https://x.com/foord_tom?ref=zacchary.me">
                 Tom Foord
               </LinkWithIcon>
-              <LinkWithIcon href="https://x.com/craigcireland?ref=zacchary.me">
+              <LinkWithIcon href="https://haddoninstitute.org/leadership-and-faculty/craig-ireland?ref=zacchary.me">
                 Craig Ireland
               </LinkWithIcon>
               <LinkWithIcon href="https://dougwils.com?ref=zacchary.me">

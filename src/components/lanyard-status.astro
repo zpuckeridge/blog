@@ -3,7 +3,6 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
 ---
 
 <a
-  aria-label="Discord status — see my activity"
   class="group/lanyard relative flex h-5 shrink-0 items-center gap-2 px-1 hover:bg-muted"
   data-lanyard-status
   data-lanyard-user={LANYARD_USER_ID}
@@ -20,6 +19,7 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
   >
     Offline
   </p>
+  <span class="sr-only">. See my activity.</span>
 </a>
 
 <script>

@@ -57,6 +57,21 @@ export const directusAssetUrl = (
   return withParams(assetId, { format, height, quality, width });
 };
 
+export const CONTENT_IMAGE_WIDTHS = [640, 960, 1280] as const;
+
+/** Content column is `max-w-lg` with `px-6` (about 29rem once the padding clears). */
+export const CONTENT_IMAGE_SIZES =
+  "(min-width: 32rem) 29rem, calc(100vw - 3rem)";
+
+export const directusContentSrcSet = (
+  assetId: string,
+  format: "avif" | "webp"
+): string =>
+  CONTENT_IMAGE_WIDTHS.map(
+    (width) =>
+      `${directusAssetUrl(assetId, { format, quality: 80, width })} ${width}w`
+  ).join(", ");
+
 /** Higher-resolution proxied image for image zoom overlays. */
 export const directusAssetZoomUrl = (
   assetId: string,
@@ -80,6 +95,15 @@ const parseAssetUrl = (src: string): URL | undefined => {
 const getDirectusAssetId = (url: URL): string | undefined => {
   const assetId = url.pathname.match(ASSET_PATH_PATTERN)?.groups?.assetId;
   return assetId && isDirectusAssetId(assetId) ? assetId : undefined;
+};
+
+/** Directus file id from a proxied `/img/<id>` URL, a Directus asset URL, or a bare UUID. */
+export const assetIdFromSrc = (src: string): string | undefined => {
+  if (isDirectusAssetId(src)) {
+    return src.toLowerCase();
+  }
+  const url = parseAssetUrl(src);
+  return url ? getDirectusAssetId(url)?.toLowerCase() : undefined;
 };
 
 /**

@@ -1,0 +1,71 @@
+---
+import NotFoundContent from "@/components/not-found-content";
+import Layout from "@/layouts/layout.astro";
+import { getPosts } from "@/lib/directus-content";
+import { formatPublishedArticleDate } from "@/lib/format-in-brisbane";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { postsForTag, tagSlug } from "@/lib/related-posts";
+
+export const prerender = false;
+
+const tagParam = Astro.params.tag ?? "";
+const posts = await getPosts();
+const matches = postsForTag(posts, tagParam);
+const label =
+  matches
+    .flatMap((post) => post.tags ?? [])
+    .find((tag) => tagSlug(tag) === tagParam) ?? tagParam;
+
+const found = tagParam.length > 0 && matches.length > 0;
+
+if (!found) {
+  Astro.response.status = 404;
+}
+
+const pageMeta = createPageMetadata({
+  description: `Posts on zacchary.me tagged ${label}.`,
+  noIndex: !found,
+  path: `/timeline/tag/${tagParam}`,
+  title: found ? `Posts tagged ${label}` : "404 — Not Found",
+});
+
+const fullTitle = formatPageTitle(found ? `Posts tagged ${label}` : "404 — Not Found");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  {
+    !found ? (
+      <NotFoundContent />
+    ) : (
+      <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-6 px-6 pb-20">
+        <div class="space-y-2">
+          <h1 class="font-redaction text-black text-xl dark:text-white">
+            Posts tagged {label}
+          </h1>
+          <p class="text-muted-foreground text-sm">
+            {matches.length} {matches.length === 1 ? "post" : "posts"}
+          </p>
+        </div>
+        <ul class="flex flex-col">
+          {matches.map((post) => (
+            <li class="border-b border-dotted border-border py-3" >
+              <a
+                class="flex items-baseline justify-between gap-4 text-sm transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+                href={`/timeline/${post.slug}`}
+              >
+                <span>{post.title}</span>
+                <span class="shrink-0 text-muted-foreground">
+                  {formatPublishedArticleDate(post.date_created)}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</Layout>

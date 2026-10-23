@@ -105,6 +105,7 @@ const ImageZoomSlot = ({
       aria-haspopup="dialog"
       aria-label={imageAlt}
       className={slotClassName}
+      data-image-zoom=""
       onClick={handleSlotClick}
       onFocus={prefetchZoomSrc}
       onMouseEnter={prefetchZoomSrc}

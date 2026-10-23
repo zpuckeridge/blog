@@ -25,6 +25,18 @@
   src: url("/fonts/redaction-italic.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin-400.woff2") format("woff2");
+  size-adjust: 100%;
+  ascent-override: 95%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @plugin "@tailwindcss/typography";
@@ -368,4 +380,13 @@ h3:has(+ .footnotes) {
 [data-tooltip-dismissed] [role="tooltip"] {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.prose pre,
+.prose pre code {
+  font-family:
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }

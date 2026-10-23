@@ -27,6 +27,9 @@ export default defineConfig({
   },
   site: "https://zacchary.me",
   vite: {
+    build: {
+      sourcemap: true,
+    },
     define: {
       /** Keep React's jsx-dev-runtime in development mode during `astro dev`. */
       "process.env.NODE_ENV": JSON.stringify(reactNodeEnv),

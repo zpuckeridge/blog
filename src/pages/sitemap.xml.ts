@@ -1,10 +1,11 @@
 import type { APIRoute } from "astro";
 
 import { getPosts } from "@/lib/directus-content";
-import { getSiteUrl } from "@/lib/site-url";
+import { buildMetadataUrl } from "@/lib/metadata";
+import { tagSlugsFromPosts } from "@/lib/related-posts";
 
 const STATIC_ROUTES = [
-  "",
+  "/",
   "/about",
   "/uses",
   "/about/books",
@@ -12,14 +13,14 @@ const STATIC_ROUTES = [
   "/about/credits",
   "/projects",
   "/timeline",
+  "/activity",
   "/cv",
   "/colophon",
   "/imprint",
-  "/llms.txt",
 ];
 
-const escapeXml = (s: string): string =>
-  s
+const escapeXml = (value: string): string =>
+  value
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -27,12 +28,12 @@ const escapeXml = (s: string): string =>
     .replaceAll("'", "&apos;");
 
 export const GET: APIRoute = async () => {
-  const baseUrl = getSiteUrl();
-
+  const lastmod = new Date().toISOString().slice(0, 10);
   const staticEntries = STATIC_ROUTES.map(
     (route) => `
   <url>
-    <loc>${escapeXml(`${baseUrl}${route}`)}</loc>
+    <loc>${escapeXml(buildMetadataUrl(route))}</loc>
+    <lastmod>${lastmod}</lastmod>
   </url>`
   );
 
@@ -42,13 +43,21 @@ export const GET: APIRoute = async () => {
     const posts = await getPosts();
 
     for (const post of posts) {
-      const lastMod = post.date_updated
+      const postLastmod = post.date_updated
         ? new Date(post.date_updated).toISOString()
         : new Date(post.date_created).toISOString();
       dynamicEntries += `
   <url>
-    <loc>${escapeXml(`${baseUrl}/timeline/${post.slug}`)}</loc>
-    <lastmod>${escapeXml(lastMod)}</lastmod>
+    <loc>${escapeXml(buildMetadataUrl(`/timeline/${post.slug}`))}</loc>
+    <lastmod>${escapeXml(postLastmod)}</lastmod>
+  </url>`;
+    }
+
+    for (const tag of tagSlugsFromPosts(posts)) {
+      dynamicEntries += `
+  <url>
+    <loc>${escapeXml(buildMetadataUrl(`/timeline/tag/${tag}`))}</loc>
+    <lastmod>${lastmod}</lastmod>
   </url>`;
     }
   } catch (error) {

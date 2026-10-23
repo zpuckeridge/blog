@@ -69,7 +69,7 @@ const cleanText = (
       return codePoint > 0x1f && codePoint !== 0x7f;
     })
     .join("")
-    .replace(MULTIPLE_SPACES, " ")
+    .replaceAll(MULTIPLE_SPACES, " ")
     .trim();
 
   return cleaned ? cleaned.slice(0, maxLength) : null;

@@ -74,6 +74,7 @@ const devActivityStoreNamespace: ActivityFeedStoreNamespace = {
 
 export const env: Cloudflare.Env = {
   ACTIVITY_FEED_STORE: devActivityStoreNamespace,
+  DIRECTUS_TOKEN: import.meta.env.DIRECTUS_TOKEN ?? process.env.DIRECTUS_TOKEN,
   GITHUB_TOKEN: import.meta.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN,
   LOCATION_KV: createDevKv(),
   LOCATION_WEBHOOK_SECRET:
@@ -89,6 +90,5 @@ export const env: Cloudflare.Env = {
     import.meta.env.PUBLIC_POSTHOG_HOST ?? process.env.PUBLIC_POSTHOG_HOST,
   PUBLIC_POSTHOG_KEY:
     import.meta.env.PUBLIC_POSTHOG_KEY ?? process.env.PUBLIC_POSTHOG_KEY,
-  DIRECTUS_TOKEN: import.meta.env.DIRECTUS_TOKEN ?? process.env.DIRECTUS_TOKEN,
   VIDEO_PASSWORD: import.meta.env.VIDEO_PASSWORD ?? process.env.VIDEO_PASSWORD,
 };
