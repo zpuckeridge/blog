@@ -6,6 +6,7 @@ import Navigation from "@/components/navigation";
 import PostHogClient from "@/components/posthog-client";
 import BaseHead from "@/components/seo/base-head.astro";
 import JsonLd from "@/components/seo/json-ld.astro";
+import type { JsonLdCollectionItem } from "@/lib/json-ld";
 import { menuItems } from "@/lib/menu-items";
 import type { PageMetadata } from "@/lib/metadata";
 import { resolvePosthogClientConfig } from "@/lib/posthog-config";
@@ -44,12 +45,19 @@ const speculationRules = JSON.stringify({
 
 interface Props {
   canonicalUrl?: string;
+  collectionItems?: JsonLdCollectionItem[];
   fullTitle: string;
   meta?: PageMetadata;
   rootDefaults?: boolean;
 }
 
-const { canonicalUrl, fullTitle, meta, rootDefaults = false } = Astro.props;
+const {
+  canonicalUrl,
+  collectionItems,
+  fullTitle,
+  meta,
+  rootDefaults = false,
+} = Astro.props;
 
 const posthog = resolvePosthogClientConfig({
   NEXT_PUBLIC_POSTHOG_HOST:
@@ -66,8 +74,30 @@ const posthog = resolvePosthogClientConfig({
 ---
 
 <!doctype html>
-<html lang="en" suppressHydrationWarning>
+<html lang="en-AU" suppressHydrationWarning>
   <head>
+    <meta charset="utf-8" />
+    <link
+      as="font"
+      crossorigin
+      href="/fonts/archivo.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin
+      href="/fonts/redaction-regular.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin
+      href="/fonts/geist-mono-latin-400.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
     <script data-astro-rerun is:inline>
       (() => {
         const storageKey = "theme";
@@ -93,7 +123,11 @@ const posthog = resolvePosthogClientConfig({
       meta={meta}
       rootDefaults={rootDefaults}
     />
-    <JsonLd meta={meta} pathname={Astro.url.pathname} />
+    <JsonLd
+      collectionItems={collectionItems}
+      meta={meta}
+      pathname={Astro.url.pathname}
+    />
   </head>
   <body
     class="min-h-screen font-sans text-black antialiased selection:bg-blue-400/50 selection:text-blue-600 dark:text-neutral-300 dark:selection:bg-blue-950/50 dark:selection:text-blue-400"

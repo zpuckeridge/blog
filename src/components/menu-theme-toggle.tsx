@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { RxMoon, RxSun } from "react-icons/rx";
 
-
 type Theme = "dark" | "light";
 
 const STORAGE_KEY = "theme";
@@ -123,7 +122,8 @@ const MenuThemeToggle = ({
       aria-keyshortcuts="t"
       aria-label={children ? undefined : `Switch to ${nextTheme} theme`}
       className={
-        className ?? "inline-flex size-6 items-center justify-center outline-hidden"
+        className ??
+        "inline-flex size-6 items-center justify-center outline-hidden"
       }
       onClick={toggleResolvedTheme}
       title={`Switch to ${nextTheme} theme`}

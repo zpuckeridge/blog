@@ -1,93 +1,39 @@
 ---
+import { buildJsonLdPayload } from "@/lib/json-ld";
+import type { JsonLdCollectionItem } from "@/lib/json-ld";
 import type { PageMetadata } from "@/lib/metadata";
-import { getSiteUrl } from "@/lib/site-url";
 
 interface Props {
+  collectionItems?: JsonLdCollectionItem[];
   meta?: PageMetadata;
   pathname: string;
 }
 
-const { meta, pathname } = Astro.props;
-
-const siteUrl = getSiteUrl().replace(/\/$/u, "");
-const personName = "Zacchary Puckeridge";
-const personId = `${siteUrl}/#person`;
-
-const sameAs = [
-  "https://x.com/zpuckeridge/",
-  "https://www.facebook.com/zpuckeridge/",
-  "https://www.instagram.com/zpuckeridge/",
-  "https://www.linkedin.com/in/zpuckeridge/",
-  "https://github.com/zpuckeridge",
-];
-
-const nodes: Record<string, unknown>[] = [];
-
-if (pathname === "/") {
-  nodes.push(
-    {
-      "@id": personId,
-      "@type": "Person",
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "AU",
-        addressLocality: "Brisbane",
-      },
-      jobTitle: "IT Operations Lead",
-      name: personName,
-      sameAs,
-      url: `${siteUrl}/`,
-    },
-    {
-      "@type": "WebSite",
-      author: { "@id": personId },
-      name: "zacchary.me",
-      url: `${siteUrl}/`,
-    }
-  );
-}
-
+const { collectionItems, meta, pathname } = Astro.props;
 const og = meta?.openGraph;
-if (og?.type === "article") {
-  const headline = typeof meta?.title === "string" ? meta.title : og.title;
-  const article: Record<string, unknown> = {
-    "@type": "Article",
-    author: {
-      "@type": "Person",
-      name: personName,
-      url: `${siteUrl}/`,
-    },
-    headline,
-  };
 
-  if (meta?.description) {
-    article.description = meta.description;
+const ogImages = (() => {
+  if (!og?.images) {
+    return [];
   }
-  if (og.publishedTime) {
-    article.datePublished = og.publishedTime;
+  if (Array.isArray(og.images)) {
+    return og.images;
   }
-  if (og.modifiedTime) {
-    article.dateModified = og.modifiedTime;
-  }
-  if (og.url) {
-    article.mainEntityOfPage = og.url;
-    article.url = og.url;
-  }
-  if (og.tags?.length) {
-    article.keywords = og.tags.join(", ");
-  }
+  return [og.images];
+})();
 
-  nodes.push(article);
-}
-
-let payload: Record<string, unknown> | null = null;
-const [firstNode] = nodes;
-
-if (firstNode && nodes.length === 1) {
-  payload = { "@context": "https://schema.org", ...firstNode };
-} else if (nodes.length > 1) {
-  payload = { "@context": "https://schema.org", "@graph": nodes };
-}
+const payload = buildJsonLdPayload({
+  collectionItems,
+  description: meta?.description,
+  imageUrls: ogImages.map((image) => image.url),
+  keywords: og?.tags,
+  modifiedTime: og?.modifiedTime,
+  pathname,
+  publishedTime: og?.publishedTime,
+  title: typeof meta?.title === "string" ? meta.title : og?.title,
+  type: og?.type,
+  url: og?.url,
+});
 ---
 
 {

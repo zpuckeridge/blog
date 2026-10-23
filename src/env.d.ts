@@ -63,3 +63,5 @@ declare global {
     readonly env: ImportMetaEnv;
   }
 }
+
+declare module "@mux/mux-player";

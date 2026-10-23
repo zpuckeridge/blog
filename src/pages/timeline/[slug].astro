@@ -1,15 +1,22 @@
 ---
 import NotFoundContent from "@/components/not-found-content";
+import Subscribe from "@/components/subscribe";
 import TimelinePost from "@/components/timeline-post";
-import { Toaster } from "@/components/ui/sonner";
 import Layout from "@/layouts/layout.astro";
+import { collectContentAssetIds } from "@/lib/content-image";
+import type { ContentImageMeta } from "@/lib/content-image";
+import {
+  getDirectusFileMeta,
+  getPostBySlug,
+  getPosts,
+} from "@/lib/directus-content";
 import {
   buildMetadataUrl,
   buildTimelinePostMetadata,
   createPageMetadata,
   formatPageTitle,
 } from "@/lib/metadata";
-import { getPostBySlug } from "@/lib/directus-content";
+import { relatedPostLinks } from "@/lib/related-posts";
 
 export const prerender = false;
 
@@ -23,6 +30,21 @@ const post = await getPostBySlug(slug);
 
 if (!post) {
   Astro.response.status = 404;
+}
+
+const allPosts = post ? await getPosts() : [];
+const related = post ? relatedPostLinks(post, allPosts) : [];
+const files = post
+  ? await getDirectusFileMeta(
+      collectContentAssetIds(post.content ?? "", post.image)
+    )
+  : [];
+const imageMeta: Record<string, ContentImageMeta> = {};
+for (const file of files) {
+  imageMeta[file.id] = {
+    description: file.description,
+    title: file.title,
+  };
 }
 
 const pageMeta = post
@@ -48,11 +70,25 @@ const fullTitle = post
   meta={pageMeta}
 >
   {
-    !post ? (
-      <NotFoundContent />
+    post ? (
+      <TimelinePost
+        imageMeta={imageMeta}
+        post={post}
+        related={related}
+        slug={slug}
+      >
+        <Subscribe client:visible />
+      </TimelinePost>
     ) : (
-      <TimelinePost client:idle post={post} slug={slug} />
+      <NotFoundContent />
     )
   }
-  <Toaster client:idle position="top-center" richColors />
+  <script>
+    import { initPostEnhancements } from "@/scripts/post-enhancements";
+
+    initPostEnhancements();
+    document.addEventListener("astro:page-load", () => {
+      initPostEnhancements();
+    });
+  </script>
 </Layout>

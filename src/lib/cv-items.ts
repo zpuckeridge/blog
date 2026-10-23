@@ -106,7 +106,7 @@ export const educationHistory: EducationItem[] = [
     field: "Theology for Worldview",
     startDate: "2023-12-04",
     title: "Haddon Institute",
-    url: "https://haddoninstitute.org/course/theology-for-worldview",
+    url: "https://haddoninstitute.org/course/THEO101",
   },
   {
     credential: "Certificate III",

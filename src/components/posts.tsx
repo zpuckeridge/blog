@@ -167,14 +167,14 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                         className={rowClassName}
                         key={`note-${item.slug}-${item.date_created}`}
                       >
-                        <div className="w-full space-y-2 bg-yellow-100 p-3 selection:bg-yellow-200 selection:text-yellow-600 dark:bg-yellow-900">
-                          <div className="flex justify-between text-sm text-yellow-600 dark:text-yellow-500">
+                        <div className="w-full space-y-2 bg-[#fef9c2] p-3 text-[#854d0e] selection:bg-[#fde68a] selection:text-[#854d0e] dark:bg-[#422006] dark:text-[#fde68a]">
+                          <div className="flex justify-between text-sm">
                             <p>Note</p>
                             <p>
                               {formatPublishedShortDayMonth(item.date_created)}
                             </p>
                           </div>
-                          <p className="text-left text-yellow-950 dark:text-yellow-100">
+                          <p className="text-left text-[#422006] dark:text-[#fef9c2]">
                             {item.content}
                           </p>
                         </div>

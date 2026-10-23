@@ -1,5 +1,6 @@
-import { directusAssetAbsoluteUrl } from "@/lib/directus-asset";
 import type { Post, Video } from "@/interfaces/content-item";
+import { directusAssetAbsoluteUrl } from "@/lib/directus-asset";
+import { descriptionForPost, fitMetaDescription } from "@/lib/meta-description";
 import { getSiteUrl } from "@/lib/site-url";
 import { resolveVideoMedia } from "@/lib/video-source";
 
@@ -23,27 +24,33 @@ const siteName = "zacchary.me";
 const siteHandle = "@zpuckeridge";
 const siteTitle = "Zacchary Puckeridge";
 const titleSuffix = ` — ${siteTitle}`;
-const pageTitleMaxLength = 60;
 
 export const formatPageTitle = (pageTitle: string): string => {
-  if (pageTitle === siteTitle || pageTitle.includes(titleSuffix)) {
+  if (
+    pageTitle === siteTitle ||
+    pageTitle.startsWith(`${siteTitle} `) ||
+    pageTitle.includes(titleSuffix)
+  ) {
     return pageTitle;
   }
 
-  const withSuffix = `${pageTitle}${titleSuffix}`;
-  if (withSuffix.length > pageTitleMaxLength) {
-    return pageTitle;
-  }
-
-  return withSuffix;
+  return `${pageTitle}${titleSuffix}`;
 };
+
+/** Article headline without the site-title suffix used in the document title. */
+export const articleHeadline = (pageTitle: string): string =>
+  pageTitle.endsWith(titleSuffix)
+    ? pageTitle.slice(0, -titleSuffix.length)
+    : pageTitle;
 
 export const buildMetadataUrl = (path: string): string =>
   new URL(path, getSiteUrl()).toString();
 
 const defaultSocialImage: SocialImage = {
-  alt: siteTitle,
-  url: buildMetadataUrl("/avatar-2026.avif"),
+  alt: "Portrait of Zacchary Puckeridge",
+  height: 630,
+  url: buildMetadataUrl("/og-home.jpg"),
+  width: 1200,
 };
 
 /** Plain metadata shape consumed by `base-head.astro` (replaces Next.js `Metadata`). */
@@ -111,9 +118,11 @@ export const createPageMetadata = ({
 }: CreatePageMetadataOptions): PageMetadata => {
   const canonicalUrl = path ? buildMetadataUrl(path) : undefined;
   const images = [image];
+  const fittedDescription = fitMetaDescription(description);
+  const formattedTitle = formatPageTitle(title);
 
   return {
-    description,
+    description: fittedDescription,
     ...(canonicalUrl
       ? {
           alternates: {
@@ -131,22 +140,22 @@ export const createPageMetadata = ({
         }
       : {}),
     openGraph: {
-      description,
+      description: fittedDescription,
       images,
       locale: "en_AU",
       siteName,
-      title,
+      title: formattedTitle,
       type: "website",
       ...(canonicalUrl ? { url: canonicalUrl } : {}),
     },
-    title,
+    title: formattedTitle,
     twitter: {
       card: "summary_large_image",
       creator: siteHandle,
-      description,
+      description: fittedDescription,
       images,
       site: siteHandle,
-      title,
+      title: formattedTitle,
     },
   };
 };
@@ -156,20 +165,21 @@ export const buildTimelinePostMetadata = (
   slug: string
 ): PageMetadata => {
   const { title } = post;
-  const description = post.description || `Read ${title} on zacchary.me.`;
+  const description = descriptionForPost(
+    slug,
+    post.description || `Read ${title} on zacchary.me.`
+  );
 
-  const baseUrl = getSiteUrl();
-  const imageUrl = post.image
-    ? directusAssetAbsoluteUrl(post.image)
-    : `${baseUrl}/avatar-2026.avif`;
   const base = createPageMetadata({
     description,
-    image: {
-      alt: post.image_alt || title,
-      height: 1080,
-      url: imageUrl,
-      width: 1920,
-    },
+    image: post.image
+      ? {
+          alt: post.image_alt || title,
+          height: 1080,
+          url: directusAssetAbsoluteUrl(post.image),
+          width: 1920,
+        }
+      : defaultSocialImage,
     keywords: post.tags,
     path: `/timeline/${slug}`,
     title,

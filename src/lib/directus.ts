@@ -11,10 +11,12 @@ const DIRECTUS_URL =
  * shell env / .dev.vars at build) so it is never inlined into the bundle.
  * Public read on content collections is being removed, so it is required.
  */
-const DIRECTUS_TOKEN = process.env.DIRECTUS_TOKEN;
+const { DIRECTUS_TOKEN } = process.env;
 
 if (!DIRECTUS_TOKEN) {
-  console.warn("DIRECTUS_TOKEN is not set; Directus requests are unauthenticated.");
+  console.warn(
+    "DIRECTUS_TOKEN is not set; Directus requests are unauthenticated."
+  );
 }
 
 const baseDirectus = createDirectus(DIRECTUS_URL).with(rest());
