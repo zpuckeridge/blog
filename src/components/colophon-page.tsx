@@ -108,9 +108,6 @@ const ColophonPage = () => (
               <LinkWithIcon href="https://emilkowal.ski?ref=zacchary.me">
                 emilkowal.ski
               </LinkWithIcon>
-              <LinkWithIcon href="https://sdrn.co?ref=zacchary.me">
-                sdrn.co
-              </LinkWithIcon>
               <LinkWithIcon href="https://alexcarpenter.me?ref=zacchary.me">
                 alexcarpenter.me
               </LinkWithIcon>

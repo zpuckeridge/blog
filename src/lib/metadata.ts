@@ -1,5 +1,8 @@
 import type { Post, Video } from "@/interfaces/content-item";
-import { directusAssetAbsoluteUrl } from "@/lib/directus-asset";
+import {
+  directusSocialImageAbsoluteUrl,
+  SOCIAL_IMAGE_WIDTH,
+} from "@/lib/directus-asset";
 import { descriptionForPost, fitMetaDescription } from "@/lib/meta-description";
 import { getSiteUrl } from "@/lib/site-url";
 import { resolveVideoMedia } from "@/lib/video-source";
@@ -175,9 +178,8 @@ export const buildTimelinePostMetadata = (
     image: post.image
       ? {
           alt: post.image_alt || title,
-          height: 1080,
-          url: directusAssetAbsoluteUrl(post.image),
-          width: 1920,
+          url: directusSocialImageAbsoluteUrl(post.image),
+          width: SOCIAL_IMAGE_WIDTH,
         }
       : defaultSocialImage,
     keywords: post.tags,

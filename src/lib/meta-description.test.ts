@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 
 import {
   descriptionForPost,
+  descriptionForTag,
   fitMetaDescription,
   META_DESCRIPTION_MAX,
   META_DESCRIPTION_MIN,
@@ -83,5 +84,35 @@ describe("descriptionForPost", () => {
     );
     inRange(fitted);
     assert.match(fitted, /Dearmore/u);
+  });
+});
+
+describe("descriptionForTag", () => {
+  it("gives each published tag its own description in range", () => {
+    const tags = [
+      ["art", "Art", /Goofy Movie/u, /BoJack/u],
+      ["education", "Education", /cramming/u, /think/u],
+      ["faith", "Faith", /Dearmore/u, /Rhodesia/u],
+      ["politics", "Politics", /work-life balance/u, /overblown/u],
+      ["technical", "Technical", /Proxmox/u, /Grafana/u],
+    ] as const;
+    const descriptions = tags.map(([slug, label, ...patterns]) => {
+      const description = descriptionForTag(slug, label, []);
+      inRange(description);
+      for (const pattern of patterns) {
+        assert.match(description, pattern);
+      }
+      return description;
+    });
+    assert.equal(new Set(descriptions).size, descriptions.length);
+  });
+
+  it("describes an unknown tag from its posts without collapsing to the fallback", () => {
+    const description = descriptionForTag("field-notes", "Field notes", [
+      "A walk around Brisbane",
+    ]);
+    inRange(description);
+    assert.match(description, /Field notes/u);
+    assert.match(description, /Brisbane/u);
   });
 });

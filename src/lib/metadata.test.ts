@@ -76,4 +76,31 @@ describe("buildTimelinePostMetadata", () => {
     assert.equal(image?.height, 630);
     assert.match(meta.description ?? "", /birthdate/u);
   });
+
+  it("points og:image at a 1200px JPEG instead of the original file", () => {
+    const post = {
+      content: "",
+      date_created: new Date("2021-10-02"),
+      date_updated: new Date("2021-10-02"),
+      description: "Thoughts on the show.",
+      id: 2,
+      image: "4bba8f13-73d9-4493-99c7-faefed685761",
+      image_alt: "BoJack",
+      signature: false,
+      slug: "thoughts-on-bojack-horseman",
+      status: "published",
+      tags: ["Art"],
+      title: "Thoughts on BoJack Horseman",
+    } satisfies Post;
+    const meta = buildTimelinePostMetadata(post, post.slug);
+    const image = Array.isArray(meta.openGraph?.images)
+      ? meta.openGraph.images[0]
+      : meta.openGraph?.images;
+    assert.equal(
+      image?.url,
+      "https://zacchary.me/img/4bba8f13-73d9-4493-99c7-faefed685761?format=jpeg&width=1200"
+    );
+    assert.equal(image?.width, 1200);
+    assert.equal(image?.height, undefined);
+  });
 });

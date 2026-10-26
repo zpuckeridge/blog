@@ -62,6 +62,7 @@ describe("directusContentSrcSet", () => {
       /\/img\/14ec3b68-93c8-4393-9cb5-ad02c6a1a0f6\?[^ ]*format=avif/u
     );
     assert.match(srcset, / 640w,/u);
+    assert.match(srcset, / 960w,/u);
     assert.match(srcset, / 1280w$/u);
     assert.doesNotMatch(srcset, /directus\.obambulo\.studio/u);
   });

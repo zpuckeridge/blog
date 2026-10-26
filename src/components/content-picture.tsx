@@ -12,6 +12,7 @@ const ContentPicture = ({
   className,
   priority = false,
   sizes = CONTENT_IMAGE_SIZES,
+  srcSet,
   title,
 }: {
   alt: string;
@@ -19,6 +20,7 @@ const ContentPicture = ({
   className?: string;
   priority?: boolean;
   sizes?: string;
+  srcSet?: string;
   title?: string;
 }) => (
   <picture className="block w-full">
@@ -39,6 +41,7 @@ const ContentPicture = ({
       priority={priority}
       sizes={sizes}
       src={directusAssetUrl(assetId, { format: "webp", width: 960 })}
+      srcSet={srcSet ?? directusContentSrcSet(assetId, "webp")}
       style={{ height: "auto", width: "100%" }}
       title={title}
       width={1280}

@@ -30,10 +30,6 @@ export const isDirectusAssetId = (value: string): boolean =>
 export const directusAssetPath = (assetId: string): string =>
   `${IMAGE_PROXY_PATH}/${assetId}`;
 
-/** Absolute proxied URL (for OG tags, RSS and other off-site consumers). */
-export const directusAssetAbsoluteUrl = (assetId: string): string =>
-  `${getSiteUrl()}${directusAssetPath(assetId)}`;
-
 const withParams = (
   assetId: string,
   params: Record<string, string | number | undefined>
@@ -47,6 +43,16 @@ const withParams = (
   const query = search.toString();
   return `${directusAssetPath(assetId)}${query ? `?${query}` : ""}`;
 };
+
+/** Open Graph and RSS use a transformed JPEG of about this width, not the original. */
+export const SOCIAL_IMAGE_WIDTH = 1200;
+
+/** Proxied ~1200px JPEG for `og:image` and RSS enclosures. */
+export const directusSocialImagePath = (assetId: string): string =>
+  withParams(assetId, { format: "jpeg", width: SOCIAL_IMAGE_WIDTH });
+
+export const directusSocialImageAbsoluteUrl = (assetId: string): string =>
+  `${getSiteUrl()}${directusSocialImagePath(assetId)}`;
 
 /** Proxied Directus image URL with transform params for smaller transfers. */
 export const directusAssetUrl = (
