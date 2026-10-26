@@ -58,12 +58,16 @@ describe("buildJsonLdPayload", () => {
     assert.equal(posts[0]?.headline, "Grafana");
   });
 
-  it("emits WebPage on projects, activity, uses, and colophon", () => {
+  it("emits WebPage on projects, activity, uses, colophon, imprint, and about lists", () => {
     for (const [pathname, name] of [
       ["/projects", "Projects"],
       ["/activity", "Activity"],
       ["/uses", "Uses"],
       ["/colophon", "Colophon"],
+      ["/imprint", "Imprint"],
+      ["/about/books", "Books"],
+      ["/about/movies", "Movies"],
+      ["/about/credits", "Credits"],
     ] as const) {
       const payload = buildJsonLdPayload({
         description: "A page.",
