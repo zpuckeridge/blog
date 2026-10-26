@@ -101,8 +101,12 @@ const pushProfile = (
 };
 
 const WEB_PAGE_NAMES: Record<string, string> = {
+  "/about/books": "Books",
+  "/about/credits": "Credits",
+  "/about/movies": "Movies",
   "/activity": "Activity",
   "/colophon": "Colophon",
+  "/imprint": "Imprint",
   "/projects": "Projects",
   "/uses": "Uses",
 };
