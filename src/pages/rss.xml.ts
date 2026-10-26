@@ -3,11 +3,12 @@ import { compareDesc } from "date-fns";
 
 import {
   DIRECTUS_ORIGIN,
-  directusAssetAbsoluteUrl,
+  directusSocialImageAbsoluteUrl,
+  SOCIAL_IMAGE_WIDTH,
 } from "@/lib/directus-asset";
-import { getDirectusFileMeta, getPosts } from "@/lib/directus-content";
+import { getPosts } from "@/lib/directus-content";
 import { descriptionForPost } from "@/lib/meta-description";
-import { buildEnclosureTag } from "@/lib/rss-enclosure";
+import { buildEnclosureTag, readContentLength } from "@/lib/rss-enclosure";
 import { getSiteUrl } from "@/lib/site-url";
 
 const escapeXml = (unsafe: string): string =>
@@ -18,26 +19,46 @@ const escapeXml = (unsafe: string): string =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;");
 
-const probeAsset = async (
+const imageType = (header: string | null): string | null => {
+  const type = header?.split(";")[0]?.trim() ?? null;
+  return type?.startsWith("image/") ? type : null;
+};
+
+/** Byte size of the transformed JPEG the enclosure URL actually serves. */
+const probeSocialImage = async (
   assetId: string
 ): Promise<{ length: number; type: string | null }> => {
   const token = process.env.DIRECTUS_TOKEN;
-  if (!token) {
-    return { length: 0, type: null };
-  }
+  const headers: HeadersInit = token
+    ? { Authorization: `Bearer ${token}` }
+    : {};
+  const query = new URLSearchParams({
+    format: "jpeg",
+    width: String(SOCIAL_IMAGE_WIDTH),
+  });
+  const url = `${DIRECTUS_ORIGIN}/assets/${assetId.toLowerCase()}?${query.toString()}`;
 
   try {
-    const response = await fetch(`${DIRECTUS_ORIGIN}/assets/${assetId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-      method: "HEAD",
-    });
-    const length = Number(response.headers.get("content-length"));
-    const type =
-      response.headers.get("content-type")?.split(";")[0]?.trim() ?? null;
-    return {
-      length: Number.isFinite(length) && length > 0 ? Math.round(length) : 0,
-      type: type?.startsWith("image/") ? type : null,
-    };
+    const head = await fetch(url, { headers, method: "HEAD" });
+    const headLength = readContentLength(head.headers.get("content-length"));
+    const headType = imageType(head.headers.get("content-type"));
+    if (head.ok && headLength > 0) {
+      return { length: headLength, type: headType };
+    }
+
+    const response = await fetch(url, { headers });
+    if (!response.ok) {
+      return { length: 0, type: null };
+    }
+    const type = imageType(response.headers.get("content-type")) ?? headType;
+    const headerLength = readContentLength(
+      response.headers.get("content-length")
+    );
+    if (headerLength > 0) {
+      return { length: headerLength, type };
+    }
+    const bytes = await response.arrayBuffer();
+    return { length: bytes.byteLength, type };
   } catch {
     return { length: 0, type: null };
   }
@@ -49,27 +70,15 @@ export const GET: APIRoute = async () => {
   const sortedPosts = posts.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
-  const metas = await getDirectusFileMeta(
-    sortedPosts.flatMap((post) => (post.image ? [post.image] : []))
-  );
-  const metaById = new Map(metas.map((meta) => [meta.id, meta]));
-
   const rssItems = await Promise.all(
     sortedPosts.map(async (post) => {
       let enclosure = "";
       if (post.image) {
-        const meta = metaById.get(post.image.toLowerCase());
-        let { filesize: length = 0, type = null } = meta ?? {};
-        if (!length) {
-          const probed = await probeAsset(post.image);
-          const { length: probedLength, type: probedType } = probed;
-          length = probedLength;
-          type ??= probedType;
-        }
+        const probed = await probeSocialImage(post.image);
         enclosure = buildEnclosureTag({
-          length: length ?? 0,
-          type,
-          url: directusAssetAbsoluteUrl(post.image),
+          length: probed.length,
+          type: probed.type,
+          url: directusSocialImageAbsoluteUrl(post.image),
         });
       }
 

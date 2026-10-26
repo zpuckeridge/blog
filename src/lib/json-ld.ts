@@ -100,6 +100,43 @@ const pushProfile = (
   });
 };
 
+const WEB_PAGE_NAMES: Record<string, string> = {
+  "/activity": "Activity",
+  "/colophon": "Colophon",
+  "/projects": "Projects",
+  "/uses": "Uses",
+};
+
+const pushWebPage = (
+  nodes: Record<string, unknown>[],
+  input: JsonLdInput,
+  pathname: string,
+  siteUrl: string
+): void => {
+  const name = WEB_PAGE_NAMES[pathname];
+  if (!name) {
+    return;
+  }
+
+  const page: Record<string, unknown> = {
+    "@type": "WebPage",
+    inLanguage: "en-AU",
+    name,
+    url: input.url ?? `${siteUrl}${pathname}`,
+  };
+  if (input.description) {
+    page.description = input.description;
+  }
+  nodes.push(page);
+};
+
+const postingFromItem = (item: JsonLdCollectionItem) => ({
+  "@type": "BlogPosting",
+  ...(item.datePublished ? { datePublished: item.datePublished } : {}),
+  headline: item.headline,
+  url: item.url,
+});
+
 const pushTimeline = (
   nodes: Record<string, unknown>[],
   input: JsonLdInput,
@@ -111,16 +148,37 @@ const pushTimeline = (
   }
   nodes.push({
     "@type": ["CollectionPage", "Blog"],
-    blogPost: input.collectionItems.map((item) => ({
-      "@type": "BlogPosting",
-      ...(item.datePublished ? { datePublished: item.datePublished } : {}),
-      headline: item.headline,
-      url: item.url,
-    })),
+    blogPost: input.collectionItems.map((item) => postingFromItem(item)),
     inLanguage: "en-AU",
     name: "Timeline",
     url: input.url ?? `${siteUrl}/timeline`,
   });
+};
+
+const pushTagCollection = (
+  nodes: Record<string, unknown>[],
+  input: JsonLdInput,
+  pathname: string,
+  siteUrl: string
+): void => {
+  if (
+    !pathname.startsWith("/timeline/tag/") ||
+    !input.collectionItems?.length
+  ) {
+    return;
+  }
+
+  const page: Record<string, unknown> = {
+    "@type": "CollectionPage",
+    hasPart: input.collectionItems.map((item) => postingFromItem(item)),
+    inLanguage: "en-AU",
+    name: input.title ? articleHeadline(input.title) : "Posts",
+    url: input.url ?? `${siteUrl}${pathname}`,
+  };
+  if (input.description) {
+    page.description = input.description;
+  }
+  nodes.push(page);
 };
 
 const pushArticle = (
@@ -184,7 +242,9 @@ export const buildJsonLdPayload = (
 
   pushHome(nodes, pathname, siteUrl, personId);
   pushProfile(nodes, pathname, siteUrl, personId, input.url);
+  pushWebPage(nodes, input, pathname, siteUrl);
   pushTimeline(nodes, input, pathname, siteUrl);
+  pushTagCollection(nodes, input, pathname, siteUrl);
   pushArticle(nodes, input, siteUrl);
 
   return withContext(nodes);

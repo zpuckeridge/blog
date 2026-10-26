@@ -6,6 +6,14 @@ const escapeXml = (unsafe: string): string =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;");
 
+export const readContentLength = (header: string | null): number => {
+  const length = Number(header);
+  if (!Number.isFinite(length) || length <= 0) {
+    return 0;
+  }
+  return Math.round(length);
+};
+
 export const enclosureLength = (filesize: unknown): number => {
   const length = typeof filesize === "number" ? filesize : Number(filesize);
   if (!Number.isFinite(length) || length <= 0) {

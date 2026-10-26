@@ -18,7 +18,12 @@ import SideNote from "@/components/side-note";
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
 import { imageMetaForSrc, resolveContentImageAlt } from "@/lib/content-image";
-import { assetIdFromSrc, toProxiedAssetSrc } from "@/lib/directus-asset";
+import {
+  assetIdFromSrc,
+  CONTENT_IMAGE_SIZES,
+  directusContentSrcSet,
+  toProxiedAssetSrc,
+} from "@/lib/directus-asset";
 import { headingIdFromText, shiftedHeadingDepth } from "@/lib/heading-shift";
 
 const textFromChildren = (children: ReactNode): string => {
@@ -99,7 +104,7 @@ const MdxImage = ({
         <SiteImage
           alt={resolvedAlt}
           height={720}
-          sizes="100vw"
+          sizes={CONTENT_IMAGE_SIZES}
           src={resolvedSrc}
           style={{ height: "auto", width: "100%" }}
           title={title}
@@ -111,7 +116,13 @@ const MdxImage = ({
 
   return (
     <ImageZoom wrapElement="span">
-      <ContentPicture alt={resolvedAlt} assetId={assetId} title={title} />
+      <ContentPicture
+        alt={resolvedAlt}
+        assetId={assetId}
+        sizes={CONTENT_IMAGE_SIZES}
+        srcSet={directusContentSrcSet(assetId, "webp")}
+        title={title}
+      />
     </ImageZoom>
   );
 };
