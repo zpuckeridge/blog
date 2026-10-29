@@ -27,6 +27,7 @@ export const GET: APIRoute = async () => {
     link("About", `${baseUrl}/about`),
     link("Timeline", `${baseUrl}/timeline`),
     link("Activity", `${baseUrl}/activity`),
+    link("Music", `${baseUrl}/music`),
     link("Projects", `${baseUrl}/projects`),
     link("CV", `${baseUrl}/cv`),
     link("Uses", `${baseUrl}/uses`),

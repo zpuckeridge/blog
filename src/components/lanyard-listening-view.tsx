@@ -12,7 +12,12 @@ import {
   parseAppleMusicActivity,
   resolveArtworkZoomUrl,
 } from "@/lib/lanyard-status";
-import type { LanyardPresence, NowListening } from "@/lib/lanyard-status";
+import type {
+  LanyardPresence,
+  NowListening,
+  ObservedListen,
+} from "@/lib/lanyard-status";
+import { listeningPlayKey } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
 import { formatLocationRelativeTime } from "@/lib/location-status";
@@ -320,7 +325,7 @@ const recordMusicClick = (
 };
 
 const LanyardListeningView = () => {
-  const [listening, setListening] = useState<NowListening | null>(null);
+  const [listening, setListening] = useState<ObservedListen | null>(null);
   const [showRecents, setShowRecents] = useState(false);
   const [now, setNow] = useState(() => Date.now());
   const lastRecordedKeyRef = useRef<string | null>(null);
@@ -344,7 +349,7 @@ const LanyardListeningView = () => {
         return;
       }
 
-      const key = listeningIdentity(next);
+      const key = listeningPlayKey(next);
       if (lastRecordedKeyRef.current === key) {
         return;
       }
@@ -371,7 +376,7 @@ const LanyardListeningView = () => {
     const onActivate = () => {
       if (
         cancelled ||
-        lastRecordedKeyRef.current === listeningIdentity(listening)
+        lastRecordedKeyRef.current === listeningPlayKey(listening)
       ) {
         return;
       }

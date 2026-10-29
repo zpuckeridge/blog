@@ -24,6 +24,7 @@ describe("isEdgeCacheableHtml", () => {
     assert.equal(isEdgeCacheablePath("/api/subscribe"), false);
     assert.equal(isEdgeCacheablePath("/img/file"), false);
     assert.equal(isEdgeCacheablePath("/videos"), false);
+    assert.equal(isEdgeCacheablePath("/music"), false);
     assert.equal(
       isEdgeCacheableHtml({
         contentType: "text/html; charset=utf-8",

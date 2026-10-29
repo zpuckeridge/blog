@@ -107,6 +107,7 @@ const WEB_PAGE_NAMES: Record<string, string> = {
   "/activity": "Activity",
   "/colophon": "Colophon",
   "/imprint": "Imprint",
+  "/music": "Music",
   "/projects": "Projects",
   "/uses": "Uses",
 };

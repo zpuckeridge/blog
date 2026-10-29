@@ -12,5 +12,6 @@ export const menuItems: MenuItem[] = [
   { href: "/cv", label: "CV" },
   { href: "/activity", label: "Activity" },
   { href: "/uses", label: "Uses" },
+  { href: "/music", label: "Music" },
   { href: "/videos", label: "Videos", locked: true },
 ];

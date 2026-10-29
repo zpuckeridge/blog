@@ -1,0 +1,41 @@
+---
+import { listenHistoryPageHref } from "@/lib/listening-history";
+
+interface Props {
+  page: number;
+  pageCount: number;
+}
+
+const { page, pageCount } = Astro.props;
+const previousHref = page > 1 ? listenHistoryPageHref(page - 1) : null;
+const nextHref = page < pageCount ? listenHistoryPageHref(page + 1) : null;
+const linkClass = "px-1 hover:bg-muted";
+const inertClass = "px-1 text-muted-foreground";
+---
+
+<nav
+  aria-label="Listening history pages"
+  class="flex items-center justify-between gap-3 text-sm"
+>
+  {
+    previousHref ? (
+      <a class={linkClass} href={previousHref} rel="prev">
+        Previous
+      </a>
+    ) : (
+      <span class={inertClass}>Previous</span>
+    )
+  }
+  <p class="tabular-nums text-muted-foreground">
+    Page {page} of {pageCount}
+  </p>
+  {
+    nextHref ? (
+      <a class={linkClass} href={nextHref} rel="next">
+        Next
+      </a>
+    ) : (
+      <span class={inertClass}>Next</span>
+    )
+  }
+</nav>

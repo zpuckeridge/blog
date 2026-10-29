@@ -33,6 +33,15 @@ export default {
         );
       }
 
+      if (listeningResult.historyRecorded) {
+        console.log(
+          "Recorded listening history:",
+          listeningResult.recents[0]?.track,
+          "—",
+          listeningResult.recents[0]?.artist
+        );
+      }
+
       if (statusResult.recorded) {
         console.log("Recorded status history sample");
       }

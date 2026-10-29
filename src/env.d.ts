@@ -3,6 +3,11 @@
 import type { ActivityFeedStoreNamespace } from "@/lib/activity-feed-store";
 
 declare global {
+  interface Document {
+    /** Speculative Rules prerender flag. Not in the TypeScript DOM lib yet. */
+    prerendering?: boolean;
+  }
+
   interface SiteKv {
     get: (key: string) => Promise<string | null>;
     put: (key: string, value: string) => Promise<void>;
@@ -35,7 +40,7 @@ declare global {
       GITHUB_TOKEN?: string;
       /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
       LOCATION_WEBHOOK_SECRET?: string;
-      /** KV namespace for location status and listening recents. */
+      /** KV namespace for location status, listening recents, and listening history. */
       LOCATION_KV?: SiteKv;
       /** SQLite-backed Durable Object containing the public activity feed. */
       ACTIVITY_FEED_STORE?: ActivityFeedStoreNamespace;

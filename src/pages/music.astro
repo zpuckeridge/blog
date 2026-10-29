@@ -1,0 +1,87 @@
+---
+import MusicListenRow from "@/components/music-listen-row.astro";
+import MusicPager from "@/components/music-pager.astro";
+import Layout from "@/layouts/layout.astro";
+import {
+  LISTENING_HISTORY_KV_KEY,
+  LISTENING_HISTORY_PAGE_SIZE,
+  parseListenHistory,
+  resolveListenHistoryPage,
+  sliceListenHistoryPage,
+} from "@/lib/listening-history";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { workersEnv } from "@/lib/workers-env";
+
+export const prerender = false;
+
+const kv = workersEnv.LOCATION_KV;
+const history = kv
+  ? parseListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY))
+  : [];
+const rawPage = Astro.url.searchParams.get("page");
+const resolved = resolveListenHistoryPage(rawPage, history.length);
+
+if (resolved.redirectTo) {
+  return Astro.redirect(resolved.redirectTo, 302);
+}
+
+const listing = sliceListenHistoryPage(history, resolved.page);
+const songLabel = listing.total === 1 ? "song" : "songs";
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const pageMeta = createPageMetadata({
+  description:
+    "The last 1,000 songs Zacchary has listened to on Apple Music, newest first, with artwork, album, and links to each track.",
+  path: listing.page === 1 ? "/music" : `/music?page=${listing.page}`,
+  title: "Music",
+});
+
+const fullTitle = formatPageTitle("Music");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-8 px-6 pb-20">
+    <div class="space-y-2">
+      <h1 class="font-redaction text-black text-xl dark:text-white">Music</h1>
+      <p class="text-sm">The last 1,000 songs I've listened to.</p>
+      {
+        listing.total > 0 ? (
+          <p class="text-sm text-muted-foreground tabular-nums">
+            {listing.total.toLocaleString("en-AU")} {songLabel}
+          </p>
+        ) : null
+      }
+    </div>
+
+    {
+      listing.plays.length > 0 ? (
+        <>
+          {listing.pageCount > 1 ? (
+            <MusicPager page={listing.page} pageCount={listing.pageCount} />
+          ) : null}
+          <ol
+            class="m-0 list-none border-border border-t border-dotted p-0"
+            start={(listing.page - 1) * LISTENING_HISTORY_PAGE_SIZE + 1}
+          >
+            {listing.plays.map((play, index) => (
+              <MusicListenRow
+                eager={index === 0}
+                play={play}
+              />
+            ))}
+          </ol>
+          {listing.pageCount > 1 ? (
+            <MusicPager page={listing.page} pageCount={listing.pageCount} />
+          ) : null}
+        </>
+      ) : (
+        <p class="text-sm text-muted-foreground">No songs yet.</p>
+      )
+    }
+  </div>
+</Layout>

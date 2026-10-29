@@ -29,6 +29,11 @@ export interface LanyardActivity {
   details_url?: string;
   state_url?: string;
   assets?: LanyardActivityAssets;
+  /** Discord rich presence clock. `start` changes when a track starts again. */
+  timestamps?: {
+    end?: number;
+    start?: number;
+  };
 }
 
 export interface LanyardPresence {
@@ -43,6 +48,12 @@ export interface NowListening {
   artworkUrl: string | null;
   trackUrl: string | null;
   artistUrl: string | null;
+}
+
+/** A play observed from Apple Music rich presence, including its start clock. */
+export interface ObservedListen extends NowListening {
+  /** Discord `timestamps.start` in milliseconds, or null when Apple Music omits it. */
+  startedAt: number | null;
 }
 
 export type DiscordStatus = "online" | "idle" | "dnd" | "offline";
@@ -108,6 +119,16 @@ export const resolveArtworkZoomUrl = (
   );
 };
 
+/** Discord sends milliseconds. Some payloads still use Unix seconds. */
+const unixMilliseconds = (value: unknown): number | null => {
+  if (typeof value !== "number" || !Number.isFinite(value) || value <= 0) {
+    return null;
+  }
+
+  const milliseconds = value < 1_000_000_000_000 ? value * 1000 : value;
+  return Math.trunc(milliseconds);
+};
+
 const isAppleMusicActivity = (activity: LanyardActivity): boolean => {
   if (
     activity.application_id &&
@@ -119,21 +140,21 @@ const isAppleMusicActivity = (activity: LanyardActivity): boolean => {
   return activity.name === "Apple Music" && activity.type === 2;
 };
 
-export const parseAppleMusicActivity = (
-  activities: LanyardActivity[] | undefined
-): NowListening | null => {
-  const activity = activities?.find(isAppleMusicActivity);
+const artistFromActivity = (activity: LanyardActivity): string =>
+  activity.assets?.small_text?.trim() || extractArtistFromState(activity.state);
 
-  if (!activity?.details?.trim()) {
-    return null;
-  }
+const albumFromActivity = (activity: LanyardActivity): string | null =>
+  activity.assets?.large_text?.trim() ||
+  extractAlbumFromState(activity.state) ||
+  null;
 
-  const track = activity.details.trim();
-  const artist =
-    activity.assets?.small_text?.trim() ||
-    extractArtistFromState(activity.state);
+const observedFromActivity = (
+  activity: LanyardActivity
+): ObservedListen | null => {
+  const track = activity.details?.trim() ?? "";
+  const artist = artistFromActivity(activity);
 
-  if (!artist) {
+  if (!track || !artist) {
     return null;
   }
 
@@ -141,19 +162,28 @@ export const parseAppleMusicActivity = (
     activity.application_id ?? APPLE_MUSIC_DESKTOP_APPLICATION_ID;
 
   return {
-    album:
-      activity.assets?.large_text?.trim() ||
-      extractAlbumFromState(activity.state) ||
-      null,
+    album: albumFromActivity(activity),
     artist,
     artistUrl: activity.state_url ?? activity.assets?.small_url ?? null,
     artworkUrl: resolveDiscordAssetImage(
       activity.assets?.large_image,
       applicationId
     ),
+    startedAt: unixMilliseconds(activity.timestamps?.start),
     track,
     trackUrl: activity.details_url ?? activity.assets?.large_url ?? null,
   };
+};
+
+export const parseAppleMusicActivity = (
+  activities: LanyardActivity[] | undefined
+): ObservedListen | null => {
+  const activity = activities?.find(isAppleMusicActivity);
+  if (!activity) {
+    return null;
+  }
+
+  return observedFromActivity(activity);
 };
 
 export const getDiscordStatusStyle = (
