@@ -1,18 +1,16 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { formatBrisbaneDateTime } from "@/lib/format-in-brisbane";
 import type { ObservedListen } from "@/lib/lanyard-status";
 import {
+  LISTENING_HISTORY_CHUNK_SIZE,
   LISTENING_HISTORY_MAX,
-  LISTENING_HISTORY_PAGE_SIZE,
   appendListenPlay,
-  listenHistoryPageHref,
   listenPlayedAt,
   listeningPlayKey,
   parseListenHistory,
-  resolveListenHistoryPage,
-  sliceListenHistoryPage,
+  parseListenHistoryOffset,
+  sliceListenHistory,
 } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
 
@@ -167,41 +165,37 @@ describe("parseListenHistory", () => {
   });
 });
 
-describe("listening history pages", () => {
+describe("listening history chunks", () => {
   const plays = Array.from(
-    { length: LISTENING_HISTORY_PAGE_SIZE + 1 },
+    { length: LISTENING_HISTORY_CHUNK_SIZE + 1 },
     (_, index) => play(`Track ${index}`, index + 1)
   );
 
-  it("shows the newest page first", () => {
-    const page = sliceListenHistoryPage(plays, 1);
+  it("returns the newest chunk first and a cursor for the rest", () => {
+    const first = sliceListenHistory(plays, 0);
 
-    assert.equal(page.total, LISTENING_HISTORY_PAGE_SIZE + 1);
-    assert.equal(page.pageCount, 2);
-    assert.equal(page.plays.length, LISTENING_HISTORY_PAGE_SIZE);
-    assert.equal(page.plays[0]?.track, "Track 0");
+    assert.equal(first.total, LISTENING_HISTORY_CHUNK_SIZE + 1);
+    assert.equal(first.plays.length, LISTENING_HISTORY_CHUNK_SIZE);
+    assert.equal(first.plays[0]?.track, "Track 0");
+    assert.equal(first.nextOffset, LISTENING_HISTORY_CHUNK_SIZE);
+
+    const rest = sliceListenHistory(plays, first.nextOffset ?? 0);
+    assert.equal(rest.plays.length, 1);
+    assert.equal(rest.plays[0]?.track, `Track ${LISTENING_HISTORY_CHUNK_SIZE}`);
+    assert.equal(rest.nextOffset, null);
   });
 
-  it("sends invalid and overflowing pages back to a real page", () => {
-    assert.deepEqual(resolveListenHistoryPage(null, plays.length), {
-      page: 1,
-      redirectTo: null,
-    });
+  it("rejects an offset that is not a whole number in range", () => {
+    assert.equal(parseListenHistoryOffset(null), 0);
+    assert.equal(parseListenHistoryOffset(""), 0);
+    assert.equal(parseListenHistoryOffset("0"), 0);
+    assert.equal(parseListenHistoryOffset("20"), 20);
+    assert.equal(parseListenHistoryOffset("nope"), null);
+    assert.equal(parseListenHistoryOffset("-1"), null);
     assert.equal(
-      resolveListenHistoryPage("1", plays.length).redirectTo,
-      "/music"
+      parseListenHistoryOffset(String(LISTENING_HISTORY_MAX + 1)),
+      null
     );
-    assert.equal(
-      resolveListenHistoryPage("nope", plays.length).redirectTo,
-      "/music"
-    );
-    assert.deepEqual(resolveListenHistoryPage("9", plays.length), {
-      page: 2,
-      redirectTo: "/music?page=2",
-    });
-    assert.equal(resolveListenHistoryPage("2", plays.length).redirectTo, null);
-    assert.equal(listenHistoryPageHref(1), "/music");
-    assert.equal(listenHistoryPageHref(2), "/music?page=2");
   });
 });
 
@@ -213,7 +207,6 @@ describe("listen timing", () => {
       listenPlayedAt(play("Song", startedAt, startedAt + 60_000)),
       startedAt
     );
-    assert.equal(formatBrisbaneDateTime(startedAt), "29 Oct 2026, 3:42 pm");
   });
 
   it("uses the start time to tell a replay from the play already on screen", () => {

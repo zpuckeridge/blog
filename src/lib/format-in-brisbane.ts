@@ -64,16 +64,6 @@ const formatterLongFull = new Intl.DateTimeFormat(AU_LOCALE, {
   year: "numeric",
 });
 
-const formatterDateTime = new Intl.DateTimeFormat(AU_LOCALE, {
-  day: "numeric",
-  hour: "numeric",
-  hourCycle: "h12",
-  minute: "2-digit",
-  month: "short",
-  timeZone: BRISBANE_TIMEZONE,
-  year: "numeric",
-});
-
 const formatterDdMmYyParts = new Intl.DateTimeFormat(AU_LOCALE, {
   day: "2-digit",
   month: "2-digit",
@@ -173,25 +163,6 @@ export const formatPublishedShortDayMonth =
     const month = map.month ?? "";
     return `${day} ${month}`.trim();
   };
-
-/** e.g. "29 Oct 2026, 3:42 pm" in Australia/Brisbane. */
-export const formatBrisbaneDateTime = function formatBrisbaneDateTime(
-  isoDate: DateInput
-): string {
-  const map = formatParts(formatterDateTime, isoDate);
-  const day = map.day ?? "";
-  const month = map.month ?? "";
-  const year = map.year ?? "";
-  const hour = map.hour ?? "";
-  const minute = map.minute ?? "";
-  const dayPeriod = (map.dayPeriod ?? "").toLowerCase();
-
-  if (!day || !month || !year || !hour || !minute || !dayPeriod) {
-    return formatterDateTime.format(coerceDate(isoDate));
-  }
-
-  return `${day} ${month} ${year}, ${hour}:${minute} ${dayPeriod}`;
-};
 
 /** e.g. "6 January 2025" */
 export const formatPublishedLongDate = function formatPublishedLongDate(

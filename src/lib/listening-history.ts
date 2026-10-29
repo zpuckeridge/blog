@@ -10,7 +10,8 @@ import { listeningIdentity } from "@/lib/listening-recents";
  */
 export const LISTENING_HISTORY_KV_KEY = "listening:history";
 export const LISTENING_HISTORY_MAX = 1000;
-export const LISTENING_HISTORY_PAGE_SIZE = 50;
+/** Rows sent with the first paint, and with each scroll request after that. */
+export const LISTENING_HISTORY_CHUNK_SIZE = 20;
 
 export interface ListenPlay extends NowListening {
   /** First time this play was observed, in milliseconds. */
@@ -27,9 +28,9 @@ export interface AppendListenResult {
   plays: readonly ListenPlay[];
 }
 
-export interface ListenHistoryPage {
-  page: number;
-  pageCount: number;
+export interface ListenHistorySlice {
+  nextOffset: number | null;
+  offset: number;
   plays: ListenPlay[];
   total: number;
 }
@@ -219,64 +220,41 @@ export const listenPlayedAt = (
   play: Pick<ListenPlay, "listenedAt" | "startedAt">
 ): number => play.startedAt ?? play.listenedAt;
 
-export const listenHistoryPageCount = (total: number): number =>
-  Math.max(1, Math.ceil(total / LISTENING_HISTORY_PAGE_SIZE));
-
-export const listenHistoryPageHref = (page: number): string =>
-  page <= 1 ? "/music" : `/music?page=${page}`;
-
-/** Null when the query is not a positive integer. Null raw page means page 1. */
-export const parseListenHistoryPage = (value: string | null): number | null => {
+/** Null when the query is not a whole number inside the stored history. */
+export const parseListenHistoryOffset = (
+  value: string | null
+): number | null => {
   if (value === null || value === "") {
-    return 1;
+    return 0;
   }
 
-  if (!/^[1-9]\d*$/u.test(value)) {
+  if (!/^\d+$/u.test(value)) {
     return null;
   }
 
-  const page = Number(value);
-  if (!Number.isSafeInteger(page)) {
+  const offset = Number(value);
+  if (!Number.isSafeInteger(offset) || offset > LISTENING_HISTORY_MAX) {
     return null;
   }
 
-  return page;
+  return offset;
 };
 
-export const resolveListenHistoryPage = (
-  rawPage: string | null,
-  total: number
-): { page: number; redirectTo: string | null } => {
-  const requested = parseListenHistoryPage(rawPage);
-  if (requested === null) {
-    return { page: 1, redirectTo: "/music" };
-  }
-
-  const page = Math.min(requested, listenHistoryPageCount(total));
-  if (rawPage === null || rawPage === "") {
-    return { page: 1, redirectTo: null };
-  }
-
-  if (page === 1 || page !== requested) {
-    return { page, redirectTo: listenHistoryPageHref(page) };
-  }
-
-  return { page, redirectTo: null };
-};
-
-export const sliceListenHistoryPage = (
+export const sliceListenHistory = (
   plays: readonly ListenPlay[],
-  page: number
-): ListenHistoryPage => {
+  offset: number,
+  limit = LISTENING_HISTORY_CHUNK_SIZE
+): ListenHistorySlice => {
   const total = plays.length;
-  const pageCount = listenHistoryPageCount(total);
-  const safePage = Math.min(Math.max(Math.trunc(page), 1), pageCount);
-  const start = (safePage - 1) * LISTENING_HISTORY_PAGE_SIZE;
+  const start = Math.min(Math.max(Math.trunc(offset), 0), total);
+  const size = Math.max(Math.trunc(limit), 0);
+  const slice = plays.slice(start, start + size);
+  const next = start + slice.length;
 
   return {
-    page: safePage,
-    pageCount,
-    plays: plays.slice(start, start + LISTENING_HISTORY_PAGE_SIZE),
+    nextOffset: next < total ? next : null,
+    offset: start,
+    plays: [...slice],
     total,
   };
 };
