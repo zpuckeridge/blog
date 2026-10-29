@@ -7,11 +7,14 @@ const DIRECTUS_URL =
 
 /**
  * Read-only token for the "zacchary-me-site" Directus user.
- * Read from process.env only (Worker secret at runtime via nodejs_compat,
- * shell env / .dev.vars at build) so it is never inlined into the bundle.
- * Public read on content collections is being removed, so it is required.
+ * Public read on content collections is disabled; this token is required.
+ * Astro loads `.env.local` into `import.meta.env`; Wrangler secrets use
+ * `process.env` at runtime on Workers (`nodejs_compat`).
  */
-const { DIRECTUS_TOKEN } = process.env;
+export const getDirectusToken = (): string | undefined =>
+  import.meta.env.DIRECTUS_TOKEN ?? process.env.DIRECTUS_TOKEN;
+
+const DIRECTUS_TOKEN = getDirectusToken();
 
 if (!DIRECTUS_TOKEN) {
   console.warn(

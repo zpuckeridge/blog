@@ -30,7 +30,7 @@ Portless. To run Astro directly on its normal port, use `PORTLESS=0 npm run dev`
 Set these values in `.env.local`:
 
 - **DIRECTUS_URL** - Directus instance URL (required for content)
-- **DIRECTUS_TOKEN** - Optional static token for private content
+- **DIRECTUS_TOKEN** - Read-only Directus static token (required; public collection read is disabled)
 - **PUBLIC_SITE_URL** - Canonical site URL (for example `https://zacchary.me`) for RSS, sitemap, and metadata
 - **LOOPS_API_KEY** - Newsletter signup via Loops
 - **PUBLIC_POSTHOG_KEY** - PostHog analytics

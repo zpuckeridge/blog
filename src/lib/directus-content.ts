@@ -142,14 +142,25 @@ const extractDirectusError = (
   };
 };
 
+const isDirectusCollectionAccessError = (error: unknown): boolean => {
+  const extracted = extractDirectusError(error);
+  const text =
+    `${extracted.message} ${JSON.stringify(extracted.details ?? "")}`.toLowerCase();
+
+  return text.includes("permission to access collection");
+};
+
 const isUnknownWorkInProgressFieldError = (error: unknown): boolean => {
+  if (isDirectusCollectionAccessError(error)) {
+    return false;
+  }
+
   const extracted = extractDirectusError(error);
   const text =
     `${extracted.message} ${JSON.stringify(extracted.details ?? "")}`.toLowerCase();
 
   return (
     text.includes("work_in_progress") ||
-    text.includes("does not exist") ||
     text.includes("invalid field") ||
     text.includes("unknown field") ||
     text.includes("don't have permission to access field")
@@ -462,6 +473,10 @@ const USE_FIELDS_WITHOUT_SORT = USE_FIELDS.filter(
 );
 
 const isUnknownUsesSortFieldError = (error: unknown): boolean => {
+  if (isDirectusCollectionAccessError(error)) {
+    return false;
+  }
+
   const extracted = extractDirectusError(error);
   const text =
     `${extracted.message} ${JSON.stringify(extracted.details ?? "")}`.toLowerCase();
@@ -469,7 +484,6 @@ const isUnknownUsesSortFieldError = (error: unknown): boolean => {
   return (
     text.includes("category_sort") ||
     text.includes("sort") ||
-    text.includes("does not exist") ||
     text.includes("invalid field") ||
     text.includes("unknown field") ||
     text.includes("don't have permission to access field")

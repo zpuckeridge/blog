@@ -55,6 +55,8 @@ declare global {
   }
 
   interface ImportMetaEnv {
+    readonly DIRECTUS_URL?: string;
+    readonly DIRECTUS_TOKEN?: string;
     readonly PUBLIC_SITE_URL?: string;
     readonly PUBLIC_POSTHOG_KEY?: string;
     readonly PUBLIC_POSTHOG_HOST?: string;
