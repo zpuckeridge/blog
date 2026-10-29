@@ -19,6 +19,11 @@ export const isEdgeCacheablePath = (pathname: string): boolean => {
     return false;
   }
 
+  // Listening history is read from KV on each request.
+  if (pathname === "/music") {
+    return false;
+  }
+
   if (pathname === "/img" || pathname.startsWith("/img/")) {
     return false;
   }

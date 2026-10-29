@@ -68,6 +68,7 @@ describe("buildJsonLdPayload", () => {
       ["/about/books", "Books"],
       ["/about/movies", "Movies"],
       ["/about/credits", "Credits"],
+      ["/music", "Music"],
     ] as const) {
       const payload = buildJsonLdPayload({
         description: "A page.",

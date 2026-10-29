@@ -1,0 +1,67 @@
+---
+import MusicHistory from "@/components/music-history";
+import Layout from "@/layouts/layout.astro";
+import {
+  LISTENING_HISTORY_KV_KEY,
+  parseListenHistory,
+  sliceListenHistory,
+} from "@/lib/listening-history";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { workersEnv } from "@/lib/workers-env";
+
+export const prerender = false;
+
+if (Astro.url.searchParams.has("page")) {
+  return Astro.redirect("/music", 302);
+}
+
+const kv = workersEnv.LOCATION_KV;
+const history = kv
+  ? parseListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY))
+  : [];
+const listing = sliceListenHistory(history, 0);
+const songLabel = listing.total === 1 ? "song" : "songs";
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const pageMeta = createPageMetadata({
+  description:
+    "The last 1,000 songs Zacchary has listened to on Apple Music, newest first. Each row has artwork and a link to the track.",
+  path: "/music",
+  title: "Music",
+});
+
+const fullTitle = formatPageTitle("Music");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-8 px-6 pb-20">
+    <div class="space-y-2">
+      <h1 class="font-redaction text-black text-xl dark:text-white">Music</h1>
+      <p class="text-sm">The last 1,000 songs I've listened to.</p>
+      {
+        listing.total > 0 ? (
+          <p class="text-sm text-muted-foreground tabular-nums">
+            {listing.total.toLocaleString("en-AU")} {songLabel}
+          </p>
+        ) : null
+      }
+    </div>
+
+    {
+      listing.plays.length > 0 ? (
+        <MusicHistory
+          client:load
+          initialPlays={listing.plays}
+          total={listing.total}
+        />
+      ) : (
+        <p class="text-sm text-muted-foreground">No songs yet.</p>
+      )
+    }
+  </div>
+</Layout>

@@ -54,6 +54,24 @@ const getToken = (): string | undefined =>
   workersEnv.DIRECTUS_TOKEN ??
   (typeof process === "undefined" ? undefined : process.env.DIRECTUS_TOKEN);
 
+const upstreamAssetQuery = (
+  searchParams: URLSearchParams
+): { error: Response } | { query: string } => {
+  const upstreamParams = new URLSearchParams();
+
+  for (const [key, value] of searchParams) {
+    const validate = PARAM_VALIDATORS[key];
+    const valid = validate ? validate(value) : null;
+    if (valid === null || upstreamParams.has(key)) {
+      return { error: notFound(400, "Bad request") };
+    }
+    upstreamParams.set(key, valid);
+  }
+
+  upstreamParams.sort();
+  return { query: upstreamParams.toString() };
+};
+
 export const GET: APIRoute = async ({ params, request }) => {
   // /img/<uuid> or /img/<uuid>/<any-filename> (filename is cosmetic).
   const segments = (params.path ?? "").split("/");
@@ -63,18 +81,12 @@ export const GET: APIRoute = async ({ params, request }) => {
   }
 
   const requestUrl = new URL(request.url);
-  const upstreamParams = new URLSearchParams();
-  for (const [key, value] of requestUrl.searchParams) {
-    const validate = PARAM_VALIDATORS[key];
-    const valid = validate ? validate(value) : null;
-    if (valid === null || upstreamParams.has(key)) {
-      return notFound(400, "Bad request");
-    }
-    upstreamParams.set(key, valid);
+  const assetQuery = upstreamAssetQuery(requestUrl.searchParams);
+  if ("error" in assetQuery) {
+    return assetQuery.error;
   }
-  upstreamParams.sort();
 
-  const query = upstreamParams.toString();
+  const { query } = assetQuery;
   const assetIdLower = assetId.toLowerCase();
   const cacheKey = new Request(
     `${requestUrl.origin}/img/${assetIdLower}${query ? `?${query}` : ""}`

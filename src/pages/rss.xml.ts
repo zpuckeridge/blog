@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { compareDesc } from "date-fns";
 
+import { getDirectusToken } from "@/lib/directus";
 import {
   DIRECTUS_ORIGIN,
   directusSocialImageAbsoluteUrl,
@@ -28,7 +29,7 @@ const imageType = (header: string | null): string | null => {
 const probeSocialImage = async (
   assetId: string
 ): Promise<{ length: number; type: string | null }> => {
-  const token = process.env.DIRECTUS_TOKEN;
+  const token = getDirectusToken();
   const headers: HeadersInit = token
     ? { Authorization: `Bearer ${token}` }
     : {};
