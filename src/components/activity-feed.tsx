@@ -155,6 +155,8 @@ const formatActivityTime = (iso: string) => {
 /** Formatted in the visitor's browser so it uses their time zone. */
 const ActivityTime = ({ iso }: { iso: string }) => {
   const [label, setLabel] = useState<string | null>(null);
+  // The Worker clock is not the visitor's time zone, so fill this in after hydration.
+  // oxlint-disable-next-line react/set-state-in-effect -- client time zone
   useEffect(() => setLabel(formatActivityTime(iso)), [iso]);
 
   return (
