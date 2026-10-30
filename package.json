@@ -16,7 +16,7 @@
     "build:cf": "CI=1 bunx react-doctor --yes --verbose --lint --scope full && bun run test && astro build",
     "build:cf:production": "bun run build:cf",
     "deploy:cf": "npx wrangler deploy",
-    "version:cf": "npx wrangler versions upload"
+    "version:cf": "npx wrangler preview"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

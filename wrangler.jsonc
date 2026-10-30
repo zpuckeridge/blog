@@ -80,4 +80,29 @@
       "preview_id": "c26add25eee24e32a68f067f4c19c81c",
     },
   ],
+
+  // Branch builds run `wrangler preview`. Previews do not inherit production
+  // bindings. Durable Object classes and migrations stay above; each Preview
+  // receives its own ActivityFeedStore namespace. Cron triggers and the
+  // zacchary.me route stay on production.
+  "previews": {
+    "durable_objects": {
+      "bindings": [
+        {
+          "class_name": "ActivityFeedStore",
+          "name": "ACTIVITY_FEED_STORE",
+        },
+      ],
+    },
+    "images": {
+      "binding": "IMAGES",
+    },
+    "kv_namespaces": [
+      {
+        "binding": "LOCATION_KV",
+        // Non-production namespace (top-level preview_id). Not the production id.
+        "id": "c26add25eee24e32a68f067f4c19c81c",
+      },
+    ],
+  },
 }
