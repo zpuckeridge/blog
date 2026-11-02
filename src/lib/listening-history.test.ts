@@ -5,11 +5,16 @@ import type { ObservedListen } from "@/lib/lanyard-status";
 import {
   LISTENING_HISTORY_CHUNK_SIZE,
   LISTENING_HISTORY_MAX,
+  LISTENING_SESSION_WINDOW_MS,
   appendListenPlay,
   listenPlayedAt,
   listeningPlayKey,
+  collapseListenSessions,
+  mergeLatestPlays,
   parseListenHistory,
   parseListenHistoryOffset,
+  readListenHistory,
+  sameListeningSession,
   sliceListenHistory,
 } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
@@ -52,23 +57,68 @@ describe("appendListenPlay", () => {
   });
 
   it("counts a later replay as a new play and keeps the newest first", () => {
-    const first = appendListenPlay([], observed("Song", 100), 100);
-    const replay = appendListenPlay(first.plays, observed("Song", 400), 400);
+    const start = 1_700_000_000_000;
+    const replayStart = start + LISTENING_SESSION_WINDOW_MS + 1;
+    const first = appendListenPlay([], observed("Song", start), start);
+    const replay = appendListenPlay(
+      first.plays,
+      observed("Song", replayStart),
+      replayStart
+    );
 
     assert.equal(replay.appended, true);
     assert.deepEqual(
       replay.plays.map((item) => item.startedAt),
-      [400, 100]
+      [replayStart, start]
     );
-    assert.equal(replay.plays[0]?.listenedAt, 400);
+    assert.equal(replay.plays[0]?.listenedAt, replayStart);
+  });
+
+  it("keeps the first row when a later poll shifts the start by a millisecond", () => {
+    const start = 1_793_597_828_604;
+    const first = appendListenPlay([], observed("Song", start), start + 10_000);
+    const drifted = appendListenPlay(
+      first.plays,
+      observed("Song", start + 1),
+      start + 128_000
+    );
+
+    assert.equal(drifted.appended, false);
+    assert.equal(drifted.changed, false);
+    assert.equal(drifted.plays.length, 1);
+    assert.equal(drifted.plays[0]?.startedAt, start);
+  });
+
+  it("treats a one second start drift as the same play", () => {
+    const start = 1_793_370_440_470;
+    const first = appendListenPlay([], observed("For Now", start), start);
+    const drifted = appendListenPlay(
+      first.plays,
+      observed("For Now", start + 985),
+      start + 180_000
+    );
+
+    assert.equal(drifted.appended, false);
+    assert.equal(drifted.plays.length, 1);
+    assert.equal(drifted.plays[0]?.startedAt, start);
   });
 
   it("does not duplicate a play that is no longer the newest row", () => {
-    const first = appendListenPlay([], observed("Song", 100), 100);
-    const other = appendListenPlay(first.plays, observed("Other", 200), 200);
-    const again = appendListenPlay(other.plays, observed("Song", 100), 300);
+    const start = 1_700_000_000_000;
+    const first = appendListenPlay([], observed("Song", start), start);
+    const other = appendListenPlay(
+      first.plays,
+      observed("Other", start + 180_000),
+      start + 180_000
+    );
+    const again = appendListenPlay(
+      other.plays,
+      observed("Song", start + 1),
+      start + 240_000
+    );
 
     assert.equal(again.appended, false);
+    assert.equal(again.changed, false);
     assert.equal(again.plays.length, 2);
   });
 
@@ -128,23 +178,48 @@ describe("appendListenPlay", () => {
 
 describe("parseListenHistory", () => {
   it("drops invalid rows and repeated start times", () => {
+    const older = 1_700_000_000_000;
     const raw = JSON.stringify([
-      play("Newest", 300, 300),
+      play("Newest", 1_700_000_300_000, 1_700_000_300_000),
       { artist: "Nope", listenedAt: 1, track: " " },
-      play("Newest", 300, 999),
-      play("Older", null, 200),
-      play("Older", null, 100),
+      play("Newest", 1_700_000_300_001, 1_700_000_300_999),
+      play("Older", null, older),
+      play("Older", null, older - 10 * 60_000),
       { nope: true },
     ]);
 
-    const plays = parseListenHistory(raw);
+    const plays = readListenHistory(raw);
 
     assert.deepEqual(
       plays.map((item) => [item.track, item.listenedAt]),
       [
-        ["Newest", 300],
-        ["Older", 200],
-        ["Older", 100],
+        ["Newest", 1_700_000_300_000],
+        ["Older", older],
+        ["Older", older - 10 * 60_000],
+      ]
+    );
+  });
+
+  it("collapses one play session whose start drifted", () => {
+    const start = 1_793_370_440_494;
+    const stored = [
+      play("For Now", start, start + 180_000),
+      play("For Now", start - 24, start + 120_000),
+      play("For Now", start + 961, start + 60_000),
+      play("For Now", start + 54, start),
+      play("Wave", start - 30 * 60_000, start - 30 * 60_000),
+      play("Wave", start - 30 * 60_000 + 1, start - 29 * 60_000),
+    ];
+
+    assert.equal(parseListenHistory(JSON.stringify(stored)).length, 6);
+
+    const plays = collapseListenSessions(stored);
+
+    assert.deepEqual(
+      plays.map((item) => [item.track, item.startedAt]),
+      [
+        ["For Now", start],
+        ["Wave", start - 30 * 60_000],
       ]
     );
   });
@@ -210,14 +285,58 @@ describe("listen timing", () => {
   });
 
   it("uses the start time to tell a replay from the play already on screen", () => {
+    const start = 1_700_000_000_000;
+
     assert.equal(
-      listeningPlayKey(observed("Song", 100)),
-      listeningPlayKey(observed("Song", 100))
+      listeningPlayKey(observed("Song", start)),
+      listeningPlayKey(observed("Song", start))
     );
     assert.notEqual(
-      listeningPlayKey(observed("Song", 100)),
-      listeningPlayKey(observed("Song", 200))
+      listeningPlayKey(observed("Song", start)),
+      listeningPlayKey(observed("Song", start + 1))
     );
     assert.equal(listeningPlayKey(observed("Song", null)), "song::artist");
+    assert.equal(
+      sameListeningSession(
+        observed("Song", start),
+        observed("Song", start + 1)
+      ),
+      true
+    );
+    assert.equal(
+      sameListeningSession(
+        observed("Song", start),
+        observed("Song", start + LISTENING_SESSION_WINDOW_MS + 1)
+      ),
+      false
+    );
+    assert.equal(
+      sameListeningSession(observed("Song", null), observed("Song", null)),
+      true
+    );
+    assert.equal(
+      sameListeningSession(observed("Song", null), observed("Other", null)),
+      false
+    );
+  });
+});
+
+describe("mergeLatestPlays", () => {
+  it("prepends a new play and skips a drifted copy of one already shown", () => {
+    const start = 1_700_000_000_000;
+    const current = [play("Song", start, start)];
+    const incoming = [
+      play("Next", start + 300_000, start + 300_000),
+      play("Song", start + 2, start + 120_000),
+    ];
+
+    assert.deepEqual(
+      mergeLatestPlays(current, incoming).map((item) => item.track),
+      ["Next", "Song"]
+    );
+    assert.equal(
+      mergeLatestPlays(current, [play("Song", start + 1, start)]),
+      current
+    );
   });
 });

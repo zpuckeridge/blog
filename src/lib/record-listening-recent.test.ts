@@ -96,6 +96,33 @@ describe("recordListeningRecent", () => {
     assert.equal(Object.hasOwn(recents[0] ?? {}, "startedAt"), false);
   });
 
+  it("stores one play when the Discord start shifts by a millisecond", async () => {
+    const startedAt = Date.UTC(2026, 9, 29, 5, 42);
+    Date.now = () => now;
+    mockPresence([activity("Song", startedAt)]);
+    const bucket = createKv();
+
+    await recordListeningRecent(bucket.kv);
+    now += 60_000;
+    mockPresence([activity("Song", startedAt + 1)]);
+    const drifted = await recordListeningRecent(bucket.kv);
+    now += 60_000;
+    mockPresence([activity("Song", startedAt + 985)]);
+    const driftedAgain = await recordListeningRecent(bucket.kv);
+
+    assert.equal(drifted.historyRecorded, false);
+    assert.equal(driftedAgain.historyRecorded, false);
+    const history = parseListenHistory(
+      bucket.store.get(LISTENING_HISTORY_KV_KEY) ?? null
+    );
+    assert.equal(history.length, 1);
+    assert.equal(history[0]?.startedAt, startedAt);
+    assert.equal(
+      bucket.writes.filter((key) => key === LISTENING_HISTORY_KV_KEY).length,
+      1
+    );
+  });
+
   it("keeps a replay in history while the recents list still has one row", async () => {
     Date.now = () => now;
     const bucket = createKv();

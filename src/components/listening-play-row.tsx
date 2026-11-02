@@ -122,16 +122,19 @@ export const ListeningPlayRow = ({
   listen,
   now,
   onTrackClick,
+  timeLabel,
 }: {
   listen: ListeningPlayRowData;
   now: number;
   onTrackClick?: () => void;
+  /** Replaces the relative time. The row layout stays the same. */
+  timeLabel?: string;
 }) => (
   <li className={ROW_CLASS}>
     <ListeningArtwork listening={listen} />
     <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
       <p className="truncate text-sm leading-tight text-muted-foreground tabular-nums">
-        {formatLocationRelativeTime(listen.playedAt, now)}
+        {timeLabel ?? formatLocationRelativeTime(listen.playedAt, now)}
       </p>
       <div
         className={LISTENING_TRACKS_CLASS}

@@ -82,14 +82,88 @@ const parseListenPlay = (value: unknown): ListenPlay | null => {
 const hasStart = (startedAt: number | null | undefined): startedAt is number =>
   typeof startedAt === "number";
 
-const startKey = (
-  song: Pick<ListenPlay, "artist" | "startedAt" | "track">
-): string | null => {
-  if (!hasStart(song.startedAt)) {
-    return null;
+/**
+ * Apple Music recomputes Discord `timestamps.start` while one song is playing.
+ * Stored history shows that this clock moves by 1 or 2 milliseconds, and once
+ * by about a second. Five seconds still covers that drift. A replay starts
+ * after the song has finished, so its start sits further away than this window.
+ */
+export const LISTENING_SESSION_WINDOW_MS = 5000;
+
+const sessionStart = (song: {
+  listenedAt?: number;
+  startedAt?: number | null;
+}): number | null => {
+  if (hasStart(song.startedAt)) {
+    return song.startedAt;
   }
 
-  return `${listeningIdentity(song)}::${song.startedAt}`;
+  if (
+    typeof song.listenedAt === "number" &&
+    Number.isFinite(song.listenedAt) &&
+    song.listenedAt > 0
+  ) {
+    return song.listenedAt;
+  }
+
+  return null;
+};
+
+type SessionSong = Pick<NowListening, "artist" | "track"> & {
+  listenedAt?: number;
+  startedAt?: number | null;
+};
+
+/** True when both observations are one continuous play of the same song. */
+export const sameListeningSession = (
+  left: SessionSong,
+  right: SessionSong
+): boolean => {
+  if (listeningIdentity(left) !== listeningIdentity(right)) {
+    return false;
+  }
+
+  const leftStart = sessionStart(left);
+  const rightStart = sessionStart(right);
+  if (leftStart === null || rightStart === null) {
+    return leftStart === null && rightStart === null;
+  }
+
+  return Math.abs(leftStart - rightStart) <= LISTENING_SESSION_WINDOW_MS;
+};
+
+interface OpenSession {
+  identity: string;
+  max: number;
+  min: number;
+}
+
+/** True when `play` belongs to a session already kept. The kept row stays. */
+const absorbedBySession = (
+  sessions: OpenSession[],
+  play: ListenPlay
+): boolean => {
+  const start = sessionStart(play);
+  if (start === null) {
+    return false;
+  }
+
+  const identity = listeningIdentity(play);
+  const match = sessions.find(
+    (session) =>
+      session.identity === identity &&
+      start >= session.min - LISTENING_SESSION_WINDOW_MS &&
+      start <= session.max + LISTENING_SESSION_WINDOW_MS
+  );
+
+  if (!match) {
+    sessions.push({ identity, max: start, min: start });
+    return false;
+  }
+
+  match.min = Math.min(match.min, start);
+  match.max = Math.max(match.max, start);
+  return true;
 };
 
 const unchanged = (plays: readonly ListenPlay[]): AppendListenResult => ({
@@ -102,9 +176,10 @@ const unchanged = (plays: readonly ListenPlay[]): AppendListenResult => ({
  * Tell one continuous play from a later replay.
  *
  * Apple Music's Discord presence includes `timestamps.start`. That clock
- * stays put for the whole play and moves when the same song starts again.
- * A matching start anywhere in the history is the same play, so a later
- * poll does not add a second row.
+ * should stay put for the whole play, but each presence update recomputes
+ * it, so it drifts by a few milliseconds. A start inside
+ * `LISTENING_SESSION_WINDOW_MS` of a stored start is the same play. A later
+ * poll does not add a second row, and the first start time stays in place.
  *
  * When the start time is missing, only the newest row is compared. Another
  * poll of that same song is the same play. A replay is kept once a different
@@ -117,14 +192,15 @@ export const appendListenPlay = (
   observedAt = Date.now()
 ): AppendListenResult => {
   const [latest] = existing;
-  const incomingKey = startKey(song);
   const sameAsLatest =
     latest !== undefined &&
     listeningIdentity(latest) === listeningIdentity(song);
 
   if (
-    incomingKey !== null &&
-    existing.some((play) => startKey(play) === incomingKey)
+    hasStart(song.startedAt) &&
+    existing.some(
+      (play) => hasStart(play.startedAt) && sameListeningSession(play, song)
+    )
   ) {
     return unchanged(existing);
   }
@@ -184,8 +260,8 @@ export const parseListenHistory = (raw: string | null): ListenPlay[] => {
         continue;
       }
 
-      const key = startKey(play);
-      if (key !== null) {
+      if (hasStart(play.startedAt)) {
+        const key = `${listeningIdentity(play)}::${play.startedAt}`;
         if (seenStarts.has(key)) {
           continue;
         }
@@ -204,7 +280,39 @@ export const parseListenHistory = (raw: string | null): ListenPlay[] => {
   }
 };
 
-/** Key used to avoid recording one continuous play on every presence update. */
+/**
+ * Drop repeated rows of one play session.
+ * The stored KV value is left unchanged. Callers that render history use this
+ * so a drifted start time does not show the same song twice.
+ */
+export const collapseListenSessions = (
+  plays: readonly ListenPlay[]
+): ListenPlay[] => {
+  const sessions: OpenSession[] = [];
+  const collapsed: ListenPlay[] = [];
+
+  for (const play of plays) {
+    if (absorbedBySession(sessions, play)) {
+      continue;
+    }
+
+    collapsed.push(play);
+    if (collapsed.length >= LISTENING_HISTORY_MAX) {
+      break;
+    }
+  }
+
+  return collapsed;
+};
+
+/** Parsed history with one row per play session. Does not write KV. */
+export const readListenHistory = (raw: string | null): ListenPlay[] =>
+  collapseListenSessions(parseListenHistory(raw));
+
+/**
+ * Exact row identity, including the raw start millisecond.
+ * Session dedupe uses `sameListeningSession`, because that millisecond drifts.
+ */
 export const listeningPlayKey = (
   song: Pick<NowListening, "artist" | "track"> & { startedAt?: number | null }
 ): string => {
@@ -219,6 +327,22 @@ export const listeningPlayKey = (
 export const listenPlayedAt = (
   play: Pick<ListenPlay, "listenedAt" | "startedAt">
 ): number => play.startedAt ?? play.listenedAt;
+
+/** Prepend plays from a fresh first page that are not already in the list. */
+export const mergeLatestPlays = (
+  current: readonly ListenPlay[],
+  incoming: readonly ListenPlay[]
+): readonly ListenPlay[] => {
+  const fresh = incoming.filter(
+    (play) => !current.some((existing) => sameListeningSession(existing, play))
+  );
+
+  if (fresh.length === 0) {
+    return current;
+  }
+
+  return [...fresh, ...current];
+};
 
 /** Null when the query is not a whole number inside the stored history. */
 export const parseListenHistoryOffset = (

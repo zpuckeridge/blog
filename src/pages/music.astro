@@ -3,7 +3,7 @@ import MusicHistory from "@/components/music-history";
 import Layout from "@/layouts/layout.astro";
 import {
   LISTENING_HISTORY_KV_KEY,
-  parseListenHistory,
+  readListenHistory,
   sliceListenHistory,
 } from "@/lib/listening-history";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
@@ -17,7 +17,7 @@ if (Astro.url.searchParams.has("page")) {
 
 const kv = workersEnv.LOCATION_KV;
 const history = kv
-  ? parseListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY))
+  ? readListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY))
   : [];
 const listing = sliceListenHistory(history, 0);
 const songLabel = listing.total === 1 ? "song" : "songs";
@@ -52,16 +52,10 @@ const fullTitle = formatPageTitle("Music");
       }
     </div>
 
-    {
-      listing.plays.length > 0 ? (
-        <MusicHistory
-          client:load
-          initialPlays={listing.plays}
-          total={listing.total}
-        />
-      ) : (
-        <p class="text-sm text-muted-foreground">No songs yet.</p>
-      )
-    }
+    <MusicHistory
+      client:load
+      initialPlays={listing.plays}
+      total={listing.total}
+    />
   </div>
 </Layout>

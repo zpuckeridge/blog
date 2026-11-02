@@ -4,8 +4,18 @@ import {
   ListeningPlayRow,
   recordListeningClick,
 } from "@/components/listening-play-row";
-import { listenPlayedAt, listeningPlayKey } from "@/lib/listening-history";
+import { isLikelyBot } from "@/lib/is-likely-bot";
+import { watchLanyardPresence } from "@/lib/lanyard-presence-hub";
+import { LANYARD_USER_ID, parseAppleMusicActivity } from "@/lib/lanyard-status";
+import type { LanyardPresence, ObservedListen } from "@/lib/lanyard-status";
+import {
+  listenPlayedAt,
+  listeningPlayKey,
+  mergeLatestPlays,
+  sameListeningSession,
+} from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
+import { listeningIdentity } from "@/lib/listening-recents";
 
 interface HistoryPayload {
   nextOffset: number | null;
@@ -13,16 +23,67 @@ interface HistoryPayload {
   total: number;
 }
 
+const HISTORY_POLL_MS = 60_000;
+
 const playIdentity = (play: ListenPlay): string =>
   `${listeningPlayKey(play)}:${play.listenedAt}`;
 
 const fetchHistory = async (offset: number): Promise<HistoryPayload> => {
-  const response = await fetch(`/api/listening/history?offset=${offset}`);
+  const response = await fetch(`/api/listening/history?offset=${offset}`, {
+    cache: "no-store",
+  });
   if (!response.ok) {
     throw new Error("Listening history unavailable");
   }
 
   return response.json() as Promise<HistoryPayload>;
+};
+
+const observedToPlay = (song: ObservedListen): ListenPlay => {
+  const listenedAt = song.startedAt ?? Date.now();
+
+  return {
+    album: song.album,
+    artist: song.artist,
+    artistUrl: song.artistUrl,
+    artworkUrl: song.artworkUrl,
+    listenedAt,
+    startedAt: song.startedAt,
+    track: song.track,
+    trackUrl: song.trackUrl,
+  };
+};
+
+const overlapsCurrent = (play: ListenPlay, song: ObservedListen): boolean => {
+  if (sameListeningSession(play, song)) {
+    return true;
+  }
+
+  if (song.startedAt !== null) {
+    return false;
+  }
+
+  return listeningIdentity(play) === listeningIdentity(song);
+};
+
+const withoutCurrentSession = (
+  plays: readonly ListenPlay[],
+  song: ObservedListen | null
+): readonly ListenPlay[] => {
+  if (!song) {
+    return plays;
+  }
+
+  if (song.startedAt === null) {
+    const [latest] = plays;
+    if (latest && listeningIdentity(latest) === listeningIdentity(song)) {
+      return plays.slice(1);
+    }
+
+    return plays;
+  }
+
+  return plays.filter((play) => !sameListeningSession(play, song));
 };
 
 const MusicHistory = ({
@@ -33,6 +94,8 @@ const MusicHistory = ({
   total: number;
 }) => {
   const [plays, setPlays] = useState(initialPlays);
+  const [pending, setPending] = useState<ListenPlay[]>([]);
+  const [nowPlaying, setNowPlaying] = useState<ObservedListen | null>(null);
   const [now, setNow] = useState(() => Date.now());
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -42,6 +105,87 @@ const MusicHistory = ({
   const failedRef = useRef(false);
   const offsetRef = useRef(initialPlays.length);
   const totalRef = useRef(total);
+  const previousRef = useRef<ObservedListen | null>(null);
+  const lastRecordedRef = useRef<ObservedListen | null>(null);
+  const skipNetwork = isLikelyBot();
+
+  const refreshLatest = useCallback(async () => {
+    try {
+      const payload = await fetchHistory(0);
+      setPlays((current) => {
+        const next = mergeLatestPlays(current, payload.plays);
+        return next === current ? current : [...next];
+      });
+      setPending((current) =>
+        current.filter(
+          (play) =>
+            !payload.plays.some((incoming) =>
+              sameListeningSession(incoming, play)
+            )
+        )
+      );
+      totalRef.current = payload.total;
+      setHasMore(offsetRef.current < payload.total);
+    } catch {
+      // Keep the rows already on screen. The next poll tries again.
+    }
+  }, []);
+
+  const recordThenRefresh = useCallback(async () => {
+    try {
+      await fetch("/api/listening/recents", { method: "POST" });
+    } catch {
+      // The minute cron still records the play.
+    }
+
+    await refreshLatest();
+  }, [refreshLatest]);
+
+  const onPresence = useCallback(
+    (presence: LanyardPresence) => {
+      const next = parseAppleMusicActivity(presence.activities);
+      const previous = previousRef.current;
+
+      if (document.prerendering) {
+        previousRef.current = next;
+        setNowPlaying(next);
+        return;
+      }
+
+      previousRef.current = next;
+      setNowPlaying(next);
+
+      if (
+        previous &&
+        (next === null || !sameListeningSession(previous, next))
+      ) {
+        const ended = observedToPlay(previous);
+        setPending((current) =>
+          current.some((play) => sameListeningSession(play, ended))
+            ? current
+            : [ended, ...current]
+        );
+      }
+
+      if (next === null) {
+        if (previous) {
+          void refreshLatest();
+        }
+        return;
+      }
+
+      if (
+        lastRecordedRef.current &&
+        sameListeningSession(lastRecordedRef.current, next)
+      ) {
+        return;
+      }
+
+      lastRecordedRef.current = next;
+      void recordThenRefresh();
+    },
+    [recordThenRefresh, refreshLatest]
+  );
 
   const loadMore = useCallback(async () => {
     if (
@@ -58,9 +202,9 @@ const MusicHistory = ({
     try {
       const payload = await fetchHistory(offsetRef.current);
       setPlays((current) => {
-        const seen = new Set(current.map((play) => playIdentity(play)));
         const next = payload.plays.filter(
-          (play) => !seen.has(playIdentity(play))
+          (play) =>
+            !current.some((existing) => sameListeningSession(existing, play))
         );
         return next.length > 0 ? [...current, ...next] : current;
       });
@@ -80,12 +224,61 @@ const MusicHistory = ({
   useEffect(() => {
     const timer = window.setInterval(() => {
       setNow(Date.now());
-    }, 60_000);
+    }, HISTORY_POLL_MS);
 
     return () => {
       window.clearInterval(timer);
     };
   }, []);
+
+  useEffect(() => {
+    if (skipNetwork) {
+      return;
+    }
+
+    const unsubscribe = watchLanyardPresence(LANYARD_USER_ID, onPresence);
+    const poll = window.setInterval(() => {
+      void refreshLatest();
+    }, HISTORY_POLL_MS);
+    const onVisible = () => {
+      if (document.visibilityState === "visible") {
+        void refreshLatest();
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      unsubscribe();
+      window.clearInterval(poll);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [onPresence, refreshLatest, skipNetwork]);
+
+  useEffect(() => {
+    if (skipNetwork || !nowPlaying || !document.prerendering) {
+      return;
+    }
+
+    const song = nowPlaying;
+    const onActivate = () => {
+      if (
+        lastRecordedRef.current &&
+        sameListeningSession(lastRecordedRef.current, song)
+      ) {
+        return;
+      }
+
+      lastRecordedRef.current = song;
+      void recordThenRefresh();
+    };
+
+    document.addEventListener("prerenderingchange", onActivate, { once: true });
+
+    return () => {
+      document.removeEventListener("prerenderingchange", onActivate);
+    };
+  }, [nowPlaying, recordThenRefresh, skipNetwork]);
 
   useEffect(() => {
     const node = sentinelRef.current;
@@ -114,6 +307,14 @@ const MusicHistory = ({
     void loadMore();
   };
 
+  const historyRows = withoutCurrentSession(plays, nowPlaying);
+  const pendingRows = pending.filter(
+    (play) =>
+      (nowPlaying === null || !overlapsCurrent(play, nowPlaying)) &&
+      !plays.some((existing) => sameListeningSession(existing, play))
+  );
+  const rows = [...pendingRows, ...historyRows];
+
   let status = "";
   if (loading) {
     status = "Loading more songs";
@@ -121,10 +322,26 @@ const MusicHistory = ({
     status = "Couldn't load more songs.";
   }
 
+  if (nowPlaying === null && rows.length === 0) {
+    return <p className="text-sm text-muted-foreground">No songs yet.</p>;
+  }
+
   return (
     <div>
       <ul className="m-0 flex list-none flex-col gap-1 p-0">
-        {plays.map((play) => (
+        {nowPlaying ? (
+          <ListeningPlayRow
+            key="now-playing"
+            listen={{
+              ...nowPlaying,
+              playedAt: nowPlaying.startedAt ?? now,
+            }}
+            now={now}
+            onTrackClick={() => recordListeningClick(nowPlaying)}
+            timeLabel="Now playing"
+          />
+        ) : null}
+        {rows.map((play) => (
           <ListeningPlayRow
             key={playIdentity(play)}
             listen={{ ...play, playedAt: listenPlayedAt(play) }}

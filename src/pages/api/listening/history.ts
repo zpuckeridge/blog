@@ -2,8 +2,8 @@ import type { APIRoute } from "astro";
 
 import {
   LISTENING_HISTORY_KV_KEY,
-  parseListenHistory,
   parseListenHistoryOffset,
+  readListenHistory,
   sliceListenHistory,
 } from "@/lib/listening-history";
 import { workersEnv } from "@/lib/workers-env";
@@ -33,7 +33,7 @@ export const GET: APIRoute = async ({ url }) => {
     return jsonWithHeaders({ error: "Invalid offset" }, { status: 400 });
   }
 
-  const history = parseListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY));
+  const history = readListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY));
   const slice = sliceListenHistory(history, offset);
 
   return jsonWithHeaders({
