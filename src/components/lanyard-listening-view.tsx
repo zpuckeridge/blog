@@ -17,7 +17,7 @@ import type {
   NowListening,
   ObservedListen,
 } from "@/lib/lanyard-status";
-import { listeningPlayKey } from "@/lib/listening-history";
+import { sameListeningSession } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
 import { formatLocationRelativeTime } from "@/lib/location-status";
@@ -167,7 +167,7 @@ const LanyardListeningView = () => {
   const [listening, setListening] = useState<ObservedListen | null>(null);
   const [showRecents, setShowRecents] = useState(false);
   const [now, setNow] = useState(() => Date.now());
-  const lastRecordedKeyRef = useRef<string | null>(null);
+  const lastRecordedRef = useRef<ObservedListen | null>(null);
   const skipNetwork = isLikelyBot();
 
   const { data: recents = [], mutate } = useSWR(
@@ -188,12 +188,14 @@ const LanyardListeningView = () => {
         return;
       }
 
-      const key = listeningPlayKey(next);
-      if (lastRecordedKeyRef.current === key) {
+      if (
+        lastRecordedRef.current &&
+        sameListeningSession(lastRecordedRef.current, next)
+      ) {
         return;
       }
 
-      lastRecordedKeyRef.current = key;
+      lastRecordedRef.current = next;
 
       void (async () => {
         const recorded = await recordRecent();
@@ -215,12 +217,13 @@ const LanyardListeningView = () => {
     const onActivate = () => {
       if (
         cancelled ||
-        lastRecordedKeyRef.current === listeningPlayKey(listening)
+        (lastRecordedRef.current &&
+          sameListeningSession(lastRecordedRef.current, listening))
       ) {
         return;
       }
 
-      lastRecordedKeyRef.current = listeningIdentity(listening);
+      lastRecordedRef.current = listening;
 
       void (async () => {
         const recorded = await recordRecent();
