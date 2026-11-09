@@ -12,14 +12,14 @@ export const tagSlug = (tag: string): string =>
     .replaceAll(/[^a-z0-9]+/gu, "-")
     .replaceAll(/^-|-$/gu, "");
 
-const byNewest = (left: Post, right: Post): number =>
+export const comparePostsByNewest = (left: Post, right: Post): number =>
   new Date(right.date_created).getTime() -
   new Date(left.date_created).getTime();
 
 export const postsForTag = (posts: readonly Post[], slug: string): Post[] =>
   posts
     .filter((post) => (post.tags ?? []).some((tag) => tagSlug(tag) === slug))
-    .toSorted(byNewest);
+    .toSorted(comparePostsByNewest);
 
 export const relatedPostLinks = (
   post: Pick<Post, "slug" | "tags">,
@@ -39,7 +39,7 @@ export const relatedPostLinks = (
         candidate.slug !== post.slug &&
         (candidate.tags ?? []).some((tag) => tags.has(tagSlug(tag)))
     )
-    .toSorted(byNewest)
+    .toSorted(comparePostsByNewest)
     .slice(0, limit)
     .map((candidate) => ({ slug: candidate.slug, title: candidate.title }));
 };

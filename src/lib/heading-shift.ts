@@ -84,3 +84,11 @@ export const shiftedHeadings = (
     depth: shiftedHeadingDepth(heading.depth, shift),
   }));
 };
+
+export const articleHeadingOutline = (
+  tree: MdNode
+): { headings: ArticleHeading[]; shift: number } => {
+  const headings = headingsFromTree(tree);
+  const shift = headingLevelShift(headings.map((heading) => heading.depth));
+  return { headings: shiftedHeadings(headings), shift };
+};

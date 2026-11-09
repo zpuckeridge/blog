@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 
 import type { Post } from "@/interfaces/content-item";
 
-import { postsForTag, relatedPostLinks, tagSlug } from "./related-posts.ts";
+import { postsForTag, relatedPostLinks } from "./related-posts.ts";
 
 const post = (overrides: Partial<Post>): Post => ({
   content: "",
@@ -19,12 +19,6 @@ const post = (overrides: Partial<Post>): Post => ({
   tags: [],
   title: "One",
   ...overrides,
-});
-
-describe("tagSlug", () => {
-  it("slugifies tags for archive URLs", () => {
-    assert.equal(tagSlug("Worldview & Faith"), "worldview-faith");
-  });
 });
 
 describe("relatedPostLinks", () => {

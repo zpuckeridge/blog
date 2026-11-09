@@ -7,7 +7,6 @@
       "dependencies": {
         "@base-ui/react": "^1.9.0",
         "@directus/sdk": "^27.0.0",
-        "@fontsource/geist-mono": "^5.3.0",
         "@mux/mux-player": "^3.14.0",
         "@mux/mux-player-react": "^3.14.0",
         "@tailwindcss/typography": "^0.5.20",
@@ -20,6 +19,8 @@
         "react-dom": "^19.3.1",
         "react-icons": "^5.7.0",
         "react-tweet": "^3.3.1",
+        "remark": "^15.0.1",
+        "remark-gfm": "^4.0.1",
         "safe-mdx": "^1.14.0",
         "sonner": "^2.0.8",
         "swr": "^2.5.1",
@@ -265,8 +266,6 @@
     "@floating-ui/react-dom": ["@floating-ui/react-dom@2.1.9", "", { "dependencies": { "@floating-ui/dom": "^1.8.0" }, "peerDependencies": { "react": ">=16.8.0", "react-dom": ">=16.8.0" } }, "sha512-JDjEFGCpImxDCA7JJKviA0M9+RtmJdj0m/NVU5IMgBK+AmZouAQQ7/+2GLH0GXXY0YMw9oXPB8hKdbPYg5QLYg=="],
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.12", "", {}, "sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww=="],
-
-    "@fontsource/geist-mono": ["@fontsource/geist-mono@5.3.0", "", {}, "sha512-UtJ1BBBCVpMYdIcW7nEB45UAoAw5M53ZXs2t0ciPW+IokuAAIc56M8+kW5tXbRJCTpDw4XTtU7proT6NdQAHTg=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.2", "", { "dependencies": { "@humanfs/types": "^0.15.0" } }, "sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA=="],
 

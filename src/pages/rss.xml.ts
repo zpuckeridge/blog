@@ -1,5 +1,4 @@
 import type { APIRoute } from "astro";
-import { compareDesc } from "date-fns";
 
 import { getDirectusToken } from "@/lib/directus";
 import {
@@ -9,6 +8,7 @@ import {
 } from "@/lib/directus-asset";
 import { getPosts } from "@/lib/directus-content";
 import { descriptionForPost } from "@/lib/meta-description";
+import { comparePostsByNewest } from "@/lib/related-posts";
 import { buildEnclosureTag, readContentLength } from "@/lib/rss-enclosure";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -68,9 +68,7 @@ const probeSocialImage = async (
 export const GET: APIRoute = async () => {
   const baseUrl = getSiteUrl();
   const posts = await getPosts();
-  const sortedPosts = posts.toSorted((a, b) =>
-    compareDesc(new Date(a.date_created), new Date(b.date_created))
-  );
+  const sortedPosts = posts.toSorted(comparePostsByNewest);
   const rssItems = await Promise.all(
     sortedPosts.map(async (post) => {
       let enclosure = "";

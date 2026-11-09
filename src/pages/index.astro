@@ -11,7 +11,9 @@ import LinkWithIcon from "@/components/link-with-icon.astro";
 import ToggleTheme from "@/components/toggle-theme.astro";
 import { formatPublishedShortDayMonth } from "@/lib/format-in-brisbane";
 import { createPageMetadata } from "@/lib/metadata";
+import { compareProjects } from "@/lib/compare-projects";
 import { getPosts, getProjects } from "@/lib/directus-content";
+import { comparePostsByNewest } from "@/lib/related-posts";
 import {
   fetchGitHubContributions,
   getCachedGitHubContributions,
@@ -25,38 +27,8 @@ const [projects, posts, initialLocation] = await Promise.all([
   getPosts(),
   getServerLocationStatus(),
 ]);
-const sortedPosts = posts
-  .toSorted(
-    (a, b) =>
-      new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
-  )
-  .slice(0, 4);
-const sortedProjects = projects.toSorted((a, b) => {
-  if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
-    return -1;
-  }
-  if (a.status !== "work_in_progress" && b.status === "work_in_progress") {
-    return 1;
-  }
-  if (a.status === "archived" && b.status !== "archived") {
-    return 1;
-  }
-  if (a.status !== "archived" && b.status === "archived") {
-    return -1;
-  }
-  if (a.year_completed && b.year_completed) {
-    return b.year_completed - a.year_completed;
-  }
-  if (a.year_completed && !b.year_completed) {
-    return -1;
-  }
-  if (!a.year_completed && b.year_completed) {
-    return 1;
-  }
-  return (
-    new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
-  );
-});
+const sortedPosts = posts.toSorted(comparePostsByNewest).slice(0, 4);
+const sortedProjects = projects.toSorted(compareProjects);
 const githubUsername = "zpuckeridge";
 const githubContributions = await (async (): Promise<
   ContributionDay[] | undefined

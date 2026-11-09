@@ -6,8 +6,9 @@ import {
   ImageMetaContext,
 } from "@/components/mdx-render-context";
 import type { ContentImageMeta } from "@/lib/content-image";
-import { headingLevelShift, headingsFromTree } from "@/lib/heading-shift";
+import { articleHeadingOutline } from "@/lib/heading-shift";
 import { parseTimelineMdxSource } from "@/lib/mdx-source";
+import type { TimelineMdxParseResult } from "@/lib/mdx-source";
 import { createSafeMdxGfmRenderNode } from "@/lib/safe-mdx-gfm-render-node";
 import type { MdastImgComponentProps } from "@/lib/safe-mdx-gfm-render-node";
 import { components as mdxComponents } from "@/mdx-components";
@@ -22,13 +23,15 @@ const emptyImageMeta: Readonly<Record<string, ContentImageMeta>> = {};
 export const MdxContent = ({
   contentSlug,
   imageMeta = emptyImageMeta,
+  parsed: parsedProp,
   source,
 }: {
   contentSlug?: string;
   imageMeta?: Readonly<Record<string, ContentImageMeta>>;
+  parsed?: TimelineMdxParseResult;
   source: string;
 }) => {
-  const parsed = parseTimelineMdxSource(source, contentSlug);
+  const parsed = parsedProp ?? parseTimelineMdxSource(source, contentSlug);
 
   if (parsed.error || !parsed.mdast) {
     return (
@@ -44,9 +47,7 @@ export const MdxContent = ({
     mdxComponents.img as ComponentType<MdastImgComponentProps>
   );
 
-  const shift = headingLevelShift(
-    headingsFromTree(parsed.mdast).map((heading) => heading.depth)
-  );
+  const { shift } = articleHeadingOutline(parsed.mdast);
 
   return (
     <ImageMetaContext.Provider value={imageMeta}>

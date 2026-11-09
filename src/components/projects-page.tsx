@@ -3,43 +3,15 @@ import BackLink from "@/components/back-link";
 import LinkWithIcon from "@/components/link-with-icon";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import type { Project } from "@/interfaces/content-item";
+import { compareProjects } from "@/lib/compare-projects";
 import { cn } from "@/lib/utils";
-
-const sortProjects = (a: Project, b: Project): number => {
-  if (a.status === "work_in_progress" && b.status !== "work_in_progress") {
-    return -1;
-  }
-  if (a.status !== "work_in_progress" && b.status === "work_in_progress") {
-    return 1;
-  }
-  if (a.status === "archived" && b.status !== "archived") {
-    return 1;
-  }
-  if (a.status !== "archived" && b.status === "archived") {
-    return -1;
-  }
-
-  if (a.year_completed && b.year_completed) {
-    return b.year_completed - a.year_completed;
-  }
-  if (a.year_completed && !b.year_completed) {
-    return -1;
-  }
-  if (!a.year_completed && b.year_completed) {
-    return 1;
-  }
-
-  return (
-    new Date(b.date_created).getTime() - new Date(a.date_created).getTime()
-  );
-};
 
 interface ProjectsPageProps {
   projects: Project[];
 }
 
 const ProjectsPage = ({ projects }: ProjectsPageProps) => {
-  const sortedProjects = [...projects].toSorted(sortProjects);
+  const sortedProjects = [...projects].toSorted(compareProjects);
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">

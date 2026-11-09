@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 
 import { getPosts } from "@/lib/directus-content";
+import { comparePostsByNewest } from "@/lib/related-posts";
 import { getSiteUrl } from "@/lib/site-url";
 
 const link = (label: string, url: string): string => `- [${label}](${url})`;
@@ -12,11 +13,7 @@ export const GET: APIRoute = async () => {
   try {
     const published = await getPosts();
     posts = published
-      .toSorted(
-        (left, right) =>
-          new Date(right.date_created).getTime() -
-          new Date(left.date_created).getTime()
-      )
+      .toSorted(comparePostsByNewest)
       .map((post) => ({ slug: post.slug, title: post.title }));
   } catch (error) {
     console.error("llms.txt: failed to list posts", error);

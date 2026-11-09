@@ -6,6 +6,7 @@ import {
   IMAGE_FORMATS,
   isDirectusAssetId,
 } from "@/lib/directus-asset";
+import { getEdgeCache } from "@/lib/html-cache";
 import { workersEnv } from "@/lib/workers-env";
 
 export const prerender = false;
@@ -44,11 +45,6 @@ const notFound = (status = 404, message = "Not found") =>
     headers: { "cache-control": "no-store", "content-type": "text/plain" },
     status,
   });
-
-const getEdgeCache = (): Cache | null =>
-  typeof caches !== "undefined" && "default" in caches
-    ? (caches as unknown as { default: Cache }).default
-    : null;
 
 const getToken = (): string | undefined =>
   workersEnv.DIRECTUS_TOKEN ??

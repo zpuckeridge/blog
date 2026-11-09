@@ -5,6 +5,7 @@ import {
   getActivityRequestUserAgent,
   getSameOriginActivityReferer,
 } from "@/lib/activity-request";
+import { isLikelyBotUserAgent } from "@/lib/is-likely-bot";
 import {
   enforceRateLimit,
   getRequestClientKey,
@@ -38,20 +39,13 @@ const getRequestGeo = (request: Request): CloudflareRequestGeo => {
   return requestWithCf.cf ?? {};
 };
 
-const isLikelyBot = (request: Request): boolean => {
-  const userAgent = request.headers.get("User-Agent")?.toLowerCase() ?? "";
-  return /bot|crawl|spider|slurp|lighthouse|headless|preview|uptime/iu.test(
-    userAgent
-  );
-};
-
 export const POST: APIRoute = async ({ request }) => {
   const store = workersEnv.ACTIVITY_FEED_STORE;
   if (!store) {
     return json({ error: "Activity feed is not configured" }, { status: 503 });
   }
 
-  if (isLikelyBot(request)) {
+  if (isLikelyBotUserAgent(request.headers.get("User-Agent"))) {
     return json({ accepted: false });
   }
 
