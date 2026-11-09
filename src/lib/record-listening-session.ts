@@ -36,7 +36,9 @@ export const persistRecentSession = async (
     return;
   }
 
-  lastRecordedRef.current = listen;
   const recorded = await recordRecent();
+  if (recorded) {
+    lastRecordedRef.current = listen;
+  }
   await afterRecord(recorded);
 };
