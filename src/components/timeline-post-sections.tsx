@@ -14,6 +14,7 @@ import type { Post } from "@/interfaces/content-item";
 import { CONTENT_IMAGE_SIZES } from "@/lib/directus-asset";
 import { formatPublishedLongDate } from "@/lib/format-in-brisbane";
 import type { ArticleHeading } from "@/lib/heading-shift";
+import { buildMetadataUrl } from "@/lib/metadata";
 import { tagSlug } from "@/lib/related-posts";
 import type { RelatedPostLink } from "@/lib/related-posts";
 
@@ -155,38 +156,43 @@ const TimelinePostShareLinks = ({
 }: {
   postTitle: string;
   slug: string;
-}) => (
-  <div className="space-y-3">
-    <h2 className="text-sm">Share article</h2>
-    <div className="flex gap-3 text-muted-foreground">
-      <a
-        aria-label="Share on X"
-        className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-        href={`https://x.com/intent/tweet?text=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
-      >
-        <FaXTwitter className="size-4" />
-      </a>
-      <a
-        aria-label="Share on Facebook"
-        className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-        href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
-      >
-        <FaFacebook className="size-4" />
-      </a>
-      <a
-        aria-label="Share by email"
-        className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
-        href={`mailto:?subject=${encodeURIComponent(postTitle)}&body=https%3A%2F%2Fzacchary.me/timeline/${slug}`}
-      >
-        <RxEnvelopeClosed className="size-4" />
-      </a>
-      <button className="cursor-pointer" data-copy-link type="button">
-        <RxCopy className="size-4" />
-        <span className="sr-only">Copy link</span>
-      </button>
+}) => {
+  const postUrl = buildMetadataUrl(`/timeline/${slug}`);
+  const encodedPostUrl = encodeURIComponent(postUrl);
+
+  return (
+    <div className="space-y-3">
+      <h2 className="text-sm">Share article</h2>
+      <div className="flex gap-3 text-muted-foreground">
+        <a
+          aria-label="Share on X"
+          className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+          href={`https://x.com/intent/tweet?text=${encodedPostUrl}`}
+        >
+          <FaXTwitter className="size-4" />
+        </a>
+        <a
+          aria-label="Share on Facebook"
+          className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl}`}
+        >
+          <FaFacebook className="size-4" />
+        </a>
+        <a
+          aria-label="Share by email"
+          className="transition-colors duration-200 hover:text-blue-400 dark:hover:text-blue-600"
+          href={`mailto:?subject=${encodeURIComponent(postTitle)}&body=${encodedPostUrl}`}
+        >
+          <RxEnvelopeClosed className="size-4" />
+        </a>
+        <button className="cursor-pointer" data-copy-link type="button">
+          <RxCopy className="size-4" />
+          <span className="sr-only">Copy link</span>
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const TimelinePostFooter = ({
   children,

@@ -25,10 +25,7 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
 <script>
   import { scheduleIdleOrFallback } from "@/lib/defer-after-idle";
   import { isLikelyBot } from "@/lib/is-likely-bot";
-  import {
-    teardownLanyardPresenceHub,
-    watchLanyardPresence,
-  } from "@/lib/lanyard-presence-hub";
+  import { watchLanyardPresence } from "@/lib/lanyard-presence-hub";
   import { getDiscordStatusStyle } from "@/lib/lanyard-status";
   import { syncStatusPulse } from "@/lib/sync-status-pulse";
 
@@ -84,7 +81,6 @@ import { LANYARD_USER_ID } from "@/lib/lanyard-status";
     }
 
     activeSubscriptions.clear();
-    teardownLanyardPresenceHub();
   };
 
   scheduleLanyardInit();

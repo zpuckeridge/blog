@@ -16,6 +16,7 @@ import {
 } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
+import { persistRecentSession } from "@/lib/record-listening-session";
 
 interface HistoryPayload {
   nextOffset: number | null;
@@ -131,16 +132,6 @@ const MusicHistory = ({
     }
   }, []);
 
-  const recordThenRefresh = useCallback(async () => {
-    try {
-      await fetch("/api/listening/recents", { method: "POST" });
-    } catch {
-      // The minute cron still records the play.
-    }
-
-    await refreshLatest();
-  }, [refreshLatest]);
-
   const onPresence = useCallback(
     (presence: LanyardPresence) => {
       const next = parseAppleMusicActivity(presence.activities);
@@ -174,17 +165,11 @@ const MusicHistory = ({
         return;
       }
 
-      if (
-        lastRecordedRef.current &&
-        sameListeningSession(lastRecordedRef.current, next)
-      ) {
-        return;
-      }
-
-      lastRecordedRef.current = next;
-      void recordThenRefresh();
+      void persistRecentSession(next, lastRecordedRef, async () => {
+        await refreshLatest();
+      });
     },
-    [recordThenRefresh, refreshLatest]
+    [refreshLatest]
   );
 
   const loadMore = useCallback(async () => {
@@ -262,15 +247,9 @@ const MusicHistory = ({
 
     const song = nowPlaying;
     const onActivate = () => {
-      if (
-        lastRecordedRef.current &&
-        sameListeningSession(lastRecordedRef.current, song)
-      ) {
-        return;
-      }
-
-      lastRecordedRef.current = song;
-      void recordThenRefresh();
+      void persistRecentSession(song, lastRecordedRef, async () => {
+        await refreshLatest();
+      });
     };
 
     document.addEventListener("prerenderingchange", onActivate, { once: true });
@@ -278,7 +257,7 @@ const MusicHistory = ({
     return () => {
       document.removeEventListener("prerenderingchange", onActivate);
     };
-  }, [nowPlaying, recordThenRefresh, skipNetwork]);
+  }, [nowPlaying, refreshLatest, skipNetwork]);
 
   useEffect(() => {
     const node = sentinelRef.current;

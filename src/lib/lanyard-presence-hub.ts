@@ -20,6 +20,7 @@ export const watchLanyardPresence = (
 
   if (!cleanup || activeUserId !== userId) {
     cleanup?.();
+    lastPresence = null;
     activeUserId = userId;
     cleanup = subscribeLanyardPresence(userId, (presence) => {
       lastPresence = presence;
@@ -39,12 +40,4 @@ export const watchLanyardPresence = (
       activeUserId = null;
     }
   };
-};
-
-export const teardownLanyardPresenceHub = (): void => {
-  cleanup?.();
-  cleanup = null;
-  lastPresence = null;
-  activeUserId = null;
-  listeners.clear();
 };

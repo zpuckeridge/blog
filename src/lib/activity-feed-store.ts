@@ -96,13 +96,6 @@ export class ActivityFeedStore
       CREATE INDEX IF NOT EXISTS activity_events_occurred_at
         ON activity_events (occurred_at DESC);
     `);
-    try {
-      this.ctx.storage.sql.exec(
-        "ALTER TABLE activity_events ADD COLUMN action TEXT NOT NULL DEFAULT 'viewed'"
-      );
-    } catch {
-      // Existing SQLite databases already have the action column.
-    }
     for (const column of [
       "artist",
       "artist_url",

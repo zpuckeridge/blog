@@ -11,14 +11,7 @@ import { descriptionForPost } from "@/lib/meta-description";
 import { comparePostsByNewest } from "@/lib/related-posts";
 import { buildEnclosureTag, readContentLength } from "@/lib/rss-enclosure";
 import { getSiteUrl } from "@/lib/site-url";
-
-const escapeXml = (unsafe: string): string =>
-  unsafe
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&apos;");
+import { escapeXml } from "@/lib/xml-escape";
 
 const imageType = (header: string | null): string | null => {
   const type = header?.split(";")[0]?.trim() ?? null;

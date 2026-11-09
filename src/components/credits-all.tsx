@@ -10,20 +10,15 @@ import {
   expandableListSectionHeaderMainClassName,
   expandableListYearHeaderClassName,
 } from "@/lib/expandable-list";
-import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
+import { formatDdMm } from "@/lib/format-in-brisbane";
+import { groupItemsByBrisbaneYear } from "@/lib/group-by-brisbane-year";
 
 const CreditsAll = ({ credits }: { credits: Credit[] }) => {
-  // Group credits by year
-  const creditsByYear: Record<number, Credit[]> = {};
-  for (const credit of credits) {
-    const year = calendarYearInBrisbane(credit.release_date);
-    if (!creditsByYear[year]) {
-      creditsByYear[year] = [];
-    }
-    creditsByYear[year].push(credit);
-  }
+  const creditsByYear = groupItemsByBrisbaneYear(
+    credits,
+    (credit) => credit.release_date
+  );
 
-  // Get years sorted descending
   const years = Object.keys(creditsByYear)
     .map(Number)
     .toSorted((a, b) => b - a);

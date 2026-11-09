@@ -38,6 +38,8 @@ declare global {
       DIRECTUS_TOKEN?: string;
       /** GitHub PAT with `read:user` for the contributions API. Same sources as `VIDEO_PASSWORD`. */
       GITHUB_TOKEN?: string;
+      /** Loops.so API key for POST /api/subscribe. */
+      LOOPS_API_KEY?: string;
       /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
       LOCATION_WEBHOOK_SECRET?: string;
       /** KV namespace for location status, listening recents, and listening history. */

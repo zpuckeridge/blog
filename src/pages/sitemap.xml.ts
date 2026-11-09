@@ -3,6 +3,7 @@ import type { APIRoute } from "astro";
 import { getPosts } from "@/lib/directus-content";
 import { buildMetadataUrl } from "@/lib/metadata";
 import { tagSlugsFromPosts } from "@/lib/related-posts";
+import { escapeXml } from "@/lib/xml-escape";
 
 const STATIC_ROUTES = [
   "/",
@@ -13,20 +14,11 @@ const STATIC_ROUTES = [
   "/about/credits",
   "/projects",
   "/timeline",
-  "/activity",
   "/music",
   "/cv",
   "/colophon",
   "/imprint",
 ];
-
-const escapeXml = (value: string): string =>
-  value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&apos;");
 
 export const GET: APIRoute = async () => {
   const lastmod = new Date().toISOString().slice(0, 10);

@@ -53,7 +53,6 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
     return hasNewPost ? [NEW_POST_TAG, ...sorted] : sorted;
   }, [postsByYear]);
 
-  // Filter posts based on search query, selected tags, and notes toggle
   const filteredPostsByYear: Record<string, TimelineItem[]> = {};
   const query = searchQuery.toLowerCase();
   const [selectedTagSingleton] = selectedTag;

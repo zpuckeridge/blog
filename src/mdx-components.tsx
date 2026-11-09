@@ -146,20 +146,11 @@ const components: MDXComponents = {
   },
   afterQuote: AfterQuote,
   definition: Definition,
-  div: ({ className, children, ...props }) => {
-    if (className?.includes("custom-component")) {
-      return (
-        <div className={className} {...props}>
-          {children}
-        </div>
-      );
-    }
-    return (
-      <div className={className} {...props}>
-        {children}
-      </div>
-    );
-  },
+  div: ({ className, children, ...props }) => (
+    <div className={className} {...props}>
+      {children}
+    </div>
+  ),
   h1: H1,
   h2: H2,
   h3: H3,

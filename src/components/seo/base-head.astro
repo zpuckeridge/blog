@@ -54,6 +54,13 @@ const twImageList = (() => {
 
 {canonicalUrl && <link href={canonicalUrl} rel="canonical" />}
 
+<link
+  href="/rss.xml"
+  rel="alternate"
+  title="RSS Feed"
+  type="application/rss+xml"
+/>
+
 {rootDefaults && (
   <>
     <meta content="Astro" name="generator" />
@@ -65,12 +72,6 @@ const twImageList = (() => {
     <meta content="telephone=no" name="format-detection" />
     <meta content="default" name="apple-mobile-web-app-status-bar-style" />
     <meta content="zacchary.me" name="apple-mobile-web-app-title" />
-    <link
-      href="/rss.xml"
-      rel="alternate"
-      title="RSS Feed"
-      type="application/rss+xml"
-    />
   </>
 )}
 

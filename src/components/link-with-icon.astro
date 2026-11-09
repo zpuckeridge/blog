@@ -1,4 +1,6 @@
 ---
+import { linkClassNames } from '@/lib/link-with-icon-styles';
+import type { LinkVariant } from '@/lib/link-with-icon-styles';
 import { resolveSafeHref } from "@/lib/safe-href";
 import { trimLinkSlotHtml } from "@/lib/trim-link-children";
 
@@ -6,15 +8,8 @@ interface Props {
   "aria-label"?: string;
   class?: string;
   href: string;
-  variant?: "default" | "highlighted";
+  variant?: LinkVariant;
 }
-
-const linkClassNames = {
-  default:
-    "group inline-block max-w-full whitespace-nowrap px-1 text-sm text-muted-foreground leading-[inherit] hover:bg-muted",
-  highlighted:
-    "group inline-block max-w-full whitespace-nowrap px-1 leading-[inherit] bg-muted hover:bg-muted/80",
-} as const;
 
 const {
   "aria-label": ariaLabel,

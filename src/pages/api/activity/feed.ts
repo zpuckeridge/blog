@@ -9,8 +9,7 @@ export const GET: APIRoute = async () => {
       { count: 0, events: [] },
       {
         headers: {
-          "Cache-Control":
-            "public, max-age=2, s-maxage=2, stale-while-revalidate=30",
+          "Cache-Control": "no-store",
         },
         status: 503,
       }

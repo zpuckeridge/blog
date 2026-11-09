@@ -1,10 +1,4 @@
-const escapeXml = (unsafe: string): string =>
-  unsafe
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&apos;");
+import { escapeXml } from "@/lib/xml-escape";
 
 export const readContentLength = (header: string | null): number => {
   const length = Number(header);

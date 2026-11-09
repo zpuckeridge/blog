@@ -16,13 +16,11 @@ import {
   storeToPublicHistory,
 } from "./status-history.ts";
 
-describe("isDiscordOnline", () => {
-  it("treats online, idle, and dnd as active presence", () => {
-    assert.equal(isDiscordOnline("online"), true);
-    assert.equal(isDiscordOnline("idle"), true);
-    assert.equal(isDiscordOnline("dnd"), true);
-    assert.equal(isDiscordOnline("offline"), false);
-  });
+it("treats online, idle, and dnd as active presence", () => {
+  assert.equal(isDiscordOnline("online"), true);
+  assert.equal(isDiscordOnline("idle"), true);
+  assert.equal(isDiscordOnline("dnd"), true);
+  assert.equal(isDiscordOnline("offline"), false);
 });
 
 describe("sampleBucketForTime", () => {
