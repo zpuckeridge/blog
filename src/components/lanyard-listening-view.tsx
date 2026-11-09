@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { MutableRefObject } from "react";
 import { RxChevronDown } from "react-icons/rx";
 import useSWR from "swr";
 
@@ -18,10 +17,10 @@ import type {
   NowListening,
   ObservedListen,
 } from "@/lib/lanyard-status";
-import { sameListeningSession } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
 import { formatLocationRelativeTime } from "@/lib/location-status";
+import { persistRecentSession } from "@/lib/record-listening-session";
 import { cn } from "@/lib/utils";
 
 const ROW_CLASS = "flex min-h-9 min-w-0 items-center gap-2.5";
@@ -148,39 +147,6 @@ const fetchRecents = async (): Promise<RecentListen[]> => {
   }
 };
 
-const recordRecent = async (): Promise<RecentListen[] | null> => {
-  try {
-    const response = await fetch("/api/listening/recents", { method: "POST" });
-    if (!response.ok) {
-      return null;
-    }
-
-    const payload = (await response.json()) as { recents?: RecentListen[] };
-    return Array.isArray(payload.recents) ? payload.recents : null;
-  } catch {
-    return null;
-  }
-};
-
-const persistRecentSession = async (
-  listen: ObservedListen,
-  lastRecordedRef: MutableRefObject<ObservedListen | null>,
-  applyRecents: (recents: RecentListen[]) => Promise<void>
-): Promise<void> => {
-  if (
-    lastRecordedRef.current &&
-    sameListeningSession(lastRecordedRef.current, listen)
-  ) {
-    return;
-  }
-
-  lastRecordedRef.current = listen;
-  const recorded = await recordRecent();
-  if (recorded) {
-    await applyRecents(recorded);
-  }
-};
-
 const RECENTS_KEY = "/api/listening/recents";
 
 const LanyardListeningView = () => {
@@ -207,23 +173,39 @@ const LanyardListeningView = () => {
     (presence: LanyardPresence) => {
       const next = parseAppleMusicActivity(presence.activities);
       setListening(next);
-      if (!next || skipNetwork) {
+      if (!next || skipNetwork || document.prerendering) {
         return;
       }
 
-      const record = () => {
-        void persistRecentSession(next, lastRecordedRef, applyRecents);
-      };
-
-      if (document.prerendering) {
-        document.addEventListener("prerenderingchange", record, { once: true });
-        return;
-      }
-
-      record();
+      void persistRecentSession(next, lastRecordedRef, async (recorded) => {
+        if (recorded) {
+          await applyRecents(recorded);
+        }
+      });
     },
     [applyRecents, skipNetwork]
   );
+
+  useEffect(() => {
+    if (skipNetwork || !listening || !document.prerendering) {
+      return;
+    }
+
+    const song = listening;
+    const onActivate = () => {
+      void persistRecentSession(song, lastRecordedRef, async (recorded) => {
+        if (recorded) {
+          await applyRecents(recorded);
+        }
+      });
+    };
+
+    document.addEventListener("prerenderingchange", onActivate, { once: true });
+
+    return () => {
+      document.removeEventListener("prerenderingchange", onActivate);
+    };
+  }, [applyRecents, listening, skipNetwork]);
 
   useEffect(() => {
     if (skipNetwork) {

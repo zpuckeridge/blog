@@ -85,21 +85,27 @@ const ListenedActivityAction = ({
   event: ActivityEvent;
 }) => {
   const { artist, track } = getListenedLabels(event);
-  const trackHref = event.trackUrl ?? event.path;
-  const artistHref = event.artistUrl ?? event.path;
 
   return (
     <span className="relative z-10 block min-w-0 text-muted-foreground">
       <span>listened to </span>
-      <ActivityLink href={trackHref} title={track}>
-        {track}
-      </ActivityLink>
+      {event.trackUrl ? (
+        <ActivityLink href={event.trackUrl} title={track}>
+          {track}
+        </ActivityLink>
+      ) : (
+        <span>{track}</span>
+      )}
       {artist ? (
         <>
           <span>, </span>
-          <ActivityLink href={artistHref} title={artist}>
-            {artist}
-          </ActivityLink>
+          {event.artistUrl ? (
+            <ActivityLink href={event.artistUrl} title={artist}>
+              {artist}
+            </ActivityLink>
+          ) : (
+            <span>{artist}</span>
+          )}
         </>
       ) : null}
       <ActivityCount count={count} />
@@ -115,13 +121,19 @@ const StandardActivityAction = ({
   event: ActivityEvent;
 }) => {
   const title = formatActivityTitle(event.path, event.title, event.action);
+  const isGatedVideo =
+    event.action === "watched" && event.path.startsWith("/video/");
 
   return (
     <span className="relative z-10 block min-w-0 text-muted-foreground">
       <span>{event.action} </span>
-      <ActivityLink href={event.path} title={title}>
-        {title}
-      </ActivityLink>
+      {isGatedVideo ? (
+        <span>{title}</span>
+      ) : (
+        <ActivityLink href={event.path} title={title}>
+          {title}
+        </ActivityLink>
+      )}
       <ActivityCount count={count} />
     </span>
   );

@@ -1,51 +1,48 @@
 import type { APIRoute } from "astro";
 
+import {
+  activityJsonResponse,
+  activityPathFromReferer,
+  getActivityRequestGeo,
+} from "@/lib/activity-api";
 import { cleanActivityTitle } from "@/lib/activity-feed";
 import {
   getActivityRequestUserAgent,
   getSameOriginActivityReferer,
 } from "@/lib/activity-request";
+import { isLikelyBotUserAgent } from "@/lib/is-likely-bot";
 import {
   enforceRateLimit,
   getRequestClientKey,
 } from "@/lib/request-rate-limit";
 import { workersEnv } from "@/lib/workers-env";
 
-interface CloudflareRequestGeo {
-  city?: string;
-  country?: string;
-  latitude?: string | number;
-  longitude?: string | number;
-  region?: string;
-}
-
 interface ActivityWatchBody {
   title?: unknown;
   visitorId?: unknown;
 }
 
-const json = (body: unknown, init?: ResponseInit): Response =>
-  Response.json(body, {
-    ...init,
-    headers: {
-      "Cache-Control": "no-store",
-      ...init?.headers,
-    },
-  });
-
 export const POST: APIRoute = async ({ request }) => {
   const store = workersEnv.ACTIVITY_FEED_STORE;
   if (!store) {
-    return json({ error: "Activity feed is not configured" }, { status: 503 });
+    return activityJsonResponse(
+      { error: "Activity feed is not configured" },
+      { status: 503 }
+    );
+  }
+
+  if (isLikelyBotUserAgent(request.headers.get("User-Agent"))) {
+    return activityJsonResponse({ accepted: false });
   }
 
   const referer = getSameOriginActivityReferer(request);
   if (!referer) {
-    return json({ accepted: false });
+    return activityJsonResponse({ accepted: false });
   }
 
-  if (!referer.pathname.startsWith("/video/")) {
-    return json({ accepted: false });
+  const path = activityPathFromReferer(referer);
+  if (!path?.startsWith("/video/")) {
+    return activityJsonResponse({ accepted: false });
   }
 
   const rateLimit = enforceRateLimit({
@@ -55,7 +52,7 @@ export const POST: APIRoute = async ({ request }) => {
     windowMs: 60_000,
   });
   if (rateLimit.limited) {
-    return json(
+    return activityJsonResponse(
       { error: "Too many activity watch events" },
       {
         headers: { "Retry-After": String(rateLimit.retryAfterSeconds) },
@@ -71,11 +68,13 @@ export const POST: APIRoute = async ({ request }) => {
       body = parsed as ActivityWatchBody;
     }
   } catch {
-    return json({ error: "Invalid watch payload" }, { status: 400 });
+    return activityJsonResponse(
+      { error: "Invalid watch payload" },
+      { status: 400 }
+    );
   }
 
-  const requestWithCf = request as Request & { cf?: CloudflareRequestGeo };
-  const geo = requestWithCf.cf ?? {};
+  const geo = getActivityRequestGeo(request);
   const event = await store.getByName("public").append(
     {
       action: "watched",
@@ -88,17 +87,15 @@ export const POST: APIRoute = async ({ request }) => {
         typeof geo.longitude === "string"
           ? Number(geo.longitude)
           : geo.longitude,
-      path: referer.pathname,
+      path,
       region: geo.region,
       title:
-        typeof body.title === "string"
-          ? cleanActivityTitle(body.title)
-          : referer.pathname,
+        typeof body.title === "string" ? cleanActivityTitle(body.title) : path,
     },
     crypto.randomUUID(),
     typeof body.visitorId === "string" ? body.visitorId : null,
     getActivityRequestUserAgent(request)
   );
 
-  return json({ accepted: Boolean(event) });
+  return activityJsonResponse({ accepted: Boolean(event) });
 };

@@ -1,5 +1,7 @@
 import { createDirectus, rest, staticToken } from "@directus/sdk";
 
+import { workersEnv } from "@/lib/workers-env";
+
 const DIRECTUS_URL =
   import.meta.env.DIRECTUS_URL ||
   process.env.DIRECTUS_URL ||
@@ -12,7 +14,9 @@ const DIRECTUS_URL =
  * `process.env` at runtime on Workers (`nodejs_compat`).
  */
 export const getDirectusToken = (): string | undefined =>
-  import.meta.env.DIRECTUS_TOKEN ?? process.env.DIRECTUS_TOKEN;
+  workersEnv.DIRECTUS_TOKEN ??
+  import.meta.env.DIRECTUS_TOKEN ??
+  process.env.DIRECTUS_TOKEN;
 
 const DIRECTUS_TOKEN = getDirectusToken();
 

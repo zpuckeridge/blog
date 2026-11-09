@@ -1,5 +1,10 @@
 import type { APIRoute } from "astro";
 
+import {
+  activityJsonResponse,
+  activityPathFromReferer,
+  getActivityRequestGeo,
+} from "@/lib/activity-api";
 import { cleanActivityTitle, isPublicActivityPath } from "@/lib/activity-feed";
 import {
   getActivityRequestUserAgent,
@@ -12,46 +17,32 @@ import {
 } from "@/lib/request-rate-limit";
 import { workersEnv } from "@/lib/workers-env";
 
-interface CloudflareRequestGeo {
-  city?: string;
-  country?: string;
-  latitude?: string | number;
-  longitude?: string | number;
-  region?: string;
-}
-
 interface ActivityCaptureBody {
   title?: unknown;
   visitorId?: unknown;
 }
 
-const json = (body: unknown, init?: ResponseInit): Response =>
-  Response.json(body, {
-    ...init,
-    headers: {
-      "Cache-Control": "no-store",
-      ...init?.headers,
-    },
-  });
-
-const getRequestGeo = (request: Request): CloudflareRequestGeo => {
-  const requestWithCf = request as Request & { cf?: CloudflareRequestGeo };
-  return requestWithCf.cf ?? {};
-};
-
 export const POST: APIRoute = async ({ request }) => {
   const store = workersEnv.ACTIVITY_FEED_STORE;
   if (!store) {
-    return json({ error: "Activity feed is not configured" }, { status: 503 });
+    return activityJsonResponse(
+      { error: "Activity feed is not configured" },
+      { status: 503 }
+    );
   }
 
   if (isLikelyBotUserAgent(request.headers.get("User-Agent"))) {
-    return json({ accepted: false });
+    return activityJsonResponse({ accepted: false });
   }
 
   const referer = getSameOriginActivityReferer(request);
-  if (!referer || !isPublicActivityPath(referer.pathname)) {
-    return json({ accepted: false });
+  if (!referer) {
+    return activityJsonResponse({ accepted: false });
+  }
+
+  const path = activityPathFromReferer(referer);
+  if (!path || !isPublicActivityPath(path)) {
+    return activityJsonResponse({ accepted: false });
   }
 
   const rateLimit = enforceRateLimit({
@@ -61,7 +52,7 @@ export const POST: APIRoute = async ({ request }) => {
     windowMs: 60_000,
   });
   if (rateLimit.limited) {
-    return json(
+    return activityJsonResponse(
       { error: "Too many activity captures" },
       {
         headers: { "Retry-After": String(rateLimit.retryAfterSeconds) },
@@ -77,10 +68,13 @@ export const POST: APIRoute = async ({ request }) => {
       body = parsed as ActivityCaptureBody;
     }
   } catch {
-    return json({ error: "Invalid capture payload" }, { status: 400 });
+    return activityJsonResponse(
+      { error: "Invalid capture payload" },
+      { status: 400 }
+    );
   }
 
-  const geo = getRequestGeo(request);
+  const geo = getActivityRequestGeo(request);
   const event = await store.getByName("public").append(
     {
       city: geo.city,
@@ -92,12 +86,10 @@ export const POST: APIRoute = async ({ request }) => {
         typeof geo.longitude === "string"
           ? Number(geo.longitude)
           : geo.longitude,
-      path: referer.pathname,
+      path,
       region: geo.region,
       title:
-        typeof body.title === "string"
-          ? cleanActivityTitle(body.title)
-          : referer.pathname,
+        typeof body.title === "string" ? cleanActivityTitle(body.title) : path,
       visitorId: typeof body.visitorId === "string" ? body.visitorId : null,
     },
     crypto.randomUUID(),
@@ -105,5 +97,5 @@ export const POST: APIRoute = async ({ request }) => {
     getActivityRequestUserAgent(request)
   );
 
-  return json({ accepted: Boolean(event) });
+  return activityJsonResponse({ accepted: Boolean(event) });
 };

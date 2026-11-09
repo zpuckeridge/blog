@@ -2,5 +2,6 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreDependencies": ["cloudflare"],
   "ignoreBinaries": ["knip"],
-  "ignoreExportsUsedInFile": true
+  "ignoreExportsUsedInFile": true,
+  "ignore": ["src/**/*.test.ts"]
 }

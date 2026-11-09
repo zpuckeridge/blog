@@ -1,17 +1,10 @@
 import type { ReactNode } from "react";
 
+import { linkClassNames } from "@/lib/link-with-icon-styles";
+import type { LinkVariant } from "@/lib/link-with-icon-styles";
 import { resolveSafeHref } from "@/lib/safe-href";
 import { trimLinkChildren } from "@/lib/trim-link-children";
 import { cn } from "@/lib/utils";
-
-const linkClassNames = {
-  default:
-    "group inline-block max-w-full whitespace-nowrap px-1 text-sm text-muted-foreground leading-[inherit] hover:bg-muted",
-  highlighted:
-    "group inline-block max-w-full whitespace-nowrap px-1 leading-[inherit] bg-muted hover:bg-muted/80",
-} as const;
-
-type LinkVariant = keyof typeof linkClassNames;
 
 const LinkWithIcon = ({
   "aria-label": ariaLabel,

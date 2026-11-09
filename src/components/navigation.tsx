@@ -72,6 +72,18 @@ const Navigation = ({ pathname }: NavigationProps) => {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [drawerOpen, menuOpen]);
+
+  useEffect(() => {
+    const media = window.matchMedia(mobileNavQuery);
+    const onChange = () => {
+      if (!media.matches) {
+        setDrawerOpen(false);
+      }
+    };
+
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
   const avatar = (
     <SiteImage
       alt="Zacchary Puckeridge"
@@ -95,7 +107,7 @@ const Navigation = ({ pathname }: NavigationProps) => {
         </a>
       )}
 
-      <nav aria-label="Site" className="max-md:hidden">
+      <nav aria-hidden={drawerOpen} aria-label="Site" className="max-md:hidden">
         <Menu.Root onOpenChange={setMenuOpen} open={menuOpen}>
           <Menu.Trigger
             aria-keyshortcuts="m"
@@ -225,6 +237,7 @@ const Navigation = ({ pathname }: NavigationProps) => {
               />
               <Drawer.Title className="sr-only">Menu</Drawer.Title>
               <nav
+                aria-hidden={!drawerOpen}
                 aria-label="Site"
                 className="mx-auto grid w-full max-w-lg grid-cols-2 gap-2"
               >

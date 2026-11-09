@@ -5,6 +5,7 @@ import {
   enforceRateLimit,
   getRequestClientKey,
 } from "@/lib/request-rate-limit";
+import { workersEnv } from "@/lib/workers-env";
 
 const EMAIL_REGEX =
   /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/u;
@@ -21,7 +22,9 @@ const jsonWithHeaders = (body: unknown, init?: ResponseInit): Response =>
 
 export const POST: APIRoute = async ({ request }) => {
   const loopsApiKey =
-    import.meta.env.LOOPS_API_KEY ?? process.env.LOOPS_API_KEY;
+    workersEnv.LOOPS_API_KEY ??
+    import.meta.env.LOOPS_API_KEY ??
+    process.env.LOOPS_API_KEY;
   if (!loopsApiKey) {
     return jsonWithHeaders(
       { error: "Subscribe is not configured" },

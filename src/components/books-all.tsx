@@ -12,24 +12,15 @@ import {
   expandableListYearHeaderClassName,
   expandableListYearPageClassName,
 } from "@/lib/expandable-list";
-import {
-  calendarYearInBrisbane,
-  formatDdMm,
-  formatDdMmYy,
-} from "@/lib/format-in-brisbane";
+import { formatDdMm, formatDdMmYy } from "@/lib/format-in-brisbane";
+import { groupItemsByBrisbaneYear } from "@/lib/group-by-brisbane-year";
 
 const BooksAll = ({ books }: { books: Book[] }) => {
-  // Group books by year
-  const booksByYear: Record<number, Book[]> = {};
-  for (const book of books) {
-    const year = calendarYearInBrisbane(book.date_created);
-    if (!booksByYear[year]) {
-      booksByYear[year] = [];
-    }
-    booksByYear[year].push(book);
-  }
+  const booksByYear = groupItemsByBrisbaneYear(
+    books,
+    (book) => book.date_created
+  );
 
-  // Get years sorted descending
   const years = Object.keys(booksByYear)
     .map(Number)
     .toSorted((a, b) => b - a);

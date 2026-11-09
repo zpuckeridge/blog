@@ -1,6 +1,8 @@
 import type { ComponentType } from "react";
 import { SafeMdxRenderer } from "safe-mdx";
 
+import { createSafeMdxGfmRenderNode } from "@/components/mdx-gfm-render-node";
+import type { MdastImgComponentProps } from "@/components/mdx-gfm-render-node";
 import {
   HeadingShiftContext,
   ImageMetaContext,
@@ -9,8 +11,6 @@ import type { ContentImageMeta } from "@/lib/content-image";
 import { articleHeadingOutline } from "@/lib/heading-shift";
 import { parseTimelineMdxSource } from "@/lib/mdx-source";
 import type { TimelineMdxParseResult } from "@/lib/mdx-source";
-import { createSafeMdxGfmRenderNode } from "@/lib/safe-mdx-gfm-render-node";
-import type { MdastImgComponentProps } from "@/lib/safe-mdx-gfm-render-node";
 import { components as mdxComponents } from "@/mdx-components";
 
 const emptyImageMeta: Readonly<Record<string, ContentImageMeta>> = {};

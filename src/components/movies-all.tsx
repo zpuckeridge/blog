@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import ContentThumbnail from "@/components/content-thumbnail";
 import ExpandableListItem from "@/components/expandable-list-item";
 import type { Movie } from "@/interfaces/content-item";
+import { formatDirectusRelationList } from "@/lib/directus-relations";
 import {
   expandableListGridClassName,
   expandableListItemsClassName,
@@ -12,20 +13,15 @@ import {
   expandableListYearHeaderClassName,
   expandableListYearPageClassName,
 } from "@/lib/expandable-list";
-import { calendarYearInBrisbane, formatDdMm } from "@/lib/format-in-brisbane";
+import { formatDdMm } from "@/lib/format-in-brisbane";
+import { groupItemsByBrisbaneYear } from "@/lib/group-by-brisbane-year";
 
 const MoviesAll = ({ movies }: { movies: Movie[] }) => {
-  // Group movies by year
-  const moviesByYear: Record<number, Movie[]> = {};
-  for (const movie of movies) {
-    const year = calendarYearInBrisbane(movie.date_created);
-    if (!moviesByYear[year]) {
-      moviesByYear[year] = [];
-    }
-    moviesByYear[year].push(movie);
-  }
+  const moviesByYear = groupItemsByBrisbaneYear(
+    movies,
+    (movie) => movie.date_created
+  );
 
-  // Get years sorted descending
   const years = Object.keys(moviesByYear)
     .map(Number)
     .toSorted((a, b) => b - a);
@@ -99,58 +95,7 @@ const MoviesAll = ({ movies }: { movies: Movie[] }) => {
                         <div className="min-w-20 bg-neutral-100 px-3 py-1 dark:bg-neutral-900">
                           <p className="text-sm text-muted-foreground">With</p>
                           <p className="text-sm">
-                            {(() => {
-                              if (Array.isArray(movie.with)) {
-                                const processedItems = movie.with.map(
-                                  (item) => {
-                                    // Handle both string and object cases
-                                    if (typeof item === "string") {
-                                      return item;
-                                    }
-                                    if (
-                                      typeof item === "object" &&
-                                      item !== null
-                                    ) {
-                                      // If it's an object, try to extract a name or title property
-                                      const obj = item as Record<
-                                        string,
-                                        unknown
-                                      >;
-                                      return (
-                                        (obj.name as string) ||
-                                        (obj.title as string) ||
-                                        (obj.value as string) ||
-                                        String(item)
-                                      );
-                                    }
-                                    return String(item);
-                                  }
-                                );
-
-                                // Use "&" for two items, commas for more
-                                if (processedItems.length === 2) {
-                                  return processedItems.join(" & ");
-                                }
-                                return processedItems.join(", ");
-                              }
-                              // Handle non-array cases
-                              if (
-                                typeof movie.with === "object" &&
-                                movie.with !== null
-                              ) {
-                                const obj = movie.with as Record<
-                                  string,
-                                  unknown
-                                >;
-                                return (
-                                  (obj.name as string) ||
-                                  (obj.title as string) ||
-                                  (obj.value as string) ||
-                                  String(movie.with)
-                                );
-                              }
-                              return String(movie.with);
-                            })()}
+                            {formatDirectusRelationList(movie.with)}
                           </p>
                         </div>
                       )}

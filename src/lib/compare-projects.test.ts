@@ -30,4 +30,22 @@ describe("compareProjects", () => {
     assert.ok(compareProjects(live, archived) < 0);
     assert.ok(compareProjects(archived, wip) > 0);
   });
+
+  it("orders by year_completed descending within the same status", () => {
+    const newer = project({
+      id: 1,
+      name: "Newer",
+      status: "published",
+      year_completed: 2025,
+    });
+    const older = project({
+      id: 2,
+      name: "Older",
+      status: "published",
+      year_completed: 2020,
+    });
+
+    assert.ok(compareProjects(newer, older) < 0);
+    assert.ok(compareProjects(older, newer) > 0);
+  });
 });

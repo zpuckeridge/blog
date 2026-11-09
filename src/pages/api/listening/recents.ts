@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 
+import { getSameOriginActivityReferer } from "@/lib/activity-request";
 import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
@@ -51,6 +52,11 @@ export const POST: APIRoute = async ({ request }) => {
       { error: "Listening recents are not configured" },
       { status: 503 }
     );
+  }
+
+  const referer = getSameOriginActivityReferer(request);
+  if (!referer) {
+    return jsonWithHeaders({ accepted: false });
   }
 
   const rateLimit = enforceRateLimit({
