@@ -151,6 +151,7 @@ export const getBooks = (): Promise<Book[]> =>
               _eq: "published",
             },
           },
+          sort: ["-date_created"],
         })
       );
 
@@ -182,6 +183,7 @@ export const getMovies = (): Promise<Movie[]> =>
               _eq: "published",
             },
           },
+          sort: ["-date_created"],
         })
       );
 
@@ -215,6 +217,7 @@ export const getCredits = (): Promise<Credit[]> =>
               _eq: "published",
             },
           },
+          sort: ["-release_date"],
         })
       );
 

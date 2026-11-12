@@ -1,3 +1,4 @@
+import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
@@ -53,7 +54,12 @@ const CreditsAll = ({ credits }: { credits: Credit[] }) => {
             </div>
             <div className={expandableListItemsClassName}>
               {creditsByYear[year]
-                .toSorted((a, b) => +b.release_date - +a.release_date)
+                .toSorted((a, b) =>
+                  compareDesc(
+                    new Date(a.release_date),
+                    new Date(b.release_date)
+                  )
+                )
                 .map((credit: Credit) => {
                   const isExpanded = expandedCredit === credit.id.toString();
                   return (
