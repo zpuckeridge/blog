@@ -190,6 +190,12 @@ const ColophonPage = () => (
               <LinkWithIcon href="https://www.desiringgod.org?ref=zacchary.me">
                 John Piper
               </LinkWithIcon>
+              <LinkWithIcon href="https://www.palantir.com/leadership/?ref=zacchary.me">
+                Alex Karp
+              </LinkWithIcon>
+              <LinkWithIcon href="https://www.foundersfund.com/team/peter-thiel/?ref=zacchary.me">
+                Peter Thiel
+              </LinkWithIcon>
             </div>
           </div>
         </div>
