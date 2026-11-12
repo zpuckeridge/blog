@@ -18,32 +18,6 @@ const copyText = async (text: string): Promise<void> => {
   }
 };
 
-const openZoom = (src: string, alt: string): void => {
-  const dialog = document.createElement("dialog");
-  dialog.className =
-    "m-auto max-h-[90vh] max-w-[90vw] border-0 bg-transparent p-0 backdrop:bg-black/70";
-
-  const image = document.createElement("img");
-  image.alt = alt;
-  image.className = "max-h-[90vh] max-w-[90vw]";
-  image.src = src;
-
-  const close = document.createElement("button");
-  close.className = "mt-3 block bg-white px-3 py-2 text-sm text-black";
-  close.textContent = "Close";
-  close.type = "button";
-  close.addEventListener("click", () => {
-    dialog.close();
-  });
-
-  dialog.append(image, close);
-  dialog.addEventListener("close", () => {
-    dialog.remove();
-  });
-  document.body.append(dialog);
-  dialog.showModal();
-};
-
 const onDocumentClick = (event: MouseEvent): void => {
   const { target } = event;
   if (!(target instanceof Element)) {
@@ -71,22 +45,7 @@ const onDocumentClick = (event: MouseEvent): void => {
         youtube.dataset.youtubeTitle ?? "YouTube video"
       );
     }
-    return;
   }
-
-  const zoom = target.closest("[data-image-zoom]");
-  if (!(zoom instanceof HTMLButtonElement)) {
-    return;
-  }
-
-  const image = zoom.querySelector("img");
-  const src = image?.dataset.zoomSrc || image?.currentSrc || image?.src;
-  if (!src) {
-    return;
-  }
-
-  event.preventDefault();
-  openZoom(src, image?.alt ?? "");
 };
 
 const upgradeMuxPlayer = async (host: HTMLElement): Promise<void> => {

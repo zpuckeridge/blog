@@ -73,4 +73,20 @@ declare global {
   }
 }
 
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      "youtube-video": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & {
+          crossOrigin?: string;
+          poster?: string;
+          slot?: string;
+          src?: string;
+        },
+        HTMLElement
+      >;
+    }
+  }
+}
+
 declare module "@mux/mux-player";
