@@ -1,3 +1,4 @@
+import { compareDesc } from "date-fns";
 import { useCallback, useState } from "react";
 
 import ContentThumbnail from "@/components/content-thumbnail";
@@ -57,7 +58,12 @@ const MoviesAll = ({ movies }: { movies: Movie[] }) => {
             </div>
             <div className={expandableListItemsClassName}>
               {moviesByYear[year]
-                .toSorted((a, b) => +b.date_created - +a.date_created)
+                .toSorted((a, b) =>
+                  compareDesc(
+                    new Date(a.date_created),
+                    new Date(b.date_created)
+                  )
+                )
                 .map((movie: Movie) => {
                   const isExpanded = expandedMovie === movie.id.toString();
                   return (
