@@ -4,7 +4,7 @@
 @font-face {
   font-family: Archivo;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 100 900;
   font-display: swap;
   src: url("/fonts/archivo.woff2") format("woff2");
 }
@@ -12,7 +12,7 @@
 @font-face {
   font-family: Redaction;
   font-style: normal;
-  font-weight: 100;
+  font-weight: 400;
   font-display: swap;
   src: url("/fonts/redaction-regular.woff2") format("woff2");
 }
@@ -91,6 +91,12 @@
   --font-redaction-italic:
     "Redaction Italic", ui-serif, Georgia, Cambria, "Times New Roman", Times,
     serif;
+
+  /* Slightly heavier defaults (Archivo variable wght axis) */
+  --font-weight-normal: 450;
+  --font-weight-medium: 550;
+  --font-weight-semibold: 650;
+  --font-weight-bold: 750;
 }
 
 :root {
@@ -172,7 +178,12 @@
     border-radius: 0;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-normal font-sans;
+  }
+
+  :where(.font-redaction, .font-redaction-italic) {
+    font-synthesis: none;
+    font-weight: 400;
   }
   hr {
     @apply border-0 border-t border-dotted border-border;
@@ -388,5 +399,6 @@ h3:has(+ .footnotes) {
     "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
   font-size: 0.875rem;
+  font-weight: 400;
   line-height: 1.25rem;
 }
