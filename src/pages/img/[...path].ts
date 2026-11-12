@@ -1,13 +1,13 @@
 import type { APIRoute } from "astro";
 
 import {
-  DIRECTUS_ORIGIN,
   IMAGE_FITS,
   IMAGE_FORMATS,
   isDirectusAssetId,
 } from "@/lib/directus-asset";
+import { DIRECTUS_ORIGIN } from "@/lib/directus-config";
+import { getDirectusToken } from "@/lib/directus-token";
 import { getEdgeCache } from "@/lib/html-cache";
-import { workersEnv } from "@/lib/workers-env";
 
 export const prerender = false;
 
@@ -46,10 +46,6 @@ const notFound = (status = 404, message = "Not found") =>
     status,
   });
 
-const getToken = (): string | undefined =>
-  workersEnv.DIRECTUS_TOKEN ??
-  (typeof process === "undefined" ? undefined : process.env.DIRECTUS_TOKEN);
-
 const upstreamAssetQuery = (
   searchParams: URLSearchParams
 ): { error: Response } | { query: string } => {
@@ -69,7 +65,6 @@ const upstreamAssetQuery = (
 };
 
 export const GET: APIRoute = async ({ params, request }) => {
-  // /img/<uuid> or /img/<uuid>/<any-filename> (filename is cosmetic).
   const segments = (params.path ?? "").split("/");
   const [assetId] = segments;
   if (!assetId || segments.length > 2 || !isDirectusAssetId(assetId)) {
@@ -93,7 +88,7 @@ export const GET: APIRoute = async ({ params, request }) => {
     return cached;
   }
 
-  const token = getToken();
+  const token = getDirectusToken();
   const upstream = await fetch(
     `${DIRECTUS_ORIGIN}/assets/${assetIdLower}${query ? `?${query}` : ""}`,
     {

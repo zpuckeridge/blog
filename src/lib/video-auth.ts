@@ -1,3 +1,4 @@
+import { isVideoPagePath, VIDEOS_INDEX_PATH } from "@/lib/video-paths";
 import { workersEnv as cfEnv } from "@/lib/workers-env";
 
 const VIDEO_AUTH_COOKIE = "video_auth";
@@ -54,14 +55,14 @@ export const isVideoAuthTokenValid = async (
 
 export const normalizeVideoRedirect = (redirectTo?: string | null): string => {
   if (!redirectTo) {
-    return "/videos";
+    return VIDEOS_INDEX_PATH;
   }
 
-  if (redirectTo === "/videos" || redirectTo.startsWith("/video/")) {
+  if (isVideoPagePath(redirectTo)) {
     return redirectTo;
   }
 
-  return "/videos";
+  return VIDEOS_INDEX_PATH;
 };
 
 export const getVideoAccessErrorMessage = (

@@ -5,13 +5,19 @@ import type {
   Paragraph,
   Root,
   RootContent,
-} from "mdast";
+} from "mdastic";
 import type { ComponentType } from "react";
 import { Fragment } from "react";
-import type { RenderNode } from "safe-mdx";
+import type { MyRootContent, RenderNode } from "safe-mdx";
 import { mdastBfs } from "safe-mdx";
 
 import FootnotesNavigation from "@/components/footnotes-navigation";
+import {
+  footnoteHref,
+  footnoteId,
+  footnoteRefHref,
+  footnoteRefId,
+} from "@/lib/footnotes";
 
 export interface MdastImgComponentProps {
   alt: string;
@@ -94,14 +100,13 @@ export const createSafeMdxGfmRenderNode = (
   return function safeMdxGfmRenderNode(node, transform) {
     if (node.type === "footnoteReference") {
       const num = footnoteOrder.get(node.identifier) ?? "•";
-      const href = `#user-content-fn-${node.identifier}`;
       return (
         <sup>
           <FootnotesNavigation
-            aria-describedby={`user-content-fn-${node.identifier}`}
+            aria-describedby={footnoteId(node.identifier)}
             data-footnote-ref=""
-            href={href}
-            id={`user-content-fnref-${node.identifier}`}
+            href={footnoteHref(node.identifier)}
+            id={footnoteRefId(node.identifier)}
           >
             {num}
           </FootnotesNavigation>
@@ -154,47 +159,41 @@ export const createSafeMdxGfmRenderNode = (
                 const backref = (
                   <FootnotesNavigation
                     data-footnote-backref=""
-                    href={`#user-content-fnref-${def.identifier}`}
+                    href={footnoteRefHref(def.identifier)}
                   >
                     ↩
                   </FootnotesNavigation>
                 );
                 const blocks = def.children;
-                if (blocks.length === 0) {
+                const lastBlock = blocks.at(-1);
+                if (!lastBlock) {
                   return (
-                    <li
-                      id={`user-content-fn-${def.identifier}`}
-                      key={def.identifier}
-                    >
+                    <li id={footnoteId(def.identifier)} key={def.identifier}>
                       {backref}
                     </li>
                   );
                 }
-                const lastBlock = blocks.at(-1) as RootContent;
                 const prevBlocks = blocks.slice(0, -1);
                 return (
-                  <li
-                    id={`user-content-fn-${def.identifier}`}
-                    key={def.identifier}
-                  >
+                  <li id={footnoteId(def.identifier)} key={def.identifier}>
                     {prevBlocks.map((child) => (
-                      <Fragment key={mdastNodeKey(child as RootContent)}>
-                        {transform(child as RootContent)}
+                      <Fragment key={mdastNodeKey(child)}>
+                        {transform(child as MyRootContent)}
                       </Fragment>
                     ))}
                     {lastBlock.type === "paragraph" ? (
                       <p>
                         {(lastBlock as Paragraph).children.map((inline) => (
                           <Fragment key={mdastNodeKey(inline as RootContent)}>
-                            {transform(inline as RootContent)}
+                            {transform(inline as MyRootContent)}
                           </Fragment>
                         ))}{" "}
                         {backref}
                       </p>
                     ) : (
                       <>
-                        <Fragment key={mdastNodeKey(lastBlock)}>
-                          {transform(lastBlock)}
+                        <Fragment key={mdastNodeKey(lastBlock as RootContent)}>
+                          {transform(lastBlock as MyRootContent)}
                         </Fragment>{" "}
                         {backref}
                       </>

@@ -6,9 +6,7 @@ import {
 
 export interface HeatmapDay {
   date: string;
-  /** Numeric value for colour intensity (e.g. minutes). */
   value: number;
-  /** False when no samples existed for this metric on this day. */
   hasData: boolean;
 }
 
@@ -115,7 +113,7 @@ export const formatHeatmapMinutesLabel = (minutes: number): string => {
   return `${hours} hour${hours === 1 ? "" : "s"} ${remainder} minute${remainder === 1 ? "" : "s"}`;
 };
 
-export interface HeatmapSummary {
+interface HeatmapSummary {
   currentYear: number;
   formatDayLabel: (day: HeatmapDay) => string;
   todayIso: string;

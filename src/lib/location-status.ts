@@ -1,4 +1,29 @@
+import { BRISBANE_TIME_ZONE } from "@/lib/format-in-brisbane";
+import { siteLocale } from "@/lib/site";
+
 export type LocationCategory = "home" | "work" | "transit" | "away" | "social";
+
+const LOCATION_DOT_FALLBACK = "bg-gray-400";
+
+const LOCATION_CATEGORY_DOT_CLASS: Record<LocationCategory, string> = {
+  away: LOCATION_DOT_FALLBACK,
+  home: "bg-green-500",
+  social: LOCATION_DOT_FALLBACK,
+  transit: "bg-amber-500",
+  work: "bg-blue-500",
+};
+
+export const locationDotClass = (category: string, stale: boolean): string => {
+  if (stale) {
+    return LOCATION_DOT_FALLBACK;
+  }
+
+  if (Object.hasOwn(LOCATION_CATEGORY_DOT_CLASS, category)) {
+    return LOCATION_CATEGORY_DOT_CLASS[category as LocationCategory];
+  }
+
+  return LOCATION_DOT_FALLBACK;
+};
 
 export type LocationEvent = "enter" | "leave";
 
@@ -29,7 +54,7 @@ export const WORK_SCHEDULE = {
   days: [1, 2, 3, 4, 5] as number[],
   endHour: 18,
   startHour: 7,
-  timezone: "Australia/Brisbane",
+  timezone: BRISBANE_TIME_ZONE,
 };
 
 export const LOCATION_KV_KEY = "location:status";
@@ -60,7 +85,7 @@ const BRISBANE_WEEKDAY: Record<string, number> = {
   Wed: 3,
 };
 
-const workHoursFormatter = new Intl.DateTimeFormat("en-AU", {
+const workHoursFormatter = new Intl.DateTimeFormat(siteLocale, {
   hour: "numeric",
   hour12: false,
   timeZone: WORK_SCHEDULE.timezone,
@@ -127,30 +152,6 @@ export const toPublicResponse = (
   status: record.status,
   updatedAt: record.updatedAt,
 });
-
-export const formatLocationRelativeTime = (
-  updatedAt: number,
-  now = Date.now()
-): string => {
-  const seconds = Math.max(0, Math.floor((now - updatedAt) / 1000));
-
-  if (seconds < 60) {
-    return "just now";
-  }
-
-  const minutes = Math.floor(seconds / 60);
-  if (minutes < 60) {
-    return `${minutes}m ago`;
-  }
-
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) {
-    return `${hours}h ago`;
-  }
-
-  const days = Math.floor(hours / 24);
-  return `${days}d ago`;
-};
 
 const PRODUCTION_LOCATION_URL = "https://zacchary.me/api/location";
 
@@ -236,6 +237,3 @@ export const readLocationPublicStatus =
 
     return seedLocationFromProduction(kv);
   };
-
-export const getServerLocationStatus =
-  (): Promise<LocationPublicResponse | null> => readLocationPublicStatus();

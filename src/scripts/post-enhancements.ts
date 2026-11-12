@@ -1,52 +1,4 @@
-import { mountYoutubeIframe } from "@/lib/youtube-facade";
-
-let listening = false;
-
-const announce = (message: string): void => {
-  const status = document.querySelector("[data-copy-status]");
-  if (status) {
-    status.textContent = message;
-  }
-};
-
-const copyText = async (text: string): Promise<void> => {
-  try {
-    await navigator.clipboard.writeText(text);
-    announce("Copied");
-  } catch {
-    announce("Could not copy");
-  }
-};
-
-const onDocumentClick = (event: MouseEvent): void => {
-  const { target } = event;
-  if (!(target instanceof Element)) {
-    return;
-  }
-
-  const copyButton = target.closest("[data-copy-link], [data-copy-article]");
-  if (copyButton instanceof HTMLButtonElement) {
-    const article = document.querySelector("article");
-    const text = Object.hasOwn(copyButton.dataset, "copyArticle")
-      ? (article?.textContent ?? "")
-      : window.location.href;
-    void copyText(text);
-    return;
-  }
-
-  const youtube = target.closest("[data-youtube-facade]");
-  if (youtube instanceof HTMLButtonElement) {
-    const shell = youtube.parentElement;
-    const videoId = youtube.dataset.youtubeId;
-    if (shell && videoId) {
-      mountYoutubeIframe(
-        shell,
-        videoId,
-        youtube.dataset.youtubeTitle ?? "YouTube video"
-      );
-    }
-  }
-};
+import { watchHeadingArrival } from "@/lib/heading-arrival";
 
 const upgradeMuxPlayer = async (host: HTMLElement): Promise<void> => {
   if (host.dataset.muxReady === "true") {
@@ -114,9 +66,6 @@ const observeMuxPlayers = (): void => {
 };
 
 export const initPostEnhancements = (): void => {
-  if (!listening) {
-    listening = true;
-    document.addEventListener("click", onDocumentClick);
-  }
   observeMuxPlayers();
+  watchHeadingArrival();
 };

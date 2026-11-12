@@ -8,6 +8,7 @@ import {
 } from "@/lib/contributions-graph";
 import type { ContributionDay } from "@/lib/contributions-graph";
 import { formatPublishedLongDate } from "@/lib/format-in-brisbane";
+import { siteLocale } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 interface GitHubContributionsProps {
@@ -45,7 +46,7 @@ const fetcher = async (url: string) => {
     }
     if (response.status === 429) {
       const resetTime = data.resetTime
-        ? new Date(data.resetTime).toLocaleString("en-AU")
+        ? new Date(data.resetTime).toLocaleString(siteLocale)
         : "soon";
       throw new Error(`GitHub API rate limit exceeded. Resets at ${resetTime}`);
     }
@@ -220,8 +221,6 @@ const ContributionsGrid = ({
                   ),
                   day.date === todayIso && "contribution-day-today"
                 )}
-                data-color={day.color}
-                data-count={day.contributionCount}
                 data-date={day.date}
                 data-hovered={hover?.day.date === day.date ? "" : undefined}
                 key={day.date}

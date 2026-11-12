@@ -1,22 +1,7 @@
 import { createDirectus, rest, staticToken } from "@directus/sdk";
 
-import { workersEnv } from "@/lib/workers-env";
-
-const DIRECTUS_URL =
-  import.meta.env.DIRECTUS_URL ||
-  process.env.DIRECTUS_URL ||
-  "https://directus.obambulo.studio";
-
-/**
- * Read-only token for the "zacchary-me-site" Directus user.
- * Public read on content collections is disabled; this token is required.
- * Astro loads `.env.local` into `import.meta.env`; Wrangler secrets use
- * `process.env` at runtime on Workers (`nodejs_compat`).
- */
-export const getDirectusToken = (): string | undefined =>
-  workersEnv.DIRECTUS_TOKEN ??
-  import.meta.env.DIRECTUS_TOKEN ??
-  process.env.DIRECTUS_TOKEN;
+import { getDirectusUrl } from "@/lib/directus-config";
+import { getDirectusToken } from "@/lib/directus-token";
 
 const DIRECTUS_TOKEN = getDirectusToken();
 
@@ -26,7 +11,7 @@ if (!DIRECTUS_TOKEN) {
   );
 }
 
-const baseDirectus = createDirectus(DIRECTUS_URL).with(rest());
+const baseDirectus = createDirectus(getDirectusUrl()).with(rest());
 
 const directus = DIRECTUS_TOKEN
   ? baseDirectus.with(staticToken(DIRECTUS_TOKEN))

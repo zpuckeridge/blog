@@ -3,7 +3,8 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 
 import type { TimelineItem } from "@/interfaces/content-item";
 import { formatPublishedShortDayMonth } from "@/lib/format-in-brisbane";
-import { isNewPost, NEW_POST_TAG } from "@/lib/is-new-post";
+import { isNewPost, NEW_POST_TAG } from "@/lib/post-age";
+import { timelinePostPath } from "@/lib/site";
 import { substringMatchInsensitive } from "@/lib/substring-match";
 
 import { Input } from "./ui/input";
@@ -189,7 +190,7 @@ const PostRendering: React.FC<PostsProps> = ({ postsByYear }) => {
                         isRecent ? `${NEW_POST_TAG}: ${item.title}` : item.title
                       }
                       className={rowClassName}
-                      href={`/timeline/${item.slug}`}
+                      href={timelinePostPath(item.slug)}
                       key={`post-${item.slug}-${item.date_created}`}
                     >
                       <div className="flex min-w-0 w-full items-baseline gap-1">

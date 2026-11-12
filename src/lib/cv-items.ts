@@ -1,17 +1,10 @@
 export interface EmploymentItem {
-  /** e.g. "Worked on X, Y, Z..." */
   description: string;
-  /** e.g. 2023 or "Present" */
   endYear: number | "Present";
-  /** e.g. "Brisbane, Australia" */
   location: string;
-  /** e.g. "IT Administrator", "Systems Administrator", "Freelance" */
   position: string;
-  /** e.g. 2021 */
   startYear: number;
-  /** e.g. "Company Name" */
   title: string;
-  /** e.g. "https://company.com" */
   url: string;
 }
 

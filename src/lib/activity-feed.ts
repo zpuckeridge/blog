@@ -1,3 +1,7 @@
+import { ACTIVITY_PATH } from "@/lib/public-pages";
+import { titleSuffix } from "@/lib/site";
+import { isVideoPagePath } from "@/lib/video-paths";
+
 export const ACTIVITY_RETENTION_MS = 24 * 60 * 60 * 1000;
 export const ACTIVITY_MAX_EVENTS = 300;
 export const ACTIVITY_MAX_VISITORS = 100;
@@ -5,7 +9,6 @@ export const ACTIVITY_TITLE_MAX_LENGTH = 120;
 export const ACTIVITY_PATH_MAX_LENGTH = 200;
 
 const MULTIPLE_SPACES = /\s+/gu;
-const SITE_TITLE_SUFFIX = " — Zacchary Puckeridge";
 
 export type ActivityEventAction = "listened" | "read" | "viewed" | "watched";
 
@@ -86,10 +89,8 @@ export const cleanActivityPath = (path: string): string | null => {
 
 export const cleanActivityTitle = (title: string): string =>
   (
-    cleanText(title, ACTIVITY_TITLE_MAX_LENGTH)?.replace(
-      SITE_TITLE_SUFFIX,
-      ""
-    ) ?? "Untitled page"
+    cleanText(title, ACTIVITY_TITLE_MAX_LENGTH)?.replace(titleSuffix, "") ??
+    "Untitled page"
   ).trim() || "Untitled page";
 
 export const formatActivityTitle = (
@@ -274,10 +275,9 @@ export const isPublicActivityPath = (path: string): boolean => {
   }
 
   return !(
-    cleanPath === "/activity" ||
+    cleanPath === ACTIVITY_PATH ||
     cleanPath.startsWith("/api/") ||
     cleanPath.startsWith("/_astro/") ||
-    cleanPath.startsWith("/video/") ||
-    cleanPath === "/videos"
+    isVideoPagePath(cleanPath)
   );
 };

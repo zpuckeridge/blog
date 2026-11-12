@@ -1,15 +1,16 @@
 import type { APIRoute } from "astro";
 
-import { getDirectusToken } from "@/lib/directus";
 import {
-  DIRECTUS_ORIGIN,
   directusSocialImageAbsoluteUrl,
   SOCIAL_IMAGE_WIDTH,
 } from "@/lib/directus-asset";
+import { DIRECTUS_ORIGIN } from "@/lib/directus-config";
 import { getPosts } from "@/lib/directus-content";
+import { getDirectusToken } from "@/lib/directus-token";
 import { descriptionForPost } from "@/lib/meta-description";
 import { comparePostsByNewest } from "@/lib/related-posts";
 import { buildEnclosureTag, readContentLength } from "@/lib/rss-enclosure";
+import { personName, siteLocale, timelinePostPath } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
 import { escapeXml } from "@/lib/xml-escape";
 
@@ -74,11 +75,13 @@ export const GET: APIRoute = async () => {
         });
       }
 
+      const postUrl = `${baseUrl}${timelinePostPath(post.slug)}`;
+
       return `
     <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${baseUrl}/timeline/${post.slug}</link>
-      <guid isPermaLink="true">${baseUrl}/timeline/${post.slug}</guid>
+      <link>${postUrl}</link>
+      <guid isPermaLink="true">${postUrl}</guid>
       <description>${escapeXml(descriptionForPost(post.slug, post.description || ""))}</description>
       <pubDate>${new Date(post.date_created).toUTCString()}</pubDate>
       ${enclosure}
@@ -89,10 +92,10 @@ export const GET: APIRoute = async () => {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zacchary Puckeridge</title>
+    <title>${personName}</title>
     <link>${baseUrl}</link>
     <description>IT Operations Lead at Star Compass and Haddon Institute. Also runs obambulo studio.</description>
-    <language>en-AU</language>
+    <language>${siteLocale}</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
     ${rssItems.join("")}

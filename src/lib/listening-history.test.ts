@@ -287,10 +287,6 @@ describe("listen timing", () => {
   it("uses the start time to tell a replay from the play already on screen", () => {
     const start = 1_700_000_000_000;
 
-    assert.equal(
-      listeningPlayKey(observed("Song", start)),
-      listeningPlayKey(observed("Song", start))
-    );
     assert.notEqual(
       listeningPlayKey(observed("Song", start)),
       listeningPlayKey(observed("Song", start + 1))

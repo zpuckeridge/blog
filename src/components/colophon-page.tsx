@@ -80,10 +80,6 @@ const ColophonPage = () => (
             . Analytics provided by{" "}
             <LinkWithIcon href="https://cloudflare.com?ref=zacchary.me">
               Cloudflare
-            </LinkWithIcon>{" "}
-            and{" "}
-            <LinkWithIcon href="https://posthog.com?ref=zacchary.me">
-              PostHog
             </LinkWithIcon>
             . Newsletter signups handled by{" "}
             <LinkWithIcon href="https://loops.so?ref=zacchary.me">

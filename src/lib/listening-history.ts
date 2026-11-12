@@ -1,5 +1,5 @@
 import type { NowListening, ObservedListen } from "@/lib/lanyard-status";
-import { listeningIdentity } from "@/lib/listening-recents";
+import { isNonEmptyString, listeningIdentity } from "@/lib/listening-recents";
 
 /**
  * One JSON array, newest first.
@@ -34,9 +34,6 @@ export interface ListenHistorySlice {
   plays: ListenPlay[];
   total: number;
 }
-
-const isNonEmptyString = (value: unknown): value is string =>
-  typeof value === "string" && value.trim().length > 0;
 
 /** Stored times are already milliseconds. Discord seconds are converted on ingest. */
 const milliseconds = (value: unknown): number | null => {

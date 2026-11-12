@@ -1,3 +1,4 @@
+import { DIRECTUS_ORIGIN } from "@/lib/directus-config";
 import { getSiteUrl } from "@/lib/site-url";
 
 /**
@@ -5,7 +6,6 @@ import { getSiteUrl } from "@/lib/site-url";
  * which fetches them from Directus with a private token. Browsers never talk
  * to Directus directly.
  */
-export const DIRECTUS_ORIGIN = "https://directus.obambulo.studio";
 export const IMAGE_PROXY_PATH = "/img";
 
 const UUID_PATTERN =
@@ -26,8 +26,7 @@ interface DirectusAssetOptions {
 export const isDirectusAssetId = (value: string): boolean =>
   UUID_PATTERN.test(value);
 
-/** Site-relative proxied path for a Directus file id. */
-export const directusAssetPath = (assetId: string): string =>
+const directusAssetPath = (assetId: string): string =>
   `${IMAGE_PROXY_PATH}/${assetId}`;
 
 const withParams = (
@@ -47,14 +46,12 @@ const withParams = (
 /** Open Graph and RSS use a transformed JPEG of about this width, not the original. */
 export const SOCIAL_IMAGE_WIDTH = 1200;
 
-/** Proxied ~1200px JPEG for `og:image` and RSS enclosures. */
-export const directusSocialImagePath = (assetId: string): string =>
+const directusSocialImagePath = (assetId: string): string =>
   withParams(assetId, { format: "jpeg", width: SOCIAL_IMAGE_WIDTH });
 
 export const directusSocialImageAbsoluteUrl = (assetId: string): string =>
   `${getSiteUrl()}${directusSocialImagePath(assetId)}`;
 
-/** Proxied Directus image URL with transform params for smaller transfers. */
 export const directusAssetUrl = (
   assetId: string,
   options: DirectusAssetOptions = {}
@@ -78,7 +75,6 @@ export const directusContentSrcSet = (
       `${directusAssetUrl(assetId, { format, quality: 80, width })} ${width}w`
   ).join(", ");
 
-/** Higher-resolution proxied image for image zoom overlays. */
 export const directusAssetZoomUrl = (
   assetId: string,
   options: Pick<DirectusAssetOptions, "format" | "quality"> = {}
@@ -103,7 +99,6 @@ const getDirectusAssetId = (url: URL): string | undefined => {
   return assetId && isDirectusAssetId(assetId) ? assetId : undefined;
 };
 
-/** Directus file id from a proxied `/img/<id>` URL, a Directus asset URL, or a bare UUID. */
 export const assetIdFromSrc = (src: string): string | undefined => {
   if (isDirectusAssetId(src)) {
     return src.toLowerCase();
@@ -128,7 +123,6 @@ export const toProxiedAssetSrc = (src: string): string => {
   return `${directusAssetPath(assetId)}${url.search}`;
 };
 
-/** Upgrade a transformed Directus thumbnail URL to a zoom-sized variant. */
 export const resolveDirectusZoomSrc = (src: string): string | undefined => {
   const url = parseAssetUrl(src);
   const assetId = url ? getDirectusAssetId(url) : undefined;

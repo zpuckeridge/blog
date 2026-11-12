@@ -1,6 +1,5 @@
 import type { UseItem } from "@/interfaces/content-item";
 
-/** Directus category → display section (programming rolls into Tools). */
 const USE_SECTION_KEY: Record<UseItem["category"], string> = {
   communication: "communication",
   everyday_carry: "everyday_carry",

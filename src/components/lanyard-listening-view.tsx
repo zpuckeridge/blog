@@ -19,8 +19,8 @@ import type {
 } from "@/lib/lanyard-status";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
-import { formatLocationRelativeTime } from "@/lib/location-status";
 import { persistRecentSession } from "@/lib/record-listening-session";
+import { formatRelativeTime } from "@/lib/relative-time";
 import { cn } from "@/lib/utils";
 
 const ROW_CLASS = "flex min-h-9 min-w-0 items-center gap-2.5";
@@ -91,7 +91,7 @@ const ListeningTrackState = ({
                 •
               </span>
               <span className="shrink-0 tabular-nums">
-                {formatLocationRelativeTime(listenedAt, now)}
+                {formatRelativeTime(listenedAt, now)}
               </span>
             </>
           )}

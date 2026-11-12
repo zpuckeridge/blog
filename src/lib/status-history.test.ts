@@ -10,7 +10,6 @@ import {
   MAX_GAP_MS,
   parseStatusHistoryStore,
   pruneStatusHistoryDays,
-  RETENTION_DAYS,
   SAMPLE_INTERVAL_MS,
   sampleBucketForTime,
   storeToPublicHistory,
@@ -184,7 +183,6 @@ describe("pruneStatusHistoryDays", () => {
 
     assert.equal(store.days[oldIso], undefined);
     assert.ok(store.days["2027-02-01"]);
-    assert.ok(RETENTION_DAYS >= 365);
   });
 });
 

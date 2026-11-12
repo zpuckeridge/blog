@@ -39,7 +39,6 @@ export default defineConfig({
         "@base-ui/react/tooltip",
         "clsx",
         "date-fns",
-        "posthog-js",
         "react-icons/lu",
         "react-icons/rx",
         "sonner",

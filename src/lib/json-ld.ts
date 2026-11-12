@@ -1,4 +1,6 @@
 import { articleHeadline } from "@/lib/metadata";
+import { pagesWhere } from "@/lib/public-pages";
+import { personName, siteLocale, siteName, socialProfiles } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
 
 export interface JsonLdCollectionItem {
@@ -20,15 +22,7 @@ export interface JsonLdInput {
   url?: string;
 }
 
-const personName = "Zacchary Puckeridge";
-
-const sameAs = [
-  "https://x.com/zpuckeridge/",
-  "https://www.facebook.com/zpuckeridge/",
-  "https://www.instagram.com/zpuckeridge/",
-  "https://www.linkedin.com/in/zpuckeridge/",
-  "https://github.com/zpuckeridge",
-];
+const sameAs = socialProfiles.map((profile) => profile.href);
 
 const personNode = (siteUrl: string, personId: string) => ({
   "@id": personId,
@@ -76,7 +70,7 @@ const pushHome = (
   nodes.push(personNode(siteUrl, personId), {
     "@type": "WebSite",
     author: { "@id": personId },
-    name: "zacchary.me",
+    name: siteName,
     url: `${siteUrl}/`,
   });
 };
@@ -93,24 +87,16 @@ const pushProfile = (
   }
   nodes.push(personNode(siteUrl, personId), {
     "@type": "ProfilePage",
-    inLanguage: "en-AU",
+    inLanguage: siteLocale,
     mainEntity: { "@id": personId },
     name: pathname === "/cv" ? "CV" : "About",
     url: url ?? `${siteUrl}${pathname}`,
   });
 };
 
-const WEB_PAGE_NAMES: Record<string, string> = {
-  "/about/books": "Books",
-  "/about/credits": "Credits",
-  "/about/movies": "Movies",
-  "/activity": "Activity",
-  "/colophon": "Colophon",
-  "/imprint": "Imprint",
-  "/music": "Music",
-  "/projects": "Projects",
-  "/uses": "Uses",
-};
+const WEB_PAGE_NAMES: Record<string, string> = Object.fromEntries(
+  pagesWhere("jsonLd").map((page) => [page.href, page.label])
+);
 
 const pushWebPage = (
   nodes: Record<string, unknown>[],
@@ -125,7 +111,7 @@ const pushWebPage = (
 
   const page: Record<string, unknown> = {
     "@type": "WebPage",
-    inLanguage: "en-AU",
+    inLanguage: siteLocale,
     name,
     url: input.url ?? `${siteUrl}${pathname}`,
   };
@@ -154,7 +140,7 @@ const pushTimeline = (
   nodes.push({
     "@type": ["CollectionPage", "Blog"],
     blogPost: input.collectionItems.map((item) => postingFromItem(item)),
-    inLanguage: "en-AU",
+    inLanguage: siteLocale,
     name: "Timeline",
     url: input.url ?? `${siteUrl}/timeline`,
   });
@@ -176,7 +162,7 @@ const pushTagCollection = (
   const page: Record<string, unknown> = {
     "@type": "CollectionPage",
     hasPart: input.collectionItems.map((item) => postingFromItem(item)),
-    inLanguage: "en-AU",
+    inLanguage: siteLocale,
     name: input.title ? articleHeadline(input.title) : "Posts",
     url: input.url ?? `${siteUrl}${pathname}`,
   };
@@ -206,7 +192,7 @@ const pushArticle = (
       url: `${siteUrl}/`,
     },
     headline,
-    inLanguage: "en-AU",
+    inLanguage: siteLocale,
     publisher: {
       "@type": "Person",
       name: personName,

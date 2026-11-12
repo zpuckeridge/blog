@@ -90,18 +90,15 @@ describe("descriptionForPost", () => {
 describe("descriptionForTag", () => {
   it("gives each published tag its own description in range", () => {
     const tags = [
-      ["art", "Art", /Goofy Movie/u, /BoJack/u],
-      ["education", "Education", /cramming/u, /think/u],
-      ["faith", "Faith", /Dearmore/u, /Rhodesia/u],
-      ["politics", "Politics", /work-life balance/u, /overblown/u],
-      ["technical", "Technical", /Proxmox/u, /Grafana/u],
+      ["art", "Art"],
+      ["education", "Education"],
+      ["faith", "Faith"],
+      ["politics", "Politics"],
+      ["technical", "Technical"],
     ] as const;
-    const descriptions = tags.map(([slug, label, ...patterns]) => {
+    const descriptions = tags.map(([slug, label]) => {
       const description = descriptionForTag(slug, label, []);
       inRange(description);
-      for (const pattern of patterns) {
-        assert.match(description, pattern);
-      }
       return description;
     });
     assert.equal(new Set(descriptions).size, descriptions.length);

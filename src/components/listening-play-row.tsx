@@ -4,7 +4,7 @@ import { ImageZoom } from "@/components/zoom-image";
 import { getActivityVisitorId } from "@/lib/activity-visitor";
 import { resolveArtworkZoomUrl } from "@/lib/lanyard-status";
 import type { NowListening } from "@/lib/lanyard-status";
-import { formatLocationRelativeTime } from "@/lib/location-status";
+import { formatRelativeTime } from "@/lib/relative-time";
 import { resolveSafeHref } from "@/lib/safe-href";
 import { cn } from "@/lib/utils";
 
@@ -134,7 +134,7 @@ export const ListeningPlayRow = ({
     <ListeningArtwork listening={listen} />
     <div className={cn(TEXT_CLASS, LISTENING_LINKS_ROW_CLASS)}>
       <p className="truncate text-sm leading-tight text-muted-foreground tabular-nums">
-        {timeLabel ?? formatLocationRelativeTime(listen.playedAt, now)}
+        {timeLabel ?? formatRelativeTime(listen.playedAt, now)}
       </p>
       <div
         className={LISTENING_TRACKS_CLASS}

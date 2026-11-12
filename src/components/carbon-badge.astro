@@ -1,3 +1,7 @@
+---
+import { WEBSITE_CARBON_SITE_URL } from "@/lib/website-carbon";
+---
+
 <style is:global>
   .carbon-badge-mount #wcb.carbonbadge {
     --b1: #0e11a8;
@@ -62,7 +66,7 @@
   }
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ WEBSITE_CARBON_SITE_URL }}>
   const getCacheKey = (url) => `wcb_v2_${  url}`;
 
   const getBadge = () => document.querySelector("#wcb");
@@ -122,7 +126,7 @@
   };
 
   (() => {
-    const siteUrl = "https://zacchary.me";
+    const siteUrl = WEBSITE_CARBON_SITE_URL;
     const profileUrl =
       "https://www.websitecarbon.com/website/zacchary-me?ref=zacchary.me";
     const cacheTtlMs = 86_400_000;

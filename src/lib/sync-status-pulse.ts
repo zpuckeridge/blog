@@ -11,6 +11,7 @@ const applyPulseDelay = (element: HTMLElement, delayMs: number): void => {
   element.style.animation = "none";
   void element.offsetWidth;
   element.style.removeProperty("animation");
+  element.style.animationDuration = `${STATUS_PULSE_DURATION_MS}ms`;
   element.style.animationDelay = `${delayMs}ms`;
 };
 

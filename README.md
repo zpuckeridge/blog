@@ -1,114 +1,128 @@
 # ✍️ Blog
 
-[![React Doctor](https://www.react.doctor/share/badge?p=blog&s=100)](https://www.react.doctor/share?p=blog&s=100)
+![React Doctor](https://www.react.doctor/share/badge?p=blog&s=100)
 
-This personal blog and portfolio uses Astro, Vite, React islands, Directus, Tailwind, shadcn, Framer Motion, and Mux.
+Personal site and portfolio. **Astro 7** on **Cloudflare Workers** (SSR), **React 19** islands, **Directus**, **Tailwind CSS 4**, **Base UI**, **safe-mdx**, **Mux**, and **Lanyard**.
 
 ## 🚀 Install
 
-Do these steps on your computer:
-
 ```bash
-# Clone the repository
 git clone https://github.com/zpuckeridge/blog
-
-# Copy the env example. Then set the values.
+cd blog
 cp .env.example .env.local
-
-# Install the packages
-npm install
-
-# Start the development server
-npm run dev
+bun install
+bun run dev
 ```
 
-The development server is available at `https://blog.localhost` through
-Portless. To run Astro directly on its normal port, use `PORTLESS=0 npm run dev`.
+Development opens at `https://blog.localhost` via [Portless](https://github.com/Portless-AI/portless). For Astro’s default port, use `PORTLESS=0 bun run dev`.
+
+Local preview after a production build:
+
+```bash
+bun run preview
+```
 
 ### Environment variables
 
-Set these values in `.env.local`:
+Set these in `.env.local` (and matching Worker secrets in production):
 
-- **DIRECTUS_URL** - Directus instance URL (required for content)
-- **DIRECTUS_TOKEN** - Read-only Directus static token (required; public collection read is disabled)
-- **PUBLIC_SITE_URL** - Canonical site URL (for example `https://zacchary.me`) for RSS, sitemap, and metadata
-- **LOOPS_API_KEY** - Newsletter signup via Loops
-- **PUBLIC_POSTHOG_KEY** - PostHog analytics
-- **PUBLIC_POSTHOG_HOST** - PostHog host (optional)
+| Variable                    | Purpose                                                                   |
+| --------------------------- | ------------------------------------------------------------------------- |
+| **DIRECTUS_URL**            | Directus instance URL (required for content)                              |
+| **DIRECTUS_TOKEN**          | Read-only static token (required; public collection read is disabled)     |
+| **PUBLIC_SITE_URL**         | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata |
+| **LOOPS_API_KEY**           | Newsletter signups via [Loops](https://loops.so)                          |
+| **GITHUB_TOKEN**            | GitHub contributions graph                                                |
+| **VIDEO_PASSWORD**          | Password gate for `/videos` and `/video/`*                                |
+| **LOCATION_WEBHOOK_SECRET** | Authenticates iOS Shortcuts location webhooks (`/api/location`)           |
 
-- **GITHUB_TOKEN** - GitHub contributions graph
-- **VIDEO_PASSWORD** - Password protection for videos
-- **SPOTIFY\_\*** - Spotify tracking (optional)
+For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_SECRET** in `.dev.vars` as well (gitignored).
 
 ## 🚩 Features
 
-- **Directus CMS** - Posts, notes, videos, projects, books, movies, credits, uses
-- **MDX content** - Side notes, inline definitions, footnotes, Tweet embeds
-- **PostHog analytics**
-- **Live activity feed** - Anonymous, city-level pageview stream retained for 24 hours
-- **Discord status** - Lanyard integration
-- **Status history heatmaps** - Work, home, and Discord online time (365-day graphs)
-- **Newsletter** - Loops integration
-- **Videos** - Mux player with optional password protection
+### Content
 
-- **Table of contents** - Per-article navigation
-- **Copy link** - Share article links
-- **Time to read** - Estimated reading time
-- **RSS feed** - `/rss.xml`
-- **Carbon rating** - Website Carbon badge
-- **Theme toggle** - Light/dark mode
+- **Directus CMS** — Posts, notes, videos, projects, books, movies, credits, uses
+- **Timeline** — Posts and short notes in one list; filter notes, search titles, filter by tag
+- **Tag pages** — `/timeline/tag/[tag]`
+- **MDX (safe-mdx)** — Side notes, inline definitions, GFM footnotes, Tweet embeds, YouTube facade
+- **Related posts** — Links at the bottom of each article
+- **Newsletter** — Loops integration on posts
 
-- **GitHub contributions** - Homepage graph
+### Media
+
+- **Videos** — Mux player with optional site-wide password protection
+- **Images** — Directus assets via `/img/`* with Cloudflare Images resizing
+- **Image zoom** — Click-to-zoom on content images (navigation)
+
+### Presence and listening
+
+- **Location status** — iOS Shortcuts webhook + KV geofence; shown on the homepage
+- **Discord status** — Lanyard (REST + WebSocket on the client)
+- **Apple Music** — Now playing from Discord activity via Lanyard; recent tracks on the homepage
+- **Music history** — `/music` lists the last 1,000 plays (KV), fed by a Worker cron poll
+- **Status history heatmaps** — Work, home, and Discord online time (365 days) on `/activity`
+
+### Activity
+
+- **Live activity feed** — Anonymous visitor stream (paths, titles, coarse client label, city-level location); 24-hour retention in a **Durable Object** (`ActivityFeedStore`)
+- **Listening in the feed** — Site listens (track clicks) appear as `listened` events alongside page views
+
+### Article UX
+
+- **Table of contents** — Per-article navigation
+- **Copy link** — Share article URLs
+- **Time to read** — Estimated reading time
+
+### Site
+
+- **RSS** — `/rss.xml`
+- **Sitemap & robots** — Generated routes
+- **llms.txt** — `/llms.txt` for crawlers and LLMs
+- **Carbon rating** — Website Carbon badge (colophon)
+- **Theme toggle** — Light/dark on the homepage; `m` opens the nav menu (desktop menu / mobile drawer)
+- **GitHub contributions** — Homepage graph
+- **Security headers** — CSP and related headers on HTML responses
 
 ### Status history heatmaps
 
-After deploy, a Cloudflare cron job samples Discord presence (Lanyard REST) and location (KV geofence snapshot) every **five minutes**. Data is stored in `LOCATION_KV` under `status:history:v1` and shown as three GitHub-style graphs on the homepage (at work, at home, Discord online).
+A Cloudflare cron runs **every minute**. Each run may poll Lanyard for Discord + Apple Music listening and, on a **five-minute sample bucket**, record location and Discord presence into `LOCATION_KV` under `status:history:v1`. Graphs live on `/activity` (not the homepage).
 
 - **Discord online** counts `online`, `idle`, and `dnd`; `offline` is not counted.
-- **Work / home** minutes use the current geofence category when location is fresh (not stale). `transit` and `away` contribute to observed location time but not work or home totals.
-- **Day boundaries** use `Australia/Brisbane`, matching the rest of the site.
-- **Retention** is 365 days. Long gaps between samples are capped at 15 minutes so outages do not inflate history.
-- **No backfill** — history begins when this feature is deployed; earlier time cannot be reconstructed.
+- **Work / home** use the current geofence category when location is fresh (not stale). `transit` and `away` count toward observed location time but not work or home totals.
+- **Day boundaries** use `Australia/Brisbane`.
+- **Retention** is 365 days. Gaps between samples are capped at 15 minutes so outages do not inflate history.
+- **No backfill** — history starts when this feature is deployed.
 
 ## 📁 Structure
 
-- `/` - Home (timeline preview, projects, Discord status)
-- `/timeline` - All posts and notes
-- `/activity` - Live anonymous visitor activity
-- `/timeline/[slug]` - Individual post (MDX)
-- `/videos` - Video index
-- `/video/[slug]` - Individual video (Mux)
-- `/projects` - Project list
+| Route                                                       | Description                                                                    |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `/`                                                         | Home — projects, recent articles, GitHub graph, location, Discord, now playing |
+| `/timeline`                                                 | All posts and notes (search and tag filters)                                   |
+| `/timeline/[slug]`                                          | Post (MDX)                                                                     |
+| `/timeline/tag/[tag]`                                       | Posts for one tag                                                              |
+| `/activity`                                                 | Status heatmaps + live visitor activity                                        |
+| `/music`                                                    | Apple Music listen history                                                     |
+| `/videos`, `/video/[slug]`                                  | Video index and player (password gate)                                         |
+| `/projects`                                                 | Project list                                                                   |
+| `/about`, `/about/books`, `/about/movies`, `/about/credits` | About and lists                                                                |
+| `/uses`                                                     | Tools and gear (Directus)                                                      |
+| `/cv`                                                       | Résumé                                                                         |
+| `/colophon`                                                 | Stack, type, and credits                                                       |
+| `/imprint`                                                  | Legal                                                                          |
+| `/rss.xml`, `/sitemap.xml`, `/llms.txt`                     | Feeds and discovery                                                            |
 
-- `/about` - About, books, movies, credits
-- `/uses` - Tools, hardware, and services (Directus)
-- `/cv` - Resume
-- `/colophon` - Tech stack and credits
-- `/imprint` - Legal
+`/blog` redirects to `/timeline`.
 
-The activity feed stores only a sanitised page path, title, approximate city-level
-location, timestamp, and a coarse browser/OS label derived from the User-Agent.
-Visitor rows are separated by a hashed browser cookie id plus User-Agent. It does
-not store IP addresses, raw user agents, referrers, or query strings.
-
-## 👀 Coming soon
-
-- Tag page
-- Article search
-- Public statistics (for example Page Speed Insights)
-- Improved syntax highlighting
-- Setup/resources section (apps, typefaces via Directus)
-- Spotify Now Playing widget
+The activity feed stores a sanitised path, title, approximate city-level location, timestamp, coarse browser/OS label, and optional listening metadata. Rows are keyed by a hashed cookie id plus User-Agent. It does not store raw IPs, full user agents, referrers, or query strings.
 
 ## Deploy (Cloudflare Workers)
 
-The production build writes files to `dist/`. Deploy with Wrangler:
-
 ```bash
-npm run build
-npx wrangler deploy
+bun run deploy
 ```
 
-Set secrets and vars in the Cloudflare dashboard. You can also use `wrangler secret put`.
+`predeploy` runs Ultracite, React Doctor, TypeScript, and knip. The build writes to `dist/`; **Wrangler** serves assets and runs `src/worker.ts` (scheduled polls, Durable Objects, KV).
 
-`PUBLIC_POSTHOG_KEY` is a public project token. It must be available as a Worker var (see `wrangler.jsonc`) so the SSR layout can pass it into the client island. An empty build-time key used to tree-shake PostHog out of the bundle.
+Configure **KV** (`LOCATION_KV`), **Durable Objects** (`ActivityFeedStore`), **Images**, cron triggers, and secrets in the Cloudflare dashboard or with `wrangler secret put`.

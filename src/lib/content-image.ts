@@ -24,7 +24,6 @@ export const collectContentAssetIds = (
   return [...ids];
 };
 
-/** Markdown alt, then the Directus file description, then its title. */
 export const resolveContentImageAlt = (
   markdownAlt?: string,
   meta?: ContentImageMeta

@@ -3,14 +3,13 @@ import "@/styles/globals.css";
 
 import ActivityCapture from "@/components/activity-capture";
 import Navigation from "@/components/navigation";
-import PostHogClient from "@/components/posthog-client";
 import BaseHead from "@/components/seo/base-head.astro";
 import JsonLd from "@/components/seo/json-ld.astro";
 import type { JsonLdCollectionItem } from "@/lib/json-ld";
 import { menuItems } from "@/lib/menu-items";
 import type { PageMetadata } from "@/lib/metadata";
-import { resolvePosthogClientConfig } from "@/lib/posthog-config";
-import { workersEnv } from "@/lib/workers-env";
+import { siteLocale } from "@/lib/site";
+import { DARK_MODE_QUERY, THEME_STORAGE_KEY } from "@/lib/theme";
 
 const internalLink = {
   and: [
@@ -43,6 +42,20 @@ const speculationRules = JSON.stringify({
   ],
 });
 
+const themeBootScript = `(() => {
+  const storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
+  const storedTheme = window.localStorage.getItem(storageKey);
+  let preferredTheme = "light";
+  if (storedTheme === "light" || storedTheme === "dark") {
+    preferredTheme = storedTheme;
+  } else if (window.matchMedia(${JSON.stringify(DARK_MODE_QUERY)}).matches) {
+    preferredTheme = "dark";
+  }
+
+  document.documentElement.classList.toggle("dark", preferredTheme === "dark");
+  document.documentElement.style.colorScheme = preferredTheme;
+})();`;
+
 interface Props {
   canonicalUrl?: string;
   collectionItems?: JsonLdCollectionItem[];
@@ -58,23 +71,10 @@ const {
   meta,
   rootDefaults = false,
 } = Astro.props;
-
-const posthog = resolvePosthogClientConfig({
-  NEXT_PUBLIC_POSTHOG_HOST:
-    import.meta.env.NEXT_PUBLIC_POSTHOG_HOST ??
-    workersEnv.NEXT_PUBLIC_POSTHOG_HOST,
-  NEXT_PUBLIC_POSTHOG_KEY:
-    import.meta.env.NEXT_PUBLIC_POSTHOG_KEY ??
-    workersEnv.NEXT_PUBLIC_POSTHOG_KEY,
-  PUBLIC_POSTHOG_HOST:
-    import.meta.env.PUBLIC_POSTHOG_HOST ?? workersEnv.PUBLIC_POSTHOG_HOST,
-  PUBLIC_POSTHOG_KEY:
-    import.meta.env.PUBLIC_POSTHOG_KEY ?? workersEnv.PUBLIC_POSTHOG_KEY,
-});
 ---
 
 <!doctype html>
-<html lang="en-AU" suppressHydrationWarning>
+<html lang={siteLocale} suppressHydrationWarning>
   <head>
     <meta charset="utf-8" />
     <link
@@ -98,24 +98,7 @@ const posthog = resolvePosthogClientConfig({
       rel="preload"
       type="font/woff2"
     />
-    <script data-astro-rerun is:inline>
-      (() => {
-        const storageKey = "theme";
-        const storedTheme = window.localStorage.getItem(storageKey);
-        let preferredTheme = "light";
-        if (storedTheme === "light" || storedTheme === "dark") {
-          preferredTheme = storedTheme;
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          preferredTheme = "dark";
-        }
-
-        document.documentElement.classList.toggle(
-          "dark",
-          preferredTheme === "dark"
-        );
-        document.documentElement.style.colorScheme = preferredTheme;
-      })();
-    </script>
+    <script data-astro-rerun is:inline set:html={themeBootScript} />
     <script is:inline set:html={speculationRules} type="speculationrules" />
     <BaseHead
       canonicalUrl={canonicalUrl}
@@ -144,13 +127,6 @@ const posthog = resolvePosthogClientConfig({
         <slot />
       </main>
     </div>
-    {posthog ? (
-      <PostHogClient
-        apiHost={posthog.apiHost}
-        apiKey={posthog.apiKey}
-        client:idle
-      />
-    ) : null}
     <ActivityCapture client:idle />
   </body>
 </html>

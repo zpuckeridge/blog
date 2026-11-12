@@ -43,7 +43,6 @@ const textOf = (node: MdNode): string => {
   return (node.children ?? []).map((child) => textOf(child)).join("");
 };
 
-/** Headings outside footnote definitions, in document order. */
 export const headingsFromTree = (tree: MdNode): ArticleHeading[] => {
   const headings: ArticleHeading[] = [];
 
@@ -75,7 +74,7 @@ export const headingsFromTree = (tree: MdNode): ArticleHeading[] => {
   return headings;
 };
 
-export const shiftedHeadings = (
+const shiftedHeadings = (
   headings: readonly ArticleHeading[]
 ): ArticleHeading[] => {
   const shift = headingLevelShift(headings.map((heading) => heading.depth));

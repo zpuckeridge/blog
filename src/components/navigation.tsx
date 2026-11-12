@@ -10,6 +10,7 @@ import MenuThemeToggle, {
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
 import { menuItems } from "@/lib/menu-items";
+import { isEditableTarget } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 interface NavigationProps {
@@ -25,20 +26,6 @@ const mobileNavQuery = "(max-width: 767px)";
 const isCurrentItem = (pathname: string, href: string) =>
   pathname === href || pathname.startsWith(`${href}/`);
 
-const isEditableTarget = (target: EventTarget | null) => {
-  if (!(target instanceof HTMLElement)) {
-    return false;
-  }
-
-  const { tagName } = target;
-  return (
-    target.isContentEditable ||
-    tagName === "INPUT" ||
-    tagName === "TEXTAREA" ||
-    tagName === "SELECT"
-  );
-};
-
 const Navigation = ({ pathname }: NavigationProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -53,25 +40,26 @@ const Navigation = ({ pathname }: NavigationProps) => {
         event.metaKey ||
         event.shiftKey ||
         event.key !== "m" ||
-        menuOpen ||
-        drawerOpen ||
         isEditableTarget(event.target)
       ) {
         return;
       }
 
       event.preventDefault();
+      // Capture runs before the menu typeahead, which would jump to Music.
+      event.stopPropagation();
+
       if (window.matchMedia(mobileNavQuery).matches) {
-        setDrawerOpen(true);
+        setDrawerOpen((open) => !open);
         return;
       }
 
-      setMenuOpen(true);
+      setMenuOpen((open) => !open);
     };
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [drawerOpen, menuOpen]);
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia(mobileNavQuery);
@@ -182,7 +170,7 @@ const Navigation = ({ pathname }: NavigationProps) => {
                     </Menu.LinkItem>
                   );
                 })}
-                <div className="mt-1 border-border border-t pt-1">
+                <div className="border-border border-t">
                   <MenuThemeToggle
                     className="flex w-full items-baseline gap-2 px-3 py-1 text-left outline-hidden select-none [&:hover]:bg-background [&:hover]:text-foreground"
                     iconClassName="ml-auto size-3 shrink-0 self-center"

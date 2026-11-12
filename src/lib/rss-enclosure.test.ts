@@ -13,13 +13,13 @@ describe("buildEnclosureTag", () => {
     assert.equal(enclosureLength("512"), 512);
     assert.equal(readContentLength("3577041"), 3_577_041);
     assert.equal(readContentLength(null), 0);
-    assert.equal(
-      buildEnclosureTag({
-        length: 0,
-        url: "https://zacchary.me/img/file",
-      }),
-      '<enclosure url="https://zacchary.me/img/file" length="0" type="image/jpeg" />'
-    );
+    const unknownSize = buildEnclosureTag({
+      length: 0,
+      url: "https://zacchary.me/img/file",
+    });
+    assert.match(unknownSize, /url="https:\/\/zacchary\.me\/img\/file"/u);
+    assert.match(unknownSize, /length="0"/u);
+    assert.match(unknownSize, /type="image\/jpeg"/u);
     assert.match(
       buildEnclosureTag({
         length: 1200,

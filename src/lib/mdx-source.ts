@@ -1,4 +1,4 @@
-import type { Root } from "mdast";
+import type { Root } from "mdastic";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import { mdxParse } from "safe-mdx/parse";
@@ -35,8 +35,9 @@ export const escapeXmlProcessingInstructionsOutsideCodeFences = (
 
 const gfmMarkdownParser = remark().use(remarkGfm);
 
+/** remark emits `@types/mdast` nodes; structurally compatible with mdastic (safe-mdx). */
 const parseGfmMarkdown = (source: string): Root =>
-  gfmMarkdownParser.parse(source) as Root;
+  gfmMarkdownParser.parse(source) as unknown as Root;
 
 export type TimelineMdxParseResult =
   | {

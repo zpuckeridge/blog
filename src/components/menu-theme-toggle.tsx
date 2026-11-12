@@ -2,10 +2,16 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { RxMoon, RxSun } from "react-icons/rx";
 
-type Theme = "dark" | "light";
-
-const STORAGE_KEY = "theme";
-const DARK_MODE_QUERY = "(prefers-color-scheme: dark)";
+import {
+  applyTheme,
+  DARK_MODE_QUERY,
+  isEditableTarget,
+  persistTheme,
+  readStoredTheme,
+  resolveTheme,
+  THEME_CHANGE_EVENT,
+} from "@/lib/theme";
+import type { Theme } from "@/lib/theme";
 
 const getAppliedTheme = (): Theme => {
   if (typeof document === "undefined") {
@@ -14,34 +20,8 @@ const getAppliedTheme = (): Theme => {
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 };
 
-const applyTheme = (theme: Theme) => {
-  const root = document.documentElement;
-  root.classList.add("theme-transition-lock");
-  root.classList.toggle("dark", theme === "dark");
-  root.style.colorScheme = theme;
-  void root.offsetHeight;
-  root.classList.remove("theme-transition-lock");
-};
-
-const isEditableTarget = (target: EventTarget | null) =>
-  target instanceof HTMLElement &&
-  (target.isContentEditable ||
-    target.tagName === "INPUT" ||
-    target.tagName === "TEXTAREA" ||
-    target.tagName === "SELECT");
-
-const THEME_EVENT = "theme-change";
-
-/** Switch to the opposite of the applied theme and save it. */
 export const toggleResolvedTheme = () => {
-  const next: Theme = getAppliedTheme() === "dark" ? "light" : "dark";
-  try {
-    window.localStorage.setItem(STORAGE_KEY, next);
-  } catch {
-    // Storage unavailable
-  }
-  applyTheme(next);
-  window.dispatchEvent(new Event(THEME_EVENT));
+  persistTheme(getAppliedTheme() === "dark" ? "light" : "dark");
 };
 
 export const isThemeShortcut = (event: {
@@ -67,7 +47,6 @@ interface MenuThemeToggleProps {
   shortcutActive?: boolean;
 }
 
-/** Light / dark / system switch shared by the menu dropdown and mobile drawer. */
 const MenuThemeToggle = ({
   children,
   className,
@@ -80,20 +59,16 @@ const MenuThemeToggle = ({
     const sync = () => setTheme(getAppliedTheme());
     const media = window.matchMedia(DARK_MODE_QUERY);
     const onSystemChange = () => {
-      try {
-        if (window.localStorage.getItem(STORAGE_KEY)) {
-          return;
-        }
-      } catch {
-        // Storage unavailable
+      if (readStoredTheme()) {
+        return;
       }
-      applyTheme(media.matches ? "dark" : "light");
+      applyTheme(resolveTheme());
       sync();
     };
-    window.addEventListener(THEME_EVENT, sync);
+    window.addEventListener(THEME_CHANGE_EVENT, sync);
     media.addEventListener("change", onSystemChange);
     return () => {
-      window.removeEventListener(THEME_EVENT, sync);
+      window.removeEventListener(THEME_CHANGE_EVENT, sync);
       media.removeEventListener("change", onSystemChange);
     };
   }, []);

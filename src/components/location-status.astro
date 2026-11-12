@@ -1,20 +1,13 @@
 ---
-import { formatLocationRelativeTime } from '@/lib/location-status';
-import type { LocationPublicResponse } from '@/lib/location-status';
+import { locationDotClass } from "@/lib/location-status";
+import type { LocationPublicResponse } from "@/lib/location-status";
+import { formatRelativeTime } from "@/lib/relative-time";
 
 interface Props {
   initial?: LocationPublicResponse | null;
 }
 
 const { initial = null } = Astro.props;
-
-const categoryStyles: Record<string, string> = {
-  away: "bg-gray-400",
-  home: "bg-green-500",
-  social: "bg-gray-400",
-  transit: "bg-amber-500",
-  work: "bg-blue-500",
-};
 
 const showInitial = Boolean(initial?.status);
 
@@ -24,18 +17,18 @@ const getInitialLabel = (value: typeof initial): string => {
   }
 
   if (value.isStale) {
-    return `${value.status} • ${formatLocationRelativeTime(value.updatedAt)}`;
+    return `${value.status} • ${formatRelativeTime(value.updatedAt)}`;
   }
 
   return value.status;
 };
 
 const getInitialDotClass = (value: typeof initial): string => {
-  if (!value || value.isStale) {
-    return "bg-gray-400";
+  if (!value) {
+    return locationDotClass("away", true);
   }
 
-  return categoryStyles[value.category] ?? "bg-gray-400";
+  return locationDotClass(value.category, value.isStale);
 };
 
 const initialLabel = getInitialLabel(initial);
@@ -70,31 +63,10 @@ const initialDotClass = getInitialDotClass(initial);
 </a>
 
 <script>
+  import { isLikelyBot } from "@/lib/is-likely-bot";
+  import { locationDotClass } from "@/lib/location-status";
+  import { formatRelativeTime } from "@/lib/relative-time";
   import { syncStatusPulse } from "@/lib/sync-status-pulse";
-
-  const BOT_PATTERN =
-    /bot|crawl|spider|slurp|lighthouse|pagespeed|headless|preview|website.?carbon|gtmetrix|pingdom|uptime/iu;
-
-  const formatRelativeTime = (updatedAt) => {
-    const seconds = Math.max(0, Math.floor((Date.now() - updatedAt) / 1000));
-
-    if (seconds < 60) {
-      return "just now";
-    }
-
-    const minutes = Math.floor(seconds / 60);
-    if (minutes < 60) {
-      return `${minutes}m ago`;
-    }
-
-    const hours = Math.floor(minutes / 60);
-    if (hours < 24) {
-      return `${hours}h ago`;
-    }
-
-    const days = Math.floor(hours / 24);
-    return `${days}d ago`;
-  };
 
   const initLocationStatus = () => {
     for (const root of document.querySelectorAll("[data-location-status]")) {
@@ -115,23 +87,13 @@ const initialDotClass = getInitialDotClass(initial);
       root.dataset.locationReady = "true";
       syncStatusPulse(dot, dot.classList.contains("status-pulse"));
 
-      if (BOT_PATTERN.test(navigator.userAgent) || navigator.webdriver) {
+      if (isLikelyBot()) {
         continue;
       }
 
-      const categoryStyles = {
-        away: "bg-gray-400",
-        home: "bg-green-500",
-        social: "bg-gray-400",
-        transit: "bg-amber-500",
-        work: "bg-blue-500",
-      };
-
       const applyStatus = (payload) => {
         const shouldPulse = !payload.isStale;
-        const dotColor = payload.isStale
-          ? "bg-gray-400"
-          : (categoryStyles[payload.category] ?? "bg-gray-400");
+        const dotColor = locationDotClass(payload.category, payload.isStale);
         dot.className = `my-auto h-2 w-2 shrink-0 ${dotColor}`;
         syncStatusPulse(dot, shouldPulse);
         root.classList.toggle("opacity-60", payload.isStale);

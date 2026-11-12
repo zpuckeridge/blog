@@ -1,30 +1,31 @@
+import { siteLocale } from "@/lib/site";
+
 /** Canonical timezone for authored dates so SSR and browser produce identical formatted strings. */
-const BRISBANE_TIMEZONE = "Australia/Brisbane";
-const AU_LOCALE = "en-AU";
+export const BRISBANE_TIME_ZONE = "Australia/Brisbane";
 
 export type DateInput = string | Date | number;
 
 const coerceDate = (value: DateInput): Date =>
   value instanceof Date ? value : new Date(value);
 
-const formatterMonthYear = new Intl.DateTimeFormat(AU_LOCALE, {
+const formatterMonthYear = new Intl.DateTimeFormat(siteLocale, {
   month: "long",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
   year: "numeric",
 });
 
-const formatterFullWeekday = new Intl.DateTimeFormat(AU_LOCALE, {
+const formatterFullWeekday = new Intl.DateTimeFormat(siteLocale, {
   day: "2-digit",
   month: "long",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
   weekday: "long",
   year: "numeric",
 });
 
-const formatterArticleDateParts = new Intl.DateTimeFormat(AU_LOCALE, {
+const formatterArticleDateParts = new Intl.DateTimeFormat(siteLocale, {
   day: "numeric",
   month: "long",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
   weekday: "long",
   year: "numeric",
 });
@@ -51,28 +52,28 @@ const dayOrdinal = (day: number): string => {
   }
 };
 
-const formatterShortMonthDay = new Intl.DateTimeFormat(AU_LOCALE, {
+const formatterShortMonthDay = new Intl.DateTimeFormat(siteLocale, {
   day: "2-digit",
   month: "short",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
 });
 
-const formatterLongFull = new Intl.DateTimeFormat(AU_LOCALE, {
+const formatterLongFull = new Intl.DateTimeFormat(siteLocale, {
   day: "numeric",
   month: "long",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
   year: "numeric",
 });
 
-const formatterDdMmYyParts = new Intl.DateTimeFormat(AU_LOCALE, {
+const formatterDdMmYyParts = new Intl.DateTimeFormat(siteLocale, {
   day: "2-digit",
   month: "2-digit",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
   year: "numeric",
 });
 
-const yearNumericBrisbane = new Intl.DateTimeFormat(AU_LOCALE, {
-  timeZone: BRISBANE_TIMEZONE,
+const yearNumericBrisbane = new Intl.DateTimeFormat(siteLocale, {
+  timeZone: BRISBANE_TIME_ZONE,
   year: "numeric",
 });
 
@@ -103,7 +104,7 @@ const tzDayMonthYear = (
 const formatterIsoDateBrisbane = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
   month: "2-digit",
-  timeZone: BRISBANE_TIMEZONE,
+  timeZone: BRISBANE_TIME_ZONE,
   year: "numeric",
 });
 
@@ -114,14 +115,12 @@ export const isoDateInBrisbane = function isoDateInBrisbane(
   return formatterIsoDateBrisbane.format(coerceDate(at));
 };
 
-/** e.g. "January 2024" */
 export const formatPublishedMonthYear = function formatPublishedMonthYear(
   isoDate: DateInput
 ): string {
   return formatterMonthYear.format(coerceDate(isoDate));
 };
 
-/** e.g. "Monday, 06 October 2025" */
 export const formatPublishedFullWeekday = function formatPublishedFullWeekday(
   isoDate: DateInput
 ): string {
@@ -138,7 +137,6 @@ export const formatPublishedFullWeekday = function formatPublishedFullWeekday(
   return `${weekday}, ${day} ${month} ${year}`;
 };
 
-/** e.g. "Wednesday 14th July 2026" */
 export const formatPublishedArticleDate = function formatPublishedArticleDate(
   isoDate: DateInput
 ): string {
@@ -155,7 +153,6 @@ export const formatPublishedArticleDate = function formatPublishedArticleDate(
   return `${weekday} ${dayOrdinal(day)} ${month} ${year}`;
 };
 
-/** e.g. "05 Jan" */
 export const formatPublishedShortDayMonth =
   function formatPublishedShortDayMonth(isoDate: DateInput): string {
     const map = formatParts(formatterShortMonthDay, isoDate);
@@ -164,7 +161,6 @@ export const formatPublishedShortDayMonth =
     return `${day} ${month}`.trim();
   };
 
-/** e.g. "6 January 2025" */
 export const formatPublishedLongDate = function formatPublishedLongDate(
   isoDate: DateInput
 ): string {
@@ -195,3 +191,45 @@ export const calendarYearInBrisbane = function calendarYearInBrisbane(
 ): number {
   return Math.trunc(Number(yearNumericBrisbane.format(coerceDate(at))));
 };
+
+const clockSecondFormatter = new Intl.DateTimeFormat(siteLocale, {
+  second: "2-digit",
+  timeZone: BRISBANE_TIME_ZONE,
+});
+
+export const brisbaneClockSecond = (at: DateInput = new Date()): number =>
+  Number(formatParts(clockSecondFormatter, at).second ?? "0");
+
+const clockTimeFormatter = new Intl.DateTimeFormat(siteLocale, {
+  dayPeriod: "short",
+  hour: "numeric",
+  hour12: true,
+  minute: "2-digit",
+  timeZone: BRISBANE_TIME_ZONE,
+});
+
+export const formatBrisbaneClockParts = (
+  at: DateInput = new Date()
+): { dayPeriod: string; hour: string; minute: string } => {
+  const map = formatParts(clockTimeFormatter, at);
+  return {
+    dayPeriod: map.dayPeriod ?? "",
+    hour: map.hour ?? "",
+    minute: map.minute ?? "",
+  };
+};
+
+export const formatBrisbaneAbsolute = (
+  at: DateInput,
+  timeZone: string,
+  withZoneName = false
+): string =>
+  new Intl.DateTimeFormat(siteLocale, {
+    day: "2-digit",
+    hour: "numeric",
+    minute: "2-digit",
+    month: "2-digit",
+    timeZone,
+    ...(withZoneName ? { timeZoneName: "short" as const } : {}),
+    year: "numeric",
+  }).format(coerceDate(at));

@@ -9,13 +9,9 @@ import {
   moveCharsetFirst,
 } from "@/lib/html-cache";
 import { HTML_CONTENT_SECURITY_POLICY } from "@/lib/security-headers";
+import { isProtectedVideoPath } from "@/lib/video-paths";
 
 const REFERRER_POLICY = "strict-origin-when-cross-origin";
-
-const isProtectedPath = (pathname: string): boolean =>
-  pathname === "/videos" ||
-  pathname.startsWith("/video/") ||
-  pathname === "/api/video-auth";
 
 const waitUntilFrom = (
   locals: unknown
@@ -59,7 +55,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const headers = new Headers(response.headers);
   headers.set("Referrer-Policy", REFERRER_POLICY);
 
-  const protectedPath = isProtectedPath(context.url.pathname);
+  const protectedPath = isProtectedVideoPath(context.url.pathname);
   if (protectedPath) {
     headers.set("Cache-Control", "private, no-store");
     headers.set("Vary", "Cookie");

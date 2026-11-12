@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 
 import { getSameOriginActivityReferer } from "@/lib/activity-request";
+import { jsonNoStore } from "@/lib/json-response";
 import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
@@ -12,17 +13,6 @@ import {
   getRequestClientKey,
 } from "@/lib/request-rate-limit";
 import { workersEnv } from "@/lib/workers-env";
-
-const JSON_HEADERS = { "Cache-Control": "no-store" };
-
-const jsonWithHeaders = (body: unknown, init?: ResponseInit): Response =>
-  Response.json(body, {
-    ...init,
-    headers: {
-      ...init?.headers,
-      ...JSON_HEADERS,
-    },
-  });
 
 const readRecents = async (): Promise<RecentListen[]> => {
   const kv = workersEnv.LOCATION_KV;
@@ -36,19 +26,19 @@ const readRecents = async (): Promise<RecentListen[]> => {
 
 export const GET: APIRoute = async () => {
   if (!workersEnv.LOCATION_KV) {
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Listening recents are not configured" },
       { status: 503 }
     );
   }
 
-  return jsonWithHeaders({ recents: await readRecents() });
+  return jsonNoStore({ recents: await readRecents() });
 };
 
 export const POST: APIRoute = async ({ request }) => {
   const kv = workersEnv.LOCATION_KV;
   if (!kv) {
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Listening recents are not configured" },
       { status: 503 }
     );
@@ -56,7 +46,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const referer = getSameOriginActivityReferer(request);
   if (!referer) {
-    return jsonWithHeaders({ accepted: false });
+    return jsonNoStore({ accepted: false });
   }
 
   const rateLimit = enforceRateLimit({
@@ -67,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   if (rateLimit.limited) {
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Too many listening updates. Please try again later." },
       {
         headers: {
@@ -79,10 +69,10 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    return jsonWithHeaders(await recordListeningRecent(kv));
+    return jsonNoStore(await recordListeningRecent(kv));
   } catch (error) {
     console.error("Failed to record listening recent", error);
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Failed to record listening recent" },
       { status: 500 }
     );

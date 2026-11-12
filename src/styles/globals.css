@@ -93,10 +93,10 @@
     serif;
 
   /* Slightly heavier defaults (Archivo variable wght axis) */
-  --font-weight-normal: 450;
+  --font-weight-normal: 550;
   --font-weight-medium: 550;
-  --font-weight-semibold: 650;
-  --font-weight-bold: 750;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 550;
 }
 
 :root {
@@ -170,15 +170,23 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   *,
   *::before,
   *::after {
     border-radius: 0;
   }
+  html {
+    scroll-padding-top: 4rem;
+  }
+
   body {
     @apply bg-background text-foreground font-normal font-sans;
+  }
+
+  :where(.prose :is(h2, h3, h4, h5, h6)) {
+    scroll-margin-top: 4rem;
   }
 
   :where(.font-redaction, .font-redaction-italic) {
@@ -187,6 +195,91 @@
   }
   hr {
     @apply border-0 border-t border-dotted border-border;
+  }
+}
+
+/* Citation sits under the quote and lengthens the gap before the next paragraph.
+   Clear the first child's margin so this padding is the space above the text.
+   Unlayered so it wins over the prose paragraph margin in the utilities layer. */
+.prose blockquote:has(+ .quote-extend) {
+  padding-block-start: 1.5rem;
+}
+
+.prose blockquote:has(+ .quote-extend) > :first-child {
+  margin-block-start: 0;
+}
+
+:focus,
+:focus-visible {
+  outline: none;
+}
+
+/* Article headings copy a permalink. The mark sits in the column padding. */
+a.heading-link {
+  position: relative;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.heading-link::before {
+  content: "#" / "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 100%;
+  display: flex;
+  align-items: center;
+  padding-inline-end: 0.35em;
+  font-size: 0.75em;
+  color: var(--muted-foreground);
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.heading-link:hover {
+    color: var(--color-blue-400);
+  }
+
+  .dark a.heading-link:hover {
+    color: var(--color-blue-600);
+  }
+
+  a.heading-link:hover::before {
+    opacity: 1;
+  }
+}
+
+a.heading-link:focus-visible {
+  color: var(--color-blue-400);
+  outline: max(2px, 0.08em) solid currentColor;
+  outline-offset: 0.25em;
+}
+
+.dark a.heading-link:focus-visible {
+  color: var(--color-blue-600);
+}
+
+a.heading-link:focus-visible::before {
+  opacity: 1;
+}
+
+a.heading-link:active {
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a.heading-link {
+    transition-duration: 200ms;
+    transition-property: color, opacity;
+    transition-timing-function: ease-out;
+  }
+
+  a.heading-link::before {
+    transition-duration: 200ms;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
   }
 }
 
@@ -219,6 +312,7 @@
 }
 
 .status-pulse {
+  /* Duration is owned by STATUS_PULSE_DURATION_MS once syncStatusPulse runs. */
   animation: status-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
@@ -309,10 +403,51 @@ html.theme-transition-lock *::after {
   @apply py-10 my-10 border-t border-b border-dotted border-border;
 }
 
-.footnotes :target {
-  color: #ffffff; /* text-white */
-  background-color: #60a5fa; /* bg-blue-400 */
-  animation: resetColors 200ms forwards;
+@property --reference-highlight-strength {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --reference-highlight-rest {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: canvastext;
+}
+
+:root {
+  --reference-highlight-background: var(--color-blue-400);
+  --reference-highlight-foreground: var(--color-blue-600);
+}
+
+.dark {
+  --reference-highlight-background: var(--color-blue-950);
+  --reference-highlight-foreground: var(--color-blue-400);
+}
+
+::highlight(reference) {
+  background-color: color-mix(
+    in oklab,
+    var(--reference-highlight-background)
+      calc(var(--reference-highlight-strength) * 50%),
+    transparent
+  );
+  color: color-mix(
+    in oklab,
+    var(--reference-highlight-foreground)
+      calc(var(--reference-highlight-strength) * 100%),
+    var(--reference-highlight-rest)
+  );
+}
+
+html.reference-highlight-fading {
+  animation: reference-highlight-fade 400ms ease-out forwards;
+}
+
+@keyframes reference-highlight-fade {
+  to {
+    --reference-highlight-strength: 0;
+  }
 }
 
 /* TOC sidebar expand/collapse animations */
@@ -335,16 +470,6 @@ html.theme-transition-lock *::after {
   to {
     opacity: 0;
     transform: translateX(-24px);
-  }
-}
-
-/* New animation to reset colors */
-@keyframes resetColors {
-  100% {
-    background-color: hsl(var(--background)); /* bg-background */
-    color: hsl(
-      var(--muted-foreground)
-    ); /* text-muted-foreground dark:text-muted-foreground */
   }
 }
 
@@ -391,6 +516,13 @@ h3:has(+ .footnotes) {
 [data-tooltip-dismissed] [role="tooltip"] {
   opacity: 0 !important;
   pointer-events: none !important;
+}
+
+/* Wider than the article text, but never inside the 1.5rem page padding.
+   The extension is spare space beside the 32rem column, and it shrinks to
+   nothing as that column fills the screen. Needs an ancestor @container. */
+@utility quote-extend {
+  margin-inline: calc(-1 * clamp(0rem, (100cqi - 32rem) / 2, 1.5rem));
 }
 
 .prose pre,

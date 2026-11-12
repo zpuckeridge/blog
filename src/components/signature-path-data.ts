@@ -1,4 +1,3 @@
-/** Path data for the animated signature SVG */
 export const SIGNATURE_PATH_DATA = [
   {
     className: "svg-elem-2",

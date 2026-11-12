@@ -3,6 +3,7 @@ import { compareDesc } from "date-fns";
 import BackLink from "@/components/back-link";
 import PostRendering from "@/components/posts";
 import type { Note, Post, TimelineItem } from "@/interfaces/content-item";
+import { groupItemsByBrisbaneYear } from "@/lib/group-by-brisbane-year";
 
 interface TimelinePageProps {
   allPosts: Post[];
@@ -36,14 +37,10 @@ const TimelinePage = ({ allPosts, allNotes }: TimelinePageProps) => {
   const sortedContent = allContent.toSorted((a, b) =>
     compareDesc(new Date(a.date_created), new Date(b.date_created))
   );
-  const content: Record<number, TimelineItem[]> = {};
-  for (const item of sortedContent) {
-    const year = new Date(item.date_created).getFullYear();
-    if (!content[year]) {
-      content[year] = [];
-    }
-    content[year].push(item);
-  }
+  const content = groupItemsByBrisbaneYear(
+    sortedContent,
+    (item) => item.date_created
+  );
 
   return (
     <div className="mx-auto flex max-w-lg flex-col gap-4 px-6 pb-20">

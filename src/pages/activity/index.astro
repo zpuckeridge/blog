@@ -2,10 +2,10 @@
 import ActivityFeed from "@/components/activity-feed";
 import ActivityStatusGraphs from "@/components/activity-status-graphs.astro";
 import Layout from "@/layouts/layout.astro";
+import { ACTIVITY_FEED_NAME } from "@/lib/activity-api";
 import { getServerStatusHistory } from "@/lib/status-history";
 import { workersEnv } from "@/lib/workers-env";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
-import type { ActivityEvent } from "@/lib/activity-feed";
 
 export const prerender = false;
 
@@ -20,10 +20,9 @@ const pageMeta = createPageMetadata({
 const fullTitle = formatPageTitle("Activity");
 const activityStore = workersEnv.ACTIVITY_FEED_STORE;
 const [initialEvents, statusHistory] = await Promise.all([
-  activityStore ? activityStore.getByName("public").list() : [],
+  activityStore ? activityStore.getByName(ACTIVITY_FEED_NAME).list() : [],
   getServerStatusHistory(),
 ]);
-const initialTypedEvents = initialEvents as ActivityEvent[];
 ---
 
 <Layout
@@ -52,6 +51,6 @@ const initialTypedEvents = initialEvents as ActivityEvent[];
         </section>
       ) : null
     }
-    <ActivityFeed client:load initialEvents={initialTypedEvents} />
+    <ActivityFeed client:load initialEvents={initialEvents} />
   </div>
 </Layout>

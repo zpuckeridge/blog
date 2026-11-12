@@ -29,7 +29,6 @@ const SEARCH_PROMPTS = [
   "Quest for content",
 ] as const;
 
-// Extract search component outside of Videos component
 const SearchBar = ({
   label,
   onSearchChange,
@@ -78,7 +77,6 @@ const Videos = ({ videos, itemsPerPage }: VideosProps) => {
     return SEARCH_PROMPTS[acc % SEARCH_PROMPTS.length];
   }, [videos, itemsPerPage]);
 
-  // Moved useMemo hooks before the early return
   const filteredVideos = useMemo(() => {
     const q = searchTerm.toLowerCase();
     const results: Video[] = [];

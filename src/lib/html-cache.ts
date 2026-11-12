@@ -1,3 +1,5 @@
+import { isProtectedVideoPath } from "@/lib/video-paths";
+
 export const HTML_CACHE_CONTROL =
   "public, max-age=0, must-revalidate, s-maxage=3600, stale-while-revalidate=86400";
 
@@ -7,11 +9,7 @@ export const CDN_CACHE_CONTROL =
 const CHARSET_TAG = /<meta\b[^>]*\bcharset\s*=\s*["']?utf-8["']?[^>]*>/giu;
 
 export const isEdgeCacheablePath = (pathname: string): boolean => {
-  if (
-    pathname === "/videos" ||
-    pathname.startsWith("/video/") ||
-    pathname === "/api/video-auth"
-  ) {
+  if (isProtectedVideoPath(pathname)) {
     return false;
   }
 

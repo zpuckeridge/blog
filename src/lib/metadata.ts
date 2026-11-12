@@ -4,6 +4,14 @@ import {
   SOCIAL_IMAGE_WIDTH,
 } from "@/lib/directus-asset";
 import { descriptionForPost, fitMetaDescription } from "@/lib/meta-description";
+import {
+  openGraphLocale,
+  personName,
+  siteHandle,
+  siteName,
+  timelinePostPath,
+  titleSuffix,
+} from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
 import { resolveVideoMedia } from "@/lib/video-source";
 
@@ -23,15 +31,10 @@ interface CreatePageMetadataOptions {
   title: string;
 }
 
-const siteName = "zacchary.me";
-const siteHandle = "@zpuckeridge";
-const siteTitle = "Zacchary Puckeridge";
-const titleSuffix = ` — ${siteTitle}`;
-
 export const formatPageTitle = (pageTitle: string): string => {
   if (
-    pageTitle === siteTitle ||
-    pageTitle.startsWith(`${siteTitle} `) ||
+    pageTitle === personName ||
+    pageTitle.startsWith(`${personName} `) ||
     pageTitle.includes(titleSuffix)
   ) {
     return pageTitle;
@@ -40,7 +43,6 @@ export const formatPageTitle = (pageTitle: string): string => {
   return `${pageTitle}${titleSuffix}`;
 };
 
-/** Article headline without the site-title suffix used in the document title. */
 export const articleHeadline = (pageTitle: string): string =>
   pageTitle.endsWith(titleSuffix)
     ? pageTitle.slice(0, -titleSuffix.length)
@@ -50,7 +52,7 @@ export const buildMetadataUrl = (path: string): string =>
   new URL(path, getSiteUrl()).toString();
 
 const defaultSocialImage: SocialImage = {
-  alt: "Portrait of Zacchary Puckeridge",
+  alt: `Portrait of ${personName}`,
   height: 630,
   url: buildMetadataUrl("/og-home.jpg"),
   width: 1200,
@@ -145,7 +147,7 @@ export const createPageMetadata = ({
     openGraph: {
       description: fittedDescription,
       images,
-      locale: "en_AU",
+      locale: openGraphLocale,
       siteName,
       title: formattedTitle,
       type: "website",
@@ -170,7 +172,7 @@ export const buildTimelinePostMetadata = (
   const { title } = post;
   const description = descriptionForPost(
     slug,
-    post.description || `Read ${title} on zacchary.me.`
+    post.description || `Read ${title} on ${siteName}.`
   );
 
   const base = createPageMetadata({
@@ -183,7 +185,7 @@ export const buildTimelinePostMetadata = (
         }
       : defaultSocialImage,
     keywords: post.tags,
-    path: `/timeline/${slug}`,
+    path: timelinePostPath(slug),
     title,
   });
 
@@ -191,7 +193,7 @@ export const buildTimelinePostMetadata = (
     ...base,
     openGraph: {
       ...base.openGraph,
-      authors: ["Zacchary Puckeridge"],
+      authors: [personName],
       modifiedTime: new Date(post.date_updated).toISOString(),
       publishedTime: new Date(post.date_created).toISOString(),
       tags: post.tags,
@@ -205,7 +207,7 @@ export const buildVideoPageMetadata = (
   slug: string
 ): PageMetadata => {
   const { title } = video;
-  const description = video.description || `Watch ${title} on zacchary.me.`;
+  const description = video.description || `Watch ${title} on ${siteName}.`;
   const { thumbnailUrl } = resolveVideoMedia(video.playback_id);
   const socialImage = {
     alt: title,

@@ -53,7 +53,6 @@ const trimToMax = (text: string): string => {
   return trimmed;
 };
 
-/** Collapse, trim, or pad copy so meta descriptions land between 120 and 155 characters. */
 export const fitMetaDescription = (raw: string): string => {
   const text = collapseWhitespace(raw);
   if (

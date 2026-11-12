@@ -1,43 +1,14 @@
 ---
-const timeZone = "Australia/Brisbane";
-
-const timePartsFormatter = new Intl.DateTimeFormat("en-AU", {
-  dayPeriod: "short",
-  hour: "numeric",
-  hour12: true,
-  minute: "2-digit",
-  timeZone,
-});
-
-const dateFormatter = new Intl.DateTimeFormat("en-AU", {
-  day: "2-digit",
-  month: "2-digit",
-  timeZone,
-  year: "numeric",
-});
-
-const formatNumericDate = (date: Date) => {
-  const parts = dateFormatter.formatToParts(date);
-  const day = parts.find((part) => part.type === "day")?.value ?? "";
-  const month = parts.find((part) => part.type === "month")?.value ?? "";
-  const year = parts.find((part) => part.type === "year")?.value ?? "";
-  return `${day}/${month}/${year}`;
-};
-
-const getTimeParts = (date: Date) => {
-  const parts = timePartsFormatter.formatToParts(date);
-  const hour = parts.find((part) => part.type === "hour")?.value ?? "";
-  const minute = parts.find((part) => part.type === "minute")?.value ?? "";
-  const dayPeriod =
-    parts.find((part) => part.type === "dayPeriod")?.value ?? "";
-
-  return { dayPeriod, hour, minute };
-};
+import {
+  brisbaneClockSecond,
+  formatBrisbaneClockParts,
+  formatDdMmYy,
+} from "@/lib/format-in-brisbane";
 
 const now = new Date();
-const initialTime = getTimeParts(now);
-const initialDate = formatNumericDate(now);
-const initialColonVisible = now.getSeconds() % 2 === 0;
+const initialTime = formatBrisbaneClockParts(now);
+const initialDate = formatDdMmYy(now);
+const initialColonVisible = brisbaneClockSecond(now) % 2 === 0;
 ---
 
 <div
@@ -68,61 +39,22 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 </div>
 
 <script>
-  const timeZone = "Australia/Brisbane";
-
-  const timePartsFormatter = new Intl.DateTimeFormat("en-AU", {
-    dayPeriod: "short",
-    hour: "numeric",
-    hour12: true,
-    minute: "2-digit",
-    timeZone,
-  });
-
-  const dateFormatter = new Intl.DateTimeFormat("en-AU", {
-    day: "2-digit",
-    month: "2-digit",
-    timeZone,
-    year: "numeric",
-  });
-
-  const formatNumericDate = (date) => {
-    const parts = dateFormatter.formatToParts(date);
-    const day = parts.find((part) => part.type === "day")?.value ?? "";
-    const month = parts.find((part) => part.type === "month")?.value ?? "";
-    const year = parts.find((part) => part.type === "year")?.value ?? "";
-    return `${day}/${month}/${year}`;
-  };
-
-  const absoluteFormatter = (zone, withZoneName = false) =>
-    new Intl.DateTimeFormat("en-AU", {
-      day: "2-digit",
-      hour: "numeric",
-      minute: "2-digit",
-      month: "2-digit",
-      timeZone: zone,
-      ...(withZoneName ? { timeZoneName: "short" } : {}),
-      year: "numeric",
-    });
-
-  const getTimeParts = (date) => {
-    const parts = timePartsFormatter.formatToParts(date);
-    const hour = parts.find((part) => part.type === "hour")?.value ?? "";
-    const minute = parts.find((part) => part.type === "minute")?.value ?? "";
-    const dayPeriod =
-      parts.find((part) => part.type === "dayPeriod")?.value ?? "";
-
-    return { dayPeriod, hour, minute };
-  };
+  import {
+    BRISBANE_TIME_ZONE,
+    brisbaneClockSecond,
+    formatBrisbaneAbsolute,
+    formatBrisbaneClockParts,
+    formatDdMmYy,
+  } from "@/lib/format-in-brisbane";
 
   const initBrisbaneClocks = () => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const dateTimeFormat = Intl.DateTimeFormat;
     const localTimeZone =
-      dateTimeFormat().resolvedOptions().timeZone || "UTC";
-    const isLocalAest = localTimeZone === timeZone;
+      Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+    const isLocalAest = localTimeZone === BRISBANE_TIME_ZONE;
 
     for (const root of document.querySelectorAll("[data-brisbane-clock]")) {
       if (!(root instanceof HTMLElement) || root.dataset.clockReady === "true") {
@@ -178,8 +110,8 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
       };
 
       const renderTooltip = (current) => {
-        const aestTime = absoluteFormatter(timeZone).format(current);
-        const localTime = absoluteFormatter(localTimeZone, true).format(current);
+        const aestTime = formatBrisbaneAbsolute(current, BRISBANE_TIME_ZONE);
+        const localTime = formatBrisbaneAbsolute(current, localTimeZone, true);
 
         tooltipEl.replaceChildren();
 
@@ -199,11 +131,11 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
 
       const render = () => {
         const current = new Date();
-        const { dayPeriod, hour, minute } = getTimeParts(current);
+        const { dayPeriod, hour, minute } = formatBrisbaneClockParts(current);
 
         hourEl.textContent = hour;
         minuteEl.textContent = minute;
-        dateEl.textContent = formatNumericDate(current);
+        dateEl.textContent = formatDdMmYy(current);
 
         const periodEl = ensurePeriodEl();
         periodEl.textContent = dayPeriod ? ` ${dayPeriod}` : "";
@@ -212,7 +144,10 @@ const initialColonVisible = now.getSeconds() % 2 === 0;
         if (reduceMotion) {
           colonEl.classList.remove("opacity-0");
         } else {
-          colonEl.classList.toggle("opacity-0", current.getSeconds() % 2 !== 0);
+          colonEl.classList.toggle(
+            "opacity-0",
+            brisbaneClockSecond(current) % 2 !== 0
+          );
         }
       };
 

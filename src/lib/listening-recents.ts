@@ -12,7 +12,7 @@ export const listeningIdentity = (
 ): string =>
   `${song.track.trim().toLowerCase()}::${song.artist.trim().toLowerCase()}`;
 
-const isNonEmptyString = (value: unknown): value is string =>
+export const isNonEmptyString = (value: unknown): value is string =>
   typeof value === "string" && value.trim().length > 0;
 
 const parseRecentListen = (value: unknown): RecentListen | null => {

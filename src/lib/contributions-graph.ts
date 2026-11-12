@@ -3,14 +3,10 @@ import {
   formatPublishedLongDate,
   isoDateInBrisbane,
 } from "@/lib/format-in-brisbane";
+import type { ContributionDay } from "@/lib/github-contributions";
 
-export interface ContributionDay {
-  color: string;
-  contributionCount: number;
-  date: string;
-}
+export type { ContributionDay };
 
-/** Intensity vs max in the last year (GitHub-style). */
 export const getContributionColor = (
   count: number,
   maxCount: number

@@ -1,13 +1,15 @@
 import type { APIRoute } from "astro";
 
 import { getPosts } from "@/lib/directus-content";
+import { pagesWhere } from "@/lib/public-pages";
 import { comparePostsByNewest } from "@/lib/related-posts";
+import { personName, timelinePostPath } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
 
 const link = (label: string, url: string): string => `- [${label}](${url})`;
 
 export const GET: APIRoute = async () => {
-  const baseUrl = getSiteUrl().replace(/\/$/u, "");
+  const baseUrl = getSiteUrl();
   let posts: { slug: string; title: string }[] = [];
 
   try {
@@ -19,28 +21,15 @@ export const GET: APIRoute = async () => {
     console.error("llms.txt: failed to list posts", error);
   }
 
-  const pages = [
-    link("Home", `${baseUrl}/`),
-    link("About", `${baseUrl}/about`),
-    link("Timeline", `${baseUrl}/timeline`),
-    link("Activity", `${baseUrl}/activity`),
-    link("Music", `${baseUrl}/music`),
-    link("Projects", `${baseUrl}/projects`),
-    link("CV", `${baseUrl}/cv`),
-    link("Uses", `${baseUrl}/uses`),
-    link("Books", `${baseUrl}/about/books`),
-    link("Movies", `${baseUrl}/about/movies`),
-    link("Credits", `${baseUrl}/about/credits`),
-    link("Colophon", `${baseUrl}/colophon`),
-    link("Imprint", `${baseUrl}/imprint`),
-    link("RSS", `${baseUrl}/rss.xml`),
-  ];
-
-  const postLinks = posts.map((post) =>
-    link(post.title, `${baseUrl}/timeline/${post.slug}`)
+  const pages = pagesWhere("llms").map((page) =>
+    link(page.label, `${baseUrl}${page.href}`)
   );
 
-  const body = `# Zacchary Puckeridge
+  const postLinks = posts.map((post) =>
+    link(post.title, `${baseUrl}${timelinePostPath(post.slug)}`)
+  );
+
+  const body = `# ${personName}
 
 [${baseUrl}](${baseUrl}/) is the personal site of Zacchary Puckeridge, a web developer and writer in Brisbane, Australia. He is IT Operations Lead at Star Compass and Haddon Institute, and runs obambulo studio.
 

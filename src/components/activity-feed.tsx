@@ -9,6 +9,8 @@ import {
   groupActivityEvents,
 } from "@/lib/activity-feed";
 import type { ActivityCluster, ActivityEvent } from "@/lib/activity-feed";
+import { siteLocale, titleSeparator } from "@/lib/site";
+import { VIDEO_PATH_PREFIX } from "@/lib/video-paths";
 
 interface ActivityFeedResponse {
   count: number;
@@ -62,8 +64,7 @@ const ActivityCount = ({ count }: { count: number }) =>
   ) : null;
 
 const getListenedLabels = (event: ActivityEvent) => {
-  const separator = " — ";
-  const separatorIndex = event.title.lastIndexOf(separator);
+  const separatorIndex = event.title.lastIndexOf(titleSeparator);
   const track =
     event.artist || separatorIndex === -1
       ? event.title
@@ -72,7 +73,7 @@ const getListenedLabels = (event: ActivityEvent) => {
     event.artist ??
     (separatorIndex === -1
       ? null
-      : event.title.slice(separatorIndex + separator.length));
+      : event.title.slice(separatorIndex + titleSeparator.length));
 
   return { artist, track };
 };
@@ -122,7 +123,7 @@ const StandardActivityAction = ({
 }) => {
   const title = formatActivityTitle(event.path, event.title, event.action);
   const isGatedVideo =
-    event.action === "watched" && event.path.startsWith("/video/");
+    event.action === "watched" && event.path.startsWith(VIDEO_PATH_PREFIX);
 
   return (
     <span className="relative z-10 block min-w-0 text-muted-foreground">
@@ -152,11 +153,11 @@ const formatActivityTime = (iso: string) => {
   if (Number.isNaN(date.getTime())) {
     return null;
   }
-  const time = date.toLocaleTimeString("en-AU", {
+  const time = date.toLocaleTimeString(siteLocale, {
     hour: ACTIVITY_TIME_FORMAT.hour,
     minute: ACTIVITY_TIME_FORMAT.minute,
   });
-  const day = date.toLocaleDateString("en-AU", {
+  const day = date.toLocaleDateString(siteLocale, {
     day: ACTIVITY_TIME_FORMAT.day,
     month: ACTIVITY_TIME_FORMAT.month,
     year: ACTIVITY_TIME_FORMAT.year,

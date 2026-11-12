@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 
+import { jsonNoStore } from "@/lib/json-response";
 import {
   deriveStatus,
   LOCATION_KV_KEY,
@@ -16,17 +17,6 @@ import {
 } from "@/lib/request-rate-limit";
 import { workersEnv } from "@/lib/workers-env";
 
-const JSON_HEADERS = { "Cache-Control": "no-store" };
-
-const jsonWithHeaders = (body: unknown, init?: ResponseInit): Response =>
-  Response.json(body, {
-    ...init,
-    headers: {
-      ...init?.headers,
-      ...JSON_HEADERS,
-    },
-  });
-
 const getWebhookSecret = (): string | null =>
   // Prefer the Worker secret binding. Avoid import.meta.env — Vite inlines it
   // into the production bundle at build time.
@@ -36,7 +26,7 @@ const getWebhookSecret = (): string | null =>
 
 export const GET: APIRoute = async () => {
   if (!workersEnv.LOCATION_KV) {
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Location status is not configured" },
       { status: 503 }
     );
@@ -45,13 +35,13 @@ export const GET: APIRoute = async () => {
   try {
     const status = await readLocationPublicStatus();
     if (!status) {
-      return jsonWithHeaders({ status: null }, { status: 200 });
+      return jsonNoStore({ status: null }, { status: 200 });
     }
 
-    return jsonWithHeaders(status);
+    return jsonNoStore(status);
   } catch (error) {
     console.error("Failed to read location status", error);
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Invalid stored location status" },
       { status: 500 }
     );
@@ -63,7 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
   const kv = workersEnv.LOCATION_KV;
 
   if (!secret || !kv) {
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Location webhook is not configured" },
       { status: 503 }
     );
@@ -71,7 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const authorization = request.headers.get("Authorization");
   if (authorization !== `Bearer ${secret}`) {
-    return jsonWithHeaders({ error: "Unauthorized" }, { status: 401 });
+    return jsonNoStore({ error: "Unauthorized" }, { status: 401 });
   }
 
   const rateLimit = enforceRateLimit({
@@ -81,7 +71,7 @@ export const POST: APIRoute = async ({ request }) => {
     windowMs: 1000 * 60,
   });
   if (rateLimit.limited) {
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Too many location updates. Please try again later." },
       {
         headers: {
@@ -110,14 +100,11 @@ export const POST: APIRoute = async ({ request }) => {
         : "";
 
     if (!zone || !(zone in ZONES)) {
-      return jsonWithHeaders(
-        { error: "Unknown or missing zone" },
-        { status: 400 }
-      );
+      return jsonNoStore({ error: "Unknown or missing zone" }, { status: 400 });
     }
 
     if (event !== "enter" && event !== "leave") {
-      return jsonWithHeaders({ error: "Invalid event" }, { status: 400 });
+      return jsonNoStore({ error: "Invalid event" }, { status: 400 });
     }
 
     const now = new Date();
@@ -137,10 +124,10 @@ export const POST: APIRoute = async ({ request }) => {
 
     await kv.put(LOCATION_KV_KEY, JSON.stringify(record));
 
-    return jsonWithHeaders({ status: record.status, success: true });
+    return jsonNoStore({ status: record.status, success: true });
   } catch (error) {
     console.error("Failed to update location status", error);
-    return jsonWithHeaders(
+    return jsonNoStore(
       { error: "Failed to update location status" },
       { status: 500 }
     );

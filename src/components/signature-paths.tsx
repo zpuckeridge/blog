@@ -28,7 +28,6 @@ const SignaturePathSegment = ({
   </>
 );
 
-/** Path elements for the animated signature SVG */
 export const SignaturePaths = () => (
   <g className="dark:fill-white">
     <SignaturePathSegment

@@ -2,6 +2,7 @@
 import TimelinePage from "@/components/timeline-page";
 import Layout from "@/layouts/layout.astro";
 import { buildMetadataUrl, createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { timelinePostPath } from "@/lib/site";
 import { getNotes, getPosts } from "@/lib/directus-content";
 
 export const prerender = false;
@@ -23,7 +24,7 @@ const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);
   collectionItems={allPosts.map((post) => ({
     datePublished: new Date(post.date_created).toISOString(),
     headline: post.title,
-    url: buildMetadataUrl(`/timeline/${post.slug}`),
+    url: buildMetadataUrl(timelinePostPath(post.slug)),
   }))}
   fullTitle={fullTitle}
   meta={pageMeta}

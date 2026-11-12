@@ -111,25 +111,27 @@ const MusicHistory = ({
   const skipNetwork = isLikelyBot();
 
   const refreshLatest = useCallback(async () => {
+    let payload: HistoryPayload;
     try {
-      const payload = await fetchHistory(0);
-      setPlays((current) => {
-        const next = mergeLatestPlays(current, payload.plays);
-        return next === current ? current : [...next];
-      });
-      setPending((current) =>
-        current.filter(
-          (play) =>
-            !payload.plays.some((incoming) =>
-              sameListeningSession(incoming, play)
-            )
-        )
-      );
-      totalRef.current = payload.total;
-      setHasMore(offsetRef.current < payload.total);
+      payload = await fetchHistory(0);
     } catch {
-      // Keep the rows already on screen. The next poll tries again.
+      return;
     }
+
+    setPlays((current) => {
+      const next = mergeLatestPlays(current, payload.plays);
+      return next === current ? current : [...next];
+    });
+    setPending((current) =>
+      current.filter(
+        (play) =>
+          !payload.plays.some((incoming) =>
+            sameListeningSession(incoming, play)
+          )
+      )
+    );
+    totalRef.current = payload.total;
+    setHasMore(offsetRef.current < payload.total);
   }, []);
 
   const onPresence = useCallback(

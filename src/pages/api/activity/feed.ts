@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 
+import { ACTIVITY_FEED_NAME } from "@/lib/activity-api";
 import { workersEnv } from "@/lib/workers-env";
 
 export const GET: APIRoute = async () => {
@@ -16,7 +17,7 @@ export const GET: APIRoute = async () => {
     );
   }
 
-  const events = await store.getByName("public").list();
+  const events = await store.getByName(ACTIVITY_FEED_NAME).list();
   return Response.json(
     {
       count: events.length,
