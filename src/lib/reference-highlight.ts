@@ -91,43 +91,169 @@ const lineBoxes = (source: HTMLElement | Range): LineBox[] => {
   return lines;
 };
 
-const collapsedRangeAt = (x: number, y: number): Range | null => {
-  const point = document.caretPositionFromPoint(x, y);
-  if (point) {
-    const range = document.createRange();
-    range.setStart(point.offsetNode, point.offset);
-    range.collapse(true);
-    return range;
-  }
-  return document.caretRangeFromPoint(x, y);
-};
+interface CaretBoundary {
+  node: Node;
+  offset: number;
+}
 
-const lineRange = (line: LineBox, progress: number): Range | null => {
-  const y = line.top + line.height / 2;
-  const start = collapsedRangeAt(line.left + 1, y);
-  const end = collapsedRangeAt(
-    Math.min(line.left + line.width * progress, line.left + line.width - 1),
-    y
-  );
-  if (!(start && end)) {
-    return null;
+interface TextSlice {
+  from: number;
+  node: Text;
+  to: number;
+}
+
+interface LineSpan {
+  slices: TextSlice[];
+}
+
+const boundaryInside = (
+  source: HTMLElement | Range,
+  boundary: CaretBoundary
+): boolean => {
+  if (source instanceof HTMLElement) {
+    return source.contains(boundary.node);
   }
 
   try {
-    const range = document.createRange();
-    range.setStart(start.startContainer, start.startOffset);
-    range.setEnd(end.startContainer, end.startOffset);
-    return range.collapsed ? null : range;
+    const probe = document.createRange();
+    probe.setStart(boundary.node, boundary.offset);
+    probe.collapse(true);
+    const beforeSource =
+      source.compareBoundaryPoints(Range.START_TO_START, probe) > 0;
+    const afterSource =
+      source.compareBoundaryPoints(Range.END_TO_START, probe) < 0;
+    return !(beforeSource || afterSource);
   } catch {
+    return false;
+  }
+};
+
+const boundaryAt = (x: number, y: number): CaretBoundary | null => {
+  const point = document.caretPositionFromPoint(x, y);
+  if (point) {
+    return { node: point.offsetNode, offset: point.offset };
+  }
+  const range = document.caretRangeFromPoint(x, y);
+  if (!range) {
     return null;
   }
+  return { node: range.startContainer, offset: range.startOffset };
+};
+
+const textSlices = (start: CaretBoundary, end: CaretBoundary): TextSlice[] => {
+  const range = document.createRange();
+  try {
+    range.setStart(start.node, start.offset);
+    range.setEnd(end.node, end.offset);
+  } catch {
+    return [];
+  }
+  if (range.collapsed) {
+    return [];
+  }
+
+  const root =
+    range.commonAncestorContainer instanceof Text
+      ? range.commonAncestorContainer.parentNode
+      : range.commonAncestorContainer;
+  if (!root) {
+    return [];
+  }
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const slices: TextSlice[] = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (!(node instanceof Text)) {
+      continue;
+    }
+    let intersects = false;
+    try {
+      intersects = range.intersectsNode(node);
+    } catch {
+      continue;
+    }
+    if (!intersects) {
+      continue;
+    }
+    const from = node === range.startContainer ? range.startOffset : 0;
+    const to = node === range.endContainer ? range.endOffset : node.length;
+    if (to > from) {
+      slices.push({ from, node, to });
+    }
+  }
+  return slices;
+};
+
+/** Map each visual line to text offsets once, so later scroll cannot retarget it. */
+const lineSpans = (source: HTMLElement | Range): LineSpan[] => {
+  const spans: LineSpan[] = [];
+  for (const line of lineBoxes(source)) {
+    const y = line.top + line.height / 2;
+    const start = boundaryAt(line.left + 1, y);
+    const end = boundaryAt(line.left + line.width - 1, y);
+    if (
+      !(start && end) ||
+      !boundaryInside(source, start) ||
+      !boundaryInside(source, end)
+    ) {
+      continue;
+    }
+    const slices = textSlices(start, end).filter((slice) =>
+      boundaryInside(source, { node: slice.node, offset: slice.from })
+    );
+    if (slices.length > 0) {
+      spans.push({ slices });
+    }
+  }
+  return spans;
+};
+
+const rangeForProgress = (
+  slices: TextSlice[],
+  progress: number
+): Range | null => {
+  if (progress <= 0) {
+    return null;
+  }
+
+  let total = 0;
+  for (const slice of slices) {
+    total += slice.to - slice.from;
+  }
+  if (total === 0) {
+    return null;
+  }
+
+  let remaining = Math.min(total, Math.ceil(total * progress));
+  const range = document.createRange();
+  const [first] = slices;
+  if (!first) {
+    return null;
+  }
+  range.setStart(first.node, first.from);
+  for (const slice of slices) {
+    const length = slice.to - slice.from;
+    if (remaining <= length) {
+      range.setEnd(slice.node, slice.from + remaining);
+      return range.collapsed ? null : range;
+    }
+    remaining -= length;
+  }
+
+  const last = slices.at(-1);
+  if (!last) {
+    return null;
+  }
+  range.setEnd(last.node, last.to);
+  return range.collapsed ? null : range;
 };
 
 let highlightRun = 0;
 
 /** Paint the reference selection, growing left to right across each line. */
 export const highlightReference = (target: HTMLElement | Range): void => {
-  const lines = lineBoxes(target);
+  const lines = lineSpans(target);
   highlightRun += 1;
   const run = highlightRun;
   clearHighlights();
@@ -153,7 +279,7 @@ export const highlightReference = (target: HTMLElement | Range): void => {
         break;
       }
       const progress = Math.min(1, (elapsed - lineStart) / LINE_MS);
-      const range = lineRange(line, progress);
+      const range = rangeForProgress(line.slices, progress);
       if (range) {
         painter.add(range);
       }
