@@ -1,0 +1,294 @@
+---
+import ChartInfo from "@/components/chart-info.astro";
+import RhythmBarChart from "@/components/rhythm-bar-chart.astro";
+import RhythmStrip from "@/components/rhythm-strip.astro";
+import SleepWindowChart from "@/components/sleep-window-chart.astro";
+import WeekShapeChart from "@/components/week-shape-chart.astro";
+import type { ActivityCharts } from "@/lib/rhythm-charts";
+import { getSiteUrl } from "@/lib/site";
+
+interface Props {
+  charts: ActivityCharts;
+}
+
+const { charts } = Astro.props;
+const endpoint = `${getSiteUrl()}/api/rhythms`;
+const example = `{
+  "date": "2026-11-13",
+  "steps": 8453,
+  "workoutMinutes": 46,
+  "waterMl": 1800,
+  "bedAt": "2026-11-12T23:10:00+10:00",
+  "wokeAt": "2026-11-13T06:40:00+10:00",
+  "meal": { "slot": "breakfast", "quality": "healthy" },
+  "mood": 4,
+  "weightKg": 78.4,
+  "alcohol": false,
+  "smoked": false,
+  "readMinutes": 25,
+  "hungOutInPerson": true,
+  "hungOutOnline": false,
+  "supplements": ["Creatine"]
+}`;
+---
+
+<section aria-label="Daily rhythms" class="min-w-0 space-y-8" data-rhythm-charts>
+    <div class="flex items-center gap-1">
+      <h2 class="font-redaction text-black text-xl dark:text-white">Rhythms</h2>
+      <ChartInfo
+        label="About these charts"
+        text="The last 90 days, including today. Each figure is a 14-day average through yesterday, so a partial day does not move it. Δ compares that average with the one from 56 days earlier."
+      />
+    </div>
+
+  <RhythmBarChart
+    caption="Daily steps. A day the shortcut missed is left blank."
+    chart={charts.movement}
+    emptyLabel="No steps yet."
+    legend={[
+      { kind: "bar", label: "Steps" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Steps"
+  />
+  <RhythmBarChart
+    caption="Workout time. A walk is counted in steps as well."
+    chart={charts.workouts}
+    emptyLabel="No workouts yet."
+    legend={[
+      { kind: "bar", label: "Workout" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Workouts"
+  />
+  <SleepWindowChart
+    caption="Each mark runs from getting into bed to getting up, on the morning you woke. The figure is how long that window was."
+    chart={charts.sleep}
+    emptyLabel="No bed or wake times yet."
+    title="Sleep"
+  />
+  <RhythmBarChart
+    caption="Water logged that day. A missed day is left blank."
+    chart={charts.drinks}
+    emptyLabel="No water yet."
+    legend={[
+      { kind: "bar", label: "Water" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Water"
+  />
+  <RhythmBarChart
+    caption="Coffees logged that day."
+    chart={charts.coffee}
+    emptyLabel="No coffee yet."
+    legend={[
+      { kind: "bar", label: "Coffee" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Coffee"
+  />
+  <RhythmBarChart
+    caption="The fill is the 14-day healthy share. The line is that day's mix."
+    chart={charts.meals}
+    emptyLabel="No meals yet."
+    legend={[
+      { kind: "line", label: "That day" },
+      { kind: "compare", label: "14-day share" },
+    ]}
+    title="Meals"
+  />
+  <RhythmBarChart
+    caption="A mark from 1 to 5. 1 is low and 5 is high. The faint line is the 14-day average."
+    chart={charts.mood}
+    emptyLabel="No mood yet."
+    legend={[
+      { kind: "line", label: "Mood" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Mood"
+  />
+  <RhythmBarChart
+    caption="Kilograms. The scale fits the days on the chart, so a small change stays visible."
+    chart={charts.weight}
+    emptyLabel="No weight yet."
+    legend={[
+      { kind: "line", label: "Weight" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Weight"
+  />
+  <div class="flex flex-col gap-4">
+    <RhythmStrip
+      caption="Alcohol and smoking. A filled mark is a day you did. A gap is a day you did not log. The figure is days a week with either."
+      chart={charts.vices}
+      emptyLabel="No vices logged yet."
+      title="Vices"
+    />
+    <RhythmStrip
+      caption="Someone outside of work. In person and online are separate. A gap is a day you did not log."
+      chart={charts.people}
+      emptyLabel="No socialising logged yet."
+      title="Socialising"
+    />
+    <RhythmStrip
+      caption="One row for each supplement you have logged. Creatine is first. A gap is a day you did not log, and a blank row is a day you took none."
+      chart={charts.supplements}
+      emptyLabel="No supplement notes yet."
+      title="Supplements"
+    />
+  </div>
+  <RhythmBarChart
+    caption="Minutes read. A logged zero is a day you did not read."
+    chart={charts.reading}
+    emptyLabel="No reading notes yet."
+    legend={[
+      { kind: "bar", label: "Reading" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Reading"
+  />
+  <RhythmBarChart
+    caption="Hours at work, and hours away from home, from the location shortcut. The year view is below."
+    chart={charts.place}
+    emptyLabel="No time at work recorded yet."
+    legend={[
+      { kind: "bar", label: "At work" },
+      { kind: "average", label: "14-day average" },
+      { kind: "compare", label: "Away from home" },
+    ]}
+    title="At work"
+  />
+  <RhythmBarChart
+    caption="Plays from Apple Music. A day inside this history with no plays is a zero."
+    chart={charts.attention}
+    emptyLabel="No listening history yet."
+    legend={[
+      { kind: "bar", label: "Plays" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="Listening"
+  />
+  <RhythmBarChart
+    caption="Minutes Discord was online, idle, or set to do not disturb between 10 pm and 5 am, filed on the morning after."
+    chart={charts.afterTen}
+    emptyLabel="Late nights start recording with the next overnight sample."
+    legend={[
+      { kind: "bar", label: "After 10 pm" },
+      { kind: "average", label: "14-day average" },
+    ]}
+    title="After 10 pm"
+  />
+
+  <div class="min-w-0 space-y-6">
+      <div class="flex items-center gap-1">
+        <h3 class="font-normal text-muted-foreground text-sm">Weekdays</h3>
+        <ChartInfo
+          label="About weekdays"
+          text="The average for each weekday over the last 12 weeks, through yesterday."
+        />
+      </div>
+    <WeekShapeChart
+      chart={charts.weekWork}
+      emptyLabel="No time at work recorded yet."
+      title="At work"
+    />
+    {
+      charts.weekSteps ? (
+        <WeekShapeChart
+          chart={charts.weekSteps}
+          emptyLabel="No steps recorded yet."
+          title="Steps"
+        />
+      ) : null
+    }
+  </div>
+
+  <details class="space-y-3 text-sm">
+    <summary class="cursor-pointer text-muted-foreground">
+      How to log a day
+    </summary>
+    <p class="text-pretty">
+      Post JSON to <span class="font-mono text-xs">{endpoint}</span> with the same bearer token as the location shortcut. <span class="font-mono text-xs">steps</span>, <span class="font-mono text-xs">workoutMinutes</span>, <span class="font-mono text-xs">waterMl</span>, and <span class="font-mono text-xs">coffees</span> replace that day's totals. <span class="font-mono text-xs">add.waterMl</span> and <span class="font-mono text-xs">add.coffees</span> increase them. Give those an <span class="font-mono text-xs">idempotencyKey</span>, or a retry counts again.
+    </p>
+    <p class="text-pretty">
+      <span class="font-mono text-xs">bedAt</span> and <span class="font-mono text-xs">wokeAt</span> are the times you got into bed and got up. They are stored on the morning of <span class="font-mono text-xs">wokeAt</span>, which can differ from <span class="font-mono text-xs">date</span>. <span class="font-mono text-xs">meal.slot</span> is breakfast, lunch, dinner, or snack. <span class="font-mono text-xs">meal.quality</span> is healthy or unhealthy. Breakfast, lunch, and dinner replace that sitting. A snack is added, up to six. mood is 1 to 5. weightKg is kilograms. alcohol and smoked are true or false. hungOutInPerson and hungOutOnline are true or false. Socialising means someone outside of work. readMinutes is how long you read, and 0 means you did not. supplements is the list you took, such as Creatine. An empty list means you took none. supplement adds one name.
+    </p>
+    <pre
+      class="overflow-x-auto border border-border p-3 font-mono text-xs leading-relaxed">{example}</pre>
+  </details>
+</section>
+
+<script>
+  const initRhythmCharts = () => {
+    const root = document.querySelector("[data-rhythm-charts]");
+    if (!(root instanceof HTMLElement) || root.dataset.rhythmReady === "true") {
+      return;
+    }
+
+    root.dataset.rhythmReady = "true";
+    let tooltip = document.querySelector("[data-rhythm-tooltip]");
+    if (!(tooltip instanceof HTMLElement)) {
+      tooltip = document.createElement("div");
+      tooltip.dataset.rhythmTooltip = "";
+      tooltip.setAttribute("role", "tooltip");
+      tooltip.className =
+        "pointer-events-none fixed z-50 hidden w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md";
+      document.body.append(tooltip);
+    }
+
+    const hide = () => {
+      tooltip.classList.add("hidden");
+    };
+
+    const show = (mark: Element) => {
+      if (!(mark instanceof HTMLElement)) {
+        return;
+      }
+      const rect = mark.getBoundingClientRect();
+      tooltip.textContent = mark.dataset.label ?? "";
+      tooltip.classList.remove("hidden");
+      const width = tooltip.offsetWidth || 128;
+      const half = width / 2 + 8;
+      const desired = rect.left + rect.width / 2;
+      tooltip.style.left = `${Math.min(Math.max(desired, half), window.innerWidth - half)}px`;
+      tooltip.style.top = `${rect.top - 6}px`;
+    };
+
+    root.addEventListener("pointerover", (event) => {
+      const {target} = event;
+      if (!(target instanceof Element)) {
+        return;
+      }
+      const mark = target.closest("[data-rhythm-mark]");
+      if (!mark || !root.contains(mark)) {
+        return;
+      }
+      show(mark);
+    });
+    root.addEventListener("pointerout", (event) => {
+      const {target} = event;
+      if (!(target instanceof Element)) {
+        return;
+      }
+      const mark = target.closest("[data-rhythm-mark]");
+      const next = event.relatedTarget;
+      if (!mark || (next instanceof Node && mark.contains(next))) {
+        return;
+      }
+      hide();
+    });
+    root.addEventListener("focusin", (event) => {
+      const {target} = event;
+      if (target instanceof Element && target.matches("[data-rhythm-mark]")) {
+        show(target);
+      }
+    });
+    root.addEventListener("focusout", hide);
+  };
+
+  initRhythmCharts();
+  document.addEventListener("astro:page-load", initRhythmCharts);
+  document.addEventListener("astro:before-preparation", () => {
+    document.querySelector("[data-rhythm-tooltip]")?.remove();
+  });
+</script>

@@ -1,0 +1,31 @@
+---
+import ChartInfo from "@/components/chart-info.astro";
+
+interface Props {
+  caption: string;
+  delta: string | null;
+  headline: string | null;
+  title: string;
+}
+
+const { caption, delta, headline, title } = Astro.props;
+const figureParts = [headline, delta].filter(
+  (part): part is string => typeof part === "string" && part.length > 0
+);
+const figure = figureParts.length > 0 ? figureParts.join(" · ") : null;
+---
+
+<section aria-label={title} class="min-w-0 space-y-2">
+  <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+    <div class="flex min-w-0 items-center gap-1">
+      <h3 class="font-normal text-muted-foreground text-sm">{title}</h3>
+      <ChartInfo label={`About ${title}`} text={caption} />
+    </div>
+    {
+      figure ? (
+        <p class="min-w-0 text-end text-sm tabular-nums">{figure}</p>
+      ) : null
+    }
+  </div>
+  <slot />
+</section>
