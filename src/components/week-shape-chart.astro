@@ -1,0 +1,52 @@
+---
+import type { WeekShapeChart } from "@/lib/rhythm-charts";
+
+interface Props {
+  chart: WeekShapeChart;
+  emptyLabel: string;
+  title: string;
+}
+
+const { chart, emptyLabel, title } = Astro.props;
+---
+
+<div class="min-w-0 space-y-2">
+  <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+    <h3 class="font-normal text-muted-foreground text-sm">{title}</h3>
+    {
+      chart.headline ? (
+        <p class="text-end text-sm tabular-nums">{chart.headline}</p>
+      ) : null
+    }
+  </div>
+  {
+    chart.empty ? (
+      <div
+        class="flex min-h-24 items-center justify-center border border-border border-dashed px-3 py-6 text-center"
+        role="status"
+      >
+        <p class="text-pretty text-muted-foreground text-sm">{emptyLabel}</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-7 gap-2">
+        {
+          chart.days.map((day) => (
+            <div class="flex min-w-0 flex-col gap-1" title={day.title}>
+              <div class="flex h-24 items-end border-b border-border">
+                <div
+                  class:list={[
+                    "w-full",
+                    day.peak ? "bg-foreground/80" : "bg-foreground/25",
+                  ]}
+                  style={`height: ${day.height}%`}
+                />
+              </div>
+              <p class="text-center text-xs tabular-nums">{day.text}</p>
+              <p class="text-center text-muted-foreground text-xs">{day.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    )
+  }
+</div>

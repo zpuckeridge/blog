@@ -1,0 +1,339 @@
+---
+import RhythmChartFrame from "@/components/rhythm-chart-frame.astro";
+import type { RhythmBarChart } from "@/lib/rhythm-charts";
+
+interface LegendItem {
+  kind: "average" | "bar" | "compare" | "creatine" | "healthy" | "inPerson" | "line" | "online" | "other" | "unhealthy";
+  label: string;
+}
+
+interface Props {
+  caption: string;
+  chart: RhythmBarChart;
+  emptyLabel: string;
+  legend: LegendItem[];
+  title: string;
+}
+
+const WIDTH = 360;
+const HEIGHT = 112;
+const PAD_TOP = 8;
+const PAD_BOTTOM = 10;
+const { caption, chart, emptyLabel, legend, title } = Astro.props;
+const plotHeight = HEIGHT - PAD_TOP - PAD_BOTTOM;
+const count = Math.max(chart.points.length, 1);
+const slot = WIDTH / count;
+const baseline = PAD_TOP + plotHeight;
+
+const {scaleMin} = chart;
+const span = Math.max(chart.barMax - scaleMin, 0.001);
+const compareSpan = Math.max(chart.compareMax - chart.compareMin, 0.001);
+
+const yOnScale = (value: number, min: number, size: number): number =>
+  baseline - ((value - min) / size) * plotHeight;
+
+const barHeightFor = (value: number | null): number => {
+  if (value === null) {
+    return 0;
+  }
+  const fraction = (value - scaleMin) / span;
+  if (fraction <= 0) {
+    return 1.5;
+  }
+  return fraction * plotHeight;
+};
+
+const marks = chart.points.map((point, index) => {
+  const barWidth = slot * 0.72;
+  const barHeight = barHeightFor(point.bar);
+  const hasStack = point.healthy !== null || point.unhealthy !== null;
+  const healthy = point.healthy ?? 0;
+  const unhealthy = point.unhealthy ?? 0;
+  const healthyHeight = hasStack ? (healthy / span) * plotHeight : 0;
+  const unhealthyHeight = hasStack ? (unhealthy / span) * plotHeight : 0;
+
+  const stackTotal = (point.healthy ?? 0) + (point.unhealthy ?? 0);
+  const share = stackTotal > 0 ? (point.healthy ?? 0) / stackTotal : null;
+
+  return {
+    barHeight,
+    barWidth,
+    boundaryY: share === null ? null : baseline - share * plotHeight,
+    compareY:
+      point.compare === null
+        ? null
+        : yOnScale(point.compare, chart.compareMin, compareSpan),
+    cx: index * slot + slot / 2,
+    hasStack,
+    healthyHeight,
+    label: point.label,
+    trendY:
+      point.trend === null ? null : yOnScale(point.trend, scaleMin, span),
+    unhealthyHeight,
+    valueY:
+      point.bar === null ? null : yOnScale(point.bar, scaleMin, span),
+    x: index * slot + (slot - barWidth) / 2,
+  };
+});
+
+const segments = (key: "boundaryY" | "compareY" | "trendY" | "valueY"): string[] => {
+  const lines: string[] = [];
+  let current: string[] = [];
+  for (const mark of marks) {
+    const y = mark[key];
+    if (y === null) {
+      if (current.length > 1) {
+        lines.push(current.join(" "));
+      }
+      current = [];
+      continue;
+    }
+    current.push(`${mark.cx.toFixed(2)},${y.toFixed(2)}`);
+  }
+  if (current.length > 1) {
+    lines.push(current.join(" "));
+  }
+  return lines;
+};
+
+const areaRuns: { share: string }[] = [];
+if (chart.mark === "area") {
+  let run: { boundary: number; x: number }[] = [];
+  const flushArea = () => {
+    const [first] = run;
+    const last = run.at(-1);
+    if (!first || !last) {
+      run = [];
+      return;
+    }
+    const edge = run
+      .map((point) => `L ${point.x.toFixed(2)} ${point.boundary.toFixed(2)}`)
+      .join(" ");
+    areaRuns.push({
+      share: `M ${first.x.toFixed(2)} ${baseline} ${edge} L ${last.x.toFixed(2)} ${baseline} Z`,
+    });
+    run = [];
+  };
+  for (const mark of marks) {
+    if (mark.compareY === null) {
+      flushArea();
+      continue;
+    }
+    run.push({ boundary: mark.compareY, x: mark.cx });
+  }
+  flushArea();
+}
+
+const splitStack =
+  chart.stackPalette === "people" || chart.stackPalette === "supplements";
+const showAverage = chart.points.some((point) => point.trend !== null);
+const showCompare = chart.points.some((point) => point.compare !== null);
+const showStack = chart.stacked && !chart.empty;
+const visibleLegend = legend.filter((item) => {
+  if (item.kind === "line") {
+    return (
+      (chart.mark === "line" || chart.mark === "area") &&
+      chart.points.some((point) => point.bar !== null || point.healthy !== null)
+    );
+  }
+  if (item.kind === "average") {
+    return showAverage;
+  }
+  if (item.kind === "compare") {
+    return showCompare;
+  }
+  if (item.kind === "healthy" || item.kind === "unhealthy") {
+    return showStack;
+  }
+  if (
+    item.kind === "inPerson" ||
+    item.kind === "online" ||
+    item.kind === "creatine" ||
+    item.kind === "other"
+  ) {
+    return showStack;
+  }
+  return !chart.empty && chart.mark === "bars";
+});
+const described = chart.headline
+  ? `${title}. ${chart.headline}`
+  : `${title}. ${emptyLabel}`;
+---
+
+<RhythmChartFrame
+  caption={caption}
+  delta={chart.delta}
+  headline={chart.headline}
+  title={title}
+>
+  {
+    chart.empty ? (
+      <div
+        class="flex min-h-28 items-center justify-center border border-border border-dashed px-3 py-6 text-center"
+        role="status"
+      >
+        <p class="text-pretty text-muted-foreground text-sm">{emptyLabel}</p>
+      </div>
+    ) : (
+      <svg
+        aria-label={described}
+        class="block h-auto w-full"
+        role="img"
+        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+      >
+        <line
+          class="stroke-border"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke"
+          x1="0"
+          x2={WIDTH}
+          y1={baseline}
+          y2={baseline}
+        />
+        {
+          chart.mark === "area"
+            ? areaRuns.map((run) => (
+                <path class="fill-foreground/30" d={run.share} />
+              ))
+            : null
+        }
+        {
+          chart.mark === "bars"
+            ? marks.map((mark) =>
+                chart.stacked && mark.hasStack ? (
+                  <>
+                    {mark.healthyHeight > 0 ? (
+                      <rect
+                        class={splitStack ? "fill-foreground/70" : "fill-foreground/75"}
+                        height={mark.healthyHeight}
+                        width={mark.barWidth}
+                        x={mark.x}
+                        y={baseline - mark.healthyHeight}
+                      />
+                    ) : null}
+                    {mark.unhealthyHeight > 0 ? (
+                      <rect
+                        class={splitStack ? "fill-chart-2" : "fill-chart-5"}
+                        height={mark.unhealthyHeight}
+                        width={mark.barWidth}
+                        x={mark.x}
+                        y={baseline - mark.healthyHeight - mark.unhealthyHeight}
+                      />
+                    ) : null}
+                  </>
+                ) : mark.barHeight > 0 ? (
+                  <rect
+                    class="fill-foreground/30"
+                    height={mark.barHeight}
+                    width={mark.barWidth}
+                    x={mark.x}
+                    y={baseline - mark.barHeight}
+                  />
+                ) : null
+              )
+            : null
+        }
+        {
+          chart.mark === "area"
+            ? segments("boundaryY").map((points) => (
+                <polyline
+                  class="pointer-events-none fill-none stroke-foreground/55"
+                  points={points}
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.25"
+                  vector-effect="non-scaling-stroke"
+                />
+              ))
+            : null
+        }
+        {
+          chart.mark === "line"
+            ? segments("valueY").map((points) => (
+                <polyline
+                  class="pointer-events-none fill-none stroke-foreground"
+                  points={points}
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  vector-effect="non-scaling-stroke"
+                />
+              ))
+            : null
+        }
+        {
+          segments("compareY").map((points) => (
+            <polyline
+              class="pointer-events-none fill-none stroke-chart-2"
+              points={points}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              vector-effect="non-scaling-stroke"
+            />
+          ))
+        }
+        {
+          segments("trendY").map((points) => (
+            <polyline
+              class:list={[
+                "pointer-events-none fill-none",
+                chart.mark === "line" ? "stroke-muted-foreground" : "stroke-foreground",
+              ]}
+              points={points}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              vector-effect="non-scaling-stroke"
+            />
+          ))
+        }
+        {
+          marks.map((mark) => (
+            <rect
+              class="fill-transparent"
+              data-label={mark.label}
+              data-rhythm-mark
+              height={plotHeight}
+              width={slot}
+              x={mark.x - (slot - mark.barWidth) / 2}
+              y={PAD_TOP}
+            >
+              <title>{mark.label}</title>
+            </rect>
+          ))
+        }
+      </svg>
+    )
+  }
+  {
+    !chart.empty && visibleLegend.length > 0 ? (
+      <ul class="flex flex-wrap gap-x-3 gap-y-1 text-muted-foreground text-xs">
+        {visibleLegend.map((item) => (
+          <li class="flex items-center gap-1.5">
+            <span
+              aria-hidden="true"
+              class:list={[
+                item.kind === "average" || item.kind === "compare" || item.kind === "line"
+                  ? "h-px w-3"
+                  : "size-2",
+                item.kind === "compare" && "bg-chart-2",
+                item.kind === "average" &&
+                  (chart.mark === "line" ? "bg-muted-foreground" : "bg-foreground"),
+                item.kind === "line" && "bg-foreground",
+                item.kind === "bar" && "bg-foreground/30",
+                item.kind === "healthy" && "bg-foreground/75",
+                item.kind === "creatine" && "bg-foreground/70",
+                item.kind === "inPerson" && "bg-foreground/70",
+                item.kind === "online" && "bg-chart-2",
+                item.kind === "other" && "bg-chart-2",
+                item.kind === "unhealthy" && "bg-chart-5",
+              ]}
+            />
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    ) : null
+  }
+</RhythmChartFrame>

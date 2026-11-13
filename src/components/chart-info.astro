@@ -1,0 +1,36 @@
+---
+interface Props {
+  label: string;
+  text: string;
+}
+
+const { label, text } = Astro.props;
+const tooltipId = `chart-info-${crypto.randomUUID()}`;
+---
+
+<span class="group/chart-info relative inline-flex">
+  <button
+    aria-describedby={tooltipId}
+    aria-label={label}
+    class="inline-flex size-4 shrink-0 items-center justify-center text-muted-foreground"
+    type="button"
+  >
+    <svg aria-hidden="true" class="size-3.5" fill="none" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.25"
+      ></circle>
+      <path
+        d="M8 7.2v4"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-width="1.25"></path>
+      <circle cx="8" cy="4.6" fill="currentColor" r="0.7"></circle>
+    </svg>
+  </button>
+  <div
+    class="pointer-events-none absolute bottom-[calc(100%+0.375rem)] left-0 z-50 w-max max-w-[16rem] rounded-md border border-border bg-popover px-3 py-2 text-left text-popover-foreground text-xs opacity-0 shadow-md group-focus-within/chart-info:pointer-events-auto group-focus-within/chart-info:opacity-100 group-hover/chart-info:pointer-events-auto group-hover/chart-info:opacity-100"
+    id={tooltipId}
+    role="tooltip"
+  >
+    <p class="text-pretty">{text}</p>
+  </div>
+</span>

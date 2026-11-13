@@ -22,6 +22,11 @@ export interface DailyStatusRollup {
   homeMinutes: number;
   locationObservedMinutes: number;
   workMinutes: number;
+  /**
+   * Minutes Discord was online, idle, or do not disturb between 10 pm and 5 am,
+   * filed on the following morning. Absent for days recorded before this existed.
+   */
+  discordLateMinutes?: number;
 }
 
 export interface StatusHistoryCursor {
@@ -181,6 +186,65 @@ export const accrueIntervalToStore = (
       }
     }
   });
+
+  if (state.discordStatus !== null) {
+    recordLateNightDiscord(
+      store,
+      startMs,
+      endMs,
+      isDiscordOnline(state.discordStatus)
+    );
+  }
+};
+
+const LATE_NIGHT_END_MS = 5 * 60 * 60 * 1000;
+const LATE_NIGHT_START_MS = 22 * 60 * 60 * 1000;
+const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Attribute 10 pm–5 am presence to the morning the night ends on. */
+export const recordLateNightDiscord = (
+  store: StatusHistoryStore,
+  startMs: number,
+  endMs: number,
+  discordOnline: boolean
+): void => {
+  if (endMs <= startMs) {
+    return;
+  }
+
+  let current = startMs;
+  while (current < endMs) {
+    const dayIso = isoDateInBrisbane(current);
+    const dayStart = Date.parse(`${dayIso}T00:00:00+10:00`);
+    const boundaries = [
+      dayStart + LATE_NIGHT_END_MS,
+      dayStart + LATE_NIGHT_START_MS,
+      dayStart + ONE_DAY_MS,
+      endMs,
+    ];
+    let segmentEnd = endMs;
+    for (const boundary of boundaries) {
+      if (boundary > current && boundary < segmentEnd) {
+        segmentEnd = boundary;
+      }
+    }
+    const minuteOfDay = (current - dayStart) / 60_000;
+    const isLate = minuteOfDay < 5 * 60 || minuteOfDay >= 22 * 60;
+
+    if (isLate) {
+      const wakeDate =
+        minuteOfDay >= 22 * 60
+          ? isoDateInBrisbane(dayStart + ONE_DAY_MS)
+          : dayIso;
+      const rollup = ensureRollup(store, wakeDate);
+      rollup.discordLateMinutes ??= 0;
+      if (discordOnline) {
+        rollup.discordLateMinutes += (segmentEnd - current) / 60_000;
+      }
+    }
+
+    current = segmentEnd;
+  }
 };
 
 export const pruneStatusHistoryDays = (

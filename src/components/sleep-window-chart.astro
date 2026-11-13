@@ -1,0 +1,140 @@
+---
+import RhythmChartFrame from "@/components/rhythm-chart-frame.astro";
+import type { SleepChart } from "@/lib/rhythm-charts";
+
+interface Props {
+  caption: string;
+  chart: SleepChart;
+  emptyLabel: string;
+  title: string;
+}
+
+const WIDTH = 360;
+const HEIGHT = 148;
+const PAD_TOP = 10;
+const PAD_BOTTOM = 10;
+const LABEL_WIDTH = 36;
+const { caption, chart, emptyLabel, title } = Astro.props;
+const plotHeight = HEIGHT - PAD_TOP - PAD_BOTTOM;
+const plotWidth = WIDTH - LABEL_WIDTH;
+const count = Math.max(chart.nights.length, 1);
+const slot = plotWidth / count;
+const baseline = PAD_TOP + plotHeight;
+const ticks = [
+  { at: 0, label: "6 pm" },
+  { at: 6 / 18, label: "12 am" },
+  { at: 12 / 18, label: "6 am" },
+  { at: 1, label: "12 pm" },
+];
+const described = chart.headline
+  ? `${title}. ${chart.headline}`
+  : `${title}. ${emptyLabel}`;
+
+const nights = chart.nights.map((night, index) => {
+  const height =
+    night.start === null || night.end === null
+      ? 0
+      : Math.max((night.end - night.start) * plotHeight, 1.5);
+  const y =
+    night.start === null ? PAD_TOP : PAD_TOP + night.start * plotHeight;
+  return {
+    height,
+    label: night.label,
+    width: slot * 0.72,
+    x: LABEL_WIDTH + index * slot + slot * 0.14,
+    y,
+  };
+});
+---
+
+<RhythmChartFrame
+  caption={caption}
+  delta={chart.delta}
+  headline={chart.headline}
+  title={title}
+>
+  {
+    chart.empty ? (
+      <div
+        class="flex min-h-28 items-center justify-center border border-border border-dashed px-3 py-6 text-center"
+        role="status"
+      >
+        <p class="text-pretty text-muted-foreground text-sm">{emptyLabel}</p>
+      </div>
+    ) : (
+      <svg
+        aria-label={described}
+        class="block h-auto w-full"
+        role="img"
+        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+      >
+        {
+          ticks.map((tick) => {
+            const y = Math.min(
+              HEIGHT - 6,
+              Math.max(8, PAD_TOP + tick.at * plotHeight)
+            );
+            return (
+              <>
+                <line
+                  class="stroke-border"
+                  stroke-width="1"
+                  vector-effect="non-scaling-stroke"
+                  x1={LABEL_WIDTH}
+                  x2={WIDTH}
+                  y1={PAD_TOP + tick.at * plotHeight}
+                  y2={PAD_TOP + tick.at * plotHeight}
+                />
+                <text
+                  class="fill-muted-foreground"
+                  dominant-baseline="middle"
+                  font-size="8"
+                  text-anchor="end"
+                  x={LABEL_WIDTH - 4}
+                  y={y}
+                >
+                  {tick.label}
+                </text>
+              </>
+            );
+          })
+        }
+        <line
+          class="stroke-border"
+          stroke-width="1"
+          vector-effect="non-scaling-stroke"
+          x1={LABEL_WIDTH}
+          x2={WIDTH}
+          y1={baseline}
+          y2={baseline}
+        />
+        {
+          nights.map((night) => (
+            <>
+              {night.height > 0 ? (
+                <rect
+                  class="fill-foreground/50"
+                  height={night.height}
+                  width={night.width}
+                  x={night.x}
+                  y={night.y}
+                />
+              ) : null}
+              <rect
+                class="fill-transparent"
+                data-label={night.label}
+                data-rhythm-mark
+                height={plotHeight}
+                width={slot}
+                x={night.x - slot * 0.14}
+                y={PAD_TOP}
+              >
+                <title>{night.label}</title>
+              </rect>
+            </>
+          ))
+        }
+      </svg>
+    )
+  }
+</RhythmChartFrame>

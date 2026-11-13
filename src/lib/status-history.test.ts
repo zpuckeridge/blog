@@ -132,6 +132,50 @@ describe("accrual", () => {
 
     assert.equal(store.days["2026-03-01"]?.discordOnlineMinutes, 15);
   });
+
+  it("files late discord on the morning the night ends", () => {
+    const store = emptyStatusHistoryStore();
+    const start = Date.parse("2026-03-01T23:00:00+10:00");
+    const end = Date.parse("2026-03-02T01:00:00+10:00");
+
+    accrueIntervalToStore(store, start, end, {
+      discordStatus: "online",
+      locationCategory: null,
+      locationObserved: false,
+    });
+
+    assert.equal(store.days["2026-03-02"]?.discordLateMinutes, 120);
+    assert.equal(store.days["2026-03-01"]?.discordLateMinutes, undefined);
+  });
+
+  it("records a zero when discord is offline through the late window", () => {
+    const store = emptyStatusHistoryStore();
+    const start = Date.parse("2026-03-01T23:00:00+10:00");
+    const end = Date.parse("2026-03-02T01:00:00+10:00");
+
+    accrueIntervalToStore(store, start, end, {
+      discordStatus: "offline",
+      locationCategory: null,
+      locationObserved: false,
+    });
+
+    assert.equal(store.days["2026-03-02"]?.discordLateMinutes, 0);
+  });
+
+  it("leaves daytime discord out of the late total", () => {
+    const store = emptyStatusHistoryStore();
+    const start = Date.parse("2026-03-01T21:00:00+10:00");
+    const end = Date.parse("2026-03-01T23:30:00+10:00");
+
+    accrueIntervalToStore(store, start, end, {
+      discordStatus: "dnd",
+      locationCategory: null,
+      locationObserved: false,
+    });
+
+    assert.equal(store.days["2026-03-02"]?.discordLateMinutes, 90);
+    assert.equal(store.days["2026-03-01"]?.discordOnlineMinutes, 150);
+  });
 });
 
 describe("storeToPublicHistory", () => {

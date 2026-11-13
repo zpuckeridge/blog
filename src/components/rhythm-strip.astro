@@ -1,0 +1,65 @@
+---
+import RhythmChartFrame from "@/components/rhythm-chart-frame.astro";
+import type { RhythmStripChart } from "@/lib/rhythm-charts";
+
+interface Props {
+  caption: string;
+  chart: RhythmStripChart;
+  emptyLabel: string;
+  title: string;
+}
+
+const { caption, chart, emptyLabel, title } = Astro.props;
+---
+
+<RhythmChartFrame
+  caption={caption}
+  delta={chart.delta}
+  headline={chart.headline}
+  title={title}
+>
+  {
+    chart.empty ? (
+      <div
+        class="flex min-h-16 items-center justify-center border border-border border-dashed px-3 py-6 text-center"
+        role="status"
+      >
+        <p class="text-pretty text-muted-foreground text-sm">{emptyLabel}</p>
+      </div>
+    ) : (
+      <div class="flex flex-col gap-1.5">
+        {
+          chart.rows.map((row) => (
+            <div class="flex min-w-0 items-center gap-2">
+              {
+                chart.rows.length > 1 ? (
+                  <span class="w-16 shrink-0 truncate text-muted-foreground text-xs">
+                    {row.name}
+                  </span>
+                ) : null
+              }
+              <div
+                aria-label={row.name}
+                class="flex min-w-0 flex-1 gap-px"
+                role="img"
+              >
+                {row.cells.map((cell) => (
+                  <span
+                    class:list={[
+                      "h-2 min-w-0 flex-1",
+                      cell.state === "on" && "bg-foreground/80",
+                      cell.state === "off" && "bg-foreground/15",
+                    ]}
+                    data-label={cell.title}
+                    data-rhythm-mark
+                    title={cell.title}
+                  />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    )
+  }
+</RhythmChartFrame>
