@@ -11,7 +11,11 @@ let scrollTimer = 0;
 let onScrollEnd: (() => void) | null = null;
 
 const hashId = (): string => {
-  const raw = window.location.hash.replace(/^#/u, "");
+  const { hash } = window.location;
+  if (!hash || hash === "#") {
+    return "";
+  }
+  const raw = hash.replace(/^#/u, "");
   if (!raw) {
     return "";
   }
@@ -22,10 +26,22 @@ const hashId = (): string => {
   }
 };
 
+const isUsableHashId = (id: string): boolean => id.length > 0;
+
+const elementById = (id: string): Element | null => {
+  if (typeof CSS !== "undefined" && typeof CSS.escape === "function") {
+    return document.querySelector(`#${CSS.escape(id)}`);
+  }
+  return document.querySelector(`#${id}`);
+};
+
 const headingLink = (
   id: string
 ): { heading: HTMLElement; link: HTMLElement } | null => {
-  const heading = document.querySelector(`#${CSS.escape(id)}`);
+  if (!isUsableHashId(id)) {
+    return null;
+  }
+  const heading = elementById(id);
   const link = heading?.querySelector(":scope > a.heading-link");
   if (!(heading instanceof HTMLElement) || !(link instanceof HTMLElement)) {
     return null;
@@ -79,6 +95,9 @@ const paint = (link: HTMLElement, id: string, token: number): void => {
 
 /** Sweep a highlight across the heading a visitor just arrived at. */
 export const highlightArrivedHeading = (id: string): void => {
+  if (!isUsableHashId(id)) {
+    return;
+  }
   const found = headingLink(id);
   if (!found) {
     return;
