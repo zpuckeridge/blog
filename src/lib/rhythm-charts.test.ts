@@ -143,6 +143,32 @@ describe("buildActivityCharts", () => {
     assert.equal(week.days[0]?.label, "Mon");
   });
 
+  it("marks rhythm charts empty when nothing has been logged", () => {
+    const charts = chartsFrom(emptyRhythmStore());
+    const series = [
+      charts.movement,
+      charts.workouts,
+      charts.drinks,
+      charts.coffee,
+      charts.meals,
+      charts.mood,
+      charts.weight,
+      charts.reading,
+      charts.place,
+      charts.attention,
+      charts.afterTen,
+    ] as const;
+    for (const chart of series) {
+      assert.equal(chart.empty, true, "expected bar series to be empty");
+    }
+    assert.equal(charts.sleep.empty, true);
+    assert.equal(charts.vices.empty, true);
+    assert.equal(charts.people.empty, true);
+    assert.equal(charts.supplements.empty, true);
+    assert.equal(charts.weekWork.empty, true);
+    assert.equal(charts.weekSteps, null);
+  });
+
   it("hides the late-night chart until a night has been sampled", () => {
     const rhythms = emptyRhythmStore();
     rhythms.days["2026-11-13"] = {

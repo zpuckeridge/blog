@@ -1,4 +1,5 @@
 ---
+import RhythmChartEmpty from "@/components/rhythm-chart-empty.astro";
 import RhythmChartFrame from "@/components/rhythm-chart-frame.astro";
 import type { RhythmBarChart } from "@/lib/rhythm-charts";
 
@@ -168,12 +169,7 @@ const described = chart.headline
 >
   {
     chart.empty ? (
-      <div
-        class="flex min-h-28 items-center justify-center border border-border border-dashed px-3 py-6 text-center"
-        role="status"
-      >
-        <p class="text-pretty text-muted-foreground text-sm">{emptyLabel}</p>
-      </div>
+      <RhythmChartEmpty label={emptyLabel} variant="bars" />
     ) : (
       <svg
         aria-label={described}
