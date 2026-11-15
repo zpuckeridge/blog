@@ -13,7 +13,7 @@ export const HTML_CONTENT_SECURITY_POLICY = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self'",
-  "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com https://challenges.cloudflare.com https://api.lanyard.rest wss://api.lanyard.rest https://*.mux.com https://*.litix.io https://cdn.discordapp.com https://i.scdn.co https://syndication.twitter.com",
+  "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com https://challenges.cloudflare.com https://api.lanyard.rest wss://api.lanyard.rest https://*.mux.com https://*.litix.io https://cdn.discordapp.com https://i.scdn.co https://syndication.twitter.com https://react-tweet.vercel.app",
   "frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://challenges.cloudflare.com https://platform.twitter.com https://syndication.twitter.com",
   "media-src 'self' blob: https://*.mux.com",
   "worker-src 'self' blob:",
