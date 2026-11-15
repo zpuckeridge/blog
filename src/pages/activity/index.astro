@@ -1,8 +1,11 @@
 ---
 import ActivityFeed from "@/components/activity-feed";
+import ActivityRhythms from "@/components/activity-rhythms.astro";
 import ActivityStatusGraphs from "@/components/activity-status-graphs.astro";
+import ChartInfo from "@/components/chart-info.astro";
 import Layout from "@/layouts/layout.astro";
 import { ACTIVITY_FEED_NAME } from "@/lib/activity-api";
+import { getServerActivityCharts } from "@/lib/rhythm-charts";
 import { getServerStatusHistory } from "@/lib/status-history";
 import { workersEnv } from "@/lib/workers-env";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
@@ -11,7 +14,7 @@ export const prerender = false;
 
 const pageMeta = createPageMetadata({
   description:
-    "What I've been up to — where I've worked, time at home, and Discord presence — plus a live, anonymous view of recent visits.",
+    "What I've been up to: steps, time in bed, meals, time at work and at home, and Discord, plus a live anonymous view of recent visits.",
   noIndex: true,
   path: "/activity",
   title: "Activity",
@@ -19,10 +22,13 @@ const pageMeta = createPageMetadata({
 
 const fullTitle = formatPageTitle("Activity");
 const activityStore = workersEnv.ACTIVITY_FEED_STORE;
-const [initialEvents, statusHistory] = await Promise.all([
+const [initialEvents, statusHistory, charts] = await Promise.all([
   activityStore ? activityStore.getByName(ACTIVITY_FEED_NAME).list() : [],
   getServerStatusHistory(),
+  getServerActivityCharts(),
 ]);
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
 ---
 
 <Layout
@@ -32,17 +38,18 @@ const [initialEvents, statusHistory] = await Promise.all([
 >
   <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-10 px-6 pb-20">
     <h1 class="font-redaction text-black text-xl dark:text-white">Activity</h1>
+    {charts ? <ActivityRhythms charts={charts} /> : null}
     {
       statusHistory ? (
         <section aria-label="My recent time" class="min-w-0 space-y-10">
-          <div class="space-y-2">
+          <div class="flex items-center gap-1">
             <h2 class="font-redaction text-black text-xl dark:text-white">
               Where I've been
             </h2>
-            <p class="text-sm">
-              My time at work, at home, and online on Discord over the last
-              year.
-            </p>
+            <ChartInfo
+              label="About this year"
+              text="My time at work, at home, and online on Discord over the last year."
+            />
           </div>
           <div class="space-y-4">
             <ActivityStatusGraphs history={statusHistory} />

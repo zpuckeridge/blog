@@ -40,7 +40,7 @@ declare global {
       GITHUB_TOKEN?: string;
       /** Loops.so API key for POST /api/subscribe. */
       LOOPS_API_KEY?: string;
-      /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
+      /** Bearer token for POST /api/location and POST /api/rhythms. */
       LOCATION_WEBHOOK_SECRET?: string;
       /** KV namespace for location status, listening recents, and listening history. */
       LOCATION_KV?: SiteKv;

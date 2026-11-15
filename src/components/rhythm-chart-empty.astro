@@ -1,0 +1,79 @@
+---
+type EmptyVariant = "bars" | "sleep" | "strip" | "week";
+
+interface Props {
+  label: string;
+  variant: EmptyVariant;
+}
+
+const { label, variant } = Astro.props;
+const barHeights = [28, 42, 18, 55, 34, 48, 22, 38, 26, 44, 30, 50];
+const sleepHeights = [36, 28, 44, 32, 40, 26, 38, 34, 42, 30, 36, 28];
+const stripRows = variant === "strip" ? 3 : 0;
+---
+
+<div
+  class="relative w-full overflow-hidden rounded-md border border-border border-dashed bg-muted/20"
+  role="status"
+>
+  {
+    variant === "bars" ? (
+      <div
+        aria-hidden="true"
+        class="flex aspect-[45/14] items-end gap-px px-1 pt-2 pb-2 opacity-45"
+      >
+        {barHeights.map((height) => (
+          <span
+            class="min-w-0 flex-1 bg-foreground/12"
+            style={`height: ${height}%`}
+          />
+        ))}
+      </div>
+    ) : null
+  }
+  {
+    variant === "sleep" ? (
+      <div
+        aria-hidden="true"
+        class="flex aspect-[360/148] items-end gap-px px-9 pt-3 pb-2 opacity-45"
+      >
+        {sleepHeights.map((height) => (
+          <span
+            class="min-w-0 flex-1 bg-foreground/12"
+            style={`height: ${height}%`}
+          />
+        ))}
+      </div>
+    ) : null
+  }
+  {
+    variant === "strip" ? (
+      <div aria-hidden="true" class="flex flex-col gap-2 px-1 py-3 opacity-45">
+        {Array.from({ length: stripRows }, () => (
+          <div class="flex gap-px">
+            {Array.from({ length: 24 }, () => (
+              <span class="h-2 min-w-0 flex-1 bg-foreground/12" />
+            ))}
+          </div>
+        ))}
+      </div>
+    ) : null
+  }
+  {
+    variant === "week" ? (
+      <div
+        aria-hidden="true"
+        class="grid grid-cols-7 gap-2 px-1 py-2 opacity-45"
+      >
+        {Array.from({ length: 7 }, () => (
+          <div class="flex h-24 items-end border-b border-border/80">
+            <span class="h-[55%] w-full bg-foreground/12" />
+          </div>
+        ))}
+      </div>
+    ) : null
+  }
+  <div class="absolute inset-0 flex items-center justify-center bg-popover/55 px-3">
+    <p class="text-pretty text-center text-sm">{label}</p>
+  </div>
+</div>

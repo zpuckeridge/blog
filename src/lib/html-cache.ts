@@ -17,8 +17,8 @@ export const isEdgeCacheablePath = (pathname: string): boolean => {
     return false;
   }
 
-  // Listening history is read from KV on each request.
-  if (pathname === "/music") {
+  // Listening history and the activity rhythms are read from KV on each request.
+  if (pathname === "/music" || pathname === "/activity") {
     return false;
   }
 
