@@ -40,8 +40,10 @@ declare global {
       GITHUB_TOKEN?: string;
       /** Loops.so API key for POST /api/subscribe. */
       LOOPS_API_KEY?: string;
-      /** Bearer token for POST /api/location and POST /api/rhythms. */
+      /** Bearer token for POST /api/location (iOS Shortcuts webhook). */
       LOCATION_WEBHOOK_SECRET?: string;
+      /** Bearer token for POST /api/rhythms. Falls back to LOCATION_WEBHOOK_SECRET when unset. */
+      RHYTHMS_WEBHOOK_SECRET?: string;
       /** KV namespace for location status, listening recents, and listening history. */
       LOCATION_KV?: SiteKv;
       /** SQLite-backed Durable Object containing the public activity feed. */
@@ -55,6 +57,7 @@ declare global {
     readonly PUBLIC_SITE_URL?: string;
     readonly GITHUB_TOKEN?: string;
     readonly LOCATION_WEBHOOK_SECRET?: string;
+    readonly RHYTHMS_WEBHOOK_SECRET?: string;
   }
 
   interface ImportMeta {

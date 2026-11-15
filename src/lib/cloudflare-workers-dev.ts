@@ -80,6 +80,9 @@ export const env: Cloudflare.Env = {
   LOCATION_WEBHOOK_SECRET:
     import.meta.env.LOCATION_WEBHOOK_SECRET ??
     process.env.LOCATION_WEBHOOK_SECRET,
+  RHYTHMS_WEBHOOK_SECRET:
+    import.meta.env.RHYTHMS_WEBHOOK_SECRET ??
+    process.env.RHYTHMS_WEBHOOK_SECRET,
   LOOPS_API_KEY: import.meta.env.LOOPS_API_KEY ?? process.env.LOOPS_API_KEY,
   VIDEO_PASSWORD: import.meta.env.VIDEO_PASSWORD ?? process.env.VIDEO_PASSWORD,
 };

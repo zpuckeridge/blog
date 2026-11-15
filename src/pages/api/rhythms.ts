@@ -10,12 +10,11 @@ import {
   readRhythmStore,
   RHYTHMS_KV_KEY,
 } from "@/lib/rhythms";
+import { resolveRhythmsWebhookSecret } from "@/lib/rhythms-webhook-secret";
 import { workersEnv } from "@/lib/workers-env";
 
 const getWebhookSecret = (): string | null =>
-  workersEnv.LOCATION_WEBHOOK_SECRET ??
-  process.env.LOCATION_WEBHOOK_SECRET ??
-  null;
+  resolveRhythmsWebhookSecret(workersEnv);
 
 export const POST: APIRoute = async ({ request }) => {
   const secret = getWebhookSecret();
