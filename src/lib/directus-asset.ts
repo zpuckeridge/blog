@@ -75,6 +75,14 @@ export const directusContentSrcSet = (
       `${directusAssetUrl(assetId, { format, quality: 80, width })} ${width}w`
   ).join(", ");
 
+/** Responsive `imagesrcset` for hero LCP preloads on timeline posts. */
+export const directusHeroLcpPreload = (
+  assetId: string
+): { avifHref: string; avifSrcSet: string } => ({
+  avifHref: directusAssetUrl(assetId, { format: "avif", width: 640 }),
+  avifSrcSet: directusContentSrcSet(assetId, "avif"),
+});
+
 export const directusAssetZoomUrl = (
   assetId: string,
   options: Pick<DirectusAssetOptions, "format" | "quality"> = {}

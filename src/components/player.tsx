@@ -9,7 +9,23 @@ import { youtubeEmbedUrl } from "@/lib/youtube-facade";
 
 const playerShell = "relative aspect-[16/9] w-full shrink-0 overflow-hidden";
 
-const MuxEmbed = ({
+/** Placeholder upgraded by `initPostEnhancements` on timeline posts only. */
+const MuxEmbedDeferred = ({
+  playbackId,
+  title,
+}: {
+  playbackId: string;
+  title: string;
+}) => (
+  <div
+    className="absolute inset-0 size-full bg-neutral-950"
+    data-mux-playback-id={playbackId}
+    data-mux-player=""
+    data-mux-title={title}
+  />
+);
+
+const MuxEmbedReact = ({
   onPlay,
   playbackId,
   title,
@@ -38,14 +54,7 @@ const MuxEmbed = ({
   }, []);
 
   if (!muxPlayer) {
-    return (
-      <div
-        className="absolute inset-0 size-full bg-neutral-950"
-        data-mux-playback-id={playbackId}
-        data-mux-player=""
-        data-mux-title={title}
-      />
-    );
+    return <div className="absolute inset-0 size-full bg-neutral-950" />;
   }
 
   const MuxPlayerView = muxPlayer;
@@ -90,11 +99,14 @@ const YoutubeEmbed = ({
 
 const Player = ({
   className,
+  deferMux = false,
   onPlay,
   src,
   title = "Video",
 }: {
   className?: string;
+  /** When true, timeline `initPostEnhancements` upgrades the embed (no React Mux bundle). */
+  deferMux?: boolean;
   onPlay?: () => void;
   src: string;
   title?: string;
@@ -107,13 +119,15 @@ const Player = ({
     );
   }
 
+  const playbackId = getMuxPlaybackId(src);
+
   return (
     <div className={cn(playerShell, className)}>
-      <MuxEmbed
-        onPlay={onPlay}
-        playbackId={getMuxPlaybackId(src)}
-        title={title}
-      />
+      {deferMux ? (
+        <MuxEmbedDeferred playbackId={playbackId} title={title} />
+      ) : (
+        <MuxEmbedReact onPlay={onPlay} playbackId={playbackId} title={title} />
+      )}
     </div>
   );
 };

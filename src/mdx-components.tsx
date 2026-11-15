@@ -181,7 +181,7 @@ const components: MDXComponents = {
   AfterQuote,
   Definition,
   Overflow: MdxOverflow,
-  Player: (props) => <MdxPlayer {...props} className="my-[2em]" />,
+  Player: (props) => <MdxPlayer {...props} className="my-[2em]" deferMux />,
   SideNote,
   Tweet,
   a: ({ href = "", children, ...props }) => {
