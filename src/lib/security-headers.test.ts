@@ -18,4 +18,11 @@ describe("HTML_CONTENT_SECURITY_POLICY", () => {
       /connect-src[^;]*https:\/\/cloudflareinsights\.com/u
     );
   });
+
+  it("allows react-tweet syndication API fetches", () => {
+    assert.match(
+      HTML_CONTENT_SECURITY_POLICY,
+      /connect-src[^;]*https:\/\/react-tweet\.vercel\.app/u
+    );
+  });
 });
