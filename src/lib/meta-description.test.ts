@@ -57,22 +57,19 @@ describe("fitMetaDescription", () => {
 
 describe("descriptionForPost", () => {
   it("uses the slug override only while the CMS description is out of range", () => {
-    const age = descriptionForPost(
-      "react-based-age-calculator",
-      "Calculate age from a birthdate."
-    );
     const goofy = descriptionForPost(
       "ive-been-inspired-by-a-goofy-movie",
       "Why I enjoyed A Goofy Movie."
     );
-    inRange(age);
     inRange(goofy);
-    assert.match(age, /birthdate/u);
     assert.match(goofy, /Goofy Movie/u);
 
     const cms =
-      "Calculate an age from a birthdate in this small React calculator, a short build note by Zacchary Puckeridge in Brisbane.";
-    assert.equal(descriptionForPost("react-based-age-calculator", cms), cms);
+      "Why A Goofy Movie still lands in adulthood: a note on a bored Wednesday, a Sideways video, and what the film stirred up.";
+    assert.equal(
+      descriptionForPost("ive-been-inspired-by-a-goofy-movie", cms),
+      cms
+    );
   });
 
   it("trims the long Rhodesia description instead of replacing it", () => {
@@ -94,7 +91,6 @@ describe("descriptionForTag", () => {
       ["education", "Education"],
       ["faith", "Faith"],
       ["politics", "Politics"],
-      ["technical", "Technical"],
     ] as const;
     const descriptions = tags.map(([slug, label]) => {
       const description = descriptionForTag(slug, label, []);

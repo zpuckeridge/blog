@@ -4,15 +4,13 @@ export const META_DESCRIPTION_MAX = 155;
 const SHORT_POST_DESCRIPTIONS: Record<string, string> = {
   "ive-been-inspired-by-a-goofy-movie":
     "Why A Goofy Movie still lands in adulthood: a note on a bored Wednesday, a Sideways video, and what the film stirred up.",
-  "react-based-age-calculator":
-    "Calculate an age from a birthdate in this small React calculator, a short build note by Zacchary Puckeridge in Brisbane.",
 };
 
 const FALLBACK =
   "Notes on faith, technology, and life in Brisbane, written by Zacchary Puckeridge on zacchary.me.";
 
 /**
- * Unique copy for the five published tags. Each one names what that tag
+ * Unique copy for published tags. Each one names what that tag
  * actually lists, and each one is already inside the 120–155 character window.
  */
 const TAG_DESCRIPTIONS: Record<string, string> = {
@@ -23,8 +21,6 @@ const TAG_DESCRIPTIONS: Record<string, string> = {
     "Baptist missionary Dr. Jim Dearmore survived a 1978 double ambush in Rhodesia, then shared his story with grace and forgiveness until he died in 2015.",
   politics:
     "Reflecting on work-life balance, and arguing that the usual complaints about it are overblown. A note by Zacchary Puckeridge.",
-  technical:
-    "Guides to resizing a Proxmox virtual machine, a React birthday age calculator, and monitoring Windows with Grafana and Prometheus.",
 };
 
 const PAD = " A note by Zacchary Puckeridge in Brisbane.";

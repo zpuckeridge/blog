@@ -1,18 +1,33 @@
 ---
+import GoneContent from "@/components/gone-content";
 import NotFoundContent from "@/components/not-found-content";
 import Layout from "@/layouts/layout.astro";
 import { getPosts } from "@/lib/directus-content";
 import { formatPublishedArticleDate } from "@/lib/format-in-brisbane";
 import { descriptionForTag } from "@/lib/meta-description";
 import { buildMetadataUrl, createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import {
+  filterPostsForPublicSite,
+  isRemovedTimelineTagSlug,
+  timelinePermanentRedirect,
+} from "@/lib/removed-timeline";
 import { postsForTag, tagSlug } from "@/lib/related-posts";
 import { timelinePostPath } from "@/lib/site";
 
 export const prerender = false;
 
 const tagParam = Astro.params.tag ?? "";
-const posts = await getPosts();
-const matches = postsForTag(posts, tagParam);
+
+const redirectTarget = timelinePermanentRedirect(
+  `/timeline/tag/${tagParam}`
+);
+if (redirectTarget) {
+  return Astro.redirect(redirectTarget, 301);
+}
+
+const removedTag = isRemovedTimelineTagSlug(tagParam);
+const posts = filterPostsForPublicSite(await getPosts());
+const matches = removedTag ? [] : postsForTag(posts, tagParam);
 const label =
   matches
     .flatMap((post) => post.tags ?? [])
@@ -20,8 +35,17 @@ const label =
 
 const found = tagParam.length > 0 && matches.length > 0;
 
-if (!found) {
+if (removedTag) {
+  Astro.response.status = 410;
+} else if (!found) {
   Astro.response.status = 404;
+}
+
+let pageTitle = "404 — Not Found";
+if (removedTag) {
+  pageTitle = "410 — Gone";
+} else if (found) {
+  pageTitle = `Posts tagged ${label}`;
 }
 
 const pageMeta = createPageMetadata({
@@ -34,10 +58,10 @@ const pageMeta = createPageMetadata({
     : `Posts on zacchary.me tagged ${label}.`,
   noIndex: !found,
   path: `/timeline/tag/${tagParam}`,
-  title: found ? `Posts tagged ${label}` : "404 — Not Found",
+  title: pageTitle,
 });
 
-const fullTitle = formatPageTitle(found ? `Posts tagged ${label}` : "404 — Not Found");
+const fullTitle = formatPageTitle(pageTitle);
 ---
 
 <Layout
@@ -55,7 +79,9 @@ const fullTitle = formatPageTitle(found ? `Posts tagged ${label}` : "404 — Not
   meta={pageMeta}
 >
   {
-    !found ? (
+    removedTag ? (
+      <GoneContent />
+    ) : !found ? (
       <NotFoundContent />
     ) : (
       <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-6 px-6 pb-20">

@@ -1,4 +1,5 @@
 ---
+import GoneContent from "@/components/gone-content";
 import NotFoundContent from "@/components/not-found-content";
 import Subscribe from "@/components/subscribe";
 import TimelinePost from "@/components/timeline-post";
@@ -21,6 +22,11 @@ import {
   formatPageTitle,
 } from "@/lib/metadata";
 import { relatedPostLinks } from "@/lib/related-posts";
+import {
+  filterPostsForPublicSite,
+  isRemovedTimelinePostSlug,
+  timelinePermanentRedirect,
+} from "@/lib/removed-timeline";
 
 export const prerender = false;
 
@@ -30,13 +36,24 @@ if (!slug) {
   return Astro.redirect("/404");
 }
 
-const post = await getPostBySlug(slug);
+const redirectTarget = timelinePermanentRedirect(`/timeline/${slug}`);
+if (redirectTarget) {
+  return Astro.redirect(redirectTarget, 301);
+}
 
-if (!post) {
+const removed = isRemovedTimelinePostSlug(slug);
+
+const post = removed ? null : await getPostBySlug(slug);
+
+if (!post && !removed) {
   Astro.response.status = 404;
 }
 
-const allPosts = post ? await getPosts() : [];
+if (removed) {
+  Astro.response.status = 410;
+}
+
+const allPosts = post ? filterPostsForPublicSite(await getPosts()) : [];
 const related = post ? relatedPostLinks(post, allPosts) : [];
 const files = post
   ? await getDirectusFileMeta(
@@ -54,18 +71,20 @@ for (const file of files) {
 const pageMeta = post
   ? buildTimelinePostMetadata(post, slug)
   : createPageMetadata({
-      description: "Page could not be found.",
+      description: removed
+        ? "This content has been permanently removed."
+        : "Page could not be found.",
       image: {
-        alt: "404 — Not Found",
+        alt: removed ? "410 — Gone" : "404 — Not Found",
         url: buildMetadataUrl("/media/404.webp"),
       },
       noIndex: true,
-      title: "404 — Not Found",
+      title: removed ? "410 — Gone" : "404 — Not Found",
     });
 
 const fullTitle = post
   ? formatPageTitle(post.title)
-  : formatPageTitle("404 — Not Found");
+  : formatPageTitle(removed ? "410 — Gone" : "404 — Not Found");
 
 const heroLcpPreload = post?.image
   ? directusHeroLcpPreload(post.image)
@@ -103,6 +122,8 @@ const heroLcpPreload = post?.image
       >
         <Subscribe client:visible />
       </TimelinePost>
+    ) : removed ? (
+      <GoneContent />
     ) : (
       <NotFoundContent />
     )

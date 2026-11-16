@@ -9,6 +9,7 @@ import { getPosts } from "@/lib/directus-content";
 import { getDirectusToken } from "@/lib/directus-token";
 import { descriptionForPost } from "@/lib/meta-description";
 import { comparePostsByNewest } from "@/lib/related-posts";
+import { filterPostsForPublicSite } from "@/lib/removed-timeline";
 import { buildEnclosureTag, readContentLength } from "@/lib/rss-enclosure";
 import { personName, siteLocale, timelinePostPath } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
@@ -61,8 +62,9 @@ const probeSocialImage = async (
 
 export const GET: APIRoute = async () => {
   const baseUrl = getSiteUrl();
-  const posts = await getPosts();
-  const sortedPosts = posts.toSorted(comparePostsByNewest);
+  const sortedPosts = filterPostsForPublicSite(await getPosts()).toSorted(
+    comparePostsByNewest
+  );
   const rssItems = await Promise.all(
     sortedPosts.map(async (post) => {
       let enclosure = "";

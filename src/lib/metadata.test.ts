@@ -57,15 +57,16 @@ describe("buildTimelinePostMetadata", () => {
       content: "",
       date_created: new Date("2024-01-01"),
       date_updated: new Date("2024-01-02"),
-      description: "Calculate age from a birthdate.",
+      description:
+        "Reflecting on work-life balance and why the usual complaints about it are overblown.",
       id: 1,
       image: "",
       image_alt: "",
       signature: false,
-      slug: "react-based-age-calculator",
+      slug: "work-life-balance-complaints",
       status: "published",
       tags: [],
-      title: "React based Birthday Age Calculator",
+      title: "Work-life balance complaints are overblown",
     } satisfies Post;
     const meta = buildTimelinePostMetadata(post, post.slug);
     assert.equal(meta.title, `${post.title} — Zacchary Puckeridge`);
@@ -74,7 +75,7 @@ describe("buildTimelinePostMetadata", () => {
       : meta.openGraph?.images;
     assert.equal(image?.width, 1200);
     assert.equal(image?.height, 630);
-    assert.match(meta.description ?? "", /birthdate/u);
+    assert.match(meta.description ?? "", /work-life balance/iu);
   });
 
   it("points og:image at a 1200px JPEG instead of the original file", () => {
