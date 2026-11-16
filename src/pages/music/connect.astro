@@ -2,7 +2,6 @@
 import AppleMusicConnect from "@/components/apple-music-connect";
 import Layout from "@/layouts/layout.astro";
 import { createAppleMusicDeveloperToken } from "@/lib/apple-music-developer-token";
-import { resolveAppleMusicConnectSecret } from "@/lib/apple-music-connect-secret";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import { workersEnv } from "@/lib/workers-env";
 
@@ -10,10 +9,7 @@ export const prerender = false;
 
 Astro.response.headers.set("Cache-Control", "private, no-store");
 
-const connectSecret = resolveAppleMusicConnectSecret(workersEnv);
-const developerToken = connectSecret
-  ? await createAppleMusicDeveloperToken(workersEnv)
-  : null;
+const developerToken = await createAppleMusicDeveloperToken(workersEnv);
 
 const pageMeta = createPageMetadata({
   description: "Private Apple Music connection for listening history.",
@@ -41,15 +37,11 @@ const fullTitle = formatPageTitle("Connect Apple Music");
       Connect Apple Music
     </h1>
     {
-      connectSecret && developerToken ? (
-        <AppleMusicConnect
-          client:load
-          connectSecret={connectSecret}
-          developerToken={developerToken}
-        />
+      developerToken ? (
+        <AppleMusicConnect client:load developerToken={developerToken} />
       ) : (
         <p class="text-muted-foreground text-sm">
-          Apple Music connect is not configured on this environment.
+          Apple Music signing secrets are not configured on this environment.
         </p>
       )
     }

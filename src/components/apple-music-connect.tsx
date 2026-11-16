@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
 interface AppleMusicConnectProps {
-  connectSecret: string;
   developerToken: string | null;
 }
 
@@ -44,10 +43,8 @@ const connectButtonLabel = (
   return "Connect Apple Music";
 };
 
-const AppleMusicConnect = ({
-  connectSecret,
-  developerToken,
-}: AppleMusicConnectProps) => {
+const AppleMusicConnect = ({ developerToken }: AppleMusicConnectProps) => {
+  const [connectSecret, setConnectSecret] = useState("");
   const [phase, setPhase] = useState<ConnectPhase>("idle");
   const [message, setMessage] = useState<string | null>(null);
   const [musicKitReady, setMusicKitReady] = useState(() =>
@@ -83,6 +80,13 @@ const AppleMusicConnect = ({
   }, []);
 
   const connect = useCallback(async () => {
+    const bearerSecret = connectSecret.trim();
+    if (!bearerSecret) {
+      setPhase("error");
+      setMessage("Enter the connect secret for this environment.");
+      return;
+    }
+
     if (!developerToken) {
       setPhase("error");
       setMessage("Apple Music signing secrets are not configured.");
@@ -114,7 +118,7 @@ const AppleMusicConnect = ({
     const response = await fetch("/api/apple-music/connect", {
       body: JSON.stringify({ musicUserToken }),
       headers: {
-        Authorization: `Bearer ${connectSecret}`,
+        Authorization: `Bearer ${bearerSecret}`,
         "Content-Type": "application/json",
       },
       method: "POST",
@@ -130,6 +134,11 @@ const AppleMusicConnect = ({
   }, [connectSecret, developerToken, fail]);
 
   const busy = phase === "authorising" || phase === "saving";
+  const canConnect =
+    connectSecret.trim().length > 0 &&
+    !busy &&
+    phase !== "done" &&
+    musicKitReady;
 
   return (
     <div className="space-y-4">
@@ -137,9 +146,33 @@ const AppleMusicConnect = ({
         Authorise Apple Music so the site can poll your recently played tracks
         when Discord is offline. This page is not linked from the site.
       </p>
+      <div className="space-y-2">
+        <label
+          className="text-sm text-black dark:text-white"
+          htmlFor="apple-music-connect-secret"
+        >
+          Connect secret
+        </label>
+        <input
+          autoComplete="off"
+          className="w-full border border-black bg-white px-3 py-2 text-sm text-black dark:border-white dark:bg-black dark:text-white"
+          disabled={busy || phase === "done"}
+          id="apple-music-connect-secret"
+          onChange={(event) => {
+            setConnectSecret(event.target.value);
+          }}
+          spellCheck={false}
+          type="password"
+          value={connectSecret}
+        />
+        <p className="text-muted-foreground text-xs">
+          Paste the environment&apos;s Apple Music connect bearer secret. It is
+          not stored in the browser.
+        </p>
+      </div>
       <button
         className="border border-black bg-black px-4 py-2 text-sm text-white disabled:opacity-50 dark:border-white dark:bg-white dark:text-black"
-        disabled={busy || phase === "done" || !musicKitReady}
+        disabled={!canConnect}
         onClick={() => {
           void connect();
         }}

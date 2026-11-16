@@ -1,6 +1,9 @@
 import type { APIRoute } from "astro";
 
-import { resolveAppleMusicConnectSecret } from "@/lib/apple-music-connect-secret";
+import {
+  resolveAppleMusicConnectSecret,
+  verifyAppleMusicConnectBearer,
+} from "@/lib/apple-music-connect-secret";
 import { APPLE_MUSIC_USER_TOKEN_KV_KEY } from "@/lib/apple-music-kv";
 import { jsonNoStore } from "@/lib/json-response";
 import {
@@ -34,7 +37,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const authorization = request.headers.get("Authorization");
-  if (authorization !== `Bearer ${secret}`) {
+  if (!verifyAppleMusicConnectBearer(authorization, secret)) {
     return jsonNoStore({ error: "Unauthorized" }, { status: 401 });
   }
 

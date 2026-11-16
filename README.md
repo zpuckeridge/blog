@@ -26,21 +26,21 @@ bun run preview
 
 Set these in `.env.local` (and matching Worker secrets in production):
 
-| Variable                       | Purpose                                                                                 |
-| ------------------------------ | --------------------------------------------------------------------------------------- |
-| **DIRECTUS_URL**               | Directus instance URL (required for content)                                            |
-| **DIRECTUS_TOKEN**             | Read-only static token (required; public collection read is disabled)                   |
-| **PUBLIC_SITE_URL**            | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata               |
-| **LOOPS_API_KEY**              | Newsletter signups via [Loops](https://loops.so)                                        |
-| **GITHUB_TOKEN**               | GitHub contributions graph                                                              |
-| **VIDEO_PASSWORD**             | Password gate for `/videos` and `/video/`*                                              |
-| **LOCATION_WEBHOOK_SECRET**    | Authenticates iOS Shortcuts location webhooks (`/api/location`)                         |
-| **RHYTHMS_WEBHOOK_SECRET**     | Bearer token for `POST /api/rhythms` (optional; falls back to location)                 |
-| **APPLE_MUSIC_TEAM_ID**        | Apple Music API team id for developer token signing                                     |
-| **APPLE_MUSIC_KEY_ID**         | Apple Music API key id for developer token signing                                      |
-| **APPLE_MUSIC_PRIVATE_KEY**    | Apple Music API private key (.p8 PEM contents, including headers)                       |
-| **APPLE_MUSIC_CONNECT_SECRET** | Bearer for `POST /api/apple-music/connect` (optional; falls back like rhythms)          |
-| **APPLE_MUSIC_USER_TOKEN**     | Optional dev-only Music User Token (production stores token in KV via `/music/connect`) |
+| Variable                       | Purpose                                                                                            |
+| ------------------------------ | -------------------------------------------------------------------------------------------------- |
+| **DIRECTUS_URL**               | Directus instance URL (required for content)                                                       |
+| **DIRECTUS_TOKEN**             | Read-only static token (required; public collection read is disabled)                              |
+| **PUBLIC_SITE_URL**            | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata                          |
+| **LOOPS_API_KEY**              | Newsletter signups via [Loops](https://loops.so)                                                   |
+| **GITHUB_TOKEN**               | GitHub contributions graph                                                                         |
+| **VIDEO_PASSWORD**             | Password gate for `/videos` and `/video/`*                                                         |
+| **LOCATION_WEBHOOK_SECRET**    | Authenticates iOS Shortcuts location webhooks (`/api/location`)                                    |
+| **RHYTHMS_WEBHOOK_SECRET**     | Bearer token for `POST /api/rhythms` (optional; falls back to location)                            |
+| **APPLE_MUSIC_TEAM_ID**        | Apple Music API team id for developer token signing                                                |
+| **APPLE_MUSIC_KEY_ID**         | Apple Music API key id for developer token signing                                                 |
+| **APPLE_MUSIC_PRIVATE_KEY**    | Apple Music API private key (.p8 PEM contents, including headers)                                  |
+| **APPLE_MUSIC_CONNECT_SECRET** | Bearer for `POST /api/apple-music/connect` (required for the connect API; not exposed on the page) |
+| **APPLE_MUSIC_USER_TOKEN**     | Optional dev-only Music User Token (production stores token in KV via `/music/connect`)            |
 
 For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_SECRET** in `.dev.vars` as well (gitignored).
 

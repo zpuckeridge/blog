@@ -52,7 +52,7 @@ declare global {
       APPLE_MUSIC_PRIVATE_KEY?: string;
       /** Optional dev-only Music User Token (production uses KV from /music/connect). */
       APPLE_MUSIC_USER_TOKEN?: string;
-      /** Bearer token for POST /api/apple-music/connect. Falls back like rhythms webhooks. */
+      /** Bearer token for POST /api/apple-music/connect. */
       APPLE_MUSIC_CONNECT_SECRET?: string;
       /** KV namespace for location status, listening recents, and listening history. */
       LOCATION_KV?: SiteKv;
