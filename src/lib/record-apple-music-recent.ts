@@ -87,7 +87,7 @@ export const recordAppleMusicRecent = async (
 
   if (tracks === null) {
     console.warn(
-      "Apple Music user token was rejected; skipping poll until reconnect"
+      "Apple Music user token was rejected; skipping poll until token is renewed"
     );
     return {
       baselineOnly: false,
