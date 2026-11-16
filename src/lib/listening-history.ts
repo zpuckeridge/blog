@@ -1,4 +1,5 @@
 import type { NowListening, ObservedListen } from "@/lib/lanyard-status";
+import { resolveStoredListenSource } from "@/lib/lanyard-status";
 import { isNonEmptyString, listeningIdentity } from "@/lib/listening-recents";
 
 /**
@@ -70,6 +71,7 @@ const parseListenPlay = (value: unknown): ListenPlay | null => {
       ? record.artworkUrl.trim()
       : null,
     listenedAt,
+    source: resolveStoredListenSource(record),
     startedAt,
     track: record.track.trim(),
     trackUrl: isNonEmptyString(record.trackUrl) ? record.trackUrl.trim() : null,
@@ -225,6 +227,7 @@ export const appendListenPlay = (
     artistUrl: song.artistUrl,
     artworkUrl: song.artworkUrl,
     listenedAt: observedAt,
+    source: song.source ?? "lanyard",
     startedAt: song.startedAt,
     track: song.track,
     trackUrl: song.trackUrl,

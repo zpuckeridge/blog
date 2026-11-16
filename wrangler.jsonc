@@ -7,7 +7,7 @@
   "workers_dev": true,
 
   "triggers": {
-    "crons": ["* * * * *"],
+    "crons": ["* * * * *", "*/30 * * * *"],
   },
 
   "routes": [{ "pattern": "zacchary.me", "custom_domain": true }],
