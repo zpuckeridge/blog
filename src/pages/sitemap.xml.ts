@@ -3,7 +3,10 @@ import type { APIRoute } from "astro";
 import { getPosts } from "@/lib/directus-content";
 import { buildMetadataUrl } from "@/lib/metadata";
 import { pagesWhere } from "@/lib/public-pages";
-import { tagSlugsFromPosts } from "@/lib/related-posts";
+import {
+  filterPostsForPublicSite,
+  tagSlugsForPublicSite,
+} from "@/lib/removed-timeline";
 import { timelinePostPath, timelineTagPath } from "@/lib/site";
 import { escapeXml } from "@/lib/xml-escape";
 
@@ -22,7 +25,7 @@ export const GET: APIRoute = async () => {
   let dynamicEntries = "";
 
   try {
-    const posts = await getPosts();
+    const posts = filterPostsForPublicSite(await getPosts());
 
     for (const post of posts) {
       const postLastmod = post.date_updated
@@ -35,7 +38,7 @@ export const GET: APIRoute = async () => {
   </url>`;
     }
 
-    for (const tag of tagSlugsFromPosts(posts)) {
+    for (const tag of tagSlugsForPublicSite(posts)) {
       dynamicEntries += `
   <url>
     <loc>${escapeXml(buildMetadataUrl(timelineTagPath(tag)))}</loc>

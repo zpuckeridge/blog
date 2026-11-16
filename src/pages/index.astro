@@ -16,6 +16,7 @@ import {
 import { createPageMetadata } from "@/lib/metadata";
 import { compareProjects } from "@/lib/compare-projects";
 import { getPosts, getProjects } from "@/lib/directus-content";
+import { filterPostsForPublicSite } from "@/lib/removed-timeline";
 import { comparePostsByNewest } from "@/lib/related-posts";
 import { socialProfiles,timelinePostPath } from "@/lib/site";
 import {
@@ -31,7 +32,9 @@ const [projects, posts, initialLocation] = await Promise.all([
   getPosts(),
   readLocationPublicStatus(),
 ]);
-const sortedPosts = posts.toSorted(comparePostsByNewest).slice(0, 4);
+const sortedPosts = filterPostsForPublicSite(posts)
+  .toSorted(comparePostsByNewest)
+  .slice(0, 4);
 const sortedProjects = projects.toSorted(compareProjects);
 const githubUsername = "zpuckeridge";
 const githubContributions = await (async (): Promise<

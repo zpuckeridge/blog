@@ -3,6 +3,7 @@ import type { APIRoute } from "astro";
 import { getPosts } from "@/lib/directus-content";
 import { pagesWhere } from "@/lib/public-pages";
 import { comparePostsByNewest } from "@/lib/related-posts";
+import { filterPostsForPublicSite } from "@/lib/removed-timeline";
 import { personName, timelinePostPath } from "@/lib/site";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -13,8 +14,7 @@ export const GET: APIRoute = async () => {
   let posts: { slug: string; title: string }[] = [];
 
   try {
-    const published = await getPosts();
-    posts = published
+    posts = filterPostsForPublicSite(await getPosts())
       .toSorted(comparePostsByNewest)
       .map((post) => ({ slug: post.slug, title: post.title }));
   } catch (error) {

@@ -3,6 +3,7 @@ import { readItems } from "@directus/sdk";
 import type { Post } from "@/interfaces/content-item";
 import { withContentCache } from "@/lib/directus-content-cache";
 import { isUnknownWorkInProgressFieldError } from "@/lib/directus-sdk-errors";
+import { isRemovedTimelinePostSlug } from "@/lib/removed-timeline";
 
 import directus from "./directus";
 
@@ -72,6 +73,10 @@ export const getPosts = (): Promise<Post[]> =>
 
 export const getPostBySlug = (slug: string): Promise<Post | null> =>
   withContentCache(`post:${slug}`, async () => {
+    if (isRemovedTimelinePostSlug(slug)) {
+      return null;
+    }
+
     try {
       const posts = await requestPublishedPosts({
         filter: {

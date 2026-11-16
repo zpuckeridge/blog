@@ -4,6 +4,7 @@ import Layout from "@/layouts/layout.astro";
 import { buildMetadataUrl, createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import { timelinePostPath } from "@/lib/site";
 import { getNotes, getPosts } from "@/lib/directus-content";
+import { filterPostsForPublicSite } from "@/lib/removed-timeline";
 
 export const prerender = false;
 
@@ -16,7 +17,10 @@ const pageMeta = createPageMetadata({
 
 const fullTitle = formatPageTitle("Timeline");
 
-const [allPosts, allNotes] = await Promise.all([getPosts(), getNotes()]);
+const [allPosts, allNotes] = await Promise.all([
+  filterPostsForPublicSite(await getPosts()),
+  getNotes(),
+]);
 ---
 
 <Layout
