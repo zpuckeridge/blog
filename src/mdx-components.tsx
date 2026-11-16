@@ -26,7 +26,11 @@ import {
   toProxiedAssetSrc,
 } from "@/lib/directus-asset";
 import { isFootnoteHref } from "@/lib/footnotes";
-import { headingIdFromText, shiftedHeadingDepth } from "@/lib/heading-shift";
+import {
+  headingIdFromText,
+  headingShiftForDepth,
+  shiftedHeadingDepth,
+} from "@/lib/heading-shift";
 
 const textFromChildren = (children: ReactNode): string => {
   if (
@@ -81,13 +85,23 @@ const Heading = ({
   children?: ReactNode;
   depth: number;
 }) => {
-  const shift = useContext(HeadingShiftContext);
+  const firstHeadingDepth = useContext(HeadingShiftContext);
+  const shift = headingShiftForDepth(depth, firstHeadingDepth);
   const level = shiftedHeadingDepth(depth, shift);
   const Tag = `h${level}` as HeadingTag;
   const id = headingIdFromText(textFromChildren(children));
+  const preserveMarkdownDepth = shift !== 0;
 
   if (!id) {
-    return <Tag>{children}</Tag>;
+    return (
+      <Tag
+        {...(preserveMarkdownDepth
+          ? { "data-md-depth": String(depth) }
+          : undefined)}
+      >
+        {children}
+      </Tag>
+    );
   }
 
   const onCopy = async () => {
@@ -109,7 +123,12 @@ const Heading = ({
   };
 
   return (
-    <Tag id={id}>
+    <Tag
+      {...(preserveMarkdownDepth
+        ? { "data-md-depth": String(depth) }
+        : undefined)}
+      id={id}
+    >
       <a className="heading-link" href={`#${id}`} onClick={onClick}>
         {children}
       </a>

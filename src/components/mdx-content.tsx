@@ -47,11 +47,11 @@ export const MdxContent = ({
     mdxComponents.img as ComponentType<MdastImgComponentProps>
   );
 
-  const { shift } = articleHeadingOutline(parsed.mdast);
+  const { firstHeadingDepth } = articleHeadingOutline(parsed.mdast);
 
   return (
     <ImageMetaContext.Provider value={imageMeta}>
-      <HeadingShiftContext.Provider value={shift}>
+      <HeadingShiftContext.Provider value={firstHeadingDepth}>
         <SafeMdxRenderer
           components={mdxComponents}
           markdown={parsed.markdown}

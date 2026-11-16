@@ -17,7 +17,29 @@ export const headingIdFromText = (text: string): string =>
     .replaceAll(/[^\w\s-]/gu, "")
     .replaceAll(/\s+/gu, "-");
 
-/** Shift markdown headings so the page H1 stays the top of the outline. */
+/**
+ * Shift a single markdown heading depth so the first in-article heading is h2 under
+ * the page title. Only headings at or below the first heading depth move; shallower
+ * headings that appear later (e.g. `##` after introductory `###`) stay put.
+ */
+export const headingShiftForDepth = (
+  depth: number,
+  firstHeadingDepth: number
+): number => {
+  if (firstHeadingDepth === 0) {
+    return 0;
+  }
+  if (firstHeadingDepth <= 1) {
+    return 1;
+  }
+  if (firstHeadingDepth === 2) {
+    return 0;
+  }
+  const lift = 2 - firstHeadingDepth;
+  return depth >= firstHeadingDepth ? lift : 0;
+};
+
+/** @deprecated Prefer `headingShiftForDepth` with the first heading depth. */
 export const headingLevelShift = (depths: readonly number[]): number => {
   if (depths.length === 0) {
     return 0;
@@ -77,17 +99,20 @@ export const headingsFromTree = (tree: MdNode): ArticleHeading[] => {
 const shiftedHeadings = (
   headings: readonly ArticleHeading[]
 ): ArticleHeading[] => {
-  const shift = headingLevelShift(headings.map((heading) => heading.depth));
+  const firstDepth = headings[0]?.depth ?? 0;
   return headings.map((heading) => ({
     ...heading,
-    depth: shiftedHeadingDepth(heading.depth, shift),
+    depth: shiftedHeadingDepth(
+      heading.depth,
+      headingShiftForDepth(heading.depth, firstDepth)
+    ),
   }));
 };
 
 export const articleHeadingOutline = (
   tree: MdNode
-): { headings: ArticleHeading[]; shift: number } => {
+): { firstHeadingDepth: number; headings: ArticleHeading[] } => {
   const headings = headingsFromTree(tree);
-  const shift = headingLevelShift(headings.map((heading) => heading.depth));
-  return { headings: shiftedHeadings(headings), shift };
+  const firstHeadingDepth = headings[0]?.depth ?? 0;
+  return { firstHeadingDepth, headings: shiftedHeadings(headings) };
 };
