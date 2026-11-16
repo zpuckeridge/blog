@@ -26,21 +26,20 @@ bun run preview
 
 Set these in `.env.local` (and matching Worker secrets in production):
 
-| Variable                       | Purpose                                                                                 |
-| ------------------------------ | --------------------------------------------------------------------------------------- |
-| **DIRECTUS_URL**               | Directus instance URL (required for content)                                            |
-| **DIRECTUS_TOKEN**             | Read-only static token (required; public collection read is disabled)                   |
-| **PUBLIC_SITE_URL**            | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata               |
-| **LOOPS_API_KEY**              | Newsletter signups via [Loops](https://loops.so)                                        |
-| **GITHUB_TOKEN**               | GitHub contributions graph                                                              |
-| **VIDEO_PASSWORD**             | Password gate for `/videos` and `/video/`*                                              |
-| **LOCATION_WEBHOOK_SECRET**    | Authenticates iOS Shortcuts location webhooks (`/api/location`)                         |
-| **RHYTHMS_WEBHOOK_SECRET**     | Bearer token for `POST /api/rhythms` (optional; falls back to location)                 |
-| **APPLE_MUSIC_TEAM_ID**        | Apple Music API team id for developer token signing                                     |
-| **APPLE_MUSIC_KEY_ID**         | Apple Music API key id for developer token signing                                      |
-| **APPLE_MUSIC_PRIVATE_KEY**    | Apple Music API private key (.p8 PEM contents, including headers)                       |
-| **APPLE_MUSIC_CONNECT_SECRET** | Bearer for `POST /api/apple-music/connect` (optional; falls back like rhythms)          |
-| **APPLE_MUSIC_USER_TOKEN**     | Optional dev-only Music User Token (production stores token in KV via `/music/connect`) |
+| Variable                    | Purpose                                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------------------------- |
+| **DIRECTUS_URL**            | Directus instance URL (required for content)                                                   |
+| **DIRECTUS_TOKEN**          | Read-only static token (required; public collection read is disabled)                          |
+| **PUBLIC_SITE_URL**         | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata                      |
+| **LOOPS_API_KEY**           | Newsletter signups via [Loops](https://loops.so)                                               |
+| **GITHUB_TOKEN**            | GitHub contributions graph                                                                     |
+| **VIDEO_PASSWORD**          | Password gate for `/videos` and `/video/`*                                                     |
+| **LOCATION_WEBHOOK_SECRET** | Authenticates iOS Shortcuts location webhooks (`/api/location`)                                |
+| **RHYTHMS_WEBHOOK_SECRET**  | Bearer token for `POST /api/rhythms` (optional; falls back to location)                        |
+| **APPLE_MUSIC_TEAM_ID**     | Apple Music API team id for developer token signing                                            |
+| **APPLE_MUSIC_KEY_ID**      | Apple Music API key id for developer token signing                                             |
+| **APPLE_MUSIC_PRIVATE_KEY** | Apple Music API private key (.p8 PEM contents, including headers)                              |
+| **APPLE_MUSIC_USER_TOKEN**  | Optional dev-only Music User Token (production stores token in KV as `apple-music:user-token`) |
 
 For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_SECRET** in `.dev.vars` as well (gitignored).
 
@@ -66,7 +65,7 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 - **Location status** — iOS Shortcuts webhook + KV geofence; shown on the homepage
 - **Discord status** — Lanyard (REST + WebSocket on the client)
 - **Apple Music** — Now playing from Discord activity via Lanyard; recent tracks on the homepage
-- **Apple Music supplement** — When Discord is offline, a half-hourly Worker cron polls Apple’s recently played API using a Music User Token from the private `/music/connect` page; plays merge into the same KV history with a `source` field (`lanyard` or `apple`)
+- **Apple Music supplement** — When Discord is offline, a half-hourly Worker cron polls Apple’s recently played API using the Music User Token in KV (`apple-music:user-token`); plays merge into the same KV history with a `source` field (`lanyard` or `apple`). Apple Music user tokens expire after roughly six months; restore the removed `/music/connect` flow from git history, re-authorise once, then remove it again—or set `APPLE_MUSIC_USER_TOKEN` locally and write KV via Wrangler.
 - **Music history** — `/music` lists the last 1,000 plays (KV), fed by Worker cron polls
 - **Status history heatmaps** — Work, home, and Discord online time (365 days) on `/activity`
 

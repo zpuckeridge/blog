@@ -50,10 +50,8 @@ declare global {
       APPLE_MUSIC_KEY_ID?: string;
       /** Apple Music API private key (.p8 PEM contents). */
       APPLE_MUSIC_PRIVATE_KEY?: string;
-      /** Optional dev-only Music User Token (production uses KV from /music/connect). */
+      /** Optional dev-only Music User Token (production uses KV `apple-music:user-token`). */
       APPLE_MUSIC_USER_TOKEN?: string;
-      /** Bearer token for POST /api/apple-music/connect. Falls back like rhythms webhooks. */
-      APPLE_MUSIC_CONNECT_SECRET?: string;
       /** KV namespace for location status, listening recents, and listening history. */
       LOCATION_KV?: SiteKv;
       /** SQLite-backed Durable Object containing the public activity feed. */
@@ -72,7 +70,6 @@ declare global {
     readonly APPLE_MUSIC_KEY_ID?: string;
     readonly APPLE_MUSIC_PRIVATE_KEY?: string;
     readonly APPLE_MUSIC_USER_TOKEN?: string;
-    readonly APPLE_MUSIC_CONNECT_SECRET?: string;
   }
 
   interface ImportMeta {
