@@ -1,7 +1,10 @@
 import { handle } from "@astrojs/cloudflare/handler";
 
+import { recordAppleMusicRecent } from "@/lib/record-apple-music-recent";
 import { recordListeningRecent } from "@/lib/record-listening-recent";
 import { recordStatusSample } from "@/lib/status-history";
+
+const APPLE_MUSIC_CRON = "*/30 * * * *";
 
 export { ActivityFeedStore } from "@/lib/activity-feed-store";
 
@@ -19,6 +22,26 @@ export default {
     }
 
     try {
+      if (_controller.cron === APPLE_MUSIC_CRON) {
+        const appleResult = await recordAppleMusicRecent(
+          kv,
+          env,
+          _controller.scheduledTime
+        );
+
+        if (appleResult.baselineOnly) {
+          console.log("Apple Music poll stored baseline track list");
+        } else if (appleResult.skippedAuth) {
+          console.warn("Apple Music poll skipped (missing or rejected token)");
+        } else if (appleResult.ingested > 0) {
+          console.log(
+            `Apple Music poll ingested ${appleResult.ingested} track(s)`
+          );
+        }
+
+        return;
+      }
+
       const [listeningResult, statusResult] = await Promise.all([
         recordListeningRecent(kv),
         recordStatusSample(kv, _controller.scheduledTime),

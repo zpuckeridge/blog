@@ -44,6 +44,16 @@ declare global {
       LOCATION_WEBHOOK_SECRET?: string;
       /** Bearer token for POST /api/rhythms. Falls back to LOCATION_WEBHOOK_SECRET when unset. */
       RHYTHMS_WEBHOOK_SECRET?: string;
+      /** Apple Music API team id for developer token signing. */
+      APPLE_MUSIC_TEAM_ID?: string;
+      /** Apple Music API key id for developer token signing. */
+      APPLE_MUSIC_KEY_ID?: string;
+      /** Apple Music API private key (.p8 PEM contents). */
+      APPLE_MUSIC_PRIVATE_KEY?: string;
+      /** Optional dev-only Music User Token (production uses KV from /music/connect). */
+      APPLE_MUSIC_USER_TOKEN?: string;
+      /** Bearer token for POST /api/apple-music/connect. Falls back like rhythms webhooks. */
+      APPLE_MUSIC_CONNECT_SECRET?: string;
       /** KV namespace for location status, listening recents, and listening history. */
       LOCATION_KV?: SiteKv;
       /** SQLite-backed Durable Object containing the public activity feed. */
@@ -58,6 +68,11 @@ declare global {
     readonly GITHUB_TOKEN?: string;
     readonly LOCATION_WEBHOOK_SECRET?: string;
     readonly RHYTHMS_WEBHOOK_SECRET?: string;
+    readonly APPLE_MUSIC_TEAM_ID?: string;
+    readonly APPLE_MUSIC_KEY_ID?: string;
+    readonly APPLE_MUSIC_PRIVATE_KEY?: string;
+    readonly APPLE_MUSIC_USER_TOKEN?: string;
+    readonly APPLE_MUSIC_CONNECT_SECRET?: string;
   }
 
   interface ImportMeta {

@@ -26,15 +26,21 @@ bun run preview
 
 Set these in `.env.local` (and matching Worker secrets in production):
 
-| Variable                    | Purpose                                                                   |
-| --------------------------- | ------------------------------------------------------------------------- |
-| **DIRECTUS_URL**            | Directus instance URL (required for content)                              |
-| **DIRECTUS_TOKEN**          | Read-only static token (required; public collection read is disabled)     |
-| **PUBLIC_SITE_URL**         | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata |
-| **LOOPS_API_KEY**           | Newsletter signups via [Loops](https://loops.so)                          |
-| **GITHUB_TOKEN**            | GitHub contributions graph                                                |
-| **VIDEO_PASSWORD**          | Password gate for `/videos` and `/video/`*                                |
-| **LOCATION_WEBHOOK_SECRET** | Authenticates iOS Shortcuts location webhooks (`/api/location`)           |
+| Variable                       | Purpose                                                                                 |
+| ------------------------------ | --------------------------------------------------------------------------------------- |
+| **DIRECTUS_URL**               | Directus instance URL (required for content)                                            |
+| **DIRECTUS_TOKEN**             | Read-only static token (required; public collection read is disabled)                   |
+| **PUBLIC_SITE_URL**            | Canonical URL (e.g. `https://zacchary.me`) for RSS, sitemap, and metadata               |
+| **LOOPS_API_KEY**              | Newsletter signups via [Loops](https://loops.so)                                        |
+| **GITHUB_TOKEN**               | GitHub contributions graph                                                              |
+| **VIDEO_PASSWORD**             | Password gate for `/videos` and `/video/`*                                              |
+| **LOCATION_WEBHOOK_SECRET**    | Authenticates iOS Shortcuts location webhooks (`/api/location`)                         |
+| **RHYTHMS_WEBHOOK_SECRET**     | Bearer token for `POST /api/rhythms` (optional; falls back to location)                 |
+| **APPLE_MUSIC_TEAM_ID**        | Apple Music API team id for developer token signing                                     |
+| **APPLE_MUSIC_KEY_ID**         | Apple Music API key id for developer token signing                                      |
+| **APPLE_MUSIC_PRIVATE_KEY**    | Apple Music API private key (.p8 PEM contents, including headers)                       |
+| **APPLE_MUSIC_CONNECT_SECRET** | Bearer for `POST /api/apple-music/connect` (optional; falls back like rhythms)          |
+| **APPLE_MUSIC_USER_TOKEN**     | Optional dev-only Music User Token (production stores token in KV via `/music/connect`) |
 
 For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_SECRET** in `.dev.vars` as well (gitignored).
 
@@ -60,7 +66,8 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 - **Location status** — iOS Shortcuts webhook + KV geofence; shown on the homepage
 - **Discord status** — Lanyard (REST + WebSocket on the client)
 - **Apple Music** — Now playing from Discord activity via Lanyard; recent tracks on the homepage
-- **Music history** — `/music` lists the last 1,000 plays (KV), fed by a Worker cron poll
+- **Apple Music supplement** — When Discord is offline, a half-hourly Worker cron polls Apple’s recently played API using a Music User Token from the private `/music/connect` page; plays merge into the same KV history with a `source` field (`lanyard` or `apple`)
+- **Music history** — `/music` lists the last 1,000 plays (KV), fed by Worker cron polls
 - **Status history heatmaps** — Work, home, and Discord online time (365 days) on `/activity`
 
 ### Activity
@@ -86,7 +93,7 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 
 ### Status history heatmaps
 
-A Cloudflare cron runs **every minute**. Each run may poll Lanyard for Discord + Apple Music listening and, on a **five-minute sample bucket**, record location and Discord presence into `LOCATION_KV` under `status:history:v1`. Graphs live on `/activity` (not the homepage).
+A Cloudflare cron runs **every minute**. Each run may poll Lanyard for Discord + Apple Music listening and, on a **five-minute sample bucket**, record location and Discord presence into `LOCATION_KV` under `status:history:v1`. Graphs live on `/activity` (not the homepage). A second cron runs **every 30 minutes** to supplement listening history from the Apple Music API when a Music User Token is stored.
 
 - **Discord online** counts `online`, `idle`, and `dnd`; `offline` is not counted.
 - **Work / home** use the current geofence category when location is fresh (not stale). `transit` and `away` count toward observed location time but not work or home totals.

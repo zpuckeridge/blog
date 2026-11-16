@@ -1,3 +1,6 @@
+import type { ListenSource } from "@/lib/listen-source";
+import { parseListenSource } from "@/lib/listen-source";
+
 /** Legacy Apple Music rich presence app id (still seen on some clients). */
 export const APPLE_MUSIC_APPLICATION_ID = "1239490006054207550";
 
@@ -48,6 +51,8 @@ export interface NowListening {
   artworkUrl: string | null;
   trackUrl: string | null;
   artistUrl: string | null;
+  /** Defaults to Lanyard when omitted on read. */
+  source?: ListenSource;
 }
 
 /** A play observed from Apple Music rich presence, including its start clock. */
@@ -169,11 +174,16 @@ const observedFromActivity = (
       activity.assets?.large_image,
       applicationId
     ),
+    source: "lanyard",
     startedAt: unixMilliseconds(activity.timestamps?.start),
     track,
     trackUrl: activity.details_url ?? activity.assets?.large_url ?? null,
   };
 };
+
+export const resolveStoredListenSource = (
+  record: Record<string, unknown>
+): ListenSource => parseListenSource(record.source) ?? "lanyard";
 
 export const parseAppleMusicActivity = (
   activities: LanyardActivity[] | undefined

@@ -33,6 +33,7 @@ describe("parseAppleMusicActivity", () => {
         "https://music.apple.com/jp/artist/the-devil-wears-prada/189224243?uo=4",
       artworkUrl:
         "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/7e/93/92/7e93925b-2ce7-e543-c783-6b23e02fbaa6/810129812459.jpg/100x100bb.jpg",
+      source: "lanyard",
       startedAt: null,
       track: "Everybody Knows",
       trackUrl:

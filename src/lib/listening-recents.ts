@@ -1,4 +1,5 @@
 import type { NowListening } from "@/lib/lanyard-status";
+import { resolveStoredListenSource } from "@/lib/lanyard-status";
 
 export const LISTENING_RECENTS_KV_KEY = "listening:recents";
 const LISTENING_RECENTS_MAX = 10;
@@ -43,6 +44,7 @@ const parseRecentListen = (value: unknown): RecentListen | null => {
       ? record.artworkUrl.trim()
       : null,
     listenedAt: record.listenedAt,
+    source: resolveStoredListenSource(record),
     track: record.track.trim(),
     trackUrl: isNonEmptyString(record.trackUrl) ? record.trackUrl.trim() : null,
   };
@@ -99,6 +101,7 @@ export const upsertRecentListen = (
     artistUrl: song.artistUrl,
     artworkUrl: song.artworkUrl,
     listenedAt,
+    source: song.source ?? "lanyard",
     track: song.track,
     trackUrl: song.trackUrl,
   };
