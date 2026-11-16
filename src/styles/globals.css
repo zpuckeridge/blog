@@ -214,6 +214,19 @@
   outline: none;
 }
 
+/*
+ * Timeline articles may render a shallower HTML level than the markdown depth
+ * (h3→h2 for accessibility). Keep the on-page size from the source depth.
+ */
+.prose h2[data-md-depth="3"],
+.prose h3[data-md-depth="4"],
+.prose h3[data-md-depth="5"],
+.prose h4[data-md-depth="5"],
+.prose h4[data-md-depth="6"] {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 /* Article headings copy a permalink. The mark sits in the column padding. */
 a.heading-link {
   position: relative;
