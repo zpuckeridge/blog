@@ -1,7 +1,6 @@
 import { isoDateInBrisbane } from "@/lib/format-in-brisbane";
 
 export const RHYTHMS_KV_KEY = "rhythms:v1";
-export const RHYTHMS_RETENTION_DAYS = 400;
 export const MAX_SNACKS = 6;
 const MAX_IDEMPOTENCY_KEYS = 24;
 const MAX_SLEEP_MS = 16 * 60 * 60 * 1000;
@@ -648,11 +647,6 @@ const dateError = (isoDate: string, todayIso: string): string | null => {
     return "Date is in the future";
   }
 
-  const cutoff = addBrisbaneDays(todayIso, -RHYTHMS_RETENTION_DAYS);
-  if (isoDate < cutoff) {
-    return "Date is outside the stored range";
-  }
-
   return null;
 };
 
@@ -823,17 +817,6 @@ const pairError = (day: RhythmDay | undefined): string | null => {
   }
 
   return sleepWindowError(day.bedAt, day.wokeAt);
-};
-
-const pruneRhythmDays = (store: RhythmStore, todayIso: string): void => {
-  const cutoff = addBrisbaneDays(todayIso, -RHYTHMS_RETENTION_DAYS);
-  const nextDays: Record<string, RhythmDay> = {};
-  for (const [isoDate, day] of Object.entries(store.days)) {
-    if (isoDate >= cutoff) {
-      nextDays[isoDate] = day;
-    }
-  }
-  store.days = nextDays;
 };
 
 const sanitizeQuality = (value: unknown): MealQuality | undefined =>
@@ -1130,8 +1113,6 @@ export const applyRhythmWrite = (
       command.idempotencyKey,
     ].slice(-MAX_IDEMPOTENCY_KEYS);
   }
-
-  pruneRhythmDays(next, isoDateInBrisbane(nowMs));
 
   const dates =
     sleepDate === command.date ? [command.date] : [command.date, sleepDate];

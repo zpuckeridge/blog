@@ -2,8 +2,11 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import {
+  BASELINE_SHIFT,
+  brisbaneDatesEnding,
   brisbaneWeekdayIndex,
   buildActivityCharts,
+  CHART_HISTORY_DAYS,
   sleepAxisFractions,
 } from "./rhythm-charts.ts";
 import { emptyRhythmStore } from "./rhythms.ts";
@@ -45,12 +48,11 @@ describe("weekday index", () => {
 });
 
 describe("buildActivityCharts", () => {
-  it("compares the step average with 56 days earlier", () => {
+  it("compares the step average with 30 days earlier", () => {
     const rhythms = emptyRhythmStore();
-    const charts = chartsFrom(rhythms);
-    const dates = charts.movement.points.map((point) => point.date);
+    const historyDates = brisbaneDatesEnding(today, CHART_HISTORY_DAYS);
 
-    for (const [index, date] of dates.entries()) {
+    for (const [index, date] of historyDates.entries()) {
       if (date === today) {
         continue;
       }
@@ -58,11 +60,12 @@ describe("buildActivityCharts", () => {
         idempotencyKeys: [],
         meals: { snacks: [] },
       };
-      day.steps = index < 50 ? 10_000 : 8000;
+      day.steps = index < BASELINE_SHIFT - 1 ? 10_000 : 8000;
       rhythms.days[date] = day;
     }
 
     const { movement } = chartsFrom(rhythms);
+    assert.equal(movement.points.length, 30);
     assert.equal(movement.headline, "8,000 steps");
     assert.equal(movement.delta, "Δ −2,000 steps");
     assert.equal(movement.points.at(-1)?.bar, null);

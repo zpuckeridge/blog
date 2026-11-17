@@ -55,7 +55,7 @@ const hasAnyData = days.some((day) => day.hasData);
             ))}
           </div>
           <div class="text-muted-foreground text-sm" data-status-heatmap-summary>
-            {`${formatHeatmapMinutesLabel(yearTotalMinutes)} ${yearSummaryLabel} in ${currentYear}`}
+            {`${formatHeatmapMinutesLabel(yearTotalMinutes)} ${yearSummaryLabel} in the last 30 days`}
           </div>
         </>
       ) : (
@@ -68,7 +68,7 @@ const hasAnyData = days.some((day) => day.hasData);
             class="flex justify-end gap-[4px] opacity-45"
           >
             {
-              Array.from({ length: 52 }, () => (
+              Array.from({ length: 5 }, () => (
                 <div class="flex flex-col gap-[4px]">
                   {Array.from({ length: 7 }, () => (
                     <span class="h-[9px] w-[9px] bg-neutral-100 dark:bg-neutral-900" />
