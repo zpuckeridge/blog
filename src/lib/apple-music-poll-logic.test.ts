@@ -41,6 +41,52 @@ describe("diffAppleMusicPoll", () => {
       ["a", "b"]
     );
   });
+
+  it("counts a replay when a deep previous id moves to the top", () => {
+    const previous = ["head", "mid", "tail", "deep"];
+    const diff = diffAppleMusicPoll(previous, [
+      song("deep"),
+      song("head"),
+      song("mid"),
+      song("tail"),
+    ]);
+
+    assert.deepEqual(
+      diff.map((entry) => entry.identity),
+      ["deep"]
+    );
+  });
+
+  it("yields nothing when the list order is unchanged", () => {
+    const tracks = [song("a"), song("b"), song("c")];
+    const diff = diffAppleMusicPoll(["a", "b", "c"], tracks);
+
+    assert.equal(diff.length, 0);
+  });
+
+  it("yields nothing when the previous head is replayed in place", () => {
+    const diff = diffAppleMusicPoll(
+      ["a", "b", "c"],
+      [song("a"), song("b"), song("c")]
+    );
+
+    assert.equal(diff.length, 0);
+  });
+
+  it("falls back to set membership when the anchor sequence is missing", () => {
+    const previous = ["a", "b", "c", "d"];
+    const diff = diffAppleMusicPoll(previous, [
+      song("new"),
+      song("c"),
+      song("d"),
+      song("a"),
+    ]);
+
+    assert.deepEqual(
+      diff.map((entry) => entry.identity),
+      ["new"]
+    );
+  });
 });
 
 describe("spreadAppleMusicListenTimes", () => {
