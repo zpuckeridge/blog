@@ -293,7 +293,7 @@ describe("readRhythmStore", () => {
     assert.deepEqual(store.days, {});
   });
 
-  it("drops days older than the retention window on the next write", () => {
+  it("keeps days older than the former retention window on the next write", () => {
     const store = emptyRhythmStore();
     store.days["2020-01-01"] = {
       idempotencyKeys: [],
@@ -310,7 +310,7 @@ describe("readRhythmStore", () => {
     if (!result.ok) {
       return;
     }
-    assert.equal(result.store.days["2020-01-01"], undefined);
+    assert.equal(result.store.days["2020-01-01"]?.steps, 1);
     assert.equal(result.store.days["2026-11-13"]?.steps, 2);
   });
 });

@@ -4,14 +4,19 @@ import {
   isoDateInBrisbane,
 } from "@/lib/format-in-brisbane";
 
+export const ACTIVITY_DISPLAY_DAYS = 30;
+
 export interface HeatmapDay {
   date: string;
   value: number;
   hasData: boolean;
 }
 
-const buildHeatmapWeeks = (days: HeatmapDay[]): (HeatmapDay | null)[][] => {
-  const last365Days = days.slice(-365);
+const buildHeatmapWeeks = (
+  days: HeatmapDay[],
+  displayDays = days.length
+): (HeatmapDay | null)[][] => {
+  const last365Days = days.slice(-displayDays);
   const weekMap = new Map<string, (HeatmapDay | null)[]>();
 
   for (const day of last365Days) {
@@ -39,14 +44,15 @@ const buildHeatmapWeeks = (days: HeatmapDay[]): (HeatmapDay | null)[][] => {
     .map(([, weekDays]) => weekDays);
 };
 
-export const buildLast365HeatmapDays = (
+export const buildRecentHeatmapDays = (
   dayValues: Map<string, Pick<HeatmapDay, "value" | "hasData">>,
+  dayCount: number,
   todayIso = isoDateInBrisbane()
 ): HeatmapDay[] => {
   const days: HeatmapDay[] = [];
   const start = new Date(`${todayIso}T12:00:00+10:00`);
 
-  for (let index = 364; index >= 0; index -= 1) {
+  for (let index = dayCount - 1; index >= 0; index -= 1) {
     const at = new Date(start.getTime() - index * 24 * 60 * 60 * 1000);
     const date = isoDateInBrisbane(at);
     const entry = dayValues.get(date);
@@ -123,14 +129,15 @@ interface HeatmapSummary {
 
 export const summarizeHeatmap = (
   days: HeatmapDay[],
-  metricLabel: string
+  metricLabel: string,
+  displayDays = ACTIVITY_DISPLAY_DAYS
 ): HeatmapSummary => {
-  const last365Days = days.slice(-365);
+  const visibleDays = days.slice(-displayDays);
   const currentYear = calendarYearInBrisbane();
   let yearTotalMinutes = 0;
 
-  for (const day of last365Days) {
-    if (day.hasData && calendarYearInBrisbane(day.date) === currentYear) {
+  for (const day of visibleDays) {
+    if (day.hasData) {
       yearTotalMinutes += day.value;
     }
   }
@@ -149,7 +156,7 @@ export const summarizeHeatmap = (
       return `${formatHeatmapMinutesLabel(day.value)} ${metricLabel} on ${formatPublishedLongDate(day.date)}`;
     },
     todayIso: isoDateInBrisbane(),
-    weeks: buildHeatmapWeeks(days),
+    weeks: buildHeatmapWeeks(days, displayDays),
     yearTotalMinutes,
   };
 };

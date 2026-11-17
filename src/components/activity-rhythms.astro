@@ -37,7 +37,7 @@ const example = `{
       <h2 class="font-redaction text-black text-xl dark:text-white">Rhythms</h2>
       <ChartInfo
         label="About these charts"
-        text="The last 90 days, including today. Each figure is a 14-day average through yesterday, so a partial day does not move it. Δ compares that average with the one from 56 days earlier."
+        text="The last 30 days, including today. Each figure is a 30-day average through yesterday, so a partial day does not move it. Δ compares that average with the one from 30 days earlier."
       />
     </div>
 
@@ -47,7 +47,7 @@ const example = `{
     emptyLabel="No steps yet."
     legend={[
       { kind: "bar", label: "Steps" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Steps"
   />
@@ -57,7 +57,7 @@ const example = `{
     emptyLabel="No workouts yet."
     legend={[
       { kind: "bar", label: "Workout" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Workouts"
   />
@@ -73,7 +73,7 @@ const example = `{
     emptyLabel="No water yet."
     legend={[
       { kind: "bar", label: "Water" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Water"
   />
@@ -83,27 +83,27 @@ const example = `{
     emptyLabel="No coffee yet."
     legend={[
       { kind: "bar", label: "Coffee" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Coffee"
   />
   <RhythmBarChart
-    caption="The fill is the 14-day healthy share. The line is that day's mix."
+    caption="The fill is the 30-day healthy share. The line is that day's mix."
     chart={charts.meals}
     emptyLabel="No meals yet."
     legend={[
       { kind: "line", label: "That day" },
-      { kind: "compare", label: "14-day share" },
+      { kind: "compare", label: "30-day share" },
     ]}
     title="Meals"
   />
   <RhythmBarChart
-    caption="A mark from 1 to 5. 1 is low and 5 is high. The faint line is the 14-day average."
+    caption="A mark from 1 to 5. 1 is low and 5 is high. The faint line is the 30-day average."
     chart={charts.mood}
     emptyLabel="No mood yet."
     legend={[
       { kind: "line", label: "Mood" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Mood"
   />
@@ -113,7 +113,7 @@ const example = `{
     emptyLabel="No weight yet."
     legend={[
       { kind: "line", label: "Weight" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Weight"
   />
@@ -143,17 +143,17 @@ const example = `{
     emptyLabel="No reading notes yet."
     legend={[
       { kind: "bar", label: "Reading" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Reading"
   />
   <RhythmBarChart
-    caption="Hours at work, and hours away from home, from the location shortcut. The year view is below."
+    caption="Hours at work, and hours away from home, from the location shortcut. The weekday view is below."
     chart={charts.place}
     emptyLabel="No time at work recorded yet."
     legend={[
       { kind: "bar", label: "At work" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
       { kind: "compare", label: "Away from home" },
     ]}
     title="At work"
@@ -164,7 +164,7 @@ const example = `{
     emptyLabel="No listening history yet."
     legend={[
       { kind: "bar", label: "Plays" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="Listening"
   />
@@ -174,7 +174,7 @@ const example = `{
     emptyLabel="Nothing logged after 10 pm yet."
     legend={[
       { kind: "bar", label: "After 10 pm" },
-      { kind: "average", label: "14-day average" },
+      { kind: "average", label: "30-day average" },
     ]}
     title="After 10 pm"
   />
@@ -184,7 +184,7 @@ const example = `{
         <h3 class="font-normal text-muted-foreground text-sm">Weekdays</h3>
         <ChartInfo
           label="About weekdays"
-          text="The average for each weekday over the last 12 weeks, through yesterday."
+          text="The average for each weekday over the last 30 days, through yesterday."
         />
       </div>
     <WeekShapeChart

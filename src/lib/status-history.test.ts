@@ -9,7 +9,6 @@ import {
   isDiscordOnline,
   MAX_GAP_MS,
   parseStatusHistoryStore,
-  pruneStatusHistoryDays,
   SAMPLE_INTERVAL_MS,
   sampleBucketForTime,
   storeToPublicHistory,
@@ -189,7 +188,7 @@ describe("storeToPublicHistory", () => {
       workMinutes: 5,
     };
 
-    const pub = storeToPublicHistory(store);
+    const pub = storeToPublicHistory(store, "2026-03-05");
     const day = pub.work.find((entry) => entry.date === "2026-03-01");
 
     assert.ok(day);
@@ -199,34 +198,6 @@ describe("storeToPublicHistory", () => {
     const emptyDay = pub.home.find((entry) => entry.date === "2026-03-02");
     assert.ok(emptyDay);
     assert.equal(emptyDay.hasData, false);
-  });
-});
-
-describe("pruneStatusHistoryDays", () => {
-  it("drops days older than retention window", () => {
-    const store = emptyStatusHistoryStore();
-    const now = Date.parse("2027-03-01T12:00:00+10:00");
-    const oldIso = "2020-01-01";
-
-    store.days[oldIso] = {
-      discordObservedMinutes: 1,
-      discordOnlineMinutes: 1,
-      homeMinutes: 0,
-      locationObservedMinutes: 0,
-      workMinutes: 0,
-    };
-    store.days["2027-02-01"] = {
-      discordObservedMinutes: 1,
-      discordOnlineMinutes: 1,
-      homeMinutes: 0,
-      locationObservedMinutes: 0,
-      workMinutes: 0,
-    };
-
-    pruneStatusHistoryDays(store, now);
-
-    assert.equal(store.days[oldIso], undefined);
-    assert.ok(store.days["2027-02-01"]);
   });
 });
 

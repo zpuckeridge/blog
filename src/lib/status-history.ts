@@ -1,4 +1,7 @@
-import { buildLast365HeatmapDays } from "@/lib/calendar-heatmap";
+import {
+  ACTIVITY_DISPLAY_DAYS,
+  buildRecentHeatmapDays,
+} from "@/lib/calendar-heatmap";
 import type { HeatmapDay } from "@/lib/calendar-heatmap";
 import { isoDateInBrisbane } from "@/lib/format-in-brisbane";
 import { fetchLanyardPresence } from "@/lib/lanyard-client";
@@ -14,8 +17,6 @@ export const STATUS_HISTORY_KV_KEY = "status:history:v1";
 
 export const SAMPLE_INTERVAL_MS = 5 * 60 * 1000;
 export const MAX_GAP_MS = 15 * 60 * 1000;
-export const RETENTION_DAYS = 365;
-
 export interface DailyStatusRollup {
   discordObservedMinutes: number;
   discordOnlineMinutes: number;
@@ -247,23 +248,6 @@ export const recordLateNightDiscord = (
   }
 };
 
-export const pruneStatusHistoryDays = (
-  store: StatusHistoryStore,
-  nowMs: number
-): void => {
-  const cutoffIso = isoDateInBrisbane(
-    nowMs - RETENTION_DAYS * 24 * 60 * 60 * 1000
-  );
-
-  const nextDays: Record<string, DailyStatusRollup> = {};
-  for (const [isoDate, rollup] of Object.entries(store.days)) {
-    if (isoDate >= cutoffIso) {
-      nextDays[isoDate] = rollup;
-    }
-  }
-  store.days = nextDays;
-};
-
 export const parseStatusHistoryStore = (
   raw: string | null
 ): StatusHistoryStore => {
@@ -307,7 +291,8 @@ const parseLocationRecord = (
 };
 
 export const storeToPublicHistory = (
-  store: StatusHistoryStore
+  store: StatusHistoryStore,
+  todayIso = isoDateInBrisbane()
 ): StatusHistoryPublic => {
   const discordValues = new Map<
     string,
@@ -333,9 +318,13 @@ export const storeToPublicHistory = (
 
   return {
     collectionStartedAt: store.cursor.lastSampledAt,
-    discord: buildLast365HeatmapDays(discordValues),
-    home: buildLast365HeatmapDays(homeValues),
-    work: buildLast365HeatmapDays(workValues),
+    discord: buildRecentHeatmapDays(
+      discordValues,
+      ACTIVITY_DISPLAY_DAYS,
+      todayIso
+    ),
+    home: buildRecentHeatmapDays(homeValues, ACTIVITY_DISPLAY_DAYS, todayIso),
+    work: buildRecentHeatmapDays(workValues, ACTIVITY_DISPLAY_DAYS, todayIso),
   };
 };
 
@@ -404,8 +393,6 @@ export const applyStatusSample = (
   } else if (!reading.locationFresh) {
     store.cursor.lastLocationCategory = null;
   }
-
-  pruneStatusHistoryDays(store, scheduledTimeMs);
 
   return { recorded: true, store };
 };

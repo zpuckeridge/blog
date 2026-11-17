@@ -1,4 +1,7 @@
-import { formatHeatmapMinutesLabel } from "@/lib/calendar-heatmap";
+import {
+  ACTIVITY_DISPLAY_DAYS,
+  formatHeatmapMinutesLabel,
+} from "@/lib/calendar-heatmap";
 import {
   BRISBANE_TIME_ZONE,
   isoDateInBrisbane,
@@ -20,11 +23,12 @@ import {
 } from "@/lib/status-history";
 import type { StatusHistoryStore } from "@/lib/status-history";
 
-export const CHART_DAYS = 90;
-export const BASELINE_SHIFT = 56;
-const TREND_WINDOW = 14;
+export const CHART_DAYS = ACTIVITY_DISPLAY_DAYS;
+export const BASELINE_SHIFT = ACTIVITY_DISPLAY_DAYS;
+export const CHART_HISTORY_DAYS = CHART_DAYS + BASELINE_SHIFT;
+const TREND_WINDOW = ACTIVITY_DISPLAY_DAYS;
 const TREND_MIN_POINTS = 7;
-const WEEK_DAYS = 84;
+const WEEK_DAYS = ACTIVITY_DISPLAY_DAYS;
 const WEEK_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 const WEEK_NAMES = [
   "Monday",
@@ -407,6 +411,9 @@ interface SeriesInput {
   fixedScale?: { max: number; min: number };
   headline: "bars" | "compare" | "either";
   mark?: "area" | "bars" | "line";
+  summaryValues?: readonly (number | null)[];
+  summaryCompareValues?: readonly (number | null)[];
+  summaryCompletedIndex?: number;
 }
 
 const supplementStripRows = (
@@ -508,27 +515,24 @@ const meanAndDelta = (
   return { delta, mean: latest };
 };
 
-const buildSeriesChart = (input: SeriesInput): RhythmBarChart => {
-  const useBars =
-    input.headline === "bars" ||
-    (input.headline === "either" && countNumbers(input.barValues) > 0);
-  const source = useBars ? input.barValues : input.compareValues;
-  const summary = meanAndDelta(
-    source,
-    input.completedIndex,
-    useBars ? input.quantizeBar : input.quantizeCompare
-  );
-  const formatValue = useBars ? input.formatBar : input.formatCompare;
-  const formatDelta = useBars ? input.formatBarDelta : input.formatCompareDelta;
-  const trend = input.drawBarAverage
-    ? meansThrough(input.barValues, input.completedIndex)
-    : input.barValues.map(() => null);
-  const compare = input.smoothCompare
-    ? meansThrough(input.compareValues, input.completedIndex)
-    : [...input.compareValues];
-  const barMaxSource = input.sharedScale
-    ? [...input.barValues, ...trend, ...compare]
-    : [...input.barValues, ...trend];
+const chartTailFromHistory = <T>(
+  series: readonly T[],
+  usesExtendedHistory: boolean,
+  chartLength: number
+): readonly T[] => (usesExtendedHistory ? series.slice(-chartLength) : series);
+
+interface SeriesScaleBounds {
+  barMax: number;
+  compareMax: number;
+  compareMin: number;
+  scaleMin: number;
+}
+
+const seriesScaleBounds = (
+  input: SeriesInput,
+  barMaxSource: readonly (number | null)[],
+  compare: readonly (number | null)[]
+): SeriesScaleBounds => {
   let barMax = peak(barMaxSource);
   let compareMax = input.sharedScale ? barMax : peak(compare);
   let scaleMin = 0;
@@ -540,15 +544,79 @@ const buildSeriesChart = (input: SeriesInput): RhythmBarChart => {
       compareMin = input.fixedScale.min;
       compareMax = input.fixedScale.max;
     }
-  } else if (input.tightScale) {
-    const bounds = tightBounds(barMaxSource);
-    scaleMin = bounds.min;
-    barMax = bounds.max;
-    if (input.sharedScale) {
-      compareMin = bounds.min;
-      compareMax = bounds.max;
-    }
+    return { barMax, compareMax, compareMin, scaleMin };
   }
+
+  if (!input.tightScale) {
+    return { barMax, compareMax, compareMin, scaleMin };
+  }
+
+  const bounds = tightBounds(barMaxSource);
+  scaleMin = bounds.min;
+  barMax = bounds.max;
+  if (input.sharedScale) {
+    compareMin = bounds.min;
+    compareMax = bounds.max;
+  }
+  return { barMax, compareMax, compareMin, scaleMin };
+};
+
+const seriesTrendAndCompare = (
+  input: SeriesInput,
+  summaryIndex: number
+): {
+  compare: readonly (number | null)[];
+  trend: readonly (number | null)[];
+} => {
+  const usesBarHistory = input.summaryValues !== undefined;
+  const trendHistoryValues = input.summaryValues ?? input.barValues;
+  const trendAll = input.drawBarAverage
+    ? meansThrough(trendHistoryValues, summaryIndex)
+    : input.barValues.map(() => null);
+  const trend = chartTailFromHistory(
+    trendAll,
+    usesBarHistory,
+    input.dates.length
+  );
+  const usesCompareHistory = input.summaryCompareValues !== undefined;
+  const compareHistoryValues =
+    input.summaryCompareValues ?? input.compareValues;
+  const compareAll = input.smoothCompare
+    ? meansThrough(compareHistoryValues, summaryIndex)
+    : [...input.compareValues];
+  const compare = chartTailFromHistory(
+    compareAll,
+    usesCompareHistory,
+    input.dates.length
+  );
+  return { compare, trend };
+};
+
+const buildSeriesChart = (input: SeriesInput): RhythmBarChart => {
+  const useBars =
+    input.headline === "bars" ||
+    (input.headline === "either" && countNumbers(input.barValues) > 0);
+  const source = useBars ? input.barValues : input.compareValues;
+  const summaryIndex = input.summaryCompletedIndex ?? input.completedIndex;
+  const summarySource = useBars
+    ? (input.summaryValues ?? source)
+    : (input.summaryCompareValues ?? input.compareValues);
+  const summary = meanAndDelta(
+    summarySource,
+    summaryIndex,
+    useBars ? input.quantizeBar : input.quantizeCompare
+  );
+  const formatValue = useBars ? input.formatBar : input.formatCompare;
+  const formatDelta = useBars ? input.formatBarDelta : input.formatCompareDelta;
+  const { compare, trend } = seriesTrendAndCompare(input, summaryIndex);
+  const barMaxSource = input.sharedScale
+    ? [...input.barValues, ...trend, ...compare]
+    : [...input.barValues, ...trend];
+  const { barMax, compareMax, compareMin, scaleMin } = seriesScaleBounds(
+    input,
+    barMaxSource,
+    compare
+  );
   const logged = countNumbers(source);
 
   return {
@@ -753,10 +821,14 @@ const playsByDate = (
   });
 };
 
+const chartTail = <T>(values: readonly T[]): T[] => values.slice(-CHART_DAYS);
+
 export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
   const todayIso = source.todayIso ?? isoDateInBrisbane();
-  const dates = brisbaneDatesEnding(todayIso, CHART_DAYS);
-  const completedIndex = dates.length - 2;
+  const historyDates = brisbaneDatesEnding(todayIso, CHART_HISTORY_DAYS);
+  const dates = historyDates.slice(-CHART_DAYS);
+  const historyCompletedIndex = historyDates.length - 2;
+  const completedIndex = CHART_DAYS - 2;
   const weekDates = brisbaneDatesEnding(
     addBrisbaneDays(todayIso, -1),
     WEEK_DAYS
@@ -764,80 +836,111 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
   const day = (isoDate: string): RhythmDay | undefined =>
     source.rhythms.days[isoDate];
 
-  const steps = dates.map((isoDate) => numberOrNull(day(isoDate)?.steps));
-  const workouts = dates.map((isoDate) =>
+  const stepsHistory = historyDates.map((isoDate) =>
+    numberOrNull(day(isoDate)?.steps)
+  );
+  const steps = chartTail(stepsHistory);
+  const workoutsHistory = historyDates.map((isoDate) =>
     numberOrNull(day(isoDate)?.workoutMinutes)
   );
-  const water = dates.map((isoDate) => numberOrNull(day(isoDate)?.waterMl));
-  const coffees = dates.map((isoDate) => numberOrNull(day(isoDate)?.coffees));
-  const mood = dates.map((isoDate) => numberOrNull(day(isoDate)?.mood));
-  const weight = dates.map((isoDate) => {
+  const workouts = chartTail(workoutsHistory);
+  const waterHistory = historyDates.map((isoDate) =>
+    numberOrNull(day(isoDate)?.waterMl)
+  );
+  const water = chartTail(waterHistory);
+  const coffeesHistory = historyDates.map((isoDate) =>
+    numberOrNull(day(isoDate)?.coffees)
+  );
+  const coffees = chartTail(coffeesHistory);
+  const moodHistory = historyDates.map((isoDate) =>
+    numberOrNull(day(isoDate)?.mood)
+  );
+  const mood = chartTail(moodHistory);
+  const weightHistory = historyDates.map((isoDate) => {
     const kilograms = day(isoDate)?.weightKg;
     return typeof kilograms === "number" ? kilograms : null;
   });
-  const alcohol = dates.map((isoDate) => {
+  const weight = chartTail(weightHistory);
+  const alcoholHistory = historyDates.map((isoDate) => {
     const drank = day(isoDate)?.alcohol;
     if (typeof drank !== "boolean") {
       return null;
     }
     return drank ? 1 : 0;
   });
-  const smoked = dates.map((isoDate) => {
+  const alcohol = chartTail(alcoholHistory);
+  const smokedHistory = historyDates.map((isoDate) => {
     const didSmoke = day(isoDate)?.smoked;
     if (typeof didSmoke !== "boolean") {
       return null;
     }
     return didSmoke ? 1 : 0;
   });
-  const vices = alcohol.map((drank, index) => {
-    const didSmoke = smoked[index];
+  const smoked = chartTail(smokedHistory);
+  const vicesHistory = alcoholHistory.map((drank, index) => {
+    const didSmoke = smokedHistory[index];
     if (drank === null && (didSmoke === null || didSmoke === undefined)) {
       return null;
     }
     return (drank ?? 0) > 0 || (didSmoke ?? 0) > 0 ? 1 : 0;
   });
-  const reading = dates.map((isoDate) =>
+  const vices = chartTail(vicesHistory);
+  const readingHistory = historyDates.map((isoDate) =>
     numberOrNull(day(isoDate)?.readMinutes)
   );
+  const reading = chartTail(readingHistory);
   const inPerson = dates.map((isoDate) => day(isoDate)?.hungOutInPerson);
   const online = dates.map((isoDate) => day(isoDate)?.hungOutOnline);
-  const withSomeone = inPerson.map((person, index) => {
-    const remote = online[index];
+  const withSomeoneHistory = historyDates.map((isoDate) => {
+    const person = day(isoDate)?.hungOutInPerson;
+    const remote = day(isoDate)?.hungOutOnline;
     if (typeof person !== "boolean" && typeof remote !== "boolean") {
       return null;
     }
     return person || remote ? 1 : 0;
   });
-  const sleep = dates.map((isoDate) => sleepSpan(day(isoDate)));
-  const meals = dates.map((isoDate) => mealTally(day(isoDate)));
-  const shares = meals.map((tally) =>
+  const withSomeone = chartTail(withSomeoneHistory);
+  const sleepHistory = historyDates.map((isoDate) => sleepSpan(day(isoDate)));
+  const sleep = chartTail(sleepHistory);
+  const mealsHistory = historyDates.map((isoDate) => mealTally(day(isoDate)));
+  const meals = chartTail(mealsHistory);
+  const sharesHistory = mealsHistory.map((tally) =>
     tally === null
       ? null
       : (tally.healthy / (tally.healthy + tally.unhealthy)) * 100
   );
+  const shares = chartTail(sharesHistory);
   const mealTotals = meals.map((tally) =>
     tally === null ? null : tally.healthy + tally.unhealthy
   );
-  const work = dates.map((isoDate) => {
+  const workHistory = historyDates.map((isoDate) => {
     const rollup = source.status.days[isoDate];
     if (!rollup || rollup.locationObservedMinutes <= 0) {
       return null;
     }
     return rollup.workMinutes;
   });
-  const away = dates.map((isoDate) => {
+  const work = chartTail(workHistory);
+  const awayHistory = historyDates.map((isoDate) => {
     const rollup = source.status.days[isoDate];
     if (!rollup || rollup.locationObservedMinutes <= 0) {
       return null;
     }
     return Math.max(0, rollup.locationObservedMinutes - rollup.homeMinutes);
   });
-  const late = dates.map((isoDate) => {
+  const away = chartTail(awayHistory);
+  const lateHistory = historyDates.map((isoDate) => {
     const minutes = source.status.days[isoDate]?.discordLateMinutes;
     return typeof minutes === "number" ? minutes : null;
   });
-  const inBed = sleep.map((span) => span?.minutes ?? null);
-  const plays = playsByDate(source.listens, dates);
+  const late = chartTail(lateHistory);
+  const inBedHistory = sleepHistory.map((span) => span?.minutes ?? null);
+  const inBed = chartTail(inBedHistory);
+  const playsHistory = playsByDate(source.listens, historyDates);
+  const plays = chartTail(playsHistory);
+  const summary = {
+    summaryCompletedIndex: historyCompletedIndex,
+  };
 
   const movement = buildSeriesChart({
     barValues: steps,
@@ -863,6 +966,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: stepsHistory,
+    ...summary,
   });
 
   const workoutsChart = buildSeriesChart({
@@ -892,6 +997,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: workoutsHistory,
+    ...summary,
   });
 
   const drinks = buildSeriesChart({
@@ -918,6 +1025,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: waterHistory,
+    ...summary,
   });
 
   const coffeeChart = buildSeriesChart({
@@ -944,6 +1053,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: coffeesHistory,
+    ...summary,
   });
 
   const mealChart = buildSeriesChart({
@@ -973,6 +1084,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     smoothCompare: true,
     stacked: true,
     unhealthy: meals.map((tally) => tally?.unhealthy ?? null),
+    summaryCompareValues: sharesHistory,
+    ...summary,
   });
   mealChart.compareMax = 100;
 
@@ -1007,6 +1120,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: workHistory,
+    ...summary,
   });
 
   const attention = buildSeriesChart({
@@ -1037,6 +1152,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: playsHistory,
+    ...summary,
   });
 
   const afterTen = buildSeriesChart({
@@ -1063,6 +1180,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: false,
     smoothCompare: false,
     stacked: false,
+    summaryValues: lateHistory,
+    ...summary,
   });
   if (countNumbers(late) === 0) {
     afterTen.empty = true;
@@ -1096,6 +1215,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: moodHistory,
+    ...summary,
   });
 
   const weightChart = buildSeriesChart({
@@ -1124,6 +1245,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     stacked: false,
     tightScale: true,
     mark: "line",
+    summaryValues: weightHistory,
+    ...summary,
   });
 
   const vicesChart = buildSeriesChart({
@@ -1162,6 +1285,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: vicesHistory,
+    ...summary,
   });
 
   const readingChart = buildSeriesChart({
@@ -1191,6 +1316,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     sharedScale: true,
     smoothCompare: false,
     stacked: false,
+    summaryValues: readingHistory,
+    ...summary,
   });
 
   const peopleChart = buildSeriesChart({
@@ -1231,15 +1358,21 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     stackPalette: "people",
     stacked: true,
     unhealthy: online.map((remote) => (remote ? 1 : null)),
+    summaryCompareValues: withSomeoneHistory,
+    ...summary,
   });
 
-  const supplementLists = dates.map((isoDate) => day(isoDate)?.supplements);
-  const anySupplement = supplementLists.map((list) => {
+  const supplementListsHistory = historyDates.map(
+    (isoDate) => day(isoDate)?.supplements
+  );
+  const supplementLists = chartTail(supplementListsHistory);
+  const anySupplementHistory = supplementListsHistory.map((list) => {
     if (!list) {
       return null;
     }
     return list.length > 0 ? 1 : 0;
   });
+  const anySupplement = chartTail(anySupplementHistory);
   const supplementsChart = buildSeriesChart({
     barValues: supplementLists.map((list) => (list ? list.length : null)),
     compareValues: anySupplement,
@@ -1279,6 +1412,8 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
       const others = list.filter((name) => !isCreatine(name)).length;
       return others > 0 ? others : null;
     }),
+    summaryCompareValues: anySupplementHistory,
+    ...summary,
   });
 
   const nights: SleepNight[] = dates.map((isoDate, index) => {
@@ -1294,7 +1429,11 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
       start: fractions?.start ?? null,
     };
   });
-  const sleepSummary = meanAndDelta(inBed, completedIndex, Math.round);
+  const sleepSummary = meanAndDelta(
+    inBedHistory,
+    historyCompletedIndex,
+    Math.round
+  );
   const sleepLogged = countNumbers(inBed);
 
   const weekValue = (pick: (isoDate: string) => number | null) =>
