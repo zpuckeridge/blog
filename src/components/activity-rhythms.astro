@@ -5,31 +5,12 @@ import RhythmStrip from "@/components/rhythm-strip.astro";
 import SleepWindowChart from "@/components/sleep-window-chart.astro";
 import WeekShapeChart from "@/components/week-shape-chart.astro";
 import type { ActivityCharts } from "@/lib/rhythm-charts";
-import { getSiteUrl } from "@/lib/site";
 
 interface Props {
   charts: ActivityCharts;
 }
 
 const { charts } = Astro.props;
-const endpoint = `${getSiteUrl()}/api/rhythms`;
-const example = `{
-  "date": "2026-11-13",
-  "steps": 8453,
-  "workoutMinutes": 46,
-  "waterMl": 1800,
-  "bedAt": "2026-11-12T23:10:00+10:00",
-  "wokeAt": "2026-11-13T06:40:00+10:00",
-  "meal": { "slot": "breakfast", "quality": "healthy" },
-  "mood": 4,
-  "weightKg": 78.4,
-  "alcohol": false,
-  "smoked": false,
-  "readMinutes": 25,
-  "hungOutInPerson": true,
-  "hungOutOnline": false,
-  "supplements": ["Creatine"]
-}`;
 ---
 
 <section aria-label="Daily rhythms" class="min-w-0 space-y-8" data-rhythm-charts>
@@ -42,7 +23,7 @@ const example = `{
     </div>
 
   <RhythmBarChart
-    caption="Daily steps. A day the shortcut missed is left blank."
+    caption="Daily steps. Days without a recorded total stay blank."
     chart={charts.movement}
     emptyLabel="No steps yet."
     legend={[
@@ -148,7 +129,7 @@ const example = `{
     title="Reading"
   />
   <RhythmBarChart
-    caption="Hours at work, and hours away from home, from the location shortcut. The weekday view is below."
+    caption="Hours at work and away from home, based on location updates. Weekday averages are below."
     chart={charts.place}
     emptyLabel="No time at work recorded yet."
     legend={[
@@ -202,20 +183,6 @@ const example = `{
       ) : null
     }
   </div>
-
-  <details class="space-y-3 text-sm">
-    <summary class="cursor-pointer text-muted-foreground">
-      How to log a day
-    </summary>
-    <p class="text-pretty">
-      Post JSON to <span class="font-mono text-xs">{endpoint}</span> with the same bearer token as the location shortcut. <span class="font-mono text-xs">steps</span>, <span class="font-mono text-xs">workoutMinutes</span>, <span class="font-mono text-xs">waterMl</span>, and <span class="font-mono text-xs">coffees</span> replace that day's totals. <span class="font-mono text-xs">add.waterMl</span> and <span class="font-mono text-xs">add.coffees</span> increase them. Give those an <span class="font-mono text-xs">idempotencyKey</span>, or a retry counts again.
-    </p>
-    <p class="text-pretty">
-      <span class="font-mono text-xs">bedAt</span> and <span class="font-mono text-xs">wokeAt</span> are the times you got into bed and got up. They are stored on the morning of <span class="font-mono text-xs">wokeAt</span>, which can differ from <span class="font-mono text-xs">date</span>. <span class="font-mono text-xs">meal.slot</span> is breakfast, lunch, dinner, or snack. <span class="font-mono text-xs">meal.quality</span> is healthy or unhealthy. Breakfast, lunch, and dinner replace that sitting. A snack is added, up to six. mood is 1 to 5. weightKg is kilograms. alcohol and smoked are true or false. hungOutInPerson and hungOutOnline are true or false. Socialising means someone outside of work. readMinutes is how long you read, and 0 means you did not. supplements is the list you took, such as Creatine. An empty list means you took none. supplement adds one name.
-    </p>
-    <pre
-      class="overflow-x-auto border border-border p-3 font-mono text-xs leading-relaxed">{example}</pre>
-  </details>
 </section>
 
 <script>

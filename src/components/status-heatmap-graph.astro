@@ -1,6 +1,11 @@
 ---
-import { formatHeatmapMinutesLabel, getHoursHeatmapColor, summarizeHeatmap } from '@/lib/calendar-heatmap';
-import type { HeatmapDay } from '@/lib/calendar-heatmap';
+import {
+  formatHeatmapMinutesLabel,
+  getHoursHeatmapColor,
+  summarizeHeatmap,
+} from "@/lib/calendar-heatmap";
+import type { HeatmapDay } from "@/lib/calendar-heatmap";
+import { formatPublishedShortDayMonth } from "@/lib/format-in-brisbane";
 
 interface Props {
   days: HeatmapDay[];
@@ -10,11 +15,26 @@ interface Props {
 }
 
 const { days, metricLabel, title, yearSummaryLabel } = Astro.props;
-const { currentYear, formatDayLabel, todayIso, weeks, yearTotalMinutes } =
-  summarizeHeatmap(days, metricLabel);
-const firstDayDate = weeks.flat().find((day) => day !== null)?.date ?? null;
-const initialTabDate = todayIso || firstDayDate;
+const {
+  averageMinutes,
+  days: strip,
+  formatDayLabel,
+  loggedDays,
+  todayIso,
+  yearTotalMinutes,
+} = summarizeHeatmap(days, metricLabel);
+const [firstDay] = strip;
+const lastDay = strip.at(-1);
+const rangeLabel =
+  firstDay && lastDay
+    ? `${formatPublishedShortDayMonth(firstDay.date)} – ${formatPublishedShortDayMonth(lastDay.date)}`
+    : "";
+const initialTabDate = todayIso || firstDay?.date;
 const hasAnyData = days.some((day) => day.hasData);
+const averageLabel =
+  loggedDays > 0
+    ? `${formatHeatmapMinutesLabel(averageMinutes)} per logged day`
+    : null;
 ---
 
 <section
@@ -22,58 +42,56 @@ const hasAnyData = days.some((day) => day.hasData);
   class="w-full border-0 bg-transparent p-0 text-left"
   data-status-heatmap
 >
-  <div class="space-y-2">
-    <h3 class="text-muted-foreground text-sm font-normal">{title}</h3>
+  <div class="space-y-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+      <h3 class="font-normal text-muted-foreground text-sm">{title}</h3>
+      {
+        rangeLabel ? (
+          <p class="text-muted-foreground text-xs">{rangeLabel}</p>
+        ) : null
+      }
+    </div>
     {
       hasAnyData ? (
         <>
           <div
-            class="flex justify-end gap-[4px] overflow-hidden"
+            class="grid w-full grid-cols-[repeat(30,minmax(0,1fr))] gap-1"
             data-status-heatmap-grid
           >
-            {weeks.map((week) => (
-              <div class="flex flex-col gap-[4px]">
-                {week.map((day) =>
-                  day ? (
-                    <button
-                      aria-label={formatDayLabel(day)}
-                      class:list={[
-                        "contribution-day h-[9px] w-[9px]",
-                        getHoursHeatmapColor(day.value, day.hasData),
-                        day.date === todayIso && day.hasData && "contribution-day-today",
-                      ]}
-                      data-label={formatDayLabel(day)}
-                      data-status-heatmap-day
-                      tabindex={day.date === initialTabDate ? 0 : -1}
-                      type="button"
-                    />
-                  ) : (
-                    <div aria-hidden="true" class="h-[9px] w-[9px]" />
-                  )
-                )}
-              </div>
+            {strip.map((day) => (
+              <button
+                aria-label={formatDayLabel(day)}
+                class:list={[
+                  "contribution-day aspect-square w-full min-h-[10px] max-h-5 rounded-[2px]",
+                  getHoursHeatmapColor(day.value, day.hasData),
+                  day.date === todayIso && day.hasData && "contribution-day-today",
+                ]}
+                data-label={formatDayLabel(day)}
+                data-status-heatmap-day
+                tabindex={day.date === initialTabDate ? 0 : -1}
+                type="button"
+              />
             ))}
           </div>
-          <div class="text-muted-foreground text-sm" data-status-heatmap-summary>
-            {`${formatHeatmapMinutesLabel(yearTotalMinutes)} ${yearSummaryLabel} in the last 30 days`}
+          <div class="space-y-0.5 text-muted-foreground text-sm" data-status-heatmap-summary>
+            <p>
+              {`${formatHeatmapMinutesLabel(yearTotalMinutes)} ${yearSummaryLabel} in the last 30 days`}
+            </p>
+            {averageLabel ? <p class="text-xs">{averageLabel}</p> : null}
           </div>
         </>
       ) : (
         <div
-          class="relative overflow-hidden rounded-md border border-border border-dashed bg-muted/20 p-3"
+          class="relative overflow-hidden rounded-md border border-border border-dashed bg-muted/20 p-4"
           role="status"
         >
           <div
             aria-hidden="true"
-            class="flex justify-end gap-[4px] opacity-45"
+            class="grid grid-cols-[repeat(30,minmax(0,1fr))] gap-1 opacity-45"
           >
             {
-              Array.from({ length: 5 }, () => (
-                <div class="flex flex-col gap-[4px]">
-                  {Array.from({ length: 7 }, () => (
-                    <span class="h-[9px] w-[9px] bg-neutral-100 dark:bg-neutral-900" />
-                  ))}
-                </div>
+              Array.from({ length: 30 }, () => (
+                <span class="aspect-square w-full min-h-[10px] max-h-5 rounded-[2px] bg-neutral-100 dark:bg-neutral-900" />
               ))
             }
           </div>

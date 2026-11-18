@@ -33,6 +33,8 @@ export default {
           console.log("Apple Music poll stored baseline track list");
         } else if (appleResult.skippedAuth) {
           console.warn("Apple Music poll skipped (missing or rejected token)");
+        } else if (appleResult.skippedEmptyPoll) {
+          console.warn("Apple Music poll kept baseline (empty API response)");
         } else if (appleResult.ingested > 0) {
           console.log(
             `Apple Music poll ingested ${appleResult.ingested} track(s)`

@@ -120,8 +120,11 @@ export const formatHeatmapMinutesLabel = (minutes: number): string => {
 };
 
 interface HeatmapSummary {
+  averageMinutes: number;
   currentYear: number;
+  days: HeatmapDay[];
   formatDayLabel: (day: HeatmapDay) => string;
+  loggedDays: number;
   todayIso: string;
   weeks: (HeatmapDay | null)[][];
   yearTotalMinutes: number;
@@ -135,15 +138,24 @@ export const summarizeHeatmap = (
   const visibleDays = days.slice(-displayDays);
   const currentYear = calendarYearInBrisbane();
   let yearTotalMinutes = 0;
+  let loggedDays = 0;
 
   for (const day of visibleDays) {
     if (day.hasData) {
       yearTotalMinutes += day.value;
+      if (day.value > 0) {
+        loggedDays += 1;
+      }
     }
   }
 
+  const averageMinutes =
+    loggedDays > 0 ? Math.round(yearTotalMinutes / loggedDays) : 0;
+
   return {
+    averageMinutes,
     currentYear,
+    days: visibleDays,
     formatDayLabel: (day: HeatmapDay) => {
       if (!day.hasData) {
         return `No ${metricLabel} data on ${formatPublishedLongDate(day.date)}`;
@@ -155,6 +167,7 @@ export const summarizeHeatmap = (
 
       return `${formatHeatmapMinutesLabel(day.value)} ${metricLabel} on ${formatPublishedLongDate(day.date)}`;
     },
+    loggedDays,
     todayIso: isoDateInBrisbane(),
     weeks: buildHeatmapWeeks(days, displayDays),
     yearTotalMinutes,
