@@ -40,6 +40,7 @@ export const recordAppleMusicRecent = async (
   ingested: number;
   recents: RecentListen[];
   skippedAuth: boolean;
+  skippedEmptyPoll: boolean;
   written: boolean;
 }> => {
   const [recentsRaw, historyRaw, pollStateRaw, storedUserToken] =
@@ -62,6 +63,7 @@ export const recordAppleMusicRecent = async (
       ingested: 0,
       recents: existingRecents,
       skippedAuth: true,
+      skippedEmptyPoll: false,
       written: false,
     };
   }
@@ -76,6 +78,7 @@ export const recordAppleMusicRecent = async (
       ingested: 0,
       recents: existingRecents,
       skippedAuth: true,
+      skippedEmptyPoll: false,
       written: false,
     };
   }
@@ -94,12 +97,28 @@ export const recordAppleMusicRecent = async (
       ingested: 0,
       recents: existingRecents,
       skippedAuth: true,
+      skippedEmptyPoll: false,
+      written: false,
+    };
+  }
+
+  const previousIds = pollState?.trackIds ?? [];
+
+  if (tracks.length === 0 && previousIds.length > 0) {
+    console.warn(
+      "Apple Music poll returned no tracks; keeping previous poll baseline"
+    );
+    return {
+      baselineOnly: false,
+      ingested: 0,
+      recents: existingRecents,
+      skippedAuth: false,
+      skippedEmptyPoll: true,
       written: false,
     };
   }
 
   const nextIds = trackIdsFromPoll(tracks);
-  const previousIds = pollState?.trackIds ?? [];
   const additions = diffAppleMusicPoll(previousIds, tracks);
 
   const pollStateWrite = kv.put(
@@ -117,6 +136,7 @@ export const recordAppleMusicRecent = async (
       ingested: 0,
       recents: existingRecents,
       skippedAuth: false,
+      skippedEmptyPoll: false,
       written: true,
     };
   }
@@ -128,6 +148,7 @@ export const recordAppleMusicRecent = async (
       ingested: 0,
       recents: existingRecents,
       skippedAuth: false,
+      skippedEmptyPoll: false,
       written: true,
     };
   }
@@ -165,6 +186,7 @@ export const recordAppleMusicRecent = async (
     ingested: applied.ingested,
     recents: applied.recents,
     skippedAuth: false,
+    skippedEmptyPoll: false,
     written:
       applied.ingested > 0 ||
       applied.recents !== existingRecents ||

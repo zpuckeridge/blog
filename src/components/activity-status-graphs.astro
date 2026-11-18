@@ -9,7 +9,7 @@ interface Props {
 const { history } = Astro.props;
 ---
 
-<div class="flex min-w-0 flex-col gap-8">
+<div class="flex min-w-0 flex-col gap-10">
   <StatusHeatmapGraph
     days={history.work}
     metricLabel="at work"
@@ -96,42 +96,16 @@ const { history } = Astro.props;
         (button) => button instanceof HTMLButtonElement
       );
 
-      const columns = [...grid.children].filter(
-        (child) => child instanceof HTMLElement
-      );
-
-      const locateDay = (button) => {
-        for (const [weekIndex, column] of columns.entries()) {
-          const cells = [...column.children];
-          const dayIndex = cells.indexOf(button);
-          if (dayIndex !== -1) {
-            return { dayIndex, weekIndex };
-          }
+      const focusDayAtIndex = (index) => {
+        const cell = days[index];
+        if (!(cell instanceof HTMLButtonElement)) {
+          return;
         }
-        return null;
-      };
-
-      const focusDay = (weekIndex, dayIndex, deltaWeek, deltaDay) => {
-        let nextWeek = weekIndex + deltaWeek;
-        let nextDay = dayIndex + deltaDay;
-        while (
-          nextWeek >= 0 &&
-          nextWeek < columns.length &&
-          nextDay >= 0 &&
-          nextDay < 7
-        ) {
-          const cell = columns[nextWeek]?.children[nextDay];
-          if (cell instanceof HTMLButtonElement) {
-            for (const day of days) {
-              day.tabIndex = -1;
-            }
-            cell.tabIndex = 0;
-            cell.focus();
-            return;
-          }
-          nextWeek += deltaWeek;
-          nextDay += deltaDay;
+        for (const day of days) {
+          day.tabIndex = -1;
         }
+        cell.tabIndex = 0;
+        cell.focus();
       };
 
       grid.addEventListener("mouseleave", clearHover);
@@ -146,30 +120,20 @@ const { history } = Astro.props;
           return;
         }
 
-        const location = locateDay(event.target);
-        if (!location) {
+        const index = days.indexOf(event.target);
+        if (index === -1) {
           return;
         }
 
         switch (event.key) {
-          case "ArrowDown": {
-            event.preventDefault();
-            focusDay(location.weekIndex, location.dayIndex, 0, 1);
-            break;
-          }
-          case "ArrowUp": {
-            event.preventDefault();
-            focusDay(location.weekIndex, location.dayIndex, 0, -1);
-            break;
-          }
           case "ArrowRight": {
             event.preventDefault();
-            focusDay(location.weekIndex, location.dayIndex, 1, 0);
+            focusDayAtIndex(Math.min(index + 1, days.length - 1));
             break;
           }
           case "ArrowLeft": {
             event.preventDefault();
-            focusDay(location.weekIndex, location.dayIndex, -1, 0);
+            focusDayAtIndex(Math.max(index - 1, 0));
             break;
           }
           default: {

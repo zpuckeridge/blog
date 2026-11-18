@@ -67,7 +67,7 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 - **Apple Music** — Now playing from Discord activity via Lanyard; recent tracks on the homepage
 - **Apple Music supplement** — When Discord is offline, a half-hourly Worker cron polls Apple’s recently played API using the Music User Token in KV (`apple-music:user-token`); plays merge into the same KV history with a `source` field (`lanyard` or `apple`). Apple Music user tokens expire after roughly six months; restore the removed `/music/connect` flow from git history, re-authorise once, then remove it again—or set `APPLE_MUSIC_USER_TOKEN` locally and write KV via Wrangler.
 - **Music history** — `/music` lists the last 1,000 plays (KV), fed by Worker cron polls
-- **Status history heatmaps** — Work, home, and Discord online time (365 days) on `/activity`
+- **Status history heatmaps** — Full work, home, and Discord history in KV; `/activity` charts the last 30 Brisbane days
 
 ### Activity
 
