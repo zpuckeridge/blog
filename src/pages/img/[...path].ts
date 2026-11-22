@@ -7,12 +7,15 @@ import {
 } from "@/lib/directus-asset";
 import { DIRECTUS_ORIGIN } from "@/lib/directus-config";
 import { getDirectusToken } from "@/lib/directus-token";
-import { getEdgeCache } from "@/lib/html-cache";
+import { getEdgeCache, waitUntilFromLocals } from "@/lib/html-cache";
+import {
+  IMAGE_CACHE_CONTROL,
+  IMAGE_CDN_CACHE_CONTROL,
+  IMAGE_EDGE_TTL_SECONDS,
+} from "@/lib/image-response-cache";
 
 export const prerender = false;
 
-const CACHE_CONTROL =
-  "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=86400";
 const PASSTHROUGH_HEADERS = [
   "content-type",
   "content-length",
@@ -64,7 +67,48 @@ const upstreamAssetQuery = (
   return { query: upstreamParams.toString() };
 };
 
-export const GET: APIRoute = async ({ params, request }) => {
+type EdgeRequestInit = RequestInit & {
+  cf?: {
+    cacheEverything?: boolean;
+    cacheTtlByStatus?: Record<string, number>;
+  };
+};
+
+/**
+ * Directus sends `private` / `no-store` on token-authenticated assets, which
+ * would keep every transform off the tiered cache. The URL is the public
+ * cache key; the token stays on this subrequest.
+ */
+const fetchUpstreamAsset = (assetUrl: string, token: string | undefined) => {
+  const init: EdgeRequestInit = {
+    cf: {
+      cacheEverything: true,
+      cacheTtlByStatus: {
+        "200-299": IMAGE_EDGE_TTL_SECONDS,
+        "400-599": 0,
+      },
+    },
+    headers: token ? { authorization: `Bearer ${token}` } : undefined,
+  };
+  return fetch(assetUrl, init);
+};
+
+const rememberImage = (
+  cache: Cache,
+  cacheKey: Request,
+  response: Response,
+  locals: unknown
+) => {
+  const store = cache.put(cacheKey, response.clone());
+  const waitUntil = waitUntilFromLocals(locals);
+  if (waitUntil) {
+    waitUntil(store);
+    return;
+  }
+  return store;
+};
+
+export const GET: APIRoute = async ({ locals, params, request }) => {
   const segments = (params.path ?? "").split("/");
   const [assetId] = segments;
   if (!assetId || segments.length > 2 || !isDirectusAssetId(assetId)) {
@@ -89,11 +133,9 @@ export const GET: APIRoute = async ({ params, request }) => {
   }
 
   const token = getDirectusToken();
-  const upstream = await fetch(
+  const upstream = await fetchUpstreamAsset(
     `${DIRECTUS_ORIGIN}/assets/${assetIdLower}${query ? `?${query}` : ""}`,
-    {
-      headers: token ? { authorization: `Bearer ${token}` } : {},
-    }
+    token
   );
 
   if (!upstream.ok || !upstream.body) {
@@ -112,13 +154,14 @@ export const GET: APIRoute = async ({ params, request }) => {
       headers.set(name, value);
     }
   }
-  headers.set("cache-control", CACHE_CONTROL);
+  headers.set("Cache-Control", IMAGE_CACHE_CONTROL);
+  headers.set("Cloudflare-CDN-Cache-Control", IMAGE_CDN_CACHE_CONTROL);
   headers.set("x-content-type-options", "nosniff");
   headers.set("content-security-policy", "default-src 'none'; sandbox");
 
   const response = new Response(upstream.body, { headers, status: 200 });
   if (cache) {
-    await cache.put(cacheKey, response.clone());
+    await rememberImage(cache, cacheKey, response, locals);
   }
   return response;
 };

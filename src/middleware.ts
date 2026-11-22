@@ -7,29 +7,12 @@ import {
   isEdgeCacheableHtml,
   isEdgeCacheablePath,
   moveCharsetFirst,
+  waitUntilFromLocals,
 } from "@/lib/html-cache";
 import { HTML_CONTENT_SECURITY_POLICY } from "@/lib/security-headers";
 import { isProtectedVideoPath } from "@/lib/video-paths";
 
 const REFERRER_POLICY = "strict-origin-when-cross-origin";
-
-const waitUntilFrom = (
-  locals: unknown
-): ((promise: Promise<unknown>) => void) | undefined => {
-  if (!locals || typeof locals !== "object" || !("cfContext" in locals)) {
-    return undefined;
-  }
-
-  const context = locals.cfContext;
-  if (!context || typeof context !== "object" || !("waitUntil" in context)) {
-    return undefined;
-  }
-
-  const { waitUntil } = context as {
-    waitUntil?: (promise: Promise<unknown>) => void;
-  };
-  return typeof waitUntil === "function" ? waitUntil.bind(context) : undefined;
-};
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const cache =
@@ -97,7 +80,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   });
 
   if (cacheable && cache) {
-    const waitUntil = waitUntilFrom(context.locals);
+    const waitUntil = waitUntilFromLocals(context.locals);
     if (waitUntil) {
       waitUntil(cache.put(context.request, outgoing.clone()));
     }

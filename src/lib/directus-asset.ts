@@ -75,7 +75,11 @@ export const directusContentSrcSet = (
       `${directusAssetUrl(assetId, { format, quality: 80, width })} ${width}w`
   ).join(", ");
 
-/** Responsive `imagesrcset` for hero LCP preloads on timeline posts. */
+/**
+ * Responsive preload for a timeline hero. The picture lists AVIF first, and
+ * current browsers pick that source, so this is the only hero request to start
+ * early. The `<img>` srcset stays WebP for browsers that skip AVIF.
+ */
 export const directusHeroLcpPreload = (
   assetId: string
 ): { avifHref: string; avifSrcSet: string } => ({

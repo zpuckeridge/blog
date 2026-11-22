@@ -23,7 +23,7 @@ type SiteImageProps = Omit<
 const SiteImage = ({
   alt,
   className,
-  decoding = "async",
+  decoding,
   height,
   loading,
   priority,
@@ -38,7 +38,10 @@ const SiteImage = ({
 }: SiteImageProps) => {
   const resolvedSrc = src;
   const resolvedZoomSrc = zoomSrc ?? resolveDirectusZoomSrc(resolvedSrc);
-  const resolvedLoading = loading ?? (priority ? "eager" : "lazy");
+  // A priority image is the LCP candidate: fetch it immediately and decode
+  // before paint. `decoding="async"` defers that paint.
+  const resolvedLoading = priority ? "eager" : (loading ?? "lazy");
+  const resolvedDecoding = priority ? "sync" : (decoding ?? "async");
 
   return (
     <img
@@ -46,7 +49,7 @@ const SiteImage = ({
       alt={alt}
       className={className}
       data-zoom-src={resolvedZoomSrc}
-      decoding={decoding}
+      decoding={resolvedDecoding}
       fetchPriority={priority ? "high" : undefined}
       height={height}
       loading={resolvedLoading}

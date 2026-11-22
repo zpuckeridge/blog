@@ -98,17 +98,16 @@ const heroLcpPreload = post?.image
 >
   {
     heroLcpPreload ? (
-      <Fragment slot="head">
-        <link
-          as="image"
-          fetchpriority="high"
-          href={heroLcpPreload.avifHref}
-          imagesizes={CONTENT_IMAGE_SIZES}
-          imagesrcset={heroLcpPreload.avifSrcSet}
-          rel="preload"
-          type="image/avif"
-        />
-      </Fragment>
+      <link
+        as="image"
+        fetchpriority="high"
+        href={heroLcpPreload.avifHref}
+        imagesizes={CONTENT_IMAGE_SIZES}
+        imagesrcset={heroLcpPreload.avifSrcSet}
+        rel="preload"
+        slot="head"
+        type="image/avif"
+      />
     ) : null
   }
   {
