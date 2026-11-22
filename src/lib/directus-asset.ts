@@ -76,21 +76,15 @@ export const directusContentSrcSet = (
   ).join(", ");
 
 /**
- * Responsive preloads for a timeline hero, using the same sizes as the picture.
- * WebP matches the `<img>` srcset. AVIF matches the `<source>` ahead of it.
+ * Responsive preload for a timeline hero. The picture lists AVIF first, and
+ * current browsers pick that source, so this is the only hero request to start
+ * early. The `<img>` srcset stays WebP for browsers that skip AVIF.
  */
 export const directusHeroLcpPreload = (
   assetId: string
-): {
-  avifHref: string;
-  avifSrcSet: string;
-  webpHref: string;
-  webpSrcSet: string;
-} => ({
+): { avifHref: string; avifSrcSet: string } => ({
   avifHref: directusAssetUrl(assetId, { format: "avif", width: 640 }),
   avifSrcSet: directusContentSrcSet(assetId, "avif"),
-  webpHref: directusAssetUrl(assetId, { format: "webp", width: 640 }),
-  webpSrcSet: directusContentSrcSet(assetId, "webp"),
 });
 
 export const directusAssetZoomUrl = (

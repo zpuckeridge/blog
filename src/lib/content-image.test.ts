@@ -72,19 +72,16 @@ describe("directusContentSrcSet", () => {
 });
 
 describe("directusHeroLcpPreload", () => {
-  it("preloads the WebP img srcset and the AVIF source", () => {
+  it("preloads only the AVIF source the picture picks first", () => {
     const assetId = "14ec3b68-93c8-4393-9cb5-ad02c6a1a0f6";
     const preload = directusHeroLcpPreload(assetId);
 
     assert.equal(preload.avifSrcSet, directusContentSrcSet(assetId, "avif"));
-    assert.equal(preload.webpSrcSet, directusContentSrcSet(assetId, "webp"));
-    assert.match(
-      preload.webpHref,
-      /\/img\/14ec3b68-93c8-4393-9cb5-ad02c6a1a0f6\?format=webp&quality=80&width=640$/u
-    );
     assert.match(
       preload.avifHref,
       /\/img\/14ec3b68-93c8-4393-9cb5-ad02c6a1a0f6\?format=avif&quality=80&width=640$/u
     );
+    assert.equal("webpHref" in preload, false);
+    assert.equal("webpSrcSet" in preload, false);
   });
 });
