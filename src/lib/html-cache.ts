@@ -74,3 +74,21 @@ export const getEdgeCache = (): Cache | null =>
   typeof caches !== "undefined" && "default" in caches
     ? (caches as unknown as { default: Cache }).default
     : null;
+
+export const waitUntilFromLocals = (
+  locals: unknown
+): ((promise: Promise<unknown>) => void) | undefined => {
+  if (!locals || typeof locals !== "object" || !("cfContext" in locals)) {
+    return undefined;
+  }
+
+  const context = locals.cfContext;
+  if (!context || typeof context !== "object" || !("waitUntil" in context)) {
+    return undefined;
+  }
+
+  const { waitUntil } = context as {
+    waitUntil?: (promise: Promise<unknown>) => void;
+  };
+  return typeof waitUntil === "function" ? waitUntil.bind(context) : undefined;
+};

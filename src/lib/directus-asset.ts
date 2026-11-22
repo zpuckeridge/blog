@@ -75,12 +75,22 @@ export const directusContentSrcSet = (
       `${directusAssetUrl(assetId, { format, quality: 80, width })} ${width}w`
   ).join(", ");
 
-/** Responsive `imagesrcset` for hero LCP preloads on timeline posts. */
+/**
+ * Responsive preloads for a timeline hero, using the same sizes as the picture.
+ * WebP matches the `<img>` srcset. AVIF matches the `<source>` ahead of it.
+ */
 export const directusHeroLcpPreload = (
   assetId: string
-): { avifHref: string; avifSrcSet: string } => ({
+): {
+  avifHref: string;
+  avifSrcSet: string;
+  webpHref: string;
+  webpSrcSet: string;
+} => ({
   avifHref: directusAssetUrl(assetId, { format: "avif", width: 640 }),
   avifSrcSet: directusContentSrcSet(assetId, "avif"),
+  webpHref: directusAssetUrl(assetId, { format: "webp", width: 640 }),
+  webpSrcSet: directusContentSrcSet(assetId, "webp"),
 });
 
 export const directusAssetZoomUrl = (
