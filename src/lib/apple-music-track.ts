@@ -10,6 +10,10 @@ export interface AppleMusicApiSongAttributes {
   artistName?: string;
   artwork?: AppleMusicApiArtwork;
   name?: string;
+  playParams?: {
+    catalogId?: string;
+    isLibrary?: boolean;
+  };
   url?: string;
 }
 
@@ -19,10 +23,22 @@ export interface AppleMusicApiSong {
   type?: string;
 }
 
+const APPLE_MUSIC_SONG_URL = "https://music.apple.com/au/song";
+
 const artworkUrlFromTemplate = (template: string): string =>
   template.replace("{w}", "300").replace("{h}", "300");
 
+const catalogIdFromTrack = (track: AppleMusicApiSong): string | null => {
+  const catalogId = track.attributes?.playParams?.catalogId?.trim();
+  return catalogId || null;
+};
+
 export const appleTrackIdentity = (track: AppleMusicApiSong): string | null => {
+  const catalogId = catalogIdFromTrack(track);
+  if (catalogId) {
+    return catalogId;
+  }
+
   const id = track.id?.trim();
   if (id) {
     return id;
@@ -52,6 +68,7 @@ export const mapAppleMusicSong = (
   const artworkUrl = artworkTemplate
     ? artworkUrlFromTemplate(artworkTemplate)
     : null;
+  const catalogId = catalogIdFromTrack(track);
 
   return {
     album: track.attributes?.albumName?.trim() ?? null,
@@ -62,6 +79,8 @@ export const mapAppleMusicSong = (
     source: "apple",
     startedAt: null,
     track: name,
-    trackUrl: track.attributes?.url?.trim() ?? null,
+    trackUrl: catalogId
+      ? `${APPLE_MUSIC_SONG_URL}/${encodeURIComponent(catalogId)}`
+      : null,
   };
 };

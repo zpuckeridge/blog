@@ -2,8 +2,11 @@ import { listenPlayedAt } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
 
-/** Skip Apple ingest when Lanyard already recorded the same song recently. */
-export const APPLE_LANYARD_DEDUPE_WINDOW_MS = 15 * 60 * 1000;
+/**
+ * Skip Apple ingest when Lanyard already recorded the same song recently.
+ * Apple times are the poll time, and the cron runs every 30 minutes.
+ */
+export const APPLE_LANYARD_DEDUPE_WINDOW_MS = 30 * 60 * 1000;
 
 export const isDuplicateListenAcrossSources = (
   track: string,

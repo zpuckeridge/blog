@@ -4,6 +4,7 @@ const RECENT_PLAYED_URL =
   "https://api.music.apple.com/v1/me/recent/played/tracks";
 const MAX_TRACKS = 50;
 const PAGE_LIMIT = 25;
+const RECENT_PLAYED_TYPES = "songs,library-songs";
 
 interface AppleMusicRecentResponse {
   data?: AppleMusicApiSong[];
@@ -69,7 +70,7 @@ export const fetchAppleMusicRecentTracks = (
   musicUserToken: string
 ): Promise<AppleMusicApiSong[] | null> =>
   fetchRecentPages(
-    `${RECENT_PLAYED_URL}?limit=${PAGE_LIMIT}`,
+    `${RECENT_PLAYED_URL}?limit=${PAGE_LIMIT}&types=${RECENT_PLAYED_TYPES}`,
     developerToken,
     musicUserToken,
     []
