@@ -19,6 +19,24 @@ describe("HTML_CONTENT_SECURITY_POLICY", () => {
     );
   });
 
+  it("allows Video.js to play Mux HLS and report Mux Data", () => {
+    assert.match(
+      HTML_CONTENT_SECURITY_POLICY,
+      /connect-src[^;]*https:\/\/\*\.mux\.com/u
+    );
+    assert.match(
+      HTML_CONTENT_SECURITY_POLICY,
+      /connect-src[^;]*https:\/\/\*\.litix\.io/u
+    );
+    assert.match(HTML_CONTENT_SECURITY_POLICY, /media-src[^;]*blob:/u);
+    assert.match(HTML_CONTENT_SECURITY_POLICY, /worker-src[^;]*blob:/u);
+    assert.match(
+      HTML_CONTENT_SECURITY_POLICY,
+      /style-src[^;]*'unsafe-inline'/u
+    );
+    assert.match(HTML_CONTENT_SECURITY_POLICY, /img-src[^;]*https:/u);
+  });
+
   it("allows react-tweet syndication API fetches", () => {
     assert.match(
       HTML_CONTENT_SECURITY_POLICY,

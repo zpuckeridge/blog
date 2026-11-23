@@ -2,6 +2,11 @@
  * HTML content security policy. Image responses keep their own sandbox policy.
  * Allows the Cloudflare Web Analytics beacon and challenge scripts, plus the
  * third parties this site already calls.
+ *
+ * Video.js v10 plays Mux HLS through hls.js. Manifests, segments, and posters
+ * stay on `https://*.mux.com` (`connect-src` and `img-src`), MSE buffers need
+ * `media-src blob:`, hls.js workers need `worker-src blob:`, and Mux Data
+ * beacons need `https://*.litix.io`. Player UI styles are inline.
  */
 export const HTML_CONTENT_SECURITY_POLICY = [
   "default-src 'self'",

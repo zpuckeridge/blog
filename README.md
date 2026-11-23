@@ -2,7 +2,7 @@
 
 ![React Doctor](https://www.react.doctor/share/badge?p=blog&s=100)
 
-Personal site and portfolio. **Astro 7** on **Cloudflare Workers** (SSR), **React 19** islands, **Directus**, **Tailwind CSS 4**, **Base UI**, **safe-mdx**, **Mux**, and **Lanyard**.
+Personal site and portfolio. **Astro 7** on **Cloudflare Workers** (SSR), **React 19** islands, **Directus**, **Tailwind CSS 4**, **Base UI**, **safe-mdx**, **Video.js**, **Mux**, and **Lanyard**.
 
 ## 🚀 Install
 
@@ -56,7 +56,7 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 
 ### Media
 
-- **Videos** — Mux player with optional site-wide password protection
+- **Videos** — Video.js v10 player for Mux video, with optional site-wide password protection
 - **Images** — Directus assets via `/img/`* with Cloudflare Images resizing
 - **Image zoom** — Click-to-zoom on content images (navigation)
 

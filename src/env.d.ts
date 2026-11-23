@@ -1,5 +1,7 @@
 /// <reference types="astro/client" />
 
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+
 import type { ActivityFeedStoreNamespace } from "@/lib/activity-feed-store";
 
 declare global {
@@ -77,4 +79,31 @@ declare global {
   }
 }
 
-declare module "@mux/mux-player";
+type VideoJsElementProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLElement>,
+  HTMLElement
+>;
+
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      "mux-data": VideoJsElementProps & {
+        "metadata-video-title"?: string;
+      };
+      "mux-video": VideoJsElementProps & {
+        autoPlay?: boolean;
+        crossOrigin?: "anonymous" | "use-credentials" | "";
+        loop?: boolean;
+        muted?: boolean;
+        playsInline?: boolean;
+        "poster-time"?: number;
+        src?: string;
+      };
+      "video-player": VideoJsElementProps & {
+        "content-title"?: string;
+        poster?: string;
+      };
+      "video-skin": VideoJsElementProps;
+    }
+  }
+}

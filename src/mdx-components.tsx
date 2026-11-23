@@ -1,6 +1,11 @@
 import type { MDXComponents } from "mdx/types";
 import { useContext } from "react";
-import type { MouseEvent, ReactNode } from "react";
+import type {
+  ComponentProps,
+  CSSProperties,
+  MouseEvent,
+  ReactNode,
+} from "react";
 import { Tweet } from "react-tweet";
 import { toast } from "sonner";
 
@@ -14,7 +19,10 @@ import {
   HeadingShiftContext,
   ImageMetaContext,
 } from "@/components/mdx-render-context";
-import MdxPlayer from "@/components/player";
+import MdxPlayer, {
+  DeferredMuxFrame,
+  ExternalIframe,
+} from "@/components/player";
 import SideNote from "@/components/side-note";
 import SiteImage from "@/components/site-image";
 import { ImageZoom } from "@/components/zoom-image";
@@ -31,6 +39,8 @@ import {
   headingShiftForDepth,
   shiftedHeadingDepth,
 } from "@/lib/heading-shift";
+import { cn } from "@/lib/utils";
+import { describeMuxElement, describeMuxEmbed } from "@/lib/video-source";
 
 const textFromChildren = (children: ReactNode): string => {
   if (
@@ -196,11 +206,140 @@ const MdxImage = ({
   );
 };
 
-const components: MDXComponents = {
+const stringProp = (value: unknown): string | null =>
+  typeof value === "string" && value.trim() ? value : null;
+
+const fillsParent = (
+  className: string | undefined,
+  style: CSSProperties | undefined
+): boolean => {
+  if (className?.includes("absolute") || className?.includes("inset-0")) {
+    return true;
+  }
+
+  return style?.position === "absolute";
+};
+
+const MdxIframe = ({
+  className,
+  src,
+  style,
+  title,
+  ...props
+}: ComponentProps<"iframe">) => {
+  const source = typeof src === "string" ? src : "";
+  const embed = describeMuxEmbed(source);
+  if (!embed) {
+    return (
+      <ExternalIframe
+        className={className}
+        src={src}
+        style={style}
+        title={title}
+        {...props}
+      />
+    );
+  }
+
+  const titled = {
+    ...embed,
+    title: typeof title === "string" ? title : embed.title,
+  };
+
+  if (fillsParent(className, style)) {
+    return (
+      <div className={cn("bg-neutral-950", className)} style={style}>
+        <DeferredMuxFrame
+          className="absolute inset-0 size-full"
+          embed={titled}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <DeferredMuxFrame className={cn("my-[2em]", className)} embed={titled} />
+  );
+};
+
+const MdxVideo = ({
+  autoPlay,
+  className,
+  controls,
+  loop,
+  muted,
+  poster,
+  src,
+  style,
+  title,
+  ...props
+}: ComponentProps<"video">) => {
+  const source = typeof src === "string" ? src : "";
+  const embed = describeMuxElement({
+    autoplay: autoPlay,
+    controls,
+    kind: "video",
+    loop,
+    muted,
+    poster: typeof poster === "string" ? poster : null,
+    src: source,
+    style,
+    title: typeof title === "string" ? title : null,
+  });
+
+  if (!embed) {
+    return (
+      // oxlint-disable-next-line jsx-a11y/media-has-caption -- existing MDX video, captions stay with the source
+      <video
+        autoPlay={autoPlay}
+        className={className}
+        controls={controls}
+        loop={loop}
+        muted={muted}
+        poster={poster}
+        src={src}
+        style={style}
+        title={title}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <DeferredMuxFrame className={cn("my-[2em]", className)} embed={embed} />
+  );
+};
+
+const MdxMuxPlayer = (props: Record<string, unknown>) => {
+  const { style } = props;
+  const embed = describeMuxElement({
+    autoplay: props.autoplay ?? props.autoPlay,
+    controls: props.controls,
+    kind: "mux-player",
+    loop: props.loop,
+    muted: props.muted,
+    playbackId:
+      stringProp(props["playback-id"]) ?? stringProp(props.playbackId),
+    poster: stringProp(props.poster),
+    src: stringProp(props.src),
+    style,
+    title: stringProp(props.title) ?? stringProp(props["metadata-video-title"]),
+  });
+
+  if (!embed) {
+    return null;
+  }
+
+  return <DeferredMuxFrame className="my-[2em]" embed={embed} />;
+};
+
+const components = {
   AfterQuote,
   Definition,
   Overflow: MdxOverflow,
   Player: (props) => <MdxPlayer {...props} className="my-[2em]" deferMux />,
+  iframe: MdxIframe,
+  "mux-player": MdxMuxPlayer,
   SideNote,
   Tweet,
   a: ({ href = "", children, ...props }) => {
@@ -227,6 +366,7 @@ const components: MDXComponents = {
   h5: H5,
   h6: H6,
   img: MdxImage,
+  video: MdxVideo,
   pre: ({ children, ...props }) => (
     <pre
       {...props}

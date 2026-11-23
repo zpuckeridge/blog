@@ -19,7 +19,7 @@ export default defineConfig({
     {
       files: ["src/components/player.tsx"],
       rules: {
-        // YouTube iframes need full embed capabilities; sandbox blocks playback.
+        // YouTube and other third-party iframes need full embed capabilities; sandbox blocks playback.
         "react-doctor/iframe-missing-sandbox": "off",
         "react/iframe-missing-sandbox": "off",
       },
