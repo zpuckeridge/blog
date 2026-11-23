@@ -120,8 +120,10 @@ const boundaryInside = (
     probe.collapse(true);
     const beforeSource =
       source.compareBoundaryPoints(Range.START_TO_START, probe) > 0;
+    // START_TO_END compares this range's end with the probe. END_TO_START
+    // compares this range's start, so a caret inside the sentence looks past it.
     const afterSource =
-      source.compareBoundaryPoints(Range.END_TO_START, probe) < 0;
+      source.compareBoundaryPoints(Range.START_TO_END, probe) < 0;
     return !(beforeSource || afterSource);
   } catch {
     return false;
