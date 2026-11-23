@@ -22,41 +22,11 @@ const { charts } = Astro.props;
       />
     </div>
 
-  <RhythmBarChart
-    caption="Daily steps. Days without a recorded total stay blank."
-    chart={charts.movement}
-    emptyLabel="No steps yet."
-    legend={[
-      { kind: "bar", label: "Steps" },
-      { kind: "average", label: "30-day average" },
-    ]}
-    title="Steps"
-  />
-  <RhythmBarChart
-    caption="Workout time. A walk is counted in steps as well."
-    chart={charts.workouts}
-    emptyLabel="No workouts yet."
-    legend={[
-      { kind: "bar", label: "Workout" },
-      { kind: "average", label: "30-day average" },
-    ]}
-    title="Workouts"
-  />
   <SleepWindowChart
     caption="Each mark runs from getting into bed to getting up, on the morning you woke. The figure is how long that window was."
     chart={charts.sleep}
     emptyLabel="No bed or wake times yet."
     title="Sleep"
-  />
-  <RhythmBarChart
-    caption="Water logged that day. A missed day is left blank."
-    chart={charts.drinks}
-    emptyLabel="No water yet."
-    legend={[
-      { kind: "bar", label: "Water" },
-      { kind: "average", label: "30-day average" },
-    ]}
-    title="Water"
   />
   <RhythmBarChart
     caption="Coffees logged that day."
@@ -149,17 +119,6 @@ const { charts } = Astro.props;
     ]}
     title="Listening"
   />
-  <RhythmBarChart
-    caption="Minutes Discord was online, idle, or set to do not disturb between 10 pm and 5 am, filed on the morning after."
-    chart={charts.afterTen}
-    emptyLabel="Nothing logged after 10 pm yet."
-    legend={[
-      { kind: "bar", label: "After 10 pm" },
-      { kind: "average", label: "30-day average" },
-    ]}
-    title="After 10 pm"
-  />
-
   <div class="min-w-0 space-y-6">
       <div class="flex items-center gap-1">
         <h3 class="font-normal text-muted-foreground text-sm">Weekdays</h3>
@@ -173,15 +132,6 @@ const { charts } = Astro.props;
       emptyLabel="No time at work recorded yet."
       title="At work"
     />
-    {
-      charts.weekSteps ? (
-        <WeekShapeChart
-          chart={charts.weekSteps}
-          emptyLabel="No steps recorded yet."
-          title="Steps"
-        />
-      ) : null
-    }
   </div>
 </section>
 
