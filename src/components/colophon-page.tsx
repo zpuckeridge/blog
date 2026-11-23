@@ -68,6 +68,10 @@ const ColophonPage = () => (
             ,{" "}
             <LinkWithIcon href="https://github.com/Phineas/lanyard?ref=zacchary.me">
               Lanyard
+            </LinkWithIcon>
+            ,{" "}
+            <LinkWithIcon href="https://videojs.org?ref=zacchary.me">
+              Video.js
             </LinkWithIcon>{" "}
             and{" "}
             <LinkWithIcon href="https://www.mux.com?ref=zacchary.me">
