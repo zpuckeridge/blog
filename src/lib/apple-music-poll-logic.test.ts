@@ -8,11 +8,26 @@ import {
   trackIdsFromPoll,
 } from "@/lib/apple-music-poll-logic";
 import type { AppleMusicApiSong } from "@/lib/apple-music-track";
+import { appleTrackIdentity } from "@/lib/apple-music-track";
 
 const song = (id: string, name = id): AppleMusicApiSong => ({
   attributes: { artistName: "Artist", name },
   id,
   type: "songs",
+});
+
+const librarySong = (
+  libraryId: string,
+  catalogId: string | undefined,
+  name = catalogId ?? libraryId
+): AppleMusicApiSong => ({
+  attributes: {
+    artistName: "Artist",
+    name,
+    playParams: { catalogId, isLibrary: true },
+  },
+  id: libraryId,
+  type: "library-songs",
 });
 
 describe("diffAppleMusicPoll", () => {
@@ -73,6 +88,21 @@ describe("diffAppleMusicPoll", () => {
     assert.equal(diff.length, 0);
   });
 
+  it("anchors a catalogue id on the same song played from the library", () => {
+    const previous = ["cat-1", "cat-2"];
+    const diff = diffAppleMusicPoll(previous, [
+      song("fresh"),
+      librarySong("i.same", "cat-1"),
+      song("cat-2"),
+    ]);
+
+    assert.equal(appleTrackIdentity(librarySong("i.same", "cat-1")), "cat-1");
+    assert.deepEqual(
+      diff.map((entry) => entry.identity),
+      ["fresh"]
+    );
+  });
+
   it("falls back to set membership when the anchor sequence is missing", () => {
     const previous = ["a", "b", "c", "d"];
     const diff = diffAppleMusicPoll(previous, [
@@ -107,5 +137,15 @@ describe("spreadAppleMusicListenTimes", () => {
 describe("trackIdsFromPoll", () => {
   it("keeps api order", () => {
     assert.deepEqual(trackIdsFromPoll([song("x"), song("y")]), ["x", "y"]);
+  });
+
+  it("stores a library play under its catalogue id", () => {
+    assert.deepEqual(
+      trackIdsFromPoll([
+        librarySong("i.downloaded", "cat-9", "Downloaded"),
+        song("cat-1"),
+      ]),
+      ["cat-9", "cat-1"]
+    );
   });
 });

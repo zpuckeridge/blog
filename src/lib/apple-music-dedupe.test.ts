@@ -38,6 +38,20 @@ describe("isDuplicateListenAcrossSources", () => {
     );
   });
 
+  it("treats a play 16 minutes later as the same listen", () => {
+    const existing = [play("Song", "Artist", 10_000, "lanyard")];
+    assert.equal(APPLE_LANYARD_DEDUPE_WINDOW_MS, 30 * 60 * 1000);
+    assert.equal(
+      isDuplicateListenAcrossSources(
+        "Song",
+        "Artist",
+        10_000 + 16 * 60 * 1000,
+        existing
+      ),
+      true
+    );
+  });
+
   it("allows the same song outside the dedupe window", () => {
     const existing = [play("Song", "Artist", 10_000, "lanyard")];
     assert.equal(
