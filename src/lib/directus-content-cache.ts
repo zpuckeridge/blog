@@ -1,9 +1,10 @@
 interface CacheEntry<T> {
   expiresAt: number;
-  value: Promise<T>;
+  value: T;
 }
 
-const CONTENT_CACHE_TTL_MS = 1000 * 60 * 5;
+export const CONTENT_CACHE_TTL_MS = 1000 * 60 * 5;
+
 const contentCache =
   (
     globalThis as typeof globalThis & {
@@ -17,54 +18,46 @@ const contentCache =
   }
 ).__blogContentCache = contentCache;
 
-export const withContentCache = <T>(
+const isThenable = (value: unknown): boolean => {
+  if (typeof value !== "object" || value === null) {
+    return false;
+  }
+
+  return typeof (value as { then?: unknown }).then === "function";
+};
+
+/**
+ * Remember settled values only. Workers with
+ * `handle_cross_request_promise_resolution` drop a settlement once the request
+ * that created the promise has ended, so a later request awaiting a cached
+ * in-flight fetch throws and the page returns 500.
+ */
+export const withContentCache = async <T>(
   key: string,
   fetcher: () => Promise<T>,
   options?: { shouldCache?: (value: T) => boolean }
 ): Promise<T> => {
   const now = Date.now();
   const cached = contentCache.get(key);
-  if (cached && cached.expiresAt > now) {
-    const cachedValue = cached.value as Promise<T>;
-    if (!options?.shouldCache) {
+  if (cached && cached.expiresAt > now && !isThenable(cached.value)) {
+    const cachedValue = cached.value as T;
+    if (!options?.shouldCache || options.shouldCache(cachedValue)) {
       return cachedValue;
     }
 
-    const { shouldCache } = options;
-    return cachedValue.then((result) => {
-      if (shouldCache(result)) {
-        return result;
-      }
-      contentCache.delete(key);
-      return withContentCache(key, fetcher, options);
-    });
+    contentCache.delete(key);
+  } else if (cached && isThenable(cached.value)) {
+    contentCache.delete(key);
   }
 
-  const value = (async () => {
-    try {
-      return await fetcher();
-    } catch (error) {
-      contentCache.delete(key);
-      throw error;
-    }
-  })();
-
+  const result = await fetcher();
   const shouldCache = options?.shouldCache;
-  if (shouldCache) {
-    return value.then((result) => {
-      if (shouldCache(result)) {
-        contentCache.set(key, {
-          expiresAt: Date.now() + CONTENT_CACHE_TTL_MS,
-          value: Promise.resolve(result),
-        });
-      }
-      return result;
+  if (!isThenable(result) && (!shouldCache || shouldCache(result))) {
+    contentCache.set(key, {
+      expiresAt: Date.now() + CONTENT_CACHE_TTL_MS,
+      value: result,
     });
   }
 
-  contentCache.set(key, {
-    expiresAt: now + CONTENT_CACHE_TTL_MS,
-    value,
-  });
-  return value;
+  return result;
 };

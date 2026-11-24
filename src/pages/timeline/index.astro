@@ -5,6 +5,7 @@ import { buildMetadataUrl, createPageMetadata, formatPageTitle } from "@/lib/met
 import { timelinePostPath } from "@/lib/site";
 import { getNotes, getPosts } from "@/lib/directus-content";
 import { filterPostsForPublicSite } from "@/lib/removed-timeline";
+import { loadTimelineContent } from "@/lib/timeline-content";
 
 export const prerender = false;
 
@@ -17,10 +18,10 @@ const pageMeta = createPageMetadata({
 
 const fullTitle = formatPageTitle("Timeline");
 
-const [allPosts, allNotes] = await Promise.all([
-  filterPostsForPublicSite(await getPosts()),
-  getNotes(),
-]);
+const { notes: allNotes, posts: allPosts } = await loadTimelineContent(
+  async () => filterPostsForPublicSite(await getPosts()),
+  () => getNotes()
+);
 ---
 
 <Layout
