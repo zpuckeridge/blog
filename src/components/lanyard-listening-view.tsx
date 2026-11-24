@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RxChevronDown } from "react-icons/rx";
 import useSWR from "swr";
 
@@ -20,7 +20,6 @@ import type {
 import { resolveListeningArtistUrl } from "@/lib/listening-artist-url";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
-import { persistRecentSession } from "@/lib/record-listening-session";
 import { formatRelativeTime } from "@/lib/relative-time";
 import { cn } from "@/lib/utils";
 
@@ -157,59 +156,17 @@ const LanyardListeningView = () => {
   const [listening, setListening] = useState<ObservedListen | null>(null);
   const [showRecents, setShowRecents] = useState(false);
   const [now, setNow] = useState(() => Date.now());
-  const lastRecordedRef = useRef<ObservedListen | null>(null);
   const skipNetwork = isLikelyBot();
 
-  const { data: recents = [], mutate } = useSWR(
+  const { data: recents = [] } = useSWR(
     skipNetwork ? null : RECENTS_KEY,
     fetchRecents,
-    { revalidateOnFocus: false }
+    { refreshInterval: 60_000, revalidateOnFocus: false }
   );
 
-  const applyRecents = useCallback(
-    async (nextRecents: RecentListen[]) => {
-      await mutate(nextRecents, false);
-    },
-    [mutate]
-  );
-
-  const onPresence = useCallback(
-    (presence: LanyardPresence) => {
-      const next = parseAppleMusicActivity(presence.activities);
-      setListening(next);
-      if (!next || skipNetwork || document.prerendering) {
-        return;
-      }
-
-      void persistRecentSession(next, lastRecordedRef, async (recorded) => {
-        if (recorded) {
-          await applyRecents(recorded);
-        }
-      });
-    },
-    [applyRecents, skipNetwork]
-  );
-
-  useEffect(() => {
-    if (skipNetwork || !listening || !document.prerendering) {
-      return;
-    }
-
-    const song = listening;
-    const onActivate = () => {
-      void persistRecentSession(song, lastRecordedRef, async (recorded) => {
-        if (recorded) {
-          await applyRecents(recorded);
-        }
-      });
-    };
-
-    document.addEventListener("prerenderingchange", onActivate, { once: true });
-
-    return () => {
-      document.removeEventListener("prerenderingchange", onActivate);
-    };
-  }, [applyRecents, listening, skipNetwork]);
+  const onPresence = useCallback((presence: LanyardPresence) => {
+    setListening(parseAppleMusicActivity(presence.activities));
+  }, []);
 
   useEffect(() => {
     if (skipNetwork) {

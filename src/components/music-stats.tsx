@@ -73,15 +73,15 @@ const rankedTitleArtistLabel = ({
   titleHref: string | null;
   titleLabel: string;
 }) => (
-  <span className="flex min-w-0 flex-col gap-0.5 leading-tight">
+  <span className="flex min-w-0 flex-col items-start gap-0.5 leading-tight">
     <ListeningLink
-      className="text-inherit"
+      className="w-fit max-w-full text-inherit"
       href={titleHref}
       label={titleLabel}
       truncate
     />
     <ListeningLink
-      className="text-muted-foreground"
+      className="w-fit max-w-full text-muted-foreground"
       href={resolveListeningArtistUrl(artist, artistUrl)}
       label={artist}
       truncate
@@ -111,7 +111,7 @@ const rankedLabel = (item: ListeningStatsRankedItem, title: string) => {
   if (title === "Top artists") {
     return (
       <ListeningLink
-        className="text-inherit"
+        className="w-fit max-w-full text-inherit"
         href={resolveListeningArtistUrl(item.artist, item.artistUrl)}
         label={item.artist}
         truncate

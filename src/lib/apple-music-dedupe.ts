@@ -3,8 +3,9 @@ import type { ListenPlay } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
 
 /**
- * Skip Apple ingest when Lanyard already recorded the same song recently.
- * Apple times are the poll time, and the cron runs every 30 minutes.
+ * Skip Apple ingest when the same song is already in history.
+ * Older rows may have come from Lanyard. Apple times are the poll time,
+ * and the cron runs every 30 minutes.
  */
 export const APPLE_LANYARD_DEDUPE_WINDOW_MS = 30 * 60 * 1000;
 

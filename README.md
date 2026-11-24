@@ -64,8 +64,7 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 
 - **Location status** — iOS Shortcuts webhook + KV geofence; shown on the homepage
 - **Discord status** — Lanyard (REST + WebSocket on the client)
-- **Apple Music** — Now playing from Discord activity via Lanyard; recent tracks on the homepage
-- **Apple Music supplement** — When Discord is offline, a half-hourly Worker cron polls Apple’s recently played API using the Music User Token in KV (`apple-music:user-token`); plays merge into the same KV history with a `source` field (`lanyard` or `apple`). Apple Music user tokens expire after roughly six months; restore the removed `/music/connect` flow from git history, re-authorise once, then remove it again—or set `APPLE_MUSIC_USER_TOKEN` locally and write KV via Wrangler.
+- **Apple Music** — Now playing comes from Discord activity via Lanyard. Play history and the homepage recent list come from the half-hourly Apple Music poll, using the Music User Token in KV (`apple-music:user-token`). Stored plays keep a `source` field (`lanyard` for older rows, `apple` for the poll). Apple Music user tokens expire after roughly six months; restore the removed `/music/connect` flow from git history, re-authorise once, then remove it again—or set `APPLE_MUSIC_USER_TOKEN` locally and write KV via Wrangler.
 - **Music history** — `/music` shows monthly stats and up to 1,000 plays for the selected month; the full log and monthly aggregates (`listening:stats` in KV) keep every play. Genres come from Apple’s API on ingest. Backfill: `POST /api/listening/backfill` with batched `offset=` (Bearer `RHYTHMS_WEBHOOK_SECRET`); use `?rebuild=stats` to rebuild stats only.
 - **Status history heatmaps** — Full work, home, and Discord history in KV; `/activity` charts the last 30 Brisbane days
 
@@ -92,7 +91,7 @@ For `astro dev` / `wrangler dev`, put **VIDEO_PASSWORD** and **LOCATION_WEBHOOK_
 
 ### Status history heatmaps
 
-A Cloudflare cron runs **every minute**. Each run may poll Lanyard for Discord + Apple Music listening and, on a **five-minute sample bucket**, record location and Discord presence into `LOCATION_KV` under `status:history:v1`. Graphs live on `/activity` (not the homepage). A second cron runs **every 30 minutes** to supplement listening history from the Apple Music API when a Music User Token is stored.
+A Cloudflare cron runs **every minute**. On a **five-minute sample bucket** it records location and Discord presence into `LOCATION_KV` under `status:history:v1`. Graphs live on `/activity` (not the homepage). A second cron runs **every 30 minutes** and records listening history from the Apple Music API when a Music User Token is stored. Lanyard is only the live now-playing presence.
 
 - **Discord online** counts `online`, `idle`, and `dnd`; `offline` is not counted.
 - **Work / home** use the current geofence category when location is fresh (not stale). `transit` and `away` count toward observed location time but not work or home totals.

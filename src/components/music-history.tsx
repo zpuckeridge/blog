@@ -17,7 +17,6 @@ import {
 } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
-import { persistRecentSession } from "@/lib/record-listening-session";
 
 interface HistoryPayload {
   plays: ListenPlay[];
@@ -42,33 +41,6 @@ const fetchLatestHistory = async (
   }
 
   return response.json() as Promise<HistoryPayload>;
-};
-
-const observedToPlay = (song: ObservedListen): ListenPlay => {
-  const listenedAt = song.startedAt ?? Date.now();
-
-  return {
-    album: song.album,
-    artist: song.artist,
-    artistUrl: song.artistUrl,
-    artworkUrl: song.artworkUrl,
-    listenedAt,
-    startedAt: song.startedAt,
-    track: song.track,
-    trackUrl: song.trackUrl,
-  };
-};
-
-const overlapsCurrent = (play: ListenPlay, song: ObservedListen): boolean => {
-  if (sameListeningSession(play, song)) {
-    return true;
-  }
-
-  if (song.startedAt !== null) {
-    return false;
-  }
-
-  return listeningIdentity(play) === listeningIdentity(song);
 };
 
 const withoutCurrentSession = (
@@ -103,11 +75,9 @@ const MusicHistory = ({
   const [plays, setPlays] = useState(() =>
     trimListenHistoryDisplay(initialPlays)
   );
-  const [pending, setPending] = useState<ListenPlay[]>([]);
   const [nowPlaying, setNowPlaying] = useState<ObservedListen | null>(null);
   const [now, setNow] = useState(() => Date.now());
   const previousRef = useRef<ObservedListen | null>(null);
-  const lastRecordedRef = useRef<ObservedListen | null>(null);
   const skipNetwork = isLikelyBot();
 
   const refreshLatest = useCallback(async () => {
@@ -122,52 +92,22 @@ const MusicHistory = ({
       const next = mergeLatestPlays(current, payload.plays);
       return next === current ? current : [...next];
     });
-    setPending((current) =>
-      current.filter(
-        (play) =>
-          !payload.plays.some((incoming) =>
-            sameListeningSession(incoming, play)
-          )
-      )
-    );
   }, [monthKey]);
 
   const onPresence = useCallback(
     (presence: LanyardPresence) => {
       const next = parseAppleMusicActivity(presence.activities);
       const previous = previousRef.current;
-
-      if (document.prerendering) {
-        previousRef.current = next;
-        setNowPlaying(next);
-        return;
-      }
-
       previousRef.current = next;
       setNowPlaying(next);
 
       if (
+        !document.prerendering &&
         previous &&
         (next === null || !sameListeningSession(previous, next))
       ) {
-        const ended = observedToPlay(previous);
-        setPending((current) =>
-          current.some((play) => sameListeningSession(play, ended))
-            ? current
-            : [ended, ...current]
-        );
+        void refreshLatest();
       }
-
-      if (next === null) {
-        if (previous) {
-          void refreshLatest();
-        }
-        return;
-      }
-
-      void persistRecentSession(next, lastRecordedRef, async () => {
-        await refreshLatest();
-      });
     },
     [refreshLatest]
   );
@@ -206,32 +146,7 @@ const MusicHistory = ({
     };
   }, [live, onPresence, refreshLatest, skipNetwork]);
 
-  useEffect(() => {
-    if (skipNetwork || !live || !nowPlaying || !document.prerendering) {
-      return;
-    }
-
-    const song = nowPlaying;
-    const onActivate = () => {
-      void persistRecentSession(song, lastRecordedRef, async () => {
-        await refreshLatest();
-      });
-    };
-
-    document.addEventListener("prerenderingchange", onActivate, { once: true });
-
-    return () => {
-      document.removeEventListener("prerenderingchange", onActivate);
-    };
-  }, [live, nowPlaying, refreshLatest, skipNetwork]);
-
-  const historyRows = withoutCurrentSession(plays, live ? nowPlaying : null);
-  const pendingRows = pending.filter(
-    (play) =>
-      (nowPlaying === null || !overlapsCurrent(play, nowPlaying)) &&
-      !plays.some((existing) => sameListeningSession(existing, play))
-  );
-  const rows = [...pendingRows, ...historyRows];
+  const rows = withoutCurrentSession(plays, live ? nowPlaying : null);
 
   if (!live && rows.length === 0) {
     return (
