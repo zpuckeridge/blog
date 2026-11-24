@@ -109,6 +109,7 @@ const ImageZoomSlot = ({
       onClick={handleSlotClick}
       onFocus={prefetchZoomSrc}
       onMouseEnter={prefetchZoomSrc}
+      onPointerDown={prefetchZoomSrc}
       ref={setSlotRef}
       style={slotStyle}
       type="button"

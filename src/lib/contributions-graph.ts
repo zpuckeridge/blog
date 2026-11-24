@@ -5,8 +5,6 @@ import {
 } from "@/lib/format-in-brisbane";
 import type { ContributionDay } from "@/lib/github-contributions";
 
-export type { ContributionDay };
-
 export const getContributionColor = (
   count: number,
   maxCount: number

@@ -42,5 +42,27 @@ describe("mapAppleMusicSong", () => {
   it("builds an Australian song url from catalogId when Apple sends no url", () => {
     const mapped = mapAppleMusicSong(librarySong("123"));
     assert.equal(mapped?.trackUrl, "https://music.apple.com/au/song/123");
+    assert.equal(
+      mapped?.artistUrl,
+      "https://music.apple.com/au/search?term=Phone"
+    );
+  });
+
+  it("prefers Apple's artistUrl when the API extends it", () => {
+    const mapped = mapAppleMusicSong({
+      attributes: {
+        artistName: "Streamer",
+        artistUrl: "https://music.apple.com/au/artist/streamer/99",
+        name: "Catalogue",
+        playParams: { catalogId: "123", isLibrary: false },
+      },
+      id: "123",
+      type: "songs",
+    });
+
+    assert.equal(
+      mapped?.artistUrl,
+      "https://music.apple.com/au/artist/streamer/99"
+    );
   });
 });

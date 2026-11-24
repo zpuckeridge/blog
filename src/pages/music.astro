@@ -1,11 +1,24 @@
 ---
 import MusicHistory from "@/components/music-history";
+import MusicStats from "@/components/music-stats";
 import Layout from "@/layouts/layout.astro";
 import {
+  filterListenHistoryByMonth,
+  LISTENING_HISTORY_DISPLAY_MAX,
   LISTENING_HISTORY_KV_KEY,
   readListenHistory,
   sliceListenHistory,
 } from "@/lib/listening-history";
+import { listenMonthKey } from "@/lib/listening-month";
+import {
+  LISTENING_STATS_KV_KEY,
+  parseListeningStats,
+  resolveListeningStatsMonth,
+} from "@/lib/listening-stats";
+import {
+  expandableListMetaClassName,
+  expandableListSectionHeaderMainClassName,
+} from "@/lib/expandable-list";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
 import { siteLocale } from "@/lib/site";
 import { workersEnv } from "@/lib/workers-env";
@@ -17,17 +30,39 @@ if (Astro.url.searchParams.has("page")) {
 }
 
 const kv = workersEnv.LOCATION_KV;
-const history = kv
-  ? readListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY))
-  : [];
-const listing = sliceListenHistory(history, 0);
-const songLabel = listing.total === 1 ? "song" : "songs";
+if (kv) {
+  const { ensureDevMusicSeed } = await import("@/lib/music-stats-dev-seed");
+  await ensureDevMusicSeed(kv);
+}
+
+const [listeningRaw, statsRaw] = kv
+  ? await Promise.all([
+      kv.get(LISTENING_HISTORY_KV_KEY),
+      kv.get(LISTENING_STATS_KV_KEY),
+    ])
+  : [null, null];
+
+const history = readListenHistory(listeningRaw);
+const stats = parseListeningStats(statsRaw);
+const { initialMonth, months } = resolveListeningStatsMonth(
+  stats,
+  Astro.url.searchParams.get("month")
+);
+const monthHistory = filterListenHistoryByMonth(history, initialMonth);
+const listing = sliceListenHistory(
+  monthHistory,
+  0,
+  LISTENING_HISTORY_DISPLAY_MAX
+);
+const recentPlayCount = monthHistory.length;
+const songLabel = recentPlayCount === 1 ? "song" : "songs";
+const isLiveMonth = initialMonth === listenMonthKey(Date.now());
 
 Astro.response.headers.set("Cache-Control", "private, no-store");
 
 const pageMeta = createPageMetadata({
   description:
-    "The last 1,000 songs Zacchary has listened to on Apple Music, newest first. Each row has artwork and a link to the track.",
+    "Recent Apple Music listening: monthly genre plays, top tracks, artists, albums, and plays for the selected month.",
   path: "/music",
   title: "Music",
 });
@@ -43,20 +78,42 @@ const fullTitle = formatPageTitle("Music");
   <div class="mx-auto flex w-full min-w-0 max-w-lg flex-col gap-8 px-6 pb-20">
     <div class="space-y-2">
       <h1 class="font-redaction text-black text-xl dark:text-white">Music</h1>
-      <p class="text-sm">The last 1,000 songs I've listened to.</p>
-      {
-        listing.total > 0 ? (
-          <p class="text-sm text-muted-foreground tabular-nums">
-            {listing.total.toLocaleString(siteLocale)} {songLabel}
-          </p>
-        ) : null
-      }
+      <p class="text-sm text-muted-foreground">
+        Monthly stats and plays for the selected month, newest first.
+      </p>
     </div>
 
-    <MusicHistory
+    <MusicStats
       client:load
-      initialPlays={listing.plays}
-      total={listing.total}
+      initialMonth={initialMonth}
+      monthPagePath="/music"
+      months={months}
+      stats={stats}
     />
+
+    <section class="space-y-2">
+      <div
+        class="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(5ch,max-content)] items-center gap-x-4"
+      >
+        <div class={expandableListSectionHeaderMainClassName}>
+          <p class="shrink-0 text-muted-foreground text-sm">Recent plays</p>
+          <hr class="min-w-0 flex-1 border-dotted border-border" />
+        </div>
+        <p
+          class:list={[
+            expandableListMetaClassName,
+            "text-muted-foreground text-sm",
+          ]}
+        >
+          {recentPlayCount.toLocaleString(siteLocale)} {songLabel}
+        </p>
+      </div>
+      <MusicHistory
+        client:load
+        initialPlays={listing.plays}
+        live={isLiveMonth}
+        monthKey={initialMonth}
+      />
+    </section>
   </div>
 </Layout>

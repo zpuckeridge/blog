@@ -6,8 +6,8 @@ import {
   getContributionColor,
   summarizeContributions,
 } from "@/lib/contributions-graph";
-import type { ContributionDay } from "@/lib/contributions-graph";
 import { formatPublishedLongDate } from "@/lib/format-in-brisbane";
+import type { ContributionDay } from "@/lib/github-contributions";
 import { siteLocale } from "@/lib/site";
 import { cn } from "@/lib/utils";
 

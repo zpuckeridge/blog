@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import { buildDevActivitySeed } from "./activity-chart-dev-seed.ts";
-import { readListenHistory } from "./listening-history.ts";
+import { buildDevMusicListeningPlays } from "./music-stats-dev-seed.ts";
 import { buildActivityCharts } from "./rhythm-charts.ts";
 import { readRhythmStore } from "./rhythms.ts";
 import { parseStatusHistoryStore } from "./status-history.ts";
@@ -12,7 +12,7 @@ describe("dev activity seed", () => {
     const today = "2026-11-13";
     const seed = buildDevActivitySeed(today);
     const charts = buildActivityCharts({
-      listens: readListenHistory(seed.listening),
+      listens: buildDevMusicListeningPlays(today),
       rhythms: readRhythmStore(seed.rhythms),
       status: parseStatusHistoryStore(seed.status),
       todayIso: today,

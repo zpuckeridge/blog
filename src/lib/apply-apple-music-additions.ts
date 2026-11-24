@@ -10,6 +10,7 @@ export interface AppleMusicIngestResult {
   history: ListenPlay[];
   historyChanged: boolean;
   ingested: number;
+  newPlays: ListenPlay[];
   recents: RecentListen[];
 }
 
@@ -24,6 +25,7 @@ export const applyAppleMusicAdditions = (
   let history = [...existingHistory];
   let historyChanged = false;
   let ingested = 0;
+  const newPlays: ListenPlay[] = [];
 
   for (let index = additions.length - 1; index >= 0; index -= 1) {
     const addition = additions[index];
@@ -49,13 +51,20 @@ export const applyAppleMusicAdditions = (
     const appended = appendListenPlay(history, song, listenedAt);
     history = [...appended.plays];
     historyChanged ||= appended.changed;
-    ingested += appended.appended ? 1 : 0;
+    if (appended.appended) {
+      ingested += 1;
+      const [play] = appended.plays;
+      if (play) {
+        newPlays.push(play);
+      }
+    }
   }
 
   return {
     history,
     historyChanged,
     ingested,
+    newPlays,
     recents,
   };
 };

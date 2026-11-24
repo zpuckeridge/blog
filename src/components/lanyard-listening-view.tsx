@@ -17,6 +17,7 @@ import type {
   NowListening,
   ObservedListen,
 } from "@/lib/lanyard-status";
+import { resolveListeningArtistUrl } from "@/lib/listening-artist-url";
 import { listeningIdentity } from "@/lib/listening-recents";
 import type { RecentListen } from "@/lib/listening-recents";
 import { persistRecentSession } from "@/lib/record-listening-session";
@@ -115,7 +116,10 @@ const ListeningTrackState = ({
           </span>
           <ListeningLink
             className="text-muted-foreground"
-            href={listening.artistUrl}
+            href={resolveListeningArtistUrl(
+              listening.artist,
+              listening.artistUrl
+            )}
             label={listening.artist}
             truncate
           />

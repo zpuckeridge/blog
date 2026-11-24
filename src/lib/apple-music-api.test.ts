@@ -48,6 +48,7 @@ describe("fetchAppleMusicRecentTracks", () => {
       tracks?.map((track) => track.type),
       ["songs", "library-songs"]
     );
+    assert.equal(url.searchParams.get("extend"), "artistUrl");
     assert.equal(url.searchParams.get("limit"), "25");
     assert.equal(url.searchParams.get("types"), "songs,library-songs");
   });

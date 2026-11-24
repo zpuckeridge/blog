@@ -51,6 +51,8 @@ export interface NowListening {
   artworkUrl: string | null;
   trackUrl: string | null;
   artistUrl: string | null;
+  catalogId?: string | null;
+  genres?: string[] | null;
   /** Defaults to Lanyard when omitted on read. */
   source?: ListenSource;
 }

@@ -2,7 +2,10 @@ import type { APIRoute } from "astro";
 
 import { jsonNoStore } from "@/lib/json-response";
 import {
+  filterListenHistoryByMonth,
+  LISTENING_HISTORY_DISPLAY_MAX,
   LISTENING_HISTORY_KV_KEY,
+  parseListenHistoryMonth,
   parseListenHistoryOffset,
   readListenHistory,
   sliceListenHistory,
@@ -23,12 +26,24 @@ export const GET: APIRoute = async ({ url }) => {
     return jsonNoStore({ error: "Invalid offset" }, { status: 400 });
   }
 
-  const history = readListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY));
-  const slice = sliceListenHistory(history, offset);
+  const monthKey = parseListenHistoryMonth(url.searchParams.get("month"));
+  if (url.searchParams.has("month") && monthKey === null) {
+    return jsonNoStore({ error: "Invalid month" }, { status: 400 });
+  }
+
+  const stored = readListenHistory(await kv.get(LISTENING_HISTORY_KV_KEY));
+  const history = monthKey
+    ? filterListenHistoryByMonth(stored, monthKey)
+    : stored;
+  const slice = sliceListenHistory(
+    history,
+    offset,
+    LISTENING_HISTORY_DISPLAY_MAX
+  );
 
   return jsonNoStore({
     nextOffset: slice.nextOffset,
     plays: slice.plays,
-    total: slice.total,
+    total: Math.min(slice.total, LISTENING_HISTORY_DISPLAY_MAX),
   });
 };

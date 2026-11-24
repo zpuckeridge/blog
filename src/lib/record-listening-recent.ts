@@ -5,6 +5,7 @@ import {
   appendListenPlay,
   parseListenHistory,
 } from "@/lib/listening-history";
+import { persistListeningUpdates } from "@/lib/listening-kv-writes";
 import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
@@ -43,15 +44,14 @@ export const recordListeningRecent = async (
     listening,
     observedAt
   );
-  const writes = [kv.put(LISTENING_RECENTS_KV_KEY, JSON.stringify(recents))];
-
-  if (history.changed) {
-    writes.push(
-      kv.put(LISTENING_HISTORY_KV_KEY, JSON.stringify(history.plays))
-    );
-  }
-
-  await Promise.all(writes);
+  await Promise.all([
+    kv.put(LISTENING_RECENTS_KV_KEY, JSON.stringify(recents)),
+    persistListeningUpdates(kv, {
+      history,
+      statsPlays:
+        history.appended && history.plays[0] ? [history.plays[0]] : [],
+    }),
+  ]);
 
   return {
     historyRecorded: history.appended,

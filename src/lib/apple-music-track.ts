@@ -8,7 +8,10 @@ export interface AppleMusicApiArtwork {
 export interface AppleMusicApiSongAttributes {
   albumName?: string;
   artistName?: string;
+  /** Present when the recent-played request uses `extend=artistUrl`. */
+  artistUrl?: string;
   artwork?: AppleMusicApiArtwork;
+  genreNames?: string[];
   name?: string;
   playParams?: {
     catalogId?: string;
@@ -23,7 +26,13 @@ export interface AppleMusicApiSong {
   type?: string;
 }
 
-const APPLE_MUSIC_SONG_URL = "https://music.apple.com/au/song";
+export const APPLE_MUSIC_STOREFRONT = "au";
+const APPLE_MUSIC_SONG_URL = `https://music.apple.com/${APPLE_MUSIC_STOREFRONT}/song`;
+
+export const appleMusicArtistSearchUrl = (artist: string): string => {
+  const name = artist.trim();
+  return `https://music.apple.com/${APPLE_MUSIC_STOREFRONT}/search?term=${encodeURIComponent(name)}`;
+};
 
 const artworkUrlFromTemplate = (template: string): string =>
   template.replace("{w}", "300").replace("{h}", "300");
@@ -53,6 +62,19 @@ export const appleTrackIdentity = (track: AppleMusicApiSong): string | null => {
   return `${name.toLowerCase()}::${artist.toLowerCase()}`;
 };
 
+const mappedArtistUrl = (track: AppleMusicApiSong, artist: string): string =>
+  track.attributes?.artistUrl?.trim() || appleMusicArtistSearchUrl(artist);
+
+const mappedTrackUrl = (catalogId: string | null): string | null =>
+  catalogId ? `${APPLE_MUSIC_SONG_URL}/${encodeURIComponent(catalogId)}` : null;
+
+const genreNamesFromTrack = (track: AppleMusicApiSong): string[] | null => {
+  const genres = track.attributes?.genreNames
+    ?.map((genre) => genre.trim())
+    .filter(Boolean);
+  return genres?.length ? genres : null;
+};
+
 export const mapAppleMusicSong = (
   track: AppleMusicApiSong
 ):
@@ -69,18 +91,19 @@ export const mapAppleMusicSong = (
     ? artworkUrlFromTemplate(artworkTemplate)
     : null;
   const catalogId = catalogIdFromTrack(track);
+  const genres = genreNamesFromTrack(track);
 
   return {
     album: track.attributes?.albumName?.trim() ?? null,
     appleId: track.id?.trim() ?? null,
     artist,
-    artistUrl: null,
+    artistUrl: mappedArtistUrl(track, artist),
     artworkUrl,
+    catalogId,
+    genres,
     source: "apple",
     startedAt: null,
     track: name,
-    trackUrl: catalogId
-      ? `${APPLE_MUSIC_SONG_URL}/${encodeURIComponent(catalogId)}`
-      : null,
+    trackUrl: mappedTrackUrl(catalogId),
   };
 };

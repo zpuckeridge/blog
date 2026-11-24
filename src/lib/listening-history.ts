@@ -1,16 +1,16 @@
 import type { NowListening, ObservedListen } from "@/lib/lanyard-status";
 import { resolveStoredListenSource } from "@/lib/lanyard-status";
+import { isListenMonthKey, listenMonthKey } from "@/lib/listening-month";
 import { isNonEmptyString, listeningIdentity } from "@/lib/listening-recents";
 
 /**
- * One JSON array, newest first.
- * A play is about half a kilobyte, so 1,000 plays stay around 0.5–1 MB.
- * That fits in a single KV value (limit 25 MiB). Each poll reads the array
- * once. A write happens only when a new play is appended or a missing
- * start time is filled in.
+ * One JSON array, newest first. There is no play-count cap; only the /music
+ * page slices the newest {@link LISTENING_HISTORY_DISPLAY_MAX} rows. Monthly
+ * aggregates live in {@link LISTENING_STATS_KV_KEY}.
  */
 export const LISTENING_HISTORY_KV_KEY = "listening:history";
-export const LISTENING_HISTORY_MAX = 1000;
+/** How many plays the public /music list shows (full history stays in KV). */
+export const LISTENING_HISTORY_DISPLAY_MAX = 1000;
 /** Rows sent with the first paint, and with each scroll request after that. */
 export const LISTENING_HISTORY_CHUNK_SIZE = 20;
 
@@ -73,6 +73,15 @@ const parseListenPlay = (value: unknown): ListenPlay | null => {
     listenedAt,
     source: resolveStoredListenSource(record),
     startedAt,
+    catalogId: isNonEmptyString(record.catalogId)
+      ? record.catalogId.trim()
+      : null,
+    genres: Array.isArray(record.genres)
+      ? record.genres
+          .filter((genre): genre is string => typeof genre === "string")
+          .map((genre) => genre.trim())
+          .filter(Boolean)
+      : null,
     track: record.track.trim(),
     trackUrl: isNonEmptyString(record.trackUrl) ? record.trackUrl.trim() : null,
   };
@@ -226,6 +235,8 @@ export const appendListenPlay = (
     artist: song.artist,
     artistUrl: song.artistUrl,
     artworkUrl: song.artworkUrl,
+    catalogId: song.catalogId ?? null,
+    genres: song.genres?.length ? [...song.genres] : null,
     listenedAt: observedAt,
     source: song.source ?? "lanyard",
     startedAt: song.startedAt,
@@ -236,7 +247,7 @@ export const appendListenPlay = (
   return {
     appended: true,
     changed: true,
-    plays: [next, ...existing].slice(0, LISTENING_HISTORY_MAX),
+    plays: [next, ...existing],
   };
 };
 
@@ -269,9 +280,6 @@ export const parseListenHistory = (raw: string | null): ListenPlay[] => {
       }
 
       plays.push(play);
-      if (plays.length >= LISTENING_HISTORY_MAX) {
-        break;
-      }
     }
 
     return plays;
@@ -297,9 +305,6 @@ export const collapseListenSessions = (
     }
 
     collapsed.push(play);
-    if (collapsed.length >= LISTENING_HISTORY_MAX) {
-      break;
-    }
   }
 
   return collapsed;
@@ -328,7 +333,27 @@ export const listenPlayedAt = (
   play: Pick<ListenPlay, "listenedAt" | "startedAt">
 ): number => play.startedAt ?? play.listenedAt;
 
+export const parseListenHistoryMonth = (
+  value: string | null
+): string | null => {
+  if (value === null || value === "") {
+    return null;
+  }
+
+  return isListenMonthKey(value) ? value : null;
+};
+
+export const filterListenHistoryByMonth = (
+  plays: readonly ListenPlay[],
+  monthKey: string
+): ListenPlay[] =>
+  plays.filter((play) => listenMonthKey(listenPlayedAt(play)) === monthKey);
+
 /** Prepend plays from a fresh first page that are not already in the list. */
+export const trimListenHistoryDisplay = (
+  plays: readonly ListenPlay[]
+): ListenPlay[] => plays.slice(0, LISTENING_HISTORY_DISPLAY_MAX);
+
 export const mergeLatestPlays = (
   current: readonly ListenPlay[],
   incoming: readonly ListenPlay[]
@@ -338,10 +363,12 @@ export const mergeLatestPlays = (
   );
 
   if (fresh.length === 0) {
-    return current;
+    return current.length <= LISTENING_HISTORY_DISPLAY_MAX
+      ? current
+      : trimListenHistoryDisplay(current);
   }
 
-  return [...fresh, ...current];
+  return trimListenHistoryDisplay([...fresh, ...current]);
 };
 
 /** Null when the query is not a whole number inside the stored history. */
@@ -357,7 +384,7 @@ export const parseListenHistoryOffset = (
   }
 
   const offset = Number(value);
-  if (!Number.isSafeInteger(offset) || offset > LISTENING_HISTORY_MAX) {
+  if (!Number.isSafeInteger(offset) || offset < 0) {
     return null;
   }
 

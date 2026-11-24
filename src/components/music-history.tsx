@@ -13,15 +13,14 @@ import {
   listeningPlayKey,
   mergeLatestPlays,
   sameListeningSession,
+  trimListenHistoryDisplay,
 } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
 import { persistRecentSession } from "@/lib/record-listening-session";
 
 interface HistoryPayload {
-  nextOffset: number | null;
   plays: ListenPlay[];
-  total: number;
 }
 
 const HISTORY_POLL_MS = 60_000;
@@ -29,10 +28,15 @@ const HISTORY_POLL_MS = 60_000;
 const playIdentity = (play: ListenPlay): string =>
   `${listeningPlayKey(play)}:${play.listenedAt}`;
 
-const fetchHistory = async (offset: number): Promise<HistoryPayload> => {
-  const response = await fetch(`/api/listening/history?offset=${offset}`, {
-    cache: "no-store",
-  });
+const fetchLatestHistory = async (
+  monthKey: string
+): Promise<HistoryPayload> => {
+  const response = await fetch(
+    `/api/listening/history?offset=0&month=${encodeURIComponent(monthKey)}`,
+    {
+      cache: "no-store",
+    }
+  );
   if (!response.ok) {
     throw new Error("Listening history unavailable");
   }
@@ -89,23 +93,19 @@ const withoutCurrentSession = (
 
 const MusicHistory = ({
   initialPlays,
-  total,
+  live = true,
+  monthKey,
 }: {
   initialPlays: ListenPlay[];
-  total: number;
+  live?: boolean;
+  monthKey: string;
 }) => {
-  const [plays, setPlays] = useState(initialPlays);
+  const [plays, setPlays] = useState(() =>
+    trimListenHistoryDisplay(initialPlays)
+  );
   const [pending, setPending] = useState<ListenPlay[]>([]);
   const [nowPlaying, setNowPlaying] = useState<ObservedListen | null>(null);
   const [now, setNow] = useState(() => Date.now());
-  const [loading, setLoading] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const [hasMore, setHasMore] = useState(initialPlays.length < total);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const loadingRef = useRef(false);
-  const failedRef = useRef(false);
-  const offsetRef = useRef(initialPlays.length);
-  const totalRef = useRef(total);
   const previousRef = useRef<ObservedListen | null>(null);
   const lastRecordedRef = useRef<ObservedListen | null>(null);
   const skipNetwork = isLikelyBot();
@@ -113,7 +113,7 @@ const MusicHistory = ({
   const refreshLatest = useCallback(async () => {
     let payload: HistoryPayload;
     try {
-      payload = await fetchHistory(0);
+      payload = await fetchLatestHistory(monthKey);
     } catch {
       return;
     }
@@ -130,9 +130,7 @@ const MusicHistory = ({
           )
       )
     );
-    totalRef.current = payload.total;
-    setHasMore(offsetRef.current < payload.total);
-  }, []);
+  }, [monthKey]);
 
   const onPresence = useCallback(
     (presence: LanyardPresence) => {
@@ -174,40 +172,6 @@ const MusicHistory = ({
     [refreshLatest]
   );
 
-  const loadMore = useCallback(async () => {
-    if (
-      loadingRef.current ||
-      failedRef.current ||
-      offsetRef.current >= totalRef.current
-    ) {
-      return;
-    }
-
-    loadingRef.current = true;
-    setLoading(true);
-
-    try {
-      const payload = await fetchHistory(offsetRef.current);
-      setPlays((current) => {
-        const next = payload.plays.filter(
-          (play) =>
-            !current.some((existing) => sameListeningSession(existing, play))
-        );
-        return next.length > 0 ? [...current, ...next] : current;
-      });
-      offsetRef.current = payload.nextOffset ?? payload.total;
-      totalRef.current = payload.total;
-      setHasMore(payload.nextOffset !== null);
-      loadingRef.current = false;
-      setLoading(false);
-    } catch {
-      failedRef.current = true;
-      setFailed(true);
-      loadingRef.current = false;
-      setLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
     const timer = window.setInterval(() => {
       setNow(Date.now());
@@ -219,7 +183,7 @@ const MusicHistory = ({
   }, []);
 
   useEffect(() => {
-    if (skipNetwork) {
+    if (skipNetwork || !live) {
       return;
     }
 
@@ -240,10 +204,10 @@ const MusicHistory = ({
       window.clearInterval(poll);
       document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [onPresence, refreshLatest, skipNetwork]);
+  }, [live, onPresence, refreshLatest, skipNetwork]);
 
   useEffect(() => {
-    if (skipNetwork || !nowPlaying || !document.prerendering) {
+    if (skipNetwork || !live || !nowPlaying || !document.prerendering) {
       return;
     }
 
@@ -259,36 +223,9 @@ const MusicHistory = ({
     return () => {
       document.removeEventListener("prerenderingchange", onActivate);
     };
-  }, [nowPlaying, refreshLatest, skipNetwork]);
+  }, [live, nowPlaying, refreshLatest, skipNetwork]);
 
-  useEffect(() => {
-    const node = sentinelRef.current;
-    if (!node || !hasMore || plays.length === 0) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          void loadMore();
-        }
-      },
-      { rootMargin: "240px" }
-    );
-    observer.observe(node);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [hasMore, loadMore, plays.length]);
-
-  const retry = () => {
-    failedRef.current = false;
-    setFailed(false);
-    void loadMore();
-  };
-
-  const historyRows = withoutCurrentSession(plays, nowPlaying);
+  const historyRows = withoutCurrentSession(plays, live ? nowPlaying : null);
   const pendingRows = pending.filter(
     (play) =>
       (nowPlaying === null || !overlapsCurrent(play, nowPlaying)) &&
@@ -296,57 +233,41 @@ const MusicHistory = ({
   );
   const rows = [...pendingRows, ...historyRows];
 
-  let status = "";
-  if (loading) {
-    status = "Loading more songs";
-  } else if (failed) {
-    status = "Couldn't load more songs.";
+  if (!live && rows.length === 0) {
+    return (
+      <p className="text-sm text-muted-foreground">
+        No plays logged this month.
+      </p>
+    );
   }
 
-  if (nowPlaying === null && rows.length === 0) {
+  if (live && nowPlaying === null && rows.length === 0) {
     return <p className="text-sm text-muted-foreground">No songs yet.</p>;
   }
 
   return (
-    <div>
-      <ul className="m-0 flex list-none flex-col gap-1 p-0">
-        {nowPlaying ? (
-          <ListeningPlayRow
-            key="now-playing"
-            listen={{
-              ...nowPlaying,
-              playedAt: nowPlaying.startedAt ?? now,
-            }}
-            now={now}
-            onTrackClick={() => recordListeningClick(nowPlaying)}
-            timeLabel="Now playing"
-          />
-        ) : null}
-        {rows.map((play) => (
-          <ListeningPlayRow
-            key={playIdentity(play)}
-            listen={{ ...play, playedAt: listenPlayedAt(play) }}
-            now={now}
-            onTrackClick={() => recordListeningClick(play)}
-          />
-        ))}
-      </ul>
-      {hasMore ? (
-        <div aria-hidden="true" className="h-px" ref={sentinelRef} />
+    <ul className="m-0 flex list-none flex-col gap-1 p-0">
+      {live && nowPlaying ? (
+        <ListeningPlayRow
+          key="now-playing"
+          listen={{
+            ...nowPlaying,
+            playedAt: nowPlaying.startedAt ?? now,
+          }}
+          now={now}
+          onTrackClick={() => recordListeningClick(nowPlaying)}
+          timeLabel="Now playing"
+        />
       ) : null}
-      <p className="sr-only" aria-live="polite">
-        {status}
-      </p>
-      {failed ? (
-        <button
-          className="mt-2 cursor-pointer border-0 bg-transparent p-0 text-sm text-muted-foreground hover:bg-muted"
-          onClick={retry}
-          type="button"
-        >
-          Try again
-        </button>
-      ) : null}
-    </div>
+      {rows.map((play) => (
+        <ListeningPlayRow
+          key={playIdentity(play)}
+          listen={{ ...play, playedAt: listenPlayedAt(play) }}
+          now={now}
+          onTrackClick={() => recordListeningClick(play)}
+        />
+      ))}
+    </ul>
   );
 };
 

@@ -2,8 +2,6 @@ import {
   BRISBANE_TIME_ZONE,
   isoDateInBrisbane,
 } from "@/lib/format-in-brisbane";
-import { LISTENING_HISTORY_KV_KEY } from "@/lib/listening-history";
-import type { ListenPlay } from "@/lib/listening-history";
 import {
   addBrisbaneDays,
   readRhythmStore,
@@ -145,48 +143,7 @@ const buildStatusDays = (dates: readonly string[]): StatusHistoryStore => {
   return store;
 };
 
-const TRACKS = [
-  ["Intro", "The xx"],
-  ["Holocene", "Bon Iver"],
-  ["Myth", "Beach House"],
-  ["Nights", "Frank Ocean"],
-  ["Motion Picture Soundtrack", "Radiohead"],
-] as const;
-
-const buildListens = (dates: readonly string[]): ListenPlay[] => {
-  const plays: ListenPlay[] = [];
-  for (const [index, isoDate] of dates.entries()) {
-    if (index % 8 === 0) {
-      continue;
-    }
-
-    const count = 1 + (index % 4);
-    for (let playIndex = 0; playIndex < count; playIndex += 1) {
-      const [track, artist] =
-        TRACKS[(index + playIndex) % TRACKS.length] ?? TRACKS[0];
-      const startedAt = atBrisbane(
-        isoDate,
-        9 + playIndex * 3,
-        (index * 7) % 50
-      );
-      plays.push({
-        album: "Sample",
-        artist,
-        artistUrl: null,
-        artworkUrl: null,
-        listenedAt: startedAt,
-        startedAt,
-        track: `${track} ${isoDate}`,
-        trackUrl: null,
-      });
-    }
-  }
-
-  return plays.toReversed();
-};
-
 export interface DevActivitySeed {
-  listening: string;
   rhythms: string;
   status: string;
 }
@@ -194,7 +151,6 @@ export interface DevActivitySeed {
 export const buildDevActivitySeed = (todayIso: string): DevActivitySeed => {
   const dates = datesEnding(todayIso);
   return {
-    listening: JSON.stringify(buildListens(dates)),
     rhythms: JSON.stringify(buildRhythmDays(dates)),
     status: JSON.stringify(buildStatusDays(dates)),
   };
@@ -211,15 +167,17 @@ export const ensureDevActivityChartSeed = async (kv: SeedKv): Promise<void> => {
     return;
   }
 
-  const [rhythms, status, listening] = await Promise.all([
+  const [rhythms, status] = await Promise.all([
     kv.get(RHYTHMS_KV_KEY),
     kv.get(STATUS_HISTORY_KV_KEY),
-    kv.get(LISTENING_HISTORY_KV_KEY),
   ]);
   const refreshRhythms = !Object.values(readRhythmStore(rhythms).days).some(
     (day) => day.supplements?.includes("Berberine") === true
   );
-  if (!refreshRhythms && status && listening) {
+  if (!refreshRhythms && status) {
+    await import("./music-stats-dev-seed").then(({ ensureDevMusicSeed }) =>
+      ensureDevMusicSeed(kv)
+    );
     return;
   }
 
@@ -231,8 +189,7 @@ export const ensureDevActivityChartSeed = async (kv: SeedKv): Promise<void> => {
   if (!status) {
     writes.push(kv.put(STATUS_HISTORY_KV_KEY, seed.status));
   }
-  if (!listening) {
-    writes.push(kv.put(LISTENING_HISTORY_KV_KEY, seed.listening));
-  }
   await Promise.all(writes);
+  const { ensureDevMusicSeed } = await import("./music-stats-dev-seed");
+  await ensureDevMusicSeed(kv);
 };

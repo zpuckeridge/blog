@@ -7,6 +7,12 @@ import {
 } from "react";
 import type { TransitionEvent } from "react";
 
+import {
+  isImageSrcCached,
+  resolveHiResZoomSrc,
+  whenImageReady,
+} from "@/lib/image-zoom-src";
+
 const ZOOM_TRANSITION_MS = 200;
 
 interface LockedBox {
@@ -43,8 +49,7 @@ const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
 
   const computed = window.getComputedStyle(img);
   const displaySrc = img.currentSrc || img.src;
-  const { zoomSrc } = img.dataset;
-  const hiResSrc = zoomSrc && zoomSrc !== displaySrc ? zoomSrc : undefined;
+  const hiResSrc = resolveHiResZoomSrc(displaySrc, img.dataset.zoomSrc);
 
   return {
     alt: img.alt,
@@ -139,16 +144,24 @@ export const useImageZoom = ({
       return;
     }
 
-    const hiRes = new Image();
-    const handleLoad = () => {
+    const applyHiRes = () => {
       if (zoomSessionRef.current !== session) {
         return;
       }
 
       setOverlaySrc(fly.zoomSrc ?? fly.src);
     };
-    hiRes.addEventListener("load", handleLoad, { once: true });
-    hiRes.src = fly.zoomSrc;
+
+    if (isImageSrcCached(fly.zoomSrc)) {
+      applyHiRes();
+      return;
+    }
+
+    void whenImageReady(fly.zoomSrc)
+      .then(applyHiRes)
+      .catch(() => {
+        // Keep the in-zoom display source if high-res fails (offline, blocked, etc.).
+      });
   }, []);
 
   const open = useCallback(() => {
@@ -264,14 +277,23 @@ export const useImageZoom = ({
       return;
     }
 
-    const { zoomSrc } = img.dataset;
+    const zoomSrc = resolveHiResZoomSrc(
+      img.currentSrc || img.src,
+      img.dataset.zoomSrc
+    );
     if (!zoomSrc || img.dataset.zoomPrefetched === "true") {
       return;
     }
 
-    const preload = new Image();
-    preload.src = zoomSrc;
     img.dataset.zoomPrefetched = "true";
+
+    if (isImageSrcCached(zoomSrc)) {
+      return;
+    }
+
+    void whenImageReady(zoomSrc).catch(() => {
+      img.dataset.zoomPrefetched = "false";
+    });
   }, []);
 
   useEffect(() => () => clearCloseTimer(), [clearCloseTimer]);

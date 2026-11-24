@@ -4,12 +4,13 @@ import { describe, it } from "node:test";
 import type { ObservedListen } from "@/lib/lanyard-status";
 import {
   LISTENING_HISTORY_CHUNK_SIZE,
-  LISTENING_HISTORY_MAX,
+  LISTENING_HISTORY_DISPLAY_MAX,
   LISTENING_SESSION_WINDOW_MS,
   appendListenPlay,
   listenPlayedAt,
   listeningPlayKey,
   collapseListenSessions,
+  filterListenHistoryByMonth,
   mergeLatestPlays,
   parseListenHistory,
   parseListenHistoryOffset,
@@ -153,9 +154,10 @@ describe("appendListenPlay", () => {
     assert.equal(stamped.plays[0]?.listenedAt, 100);
   });
 
-  it("drops the oldest play past 1,000", () => {
-    const existing = Array.from({ length: LISTENING_HISTORY_MAX }, (_, index) =>
-      play(`Track ${index}`, 1_000_000 - index, 1_000_000 - index)
+  it("keeps the full history when a new play is appended", () => {
+    const existing = Array.from(
+      { length: LISTENING_HISTORY_DISPLAY_MAX },
+      (_, index) => play(`Track ${index}`, 1_000_000 - index, 1_000_000 - index)
     );
     const added = appendListenPlay(
       existing,
@@ -163,14 +165,10 @@ describe("appendListenPlay", () => {
       2_000_000
     );
 
-    assert.equal(added.plays.length, LISTENING_HISTORY_MAX);
+    assert.equal(added.plays.length, LISTENING_HISTORY_DISPLAY_MAX + 1);
     assert.equal(added.plays[0]?.track, "Newest");
     assert.equal(
       added.plays.some((item) => item.track === "Track 999"),
-      false
-    );
-    assert.equal(
-      added.plays.some((item) => item.track === "Track 998"),
       true
     );
   });
@@ -231,8 +229,13 @@ describe("parseListenHistory", () => {
   });
 
   it("stays under one megabyte at the cap", () => {
-    const plays = Array.from({ length: LISTENING_HISTORY_MAX }, (_, index) =>
-      play(`A Reasonably Long Track Title ${index}`, 1_700_000_000_000 + index)
+    const plays = Array.from(
+      { length: LISTENING_HISTORY_DISPLAY_MAX },
+      (_, index) =>
+        play(
+          `A Reasonably Long Track Title ${index}`,
+          1_700_000_000_000 + index
+        )
     );
     const bytes = new TextEncoder().encode(JSON.stringify(plays)).byteLength;
 
@@ -267,10 +270,7 @@ describe("listening history chunks", () => {
     assert.equal(parseListenHistoryOffset("20"), 20);
     assert.equal(parseListenHistoryOffset("nope"), null);
     assert.equal(parseListenHistoryOffset("-1"), null);
-    assert.equal(
-      parseListenHistoryOffset(String(LISTENING_HISTORY_MAX + 1)),
-      null
-    );
+    assert.equal(parseListenHistoryOffset(String(50_000)), 50_000);
   });
 });
 
@@ -317,6 +317,17 @@ describe("listen timing", () => {
   });
 });
 
+describe("filterListenHistoryByMonth", () => {
+  it("keeps only plays in the given Brisbane month", () => {
+    const november = play("A", Date.UTC(2026, 10, 5, 14, 0));
+    const october = play("B", Date.UTC(2026, 9, 5, 14, 0));
+    const filtered = filterListenHistoryByMonth([november, october], "2026-11");
+
+    assert.equal(filtered.length, 1);
+    assert.equal(filtered[0]?.track, "A");
+  });
+});
+
 describe("mergeLatestPlays", () => {
   it("prepends a new play and skips a drifted copy of one already shown", () => {
     const start = 1_700_000_000_000;
@@ -334,5 +345,16 @@ describe("mergeLatestPlays", () => {
       mergeLatestPlays(current, [play("Song", start + 1, start)]),
       current
     );
+  });
+
+  it("caps merged history at the public display max", () => {
+    const plays = Array.from(
+      { length: LISTENING_HISTORY_DISPLAY_MAX + 5 },
+      (_, index) => play(`Track ${index}`, index)
+    );
+    const merged = mergeLatestPlays(plays, [play("Fresh", 9_999_999)]);
+
+    assert.equal(merged.length, LISTENING_HISTORY_DISPLAY_MAX);
+    assert.equal(merged[0]?.track, "Fresh");
   });
 });

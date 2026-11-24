@@ -70,7 +70,7 @@ export const fetchAppleMusicRecentTracks = (
   musicUserToken: string
 ): Promise<AppleMusicApiSong[] | null> =>
   fetchRecentPages(
-    `${RECENT_PLAYED_URL}?limit=${PAGE_LIMIT}&types=${RECENT_PLAYED_TYPES}`,
+    `${RECENT_PLAYED_URL}?extend=artistUrl&limit=${PAGE_LIMIT}&types=${RECENT_PLAYED_TYPES}`,
     developerToken,
     musicUserToken,
     []

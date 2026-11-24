@@ -4,6 +4,7 @@ import { ImageZoom } from "@/components/zoom-image";
 import { getActivityVisitorId } from "@/lib/activity-visitor";
 import { resolveArtworkZoomUrl } from "@/lib/lanyard-status";
 import type { NowListening } from "@/lib/lanyard-status";
+import { resolveListeningArtistUrl } from "@/lib/listening-artist-url";
 import { formatRelativeTime } from "@/lib/relative-time";
 import { resolveSafeHref } from "@/lib/safe-href";
 import { cn } from "@/lib/utils";
@@ -155,7 +156,7 @@ export const ListeningPlayRow = ({
         </span>
         <ListeningLink
           className="text-muted-foreground"
-          href={listen.artistUrl}
+          href={resolveListeningArtistUrl(listen.artist, listen.artistUrl)}
           label={listen.artist}
           truncate
         />

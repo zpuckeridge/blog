@@ -16,6 +16,7 @@ import {
   LISTENING_HISTORY_KV_KEY,
   parseListenHistory,
 } from "@/lib/listening-history";
+import { persistListeningUpdates } from "@/lib/listening-kv-writes";
 import {
   LISTENING_RECENTS_KV_KEY,
   parseRecentListens,
@@ -30,6 +31,61 @@ interface AppleMusicPollKv {
 export interface AppleMusicPollEnv extends AppleMusicSigningEnv {
   APPLE_MUSIC_USER_TOKEN?: string;
 }
+
+const commitApplePollAdditions = async (
+  kv: AppleMusicPollKv,
+  pollStateWrite: Promise<void>,
+  additions: ReturnType<typeof diffAppleMusicPoll>,
+  scheduledTime: number,
+  existingRecents: RecentListen[],
+  existingHistory: ReturnType<typeof parseListenHistory>
+): Promise<{
+  ingested: number;
+  recents: RecentListen[];
+  written: boolean;
+}> => {
+  const listenTimes = spreadAppleMusicListenTimes(
+    additions.length,
+    scheduledTime
+  );
+  const applied = applyAppleMusicAdditions(
+    additions,
+    listenTimes,
+    scheduledTime,
+    existingRecents,
+    existingHistory
+  );
+
+  const writes: Promise<void>[] = [pollStateWrite];
+
+  if (applied.ingested > 0 || applied.recents !== existingRecents) {
+    writes.push(
+      kv.put(LISTENING_RECENTS_KV_KEY, JSON.stringify(applied.recents))
+    );
+  }
+
+  await Promise.all(writes);
+
+  if (applied.historyChanged || applied.newPlays.length > 0) {
+    await persistListeningUpdates(kv, {
+      history: {
+        appended: applied.ingested > 0,
+        changed: applied.historyChanged,
+        plays: applied.history,
+      },
+      statsPlays: applied.newPlays,
+    });
+  }
+
+  return {
+    ingested: applied.ingested,
+    recents: applied.recents,
+    written:
+      applied.ingested > 0 ||
+      applied.recents !== existingRecents ||
+      applied.historyChanged,
+  };
+};
 
 export const recordAppleMusicRecent = async (
   kv: AppleMusicPollKv,
@@ -153,43 +209,21 @@ export const recordAppleMusicRecent = async (
     };
   }
 
-  const listenTimes = spreadAppleMusicListenTimes(
-    additions.length,
-    scheduledTime
-  );
-  const applied = applyAppleMusicAdditions(
+  const committed = await commitApplePollAdditions(
+    kv,
+    pollStateWrite,
     additions,
-    listenTimes,
     scheduledTime,
     existingRecents,
     existingHistory
   );
 
-  const writes = [pollStateWrite];
-
-  if (applied.ingested > 0 || applied.recents !== existingRecents) {
-    writes.push(
-      kv.put(LISTENING_RECENTS_KV_KEY, JSON.stringify(applied.recents))
-    );
-  }
-
-  if (applied.historyChanged) {
-    writes.push(
-      kv.put(LISTENING_HISTORY_KV_KEY, JSON.stringify(applied.history))
-    );
-  }
-
-  await Promise.all(writes);
-
   return {
     baselineOnly: false,
-    ingested: applied.ingested,
-    recents: applied.recents,
+    ingested: committed.ingested,
+    recents: committed.recents,
     skippedAuth: false,
     skippedEmptyPoll: false,
-    written:
-      applied.ingested > 0 ||
-      applied.recents !== existingRecents ||
-      applied.historyChanged,
+    written: committed.written,
   };
 };
