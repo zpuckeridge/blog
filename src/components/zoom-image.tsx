@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode, TransitionEvent } from "react";
 import { createPortal } from "react-dom";
 
 import { useImageZoom } from "@/hooks/use-image-zoom";
-import type { FlyImage, FlyRect } from "@/hooks/use-image-zoom";
+import type { FlyImage } from "@/hooks/use-image-zoom";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
@@ -23,19 +23,10 @@ interface ImageZoomProps {
   zoomMargin?: number;
 }
 
-const getZoomTransform = (rect: FlyRect, margin: number): string => {
-  const viewportW = window.innerWidth;
-  const viewportH = window.innerHeight;
-  const availableW = Math.max(viewportW - margin * 2, 1);
-  const availableH = Math.max(viewportH - margin * 2, 1);
-  const scale = Math.min(availableW / rect.width, availableH / rect.height);
-  const centerX = viewportW / 2;
-  const centerY = viewportH / 2;
-  const originX = rect.left + rect.width / 2;
-  const originY = rect.top + rect.height / 2;
-
-  return `translate(${centerX - originX}px, ${centerY - originY}px) scale(${scale})`;
-};
+const flyBoxTransition = (transitionMs: number): string | undefined =>
+  transitionMs > 0
+    ? `left ${transitionMs}ms ${ZOOM_EASING}, top ${transitionMs}ms ${ZOOM_EASING}, width ${transitionMs}ms ${ZOOM_EASING}, height ${transitionMs}ms ${ZOOM_EASING}`
+    : undefined;
 
 const ImageZoomSlot = ({
   aspectVideo,
@@ -140,24 +131,31 @@ const ImageZoomOverlay = ({
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const flyStyle: CSSProperties = {
-    cursor: "zoom-out",
-    height: flyImage.rect.height,
-    left: flyImage.rect.left,
-    overflow: "hidden",
-    position: "fixed",
-    top: flyImage.rect.top,
-    transform: isExpanded
-      ? getZoomTransform(flyImage.rect, zoomMargin)
-      : "translate(0, 0) scale(1)",
-    transformOrigin: "center center",
-    transition:
-      transitionMs > 0
-        ? `transform ${transitionMs}ms ${ZOOM_EASING}`
-        : undefined,
-    width: flyImage.rect.width,
-    zIndex: 51,
-  };
+  const flyStyle: CSSProperties = isExpanded
+    ? {
+        cursor: "zoom-out",
+        height: `calc(100vh - ${zoomMargin * 2}px)`,
+        left: zoomMargin,
+        overflow: "hidden",
+        position: "fixed",
+        top: zoomMargin,
+        transform: "none",
+        transition: flyBoxTransition(transitionMs),
+        width: `calc(100vw - ${zoomMargin * 2}px)`,
+        zIndex: 51,
+      }
+    : {
+        cursor: "zoom-out",
+        height: flyImage.rect.height,
+        left: flyImage.rect.left,
+        overflow: "hidden",
+        position: "fixed",
+        top: flyImage.rect.top,
+        transform: "none",
+        transition: flyBoxTransition(transitionMs),
+        width: flyImage.rect.width,
+        zIndex: 51,
+      };
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -249,7 +247,9 @@ const ImageZoomOverlay = ({
         <img
           alt={flyImage.alt}
           className={cn("pointer-events-none size-full select-none")}
+          decoding="async"
           draggable={false}
+          fetchPriority="high"
           src={overlaySrc ?? flyImage.src}
           style={{
             objectFit: flyImage.objectFit as CSSProperties["objectFit"],

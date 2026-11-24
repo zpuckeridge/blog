@@ -347,6 +347,36 @@ describe("mergeLatestPlays", () => {
     );
   });
 
+  it("copies a missing track url onto the matching session", () => {
+    const start = 1_700_000_000_000;
+    const shown = {
+      ...play("Song", start, start),
+      artistUrl: "https://music.apple.com/au/artist/kept/1",
+      trackUrl: null,
+    };
+    const current = [shown];
+    const merged = mergeLatestPlays(current, [
+      {
+        ...play("Song", start + 1, start),
+        artistUrl: "https://music.apple.com/au/artist/incoming/9",
+        trackUrl: "https://music.apple.com/au/song/backfill/2",
+      },
+    ]);
+
+    assert.notEqual(merged, current);
+    assert.equal(merged.length, 1);
+    assert.equal(
+      merged[0]?.trackUrl,
+      "https://music.apple.com/au/song/backfill/2"
+    );
+    assert.equal(
+      merged[0]?.artistUrl,
+      "https://music.apple.com/au/artist/kept/1"
+    );
+    assert.equal(merged[0]?.startedAt, start);
+    assert.equal(shown.trackUrl, null);
+  });
+
   it("caps merged history at the public display max", () => {
     const plays = Array.from(
       { length: LISTENING_HISTORY_DISPLAY_MAX + 5 },

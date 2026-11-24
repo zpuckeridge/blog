@@ -29,9 +29,20 @@ export interface AppleMusicApiSong {
 export const APPLE_MUSIC_STOREFRONT = "au";
 const APPLE_MUSIC_SONG_URL = `https://music.apple.com/${APPLE_MUSIC_STOREFRONT}/song`;
 
+export const appleMusicSongUrl = (catalogId: string): string =>
+  `${APPLE_MUSIC_SONG_URL}/${encodeURIComponent(catalogId)}`;
+
 export const appleMusicArtistSearchUrl = (artist: string): string => {
   const name = artist.trim();
   return `https://music.apple.com/${APPLE_MUSIC_STOREFRONT}/search?term=${encodeURIComponent(name)}`;
+};
+
+export const appleMusicAlbumSearchUrl = (
+  album: string,
+  artist: string
+): string => {
+  const term = `${album.trim()} ${artist.trim()}`.trim();
+  return `https://music.apple.com/${APPLE_MUSIC_STOREFRONT}/search?term=${encodeURIComponent(term)}`;
 };
 
 const artworkUrlFromTemplate = (template: string): string =>
@@ -66,7 +77,7 @@ const mappedArtistUrl = (track: AppleMusicApiSong, artist: string): string =>
   track.attributes?.artistUrl?.trim() || appleMusicArtistSearchUrl(artist);
 
 const mappedTrackUrl = (catalogId: string | null): string | null =>
-  catalogId ? `${APPLE_MUSIC_SONG_URL}/${encodeURIComponent(catalogId)}` : null;
+  catalogId ? appleMusicSongUrl(catalogId) : null;
 
 const genreNamesFromTrack = (track: AppleMusicApiSong): string[] | null => {
   const genres = track.attributes?.genreNames

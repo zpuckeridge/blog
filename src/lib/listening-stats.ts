@@ -7,12 +7,15 @@ import { siteLocale } from "@/lib/site";
 
 export const LISTENING_STATS_KV_KEY = "listening:stats";
 export const LISTENING_STATS_UNKNOWN_GENRE = "Unknown";
+/** Apple Music includes this generic label on most catalogue songs. */
+export const LISTENING_STATS_EXCLUDED_GENRE = "Music";
 
 export interface ListeningStatsRankedItem {
   album: string | null;
   artist: string;
   artistUrl: string | null;
   artworkUrl: string | null;
+  catalogId: string | null;
   count: number;
   genres: string[];
   track: string;
@@ -45,8 +48,13 @@ export const emptyListeningStats = (): ListeningStatsStore => ({
   version: 1,
 });
 
+const isCountedGenreLabel = (genre: string): boolean =>
+  genre.length > 0 && genre !== LISTENING_STATS_EXCLUDED_GENRE;
+
 const genreLabels = (play: ListenPlay): string[] => {
-  const genres = play.genres?.map((genre) => genre.trim()).filter(Boolean);
+  const genres = play.genres
+    ?.map((genre) => genre.trim())
+    .filter(isCountedGenreLabel);
   if (genres && genres.length > 0) {
     return genres;
   }
@@ -59,6 +67,7 @@ const rankedItemFromPlay = (play: ListenPlay): ListeningStatsRankedItem => ({
   artist: play.artist,
   artistUrl: play.artistUrl,
   artworkUrl: play.artworkUrl,
+  catalogId: play.catalogId ?? null,
   count: 0,
   genres: genreLabels(play),
   track: play.track,
@@ -84,6 +93,15 @@ const bumpRanked = (
     existing.count += 1;
     if (!existing.artworkUrl && play.artworkUrl) {
       existing.artworkUrl = play.artworkUrl;
+    }
+    if (!existing.trackUrl && play.trackUrl) {
+      existing.trackUrl = play.trackUrl;
+    }
+    if (!existing.artistUrl && play.artistUrl) {
+      existing.artistUrl = play.artistUrl;
+    }
+    if (!existing.catalogId && play.catalogId) {
+      existing.catalogId = play.catalogId;
     }
     return;
   }
@@ -200,6 +218,7 @@ export const genresForMonth = (
   month: ListeningStatsMonth
 ): { count: number; genre: string }[] =>
   Object.entries(month.genres)
+    .filter(([genre]) => isCountedGenreLabel(genre))
     .toSorted(([, left], [, right]) => right - left)
     .map(([genre, count]) => ({ count, genre }));
 

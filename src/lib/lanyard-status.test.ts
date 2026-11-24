@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { parseAppleMusicActivity } from "@/lib/lanyard-status";
+import {
+  parseAppleMusicActivity,
+  resolveArtworkZoomUrl,
+} from "@/lib/lanyard-status";
 
 describe("parseAppleMusicActivity", () => {
   it("parses Discord desktop Apple Music rich presence", () => {
@@ -68,5 +71,32 @@ describe("parseAppleMusicActivity", () => {
     ]);
 
     assert.equal(listening?.startedAt, 1_761_717_720_000);
+  });
+});
+
+describe("resolveArtworkZoomUrl", () => {
+  it("upgrades Apple Music bb artwork to 1200px", () => {
+    const thumb =
+      "https://is1-ssl.mzstatic.com/image/thumb/Music/example/100x100bb.jpg";
+    assert.equal(
+      resolveArtworkZoomUrl(thumb),
+      "https://is1-ssl.mzstatic.com/image/thumb/Music/example/1200x1200bb.jpg"
+    );
+  });
+
+  it("fills Apple template placeholders", () => {
+    const template =
+      "https://is1-ssl.mzstatic.com/image/thumb/foo/{w}x{h}bb.jpg";
+    assert.equal(
+      resolveArtworkZoomUrl(template),
+      "https://is1-ssl.mzstatic.com/image/thumb/foo/1200x1200bb.jpg"
+    );
+  });
+
+  it("upgrades picsum size paths", () => {
+    assert.equal(
+      resolveArtworkZoomUrl("https://picsum.photos/seed/album/128/128"),
+      "https://picsum.photos/seed/album/1200/1200"
+    );
   });
 });

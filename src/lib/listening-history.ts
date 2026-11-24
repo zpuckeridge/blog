@@ -349,11 +349,75 @@ export const filterListenHistoryByMonth = (
 ): ListenPlay[] =>
   plays.filter((play) => listenMonthKey(listenPlayedAt(play)) === monthKey);
 
-/** Prepend plays from a fresh first page that are not already in the list. */
 export const trimListenHistoryDisplay = (
   plays: readonly ListenPlay[]
 ): ListenPlay[] => plays.slice(0, LISTENING_HISTORY_DISPLAY_MAX);
 
+const LISTEN_ENRICHMENT_LINKS = [
+  "artistUrl",
+  "artworkUrl",
+  "catalogId",
+  "trackUrl",
+] as const;
+
+/**
+ * Copy catalogue fields the current row does not already have.
+ * Returns the same row when the incoming play adds nothing.
+ */
+const fillMissingListenEnrichment = (
+  existing: ListenPlay,
+  incoming: ListenPlay
+): ListenPlay => {
+  let changed = false;
+  const next: ListenPlay = { ...existing };
+
+  for (const field of LISTEN_ENRICHMENT_LINKS) {
+    const incomingValue = incoming[field];
+    if (isNonEmptyString(existing[field]) || !isNonEmptyString(incomingValue)) {
+      continue;
+    }
+
+    next[field] = incomingValue;
+    changed = true;
+  }
+
+  if (!existing.genres?.length && incoming.genres?.length) {
+    next.genres = [...incoming.genres];
+    changed = true;
+  }
+
+  return changed ? next : existing;
+};
+
+const withFilledEnrichment = (
+  current: readonly ListenPlay[],
+  incoming: readonly ListenPlay[]
+): readonly ListenPlay[] | null => {
+  let changed = false;
+  const next = current.map((existing) => {
+    let row = existing;
+
+    for (const play of incoming) {
+      if (!sameListeningSession(row, play)) {
+        continue;
+      }
+
+      const filled = fillMissingListenEnrichment(row, play);
+      if (filled === row) {
+        continue;
+      }
+
+      row = filled;
+      changed = true;
+    }
+
+    return row;
+  });
+
+  return changed ? next : null;
+};
+
+/** Prepend new plays, and fill catalogue fields on a play already shown. */
 export const mergeLatestPlays = (
   current: readonly ListenPlay[],
   incoming: readonly ListenPlay[]
@@ -361,14 +425,21 @@ export const mergeLatestPlays = (
   const fresh = incoming.filter(
     (play) => !current.some((existing) => sameListeningSession(existing, play))
   );
+  const enriched = withFilledEnrichment(current, incoming);
 
-  if (fresh.length === 0) {
-    return current.length <= LISTENING_HISTORY_DISPLAY_MAX
-      ? current
-      : trimListenHistoryDisplay(current);
+  if (!enriched) {
+    if (fresh.length === 0) {
+      return current.length <= LISTENING_HISTORY_DISPLAY_MAX
+        ? current
+        : trimListenHistoryDisplay(current);
+    }
+
+    return trimListenHistoryDisplay([...fresh, ...current]);
   }
 
-  return trimListenHistoryDisplay([...fresh, ...current]);
+  return trimListenHistoryDisplay(
+    fresh.length === 0 ? enriched : [...fresh, ...enriched]
+  );
 };
 
 /** Null when the query is not a whole number inside the stored history. */

@@ -113,17 +113,35 @@ export const resolveDiscordAssetImage = (
   return `https://cdn.discordapp.com/app-assets/${applicationId}/${asset}.png`;
 };
 
+const APPLE_ARTWORK_BB = /\/(?:\d+|\{w\})x(?:\d+|\{h\})bb(?<ext>\.[a-z]+)$/iu;
+
 export const resolveArtworkZoomUrl = (
   artworkUrl: string | null
 ): string | null => {
-  if (!artworkUrl) {
+  if (!artworkUrl?.trim()) {
     return null;
   }
 
-  return artworkUrl.replace(
-    /\/(?<width>\d+)x(?<height>\d+)bb(?<ext>\.[a-z]+)$/iu,
-    "/1000x1000bb$<ext>"
-  );
+  const url = artworkUrl.trim();
+
+  const appleBb = url
+    .replace(APPLE_ARTWORK_BB, "/1200x1200bb$<ext>")
+    .replaceAll("{w}", "1200")
+    .replaceAll("{h}", "1200");
+  if (appleBb !== url) {
+    return appleBb;
+  }
+
+  if (url.includes("{w}") || url.includes("{h}")) {
+    return url.replaceAll("{w}", "1200").replaceAll("{h}", "1200");
+  }
+
+  const picsum = url.replace(/\/\d+\/\d+$/u, "/1200/1200");
+  if (picsum !== url) {
+    return picsum;
+  }
+
+  return null;
 };
 
 /** Discord sends milliseconds. Some payloads still use Unix seconds. */

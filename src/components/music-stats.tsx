@@ -9,6 +9,7 @@ import {
   expandableListMetaClassName,
   expandableListSectionHeaderMainClassName,
 } from "@/lib/expandable-list";
+import { resolveListeningAlbumUrl } from "@/lib/listening-album-url";
 import { resolveListeningArtistUrl } from "@/lib/listening-artist-url";
 import { formatListenMonthLabel, monthStatsView } from "@/lib/listening-stats";
 import type {
@@ -61,14 +62,50 @@ const menuPopupClassName = cn(
 const menuItemClassName =
   "flex items-baseline gap-2 px-3 py-1 outline-hidden select-none data-highlighted:bg-background data-highlighted:text-foreground";
 
+const rankedTitleArtistLabel = ({
+  artist,
+  artistUrl,
+  titleHref,
+  titleLabel,
+}: {
+  artist: string;
+  artistUrl: string | null | undefined;
+  titleHref: string | null;
+  titleLabel: string;
+}) => (
+  <span className="flex min-w-0 flex-col gap-0.5 leading-tight">
+    <ListeningLink
+      className="text-inherit"
+      href={titleHref}
+      label={titleLabel}
+      truncate
+    />
+    <ListeningLink
+      className="text-muted-foreground"
+      href={resolveListeningArtistUrl(artist, artistUrl)}
+      label={artist}
+      truncate
+    />
+  </span>
+);
+
 const rankedLabel = (item: ListeningStatsRankedItem, title: string) => {
   if (title === "Top albums" && item.album) {
-    return (
-      <span className="flex min-w-0 flex-col gap-0.5 leading-tight">
-        <span className="truncate">{item.album}</span>
-        <span className="truncate text-muted-foreground">{item.artist}</span>
-      </span>
-    );
+    return rankedTitleArtistLabel({
+      artist: item.artist,
+      artistUrl: item.artistUrl,
+      titleHref: resolveListeningAlbumUrl(item.album, item.artist),
+      titleLabel: item.album,
+    });
+  }
+
+  if (title === "Top tracks") {
+    return rankedTitleArtistLabel({
+      artist: item.artist,
+      artistUrl: item.artistUrl,
+      titleHref: item.trackUrl,
+      titleLabel: item.track,
+    });
   }
 
   if (title === "Top artists") {
@@ -82,17 +119,7 @@ const rankedLabel = (item: ListeningStatsRankedItem, title: string) => {
     );
   }
 
-  return (
-    <>
-      <ListeningLink
-        className="text-inherit"
-        href={item.trackUrl}
-        label={item.track}
-        truncate
-      />
-      <span className="text-muted-foreground"> — {item.artist}</span>
-    </>
-  );
+  return null;
 };
 
 const RankedList = ({
@@ -129,7 +156,11 @@ const RankedList = ({
               <span
                 className={cn(
                   "min-w-0",
-                  title === "Top albums" ? "flex-1" : "truncate"
+                  title === "Top albums" ||
+                    title === "Top artists" ||
+                    title === "Top tracks"
+                    ? "flex-1"
+                    : "truncate"
                 )}
               >
                 {rankedLabel(item, title)}

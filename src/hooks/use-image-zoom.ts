@@ -160,7 +160,7 @@ export const useImageZoom = ({
     void whenImageReady(fly.zoomSrc)
       .then(applyHiRes)
       .catch(() => {
-        // Keep the in-zoom display source if high-res fails (offline, blocked, etc.).
+        // Keep the display source if high-res fails.
       });
   }, []);
 
@@ -192,21 +192,24 @@ export const useImageZoom = ({
     setIsOverlayMounted(true);
     setIsExpanded(reduceMotion);
     document.documentElement.classList.add("image-zoom-open");
-    loadHiResOverlay(nextFlyImage, session);
-
     onZoomChange?.(true);
+    loadHiResOverlay(nextFlyImage, session);
 
     if (!reduceMotion) {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => setIsExpanded(true));
+        requestAnimationFrame(() => {
+          if (zoomSessionRef.current === session) {
+            setIsExpanded(true);
+          }
+        });
       });
     }
   }, [
     clearCloseTimer,
     isDisabled,
     isOverlayMounted,
-    lockSlot,
     loadHiResOverlay,
+    lockSlot,
     onZoomChange,
     reduceMotion,
   ]);
@@ -245,11 +248,11 @@ export const useImageZoom = ({
 
   const handleFlyTransitionEnd = useCallback(
     (event: TransitionEvent<HTMLButtonElement>) => {
-      if (
-        event.propertyName !== "transform" ||
-        isExpanded ||
-        !isOverlayMounted
-      ) {
+      if (isExpanded || !isOverlayMounted) {
+        return;
+      }
+
+      if (event.propertyName !== "width" && event.propertyName !== "height") {
         return;
       }
 

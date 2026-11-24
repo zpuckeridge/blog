@@ -1,4 +1,7 @@
-import { fetchCatalogSongGenres } from "@/lib/apple-music-catalog";
+import {
+  fetchCatalogSongGenres,
+  searchCatalogSong,
+} from "@/lib/apple-music-catalog";
 import {
   catalogIdForPlay,
   enrichListenPlayGenres,
@@ -27,16 +30,24 @@ const enrichPlayAtIndex = async (
   }
 
   const catalogId = catalogIdForPlay(play);
-  if (!catalogId) {
+  if (catalogId) {
+    const genres = await fetchCatalogSongGenres(developerToken, catalogId);
+    if (genres?.length) {
+      plays[index] = enrichListenPlayGenres(play, genres);
+      return true;
+    }
+  }
+
+  const match = await searchCatalogSong(
+    developerToken,
+    play.track,
+    play.artist
+  );
+  if (!match?.genres.length) {
     return false;
   }
 
-  const genres = await fetchCatalogSongGenres(developerToken, catalogId);
-  if (!genres?.length) {
-    return false;
-  }
-
-  plays[index] = enrichListenPlayGenres(play, genres);
+  plays[index] = enrichListenPlayGenres(play, match.genres, match);
   return true;
 };
 

@@ -13,7 +13,10 @@ const play = (
   track: string,
   artist: string,
   listenedAt: number,
-  genres: string[] | null = null
+  genres: string[] | null = null,
+  overrides: Partial<
+    Pick<ListenPlay, "artistUrl" | "catalogId" | "trackUrl">
+  > = {}
 ): ListenPlay => ({
   album: "Album",
   artist,
@@ -25,7 +28,8 @@ const play = (
   source: "lanyard",
   startedAt: listenedAt,
   track,
-  trackUrl: `https://music.apple.com/au/song/1`,
+  trackUrl: "https://music.apple.com/au/song/1",
+  ...overrides,
 });
 
 describe("listening stats", () => {
@@ -57,6 +61,50 @@ describe("listening stats", () => {
     const resolved = resolveListeningStatsMonth(store, "2026-10");
     assert.equal(resolved.initialMonth, "2026-10");
     assert.ok(resolved.months.includes("2026-10"));
+  });
+
+  it("drops the generic Music genre label", () => {
+    const store = rebuildListeningStats([
+      play("A", "Artist", Date.UTC(2026, 10, 1, 14, 0), ["Pop", "Music"]),
+      play("B", "Artist", Date.UTC(2026, 10, 2, 14, 0), ["Music"]),
+    ]);
+    const month = store.months["2026-11"];
+
+    assert.ok(month);
+    assert.equal(month.genres.Pop, 1);
+    assert.equal(month.genres.Music, undefined);
+    assert.equal(month.genres[LISTENING_STATS_UNKNOWN_GENRE], 1);
+  });
+
+  it("backfills missing track and artist urls from a later play", () => {
+    const first = play("A", "Artist", Date.UTC(2026, 10, 1, 14, 0), null, {
+      artistUrl: null,
+      catalogId: null,
+      trackUrl: null,
+    });
+    const second = play("A", "Artist", Date.UTC(2026, 10, 2, 14, 0), null, {
+      artistUrl: "https://music.apple.com/au/artist/example/9",
+      catalogId: "9",
+      trackUrl: "https://music.apple.com/au/song/9",
+    });
+    const store = rebuildListeningStats([first, second]);
+    const track = store.months["2026-11"]?.tracks["a::artist"];
+    const artist = store.months["2026-11"]?.artists.artist;
+
+    assert.ok(track);
+    assert.equal(track.count, 2);
+    assert.equal(track.trackUrl, "https://music.apple.com/au/song/9");
+    assert.equal(
+      track.artistUrl,
+      "https://music.apple.com/au/artist/example/9"
+    );
+    assert.equal(track.catalogId, "9");
+    assert.ok(artist);
+    assert.equal(
+      artist.artistUrl,
+      "https://music.apple.com/au/artist/example/9"
+    );
+    assert.equal(artist.trackUrl, "https://music.apple.com/au/song/9");
   });
 
   it("uses Unknown when genres are missing", () => {
