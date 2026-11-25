@@ -1,5 +1,5 @@
 ---
-import StatusHeatmapGraph from "@/components/status-heatmap-graph.astro";
+import StatusBarGraph from "@/components/status-bar-graph.astro";
 import type { StatusHistoryPublic } from "@/lib/status-history";
 
 interface Props {
@@ -10,19 +10,19 @@ const { history } = Astro.props;
 ---
 
 <div class="flex min-w-0 flex-col gap-10">
-  <StatusHeatmapGraph
+  <StatusBarGraph
     days={history.work}
     metricLabel="at work"
     title="At work"
     yearSummaryLabel="at work"
   />
-  <StatusHeatmapGraph
+  <StatusBarGraph
     days={history.home}
     metricLabel="at home"
     title="At home"
     yearSummaryLabel="at home"
   />
-  <StatusHeatmapGraph
+  <StatusBarGraph
     days={history.discord}
     metricLabel="Discord online"
     title="Discord online"
@@ -31,25 +31,30 @@ const { history } = Astro.props;
 </div>
 
 <script>
-  const initActivityStatusHeatmaps = () => {
-    for (const graph of document.querySelectorAll("[data-status-heatmap]")) {
-      if (!(graph instanceof HTMLElement) || graph.dataset.heatmapReady === "true") {
+  import {
+    CHART_POPOVER_CLASS,
+    chartPopoverRect,
+    placeChartPopover,
+  } from "@/scripts/chart-popover";
+
+  const initActivityStatusBars = () => {
+    for (const graph of document.querySelectorAll("[data-status-bars]")) {
+      if (!(graph instanceof HTMLElement) || graph.dataset.barsReady === "true") {
         continue;
       }
 
-      graph.dataset.heatmapReady = "true";
+      graph.dataset.barsReady = "true";
 
-      let tooltip = document.querySelector("[data-status-heatmap-tooltip]");
+      let tooltip = document.querySelector("[data-status-bars-tooltip]");
       if (!(tooltip instanceof HTMLElement)) {
         tooltip = document.createElement("div");
-        tooltip.dataset.statusHeatmapTooltip = "";
+        tooltip.dataset.statusBarsTooltip = "";
         tooltip.setAttribute("role", "tooltip");
-        tooltip.className =
-          "pointer-events-none fixed z-50 hidden w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md";
+        tooltip.className = CHART_POPOVER_CLASS;
         document.body.append(tooltip);
       }
 
-      const grid = graph.querySelector("[data-status-heatmap-grid]");
+      const grid = graph.querySelector("[data-status-bars-grid]");
       if (!(grid instanceof HTMLElement)) {
         continue;
       }
@@ -61,18 +66,8 @@ const { history } = Astro.props;
       };
 
       const showTooltip = (button) => {
-        const rect = button.getBoundingClientRect();
         tooltip.textContent = button.dataset.label ?? "";
-        tooltip.classList.remove("hidden");
-        const tooltipWidth = tooltip.offsetWidth || 128;
-        const half = tooltipWidth / 2 + 8;
-        const desired = rect.left + rect.width / 2;
-        const clamped = Math.min(
-          Math.max(desired, half),
-          window.innerWidth - half
-        );
-        tooltip.style.left = `${clamped}px`;
-        tooltip.style.top = `${rect.top - 6}px`;
+        placeChartPopover(tooltip, chartPopoverRect(button));
       };
 
       const setHoveredDay = (button) => {
@@ -92,7 +87,7 @@ const { history } = Astro.props;
         hideTooltip();
       };
 
-      const days = [...grid.querySelectorAll("[data-status-heatmap-day]")].filter(
+      const days = [...grid.querySelectorAll("[data-status-bars-day]")].filter(
         (button) => button instanceof HTMLButtonElement
       );
 
@@ -106,6 +101,7 @@ const { history } = Astro.props;
         }
         cell.tabIndex = 0;
         cell.focus();
+        setHoveredDay(cell);
       };
 
       grid.addEventListener("mouseleave", clearHover);
@@ -153,9 +149,9 @@ const { history } = Astro.props;
     }
   };
 
-  initActivityStatusHeatmaps();
-  document.addEventListener("astro:page-load", initActivityStatusHeatmaps);
+  initActivityStatusBars();
+  document.addEventListener("astro:page-load", initActivityStatusBars);
   document.addEventListener("astro:before-preparation", () => {
-    document.querySelector("[data-status-heatmap-tooltip]")?.remove();
+    document.querySelector("[data-status-bars-tooltip]")?.remove();
   });
 </script>

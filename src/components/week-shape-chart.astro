@@ -27,13 +27,18 @@ const { chart, emptyLabel, title } = Astro.props;
       <div class="grid grid-cols-7 gap-2">
         {
           chart.days.map((day) => (
-            <div class="flex min-w-0 flex-col gap-1" title={day.title}>
+            <div
+              class="flex min-w-0 flex-col gap-1"
+              data-label={day.title}
+              data-rhythm-mark
+            >
               <div class="flex h-24 items-end border-b border-border">
                 <div
                   class:list={[
                     "w-full",
                     day.peak ? "bg-foreground/80" : "bg-foreground/25",
                   ]}
+                  data-chart-bar
                   style={`height: ${day.height}%`}
                 />
               </div>

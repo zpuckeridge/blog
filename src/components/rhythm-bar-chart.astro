@@ -127,6 +127,14 @@ if (chart.mark === "area") {
 
 const splitStack =
   chart.stackPalette === "people" || chart.stackPalette === "supplements";
+const placeStack = chart.stackPalette === "place";
+let bottomFill = "fill-foreground/75";
+if (placeStack) {
+  bottomFill = "fill-foreground/30";
+} else if (splitStack) {
+  bottomFill = "fill-foreground/70";
+}
+const topFill = placeStack || splitStack ? "fill-chart-2" : "fill-chart-5";
 const showAverage = chart.points.some((point) => point.trend !== null);
 const showCompare = chart.points.some((point) => point.compare !== null);
 const showStack = chart.stacked && !chart.empty;
@@ -200,7 +208,7 @@ const described = chart.headline
                   <>
                     {mark.healthyHeight > 0 ? (
                       <rect
-                        class={splitStack ? "fill-foreground/70" : "fill-foreground/75"}
+                        class={bottomFill}
                         height={mark.healthyHeight}
                         width={mark.barWidth}
                         x={mark.x}
@@ -209,7 +217,7 @@ const described = chart.headline
                     ) : null}
                     {mark.unhealthyHeight > 0 ? (
                       <rect
-                        class={splitStack ? "fill-chart-2" : "fill-chart-5"}
+                        class={topFill}
                         height={mark.unhealthyHeight}
                         width={mark.barWidth}
                         x={mark.x}
@@ -287,16 +295,16 @@ const described = chart.headline
         {
           marks.map((mark) => (
             <rect
+              aria-label={mark.label}
               class="fill-transparent"
               data-label={mark.label}
               data-rhythm-mark
+              data-tip-y={mark.valueY ?? undefined}
               height={plotHeight}
               width={slot}
               x={mark.x - (slot - mark.barWidth) / 2}
               y={PAD_TOP}
-            >
-              <title>{mark.label}</title>
-            </rect>
+            />
           ))
         }
       </svg>
@@ -318,7 +326,8 @@ const described = chart.headline
                   (chart.mark === "line" ? "bg-muted-foreground" : "bg-foreground"),
                 item.kind === "line" && "bg-foreground",
                 item.kind === "bar" && "bg-foreground/30",
-                item.kind === "healthy" && "bg-foreground/75",
+                item.kind === "healthy" &&
+                  (placeStack ? "bg-foreground/30" : "bg-foreground/75"),
                 item.kind === "creatine" && "bg-foreground/70",
                 item.kind === "inPerson" && "bg-foreground/70",
                 item.kind === "online" && "bg-chart-2",

@@ -99,8 +99,31 @@ describe("buildActivityCharts", () => {
 
     const { meals } = chartsFrom(rhythms);
     assert.equal(meals.headline, "50% healthy");
+    assert.equal(meals.mark, "bars");
     assert.equal(meals.stacked, true);
-    assert.equal(meals.compareMax, 100);
+    const logged = meals.points.find((point) => point.healthy !== null);
+    assert.equal(logged?.healthy, 1);
+    assert.equal(logged?.unhealthy, 1);
+  });
+
+  it("stacks time at work under time away from home", () => {
+    const status = emptyStatusHistoryStore();
+    status.days["2026-11-12"] = {
+      discordObservedMinutes: 0,
+      discordOnlineMinutes: 0,
+      homeMinutes: 400,
+      locationObservedMinutes: 800,
+      workMinutes: 300,
+    };
+
+    const { place } = chartsFrom(emptyRhythmStore(), status);
+    const day = place.points.find((point) => point.date === "2026-11-12");
+    assert.equal(place.mark, "bars");
+    assert.equal(place.stacked, true);
+    assert.equal(place.stackPalette, "place");
+    assert.equal(day?.bar, 400);
+    assert.equal(day?.healthy, 300);
+    assert.equal(day?.unhealthy, 100);
   });
 
   it("counts a silent day inside the listening history as zero", () => {

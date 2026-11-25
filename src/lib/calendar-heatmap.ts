@@ -5,6 +5,7 @@ import {
 } from "@/lib/format-in-brisbane";
 
 export const ACTIVITY_DISPLAY_DAYS = 30;
+const DELTA_MIN_OBSERVED_DAYS = 7;
 
 export interface HeatmapDay {
   date: string;
@@ -66,44 +67,6 @@ export const buildRecentHeatmapDays = (
   return days;
 };
 
-/** Fixed 0–24h scale (minutes), independent of year max. */
-export const getHoursHeatmapColor = (
-  minutes: number,
-  hasData: boolean
-): string => {
-  if (!hasData) {
-    return "bg-neutral-50 dark:bg-neutral-950 ring-1 ring-inset ring-neutral-200 dark:ring-neutral-800";
-  }
-
-  if (minutes <= 0) {
-    return "bg-neutral-100 dark:bg-neutral-900";
-  }
-
-  const hours = minutes / 60;
-  if (hours <= 3) {
-    return "bg-emerald-100 dark:bg-emerald-950";
-  }
-  if (hours <= 6) {
-    return "bg-emerald-200 dark:bg-emerald-900";
-  }
-  if (hours <= 9) {
-    return "bg-emerald-300 dark:bg-emerald-800";
-  }
-  if (hours <= 12) {
-    return "bg-emerald-400 dark:bg-emerald-700";
-  }
-  if (hours <= 15) {
-    return "bg-emerald-500 dark:bg-emerald-600";
-  }
-  if (hours <= 18) {
-    return "bg-emerald-600 dark:bg-emerald-500";
-  }
-  if (hours <= 21) {
-    return "bg-emerald-700 dark:bg-emerald-400";
-  }
-  return "bg-emerald-800 dark:bg-emerald-300";
-};
-
 export const formatHeatmapMinutesLabel = (minutes: number): string => {
   const wholeMinutes = Math.round(minutes);
   if (wholeMinutes < 60) {
@@ -119,10 +82,56 @@ export const formatHeatmapMinutesLabel = (minutes: number): string => {
   return `${hours} hour${hours === 1 ? "" : "s"} ${remainder} minute${remainder === 1 ? "" : "s"}`;
 };
 
+export const formatHeatmapDelta = (deltaMinutes: number): string => {
+  const rounded = Math.round(deltaMinutes);
+  if (rounded === 0) {
+    return "Δ 0 minutes";
+  }
+
+  const sign = rounded > 0 ? "+" : "−";
+  return `Δ ${sign}${formatHeatmapMinutesLabel(Math.abs(rounded))}`;
+};
+
+const observedTotal = (
+  days: readonly HeatmapDay[]
+): { observed: number; total: number } => {
+  let observed = 0;
+  let total = 0;
+  for (const day of days) {
+    if (day.hasData) {
+      observed += 1;
+      total += day.value;
+    }
+  }
+  return { observed, total };
+};
+
+/** Change in the visible total against the 30 days immediately before it. */
+export const heatmapTotalDeltaMinutes = (
+  days: readonly HeatmapDay[],
+  displayDays = ACTIVITY_DISPLAY_DAYS
+): number | null => {
+  if (days.length < displayDays * 2) {
+    return null;
+  }
+
+  const current = observedTotal(days.slice(-displayDays));
+  const previous = observedTotal(days.slice(-displayDays * 2, -displayDays));
+  if (
+    current.observed < DELTA_MIN_OBSERVED_DAYS ||
+    previous.observed < DELTA_MIN_OBSERVED_DAYS
+  ) {
+    return null;
+  }
+
+  return current.total - previous.total;
+};
+
 interface HeatmapSummary {
   averageMinutes: number;
   currentYear: number;
   days: HeatmapDay[];
+  deltaMinutes: number | null;
   formatDayLabel: (day: HeatmapDay) => string;
   loggedDays: number;
   todayIso: string;
@@ -156,6 +165,7 @@ export const summarizeHeatmap = (
     averageMinutes,
     currentYear,
     days: visibleDays,
+    deltaMinutes: heatmapTotalDeltaMinutes(days, displayDays),
     formatDayLabel: (day: HeatmapDay) => {
       if (!day.hasData) {
         return `No ${metricLabel} data on ${formatPublishedLongDate(day.date)}`;

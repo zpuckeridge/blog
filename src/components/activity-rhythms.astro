@@ -39,12 +39,12 @@ const { charts } = Astro.props;
     title="Coffee"
   />
   <RhythmBarChart
-    caption="The fill is the 30-day healthy share. The line is that day's mix."
+    caption="Each bar is the meals logged that day. The lower part is healthy. The figure is the 30-day healthy share."
     chart={charts.meals}
     emptyLabel="No meals yet."
     legend={[
-      { kind: "line", label: "That day" },
-      { kind: "compare", label: "30-day share" },
+      { kind: "healthy", label: "Healthy" },
+      { kind: "unhealthy", label: "Unhealthy" },
     ]}
     title="Meals"
   />
@@ -99,13 +99,13 @@ const { charts } = Astro.props;
     title="Reading"
   />
   <RhythmBarChart
-    caption="Hours at work and away from home, based on location updates. Weekday averages are below."
+    caption="Each bar is time away from home. The lower part is at work. The line is the 30-day average at work."
     chart={charts.place}
     emptyLabel="No time at work recorded yet."
     legend={[
       { kind: "bar", label: "At work" },
+      { kind: "other", label: "Away, not at work" },
       { kind: "average", label: "30-day average" },
-      { kind: "compare", label: "Away from home" },
     ]}
     title="At work"
   />
@@ -136,6 +136,13 @@ const { charts } = Astro.props;
 </section>
 
 <script>
+  import {
+    CHART_POPOVER_CLASS,
+    chartPopoverLabel,
+    chartPopoverRect,
+    placeChartPopover,
+  } from "@/scripts/chart-popover";
+
   const initRhythmCharts = () => {
     const root = document.querySelector("[data-rhythm-charts]");
     if (!(root instanceof HTMLElement) || root.dataset.rhythmReady === "true") {
@@ -148,8 +155,7 @@ const { charts } = Astro.props;
       tooltip = document.createElement("div");
       tooltip.dataset.rhythmTooltip = "";
       tooltip.setAttribute("role", "tooltip");
-      tooltip.className =
-        "pointer-events-none fixed z-50 hidden w-max max-w-[16rem] -translate-x-1/2 -translate-y-full rounded-md border border-border bg-popover px-3 py-2 text-popover-foreground text-xs shadow-md";
+      tooltip.className = CHART_POPOVER_CLASS;
       document.body.append(tooltip);
     }
 
@@ -158,17 +164,13 @@ const { charts } = Astro.props;
     };
 
     const show = (mark: Element) => {
-      if (!(mark instanceof HTMLElement)) {
+      const label = chartPopoverLabel(mark);
+      if (!label) {
+        hide();
         return;
       }
-      const rect = mark.getBoundingClientRect();
-      tooltip.textContent = mark.dataset.label ?? "";
-      tooltip.classList.remove("hidden");
-      const width = tooltip.offsetWidth || 128;
-      const half = width / 2 + 8;
-      const desired = rect.left + rect.width / 2;
-      tooltip.style.left = `${Math.min(Math.max(desired, half), window.innerWidth - half)}px`;
-      tooltip.style.top = `${rect.top - 6}px`;
+      tooltip.textContent = label;
+      placeChartPopover(tooltip, chartPopoverRect(mark));
     };
 
     root.addEventListener("pointerover", (event) => {

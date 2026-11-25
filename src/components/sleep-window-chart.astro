@@ -117,16 +117,16 @@ const nights = chart.nights.map((night, index) => {
                 />
               ) : null}
               <rect
+                aria-label={night.label}
                 class="fill-transparent"
                 data-label={night.label}
                 data-rhythm-mark
+                data-tip-y={night.height > 0 ? night.y : undefined}
                 height={plotHeight}
                 width={slot}
                 x={night.x - slot * 0.14}
                 y={PAD_TOP}
-              >
-                <title>{night.label}</title>
-              </rect>
+              />
             </>
           ))
         }

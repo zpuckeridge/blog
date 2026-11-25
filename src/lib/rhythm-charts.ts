@@ -61,7 +61,7 @@ export interface RhythmBarChart {
   points: RhythmPoint[];
   scaleMin: number;
   sharedScale: boolean;
-  stackPalette: "meals" | "people" | "supplements" | null;
+  stackPalette: "meals" | "people" | "place" | "supplements" | null;
   stacked: boolean;
   mark: "area" | "bars" | "line";
 }
@@ -404,7 +404,7 @@ interface SeriesInput {
   quantizeCompare: (value: number) => number;
   sharedScale: boolean;
   smoothCompare: boolean;
-  stackPalette?: "people" | "supplements";
+  stackPalette?: "people" | "place" | "supplements";
   stacked: boolean;
   tightScale?: boolean;
   unhealthy?: readonly (number | null)[];
@@ -909,7 +909,6 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
       ? null
       : (tally.healthy / (tally.healthy + tally.unhealthy)) * 100
   );
-  const shares = chartTail(sharesHistory);
   const mealTotals = meals.map((tally) =>
     tally === null ? null : tally.healthy + tally.unhealthy
   );
@@ -929,6 +928,30 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     return Math.max(0, rollup.locationObservedMinutes - rollup.homeMinutes);
   });
   const away = chartTail(awayHistory);
+  const elsewhere = away.map((out, index) => {
+    const atWork = work[index];
+    if (
+      out === null ||
+      out === undefined ||
+      atWork === null ||
+      atWork === undefined
+    ) {
+      return null;
+    }
+    return Math.max(0, out - atWork);
+  });
+  const placeTotals = away.map((out, index) => {
+    const atWork = work[index];
+    if (
+      out === null ||
+      out === undefined ||
+      atWork === null ||
+      atWork === undefined
+    ) {
+      return null;
+    }
+    return Math.max(out, atWork);
+  });
   const lateHistory = historyDates.map((isoDate) => {
     const minutes = source.status.days[isoDate]?.discordLateMinutes;
     return typeof minutes === "number" ? minutes : null;
@@ -1059,7 +1082,7 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
 
   const mealChart = buildSeriesChart({
     barValues: mealTotals,
-    compareValues: shares,
+    compareValues: dates.map(() => null),
     completedIndex,
     dates,
     drawBarAverage: false,
@@ -1068,7 +1091,6 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     formatCompare: formatShare,
     formatCompareDelta: (delta) => signedCount(delta, "points"),
     headline: "compare",
-    mark: "area",
     healthy: meals.map((tally) => tally?.healthy ?? null),
     labelFor: (index) => {
       const tally = meals[index];
@@ -1080,18 +1102,17 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     },
     quantizeBar: Math.round,
     quantizeCompare: Math.round,
-    sharedScale: false,
-    smoothCompare: true,
+    sharedScale: true,
+    smoothCompare: false,
     stacked: true,
     unhealthy: meals.map((tally) => tally?.unhealthy ?? null),
     summaryCompareValues: sharesHistory,
     ...summary,
   });
-  mealChart.compareMax = 100;
 
   const place = buildSeriesChart({
-    barValues: work,
-    compareValues: away,
+    barValues: placeTotals,
+    compareValues: dates.map(() => null),
     completedIndex,
     dates,
     drawBarAverage: true,
@@ -1101,6 +1122,7 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
       `${formatHeatmapMinutesLabel(value)} away from home`,
     formatCompareDelta: signedDuration,
     headline: "bars",
+    healthy: work,
     labelFor: (index) => {
       const date = formatChartDay(dates[index] ?? "");
       const atWork = work[index];
@@ -1119,8 +1141,10 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     quantizeCompare: Math.round,
     sharedScale: true,
     smoothCompare: false,
-    stacked: false,
+    stackPalette: "place",
+    stacked: true,
     summaryValues: workHistory,
+    unhealthy: elsewhere,
     ...summary,
   });
 

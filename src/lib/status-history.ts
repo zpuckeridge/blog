@@ -320,11 +320,19 @@ export const storeToPublicHistory = (
     collectionStartedAt: store.cursor.lastSampledAt,
     discord: buildRecentHeatmapDays(
       discordValues,
-      ACTIVITY_DISPLAY_DAYS,
+      ACTIVITY_DISPLAY_DAYS * 2,
       todayIso
     ),
-    home: buildRecentHeatmapDays(homeValues, ACTIVITY_DISPLAY_DAYS, todayIso),
-    work: buildRecentHeatmapDays(workValues, ACTIVITY_DISPLAY_DAYS, todayIso),
+    home: buildRecentHeatmapDays(
+      homeValues,
+      ACTIVITY_DISPLAY_DAYS * 2,
+      todayIso
+    ),
+    work: buildRecentHeatmapDays(
+      workValues,
+      ACTIVITY_DISPLAY_DAYS * 2,
+      todayIso
+    ),
   };
 };
 
