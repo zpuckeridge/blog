@@ -41,14 +41,20 @@ export const resolveHiResZoomSrc = (
   return zoom;
 };
 
-const settledImages = new Set<string>();
+export interface ImageSize {
+  height: number;
+  width: number;
+}
+
+const settledImages = new Map<string, ImageSize>();
 
 export const isImageSrcCached = (src: string, base?: string): boolean =>
   settledImages.has(normalizeImageSrc(src, base));
 
-const markImageSrcCached = (src: string, base?: string): void => {
-  settledImages.add(normalizeImageSrc(src, base));
-};
+export const cachedImageSize = (
+  src: string,
+  base?: string
+): ImageSize | undefined => settledImages.get(normalizeImageSrc(src, base));
 
 interface ImageReadyOptions {
   base?: string;
@@ -62,22 +68,31 @@ interface ImageReadyOptions {
 export const whenImageReady = async (
   src: string,
   { base, image = new Image() }: ImageReadyOptions = {}
-): Promise<void> => {
+): Promise<ImageSize> => {
   const absolute = normalizeImageSrc(src, base);
   if (!absolute) {
     throw new Error("Empty image source");
   }
 
-  if (settledImages.has(absolute)) {
-    return;
+  const cached = settledImages.get(absolute);
+  if (cached) {
+    return cached;
   }
 
   image.src = absolute;
 
   try {
     await image.decode();
-    markImageSrcCached(absolute, base);
   } catch {
     throw new Error(`Failed to load image: ${absolute}`);
   }
+
+  const size = {
+    height: image.naturalHeight,
+    width: image.naturalWidth,
+  };
+  if (size.width > 0 && size.height > 0) {
+    settledImages.set(absolute, size);
+  }
+  return size;
 };

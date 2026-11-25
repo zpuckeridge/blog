@@ -8,10 +8,12 @@ import {
 import type { TransitionEvent } from "react";
 
 import {
+  cachedImageSize,
   isImageSrcCached,
   resolveHiResZoomSrc,
   whenImageReady,
 } from "@/lib/image-zoom-src";
+import type { ImageSize } from "@/lib/image-zoom-src";
 
 const ZOOM_TRANSITION_MS = 200;
 
@@ -29,12 +31,56 @@ export interface FlyRect {
 
 export interface FlyImage {
   alt: string;
-  objectFit: string;
-  objectPosition: string;
+  /** width / height of the image file, not the cropped thumbnail box. */
+  aspectRatio: number;
   rect: FlyRect;
   src: string;
   zoomSrc?: string;
 }
+
+const ASPECT_RATIO_EPSILON = 0.001;
+
+const aspectRatioFromSize = (size: ImageSize): number | null => {
+  if (size.width <= 0 || size.height <= 0) {
+    return null;
+  }
+
+  return size.width / size.height;
+};
+
+const imageAspectRatio = (
+  img: HTMLImageElement,
+  zoomSrc: string | undefined
+): number => {
+  const natural = aspectRatioFromSize({
+    height: img.naturalHeight,
+    width: img.naturalWidth,
+  });
+  if (natural !== null) {
+    return natural;
+  }
+
+  const cached =
+    (zoomSrc ? cachedImageSize(zoomSrc) : undefined) ??
+    cachedImageSize(img.currentSrc || img.src);
+  const cachedAspect = cached ? aspectRatioFromSize(cached) : null;
+  return cachedAspect ?? 1;
+};
+
+const withAspectRatio = (
+  current: FlyImage | null,
+  aspectRatio: number
+): FlyImage | null => {
+  if (!current || !Number.isFinite(aspectRatio) || aspectRatio <= 0) {
+    return current;
+  }
+
+  if (Math.abs(current.aspectRatio - aspectRatio) < ASPECT_RATIO_EPSILON) {
+    return current;
+  }
+
+  return { ...current, aspectRatio };
+};
 
 const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
   const img = slot.querySelector("img");
@@ -47,14 +93,12 @@ const measureFlyImage = (slot: HTMLElement): FlyImage | null => {
     return null;
   }
 
-  const computed = window.getComputedStyle(img);
   const displaySrc = img.currentSrc || img.src;
   const hiResSrc = resolveHiResZoomSrc(displaySrc, img.dataset.zoomSrc);
 
   return {
     alt: img.alt,
-    objectFit: computed.objectFit || "cover",
-    objectPosition: computed.objectPosition || "center",
+    aspectRatio: imageAspectRatio(img, hiResSrc),
     rect: {
       height: rect.height,
       left: rect.left,
@@ -144,16 +188,23 @@ export const useImageZoom = ({
       return;
     }
 
-    const applyHiRes = () => {
+    const applyHiRes = (size: ImageSize) => {
       if (zoomSessionRef.current !== session) {
         return;
       }
 
       setOverlaySrc(fly.zoomSrc ?? fly.src);
+      const aspectRatio = aspectRatioFromSize(size);
+      if (aspectRatio === null) {
+        return;
+      }
+
+      setFlyImage((current) => withAspectRatio(current, aspectRatio));
     };
 
-    if (isImageSrcCached(fly.zoomSrc)) {
-      applyHiRes();
+    const cached = cachedImageSize(fly.zoomSrc);
+    if (cached) {
+      applyHiRes(cached);
       return;
     }
 
@@ -274,6 +325,10 @@ export const useImageZoom = ({
     [isDisabled, open]
   );
 
+  const setAspectRatio = useCallback((aspectRatio: number) => {
+    setFlyImage((current) => withAspectRatio(current, aspectRatio));
+  }, []);
+
   const prefetchZoomSrc = useCallback(() => {
     const img = slotRef.current?.querySelector("img");
     if (!img) {
@@ -331,6 +386,7 @@ export const useImageZoom = ({
     lockedBox,
     overlaySrc,
     prefetchZoomSrc,
+    setAspectRatio,
     setSlotRef,
     slotElement,
     transitionMs,

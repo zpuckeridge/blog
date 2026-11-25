@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode, TransitionEvent } from "react";
 import { createPortal } from "react-dom";
 
 import { useImageZoom } from "@/hooks/use-image-zoom";
 import type { FlyImage } from "@/hooks/use-image-zoom";
 import { useMounted } from "@/hooks/use-mounted";
+import { fitImageFrame } from "@/lib/image-zoom-frame";
 import { cn } from "@/lib/utils";
 
 const ZOOM_EASING = "cubic-bezier(0.4, 0, 0.2, 1)";
@@ -27,6 +28,45 @@ const flyBoxTransition = (transitionMs: number): string | undefined =>
   transitionMs > 0
     ? `left ${transitionMs}ms ${ZOOM_EASING}, top ${transitionMs}ms ${ZOOM_EASING}, width ${transitionMs}ms ${ZOOM_EASING}, height ${transitionMs}ms ${ZOOM_EASING}`
     : undefined;
+
+interface ViewportBox {
+  height: number;
+  offsetLeft: number;
+  offsetTop: number;
+  width: number;
+}
+
+const readViewport = (): ViewportBox => {
+  const visual = window.visualViewport;
+  return {
+    height: visual?.height ?? window.innerHeight,
+    offsetLeft: visual?.offsetLeft ?? 0,
+    offsetTop: visual?.offsetTop ?? 0,
+    width: visual?.width ?? window.innerWidth,
+  };
+};
+
+const useViewportSize = (): ViewportBox => {
+  const [viewport, setViewport] = useState(readViewport);
+
+  useEffect(() => {
+    const update = () => {
+      setViewport(readViewport());
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    window.visualViewport?.addEventListener("resize", update);
+    window.visualViewport?.addEventListener("scroll", update);
+    return () => {
+      window.removeEventListener("resize", update);
+      window.visualViewport?.removeEventListener("resize", update);
+      window.visualViewport?.removeEventListener("scroll", update);
+    };
+  }, []);
+
+  return viewport;
+};
 
 const ImageZoomSlot = ({
   aspectVideo,
@@ -116,6 +156,7 @@ const ImageZoomOverlay = ({
   flyImage,
   handleFlyTransitionEnd,
   isExpanded,
+  onAspectRatio,
   overlaySrc,
   transitionMs,
   zoomMargin,
@@ -125,23 +166,31 @@ const ImageZoomOverlay = ({
   flyImage: FlyImage;
   handleFlyTransitionEnd: (event: TransitionEvent<HTMLButtonElement>) => void;
   isExpanded: boolean;
+  onAspectRatio: (aspectRatio: number) => void;
   overlaySrc: string | null;
   transitionMs: number;
   zoomMargin: number;
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const viewport = useViewportSize();
+  const transition = flyBoxTransition(transitionMs);
+  const expandedFrame = fitImageFrame(
+    flyImage.aspectRatio,
+    { height: viewport.height, width: viewport.width },
+    zoomMargin
+  );
   const flyStyle: CSSProperties = isExpanded
     ? {
         cursor: "zoom-out",
-        height: `calc(100vh - ${zoomMargin * 2}px)`,
-        left: zoomMargin,
+        height: expandedFrame.height,
+        left: expandedFrame.left + viewport.offsetLeft,
         overflow: "hidden",
         position: "fixed",
-        top: zoomMargin,
+        top: expandedFrame.top + viewport.offsetTop,
         transform: "none",
-        transition: flyBoxTransition(transitionMs),
-        width: `calc(100vw - ${zoomMargin * 2}px)`,
+        transition,
+        width: expandedFrame.width,
         zIndex: 51,
       }
     : {
@@ -152,7 +201,7 @@ const ImageZoomOverlay = ({
         position: "fixed",
         top: flyImage.rect.top,
         transform: "none",
-        transition: flyBoxTransition(transitionMs),
+        transition,
         width: flyImage.rect.width,
         zIndex: 51,
       };
@@ -250,10 +299,16 @@ const ImageZoomOverlay = ({
           decoding="async"
           draggable={false}
           fetchPriority="high"
+          onLoad={(event) => {
+            const { naturalHeight, naturalWidth } = event.currentTarget;
+            if (naturalWidth > 0 && naturalHeight > 0) {
+              onAspectRatio(naturalWidth / naturalHeight);
+            }
+          }}
           src={overlaySrc ?? flyImage.src}
           style={{
-            objectFit: flyImage.objectFit as CSSProperties["objectFit"],
-            objectPosition: flyImage.objectPosition,
+            objectFit: "contain",
+            objectPosition: "center",
           }}
         />
       </button>
@@ -283,6 +338,7 @@ export const ImageZoom = ({
     lockedBox,
     overlaySrc,
     prefetchZoomSrc,
+    setAspectRatio,
     setSlotRef,
     slotElement,
     transitionMs,
@@ -312,6 +368,7 @@ export const ImageZoom = ({
           flyImage={flyImage}
           handleFlyTransitionEnd={handleFlyTransitionEnd}
           isExpanded={isExpanded}
+          onAspectRatio={setAspectRatio}
           overlaySrc={overlaySrc}
           transitionMs={transitionMs}
           zoomMargin={zoomMargin}
