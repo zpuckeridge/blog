@@ -77,7 +77,7 @@ const fullTitle = formatPageTitle("Music");
     </div>
 
     <MusicStats
-      client:load
+      client:idle
       initialMonth={initialMonth}
       monthPagePath="/music"
       months={months}
@@ -85,7 +85,7 @@ const fullTitle = formatPageTitle("Music");
     />
 
     <MusicHistory
-      client:load
+      client:idle
       initialPlays={listing.plays}
       live={isLiveMonth}
       monthKey={initialMonth}

@@ -58,6 +58,6 @@ Astro.response.headers.set("Cache-Control", "private, no-store");
         </section>
       ) : null
     }
-    <ActivityFeed client:load initialEvents={initialEvents} />
+    <ActivityFeed client:idle initialEvents={initialEvents} />
   </div>
 </Layout>

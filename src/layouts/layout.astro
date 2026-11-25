@@ -6,7 +6,6 @@ import Navigation from "@/components/navigation";
 import BaseHead from "@/components/seo/base-head.astro";
 import JsonLd from "@/components/seo/json-ld.astro";
 import type { JsonLdCollectionItem } from "@/lib/json-ld";
-import { menuItems } from "@/lib/menu-items";
 import type { PageMetadata } from "@/lib/metadata";
 import { siteLocale } from "@/lib/site";
 import { DARK_MODE_QUERY, THEME_STORAGE_KEY } from "@/lib/theme";
@@ -29,11 +28,6 @@ const speculationRules = JSON.stringify({
     },
   ],
   prerender: [
-    {
-      eagerness: "immediate",
-      source: "list",
-      urls: ["/", ...menuItems.map((item) => item.href)],
-    },
     {
       eagerness: "moderate",
       source: "document",
@@ -90,13 +84,6 @@ const {
       as="font"
       crossorigin
       href="/fonts/redaction-regular.woff2"
-      rel="preload"
-      type="font/woff2"
-    />
-    <link
-      as="font"
-      crossorigin
-      href="/fonts/geist-mono-latin-400.woff2"
       rel="preload"
       type="font/woff2"
     />
