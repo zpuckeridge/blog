@@ -15,12 +15,7 @@ import {
   parseListeningStats,
   resolveListeningStatsMonth,
 } from "@/lib/listening-stats";
-import {
-  expandableListMetaClassName,
-  expandableListSectionHeaderMainClassName,
-} from "@/lib/expandable-list";
 import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
-import { siteLocale } from "@/lib/site";
 import { workersEnv } from "@/lib/workers-env";
 
 export const prerender = false;
@@ -54,8 +49,6 @@ const listing = sliceListenHistory(
   0,
   LISTENING_HISTORY_DISPLAY_MAX
 );
-const recentPlayCount = monthHistory.length;
-const songLabel = recentPlayCount === 1 ? "song" : "songs";
 const isLiveMonth = initialMonth === listenMonthKey(Date.now());
 
 Astro.response.headers.set("Cache-Control", "private, no-store");
@@ -91,29 +84,11 @@ const fullTitle = formatPageTitle("Music");
       stats={stats}
     />
 
-    <section class="space-y-2">
-      <div
-        class="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(5ch,max-content)] items-center gap-x-4"
-      >
-        <div class={expandableListSectionHeaderMainClassName}>
-          <p class="shrink-0 text-muted-foreground text-sm">Recent plays</p>
-          <hr class="min-w-0 flex-1 border-dotted border-border" />
-        </div>
-        <p
-          class:list={[
-            expandableListMetaClassName,
-            "text-muted-foreground text-sm",
-          ]}
-        >
-          {recentPlayCount.toLocaleString(siteLocale)} {songLabel}
-        </p>
-      </div>
-      <MusicHistory
-        client:load
-        initialPlays={listing.plays}
-        live={isLiveMonth}
-        monthKey={initialMonth}
-      />
-    </section>
+    <MusicHistory
+      client:load
+      initialPlays={listing.plays}
+      live={isLiveMonth}
+      monthKey={initialMonth}
+    />
   </div>
 </Layout>

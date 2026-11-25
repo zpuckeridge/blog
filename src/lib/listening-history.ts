@@ -1,3 +1,4 @@
+import { isoDateInBrisbane } from "@/lib/format-in-brisbane";
 import type { NowListening, ObservedListen } from "@/lib/lanyard-status";
 import { resolveStoredListenSource } from "@/lib/lanyard-status";
 import { isListenMonthKey, listenMonthKey } from "@/lib/listening-month";
@@ -332,6 +333,10 @@ export const listeningPlayKey = (
 export const listenPlayedAt = (
   play: Pick<ListenPlay, "listenedAt" | "startedAt">
 ): number => play.startedAt ?? play.listenedAt;
+
+/** True when the play falls on today's calendar date in Brisbane. */
+export const isPlayedToday = (playedAt: number, now = Date.now()): boolean =>
+  isoDateInBrisbane(playedAt) === isoDateInBrisbane(now);
 
 export const parseListenHistoryMonth = (
   value: string | null

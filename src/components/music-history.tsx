@@ -4,11 +4,16 @@ import {
   ListeningPlayRow,
   recordListeningClick,
 } from "@/components/listening-play-row";
+import {
+  expandableListMetaClassName,
+  expandableListSectionHeaderMainClassName,
+} from "@/lib/expandable-list";
 import { isLikelyBot } from "@/lib/is-likely-bot";
 import { watchLanyardPresence } from "@/lib/lanyard-presence-hub";
 import { LANYARD_USER_ID, parseAppleMusicActivity } from "@/lib/lanyard-status";
 import type { LanyardPresence, ObservedListen } from "@/lib/lanyard-status";
 import {
+  isPlayedToday,
   listenPlayedAt,
   listeningPlayKey,
   mergeLatestPlays,
@@ -17,6 +22,8 @@ import {
 } from "@/lib/listening-history";
 import type { ListenPlay } from "@/lib/listening-history";
 import { listeningIdentity } from "@/lib/listening-recents";
+import { siteLocale } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 interface HistoryPayload {
   plays: ListenPlay[];
@@ -26,6 +33,26 @@ const HISTORY_POLL_MS = 60_000;
 
 const playIdentity = (play: ListenPlay): string =>
   `${listeningPlayKey(play)}:${play.listenedAt}`;
+
+const songCountLabel = (count: number): string =>
+  `${count.toLocaleString(siteLocale)} ${count === 1 ? "song" : "songs"}`;
+
+const PlayGroupHeader = ({ meta, title }: { meta: string; title: string }) => (
+  <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(5ch,max-content)] items-center gap-x-4">
+    <div className={expandableListSectionHeaderMainClassName}>
+      <p className="shrink-0 text-muted-foreground text-sm">{title}</p>
+      <hr className="min-w-0 flex-1 border-dotted border-border" />
+    </div>
+    <p
+      className={cn(
+        expandableListMetaClassName,
+        "text-muted-foreground text-sm"
+      )}
+    >
+      {meta}
+    </p>
+  </div>
+);
 
 const fetchLatestHistory = async (
   monthKey: string
@@ -61,6 +88,94 @@ const withoutCurrentSession = (
   }
 
   return plays.filter((play) => !sameListeningSession(play, song));
+};
+
+const PlayList = ({
+  now,
+  plays,
+}: {
+  now: number;
+  plays: readonly ListenPlay[];
+}) => (
+  <ul className="m-0 flex list-none flex-col gap-1 p-0">
+    {plays.map((play) => (
+      <ListeningPlayRow
+        key={playIdentity(play)}
+        listen={{ ...play, playedAt: listenPlayedAt(play) }}
+        now={now}
+        onTrackClick={() => recordListeningClick(play)}
+      />
+    ))}
+  </ul>
+);
+
+const TodayPlays = ({
+  now,
+  nowPlaying,
+  plays,
+}: {
+  now: number;
+  nowPlaying: ObservedListen | null;
+  plays: readonly ListenPlay[];
+}) => (
+  <section className="space-y-2">
+    <PlayGroupHeader
+      meta={songCountLabel(plays.length + (nowPlaying ? 1 : 0))}
+      title="Today"
+    />
+    {nowPlaying || plays.length > 0 ? (
+      <ul className="m-0 flex list-none flex-col gap-1 p-0">
+        {nowPlaying ? (
+          <ListeningPlayRow
+            key="now-playing"
+            listen={{
+              ...nowPlaying,
+              playedAt: nowPlaying.startedAt ?? now,
+            }}
+            now={now}
+            onTrackClick={() => recordListeningClick(nowPlaying)}
+            timeLabel="Now playing"
+          />
+        ) : null}
+        {plays.map((play) => (
+          <ListeningPlayRow
+            key={playIdentity(play)}
+            listen={{ ...play, playedAt: listenPlayedAt(play) }}
+            now={now}
+            onTrackClick={() => recordListeningClick(play)}
+          />
+        ))}
+      </ul>
+    ) : (
+      <p className="text-sm text-muted-foreground">Nothing played today.</p>
+    )}
+  </section>
+);
+
+const EarlierPlays = ({
+  now,
+  plays,
+}: {
+  now: number;
+  plays: readonly ListenPlay[];
+}) => (
+  <section className="space-y-2">
+    <PlayGroupHeader meta={songCountLabel(plays.length)} title="Earlier" />
+    <PlayList now={now} plays={plays} />
+  </section>
+);
+
+const partitionByToday = (plays: readonly ListenPlay[], now: number) => {
+  const today: ListenPlay[] = [];
+  const earlier: ListenPlay[] = [];
+  for (const play of plays) {
+    if (isPlayedToday(listenPlayedAt(play), now)) {
+      today.push(play);
+    } else {
+      earlier.push(play);
+    }
+  }
+  return { earlier, today };
 };
 
 const MusicHistory = ({
@@ -147,42 +262,29 @@ const MusicHistory = ({
   }, [live, onPresence, refreshLatest, skipNetwork]);
 
   const rows = withoutCurrentSession(plays, live ? nowPlaying : null);
+  const { earlier, today } = partitionByToday(rows, now);
 
-  if (!live && rows.length === 0) {
-    return (
-      <p className="text-sm text-muted-foreground">
-        No plays logged this month.
-      </p>
-    );
+  if (!live) {
+    if (rows.length === 0) {
+      return (
+        <p className="text-sm text-muted-foreground">
+          No plays logged this month.
+        </p>
+      );
+    }
+
+    return <PlayList now={now} plays={rows} />;
   }
 
-  if (live && nowPlaying === null && rows.length === 0) {
+  if (nowPlaying === null && rows.length === 0) {
     return <p className="text-sm text-muted-foreground">No songs yet.</p>;
   }
 
   return (
-    <ul className="m-0 flex list-none flex-col gap-1 p-0">
-      {live && nowPlaying ? (
-        <ListeningPlayRow
-          key="now-playing"
-          listen={{
-            ...nowPlaying,
-            playedAt: nowPlaying.startedAt ?? now,
-          }}
-          now={now}
-          onTrackClick={() => recordListeningClick(nowPlaying)}
-          timeLabel="Now playing"
-        />
-      ) : null}
-      {rows.map((play) => (
-        <ListeningPlayRow
-          key={playIdentity(play)}
-          listen={{ ...play, playedAt: listenPlayedAt(play) }}
-          now={now}
-          onTrackClick={() => recordListeningClick(play)}
-        />
-      ))}
-    </ul>
+    <div className="flex flex-col gap-6">
+      <TodayPlays now={now} nowPlaying={nowPlaying} plays={today} />
+      {earlier.length > 0 ? <EarlierPlays now={now} plays={earlier} /> : null}
+    </div>
   );
 };
 

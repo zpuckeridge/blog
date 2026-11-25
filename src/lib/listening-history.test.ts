@@ -7,6 +7,7 @@ import {
   LISTENING_HISTORY_DISPLAY_MAX,
   LISTENING_SESSION_WINDOW_MS,
   appendListenPlay,
+  isPlayedToday,
   listenPlayedAt,
   listeningPlayKey,
   collapseListenSessions,
@@ -275,6 +276,12 @@ describe("listening history chunks", () => {
 });
 
 describe("listen timing", () => {
+  it("treats Brisbane midnight as the start of today", () => {
+    const now = Date.UTC(2026, 10, 24, 16, 0);
+    assert.equal(isPlayedToday(Date.UTC(2026, 10, 24, 14, 30), now), true);
+    assert.equal(isPlayedToday(Date.UTC(2026, 10, 24, 13, 30), now), false);
+  });
+
   it("prefers the Discord start time when showing when a song was played", () => {
     const startedAt = Date.UTC(2026, 9, 29, 5, 42);
 
