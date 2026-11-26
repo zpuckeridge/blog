@@ -8,6 +8,7 @@ import {
 import {
   expandableListMetaClassName,
   expandableListSectionHeaderMainClassName,
+  expandableListSectionLinkClassName,
 } from "@/lib/expandable-list";
 import { resolveListeningAlbumUrl } from "@/lib/listening-album-url";
 import { resolveListeningArtistUrl } from "@/lib/listening-artist-url";
@@ -20,9 +21,13 @@ import { cn } from "@/lib/utils";
 
 const MusicStatsSectionHeader = ({
   meta,
+  seeAllCount,
+  seeAllHref,
   title,
 }: {
   meta?: string;
+  seeAllCount?: number;
+  seeAllHref?: string;
   title: string;
 }) => {
   const main = (
@@ -31,6 +36,17 @@ const MusicStatsSectionHeader = ({
       <hr className="min-w-0 flex-1 border-dotted border-border" />
     </div>
   );
+
+  if (seeAllHref !== undefined && seeAllCount !== undefined) {
+    return (
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_minmax(5ch,max-content)] items-center gap-x-4">
+        {main}
+        <a className={expandableListSectionLinkClassName} href={seeAllHref}>
+          See all {seeAllCount.toLocaleString()}
+        </a>
+      </div>
+    );
+  }
 
   if (!meta) {
     return main;
@@ -189,6 +205,7 @@ const MusicStats = ({
 }) => {
   const month = stats.months[initialMonth];
   const view = month ? monthStatsView(month) : null;
+  const genresPageHref = `/music/genres?month=${encodeURIComponent(initialMonth)}`;
 
   const monthMenu =
     months.length > 1 ? (
@@ -248,13 +265,8 @@ const MusicStats = ({
         <>
           <section className="space-y-2">
             <MusicStatsSectionHeader
-              meta={
-                view.genres.length === 0
-                  ? undefined
-                  : `${view.genres.length.toLocaleString()} ${
-                      view.genres.length === 1 ? "genre" : "genres"
-                    }`
-              }
+              seeAllCount={view.genreCount === 0 ? undefined : view.genreCount}
+              seeAllHref={view.genreCount === 0 ? undefined : genresPageHref}
               title="Genres"
             />
             {view.genres.length === 0 ? (

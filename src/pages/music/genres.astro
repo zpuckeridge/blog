@@ -1,0 +1,45 @@
+---
+import MusicGenresPage from "@/components/music-genres-page";
+import Layout from "@/layouts/layout.astro";
+import {
+  LISTENING_STATS_KV_KEY,
+  parseListeningStats,
+  resolveListeningStatsMonth,
+} from "@/lib/listening-stats";
+import { createPageMetadata, formatPageTitle } from "@/lib/metadata";
+import { workersEnv } from "@/lib/workers-env";
+
+export const prerender = false;
+
+const kv = workersEnv.LOCATION_KV;
+if (kv) {
+  const { ensureDevMusicSeed } = await import("@/lib/music-stats-dev-seed");
+  await ensureDevMusicSeed(kv);
+}
+
+const statsRaw = kv ? await kv.get(LISTENING_STATS_KV_KEY) : null;
+const stats = parseListeningStats(statsRaw);
+const { initialMonth } = resolveListeningStatsMonth(
+  stats,
+  Astro.url.searchParams.get("month")
+);
+
+Astro.response.headers.set("Cache-Control", "private, no-store");
+
+const pageMeta = createPageMetadata({
+  description:
+    "Full genre breakdown for a month of Apple Music listening on this site.",
+  path: "/music/genres",
+  title: "Genres",
+});
+
+const fullTitle = formatPageTitle("Genres");
+---
+
+<Layout
+  canonicalUrl={pageMeta.alternates?.canonical}
+  fullTitle={fullTitle}
+  meta={pageMeta}
+>
+  <MusicGenresPage client:idle initialMonth={initialMonth} stats={stats} />
+</Layout>

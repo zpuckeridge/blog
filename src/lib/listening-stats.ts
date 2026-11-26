@@ -223,23 +223,31 @@ export const genresForMonth = (
     .map(([genre, count]) => ({ count, genre }));
 
 export const LISTENING_STATS_TOP_LIMIT = 5;
+export const LISTENING_STATS_GENRE_PREVIEW_LIMIT = 7;
 
 export const monthStatsView = (
   month: ListeningStatsMonth,
-  limit = LISTENING_STATS_TOP_LIMIT
+  limit = LISTENING_STATS_TOP_LIMIT,
+  genreLimit = LISTENING_STATS_GENRE_PREVIEW_LIMIT
 ): {
   albums: ListeningStatsRankedItem[];
   artists: ListeningStatsRankedItem[];
+  genreCount: number;
   genres: { count: number; genre: string }[];
   plays: number;
   tracks: ListeningStatsRankedItem[];
-} => ({
-  albums: byCount(month.albums, limit),
-  artists: byCount(month.artists, limit),
-  genres: genresForMonth(month),
-  plays: month.plays,
-  tracks: byCount(month.tracks, limit),
-});
+} => {
+  const allGenres = genresForMonth(month);
+
+  return {
+    albums: byCount(month.albums, limit),
+    artists: byCount(month.artists, limit),
+    genreCount: allGenres.length,
+    genres: allGenres.slice(0, genreLimit),
+    plays: month.plays,
+    tracks: byCount(month.tracks, limit),
+  };
+};
 
 const listenMonthLabelFormatter = new Intl.DateTimeFormat(siteLocale, {
   month: "long",
