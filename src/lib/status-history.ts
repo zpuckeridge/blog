@@ -44,7 +44,6 @@ export interface StatusHistoryStore {
 }
 
 export interface StatusHistoryPublic {
-  discord: HeatmapDay[];
   home: HeatmapDay[];
   work: HeatmapDay[];
   collectionStartedAt: number | null;
@@ -294,18 +293,10 @@ export const storeToPublicHistory = (
   store: StatusHistoryStore,
   todayIso = isoDateInBrisbane()
 ): StatusHistoryPublic => {
-  const discordValues = new Map<
-    string,
-    Pick<HeatmapDay, "hasData" | "value">
-  >();
   const workValues = new Map<string, Pick<HeatmapDay, "hasData" | "value">>();
   const homeValues = new Map<string, Pick<HeatmapDay, "hasData" | "value">>();
 
   for (const [date, rollup] of Object.entries(store.days)) {
-    discordValues.set(date, {
-      hasData: rollup.discordObservedMinutes > 0,
-      value: rollup.discordOnlineMinutes,
-    });
     workValues.set(date, {
       hasData: rollup.locationObservedMinutes > 0,
       value: rollup.workMinutes,
@@ -318,11 +309,6 @@ export const storeToPublicHistory = (
 
   return {
     collectionStartedAt: store.cursor.lastSampledAt,
-    discord: buildRecentHeatmapDays(
-      discordValues,
-      ACTIVITY_DISPLAY_DAYS * 2,
-      todayIso
-    ),
     home: buildRecentHeatmapDays(
       homeValues,
       ACTIVITY_DISPLAY_DAYS * 2,
@@ -335,24 +321,6 @@ export const storeToPublicHistory = (
     ),
   };
 };
-
-export const readStatusHistoryPublic = async (
-  kv: StatusKv
-): Promise<StatusHistoryPublic> => {
-  const raw = await kv.get(STATUS_HISTORY_KV_KEY);
-  return storeToPublicHistory(parseStatusHistoryStore(raw));
-};
-
-export const getServerStatusHistory =
-  async (): Promise<StatusHistoryPublic | null> => {
-    const { workersEnv } = await import("./workers-env");
-    const kv = workersEnv.LOCATION_KV;
-    if (!kv) {
-      return null;
-    }
-
-    return readStatusHistoryPublic(kv);
-  };
 
 export interface RecordStatusSampleResult {
   recorded: boolean;

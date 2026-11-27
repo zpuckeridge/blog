@@ -22,7 +22,9 @@ describe("dev activity seed", () => {
     assert.equal(charts.sleep.empty, false);
     assert.equal(charts.drinks.empty, false);
     assert.equal(charts.meals.empty, false);
+    assert.equal(charts.home.empty, false);
     assert.equal(charts.place.empty, false);
+    assert.match(charts.home.headline ?? "", /at home/u);
     assert.equal(charts.attention.empty, false);
     assert.equal(charts.afterTen.empty, false);
     assert.equal(charts.weekWork.empty, false);

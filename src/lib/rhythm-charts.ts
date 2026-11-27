@@ -117,6 +117,7 @@ export interface ActivityCharts {
   attention: RhythmBarChart;
   coffee: RhythmBarChart;
   drinks: RhythmBarChart;
+  home: RhythmBarChart;
   meals: RhythmBarChart;
   mood: RhythmBarChart;
   movement: RhythmBarChart;
@@ -1148,6 +1149,65 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
     ...summary,
   });
 
+  const homeHistory = historyDates.map((isoDate) => {
+    const rollup = source.status.days[isoDate];
+    if (!rollup || rollup.locationObservedMinutes <= 0) {
+      return null;
+    }
+    return rollup.homeMinutes;
+  });
+  const homeMinutes = chartTail(homeHistory);
+  const homeTotals = away.map((out, index) => {
+    const atHome = homeMinutes[index];
+    if (
+      out === null ||
+      out === undefined ||
+      atHome === null ||
+      atHome === undefined
+    ) {
+      return null;
+    }
+    return out + atHome;
+  });
+
+  const home = buildSeriesChart({
+    barValues: homeTotals,
+    compareValues: dates.map(() => null),
+    completedIndex,
+    dates,
+    drawBarAverage: true,
+    formatBar: (value) => `${formatHeatmapMinutesLabel(value)} at home`,
+    formatBarDelta: signedDuration,
+    formatCompare: (value) =>
+      `${formatHeatmapMinutesLabel(value)} away from home`,
+    formatCompareDelta: signedDuration,
+    headline: "bars",
+    healthy: homeMinutes,
+    labelFor: (index) => {
+      const date = formatChartDay(dates[index] ?? "");
+      const atHome = homeMinutes[index];
+      const out = away[index];
+      if (
+        atHome === null ||
+        atHome === undefined ||
+        out === null ||
+        out === undefined
+      ) {
+        return `${date}, no location record`;
+      }
+      return `${date}, ${formatHeatmapMinutesLabel(atHome)} at home, ${formatHeatmapMinutesLabel(out)} away from home`;
+    },
+    quantizeBar: Math.round,
+    quantizeCompare: Math.round,
+    sharedScale: true,
+    smoothCompare: false,
+    stackPalette: "place",
+    stacked: true,
+    summaryValues: homeHistory,
+    unhealthy: away,
+    ...summary,
+  });
+
   const attention = buildSeriesChart({
     barValues: plays,
     compareValues: dates.map(() => null),
@@ -1516,6 +1576,7 @@ export const buildActivityCharts = (source: ChartSource): ActivityCharts => {
         ),
       },
     ]),
+    home,
     place,
     reading: readingChart,
     supplements: toStrip(

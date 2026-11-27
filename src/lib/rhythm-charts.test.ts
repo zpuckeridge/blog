@@ -126,6 +126,26 @@ describe("buildActivityCharts", () => {
     assert.equal(day?.unhealthy, 100);
   });
 
+  it("stacks time at home under time away from home", () => {
+    const status = emptyStatusHistoryStore();
+    status.days["2026-11-12"] = {
+      discordObservedMinutes: 0,
+      discordOnlineMinutes: 0,
+      homeMinutes: 500,
+      locationObservedMinutes: 900,
+      workMinutes: 200,
+    };
+
+    const { home } = chartsFrom(emptyRhythmStore(), status);
+    const day = home.points.find((point) => point.date === "2026-11-12");
+    assert.equal(home.mark, "bars");
+    assert.equal(home.stacked, true);
+    assert.equal(home.stackPalette, "place");
+    assert.equal(day?.bar, 900);
+    assert.equal(day?.healthy, 500);
+    assert.equal(day?.unhealthy, 400);
+  });
+
   it("counts a silent day inside the listening history as zero", () => {
     const first = Date.parse("2026-11-10T12:00:00+10:00");
     const third = Date.parse("2026-11-12T12:00:00+10:00");
@@ -180,6 +200,7 @@ describe("buildActivityCharts", () => {
       charts.mood,
       charts.weight,
       charts.reading,
+      charts.home,
       charts.place,
       charts.attention,
       charts.afterTen,

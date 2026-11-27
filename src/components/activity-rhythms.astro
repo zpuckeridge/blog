@@ -13,7 +13,7 @@ interface Props {
 const { charts } = Astro.props;
 ---
 
-<section aria-label="Daily rhythms" class="min-w-0 space-y-8" data-rhythm-charts>
+<section aria-label="Daily rhythms" class="min-w-0 space-y-10" data-rhythm-charts>
     <div class="flex items-center gap-1">
       <h2 class="font-redaction text-black text-xl dark:text-white">Rhythms</h2>
       <ChartInfo
@@ -23,7 +23,7 @@ const { charts } = Astro.props;
     </div>
 
   <SleepWindowChart
-    caption="Each mark runs from getting into bed to getting up, on the morning you woke. The figure is how long that window was."
+    caption="Each mark runs from getting into bed to getting up, on the morning of waking. The figure is how long that window was."
     chart={charts.sleep}
     emptyLabel="No bed or wake times yet."
     title="Sleep"
@@ -70,26 +70,26 @@ const { charts } = Astro.props;
   />
   <div class="flex flex-col gap-4">
     <RhythmStrip
-      caption="Alcohol and smoking. A filled mark is a day you did. A gap is a day you did not log. The figure is days a week with either."
+      caption="Alcohol and smoking. A filled mark is a day with either. A gap is a day with no log. The figure is days a week with either."
       chart={charts.vices}
       emptyLabel="No vices logged yet."
       title="Vices"
     />
     <RhythmStrip
-      caption="Someone outside of work. In person and online are separate. A gap is a day you did not log."
+      caption="Someone outside of work. In person and online are separate. A gap is a day with no log."
       chart={charts.people}
       emptyLabel="No socialising logged yet."
       title="Socialising"
     />
     <RhythmStrip
-      caption="One row for each supplement you have logged. Creatine is first. A gap is a day you did not log, and a blank row is a day you took none."
+      caption="One row for each supplement logged. Creatine is first. A gap is a day with no log, and a blank row is a day with none taken."
       chart={charts.supplements}
       emptyLabel="No supplement notes yet."
       title="Supplements"
     />
   </div>
   <RhythmBarChart
-    caption="Minutes read. A logged zero is a day you did not read."
+    caption="Minutes read. A logged zero is a day with no reading."
     chart={charts.reading}
     emptyLabel="No reading notes yet."
     legend={[
@@ -110,6 +110,17 @@ const { charts } = Astro.props;
     title="At work"
   />
   <RhythmBarChart
+    caption="Each bar is observed location time. The lower part is at home. The line is the 30-day average at home."
+    chart={charts.home}
+    emptyLabel="No time at home recorded yet."
+    legend={[
+      { kind: "bar", label: "At home" },
+      { kind: "other", label: "Away, not at home" },
+      { kind: "average", label: "30-day average" },
+    ]}
+    title="At home"
+  />
+  <RhythmBarChart
     caption="Plays from Apple Music. A day inside this history with no plays is a zero."
     chart={charts.attention}
     emptyLabel="No listening history yet."
@@ -119,7 +130,7 @@ const { charts } = Astro.props;
     ]}
     title="Listening"
   />
-  <div class="min-w-0 space-y-6">
+  <div class="min-w-0 space-y-2">
       <div class="flex items-center gap-1">
         <h3 class="font-normal text-muted-foreground text-sm">Weekdays</h3>
         <ChartInfo
