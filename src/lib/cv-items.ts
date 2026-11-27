@@ -11,7 +11,7 @@ export interface EmploymentItem {
 export const employmentHistory: EmploymentItem[] = [
   {
     description:
-      "Working as the IT Operations Lead for Star Compass, a disability support service.",
+      "IT Operations Lead for Star Compass, a disability support service.",
     endYear: "Present",
     location: "Brisbane, Australia",
     position: "IT Operations Lead ",
@@ -21,7 +21,7 @@ export const employmentHistory: EmploymentItem[] = [
   },
   {
     description:
-      "Built out and managed the Brisbane satellite office as the sole IT Administrator, growing the team from 12 to 65 in a year. Oversaw deployment and management of equipment, facilities, and provided support for hardware, networks, and user management.",
+      "Built and managed the Brisbane satellite office as the sole IT Administrator. The team grew from 12 to 65 in a year. Oversaw the deployment and management of the equipment and facilities. Supported hardware, networks, and user management.",
     endYear: 2024,
     location: "Brisbane, Australia",
     position: "IT Administrator",
@@ -31,7 +31,7 @@ export const employmentHistory: EmploymentItem[] = [
   },
   {
     description:
-      "Provided support for ~200 employees, both internal and remote, and deployed major networking and hardware upgrades across the studio. Built and deployed a ~500TB CephFS Cluster to upgrade storage and managed render farms to ensure project deadlines were met.",
+      "Supported ~200 employees, both internal and remote. Deployed major networking and hardware upgrades across the studio. Built and deployed a ~500TB CephFS Cluster to upgrade storage. Managed render farms so the studio met its project deadlines.",
     endYear: 2022,
     location: "Brisbane, Australia",
     position: "Systems Administrator",
@@ -41,7 +41,7 @@ export const employmentHistory: EmploymentItem[] = [
   },
   {
     description:
-      "Managed server issues and developed documentation and processes for a small business. Assisted with Kubernetes deployment and client project development.",
+      "Managed server issues and developed documentation and processes for a small business. Helped with Kubernetes deployment and client project development.",
     endYear: 2021,
     location: "Brisbane, Australia",
     position: "Junior Cloud Engineer",
@@ -51,7 +51,7 @@ export const employmentHistory: EmploymentItem[] = [
   },
   {
     description:
-      "Provided professional support for a wide range of web technologies including WordPress, Office 365, Plesk, Windows Server, and Linux. Wrote technical documentation and participated in server maintenance.",
+      "Gave professional support for a wide range of web technologies, including WordPress, Office 365, Plesk, Windows Server, and Linux. Wrote technical documentation and participated in server maintenance.",
     endYear: 2020,
     location: "Brisbane, Australia",
     position: "Technical Support",
@@ -61,7 +61,7 @@ export const employmentHistory: EmploymentItem[] = [
   },
   {
     description:
-      "Led campers through team building and extra-curricular activities, building strong relationships with campers, parents, and fellow counsellors. Traveled across the USA, meeting some excellent people along the way.",
+      "Led campers through team building and extra-curricular activities. Built strong relationships with campers, parents, and fellow counsellors. Travelled across the USA and met some excellent people along the way.",
     endYear: 2018,
     location: "Virginia, United States",
     position: "Camp Counsellor",
@@ -71,7 +71,7 @@ export const employmentHistory: EmploymentItem[] = [
   },
   {
     description:
-      "Developed strong time management skills and thrived in a fast-paced environment. Helped train new Crew Members in proper procedures.",
+      "Developed strong time management skills and thrived in a fast-paced environment. Helped train new Crew Members in the proper procedures.",
     endYear: 2018,
     location: "Brisbane, Australia",
     position: "Crew Member",
@@ -94,7 +94,7 @@ export interface EducationItem {
 export const educationHistory: EducationItem[] = [
   {
     description:
-      "This 6-week course aims to equip students with a comprehensive overview of Christian theology and worldview, as well as its relevance for today.",
+      "This 6-week course aims to give students a full overview of Christian theology and worldview, and of their relevance for today.",
     endDate: "2024-01-29",
     field: "Theology for Worldview",
     startDate: "2023-12-04",
@@ -104,7 +104,7 @@ export const educationHistory: EducationItem[] = [
   {
     credential: "Certificate III",
     description:
-      "This was completed as a part of my employment with Conetix Web Hosting.",
+      "Completed this as a part of my employment with Conetix Web Hosting.",
     endDate: "2020-06-05",
     field: "Information Technology & Digital Media",
     startDate: "2019-01-01",
